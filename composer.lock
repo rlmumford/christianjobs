@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0aae613a2939a401090e5a077319bbc0",
+    "content-hash": "90415677d26deef5e023c796becbd9fa",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1979,6 +1979,64 @@
             "time": "2018-04-25T15:39:01+00:00"
         },
         {
+            "name": "drupal/entity",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/entity",
+                "reference": "062c7c23900d0e5ef32060c2500143fcdeecbff5"
+            },
+            "require": {
+                "drupal/core": "~8.5"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta4+0-dev",
+                    "datestamp": "1528452184",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "dixon_",
+                    "homepage": "https://www.drupal.org/user/239911"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                }
+            ],
+            "description": "Provides expanded entity APIs, which will be moved to Drupal core one day.",
+            "homepage": "http://drupal.org/project/entity",
+            "support": {
+                "source": "http://cgit.drupalcode.org/entity"
+            },
+            "time": "2018-06-11T19:49:18+00:00"
+        },
+        {
             "name": "drupal/fontawesome",
             "version": "2.2.0",
             "source": {
@@ -2052,6 +2110,159 @@
             "homepage": "https://www.drupal.org/project/fontawesome",
             "support": {
                 "source": "http://cgit.drupalcode.org/fontawesome"
+            }
+        },
+        {
+            "name": "drupal/range",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/range",
+                "reference": "c29a8799ef9ae72118bdceb93d862ac5147831f8"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1+2-dev",
+                    "datestamp": "1493228944",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Taran2L",
+                    "homepage": "https://www.drupal.org/user/473438"
+                },
+                {
+                    "name": "ribel",
+                    "homepage": "https://www.drupal.org/user/1449610"
+                }
+            ],
+            "description": "Defines a numeric range field type.",
+            "homepage": "https://www.drupal.org/project/range",
+            "support": {
+                "source": "http://cgit.drupalcode.org/range"
+            },
+            "time": "2017-04-26T17:44:15+00:00"
+        },
+        {
+            "name": "drupal/rules",
+            "version": "3.0.0-alpha4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/rules",
+                "reference": "8.x-3.0-alpha4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/rules-8.x-3.0-alpha4.zip",
+                "reference": "8.x-3.0-alpha4",
+                "shasum": "d6f11a6bd867b3479504b00278b4465a5b138d3a"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/typed_data": "*"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
+                "drupal/coder": "8.2.*",
+                "squizlabs/php_codesniffer": "2.9.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0-alpha4",
+                    "datestamp": "1526654284",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                },
+                "patches_applied": {
+                    "Configurable Component Variables": "https://www.drupal.org/files/issues/2916331-11.patch"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "klausi",
+                    "homepage": "https://www.drupal.org/user/262198"
+                }
+            ],
+            "description": "React on events and conditionally evaluate actions.",
+            "homepage": "https://www.drupal.org/project/rules",
+            "support": {
+                "source": "http://cgit.drupalcode.org/rules"
+            }
+        },
+        {
+            "name": "drupal/typed_data",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/typed_data",
+                "reference": "8.x-1.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/typed_data-8.x-1.0-alpha1.zip",
+                "reference": "8.x-1.0-alpha1",
+                "shasum": "69b7230546bfea53d57f8923183e964137f5a456"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha1",
+                    "datestamp": "1475245822",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                }
+            ],
+            "description": "Extends the core Typed Data API with new APIS and features.",
+            "homepage": "https://www.drupal.org/project/typed_data",
+            "support": {
+                "source": "http://cgit.drupalcode.org/typed_data"
             }
         },
         {
@@ -3078,6 +3289,50 @@
                 "shell"
             ],
             "time": "2018-06-02T16:39:22+00:00"
+        },
+        {
+            "name": "rlmumford/common",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:/rlmumford/common",
+                "reference": "905e0b60f69cd6d6be6fb72ca5c39c46ef80405f"
+            },
+            "require": {
+                "cweagans/composer-patches": "^1.6",
+                "drupal/entity": "1.x-dev",
+                "drupal/range": "1.x-dev",
+                "drupal/rules": "^3.0@alpha",
+                "webflo/drupal-finder": "^1.0.0",
+                "webmozart/path-util": "^2.3"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "enable-patching": true,
+                "patches": {
+                    "drupal/rules": {
+                        "Configurable Component Variables": "https://www.drupal.org/files/issues/2916331-11.patch"
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "scripts/composer/ScriptHandler.php"
+                ]
+            },
+            "scripts": {
+                "rlmumford-dev": [
+                    "RLMumford\\composer\\ScriptHandler::developRLMumford"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "rlmumford",
+                    "email": "rlmumford@googlemail.com"
+                }
+            ],
+            "description": "Common RLMumford Tools & Modules",
+            "time": "2018-06-14T21:31:19+00:00"
         },
         {
             "name": "sebastian/version",
@@ -7381,7 +7636,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "rlmumford/common": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

@@ -28,6 +28,10 @@
                     "composer/installers": "~1.0"
                 }
             }
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:/rlmumford/common"
         }
     ],
     "require": {
@@ -41,6 +45,7 @@
         "drupal/core": "~8.5.3",
         "drupal/fontawesome": "^2.2",
         "drush/drush": "^9.0.0",
+        "rlmumford/common": "dev-master",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
@@ -85,6 +90,7 @@
         },
         "installer-paths": {
             "web/core": ["type:drupal-core"],
+            "web/modules/rlmumford": ["rlmumford/common"],
             "web/libraries/{$name}": ["type:drupal-library"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
