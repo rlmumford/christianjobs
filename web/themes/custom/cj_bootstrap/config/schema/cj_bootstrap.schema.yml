@@ -1,5 +1,5 @@
 # Schema for the theme setting configuration file of the THEMETITLE theme.
 
-redfin_bootstrap.settings:
+cj_bootstrap.settings:
   type: theme_settings
-  label: 'Redfin Bootstrap settings'
+  label: 'Christian Job Bootstrap settings'
