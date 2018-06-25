@@ -32,7 +32,11 @@
         {
             "type": "vcs",
             "url": "git@github.com:/rlmumford/common"
-        }
+        },
+	{
+	    "type": "vcs",
+	    "url": "git@github.com:/FreelyGive/contacts.git"
+	}
     ],
     "require": {
         "ckeditor-plugin/youtube": "^2.1",
@@ -44,7 +48,6 @@
         "drupal/commerce": "^2.7",
         "drupal/console": "^1.0.2",
         "drupal/core": "~8.5.3",
-        "drupal/facets": "^1.0@beta",
         "drupal/fontawesome": "^2.2",
         "drupal/search_api": "^1.8",
         "drush/drush": "^9.0.0",
