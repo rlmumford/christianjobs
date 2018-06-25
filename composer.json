@@ -41,6 +41,7 @@
         "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/bootstrap": "^3.11",
         "drupal/ckeditor_youtube": "^1.1",
+        "drupal/commerce": "^2.7",
         "drupal/console": "^1.0.2",
         "drupal/core": "~8.5.3",
         "drupal/facets": "^1.0@beta",

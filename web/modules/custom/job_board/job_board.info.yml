@@ -1,0 +1,6 @@
+name: 'Job Board'
+package: 'Christian Jobs'
+type: module
+core: 8.x
+dependencies:
+- job_role
