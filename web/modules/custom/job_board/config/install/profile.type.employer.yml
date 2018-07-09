@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: employer
+label: Employer
+registration: false
+multiple: false
+roles:
+  authenticated: authenticated
+  administrator: administrator
+  employer: employer
+weight: 0
+use_revisions: true
+description: ''

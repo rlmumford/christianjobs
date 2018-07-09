@@ -1,16 +1,13 @@
 <?php
 
-use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 
 /**
- * Implements hook_entity_base_field_info_alter()
+ * Implements hook_install().
  */
-function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
-  if ($entity_type->id() != 'job_role') {
-    return [];
-  }
+function job_board_install() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
 
   $fields['publish_date'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
@@ -18,7 +15,10 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDescription(t('The first date on which this job will be published.'))
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
+    ->setDisplayConfigurable('form', TRUE)
+    ->setName('publish_date')
+    ->setTargetEntityTypeId('job_role')
+    ->setProvider('job_board');
   $fields['end_date'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
     ->setLabel(t('End Date'))
@@ -35,16 +35,7 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
-  return $fields;
-}
-
-/**
- * Implements hook_entity_base_field_info_alter().
- */
-function job_board_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
-  if ($entity_type->id() == 'job_role') {
-    return;
+  foreach ($fields as $field_name => $definition) {
+    $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $definition);
   }
-
-  $fields['files']->setSetting('file_extensions', 'pdf txt doc docx pptx ppt png');
 }
