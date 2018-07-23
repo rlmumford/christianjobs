@@ -42,7 +42,7 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
  * Implements hook_entity_base_field_info_alter().
  */
 function job_board_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
-  if ($entity_type->id() == 'job_role') {
+  if ($entity_type->id() != 'job_role') {
     return;
   }
 
