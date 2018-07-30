@@ -31,12 +31,12 @@
         },
         {
             "type": "vcs",
-            "url": "git@github.com:/rlmumford/common"
+            "url": "https://github.com/rlmumford/common.git"
         },
-	{
-	    "type": "vcs",
-	    "url": "git@github.com:/FreelyGive/contacts.git"
-	}
+        {
+            "type": "vcs",
+            "url": "https://github.com/FreelyGive/contacts.git"
+        }
     ],
     "require": {
         "ckeditor-plugin/youtube": "^2.1",
@@ -47,7 +47,7 @@
         "drupal/ckeditor_youtube": "^1.1",
         "drupal/commerce": "^2.7",
         "drupal/console": "^1.0.2",
-        "drupal/core": "~8.5.3",
+        "drupal/core": "^8.6",
         "drupal/facets": "^1.0",
         "drupal/fontawesome": "^2.2",
         "drupal/panelizer": "^4.1",
@@ -57,12 +57,12 @@
         "drush/drush": "^9.0.0",
         "rlmumford/common": "dev-master",
         "vlucas/phpdotenv": "^2.4",
+        "webflo/drupal-core-require-dev": "8.7.x",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
-        "drupal/devel": "^1.2",
-        "webflo/drupal-core-require-dev": "~8.5.3"
+        "drupal/devel": "^1.2"
     },
     "conflict": {
         "drupal/drupal": "*"
