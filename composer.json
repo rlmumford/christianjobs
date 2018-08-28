@@ -35,17 +35,22 @@
         },
         {
             "type": "vcs",
+            "url": "git@github.com:rlmumford/composer-patches.git"
+        },
+        {
+            "type": "vcs",
             "url": "https://github.com/FreelyGive/contacts.git"
         }
     ],
     "require": {
         "ckeditor-plugin/youtube": "^2.1",
         "composer/installers": "^1.2",
-        "cweagans/composer-patches": "^1.6",
+        "cweagans/composer-patches": "dev-dev-relative-patches",
         "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/bootstrap": "^3.11",
         "drupal/ckeditor_youtube": "^1.1",
         "drupal/commerce": "^2.7",
+        "drupal/commerce_square": "^1.2",
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.6",
         "drupal/facets": "^1.0",
