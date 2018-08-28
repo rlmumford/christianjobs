@@ -58,8 +58,10 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
 
     if ($this->featured_dates->count() > $package['allowed_featured_dates']) {
       $price = $price
-        ->add(new Price('20.00', 'GBP'))
-        ->multiply($this->featured_dates->count() - $package['allowed_featured_dates']);
+        ->add(
+          (new Price('20.00', 'GBP'))
+            ->multiply($this->featured_dates->count() - $package['allowed_featured_dates'])
+        );
     }
 
     return $price;

@@ -2912,7 +2912,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0",
-                    "datestamp": "1530810825",
+                    "datestamp": "1533065280",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3664,7 +3664,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.0",
-                    "datestamp": "1527877853",
+                    "datestamp": "1534008780",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5968,11 +5968,11 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "ceb30beb6c355ec0ac261c56d579640f757c6052"
+                "reference": "c986366c05e69952c2a14ed1033b65683e11fdde"
             },
             "require": {
-                "cweagans/composer-patches": "^1.6",
-                "drupal/entity": "1.x-dev",
+                "cweagans/composer-patches": "dev-dev-relative-patches",
+                "drupal/entity": "1.0.0-beta4",
                 "drupal/flexiform": "1.x-dev",
                 "drupal/range": "1.x-dev",
                 "drupal/rules": "^3.0@alpha",
