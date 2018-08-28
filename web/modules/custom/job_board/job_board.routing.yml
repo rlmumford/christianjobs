@@ -4,4 +4,4 @@ job_board.post:
     _controller: '\Drupal\job_board\Controller\JobBoardController::postJob'
     _title: 'Post a Job'
   requirements:
-    _permission: 'post job board jobs'
+    _access: 'TRUE'
