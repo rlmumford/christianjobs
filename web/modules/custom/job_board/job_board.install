@@ -34,8 +34,55 @@ function job_board_install() {
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
+  $fields['package'] = BaseFieldDefinition::create('list_text')
+    ->setSetting('allowed_values_function', 'job_board_package_options')
+    ->setLabel(t('Package'))
+    ->setDescription(t('The base backage to use with this job.'))
+    ->setCardinality(1)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['paid'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('Paid'))
+    ->setDescription(t('Has this job role been paid for.'))
+    ->setSetting('on_label', t('Paid'))
+    ->setSetting('off_label', t('Draft'))
+    ->setCardinality(1)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
 
   foreach ($fields as $field_name => $definition) {
     $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $definition);
   }
 }
+
+/**
+ * Add package and paid for fields.
+ */
+function job_board_update_8001() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  $fields['package'] = BaseFieldDefinition::create('list_text')
+    ->setSetting('allowed_values_function', 'job_board_package_options')
+    ->setLabel(t('Package'))
+    ->setDescription(t('The base backage to use with this job.'))
+    ->setCardinality(1)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['paid'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('Paid'))
+    ->setDescription(t('Has this job role been paid for.'))
+    ->setSetting('on_label', t('Paid'))
+    ->setSetting('off_label', t('Draft'))
+    ->setCardinality(1)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  foreach ($fields as $field_name => $definition) {
+    $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $definition);
+  }
+}
+

@@ -1,8 +1,38 @@
 <?php
 
+use Drupal\commerce_price\Price;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
+use Drupal\job_board\Form\JobPostForm;
+use Drupal\job_board\JobBoardJobRole;
+
+/**
+ * Implements hook_entity_type_build().
+ *
+ * @param \Drupal\Core\Entity\EntityTypeInterface[] $entity_types
+ */
+function job_board_entity_type_build(&$entity_types) {
+  if ($entity_type = $entity_types['job_role']) {
+    $entity_type->setClass(JobBoardJobRole::class);
+    $entity_type->setFormClass('post', JobPostForm::class);
+  }
+}
+
+/**
+ * Implements hook_entity_form_mode_info_alter().
+ */
+function job_board_entity_form_mode_info_alter(&$display_modes) {
+  $display_modes['job_role']['post'] = [
+    'id' => 'job_role.post',
+    'label' => 'Post',
+    'targetEntityType' => 'job_role',
+    'cache' => FALSE,
+  ];
+}
 
 /**
  * Implements hook_entity_base_field_info_alter()
@@ -18,7 +48,10 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDescription(t('The first date on which this job will be published.'))
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'date_popup',
+    ]);
   $fields['end_date'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
     ->setLabel(t('End Date'))
@@ -35,6 +68,25 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
+  $fields['package'] = BaseFieldDefinition::create('list_text')
+    ->setSetting('allowed_values_function', 'job_board_package_options')
+    ->setLabel(t('Package'))
+    ->setDescription(t('The base backage to use with this job.'))
+    ->setCardinality(1)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['paid'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('Paid'))
+    ->setDescription(t('Has this job role been paid for.'))
+    ->setSetting('on_label', t('Paid'))
+    ->setSetting('off_label', t('Draft'))
+    ->setCardinality(1)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
+
   return $fields;
 }
 
@@ -47,4 +99,37 @@ function job_board_entity_base_field_info_alter(&$fields, EntityTypeInterface $e
   }
 
   $fields['files']->setSetting('file_extensions', 'pdf txt doc docx pptx ppt png');
+}
+
+/**
+ * Get the Job Package Options.
+ */
+function job_board_job_package_options() {
+  $info = job_board_job_package_info();
+
+  $options = [];
+  foreach ($info as $key => $package) {
+    $options[$key] = $package['label'];
+  }
+
+  return $options;
+}
+
+/**
+ * Get the Package Info.
+ */
+function job_board_job_package_info($key = NULL) {
+  $info = [];
+  $info['basic'] = [
+    'label' => t('Basic'),
+    'price' => new Price('50.00', 'GBP'),
+    'allowed_featured_dates' => 1,
+  ];
+  $info['premium'] = [
+    'label' => t('Premium'),
+    'price' => new Price('75.00', 'GBP'),
+    'allowed_featured_dates' => 5,
+  ];
+
+  return $key ? (isset($info[$key]) ? $info[$key] : NULL) : $info;
 }

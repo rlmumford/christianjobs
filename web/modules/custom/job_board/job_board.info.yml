@@ -8,3 +8,6 @@ dependencies:
 - profile
 - image
 - views
+- commerce:commerce
+- commerce:commerce_cart
+- commerce:commerce_checkout

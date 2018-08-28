@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+label: 'Job Board Job Role'
+id: job_board_job_role
+purchasableEntityType: job_role
+orderType: default
+traits: {  }
+locked: false
