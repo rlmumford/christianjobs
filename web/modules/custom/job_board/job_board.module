@@ -5,10 +5,12 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\job_board\Form\JobPostForm;
 use Drupal\job_board\JobBoardJobRole;
+use Drupal\user\ProfileForm;
 
 /**
  * Implements hook_entity_type_build().
@@ -19,6 +21,10 @@ function job_board_entity_type_build(&$entity_types) {
   if ($entity_type = $entity_types['job_role']) {
     $entity_type->setClass(JobBoardJobRole::class);
     $entity_type->setFormClass('post', JobPostForm::class);
+  }
+
+  if ($entity_type = $entity_types['user']) {
+    $entity_type->setFormClass('employer_details', ProfileForm::class);
   }
 }
 
@@ -31,6 +37,30 @@ function job_board_entity_form_mode_info_alter(&$display_modes) {
     'label' => 'Post',
     'targetEntityType' => 'job_role',
     'cache' => FALSE,
+  ];
+  $display_modes['user']['employer_details'] = [
+    'id' => 'user.employer_details',
+    'label' => 'Employer Details',
+    'targetEntityType' => 'user',
+    'cache' => FALSE,
+  ];
+}
+
+/**
+ * Implements hook_entity_view_mode_info_alter().
+ */
+function job_board_entity_view_mode_info_alter(&$display_modes) {
+  $display_modes['user']['employer_page'] = [
+    'id' => 'user.employer_page',
+    'label' => 'Employer Page',
+    'targetEntityType' => 'user',
+    'cache' => TRUE,
+  ];
+  $display_modes['user']['employer_block'] = [
+    'id' => 'user.employer_block',
+    'label' => 'Employer Block',
+    'targetEntityType' => 'user',
+    'cache' => TRUE,
   ];
 }
 
@@ -99,6 +129,53 @@ function job_board_entity_base_field_info_alter(&$fields, EntityTypeInterface $e
   }
 
   $fields['files']->setSetting('file_extensions', 'pdf txt doc docx pptx ppt png');
+}
+
+/**
+ * Implements hook_form_user_register_form_alter().
+ *
+ * @param array $form
+ * @param FormStateInterface $form_state
+ */
+function job_board_form_user_register_form_alter(array &$form, FormStateInterface $form_state) {
+  if (\Drupal::request()->cookies->get('Drupal_visitor_jobPostRegister') || $form_state->get('job_post_register')) {
+    $form_state->set('job_post_register', TRUE);
+    $form['actions']['submit']['#submit'][] = 'job_board_user_register_form_submit_redirect';
+  }
+}
+
+/**
+ * Redirect the register form the the employer edit page in the correct circumstances.
+ */
+function job_board_user_register_form_submit_redirect(array $form, FormStateInterface $form_state) {
+  /** @var \Drupal\user\UserInterface $user */
+  $user = $form_state->get('user');
+  $user->addRole('employer');
+  $user->save();
+
+  $form_state->setRedirect('job_board.employer_edit', [
+    'user' => $user->id(),
+  ]);
+
+  user_cookie_save(['jobPostRegister' => TRUE]);
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function job_board_form_user_employer_details_form_alter(array &$form, FormStateInterface $form_state) {
+  if (\Drupal::request()->cookies->get('Drupal_visitor_jobPostRegister')) {
+    $form['actions']['submit']['#submit'][] = 'job_board_user_employer_details_form_submit_redirect';
+  }
+}
+
+/**
+ * Redirect the employer details form to the job post form in correct circumstances.
+ */
+function job_board_user_employer_details_form_submit_redirect(array $form, FormStateInterface $form_state) {
+  $form_state->setRedirect('job_board.post');
+  dpm("here");
+  user_cookie_delete('jobPostRegister');
 }
 
 /**

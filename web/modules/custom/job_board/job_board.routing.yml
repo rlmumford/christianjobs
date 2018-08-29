@@ -5,3 +5,20 @@ job_board.post:
     _title: 'Post a Job'
   requirements:
     _access: 'TRUE'
+  options:
+    no_cache: 'TRUE'
+
+job_board.employer:
+  path: '/employer/{user}'
+  defaults:
+    _entity_view: 'user.employer_page'
+    _title_callback: '\Drupal\job_board\Controller\JobBoardController::employerTitle'
+  requirements:
+    _access: 'TRUE'
+job_board.employer_edit:
+  path: '/employer/{user}/edit'
+  defaults:
+    _entity_form: 'user.employer_details'
+    _title_callback: '\Drupal\job_board\Controller\JobBoardController::employerEditTitle'
+  requirements:
+    _entity_access: 'user.update'
