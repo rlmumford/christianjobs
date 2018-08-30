@@ -1,0 +1,5 @@
+job_board.post_job:
+  route_name: job_board.post
+  title: 'Post a Job'
+  appears_on:
+    - view.job_board.page
