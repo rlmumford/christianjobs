@@ -1,0 +1,5 @@
+services:
+  job_board.order_complete:
+    class: Drupal\job_board\EventSubscriber\OrderCompleteSubscriber
+    tags:
+      - { name: event_subscriber }

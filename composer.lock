@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a262fc39932cf45a8986730e2df48728",
+    "content-hash": "918e6cb3ee6acb0a7ef37644909a026c",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -352,6 +352,53 @@
                 "webdriver"
             ],
             "time": "2018-01-07T19:17:08+00:00"
+        },
+        {
+            "name": "braintree/braintree_php",
+            "version": "3.35.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/braintree/braintree_php.git",
+                "reference": "6c4388199ce379432804a5c18b88585157ef2ed7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/6c4388199ce379432804a5c18b88585157ef2ed7",
+                "reference": "6c4388199ce379432804a5c18b88585157ef2ed7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-dom": "*",
+                "ext-hash": "*",
+                "ext-openssl": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Braintree": "lib/"
+                },
+                "psr-4": {
+                    "Braintree\\": "lib/Braintree"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Braintree",
+                    "homepage": "https://www.braintreepayments.com"
+                }
+            ],
+            "description": "Braintree PHP Client Library",
+            "time": "2018-07-26T14:37:38+00:00"
         },
         {
             "name": "chi-teck/drupal-code-generator",
@@ -2156,6 +2203,84 @@
             "homepage": "http://drupal.org/project/commerce",
             "support": {
                 "source": "http://cgit.drupalcode.org/commerce"
+            }
+        },
+        {
+            "name": "drupal/commerce_braintree",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/commerce_braintree",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/commerce_braintree-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "ccd406278507b9f96f708b0d6afd96f99fd7e881"
+            },
+            "require": {
+                "braintree/braintree_php": "~3.23",
+                "drupal/commerce": "~2.0",
+                "drupal/commerce_payment": "*",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1509464585",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Haza",
+                    "homepage": "https://www.drupal.org/user/182721"
+                },
+                {
+                    "name": "Lukas von Blarer",
+                    "homepage": "https://www.drupal.org/user/598412"
+                },
+                {
+                    "name": "andyg5000",
+                    "homepage": "https://www.drupal.org/user/808668"
+                },
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "czigor",
+                    "homepage": "https://www.drupal.org/user/826222"
+                },
+                {
+                    "name": "krcha",
+                    "homepage": "https://www.drupal.org/user/3516276"
+                },
+                {
+                    "name": "mglaman",
+                    "homepage": "https://www.drupal.org/user/2416470"
+                },
+                {
+                    "name": "rszrama",
+                    "homepage": "https://www.drupal.org/user/49344"
+                }
+            ],
+            "description": "Provides Commerce integration for Braintree Payments.",
+            "homepage": "http://drupal.org/project/commerce_braintree",
+            "support": {
+                "source": "http://cgit.drupalcode.org/commerce_braintree"
             }
         },
         {

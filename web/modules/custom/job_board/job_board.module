@@ -200,11 +200,13 @@ function job_board_job_package_info($key = NULL) {
     'label' => t('Basic'),
     'price' => new Price('50.00', 'GBP'),
     'allowed_featured_dates' => 1,
+    'duration' => 'P30D',
   ];
   $info['premium'] = [
     'label' => t('Premium'),
     'price' => new Price('75.00', 'GBP'),
     'allowed_featured_dates' => 5,
+    'duration' => 'P60D',
   ];
 
   return $key ? (isset($info[$key]) ? $info[$key] : NULL) : $info;

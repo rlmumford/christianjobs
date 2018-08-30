@@ -4,9 +4,26 @@ namespace Drupal\job_board;
 
 use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_price\Price;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\job_role\Entity\JobRole;
 
 class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preSave(EntityStorageInterface $storage) {
+    if ($this->paid->value && !$this->end_date->value) {
+      $package_info = job_board_job_package_info($this->package->value);
+
+      /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
+      $end_date = clone $this->publish_date->date;
+      $end_date->add(new \DateInterval($package_info['duration']));
+      $this->end_date->value = $end_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
+    }
+  }
 
   /**
    * Gets the stores through which the purchasable entity is sold.
