@@ -22,6 +22,11 @@ class JobBoardController extends ControllerBase {
       return $this->redirect('user.register');
     }
 
+    $user = entity_load('user', $current_user->id());
+    if (!$user || !$user->profile_employer->entity || !$user->profile_employer->entity->employer_name->value) {
+      return $this->redirect('job_board.employer_edit', ['user' => $current_user->id()]);
+    }
+
     /** @var \Drupal\job_board\JobBoardJobRole $job */
     $job = $this->entityTypeManager()->getStorage('job_role')->create([]);
     $job->setOwnerId($current_user->id());
