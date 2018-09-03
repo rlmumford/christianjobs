@@ -77,6 +77,7 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setLabel(t('Publish Date'))
     ->setDescription(t('The first date on which this job will be published.'))
     ->setRevisionable(TRUE)
+    ->setRequired(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE)
     ->setDisplayOptions('form', [
@@ -104,6 +105,8 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDescription(t('The base backage to use with this job.'))
     ->setCardinality(1)
     ->setRevisionable(TRUE)
+    ->setRequired(TRUE)
+    ->setDefaultValue('basic')
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
   $fields['paid'] = BaseFieldDefinition::create('boolean')

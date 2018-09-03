@@ -20,7 +20,7 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
 
       /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
       $end_date = clone $this->publish_date->date;
-      $end_date->add(new \DateInterval($package_info['duration']));
+      $end_date->add(new \DateInterval($package_info['duration'] ?: 'P30D'));
       $this->end_date->value = $end_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
     }
   }
