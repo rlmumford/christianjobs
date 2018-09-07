@@ -1,3 +1,7 @@
 post job board jobs:
   title: 'Post jobs to the Job Board'
   description: 'Post new jobs to the job board.'
+view published jobs:
+  title: 'View Published Jobs'
+view unpublished jobs:
+  title: 'View Unpublished Jobs'

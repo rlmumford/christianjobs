@@ -83,4 +83,23 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
 
     return $price;
   }
+
+  /**
+   * Check whether the job is published.
+   *
+   * @return boolean
+   */
+  public function isActive() {
+    $start_date = $this->publish_date->date;
+    $end_date = $this->end_date->date;
+    $current_date = new DrupalDateTime();
+
+    return ($current_date > $start_date) && ($current_date < $end_date);
+  }
+
+  /**
+   * Set whether the job is active.
+   */
+  public function setActive($active) {}
+
 }

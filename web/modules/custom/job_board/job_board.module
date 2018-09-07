@@ -10,6 +10,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\job_board\Form\JobPostForm;
 use Drupal\job_board\JobBoardJobRole;
+use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
 use Drupal\user\ProfileForm;
 
 /**
@@ -21,6 +22,7 @@ function job_board_entity_type_build(&$entity_types) {
   if ($entity_type = $entity_types['job_role']) {
     $entity_type->setClass(JobBoardJobRole::class);
     $entity_type->setFormClass('post', JobPostForm::class);
+    $entity_type->setHandlerClass('access', JobBoardJobRoleAccessControlHandler::class);
   }
 
   if ($entity_type = $entity_types['user']) {
