@@ -52,6 +52,12 @@ function job_board_entity_form_mode_info_alter(&$display_modes) {
  * Implements hook_entity_view_mode_info_alter().
  */
 function job_board_entity_view_mode_info_alter(&$display_modes) {
+  $display_modes['job_role']['page'] = [
+    'id' => 'job_role.page',
+    'label' => 'Job Page',
+    'targetEntityType' => 'job_role',
+    'cache' => TRUE,
+  ];
   $display_modes['user']['employer_page'] = [
     'id' => 'user.employer_page',
     'label' => 'Employer Page',

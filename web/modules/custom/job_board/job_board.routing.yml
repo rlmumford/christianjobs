@@ -7,6 +7,12 @@ job_board.post:
     _access: 'TRUE'
   options:
     no_cache: 'TRUE'
+job_board.job:
+  path: '/jobs/{job_role}'
+  defaults:
+    _entity_view: 'job_role.page'
+  requirements:
+    _entity_access: 'job_role.view'
 
 job_board.employer:
   path: '/employer/{user}'
