@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Keywords
+vid: keywords
+description: 'Job keywords'
+hierarchy: 0
+weight: 0

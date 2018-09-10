@@ -3,3 +3,7 @@ services:
     class: Drupal\job_board\EventSubscriber\OrderCompleteSubscriber
     tags:
       - { name: event_subscriber }
+  job_board.great_britain_aa_subscriber:
+    class: Drupal\job_board\EventSubscriber\GreatBritainAdministrativeAreasEventSubscriber
+    tags:
+      - { name: event_subscriber }

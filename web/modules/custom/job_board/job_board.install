@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 
@@ -51,6 +52,109 @@ function job_board_install() {
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
+  $fields['keywords'] = BaseFieldDefinition::create('entity_reference')
+    ->setSetting('target_type', 'taxonomy_term')
+    ->setSetting('handler', 'default:taxonomy_term')
+    ->setSetting('handler_settings', [
+      'target_bundles' => [
+        'keywords' => 'keywords',
+      ],
+    ])
+    ->setLabel(t('Keywords'))
+    ->setDescription(t('Select up to 10 keywords to describe this job.'))
+    ->setCardinality(10)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['industry'] = BaseFieldDefinition::create('entity_reference')
+    ->setSetting('target_type', 'taxonomy_term')
+    ->setSetting('handler', 'default:taxonomy_term')
+    ->setSetting('handler_settings', [
+      'target_bundles' => [
+        'keywords' => 'industries',
+      ],
+    ])
+    ->setLabel(t('Industry'))
+    ->setDescription(t('Select an industry.'))
+    ->setCardinality(1)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['compensation'] = BaseFieldDefinition::create('list_string')
+    ->setSetting('allowed_values', [
+      'volunteer' => t('Volunteer'),
+      'apprentice' => t('Apprentice'),
+      'pro_rate' => t('Pro-Rata'),
+      'salaried' => t('Salaried'),
+    ])
+    ->setLabel(t('Compensation'))
+    ->setDescription(t('How is the role compensated?'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'options_select',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['hours'] = BaseFieldDefinition::create('list_string')
+    ->setSetting('allowed_values', [
+      'part_time' => t('Part Time'),
+      'full_time' => t('Full Time'),
+      'flexible' => t('Flexible'),
+      'zero' => t('Zero-Hours'),
+    ])
+    ->setLabel(t('Hours'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'options_select',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['location'] = BaseFieldDefinition::create('address')
+    ->setLabel(t('Location'))
+    ->setSetting('field_overrides', [
+      'givenName' => ['override' => 'hidden'],
+      'additionalName' => ['override' => 'hidden'],
+      'familyName' => ['override' => 'hidden'],
+      'organization' => ['override' => 'hidden'],
+      'addressLine1' => ['override' => 'hidden'],
+      'addressLine2' => ['override' => 'hidden'],
+      'postalCode' => ['override' => 'hidden'],
+      'sortingCode' => ['override' => 'hidden'],
+      'dependentLocality' => ['override' => 'hidden'],
+    ])
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'address_default',
+    ]);
+  $fields['contact_phone'] = BaseFieldDefinition::create('telephone')
+    ->setLabel(t('Contact Telephone'))
+    ->setRevisionable(TRUE)
+    ->setDefaultValueCallback('job_board_job_role_contact_default_value')
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'telephone_default',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['contact_address'] = BaseFieldDefinition::create('address')
+    ->setLabel(t('Contact Address'))
+    ->setRevisionable(TRUE)
+    ->setDefaultValueCallback('job_board_job_role_contact_default_value')
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'address_default',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['contact_email'] = BaseFieldDefinition::create('email')
+    ->setLabel(t('Contact E-mail Address'))
+    ->setRevisionable(TRUE)
+    ->setDefaultValueCallback('job_board_job_role_contact_default_value')
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'email_default',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
 
   foreach ($fields as $field_name => $definition) {
     $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $definition);
@@ -81,6 +185,139 @@ function job_board_update_8001() {
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
+
+  foreach ($fields as $field_name => $definition) {
+    $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $definition);
+  }
+}
+
+/**
+ * Add profile fields to employer profile.
+ */
+function job_board_update_8002() {
+  $source = new FileStorage(drupal_get_path('module', 'job_board').'/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  $configs_to_install = [
+    'field.storage.profile.email',
+    'field.storage.profile.tel',
+    'field.field.profile.employer.address',
+    'field.field.profile.employer.email',
+    'field.field.profile.employer.tel',
+    'taxonomy.vocabulary.industries',
+    'taxonomy.vocabulary.keywords',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config_storage->write($name, $source->read($name));
+  }
+
+  // Install taxonomy fields.
+  $fields['keywords'] = BaseFieldDefinition::create('entity_reference')
+    ->setSetting('target_type', 'taxonomy_term')
+    ->setSetting('handler', 'default:taxonomy_term')
+    ->setSetting('handler_settings', [
+      'target_bundles' => [
+        'keywords' => 'keywords',
+      ],
+    ])
+    ->setLabel(t('Keywords'))
+    ->setDescription(t('Select up to 10 keywords to describe this job.'))
+    ->setCardinality(10)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['industry'] = BaseFieldDefinition::create('entity_reference')
+    ->setSetting('target_type', 'taxonomy_term')
+    ->setSetting('handler', 'default:taxonomy_term')
+    ->setSetting('handler_settings', [
+      'target_bundles' => [
+        'keywords' => 'industries',
+      ],
+    ])
+    ->setLabel(t('Industry'))
+    ->setDescription(t('Select an industry.'))
+    ->setCardinality(1)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['compensation'] = BaseFieldDefinition::create('list_string')
+    ->setSetting('allowed_values', [
+      'volunteer' => t('Volunteer'),
+      'apprentice' => t('Apprentice'),
+      'pro_rate' => t('Pro-Rata'),
+      'salaried' => t('Salaried'),
+    ])
+    ->setLabel(t('Compensation'))
+    ->setDescription(t('How is the role compensated?'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'options_select',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['hours'] = BaseFieldDefinition::create('list_string')
+    ->setSetting('allowed_values', [
+      'part_time' => t('Part Time'),
+      'full_time' => t('Full Time'),
+      'flexible' => t('Flexible'),
+      'zero' => t('Zero-Hours'),
+    ])
+    ->setLabel(t('Hours'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'options_select',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['location'] = BaseFieldDefinition::create('address')
+    ->setLabel(t('Location'))
+    ->setSetting('field_overrides', [
+      'givenName' => ['override' => 'hidden'],
+      'additionalName' => ['override' => 'hidden'],
+      'familyName' => ['override' => 'hidden'],
+      'organization' => ['override' => 'hidden'],
+      'addressLine1' => ['override' => 'hidden'],
+      'addressLine2' => ['override' => 'hidden'],
+      'postalCode' => ['override' => 'hidden'],
+      'sortingCode' => ['override' => 'hidden'],
+      'dependentLocality' => ['override' => 'hidden'],
+    ])
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'address_default',
+    ]);
+  $fields['contact_phone'] = BaseFieldDefinition::create('telephone')
+    ->setLabel(t('Contact Telephone'))
+    ->setRevisionable(TRUE)
+    ->setDefaultValueCallback('job_board_job_role_contact_default_value')
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'telephone_default',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['contact_address'] = BaseFieldDefinition::create('address')
+    ->setLabel(t('Contact Address'))
+    ->setRevisionable(TRUE)
+    ->setDefaultValueCallback('job_board_job_role_contact_default_value')
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'address_default',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['contact_email'] = BaseFieldDefinition::create('email')
+    ->setLabel(t('Contact E-mail Address'))
+    ->setRevisionable(TRUE)
+    ->setDefaultValueCallback('job_board_job_role_contact_default_value')
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'email_default',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+
+  $manager = \Drupal::entityDefinitionUpdateManager();
   foreach ($fields as $field_name => $definition) {
     $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $definition);
   }

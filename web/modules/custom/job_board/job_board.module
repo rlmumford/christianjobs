@@ -4,13 +4,17 @@ use Drupal\commerce_price\Price;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\job_board\Form\JobPostForm;
 use Drupal\job_board\JobBoardJobRole;
 use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
+use Drupal\user\Entity\User;
+use Drupal\user\EntityOwnerInterface;
 use Drupal\user\ProfileForm;
 
 /**
@@ -127,6 +131,118 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
+  $fields['keywords'] = BaseFieldDefinition::create('entity_reference')
+    ->setSetting('target_type', 'taxonomy_term')
+    ->setSetting('handler', 'default:taxonomy_term')
+    ->setSetting('handler_settings', [
+      'target_bundles' => [
+        'keywords' => 'keywords',
+      ],
+    ])
+    ->setLabel(t('Keywords'))
+    ->setDescription(t('Select up to 10 keywords to describe this job.'))
+    ->setCardinality(10)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'entity_reference_autocomplete_tags',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['industry'] = BaseFieldDefinition::create('entity_reference')
+    ->setSetting('target_type', 'taxonomy_term')
+    ->setSetting('handler', 'default:taxonomy_term')
+    ->setSetting('handler_settings', [
+      'target_bundles' => [
+        'keywords' => 'industries',
+      ],
+    ])
+    ->setLabel(t('Industry'))
+    ->setDescription(t('Select an industry.'))
+    ->setCardinality(1)
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'entity_reference_autocomplete',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['compensation'] = BaseFieldDefinition::create('list_string')
+    ->setSetting('allowed_values', [
+      'volunteer' => t('Volunteer'),
+      'apprentice' => t('Apprentice'),
+      'pro_rate' => t('Pro-Rata'),
+      'salaried' => t('Salaried'),
+    ])
+    ->setLabel(t('Compensation'))
+    ->setDescription(t('How is the role compensated?'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'options_select',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['hours'] = BaseFieldDefinition::create('list_string')
+    ->setSetting('allowed_values', [
+      'part_time' => t('Part Time'),
+      'full_time' => t('Full Time'),
+      'flexible' => t('Flexible'),
+      'zero' => t('Zero-Hours'),
+    ])
+    ->setLabel(t('Hours'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'options_select',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['location'] = BaseFieldDefinition::create('address')
+    ->setLabel(t('Location'))
+    ->setSetting('field_overrides', [
+      'givenName' => ['override' => 'hidden'],
+      'additionalName' => ['override' => 'hidden'],
+      'familyName' => ['override' => 'hidden'],
+      'organization' => ['override' => 'hidden'],
+      'addressLine1' => ['override' => 'hidden'],
+      'addressLine2' => ['override' => 'hidden'],
+      'postalCode' => ['override' => 'hidden'],
+      'sortingCode' => ['override' => 'hidden'],
+      'dependentLocality' => ['override' => 'hidden'],
+    ])
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'address_default',
+    ]);
+
+  $fields['contact_phone'] = BaseFieldDefinition::create('telephone')
+    ->setLabel(t('Contact Telephone'))
+    ->setRevisionable(TRUE)
+    ->setDefaultValueCallback('job_board_job_role_contact_default_value')
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'telephone_default',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['contact_address'] = BaseFieldDefinition::create('address')
+    ->setLabel(t('Contact Address'))
+    ->setRevisionable(TRUE)
+    ->setDefaultValueCallback('job_board_job_role_contact_default_value')
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'address_default',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['contact_email'] = BaseFieldDefinition::create('email')
+    ->setLabel(t('Contact E-mail Address'))
+    ->setRevisionable(TRUE)
+    ->setDefaultValueCallback('job_board_job_role_contact_default_value')
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'email_default',
+    ])
+    ->setDisplayConfigurable('form', TRUE);
 
   return $fields;
 }
@@ -221,4 +337,45 @@ function job_board_job_package_info($key = NULL) {
   ];
 
   return $key ? (isset($info[$key]) ? $info[$key] : NULL) : $info;
+}
+
+/**
+ * Get the default value for the contact_* fields on jobs.
+ *
+ * @param FieldableEntityInterface $entity
+ * @param FieldDefinitionInterface $field_definition
+ */
+function job_board_job_role_contact_default_value(FieldableEntityInterface $entity, FieldDefinitionInterface $field_definition) {
+  // Get the correct employer profile.
+  if ($entity->organisation->entity) {
+    $organisation = $entity->organisation->entity;
+  }
+  else if ($entity instanceof EntityOwnerInterface) {
+    $organisation = $entity->getOwner();
+  }
+  else {
+    $organisation = User::load(\Drupal::currentUser()->id());
+  }
+
+  if (!$organisation) {
+    return [];
+  }
+
+  /** @var \Drupal\profile\Entity\ProfileInterface $employer_profile */
+  $employer_profile = $organisation->profile_employer->entity;
+  if (!$employer_profile) {
+    return [];
+  }
+
+  $fields_map = [
+    'contact_phone' => 'tel',
+    'contact_address' => 'address',
+    'contact_email' => 'email',
+  ];
+  $field_name = $field_definition->getName();
+  if (!$fields_map[$field_name]) {
+    return [];
+  }
+
+  return $employer_profile->{$fields_map[$field_name]}->getValue();
 }
