@@ -7,6 +7,11 @@
 /web/themes/contrib/
 /web/profiles/contrib/
 /web/libraries/
+/web/sites/default/default.settings.php
+/web/sites/example.sites.php
+
+# Ignore node_modules used by material
+/web/themes/custom/cj_material/node_modules/
 
 # Ignore sensitive information
 /web/sites/*/settings.php

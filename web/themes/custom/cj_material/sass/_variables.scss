@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+// overrided variable
+$cj-blue: (
+  50:   #E1F5FD,
+  100:  #B4E6F9,
+  200:  #83D5F6,
+  300:  #54C5F2,
+  400:  #32B8F0,
+  500:  #15ACEE,
+  600:  #0F9EDF,
+  700:  #078BCC,
+  800:  #067AB8,
+  900:  #005A96,
+  a100: #B4E6F9,
+  a200: #83D5F6,
+  a400: #32B8F0,
+  a700: #078BCC,
+);
+
+$color-primary-base: $cj-blue;
+$color-primary: #078BCC;
+$color-primary-hover: #0F9EDF;
+$color-Primary-active: #15ACEE;
+$color-accent-base: $teal;
+$color-accent: #009678;
+$color-accent-active: #4db6ac;
+$color-accent-hover:  #26a69a;
+
+$font-family: 'Raleway';
+$heading-font-family: 'Montserrat';
+
