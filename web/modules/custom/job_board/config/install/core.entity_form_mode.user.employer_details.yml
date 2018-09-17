@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+    - job_board
+id: user.employer_details
+label: Employer Details
+targetEntityType: user
+cache: true

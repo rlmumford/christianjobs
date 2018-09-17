@@ -15,7 +15,7 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
   public function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
     if ($operation == 'view') {
       $result = AccessResult::allowedIf(
-        $entity->owner->target_id = $account->getId()
+        $entity->owner->target_id = $account->id()
         || ($entity->isActive() && $account->hasPermission('view published jobs'))
         || (!$entity->isActive() && $account->hasPermission('view unpublished jobs'))
       );

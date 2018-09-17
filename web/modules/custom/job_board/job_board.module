@@ -35,48 +35,6 @@ function job_board_entity_type_build(&$entity_types) {
 }
 
 /**
- * Implements hook_entity_form_mode_info_alter().
- */
-function job_board_entity_form_mode_info_alter(&$display_modes) {
-  $display_modes['job_role']['post'] = [
-    'id' => 'job_role.post',
-    'label' => 'Post',
-    'targetEntityType' => 'job_role',
-    'cache' => FALSE,
-  ];
-  $display_modes['user']['employer_details'] = [
-    'id' => 'user.employer_details',
-    'label' => 'Employer Details',
-    'targetEntityType' => 'user',
-    'cache' => FALSE,
-  ];
-}
-
-/**
- * Implements hook_entity_view_mode_info_alter().
- */
-function job_board_entity_view_mode_info_alter(&$display_modes) {
-  $display_modes['job_role']['page'] = [
-    'id' => 'job_role.page',
-    'label' => 'Job Page',
-    'targetEntityType' => 'job_role',
-    'cache' => TRUE,
-  ];
-  $display_modes['user']['employer_page'] = [
-    'id' => 'user.employer_page',
-    'label' => 'Employer Page',
-    'targetEntityType' => 'user',
-    'cache' => TRUE,
-  ];
-  $display_modes['user']['employer_block'] = [
-    'id' => 'user.employer_block',
-    'label' => 'Employer Block',
-    'targetEntityType' => 'user',
-    'cache' => TRUE,
-  ];
-}
-
-/**
  * Implements hook_entity_base_field_info_alter()
  */
 function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
