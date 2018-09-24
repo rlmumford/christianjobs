@@ -55,6 +55,28 @@ class JobPostForm extends ContentEntityForm {
       $cart = $cart_provider->createCart('default');
     }
     $cart_manager->addEntity($cart, $this->getEntity());
+
+    // If the membership options have been selected then add the membership to
+    // the cart.
+    if (\Drupal::service('module_handler')->moduleExists('cj_membership')) {
+      $membership_storage = \Drupal::service('entity_type.manager')->getStorage('cj_membership');
+      $current_user = \Drupal::currentUser();
+      if ($form_state->getValue(['membership', 'new'])) {
+        $membership = $membership_storage->create()
+          ->setOwnerId($current_user->id());
+        $membership->start->value = date(DateTimeItemInterface::DATE_STORAGE_FORMAT);
+      }
+      elseif ($form_state->getValue(['membership', 'extend'])) {
+        $membership_ids = $membership_storage->getQuery()
+          ->condition('member.target_id', $current_user->id())
+          ->execute();
+        $membership = $membership_storage->load(reset($membership_ids));
+      }
+
+      if ($membership) {
+        $cart_manager->addEntity($cart, $membership);
+      }
+    }
   }
 
   public function submitFormRedirectToCheckout(array $form, FormStateInterface $form_state) {

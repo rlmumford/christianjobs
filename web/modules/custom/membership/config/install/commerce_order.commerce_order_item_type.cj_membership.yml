@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+label: 'Membership Item'
+id: cj_membership
+purchasableEntityType: cj_membership
+orderType: default
+traits: {  }
+locked: false
