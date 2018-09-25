@@ -8,6 +8,7 @@
 
 namespace Drupal\job_board\Form;
 
+use Drupal\cj_membership\Entity\Membership;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -32,6 +33,37 @@ class JobPostForm extends ContentEntityForm {
     if (!$cart) {
       $cart = $cart_provider->createCart('default');
     }
+
+    // Add a membership options to this form.
+    if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {
+      /** @var \Drupal\cj_membership\MembershipStorage $membership_storage */
+      $membership_storage = \Drupal::entityTypeManager()->getStorage('cj_membership');
+      $membership = $membership_storage->getAccountMembership(\Drupal::currentUser());
+
+      // Membership on current order.
+      $membership_in_cart = FALSE;
+      foreach ($cart->getItems() as $order_item) {
+        if ($order_item->getPurchasedEntity() instanceof Membership) {
+          $membership_in_cart = TRUE;
+        }
+      }
+
+      if (!$membership_in_cart && !$membership) {
+        $form['membership']['#type'] = 'container';
+        $form['membership']['new'] = [
+          '#type' => 'checkbox',
+          '#title' => $this->t('Become a Christian Jobs Member'),
+        ];
+      }
+      else if (!$membership_in_cart && $membership && $membership->status->value == Membership::STATUS_EXPIRED) {
+        $form['membership']['#type'] = 'container';
+        $form['membership']['extend'] = [
+          '#type' => 'checkbox',
+          '#title' => $this->t('Renew Membership'),
+        ];
+      }
+    }
+
     return $form;
   }
 
@@ -40,9 +72,16 @@ class JobPostForm extends ContentEntityForm {
    */
   protected function actions(array $form, FormStateInterface $form_state) {
     $actions = parent::actions($form, $form_state);
-    $actions['submit']['#value'] = t('Proceed to Checkout');
+
     $actions['submit']['#submit'][] = '::submitFormAddToCart';
+
+    $actions['submit_another'] = $actions['submit'];
+    $actions['submit_another']['#value'] = $this->t('Save & Post Another Job');
+    $actions['submit_another']['#submit'][] = '::submitFormRedirectToJobPost';
+
+    $actions['submit']['#value'] = t('Proceed to Payment');
     $actions['submit']['#submit'][] = '::submitFormRedirectToCheckout';
+
     return $actions;
   }
 
@@ -59,6 +98,7 @@ class JobPostForm extends ContentEntityForm {
     // If the membership options have been selected then add the membership to
     // the cart.
     if (\Drupal::service('module_handler')->moduleExists('cj_membership')) {
+      /** @var \Drupal\cj_membership\MembershipStorage $membership_storage */
       $membership_storage = \Drupal::service('entity_type.manager')->getStorage('cj_membership');
       $current_user = \Drupal::currentUser();
       if ($form_state->getValue(['membership', 'new'])) {
@@ -67,10 +107,7 @@ class JobPostForm extends ContentEntityForm {
         $membership->start->value = date(DateTimeItemInterface::DATE_STORAGE_FORMAT);
       }
       elseif ($form_state->getValue(['membership', 'extend'])) {
-        $membership_ids = $membership_storage->getQuery()
-          ->condition('member.target_id', $current_user->id())
-          ->execute();
-        $membership = $membership_storage->load(reset($membership_ids));
+        $membership = $membership_storage->getAccountMembership($current_user);
       }
 
       if ($membership) {
@@ -84,5 +121,9 @@ class JobPostForm extends ContentEntityForm {
     $form_state->setRedirect('commerce_checkout.form', [
       'commerce_order' => $cart_provider->getCart('default')->id(),
     ]);
+  }
+
+  public function submitFormRedirectToJobMost(array $form, FormStateInterface $form_state) {
+    $form_state->setRedirect('job_board.post');
   }
 }
