@@ -13,3 +13,23 @@
 
 // put your styles here
 // you can @extend anything from base theme
+
+.navbar-fixed #navbar {
+  background-color: #FFFFFF;
+}
+.navbar-title a {
+  color: color($color-accent-base,400);
+  font-weight: bolder;
+}
+.navbar-menu .menu a {
+  color: color($color-accent-base,400) !important;
+  font-weight: bolder;
+}
+.navbar-menu .menu .active-trail a,
+.navbar-menu .menu .is-active,
+.navbar-menu .menu a:hover {
+  border-color: color($color-accent-base, 400);
+}
+.navbar-branding > div:not(.contextual) + div {
+  margin-left: 0px;
+}

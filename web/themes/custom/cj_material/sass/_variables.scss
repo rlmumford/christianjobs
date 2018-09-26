@@ -2,31 +2,41 @@
 
 // overrided variable
 $cj-blue: (
-  50:   #E1F5FD,
-  100:  #B4E6F9,
-  200:  #83D5F6,
-  300:  #54C5F2,
-  400:  #32B8F0,
-  500:  #15ACEE,
-  600:  #0F9EDF,
-  700:  #078BCC,
-  800:  #067AB8,
-  900:  #005A96,
-  a100: #B4E6F9,
-  a200: #83D5F6,
-  a400: #32B8F0,
-  a700: #078BCC,
+  50:   #E3F6FF,
+  100:  #b8e6ff,
+  200:  #8bd7ff,
+  300:  #62c7ff,
+  400:  #4bbaff,
+  500:  #43adfd,
+  600:  #409fed,
+  700:  #3c8cd8,
+  800:  #377bc4,
+  900:  #305aa0,
+  a100: #b8e6ff,
+  a200: #8bd7ff,
+  a400: #62c7ff,
+  a700: #3c8cd8,
 );
 
-$color-primary-base: $cj-blue;
-$color-primary: #078BCC;
-$color-primary-hover: #0F9EDF;
-$color-Primary-active: #15ACEE;
-$color-accent-base: $teal;
-$color-accent: #009678;
-$color-accent-active: #4db6ac;
-$color-accent-hover:  #26a69a;
+$cj-orange: (
+  50: #fffeeb,
+  100: #fffacb,
+  200: #fff5a8,
+  300: #fff087,
+  400: #ffea6e,
+  500: #ffe558,
+  600: #ffdc5c,
+  700: #ffcd5d,
+  800: #ffb656,
+  900: #ff904b,
+  a100: #fffacb,
+  a200: #fff5a8,
+  a400: #ffea6e,
+  a700: #ffcd5d,
+);
+
+$color-primary-base: $cj-orange;
+$color-accent-base: $cj-blue;
 
 $font-family: 'Raleway';
 $heading-font-family: 'Montserrat';
-

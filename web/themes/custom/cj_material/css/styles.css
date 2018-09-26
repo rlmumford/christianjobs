@@ -182,14 +182,14 @@ h3 + h1, h3 + h2, h3 + h3, h3 + h4, h3 + h5, h3 + h6, h3 + .h1, h3 + .h2, h3 + .
 }
 
 a {
-  color: #009678;
+  color: #62c7ff;
   text-decoration: none;
 }
 a:hover {
-  color: #26a69a;
+  color: #569bdd;
 }
 a:active {
-  color: #4db6ac;
+  color: #3c8cd8;
 }
 
 a[href^="tel:"], a[href^="mailto:"] {
@@ -197,17 +197,17 @@ a[href^="tel:"], a[href^="mailto:"] {
 }
 
 article a[href^="#"]:not([href="#"]):not(.btn) {
-  border-bottom: dotted 1px #009678;
+  border-bottom: dotted 1px #62c7ff;
 }
 article a[href^="#"]:not([href="#"]):not(.btn):hover {
-  border-color: #26a69a;
+  border-color: #569bdd;
 }
 article a[href^="#"]:not([href="#"]):not(.btn):active {
-  border-color: #4db6ac;
+  border-color: #3c8cd8;
 }
 
 article blockquote {
-  border-left: 2px solid #078BCC;
+  border-left: 2px solid #ffe558;
   padding-left: 36px;
   color: rgba(0, 0, 0, 0.54);
 }
@@ -400,7 +400,7 @@ strong {
 .mark {
   vertical-align: super;
   font-size: 12px;
-  color: #009678;
+  color: #62c7ff;
 }
 
 ol, ul {
@@ -616,11 +616,11 @@ pre {
 }
 
 .text-primary, a.text-primary, a.text-primary:hover, a.text-primary:focus {
-  color: #0F9EDF;
+  color: #ffdc5c;
 }
 
 .text-accent, a.text-accent, a.text-accent:hover, a.text-accent:focus {
-  color: #009678;
+  color: #62c7ff;
 }
 
 .divider-top {
@@ -698,7 +698,7 @@ pre {
 }
 
 .info, .messages-error, .messages-warning, .messages-status, .important {
-  background: #E1F5FD;
+  background: #fffeeb;
   padding-left: 64px;
   position: relative;
 }
@@ -707,25 +707,25 @@ pre {
   position: absolute;
   top: 16px;
   left: 24px;
-  color: #078BCC;
+  color: #ffe558;
 }
 
 .important {
-  background: #078BCC;
-  color: #FFF;
+  background: #ffe558;
+  color: rgba(0, 0, 0, 0.87);
 }
 .important:before {
   content: "warning";
-  color: #FFF;
+  color: rgba(0, 0, 0, 0.87);
 }
 .important a {
-  color: #64ffda;
+  color: #8bd7ff;
 }
 .important a:hover {
-  color: #83ffe1;
+  color: #aae2ff;
 }
 .important a:active {
-  color: #a7ffeb;
+  color: #b8e6ff;
 }
 
 /* TO DO
@@ -775,13 +775,13 @@ pre {
   padding: 8px 4px;
   position: relative;
   z-index: 30;
-  color: #FFF;
+  color: rgba(0, 0, 0, 0.87);
   text-align: center;
 }
 
 #header {
-  background: #078BCC;
-  color: #FFF;
+  background: #ffe558;
+  color: rgba(0, 0, 0, 0.87);
   padding-top: 64px;
   margin-top: -64px;
   position: relative;
@@ -796,7 +796,7 @@ pre {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #078BCC;
+  background: #ffe558;
   z-index: 30;
 }
 .navbar-fixed #header {
@@ -1139,38 +1139,38 @@ pre {
 .btn.btn-colored,
 .pager .pager-item > a.btn-colored,
 .pager .pager-item > span.btn-colored, .btn.btn-colored:hover, .btn.btn-colored:focus {
-  color: #0F9EDF;
+  color: #ffdc5c;
 }
 
 .btn-accent, .pager .pager-item > a, .pager .pager-item > span, .btn-accent:hover, .btn-accent:focus,
 .btn.btn-accent, .btn.btn-accent:hover, .btn.btn-accent:focus {
-  color: #009678;
+  color: #62c7ff;
 }
 
 .btn-raised.btn-colored, .btn.btn-raised.btn-colored, .pager .pager-item > a.btn-raised.btn-colored, .pager .pager-item > span.btn-raised.btn-colored {
-  background: #078BCC;
-  color: #FFF;
+  background: #ffe558;
+  color: rgba(0, 0, 0, 0.87);
 }
 .btn-raised.btn-accent, .pager .pager-item > a.btn-raised, .pager .pager-item > span.btn-raised, .btn.btn-raised.btn-accent {
-  background: #009678;
-  color: #FFF;
+  background: #62c7ff;
+  color: rgba(0, 0, 0, 0.87);
 }
 .btn-raised.btn-colored .rippleAnimate, .btn-raised.btn-accent .rippleAnimate, .pager .pager-item > a.btn-raised .rippleAnimate, .pager .pager-item > span.btn-raised .rippleAnimate, .btn.btn-raised.btn-colored .rippleAnimate, .btn.btn-raised.btn-accent .rippleAnimate {
   background-color: rgba(255, 255, 255, 0.3);
 }
 .btn-raised.btn-colored:hover, .btn-raised.btn-colored:focus, .btn.btn-raised.btn-colored:hover, .btn.btn-raised.btn-colored:focus {
-  background: #0F9EDF;
-  color: #FFF;
+  background: #ffdc5c;
+  color: rgba(0, 0, 0, 0.87);
 }
 .btn-raised.btn-colored:active, .btn.btn-raised.btn-colored:active {
-  background: #078BCC;
+  background: #ffcd5d;
 }
 .btn-raised.btn-accent:hover, .pager .pager-item > a.btn-raised:hover, .pager .pager-item > span.btn-raised:hover, .btn-raised.btn-accent:focus, .pager .pager-item > a.btn-raised:focus, .pager .pager-item > span.btn-raised:focus, .btn.btn-raised.btn-accent:hover, .btn.btn-raised.btn-accent:focus {
-  background: #26a69a;
-  color: #FFF;
+  background: #569bdd;
+  color: rgba(0, 0, 0, 0.87);
 }
 .btn-raised.btn-accent:active, .pager .pager-item > a.btn-raised:active, .pager .pager-item > span.btn-raised:active, .btn.btn-raised.btn-accent:active {
-  background: #4db6ac;
+  background: #3c8cd8;
 }
 
 .btn.icon-left:before, .pager .pager-item > a.icon-left:before, .pager .pager-item > span.icon-left:before, .btn.icon-right:after, .pager .pager-item > a.icon-right:after, .pager .pager-item > span.icon-right:after, .btn .material-icons, .btn .pager .pager-item.item-last > a:before, .pager .btn .pager-item.item-last > a:before, .btn .pager .pager-item.item-last > span:before, .pager .btn .pager-item.item-last > span:before, .btn .pager .pager-item.item-next > a:before, .pager .btn .pager-item.item-next > a:before, .btn .pager .pager-item.item-next > span:before, .pager .btn .pager-item.item-next > span:before, .btn .pager .pager-item.item-ellipsis > a:before, .pager .btn .pager-item.item-ellipsis > a:before, .btn .pager .pager-item.item-ellipsis > span:before, .pager .btn .pager-item.item-ellipsis > span:before, .btn .pager .pager-item.item-previous > a:before, .pager .btn .pager-item.item-previous > a:before, .btn .pager .pager-item.item-previous > span:before, .pager .btn .pager-item.item-previous > span:before, .btn .pager .pager-item.item-first > a:before, .pager .btn .pager-item.item-first > a:before, .btn .pager .pager-item.item-first > span:before, .pager .btn .pager-item.item-first > span:before, .pager .pager-item > a .material-icons, .pager .pager-item > a .pager-item.item-last > a:before, .pager .pager-item > a .pager-item.item-last > span:before, .pager .pager-item > a .pager-item.item-next > a:before, .pager .pager-item > a .pager-item.item-next > span:before, .pager .pager-item > a .pager-item.item-ellipsis > a:before, .pager .pager-item > a .pager-item.item-ellipsis > span:before, .pager .pager-item > a .pager-item.item-previous > a:before, .pager .pager-item > a .pager-item.item-previous > span:before, .pager .pager-item > a .pager-item.item-first > a:before, .pager .pager-item > a .pager-item.item-first > span:before, .pager .pager-item > span .material-icons, .pager .pager-item > span .pager-item.item-last > a:before, .pager .pager-item > span .pager-item.item-last > span:before, .pager .pager-item > span .pager-item.item-next > a:before, .pager .pager-item > span .pager-item.item-next > span:before, .pager .pager-item > span .pager-item.item-ellipsis > a:before, .pager .pager-item > span .pager-item.item-ellipsis > span:before, .pager .pager-item > span .pager-item.item-previous > a:before, .pager .pager-item > span .pager-item.item-previous > span:before, .pager .pager-item > span .pager-item.item-first > a:before, .pager .pager-item > span .pager-item.item-first > span:before, .btn .collapsible-toggle:before, .pager .pager-item > a .collapsible-toggle:before, .pager .pager-item > span .collapsible-toggle:before, .btn .sidebar .menu .expanded > a:after, .pager .pager-item > a .sidebar .menu .expanded > a:after, .pager .pager-item > span .sidebar .menu .expanded > a:after, .sidebar .menu .btn .expanded > a:after, .sidebar .menu .pager .pager-item > a .expanded > a:after, .pager .sidebar .menu .pager-item > a .expanded > a:after, .sidebar .menu .pager .pager-item > span .expanded > a:after, .pager .sidebar .menu .pager-item > span .expanded > a:after, .btn .sidebar .menu .collapsed > a:after, .pager .pager-item > a .sidebar .menu .collapsed > a:after, .pager .pager-item > span .sidebar .menu .collapsed > a:after, .sidebar .menu .btn .collapsed > a:after, .sidebar .menu .pager .pager-item > a .collapsed > a:after, .pager .sidebar .menu .pager-item > a .collapsed > a:after, .sidebar .menu .pager .pager-item > span .collapsed > a:after, .pager .sidebar .menu .pager-item > span .collapsed > a:after, .btn .navbar-account-menu .menu a:before, .pager .pager-item > a .navbar-account-menu .menu a:before, .pager .pager-item > span .navbar-account-menu .menu a:before, .navbar-account-menu .menu .btn a:before, .navbar-account-menu .menu .pager .pager-item > a a:before, .pager .navbar-account-menu .menu .pager-item > a a:before, .navbar-account-menu .menu .pager .pager-item > span a:before, .pager .navbar-account-menu .menu .pager-item > span a:before, .btn .form-item.form-type-select:after, .pager .pager-item > a .form-item.form-type-select:after, .pager .pager-item > span .form-item.form-type-select:after, .btn .form-item input[type=radio]:before, .pager .pager-item > a .form-item input[type=radio]:before, .pager .pager-item > span .form-item input[type=radio]:before, .form-item .btn input[type=radio]:before, .form-item .pager .pager-item > a input[type=radio]:before, .pager .form-item .pager-item > a input[type=radio]:before, .form-item .pager .pager-item > span input[type=radio]:before, .pager .form-item .pager-item > span input[type=radio]:before, .btn .form-item input[type=checkbox]:before, .pager .pager-item > a .form-item input[type=checkbox]:before, .pager .pager-item > span .form-item input[type=checkbox]:before, .form-item .btn input[type=checkbox]:before, .form-item .pager .pager-item > a input[type=checkbox]:before, .pager .form-item .pager-item > a input[type=checkbox]:before, .form-item .pager .pager-item > span input[type=checkbox]:before, .pager .form-item .pager-item > span input[type=checkbox]:before, .btn .breadcrumb ol li:not(:last-child):after, .pager .pager-item > a .breadcrumb ol li:not(:last-child):after, .pager .pager-item > span .breadcrumb ol li:not(:last-child):after, .breadcrumb ol .btn li:not(:last-child):after, .breadcrumb ol .pager .pager-item > a li:not(:last-child):after, .pager .breadcrumb ol .pager-item > a li:not(:last-child):after, .breadcrumb ol .pager .pager-item > span li:not(:last-child):after, .pager .breadcrumb ol .pager-item > span li:not(:last-child):after, .btn .info:before, .btn .messages-error:before, .btn .messages-warning:before, .btn .messages-status:before, .pager .pager-item > a .info:before, .pager .pager-item > a .messages-error:before, .pager .pager-item > a .messages-warning:before, .pager .pager-item > a .messages-status:before, .pager .pager-item > span .info:before, .pager .pager-item > span .messages-error:before, .pager .pager-item > span .messages-warning:before, .pager .pager-item > span .messages-status:before, .btn .important:before, .pager .pager-item > a .important:before, .pager .pager-item > span .important:before {
@@ -1246,26 +1246,26 @@ colored but not raised
   background: rgba(153, 153, 153, 0.4);
 }
 .fab.fab-colored {
-  background: #078BCC;
-  color: #FFF;
+  background: #ffe558;
+  color: rgba(0, 0, 0, 0.87);
 }
 .fab.fab-colored:hover, .fab.fab-colored:focus {
-  background: #0F9EDF;
-  color: #FFF;
+  background: #ffdc5c;
+  color: rgba(0, 0, 0, 0.87);
 }
 .fab.fab-colored:active {
-  background: #078BCC;
+  background: #ffcd5d;
 }
 .fab.fab-accent {
-  background: #009678;
-  color: #FFF;
+  background: #62c7ff;
+  color: rgba(0, 0, 0, 0.87);
 }
 .fab.fab-accent:hover, .fab.fab-accent:focus {
-  background: #26a69a;
-  color: #FFF;
+  background: #569bdd;
+  color: rgba(0, 0, 0, 0.87);
 }
 .fab.fab-accent:active {
-  background: #4db6ac;
+  background: #3c8cd8;
 }
 .fab.fab-colored .rippleAnimate, .fab.fab-accent .rippleAnimate {
   background-color: rgba(255, 255, 255, 0.3);
@@ -1451,7 +1451,7 @@ tr.selected:hover {
   color: #f44336;
 }
 .form-item.focused label {
-  color: #009678;
+  color: #62c7ff;
 }
 .form-item .description {
   margin: 8px 0;
@@ -1475,7 +1475,7 @@ tr.selected:hover {
   padding: 8px 0;
 }
 .form-item input[type=text]:focus, .form-item input[type=text].error:focus, .form-item input[type=email]:focus, .form-item input[type=email].error:focus, .form-item input[type=password]:focus, .form-item input[type=password].error:focus, .form-item input[type=search]:focus, .form-item input[type=search].error:focus, .form-item input[type=tel]:focus, .form-item input[type=tel].error:focus, .form-item textarea:focus, .form-item textarea.error:focus, .form-item select:focus, .form-item select.error:focus {
-  border-bottom: 2px solid #009678;
+  border-bottom: 2px solid #62c7ff;
   padding-bottom: 7px;
 }
 .form-item input[type=text].error, .form-item input[type=email].error, .form-item input[type=password].error, .form-item input[type=search].error, .form-item input[type=tel].error, .form-item textarea.error, .form-item select.error {
@@ -1498,7 +1498,7 @@ tr.selected:hover {
 }
 .form-item input[type=checkbox]:checked:before {
   content: "check_box";
-  color: #009678;
+  color: #62c7ff;
 }
 .form-item input[type=radio]:before {
   content: "radio_button_unchecked";
@@ -1506,7 +1506,7 @@ tr.selected:hover {
 }
 .form-item input[type=radio]:checked:before {
   content: "radio_button_checked";
-  color: #009678;
+  color: #62c7ff;
 }
 .form-item.form-type-file label {
   display: block;
@@ -1582,7 +1582,7 @@ icon labels
   height: 24px;
   width: 24px;
   margin: 12px;
-  color: #FFF;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 #navbar-menu-toggle {
@@ -1621,7 +1621,7 @@ icon labels
   height: 48px;
   line-height: 24px;
   padding: 12px;
-  color: #FFF;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 .navbar-slogan {
@@ -1631,7 +1631,7 @@ icon labels
   padding: 14px 12px 10px 12px;
   font-size: 16px;
   line-height: 24px;
-  color: #FFF;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 .navbar-branding {
@@ -1663,15 +1663,15 @@ icon labels
   padding: 22px 12px 20px;
   font-size: 14px;
   font-weight: 500;
-  color: #FFF;
+  color: rgba(0, 0, 0, 0.87);
   text-transform: uppercase;
 }
 .navbar-menu .menu a:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #FFF;
+  border-color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.87);
 }
 .navbar-menu .menu .active-trail a, .navbar-menu .menu .is-active {
-  border-color: #FFF;
+  border-color: rgba(0, 0, 0, 0.87);
 }
 
 .navbar-user {
@@ -1704,7 +1704,7 @@ icon labels
 }
 .navbar-account-menu .menu a:before {
   content: "account_circle";
-  color: #FFF;
+  color: rgba(0, 0, 0, 0.87);
   position: absolute;
   top: 12px;
   left: 12px;
@@ -1805,13 +1805,13 @@ icon labels
   background: rgba(0, 0, 0, 0.54);
 }
 #drawer .menu .active-trail a, #drawer .menu .is-active {
-  color: #078BCC;
+  color: #ffe558;
 }
 #drawer .menu .active-trail a.icon-left:before, #drawer .menu .active-trail a.icon-right:after, #drawer .menu .is-active.icon-left:before, #drawer .menu .is-active.icon-right:after {
-  color: #078BCC;
+  color: #ffe558;
 }
 #drawer .menu .active-trail a.services-icon-left:before, #drawer .menu .active-trail a.services-icon-right:after, #drawer .menu .is-active.services-icon-left:before, #drawer .menu .is-active.services-icon-right:after {
-  background: #078BCC;
+  background: #ffe558;
 }
 
 /* TO DO
@@ -1831,7 +1831,7 @@ closing drawer by swipe
 }
 
 .header-bg-image #header {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 64px), #078BCC url(../img/header-bg.jpg) top center;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 64px), #ffe558 url(../img/header-bg.jpg) top center;
   background-size: auto, cover;
 }
 .header-bg-image #bg-video {
@@ -1841,10 +1841,10 @@ closing drawer by swipe
   background: none;
 }
 .header-bg-image.navbar-fixed #navbar.navbar-bg {
-  background: #078BCC;
+  background: #ffe558;
 }
 .header-bg-image.navbar-fixed #header {
-  background: #078BCC;
+  background: #ffe558;
 }
 .header-bg-image.navbar-fixed #header-bg {
   display: block;
@@ -1863,7 +1863,7 @@ closing drawer by swipe
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 64px);
 }
 .header-bg-object #header {
-  background: #078BCC;
+  background: #ffe558;
 }
 .header-bg-object #header-bg {
   display: block;
@@ -1907,7 +1907,7 @@ closing drawer by swipe
   background: none;
 }
 .header-bg-object.navbar-fixed #navbar.navbar-bg {
-  background: #078BCC;
+  background: #ffe558;
 }
 .header-bg-object.navbar-fixed #header-bg:before {
   content: " ";
@@ -1955,7 +1955,7 @@ navbar overlaying header-content (for sliders)
   background: #eeeeee;
 }
 .sidebar .menu li a.is-active {
-  color: #078BCC;
+  color: #ffe558;
 }
 .sidebar .menu li li a {
   padding-left: 36px;
@@ -2048,15 +2048,15 @@ navbar overlaying header-content (for sliders)
 #header .block-search form .form-item input[type=search],
 .card-bg-primary .block-search form .form-item input[type=text],
 .card-bg-primary .block-search form .form-item input[type=search] {
-  color: #FFF;
-  border-bottom: 1px solid #FFF;
+  color: rgba(0, 0, 0, 0.87);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.87);
 }
 .navbar-item.block-search form .form-item input[type=text]::placeholder, .navbar-item.block-search form .form-item input[type=search]::placeholder,
 #header .block-search form .form-item input[type=text]::placeholder,
 #header .block-search form .form-item input[type=search]::placeholder,
 .card-bg-primary .block-search form .form-item input[type=text]::placeholder,
 .card-bg-primary .block-search form .form-item input[type=search]::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(0, 0, 0, 0.26);
 }
 .navbar-item.block-search form .form-item input[type=text]:focus, .navbar-item.block-search form .form-item input[type=text].error:focus, .navbar-item.block-search form .form-item input[type=search]:focus, .navbar-item.block-search form .form-item input[type=search].error:focus,
 #header .block-search form .form-item input[type=text]:focus,
@@ -2073,7 +2073,7 @@ navbar overlaying header-content (for sliders)
 .navbar-item.block-search form .form-item.icon-left:before,
 #header .block-search form .form-item.icon-left:before,
 .card-bg-primary .block-search form .form-item.icon-left:before {
-  color: #FFF;
+  color: rgba(0, 0, 0, 0.87);
 }
 .navbar-item.block-search.search-persistent form .form-item input[type=text], .navbar-item.block-search.search-persistent form .form-item input[type=search],
 #header .block-search.search-persistent form .form-item input[type=text],
@@ -2202,14 +2202,14 @@ navbar overlaying header-content (for sliders)
   text-align: center;
 }
 .tabs ul li a:hover, ul.tabs li a:hover {
-  border-color: rgba(7, 139, 204, 0.5);
+  border-color: rgba(255, 229, 88, 0.5);
 }
 .tabs ul li a.is-active, ul.tabs li a.is-active {
-  border-color: #078BCC;
-  color: #078BCC;
+  border-color: #ffe558;
+  color: #ffe558;
 }
 .tabs ul li a.is-active:hover, ul.tabs li a.is-active:hover {
-  border-color: #078BCC;
+  border-color: #ffe558;
 }
 
 /* TO DO
@@ -2837,7 +2837,7 @@ color themes
 }
 
 .card-bg-primary {
-  background-color: #15ACEE;
+  background-color: #ffe558;
   color: rgba(0, 0, 0, 0.87);
 }
 .card-bg-primary .text-secondary {
@@ -2847,11 +2847,11 @@ color themes
   color: rgba(0, 0, 0, 0.87);
 }
 .card-bg-primary .btn:hover, .card-bg-primary .pager .pager-item > a:hover, .pager .card-bg-primary .pager-item > a:hover, .card-bg-primary .pager .pager-item > span:hover, .pager .card-bg-primary .pager-item > span:hover, .card-bg-primary .btn:focus, .card-bg-primary .pager .pager-item > a:focus, .pager .card-bg-primary .pager-item > a:focus, .card-bg-primary .pager .pager-item > span:focus, .pager .card-bg-primary .pager-item > span:focus {
-  background: rgba(204, 204, 204, 0.15);
+  background: rgba(153, 153, 153, 0.2);
   color: rgba(0, 0, 0, 0.87);
 }
 .card-bg-primary .btn:active, .card-bg-primary .pager .pager-item > a:active, .pager .card-bg-primary .pager-item > a:active, .card-bg-primary .pager .pager-item > span:active, .pager .card-bg-primary .pager-item > span:active {
-  background: rgba(204, 204, 204, 0.25);
+  background: rgba(153, 153, 153, 0.4);
 }
 .card-bg-primary .divider-top, .card-bg-primary .divider-bottom {
   border-color: rgba(0, 0, 0, 0.12);
@@ -2861,69 +2861,69 @@ color themes
 }
 
 .card-bg-primary {
-  background: #078BCC;
-  color: #FFF;
+  background: #ffe558;
+  color: rgba(0, 0, 0, 0.87);
 }
 .card-bg-primary .text-secondary {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.54);
 }
 .card-bg-primary .btn, .card-bg-primary .pager .pager-item > a, .pager .card-bg-primary .pager-item > a, .card-bg-primary .pager .pager-item > span, .pager .card-bg-primary .pager-item > span {
-  color: #FFF;
+  color: rgba(0, 0, 0, 0.87);
 }
 .card-bg-primary .btn:hover, .card-bg-primary .pager .pager-item > a:hover, .pager .card-bg-primary .pager-item > a:hover, .card-bg-primary .pager .pager-item > span:hover, .pager .card-bg-primary .pager-item > span:hover, .card-bg-primary .btn:focus, .card-bg-primary .pager .pager-item > a:focus, .pager .card-bg-primary .pager-item > a:focus, .card-bg-primary .pager .pager-item > span:focus, .pager .card-bg-primary .pager-item > span:focus {
-  background: rgba(204, 204, 204, 0.15);
-  color: #FFF;
+  background: rgba(153, 153, 153, 0.2);
+  color: rgba(0, 0, 0, 0.87);
 }
 .card-bg-primary .btn:active, .card-bg-primary .pager .pager-item > a:active, .pager .card-bg-primary .pager-item > a:active, .card-bg-primary .pager .pager-item > span:active, .pager .card-bg-primary .pager-item > span:active {
-  background: rgba(204, 204, 204, 0.25);
+  background: rgba(153, 153, 153, 0.4);
 }
 .card-bg-primary a {
-  color: #64ffda;
+  color: #8bd7ff;
 }
 .card-bg-primary a:hover {
-  color: #83ffe1;
+  color: #aae2ff;
 }
 .card-bg-primary a:active {
-  color: #a7ffeb;
+  color: #b8e6ff;
 }
 .card-bg-primary .divider-top, .card-bg-primary .divider-bottom {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 0, 0, 0.12);
 }
 .card-bg-primary .rippleAnimate {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .card-bg-accent {
-  background: #009678;
-  color: #FFF;
+  background: #62c7ff;
+  color: rgba(0, 0, 0, 0.87);
 }
 .card-bg-accent .text-secondary {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.54);
 }
 .card-bg-accent .btn, .card-bg-accent .pager .pager-item > a, .pager .card-bg-accent .pager-item > a, .card-bg-accent .pager .pager-item > span, .pager .card-bg-accent .pager-item > span {
-  color: #FFF;
+  color: rgba(0, 0, 0, 0.87);
 }
 .card-bg-accent .btn:hover, .card-bg-accent .pager .pager-item > a:hover, .pager .card-bg-accent .pager-item > a:hover, .card-bg-accent .pager .pager-item > span:hover, .pager .card-bg-accent .pager-item > span:hover, .card-bg-accent .btn:focus, .card-bg-accent .pager .pager-item > a:focus, .pager .card-bg-accent .pager-item > a:focus, .card-bg-accent .pager .pager-item > span:focus, .pager .card-bg-accent .pager-item > span:focus {
-  background: rgba(204, 204, 204, 0.15);
-  color: #FFF;
+  background: rgba(153, 153, 153, 0.2);
+  color: rgba(0, 0, 0, 0.87);
 }
 .card-bg-accent .btn:active, .card-bg-accent .pager .pager-item > a:active, .pager .card-bg-accent .pager-item > a:active, .card-bg-accent .pager .pager-item > span:active, .pager .card-bg-accent .pager-item > span:active {
-  background: rgba(204, 204, 204, 0.25);
+  background: rgba(153, 153, 153, 0.4);
 }
 .card-bg-accent a {
-  color: #64ffda;
+  color: #8bd7ff;
 }
 .card-bg-accent a:hover {
-  color: #83ffe1;
+  color: #aae2ff;
 }
 .card-bg-accent a:active {
-  color: #a7ffeb;
+  color: #b8e6ff;
 }
 .card-bg-accent .divider-top, .card-bg-accent .divider-bottom {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 0, 0, 0.12);
 }
 .card-bg-accent .rippleAnimate {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 @media (min-width: 568px) {
@@ -2987,17 +2987,17 @@ card title and actions overlay for card-bg-image and card-media
   transition: transform 0.25s ease;
 }
 .collapsible-toggle span {
-  color: #009678;
-  border-bottom: 1px dotted #009678;
+  color: #62c7ff;
+  border-bottom: 1px dotted #62c7ff;
   cursor: pointer;
 }
 .collapsible-toggle span:hover {
-  color: #26a69a;
-  border-color: #26a69a;
+  color: #569bdd;
+  border-color: #569bdd;
 }
 .collapsible-toggle span:active {
-  color: #4db6ac;
-  border-color: #4db6ac;
+  color: #3c8cd8;
+  border-color: #3c8cd8;
 }
 .collapsible-toggle.expanded:before {
   transform: rotate(90deg);
@@ -3061,7 +3061,7 @@ card title and actions overlay for card-bg-image and card-media
   min-width: 48px;
 }
 .pager .pager-item.item-current > a, .pager .pager-item.item-current > span {
-  color: #0F9EDF;
+  color: #ffdc5c;
 }
 .pager .pager-item.item-first > a, .pager .pager-item.item-first > span {
   padding: 6px 12px;
@@ -3268,8 +3268,8 @@ ul.messages-list {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #078BCC;
-  color: #FFF;
+  background: #ffe558;
+  color: rgba(0, 0, 0, 0.87);
 }
 .maintenance-page #page {
   justify-content: center;
@@ -3312,11 +3312,35 @@ ul.messages-list {
   height: 24px;
   border-radius: 2px;
   margin-bottom: 8px;
-  background: #078BCC;
-  color: #FFF;
+  background: #ffe558;
+  color: rgba(0, 0, 0, 0.87);
 }
 .js-comment mark.hidden {
   display: none;
+}
+
+.navbar-fixed #navbar {
+  background-color: #FFFFFF;
+}
+
+.navbar-title a {
+  color: #4bbaff;
+  font-weight: bolder;
+}
+
+.navbar-menu .menu a {
+  color: #4bbaff !important;
+  font-weight: bolder;
+}
+
+.navbar-menu .menu .active-trail a,
+.navbar-menu .menu .is-active,
+.navbar-menu .menu a:hover {
+  border-color: #4bbaff;
+}
+
+.navbar-branding > div:not(.contextual) + div {
+  margin-left: 0px;
 }
 
 /*# sourceMappingURL=styles.css.map */
