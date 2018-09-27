@@ -3616,7 +3616,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0",
-                    "datestamp": "1530810825",
+                    "datestamp": "1533065280",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4466,7 +4466,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.0",
-                    "datestamp": "1527877853",
+                    "datestamp": "1534008780",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6770,12 +6770,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "7180b36e98319a2bc2aaa07291932811e401259a"
+                "reference": "0c81859c200ae142e59c6a6e3b7fd991f3962d2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/7180b36e98319a2bc2aaa07291932811e401259a",
-                "reference": "7180b36e98319a2bc2aaa07291932811e401259a",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/0c81859c200ae142e59c6a6e3b7fd991f3962d2c",
+                "reference": "0c81859c200ae142e59c6a6e3b7fd991f3962d2c",
                 "shasum": ""
             },
             "require": {
@@ -6817,7 +6817,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2018-08-29T16:33:43+00:00"
+            "time": "2018-09-27T13:53:18+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

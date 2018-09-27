@@ -35,7 +35,7 @@ function job_board_entity_type_build(&$entity_types) {
 }
 
 /**
- * Implements hook_entity_base_field_info_alter()
+ * Implements hook_entity_base_field_info()
  */
 function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
   if ($entity_type->id() != 'job_role') {

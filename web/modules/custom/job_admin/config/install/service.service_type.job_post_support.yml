@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: job_post_support
+label: 'Job Post Support'
+default_uri: 'service/[service:id]'
+default_label: ''
