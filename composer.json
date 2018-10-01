@@ -108,9 +108,6 @@
         "patches": {
             "drupal/ckeditor_youtube": {
                 "Compatable with Composer Plugin": "./patches/ckeditor_youtube-composer_compat.patch"
-            },
-            "drupal/legal": {
-                "Fix Language DI": "https://www.drupal.org/files/issues/2018-09-02/2988875-8-configuration_page_use_di.patch"
             }
         },
         "installer-paths": {

@@ -2,6 +2,7 @@
 
 use Drupal\commerce_price\Price;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -18,6 +19,17 @@ use Drupal\user\EntityOwnerInterface;
 use Drupal\user\ProfileForm;
 
 /**
+ * Implements hook_module_implements_alter().
+ */
+function job_board_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter' && isset($implementations['job_board'])) {
+    $group = $implementations['job_board'];
+    unset($implementations['job_board']);
+    $implementations['job_board'] = $group;
+  }
+}
+
+/**
  * Implements hook_entity_type_build().
  *
  * @param \Drupal\Core\Entity\EntityTypeInterface[] $entity_types
@@ -30,7 +42,7 @@ function job_board_entity_type_build(&$entity_types) {
   }
 
   if ($entity_type = $entity_types['user']) {
-    $entity_type->setFormClass('employer_details', ProfileForm::class);
+    $entity_type->setFormClass('employer_details', ContentEntityForm::class);
   }
 }
 
@@ -223,6 +235,10 @@ function job_board_entity_base_field_info_alter(&$fields, EntityTypeInterface $e
  * @param FormStateInterface $form_state
  */
 function job_board_form_user_register_form_alter(array &$form, FormStateInterface $form_state) {
+  $form['contact']['#access'] = FALSE;
+  $form['user_picture']['#access'] = FALSE;
+  $form['timezone']['#access'] = FALSE;
+
   if (\Drupal::request()->cookies->get('Drupal_visitor_jobPostRegister') || $form_state->get('job_post_register')) {
     $form_state->set('job_post_register', TRUE);
     $form['actions']['submit']['#submit'][] = 'job_board_user_register_form_submit_redirect';
@@ -249,6 +265,7 @@ function job_board_user_register_form_submit_redirect(array $form, FormStateInte
  * Implements hook_form_alter().
  */
 function job_board_form_user_employer_details_form_alter(array &$form, FormStateInterface $form_state) {
+  dpm($form);
   if (\Drupal::request()->cookies->get('Drupal_visitor_jobPostRegister')) {
     $form['actions']['submit']['#submit'][] = 'job_board_user_employer_details_form_submit_redirect';
   }

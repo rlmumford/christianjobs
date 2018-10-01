@@ -3343,4 +3343,8 @@ ul.messages-list {
   margin-left: 0px;
 }
 
+.form-type-select .description {
+  display: none;
+}
+
 /*# sourceMappingURL=styles.css.map */

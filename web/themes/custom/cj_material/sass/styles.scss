@@ -33,3 +33,7 @@
 .navbar-branding > div:not(.contextual) + div {
   margin-left: 0px;
 }
+
+.form-type-select .description {
+  display: none;
+}
