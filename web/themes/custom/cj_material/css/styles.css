@@ -3319,6 +3319,14 @@ ul.messages-list {
   display: none;
 }
 
+h1 {
+  color: #4BBAFF;
+}
+
+h2 {
+  color: #FF904B;
+}
+
 .navbar-fixed #navbar {
   background-color: #FFFFFF;
 }
