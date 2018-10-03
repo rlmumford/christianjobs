@@ -298,17 +298,40 @@ function job_board_job_package_options() {
  */
 function job_board_job_package_info($key = NULL) {
   $info = [];
-  $info['basic'] = [
-    'label' => t('Basic'),
-    'price' => new Price('50.00', 'GBP'),
+  $info['advert'] = [
+    'label' => t('Basic Advert'),
+    'description' => t('Advertise your Job on ChristianJobs.co.uk'),
+    'price' => new Price('75.00', 'GBP'),
+    'member_price' => new Price('50.00', 'GBP'),
     'allowed_featured_dates' => 1,
     'duration' => 'P30D',
+    'features' => [
+      [ 'title' => t('30 Days Exposure'), 'class' => [] ],
+      [ 'title' => t('Social Media'), 'class' => [] ],
+    ],
   ];
-  $info['premium'] = [
-    'label' => t('Premium'),
-    'price' => new Price('75.00', 'GBP'),
+  $info['membership'] = [
+    'label' => t('Membership'),
+    'price' => new Price('295.00', 'GBP'),
+    'description' => t('Become a Christian Jobs member and receive all these benefits.'),
     'allowed_featured_dates' => 5,
     'duration' => 'P60D',
+    'features' => [
+      [ 'title' => t('1 Free Job Advert'), 'class' => [] ],
+      [ 'title' => t('Discounted Job Adverts for 1 Year'), 'class' => [] ],
+    ]
+  ];
+  $info['rpo'] = [
+    'label' => t('Recruitment Process Outsourcing'),
+    'description' => t('Let Christian Jobs take the load of your recruitment process.'),
+    'price' => new Price('695.00', 'GBP'),
+    'duration' => 'P60D',
+    'features' => [
+      [ 'title' => t('1 Free Job Advert') ],
+      [ 'title' => t('1 Year Free Membership') ],
+      [ 'title' => t('Dedicated Account Manager') ],
+      [ 'title' => t('Social Media Support') ],
+    ],
   ];
 
   return $key ? (isset($info[$key]) ? $info[$key] : NULL) : $info;

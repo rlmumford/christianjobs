@@ -1,3 +1,11 @@
+job_board.pricing:
+  path: '/pricing'
+  defaults:
+    _controller: '\Drupal\job_board\Controller\JobBoardController::pricingInformation'
+    _title: 'Pricing'
+  requirements:
+    _access: 'TRUE'
+
 job_board.post:
   path: '/jobs/post'
   defaults:

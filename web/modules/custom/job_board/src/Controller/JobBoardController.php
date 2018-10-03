@@ -2,6 +2,8 @@
 
 namespace Drupal\job_board\Controller;
 
+use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
+use Drupal\commerce_price\Price;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\TransactionNameNonUniqueException;
 use Drupal\Core\Url;
@@ -55,5 +57,96 @@ class JobBoardController extends ControllerBase {
     return $this->t('Edit @employer', [
       '@employer' => $this->employerTitle($user),
     ]);
+  }
+
+  /**
+   * Return a pricing page
+   */
+  public function pricingInformation() {
+    /** @var CurrencyFormatterInterface $currency_formatter */
+    $currency_formatter = \Drupal::service('commerce_price.currency_formatter');
+
+    $output = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['packages'],
+      ],
+    ];
+
+    $packages = job_board_job_package_info();
+    foreach ($packages as $key => $package) {
+      /** @var Price $price */
+      $price = $package['price'];
+      /** @var Price $membership_price */
+      $membership_price = $package['member_price'];
+
+      $output[$key] = [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['package'],
+        ]
+      ];
+      $output[$key]['title'] = [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['package-title-container'],
+        ],
+        'title' => [
+          '#type' => 'html_tag',
+          '#tag' => 'h3',
+          '#attributes' => [
+            'class' => ['package-title'],
+          ],
+          '#value' => $package['label'],
+        ],
+        'description' => [
+          '#type' => 'html_tag',
+          '#tag' => 'p',
+          '#attrbitues' => [
+            'class' => ['package-description'],
+          ],
+          '#value' => $package['description'],
+        ],
+        'price' => [
+          '#type' => 'html_tag',
+          '#tag' => 'div',
+          '#attribtues' => [
+            'class' => ['package-price'],
+          ],
+          '#value' => $currency_formatter->format($price->getNumber(), $price->getCurrencyCode()),
+        ],
+        'cta' => [
+          '#type' => 'link',
+          '#title' => $this->t('Get Started Now'),
+          '#url' => Url::fromRoute('job_board.post'),
+          '#attributes' => [
+            'class' => ['button', 'package-cta'],
+          ],
+        ],
+      ];
+      $output[$key]['features'] = [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['package-features-wrapper'],
+        ],
+      ];
+      $output[$key]['features']['features'] = [
+        '#theme' => 'item_list',
+        '#title' => $this->t('Features'),
+        '#list_type' => 'ul',
+        '#items' => [],
+      ];
+
+      foreach ($package['features'] as $feature) {
+        $output[$key]['features']['features']['#items'][] = [
+          '#markup' => $feature['title'],
+          '#wrapper_attributes' => [
+            'class' => [ 'package-feature-item' ] + $feature['classes'],
+          ],
+        ];
+      }
+    }
+
+    return $output;
   }
 }
