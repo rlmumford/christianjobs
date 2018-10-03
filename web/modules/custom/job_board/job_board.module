@@ -333,6 +333,16 @@ function job_board_job_package_info($key = NULL) {
       [ 'title' => t('Social Media Support') ],
     ],
   ];
+  $info['executive_search'] = [
+    'label' => t('Executive Search'),
+    'description' => t('Let Christian Jobs find your perfect partner.'),
+    'price' => t('from 10%'),
+    'duration' => 'P60D',
+    'features' => [
+      [ 'title' => t('1 Free Job Advert') ],
+      [ 'title' => t('Dedicated Account Manager') ],
+    ],
+  ];
 
   return $key ? (isset($info[$key]) ? $info[$key] : NULL) : $info;
 }

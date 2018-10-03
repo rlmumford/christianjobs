@@ -1,0 +1,98 @@
+.packages {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  justify-content: space-between;
+  width: 100%;
+}
+.packages .package {
+  width: 100%;
+  order: 2;
+  margin: 20px 0 0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #FFFFFF;
+}
+.packages .package .package-title-container {
+  padding: 40px 20px;
+  position: relative;
+}
+
+h3.package-title {
+  color: #FF904B;
+}
+
+div.package-price {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #FF904B;
+}
+div.package-price.price-currency::after {
+  content: ' +VAT';
+  font-size: 0.5em;
+}
+
+a.package-cta {
+  margin-top: 1em;
+  border: 3px solid transparent;
+  border-radius: 2px;
+  color: #fff;
+  background: #4BBAFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .5px;
+  line-height: 20px;
+  min-height: 48px;
+  min-width: 100px;
+  padding: 15px 24px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .15s cubic-bezier(.4,0,.2,1),background-color .15s cubic-bezier(.4,0,.2,1);
+  will-change: background-color;
+}
+a.package-cta:hover {
+  color: #4BBAFF;
+  background: #FFFFFF;
+  border: 3px solid #4BBAFF;
+}
+
+@media (min-width: 767px) {
+  .packages {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .packages .package:nth-child(1) {
+    border-right: none;
+    order: 2;
+  }
+  .packages .package:nth-child(3) {
+    border-left: none;
+  }
+  .packages .package:nth-child(4) {
+    border-left: none;
+  }
+
+  .packages .package .package-title-container {
+    background: #fafafa;
+    padding: 40px 30px;
+  }
+  .packages .package .package-features-wrapper {
+    border-top: 1px solid rgba(0, 0 ,0, 0.12);
+  }
+}

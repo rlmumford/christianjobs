@@ -68,6 +68,9 @@ class JobBoardController extends ControllerBase {
 
     $output = [
       '#type' => 'container',
+      '#attached' => [
+        'library' => ['job_board/pricing'],
+      ],
       '#attributes' => [
         'class' => ['packages'],
       ],
@@ -110,10 +113,13 @@ class JobBoardController extends ControllerBase {
         'price' => [
           '#type' => 'html_tag',
           '#tag' => 'div',
-          '#attribtues' => [
-            'class' => ['package-price'],
+          '#attributes' => [
+            'class' => [
+              'package-price',
+              ($price instanceof Price) ? 'price-currency' : 'price-string',
+            ],
           ],
-          '#value' => $currency_formatter->format($price->getNumber(), $price->getCurrencyCode()),
+          '#value' => ($price instanceof Price) ? $currency_formatter->format($price->getNumber(), $price->getCurrencyCode()) : $price,
         ],
         'cta' => [
           '#type' => 'link',
@@ -138,10 +144,12 @@ class JobBoardController extends ControllerBase {
       ];
 
       foreach ($package['features'] as $feature) {
+        $classes = $feature['classes'] ?: [];
+
         $output[$key]['features']['features']['#items'][] = [
           '#markup' => $feature['title'],
           '#wrapper_attributes' => [
-            'class' => [ 'package-feature-item' ] + $feature['classes'],
+            'class' => [ 'package-feature-item' ] + $classes,
           ],
         ];
       }
