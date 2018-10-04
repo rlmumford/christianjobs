@@ -24,7 +24,7 @@
   position: relative;
 }
 .packages .package .package-title-container p {
-  min-height: 4em;
+  min-height: 6em;
 }
 
 h3.package-title {
