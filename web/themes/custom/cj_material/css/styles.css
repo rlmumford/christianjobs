@@ -3327,6 +3327,14 @@ h2 {
   color: #FF904B;
 }
 
+.path-frontpage header#header {
+  background-image: url(../header-bg.jpg);
+}
+
+.path-frontpage #navbar {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .navbar-fixed #navbar {
   background-color: #FFFFFF;
 }
