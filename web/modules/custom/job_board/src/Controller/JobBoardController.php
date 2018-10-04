@@ -123,7 +123,7 @@ class JobBoardController extends ControllerBase {
         ],
         'cta' => [
           '#type' => 'link',
-          '#title' => $this->t('Get Started Now'),
+          '#title' => $this->t('Get Started'),
           '#url' => Url::fromRoute('job_board.post'),
           '#attributes' => [
             'class' => ['button', 'package-cta'],

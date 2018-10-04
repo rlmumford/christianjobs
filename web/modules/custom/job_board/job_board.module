@@ -306,8 +306,9 @@ function job_board_job_package_info($key = NULL) {
     'allowed_featured_dates' => 1,
     'duration' => 'P30D',
     'features' => [
-      [ 'title' => t('30 Days Exposure'), 'class' => [] ],
-      [ 'title' => t('Social Media'), 'class' => [] ],
+      [ 'title' => t('30 Days Exposure'), ],
+      [ 'title' => t('Optional 60 Days Exposure (+£25)'), ],
+      [ 'title' => t('Social Media'), ],
     ],
   ];
   $info['membership'] = [
@@ -317,8 +318,10 @@ function job_board_job_package_info($key = NULL) {
     'allowed_featured_dates' => 5,
     'duration' => 'P60D',
     'features' => [
-      [ 'title' => t('1 Free Job Advert'), 'class' => [] ],
-      [ 'title' => t('Discounted Job Adverts for 1 Year'), 'class' => [] ],
+      [ 'title' => t('1 Free 60 Day Job Advert'), ],
+      [ 'title' => t('Discounted Job Adverts for 1 Year'), ],
+      [ 'title' => t('Dedicated Account Manager'), ],
+      [ 'title' => t('Social Media Support'), ],
     ]
   ];
   $info['rpo'] = [
@@ -327,7 +330,7 @@ function job_board_job_package_info($key = NULL) {
     'price' => new Price('695.00', 'GBP'),
     'duration' => 'P60D',
     'features' => [
-      [ 'title' => t('1 Free Job Advert') ],
+      [ 'title' => t('1 Free 60 Day Job Advert') ],
       [ 'title' => t('1 Year Free Membership') ],
       [ 'title' => t('Dedicated Account Manager') ],
       [ 'title' => t('Social Media Support') ],
