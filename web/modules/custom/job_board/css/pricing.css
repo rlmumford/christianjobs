@@ -23,12 +23,17 @@
   padding: 40px 20px;
   position: relative;
 }
+.packages .package .package-title-container p {
+  min-height: 4em;
+}
 
 h3.package-title {
   color: #FF904B;
+  min-height: 3em;
 }
 
 div.package-price {
+  font-family: "Montserrat";
   font-size: 1.7em;
   font-weight: bold;
   color: #FF904B;
