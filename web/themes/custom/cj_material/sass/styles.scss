@@ -24,8 +24,20 @@ h2 {
 .path-frontpage header#header {
   background-image: url(../header-bg.jpg);
 }
-.path-frontpage #navbar {
-  background-color: rgba(255,255,255,0.2);
+.path-frontpage.navbar-fixed #navbar {
+  background-color: rgba(255,255,255,0.4);
+}
+.path-frontpage #header-content {
+  margin: 150px 0;
+  text-align: center;
+}
+.path-frontpage .header-front {
+  position: relative;
+}
+.path-frontpage .header-front {
+  content: url(../logo.svg);
+  position: absolute;
+  left: 0;
 }
 
 .navbar-fixed #navbar {
