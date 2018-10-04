@@ -3341,6 +3341,7 @@ h2 {
 }
 
 .path-frontpage .header-front {
+  display: inline-block;
   position: relative;
   padding-left: 120px;
 }
