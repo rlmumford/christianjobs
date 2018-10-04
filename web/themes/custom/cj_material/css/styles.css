@@ -3344,7 +3344,7 @@ h2 {
   position: relative;
 }
 
-.path-frontpage .header-front {
+.path-frontpage .header-front::before {
   content: url(../logo.svg);
   position: absolute;
   left: 0;
