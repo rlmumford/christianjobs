@@ -23,6 +23,7 @@ h2 {
 
 .path-frontpage header#header {
   background-image: url(../header-bg.jpg);
+  background-color: #b8e6ff;
 }
 .path-frontpage.navbar-fixed #navbar {
   background-color: rgba(255,255,255,0.4);
@@ -54,7 +55,8 @@ h2 {
   font-weight: bold;
 }
 
-.navbar-fixed #navbar {
+.navbar-fixed #navbar,
+.navbar-fixed #navbar.navbar-bg {
   background-color: #FFFFFF;
 }
 .navbar-title a {
