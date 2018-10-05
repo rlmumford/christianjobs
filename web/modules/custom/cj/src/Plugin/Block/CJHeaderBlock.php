@@ -104,7 +104,7 @@ class CJHeaderBlock extends BlockBase implements ContainerFactoryPluginInterface
     $this->configuration['find_cta_text'] = $values['find_cta_text'];
     $this->configuration['find_cta_path'] = $values['find_cta_path'];
     $this->configuration['post_cta_text'] = $values['post_cta_text'];
-    $this->configuration['post_cta_text'] = $values['post_cta_text'];
+    $this->configuration['post_cta_path'] = $values['post_cta_path'];
   }
 
   /**
