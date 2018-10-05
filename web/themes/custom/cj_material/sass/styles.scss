@@ -80,3 +80,39 @@ h2 {
 .form-type-select .description {
   display: none;
 }
+
+/* CTA Buttons */
+a.button-cta {
+  margin-top: 1em;
+  border: 3px solid transparent;
+  border-radius: 2px;
+  color: #fff;
+  background: #4BBAFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .5px;
+  line-height: 20px;
+  min-height: 48px;
+  min-width: 100px;
+  padding: 15px 24px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .15s cubic-bezier(.4,0,.2,1),background-color .15s cubic-bezier(.4,0,.2,1);
+  will-change: background-color;
+}
+a.button-cta:hover {
+  color: #4BBAFF;
+  background: #FFFFFF;
+  border: 3px solid #4BBAFF;
+}
+a.button-cta.button-orange {
+  background: #FF904B;
+}
+a.button-cta.button-orange:hover {
+  background: #FFFFFF;
+  color: #FF904B;
+  border: 3px solid #FF904B;
+}
