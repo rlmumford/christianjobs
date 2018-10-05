@@ -3337,7 +3337,7 @@ h2 {
 }
 
 .path-frontpage #header-content {
-  margin: 150px 0;
+  margin: 120px 0 80px;
   text-align: center;
 }
 
@@ -3365,6 +3365,10 @@ h2 {
 .path-frontpage .header-front span.tagline {
   color: #FF904b;
   font-weight: bold;
+}
+
+.header-front-ctas .button-cta {
+  margin: 40px 15px;
 }
 
 .navbar-fixed #navbar,
