@@ -3329,6 +3329,7 @@ h2 {
 
 .path-frontpage header#header {
   background-image: url(../header-bg.jpg);
+  background-color: #b8e6ff;
 }
 
 .path-frontpage.navbar-fixed #navbar {
@@ -3366,7 +3367,8 @@ h2 {
   font-weight: bold;
 }
 
-.navbar-fixed #navbar {
+.navbar-fixed #navbar,
+.navbar-fixed #navbar.navbar-bg {
   background-color: #FFFFFF;
 }
 
