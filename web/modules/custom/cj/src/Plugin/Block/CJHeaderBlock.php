@@ -70,22 +70,22 @@ class CJHeaderBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#type' => 'fieldset',
       '#title' => $this->t('Call to Action Buttons'),
     ];
-    $form['find_cta_text'] = [
+    $form['ctas']['find_cta_text'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Find a Job Button Text'),
       '#default_value' => $this->configuration['find_cta_text'],
     ];
-    $form['find_cta_path'] = [
+    $form['ctas']['find_cta_path'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Find a Job Button Path'),
       '#default_value' => $this->configuration['find_cta_path'],
     ];
-    $form['post_cta_text'] = [
+    $form['ctas']['post_cta_text'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Find a Job Button Text'),
       '#default_value' => $this->configuration['post_cta_text'],
     ];
-    $form['post_cta_path'] = [
+    $form['ctas']['post_cta_path'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Find a Job Button Path'),
       '#default_value' => $this->configuration['post_cta_path'],
