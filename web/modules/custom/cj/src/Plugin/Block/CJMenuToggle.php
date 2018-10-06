@@ -19,16 +19,9 @@ class CJMenuToggle extends BlockBase {
    */
   public function build() {
     return [
-      '#type' => 'container',
-      '#id' => 'navbar-menu-toggle',
-      'toggle' => [
-        '#type' => 'html_tag',
-        '#tag' => 'a',
-        '#attributes' => [
-          'href' => '#',
-        ],
-        '#value' => '<i class="material-icons navbar-icon">menu</i>',
-      ],
+      '#prefix' => '<div id="navbar-menu-toggle">',
+      '#markup' => '<a href="#"><i class="material-icons navbar-icon">menu</i></a>',
+      '#suffix' => '</div>',
     ];
   }
 

@@ -21,25 +21,19 @@ class CJDrawerTitle extends BlockBase {
   public function build() {
     $build = [];
     $build['close'] = [
-      '#type' => 'container',
-      '#id' => 'drawer-menu-close',
-      'toggle' => [
-        '#type' => 'html_tag',
-        '#tag' => 'a',
-        '#attributes' => [
-          'href' => '#',
-        ],
-        '#value' => '<i class="material-icons drawer-icon">arrow_back</i>',
+      '#prefix' => '<div id="drawer-menu-close">',
+      '#suffix' => '</div>',
+      '#type' => 'html_tag',
+      '#tag' => 'a',
+      '#attributes' => [
+        'href' => '#',
       ],
+      '#value' => '<i class="material-icons drawer-icon">arrow_back</i>',
     ];
     $build['title'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'div',
-      '#attributes' => [
-        'id' => 'drawer-title',
-      ],
-      '#id' => 'drawer-title',
-      '#value' => new TranslatableMarkup('Menu'),
+      '#prefix' => '<div id="drawer-title">',
+      '#suffix' => '</div>',
+      '#markup' => new TranslatableMarkup('Menu'),
     ];
 
     return $build;
