@@ -3,10 +3,12 @@
 namespace Drupal\job_board\Controller;
 
 use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
+use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_price\Price;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\TransactionNameNonUniqueException;
 use Drupal\Core\Url;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -16,21 +18,67 @@ class JobBoardController extends ControllerBase {
    * Page to post a new job.
    */
   public function postJob() {
+    $request = \Drupal::request();
+    $cookies = [
+      'jobPostRegister' => TRUE,
+    ];
+    if ($request->query->get('membership') || $request->cookies->get('Drupal_visitor_jobPostRpo')) {
+      $cookies['jobPostMembership'] = TRUE;
+    }
+    if ($request->query->get('rpo') || $request->cookies->get('Drupal_visitor_jobPostRpo')) {
+      $cookies['jobPostRpo'] = TRUE;
+    }
+
     $current_user = \Drupal::currentUser();
     if ($current_user->isAnonymous() && !$current_user->hasPermission('post job board jobs')) {
-      user_cookie_save([
-        'jobPostRegister' => TRUE,
-      ]);
+      user_cookie_save($cookies);
       return $this->redirect('user.register');
     }
 
     $user = entity_load('user', $current_user->id());
     if (!$user || !$user->profile_employer->entity || !$user->profile_employer->entity->employer_name->value) {
+      user_cookie_save($cookies);
       return $this->redirect('job_board.employer_edit', ['user' => $current_user->id()]);
     }
 
+    if (!empty($cookies['jobPostMembership']) || $request->query->get('membership')) {
+      /** @var \Drupal\commerce_cart\CartProvider $cart_provider */
+      $cart_provider = \Drupal::service('commerce_cart.cart_provider');
+      $cart = $cart_provider->getCart('default');
+      if (!$cart) {
+        $cart = $cart_provider->createCart('default');
+      }
+
+      // Add a membership options to this form.
+      if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {
+        /** @var \Drupal\cj_membership\MembershipStorage $membership_storage */
+        $membership_storage = \Drupal::entityTypeManager()->getStorage('cj_membership');
+        $membership = $membership_storage->getAccountMembership($current_user);
+
+        // Membership on current order.
+        $membership_in_cart = FALSE;
+        foreach ($cart->getItems() as $order_item) {
+          if ($order_item->getPurchasedEntity() instanceof Membership) {
+            $membership_in_cart = TRUE;
+          }
+        }
+
+        if (!$membership && !$membership_in_cart) {
+          $membership = $membership_storage->create()
+            ->setOwnerId($current_user->id());
+          $membership->start->value = date(DateTimeItemInterface::DATE_STORAGE_FORMAT);
+          \Drupal::service('commerce_cart.cart_manager')->addEntity($cart, $membership);
+        }
+      }
+    }
+
+    $initial_values = [];
+    if (!empty($cookies['jobPostRpo']) || $request->query->get('rpo')) {
+      $initial_values['rpo'] = TRUE;
+    }
+
     /** @var \Drupal\job_board\JobBoardJobRole $job */
-    $job = $this->entityTypeManager()->getStorage('job_role')->create([]);
+    $job = $this->entityTypeManager()->getStorage('job_role')->create($initial_values);
     $job->setOwnerId($current_user->id());
     return $this->entityFormBuilder()->getForm($job, 'post');
   }
@@ -43,6 +91,9 @@ class JobBoardController extends ControllerBase {
 
     if ($profile->employer_name->value) {
       return $profile->employer_name->value;
+    }
+    else if ($user->id() == \Drupal::currentUser()->id()) {
+      return $this->t('Your Organisation');
     }
 
     return $this->t('@username\'s Organisation', [
@@ -124,7 +175,7 @@ class JobBoardController extends ControllerBase {
         'cta' => [
           '#type' => 'link',
           '#title' => $this->t('Get Started'),
-          '#url' => Url::fromRoute('job_board.post'),
+          '#url' => $package['cta_url'],
           '#attributes' => [
             'class' => ['button', 'package-cta'],
           ],
@@ -157,4 +208,5 @@ class JobBoardController extends ControllerBase {
 
     return $output;
   }
+
 }

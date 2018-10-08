@@ -2,6 +2,7 @@
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 
 /**
@@ -167,14 +168,6 @@ function job_board_install() {
 function job_board_update_8001() {
   $manager = \Drupal::entityDefinitionUpdateManager();
 
-  $fields['package'] = BaseFieldDefinition::create('list_string')
-    ->setSetting('allowed_values_function', 'job_board_job_package_options')
-    ->setLabel(t('Package'))
-    ->setDescription(t('The base backage to use with this job.'))
-    ->setCardinality(1)
-    ->setRevisionable(TRUE)
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
   $fields['paid'] = BaseFieldDefinition::create('boolean')
     ->setLabel(t('Paid'))
     ->setDescription(t('Has this job role been paid for.'))
@@ -340,5 +333,46 @@ function job_board_update_8003() {
   ];
   foreach ($configs_to_install as $name) {
     $config_storage->write($name, $source->read($name));
+  }
+}
+
+/**
+ * Uninstall fields we're not going to use.
+ */
+function job_board_update_8004() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $job_role = $manager->getEntityType('job_role');
+  $keys = $job_role->getKeys();
+  unset($keys['bundle']);
+  $job_role->set('entity_keys', $keys);
+  $manager->updateEntityType($job_role);
+
+  $fields = ['type', 'featured_dates', 'package'];
+  foreach ($fields as $field_name) {
+    if ($definition = $manager->getFieldStorageDefinition($field_name, 'job_role')) {
+      $manager->uninstallFieldStorageDefinition($definition);
+    }
+  }
+
+  $fields = [];
+  $fields['initial_duration'] = BaseFieldDefinition::create('list_string')
+    ->setSetting('allowed_values', [
+      'P30D' => new TranslatableMarkup('30 Days'),
+      'P60D' => new TranslatableMarkup('60 Days'),
+    ])
+    ->setLabel(new TranslatableMarkup('Duration'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['rpo'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(new TranslatableMarkup('RPO Requested'))
+    ->setDescription(new TranslatableMarkup('Appoint a Christian Jobs Recruitment Agent to walk you through the recruitment process.'))
+    ->setSetting('on_label', new TranslatableMarkup('Use RPO Services'))
+    ->setSetting('off_label', new TranslatableMarkup('Do Not Use RPO Services'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  foreach ($fields as $field_name => $field) {
+    $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $field);
   }
 }

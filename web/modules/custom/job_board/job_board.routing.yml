@@ -6,6 +6,14 @@ job_board.pricing:
   requirements:
     _access: 'TRUE'
 
+job_board.exec_search:
+  path: '/executive-search'
+  defaults:
+    _form: '\Drupal\job_board\Form\ExecSearchInitForm'
+    _title: 'Executive Search'
+  requirements:
+    _access: 'TRUE'
+
 job_board.post:
   path: '/jobs/post'
   defaults:

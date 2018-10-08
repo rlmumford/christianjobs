@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function cj_install() {
+  $theme_installer = \Drupal::service('theme_installer');
+  $theme_installer->install(['cj_material']);
+
+  $this->config('system.theme')->set('default', 'seven')->save(TRUE);
+}

@@ -2,25 +2,27 @@
 
 namespace Drupal\job_board;
 
+use Drupal\commerce\Context;
 use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_price\Price;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Entity\SynchronizableEntityTrait;
+use Drupal\Core\Entity\SynchronizableInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\job_role\Entity\JobRole;
 
 class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
+  use SynchronizableEntityTrait;
 
   /**
    * {@inheritdoc}
    */
   public function preSave(EntityStorageInterface $storage) {
     if ($this->paid->value && !$this->end_date->value) {
-      $package_info = job_board_job_package_info($this->package->value);
-
       /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
       $end_date = clone $this->publish_date->date;
-      $end_date->add(new \DateInterval($package_info['duration'] ?: 'P30D'));
+      $end_date->add(new \DateInterval($this->initial_duration->value ?: 'P30D'));
       $this->end_date->value = $end_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
     }
   }
@@ -67,18 +69,16 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
    * @return \Drupal\commerce_price\Price|null
    *   The price, or NULL.
    */
-  public function getPrice() {
-    $package = job_board_job_package_info($this->package->value ?: 'basic');
-
-    /** @var \Drupal\commerce_price\Price $price */
-    $price = $package['price'];
-
-    if ($this->featured_dates->count() > $package['allowed_featured_dates']) {
-      $price = $price
-        ->add(
-          (new Price('20.00', 'GBP'))
-            ->multiply($this->featured_dates->count() - $package['allowed_featured_dates'])
-        );
+  public function getPrice(Context $context = NULL) {
+    // @todo: Membership prices.
+    if ($this->rpo->value) {
+      $price = new Price('695.00', 'GBP');
+    }
+    else if ($this->initial_duration->value == 'P60D') {
+      $price = new Price('100.00', 'GBP');
+    }
+    else {
+      $price = new Price('75.00', 'GBP');
     }
 
     return $price;

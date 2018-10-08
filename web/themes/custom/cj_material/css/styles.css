@@ -3402,7 +3402,8 @@ h2 {
 }
 
 /* CTA Buttons */
-a.button-cta {
+a.button-cta,
+input.button {
   margin-top: 1em;
   border: 3px solid transparent;
   border-radius: 2px;
@@ -3414,7 +3415,8 @@ a.button-cta {
   font-weight: 400;
   letter-spacing: 0.5px;
   line-height: 20px;
-  min-height: 48px;
+  min-height: 54px;
+  height: initial;
   min-width: 100px;
   padding: 15px 24px;
   text-align: center;
@@ -3424,16 +3426,23 @@ a.button-cta {
   will-change: background-color;
 }
 
+.form-actions input.button {
+  margin-top: 8px;
+}
+
+input.button:hover,
 a.button-cta:hover {
   color: #4BBAFF;
   background: #FFFFFF;
   border: 3px solid #4BBAFF;
 }
 
+input.button.button-orange,
 a.button-cta.button-orange {
   background: #FF904B;
 }
 
+input.button.button-orange:hover,
 a.button-cta.button-orange:hover {
   background: #FFFFFF;
   color: #FF904B;

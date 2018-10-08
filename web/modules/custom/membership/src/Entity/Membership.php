@@ -2,10 +2,12 @@
 
 namespace Drupal\cj_membership\Entity;
 
+use Drupal\commerce\Context;
 use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_price\Price;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\SynchronizableEntityTrait;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
@@ -47,6 +49,7 @@ use Drupal\user\UserInterface;
  * )
  */
 class Membership extends ContentEntityBase implements EntityOwnerInterface, PurchasableEntityInterface {
+  use SynchronizableEntityTrait;
 
   const STATUS_ACTIVE = 'active';
   const STATUS_INACTIVE = 'inactive';
@@ -217,7 +220,7 @@ class Membership extends ContentEntityBase implements EntityOwnerInterface, Purc
    * @return \Drupal\commerce_price\Price|null
    *   The price, or NULL.
    */
-  public function getPrice() {
-    return new Price('300.00', 'GBP');
+  public function getPrice(Context $context = NULL) {
+    return new Price('295.00', 'GBP');
   }
 }

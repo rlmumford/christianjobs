@@ -10,6 +10,8 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\job_board\Form\JobPostForm;
 use Drupal\job_board\JobBoardJobRole;
@@ -72,25 +74,25 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
-  $fields['featured_dates'] = BaseFieldDefinition::create('datetime')
-    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
-    ->setLabel(t('Featured Dates'))
-    ->setDescription(t('The dates on which this job is featured.'))
-    ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+
+  $fields['initial_duration'] = BaseFieldDefinition::create('list_string')
+    ->setSetting('allowed_values', [
+      'P30D' => new TranslatableMarkup('30 Days'),
+      'P60D' => new TranslatableMarkup('60 Days'),
+    ])
+    ->setLabel(new TranslatableMarkup('Duration'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['rpo'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(new TranslatableMarkup('RPO Requested'))
+    ->setDescription(new TranslatableMarkup('Appoint a Christian Jobs Recruitment Agent to walk you through the recruitment process.'))
+    ->setSetting('on_label', new TranslatableMarkup('Use RPO Services'))
+    ->setSetting('off_label', new TranslatableMarkup('Do Not Use RPO Services'))
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
-  $fields['package'] = BaseFieldDefinition::create('list_string')
-    ->setSetting('allowed_values_function', 'job_board_job_package_options')
-    ->setLabel(t('Package'))
-    ->setDescription(t('The base backage to use with this job.'))
-    ->setCardinality(1)
-    ->setRevisionable(TRUE)
-    ->setRequired(TRUE)
-    ->setDefaultValue('basic')
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
   $fields['paid'] = BaseFieldDefinition::create('boolean')
     ->setLabel(t('Paid'))
     ->setDescription(t('Has this job role been paid for.'))
@@ -239,8 +241,13 @@ function job_board_form_user_register_form_alter(array &$form, FormStateInterfac
   $form['user_picture']['#access'] = FALSE;
   $form['timezone']['#access'] = FALSE;
 
-  if (\Drupal::request()->cookies->get('Drupal_visitor_jobPostRegister') || $form_state->get('job_post_register')) {
+  $cookies = \Drupal::request()->cookies;
+  if ($cookies->get('Drupal_visitor_jobPostRegister') || $form_state->get('job_post_register')) {
     $form_state->set('job_post_register', TRUE);
+
+    $form_state->set('wants_membership', ($cookies->get('Drupal_visitor_jobPostMembership') || $form_state->get('wants_membership')));
+    $form_state->set('wants_rpo', ($cookies->get('Drupal_visitor_jobPostRPO') || $form_state->get('wants_rpo')));
+
     $form['actions']['submit']['#submit'][] = 'job_board_user_register_form_submit_redirect';
   }
 }
@@ -258,14 +265,23 @@ function job_board_user_register_form_submit_redirect(array $form, FormStateInte
     'user' => $user->id(),
   ]);
 
-  user_cookie_save(['jobPostRegister' => TRUE]);
+  $cookies = [
+    'jobPostRegister' => TRUE,
+  ];
+  if ($form_state->get('wants_membership')) {
+    $cookies['jobPostMembership'] = TRUE;
+  }
+  if ($form_state->get('wants_rpo')) {
+    $cookies['jobPostRPO'] = TRUE;
+  }
+
+  user_cookie_save($cookies);
 }
 
 /**
  * Implements hook_form_alter().
  */
 function job_board_form_user_employer_details_form_alter(array &$form, FormStateInterface $form_state) {
-  dpm($form);
   if (\Drupal::request()->cookies->get('Drupal_visitor_jobPostRegister')) {
     $form['actions']['submit']['#submit'][] = 'job_board_user_employer_details_form_submit_redirect';
   }
@@ -304,7 +320,7 @@ function job_board_job_package_info($key = NULL) {
     'price' => new Price('75.00', 'GBP'),
     'member_price' => new Price('50.00', 'GBP'),
     'allowed_featured_dates' => 1,
-    'duration' => 'P30D',
+    'cta_url' => Url::fromRoute('job_board.post'),
     'features' => [
       [ 'title' => t('30 Days Exposure'), ],
       [ 'title' => t('Optional 60 Days Exposure (+£25)'), ],
@@ -316,7 +332,11 @@ function job_board_job_package_info($key = NULL) {
     'price' => new Price('295.00', 'GBP'),
     'description' => t('Become a Christian Jobs member and receive all these benefits.'),
     'allowed_featured_dates' => 5,
-    'duration' => 'P60D',
+    'cta_url' => Url::fromRoute('job_board.post', [], [
+      'query' => [
+        'membership' => 'membership',
+      ],
+    ]),
     'features' => [
       [ 'title' => t('1 Free 60 Day Job Advert'), ],
       [ 'title' => t('Discounted Job Adverts for 1 Year'), ],
@@ -326,9 +346,13 @@ function job_board_job_package_info($key = NULL) {
   ];
   $info['rpo'] = [
     'label' => t('RPO'),
-    'description' => t('Let Christian Jobs take the load of your recruitment process.'),
+    'description' => t('Let Christian Jobs take the load out of your recruitment process.'),
     'price' => new Price('695.00', 'GBP'),
-    'duration' => 'P60D',
+    'cta_url' => Url::fromRoute('job_board.post', [], [
+      'query' => [
+        'rpo' => 'rpo',
+      ],
+    ]),
     'features' => [
       [ 'title' => t('1 Free 60 Day Job Advert') ],
       [ 'title' => t('1 Year Free Membership') ],
@@ -341,6 +365,7 @@ function job_board_job_package_info($key = NULL) {
     'description' => t('Let Christian Jobs find your perfect partner.'),
     'price' => t('from 10%'),
     'duration' => 'P60D',
+    'cta_url' => Url::fromRoute('job_board.exec_search', []),
     'features' => [
       [ 'title' => t('1 Free Job Advert') ],
       [ 'title' => t('Dedicated Account Manager') ],
@@ -389,4 +414,48 @@ function job_board_job_role_contact_default_value(FieldableEntityInterface $enti
   }
 
   return $employer_profile->{$fields_map[$field_name]}->getValue();
+}
+
+/**
+ * Implements hook_mail().
+ */
+function job_board_mail($key, &$message, $params) {
+  $options = [
+    'langcode' => $message['langcode'],
+  ];
+
+  switch ($key) {
+    case 'new_exec_search_req':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = new TranslatableMarkup(
+        'New Executive Search Request from @name for @role',
+        [
+          '@name' => $params['name'],
+          '@role' => $params['position'],
+        ],
+        $options
+      );
+      $message['body'][] = new TranslatableMarkup(
+        "@name has requested a callback regarding a new position. @name has requested to callback at @time.",
+        [
+          '@name' => $params['name'],
+          '@time' => $params['callback_time'],
+        ],
+        $options
+      );
+      $message['body'][] = new TranslatableMarkup(
+        "Name:\t@name\nOrganisation:\t@organisation\nPhone Number:\t@tel\nEmail:\t@email\nPosition:\t@role\nDescription:\t@description",
+        [
+          '@name' => $params['name'],
+          '@organisation' => $params['organisation'],
+          '@tel' => $params['phone_number'],
+          '@email' => $params['email'],
+          '@role' => $params['position'],
+          '@description' => $params['description'],
+        ],
+        $options
+      );
+      break;
+  }
+
 }

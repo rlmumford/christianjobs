@@ -117,6 +117,9 @@ class JobPostForm extends ContentEntityForm {
   }
 
   public function submitFormRedirectToCheckout(array $form, FormStateInterface $form_state) {
+    user_cookie_delete('jobPostMembership');
+    user_cookie_delete('jobPostRpo');
+
     $cart_provider = \Drupal::service('commerce_cart.cart_provider');
     $form_state->setRedirect('commerce_checkout.form', [
       'commerce_order' => $cart_provider->getCart('default')->id(),
