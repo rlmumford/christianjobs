@@ -22,7 +22,7 @@ class JobBoardController extends ControllerBase {
     $cookies = [
       'jobPostRegister' => TRUE,
     ];
-    if ($request->query->get('membership') || $request->cookies->get('Drupal_visitor_jobPostRpo')) {
+    if ($request->query->get('membership') || $request->cookies->get('Drupal_visitor_jobPostMembership')) {
       $cookies['jobPostMembership'] = TRUE;
     }
     if ($request->query->get('rpo') || $request->cookies->get('Drupal_visitor_jobPostRpo')) {
@@ -35,8 +35,9 @@ class JobBoardController extends ControllerBase {
       return $this->redirect('user.register');
     }
 
-    $user = entity_load('user', $current_user->id());
-    if (!$user || !$user->profile_employer->entity || !$user->profile_employer->entity->employer_name->value) {
+    /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
+    $profile_storage = $this->entityTypeManager()->getStorage('profile');
+    if (!($profile = $profile_storage->loadDefaultByUser($current_user, 'employer')) || !$profile->employer_name->value) {
       user_cookie_save($cookies);
       return $this->redirect('job_board.employer_edit', ['user' => $current_user->id()]);
     }
@@ -79,6 +80,7 @@ class JobBoardController extends ControllerBase {
 
     /** @var \Drupal\job_board\JobBoardJobRole $job */
     $job = $this->entityTypeManager()->getStorage('job_role')->create($initial_values);
+    $job->organisation = $current_user->id();
     $job->setOwnerId($current_user->id());
     return $this->entityFormBuilder()->getForm($job, 'post');
   }

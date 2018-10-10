@@ -27,6 +27,9 @@ class JobPostForm extends ContentEntityForm {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
+    $form['#attributes']['class'][] = 'card';
+    $form['#attributes']['class'][] = 'card-main';
+
     /** @var \Drupal\commerce_cart\CartProvider $cart_provider */
     $cart_provider = \Drupal::service('commerce_cart.cart_provider');
     $cart = $cart_provider->getCart('default');
@@ -73,6 +76,9 @@ class JobPostForm extends ContentEntityForm {
   protected function actions(array $form, FormStateInterface $form_state) {
     $actions = parent::actions($form, $form_state);
 
+    $actions['#attributes']['class'][] = 'card-item';
+    $actions['#attributes']['class'][] = 'card-actions';
+    $actions['#attributes']['class'][] = 'divider-top';
     $actions['submit']['#submit'][] = '::submitFormAddToCart';
 
     $actions['submit_another'] = $actions['submit'];

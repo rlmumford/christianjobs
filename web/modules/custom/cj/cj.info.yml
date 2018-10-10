@@ -7,3 +7,4 @@ dependencies:
 - block
 - block_class
 - job_board
+- flexiform

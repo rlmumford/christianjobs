@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Implements hook_install()
+ */
+function cj_install() {
+  $config = \Drupal::configFactory()->getEditable('user.settings');
+  $config->set('register', USER_REGISTER_VISITORS);
+  $config->set('verify_email', FALSE);
+  $config->save();
+}
