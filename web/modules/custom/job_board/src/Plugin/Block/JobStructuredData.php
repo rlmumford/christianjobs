@@ -9,6 +9,7 @@
 namespace Drupal\job_board\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\profile\ProfileStorageInterface;
 
 /**
  * Class JobStructuredData
@@ -39,15 +40,99 @@ class JobStructuredData extends BlockBase {
   public function build() {
     $job = $this->getContextValue('job');
 
+    // @todo seperate title and label?
     $structured_data = [
       '@context' => "http://schema.org/",
       '@type' => "JobPosting",
       'title' => (string) $job->label(),
+      'name' => (string) $job->label(),
       'description' => $job->description->render(),
       'datePosted' => $job->publish_date->date->format('Y-m-d'),
       'validThrough' => $job->end_date->date->format('Y-m-d\T00:00'),
+      'identifier' => [
+        '@type' => 'PropertyValue',
+        'name' => 'ChristianJobs.co.uk',
+        'value' => $job->id(),
+      ],
+      'jobLocation' => [
+        '@type' => 'Place',
+        'address' => [
+          '@type' => 'PostalAddress',
+          'addressCountry' => $job->location->country_code,
+          'addressRegion' => $job->location->administrative_area,
+        ],
+      ],
     ];
 
-    return [];
+    // Hiring organisation
+    if (!$job->organisation->isEmpty()) {
+      /** @var ProfileStorageInterface $profile_storage */
+      $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+      $profile = $profile_storage->loadDefaultByUser($job->organisation->entity, 'employer');
+
+      $organisation = array_filter([
+        '@type' => 'Organisation',
+        'name' => $profile->employer_name->value,
+        'email' => $profile->email->value,
+        'telephone' => $profile->tel->value,
+        'logo' => $profile->logo->entity->url(),
+      ]);
+      if (!$profile->address->isEmpty()) {
+        $organisation['address'] = array_filter([
+          '@type' => 'PostalAddress',
+          'addressCountry' => $profile->address->country_code,
+          'addressStreetAddress' => $profile->address->address_line1,
+          'addressLocality' => $profile->address->address_line2,
+          'addressRegion' => $profile->address->administrative_area,
+          'postalCode' => $profile->address->postal_code,
+        ]);
+      }
+    }
+
+    // Compensation
+    if (!$job->compensation->isEmpty()) {
+      $compensation_map = [
+        'part_time' => 'PART_TIME',
+        'full_time' => 'FULL_TIME',
+        'volunteer' => 'VOLUNTEER',
+        'zero_hours' => 'TEMPORARY',
+        'flexible' => 'PART_TIME',
+      ];
+      $structured_data['employmentType'] = $compensation_map[$job->compensation->value];
+    }
+
+    // Base Salary data.
+    if (!$job->salary->isEmpty()) {
+      $min = $job->salary->from;
+      $max = $job->salary->to;
+
+      $base_salary = [
+        '@type' => 'MonetaryAmount',
+        'currency' => 'GBP',
+        'value' => [
+          '@type' => 'QuantitativeValue',
+          'unitText' => 'YEAR',
+        ]
+      ];
+
+      if ($min == $max || empty($max)) {
+        $base_salary['value']['value'] = $min;
+      }
+      else {
+        $base_salary['value']['minValue'] = $min;
+        $base_salary['value']['maxValue'] = $max;
+      }
+
+      $structured_data['baseSalary'] = $base_salary;
+    }
+
+    return [
+      '#type' => 'html_tag',
+      '#tag' => 'script',
+      '#attributes' => [
+        'type' => 'application/ld+json',
+      ],
+      '#value' => json_encode($structured_data),
+    ];
   }
 }
