@@ -5,6 +5,7 @@ core: 8.x
 dependencies:
 - job_role
 - datetime
+- telephone
 - profile
 - image
 - views

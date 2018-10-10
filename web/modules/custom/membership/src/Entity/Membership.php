@@ -99,7 +99,7 @@ class Membership extends ContentEntityBase implements EntityOwnerInterface, Purc
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);
 
-    $definitions['status'] = BaseFieldDefinition::create('list_text')
+    $definitions['status'] = BaseFieldDefinition::create('list_string')
       ->setSetting('allowed_values', [
         static::STATUS_INACTIVE => new TranslatableMarkup('Inactive'),
         static::STATUS_ACTIVE => new TranslatableMarkup('Active'),
