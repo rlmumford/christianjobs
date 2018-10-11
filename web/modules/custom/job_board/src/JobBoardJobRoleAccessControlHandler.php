@@ -15,7 +15,7 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
   public function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
     if ($operation == 'view') {
       $result = AccessResult::allowedIf(
-        $entity->owner->target_id = $account->id()
+        $entity->owner->target_id == $account->id()
         || ($entity->isActive() && $account->hasPermission('view published jobs'))
         || (!$entity->isActive() && $account->hasPermission('view unpublished jobs'))
       );
@@ -23,6 +23,8 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
       $result->cachePerUser();
       $result->addCacheableDependency($entity);
       $result->setCacheMaxAge(60*60*24);
+
+      return $result;
     }
 
     return parent::checkAccess($entity, $operation, $account);

@@ -8,3 +8,4 @@ dependencies:
 - block_class
 - job_board
 - flexiform
+- layout_builder

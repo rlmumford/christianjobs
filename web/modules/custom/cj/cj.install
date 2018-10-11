@@ -6,6 +6,26 @@
 function cj_install() {
   $config = \Drupal::configFactory()->getEditable('user.settings');
   $config->set('register', USER_REGISTER_VISITORS);
-  $config->set('verify_email', FALSE);
-  $config->save();
+  $config->set('verify_mail', FALSE);
+  $config->save(TRUE);
+
+  $user = \Drupal::entityTypeManager()->getStorage('user')->load(1);
+  $storage = \Drupal::entityTypeManager()->getStorage('commerce_store');
+  $store = $storage->create([
+    'type' => 'online',
+    'uid' => 1,
+    'mail' => $user->mail->value,
+    'name' => 'Christian Jobs',
+    'currency' => 'GBP',
+    'address' => [
+      'country_code' => 'GB',
+      'address_line1' => 'Christian Jobs Ltd, The Enterprise Centre, 34 Benchill Rd',
+      'locality' => 'Manchester',
+      'administrative_area' => 'Greater Manchester',
+      'postal_code' => 'M22 8LF',
+    ],
+    'billing_countries' => ['GB'],
+  ]);
+  $store->save();
+  $storage->markAsDefault($store);
 }
