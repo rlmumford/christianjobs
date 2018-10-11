@@ -1,0 +1,98 @@
+uuid: 92207566-95b3-4161-943c-1bf7f7ea8964
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.user.employer_details
+    - field.field.user.user.user_picture
+  module:
+    - flexiform
+    - user
+third_party_settings:
+  flexiform:
+    enhancer:
+      multiple_entities:
+        id: multiple_entities
+        entities:
+          employer_profile_from_user:
+            label: 'Employer Profile from User'
+            plugin: 'user_profile:employer'
+            save_on_submit: 1
+            context_mapping:
+              user: ''
+            create: 1
+      page_exposure:
+        id: page_exposure
+      submit_button_ajax:
+        ajax:
+          'user_picture::widget::0::upload_button':
+            enabled: false
+            response: refresh
+          'user_picture::widget::0::remove_button':
+            enabled: false
+            response: refresh
+          'actions::submit':
+            enabled: false
+            response: refresh
+        id: submit_button_ajax
+      submit_button_label:
+        label:
+          'user_picture::widget::0::upload_button': ''
+          'user_picture::widget::0::remove_button': ''
+          'actions::submit': ''
+        id: submit_button_label
+      submit_button_redirect:
+        redirect:
+          'user_picture::widget::0::upload_button': ''
+          'user_picture::widget::0::remove_button': ''
+          'actions::submit': ''
+        id: submit_button_redirect
+_core:
+  default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
+id: user.user.employer_details
+targetEntityType: user
+bundle: user
+mode: employer_details
+content:
+  'employer_profile_from_user:address':
+    type: address_default
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'employer_profile_from_user:email':
+    type: email_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'employer_profile_from_user:employer_description':
+    type: text_textarea
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'employer_profile_from_user:employer_name':
+    type: string_textfield
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'employer_profile_from_user:logo':
+    type: image_image
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'employer_profile_from_user:tel':
+    type: telephone_default
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  account: true
+  contact: true
+  language: true
+  timezone: true
+  user_picture: true
