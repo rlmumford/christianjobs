@@ -2,13 +2,16 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.profile.employer_name
     - system.menu.main
   module:
     - datetime
     - file
     - job_role
+    - profile
     - range
     - text
+    - user
 id: job_board
 label: 'Job Board'
 module: views
@@ -68,6 +71,10 @@ display:
             next: ››
       style:
         type: default
+        options:
+          grouping: {  }
+          row_class: card
+          default_row_class: true
       row:
         type: fields
       fields:
@@ -113,7 +120,7 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_class: 'card-item card-title'
           element_default_classes: true
           empty: ''
           hide_empty: false
@@ -122,7 +129,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: false
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -144,12 +151,76 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
             make_link: false
             path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: 'card-item card-text'
+          element_default_classes: true
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_entity_id
+          settings: {  }
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: job_role
+          entity_field: organisation
+          plugin_id: field
+        employer_name:
+          id: employer_name
+          table: profile__employer_name
+          field: employer_name
+          relationship: profile_type
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: true
+            path: '/employer/{{ organisation }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -184,11 +255,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: string
           settings:
-            link: true
-          group_column: target_id
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -198,8 +269,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: job_role
-          entity_field: organisation
           plugin_id: field
         salary__from:
           id: salary__from
@@ -243,7 +312,7 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_class: 'card-item card-text'
           element_default_classes: true
           empty: ''
           hide_empty: false
@@ -255,8 +324,8 @@ display:
             range_separator: '-'
             thousand_separator: ','
             range_combine: true
-            from_prefix_suffix: false
-            to_prefix_suffix: false
+            from_prefix_suffix: true
+            to_prefix_suffix: true
             decimal_separator: .
             scale: 2
           group_column: ''
@@ -314,7 +383,7 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_class: 'card-item card-text'
           element_default_classes: true
           empty: ''
           hide_empty: false
@@ -378,7 +447,7 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_class: 'card-item card-text'
           element_default_classes: true
           empty: ''
           hide_empty: false
@@ -539,7 +608,29 @@ display:
       header: {  }
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        organisation:
+          id: organisation
+          table: job_role
+          field: organisation
+          relationship: none
+          group_type: group
+          admin_label: Organisation
+          required: true
+          entity_type: job_role
+          entity_field: organisation
+          plugin_id: standard
+        profile_type:
+          id: profile_type
+          table: users_field_data
+          field: profile_type
+          relationship: organisation
+          group_type: group
+          admin_label: 'Profile Type'
+          required: true
+          profile_type: employer
+          entity_type: user
+          plugin_id: profile_relationship
       arguments: {  }
       display_extenders: {  }
       filter_groups:
@@ -553,7 +644,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.profile.employer_name'
   page:
     display_plugin: page
     id: page
@@ -573,4 +665,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.profile.employer_name'

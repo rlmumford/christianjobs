@@ -26,7 +26,7 @@ job_board.post:
 job_board.job:
   path: '/jobs/{job_role}'
   defaults:
-    _entity_view: 'job_role.page'
+    _entity_view: 'job_role.full'
   requirements:
     _entity_access: 'job_role.view'
 

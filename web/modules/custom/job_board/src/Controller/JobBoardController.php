@@ -88,8 +88,9 @@ class JobBoardController extends ControllerBase {
   /**
    * Return the employer page title.
    */
-  public function employerTitle(UserInterface $user) {
-    $profile = $user->profile_employer->entity;
+  public function employerTitle(UserInterface $user) {/** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
+    $profile_storage = $this->entityTypeManager()->getStorage('profile');
+    $profile = $profile_storage->loadDefaultByUser($user, 'employer');
 
     if ($profile->employer_name->value) {
       return $profile->employer_name->value;

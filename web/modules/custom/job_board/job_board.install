@@ -376,3 +376,27 @@ function job_board_update_8004() {
     $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $field);
   }
 }
+
+/**
+ * Install the full view mode for better compatability.
+ */
+function job_board_update_8005() {
+  // Install modules
+  \Drupal::service('module_installer')->install([
+    'flexilayout_builder',
+    'field_tools',
+    'profile_tools',
+  ]);
+
+  $source = new FileStorage(drupal_get_path('module', 'job_board').'/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  $configs_to_install = [
+    'core.entity_view_mode.job_role.full',
+    'core.entity_view_display.job_role.job_role.full',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config_storage->write($name, $source->read($name));
+  }
+}

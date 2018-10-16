@@ -114,6 +114,8 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
       'target_bundles' => [
         'keywords' => 'keywords',
       ],
+      'auto_create' => TRUE,
+      'auto_create_bundle' => 'keywords',
     ])
     ->setLabel(t('Keywords'))
     ->setDescription(t('Select up to 10 keywords to describe this job.'))
@@ -129,8 +131,10 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setSetting('handler', 'default:taxonomy_term')
     ->setSetting('handler_settings', [
       'target_bundles' => [
-        'keywords' => 'industries',
+        'industries' => 'industries',
       ],
+      'auto_create' => TRUE,
+      'auto_create_bundle' => 'keywords',
     ])
     ->setLabel(t('Industry'))
     ->setDescription(t('Select an industry.'))

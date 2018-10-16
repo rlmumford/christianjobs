@@ -1,0 +1,346 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.job_role.full
+    - field.field.profile.employer.employer_name
+    - field.field.profile.employer.logo
+  module:
+    - cj_material
+    - ctools_block
+    - file
+    - flexilayout_builder
+    - job_board
+    - job_role
+    - layout_builder
+    - range
+    - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: cj_9_3
+        layout_settings: {  }
+        components:
+          cd485b9f-9c10-4ec9-9d72-72ae1618802e:
+            uuid: cd485b9f-9c10-4ec9-9d72-72ae1618802e
+            region: content
+            configuration:
+              id: 'field_block:job_role:job_role:description'
+              label: Description
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+          915c2018-b85f-413c-a339-024960ac7bbe:
+            uuid: 915c2018-b85f-413c-a339-024960ac7bbe
+            region: content
+            configuration:
+              id: job_role_structured_data
+              label: 'Job Structured Data'
+              provider: job_board
+              label_display: '0'
+              context_mapping:
+                job: layout_builder.entity
+            additional: {  }
+            weight: 2
+          0f159a71-f21e-4a90-91a2-206b2bb92593:
+            uuid: 0f159a71-f21e-4a90-91a2-206b2bb92593
+            region: content
+            configuration:
+              id: 'field_block:job_role:job_role:files'
+              label: 'Supporting Documents'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: file_table
+                settings:
+                  use_description_as_link_text: true
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 3
+          adc215aa-f8a2-4092-b43b-eaef0f785ec5:
+            uuid: adc215aa-f8a2-4092-b43b-eaef0f785ec5
+            region: aside
+            configuration:
+              id: 'field_block:profile:employer:logo'
+              label: Logo
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: image
+                settings:
+                  image_style: thumbnail
+                  image_link: ''
+                third_party_settings: {  }
+              context_mapping:
+                entity: employer_profile
+            additional: {  }
+            weight: 1
+          2c75227f-145a-4a4d-8ea4-74917eda74c3:
+            uuid: 2c75227f-145a-4a4d-8ea4-74917eda74c3
+            region: aside
+            configuration:
+              id: 'field_block:job_role:job_role:location'
+              label: Location
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: inline
+                type: address_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 3
+          42b94927-61b6-4ab6-b0ac-c2c42ac1dade:
+            uuid: 42b94927-61b6-4ab6-b0ac-c2c42ac1dade
+            region: aside
+            configuration:
+              id: 'entity_field:job_role:salary'
+              label: Salary
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: inline
+                type: range_decimal
+                settings:
+                  range_separator: ' to '
+                  thousand_separator: ''
+                  range_combine: true
+                  from_prefix_suffix: true
+                  to_prefix_suffix: true
+                  decimal_separator: .
+                  scale: 2
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 4
+          4df9fbcb-64ea-4808-8154-117851668413:
+            uuid: 4df9fbcb-64ea-4808-8154-117851668413
+            region: aside
+            configuration:
+              id: 'entity_field:job_role:keywords'
+              label: Keywords
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: inline
+                type: entity_reference_label
+                settings:
+                  link: true
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 5
+          5e05f8cf-5265-4396-a7dd-0c25b7ec8f90:
+            uuid: 5e05f8cf-5265-4396-a7dd-0c25b7ec8f90
+            region: aside
+            configuration:
+              id: 'entity_field:job_role:industry'
+              label: Industry
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: inline
+                type: entity_reference_label
+                settings:
+                  link: true
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 6
+          b808f00f-537b-41ff-802a-52ef92ab4723:
+            uuid: b808f00f-537b-41ff-802a-52ef92ab4723
+            region: aside
+            configuration:
+              id: 'entity_field:job_role:compensation'
+              label: Compensation
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: inline
+                type: list_default
+                settings: {  }
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 7
+          56fa1769-1f62-4565-9f8e-b06d14f8c9fc:
+            uuid: 56fa1769-1f62-4565-9f8e-b06d14f8c9fc
+            region: aside
+            configuration:
+              id: 'entity_field:job_role:hours'
+              label: Hours
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: inline
+                type: list_default
+                settings: {  }
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 8
+          6c32301a-98e6-4e7b-80e5-4c5992917727:
+            uuid: 6c32301a-98e6-4e7b-80e5-4c5992917727
+            region: aside
+            configuration:
+              id: 'field_block:profile:employer:employer_name'
+              label: 'Employer Name'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string_tag
+                settings:
+                  tag: h2
+                  class: employer-title
+                third_party_settings: {  }
+              context_mapping:
+                entity: employer_profile
+            additional: {  }
+            weight: 2
+          fc588edb-09ab-4a60-a15c-729ad782e9b9:
+            uuid: fc588edb-09ab-4a60-a15c-729ad782e9b9
+            region: aside
+            configuration:
+              id: 'entity_field:job_role:contact_phone'
+              label: 'Contact Telephone'
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: inline
+                type: telephone_link
+                settings:
+                  title: ''
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 9
+          0c224e40-3739-4406-afc0-78155243ba0f:
+            uuid: 0c224e40-3739-4406-afc0-78155243ba0f
+            region: aside
+            configuration:
+              id: 'entity_field:job_role:contact_email'
+              label: 'Contact E-mail Address'
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: inline
+                type: basic_string
+                settings: {  }
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 10
+          79e0bf9c-2b02-4388-b020-6080dcfadebb:
+            uuid: 79e0bf9c-2b02-4388-b020-6080dcfadebb
+            region: aside
+            configuration:
+              id: 'entity_field:job_role:contact_address'
+              label: 'Contact Address'
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: above
+                type: address_default
+                settings: {  }
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 11
+  flexilayout_builder:
+    relationships:
+      organisation:
+        plugin: 'typed_data_entity_relationship:entity:job_role:organisation'
+        label: Organisation
+        description: ''
+        settings:
+          context_mapping:
+            base: layout_builder.entity
+      employer_profile:
+        plugin: 'default_profile:employer'
+        label: 'Employer Profile'
+        description: ''
+        settings:
+          context_mapping:
+            user: organisation
+id: job_role.job_role.full
+targetEntityType: job_role
+bundle: job_role
+mode: full
+content:
+  description:
+    label: above
+    type: text_default
+    region: content
+    weight: -4
+    settings: {  }
+    third_party_settings: {  }
+  files:
+    type: file_default
+    label: above
+    region: content
+    weight: -2
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+  salary:
+    label: inline
+    type: range_decimal
+    region: content
+    weight: -3
+    settings:
+      decimal_separator: .
+      scale: 2
+      range_separator: '-'
+      thousand_separator: ''
+      range_combine: true
+      from_prefix_suffix: false
+      to_prefix_suffix: false
+    third_party_settings: {  }
+hidden:
+  compensation: true
+  contact_address: true
+  contact_email: true
+  contact_phone: true
+  end_date: true
+  hours: true
+  industry: true
+  initial_duration: true
+  keywords: true
+  location: true
+  paid: true
+  publish_date: true
+  rpo: true

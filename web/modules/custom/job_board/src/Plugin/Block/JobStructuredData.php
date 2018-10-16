@@ -100,6 +100,7 @@ class JobStructuredData extends BlockBase {
         'volunteer' => 'VOLUNTEER',
         'zero_hours' => 'TEMPORARY',
         'flexible' => 'PART_TIME',
+        'apprentice' => 'OTHER',
       ];
       $structured_data['employmentType'] = $compensation_map[$job->compensation->value];
     }

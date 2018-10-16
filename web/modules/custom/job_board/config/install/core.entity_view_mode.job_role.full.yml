@@ -4,7 +4,7 @@ dependencies:
   module:
     - user
     - job_board
-id: job_role.page
-label: Page
+id: job_role.full
+label: Full
 targetEntityType: job_role
 cache: true

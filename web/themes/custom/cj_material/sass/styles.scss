@@ -127,3 +127,18 @@ a.button-cta.button-orange:hover {
   color: #FF904B;
   border: 3px solid #FF904B;
 }
+
+@media only screen and (min-width: $sm) {
+  .layout__region--aside div.field-name-logo,
+  .layout__region--aside div.field-name-employer-name {
+    text-align: center;
+  }
+}
+.layout__region--aside div.field-name-employer-name h2 {
+  margin-top: 0;
+}
+
+.field-label {
+  font-weight: bold;
+  color: #FF904B;
+}

@@ -1,0 +1,26 @@
+cj_9_3:
+  label: 'Two Column 9/3'
+  path: layouts/cj_9_3
+  template: layout--cj-9-3
+  category: 'Columns: 2'
+  default_region: content
+  icon_map:
+    - [content, aside]
+  regions:
+    content:
+      label: Content
+    aside:
+      label: Aside
+cj_3_9:
+  label: 'Two Column 3/9'
+  path: layouts/cj_3_9
+  template: layout--cj-3-9
+  category: 'Columns: 2'
+  default_region: content
+  icon_map:
+    - [aside, content]
+  regions:
+    aside:
+      label: Aside
+    content:
+      label: Content

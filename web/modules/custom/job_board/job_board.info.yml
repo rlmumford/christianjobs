@@ -9,6 +9,8 @@ dependencies:
 - profile
 - image
 - views
+- flexilayout_builder
+- field_tools
 - commerce:commerce
 - commerce:commerce_cart
 - commerce:commerce_checkout

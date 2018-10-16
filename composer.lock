@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05152df01550d2e0ae6637ac703e8ade",
+    "content-hash": "b863804bfa65f8dc3f10f2c499fd44dc",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -7118,12 +7118,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "d1cf3c56f20c8052b343c27a47725e3d80bde165"
+                "reference": "2b63b3f5cad00772e041abb9df6541a5456cd661"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/d1cf3c56f20c8052b343c27a47725e3d80bde165",
-                "reference": "d1cf3c56f20c8052b343c27a47725e3d80bde165",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/2b63b3f5cad00772e041abb9df6541a5456cd661",
+                "reference": "2b63b3f5cad00772e041abb9df6541a5456cd661",
                 "shasum": ""
             },
             "require": {
@@ -7141,6 +7141,9 @@
                 "patches": {
                     "drupal/rules": {
                         "Configurable Component Variables": "https://www.drupal.org/files/issues/2916331-11.patch"
+                    },
+                    "drupal/ctools": {
+                        "Fix TypedData Relationship Deriver": "https://www.drupal.org/files/issues/2018-10-16/3007028-2.patch"
                     }
                 }
             },
@@ -7165,7 +7168,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2018-10-10T17:54:09+00:00"
+            "time": "2018-10-16T15:05:30+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
