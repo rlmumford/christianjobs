@@ -9,6 +9,27 @@ function cj_install() {
   $config->set('verify_mail', FALSE);
   $config->save(TRUE);
 
+  /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $block_config_storage */
+  $block_config_storage = \Drupal::entityTypeManager()->getStorage('block');
+  $block_config_storage->delete($block_config_storage->loadMultiple([
+    'cj_material_footer',
+    'cj_material_account_menu',
+    'cj_material_powered',
+    'cj_material_search',
+    'cj_material_tools',
+  ]));
+
+  $block_config_storage->load('cj_material_branding')
+    ->setThirdPartySetting('block_class', 'classes', 'navbar-item navbar-branding')
+    ->set('region', 'navbar')
+    ->set('weight', -10)
+    ->save();
+  $block_config_storage->load('cj_material_main_menu')
+    ->setThirdPartySetting('block_class', 'classes', 'navbar-menu navbar-item pull-right')
+    ->set('region', 'navbar')
+    ->set('weight', -6)
+    ->save();
+
   $user = \Drupal::entityTypeManager()->getStorage('user')->load(1);
   $storage = \Drupal::entityTypeManager()->getStorage('commerce_store');
   $store = $storage->create([

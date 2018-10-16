@@ -7118,12 +7118,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "a64b6f9e9348f8d6c94af2752cb47ce749ad3d2e"
+                "reference": "d1cf3c56f20c8052b343c27a47725e3d80bde165"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/a64b6f9e9348f8d6c94af2752cb47ce749ad3d2e",
-                "reference": "a64b6f9e9348f8d6c94af2752cb47ce749ad3d2e",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/d1cf3c56f20c8052b343c27a47725e3d80bde165",
+                "reference": "d1cf3c56f20c8052b343c27a47725e3d80bde165",
                 "shasum": ""
             },
             "require": {
@@ -7165,7 +7165,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2018-10-01T10:20:24+00:00"
+            "time": "2018-10-10T17:54:09+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

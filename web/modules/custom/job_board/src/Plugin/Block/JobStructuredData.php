@@ -46,7 +46,7 @@ class JobStructuredData extends BlockBase {
       '@type' => "JobPosting",
       'title' => (string) $job->label(),
       'name' => (string) $job->label(),
-      'description' => $job->description->render(),
+      'description' => check_markup($job->description->value, $job->description->format),
       'datePosted' => $job->publish_date->date->format('Y-m-d'),
       'validThrough' => $job->end_date->date->format('Y-m-d\T00:00'),
       'identifier' => [
@@ -70,22 +70,25 @@ class JobStructuredData extends BlockBase {
       $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
       $profile = $profile_storage->loadDefaultByUser($job->organisation->entity, 'employer');
 
-      $organisation = array_filter([
-        '@type' => 'Organisation',
-        'name' => $profile->employer_name->value,
-        'email' => $profile->email->value,
-        'telephone' => $profile->tel->value,
-        'logo' => $profile->logo->entity->url(),
-      ]);
-      if (!$profile->address->isEmpty()) {
-        $organisation['address'] = array_filter([
-          '@type' => 'PostalAddress',
-          'addressCountry' => $profile->address->country_code,
-          'addressStreetAddress' => $profile->address->address_line1,
-          'addressLocality' => $profile->address->address_line2,
-          'addressRegion' => $profile->address->administrative_area,
-          'postalCode' => $profile->address->postal_code,
+      if ($profile) {
+        $organisation = array_filter([
+          '@type' => 'Organization',
+          'name' => $profile->employer_name->value,
+          'email' => $profile->email->value,
+          'telephone' => $profile->tel->value,
+          'logo' => $profile->logo->isEmpty() ? NULL : $profile->logo->entity->url(),
         ]);
+        if (!$profile->address->isEmpty()) {
+          $organisation['address'] = array_filter([
+            '@type' => 'PostalAddress',
+            'addressCountry' => $profile->address->country_code,
+            'streetAddress' => $profile->address->address_line1,
+            'addressLocality' => $profile->address->address_line2,
+            'addressRegion' => $profile->address->administrative_area,
+            'postalCode' => $profile->address->postal_code,
+          ]);
+        }
+        $structured_data['hiringOrganization'] = $organisation;
       }
     }
 
