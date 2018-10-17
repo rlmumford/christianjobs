@@ -11,6 +11,8 @@ dependencies:
 - views
 - flexilayout_builder
 - field_tools
+- profile_tools
+- ctools:ctools_block
 - commerce:commerce
 - commerce:commerce_cart
 - commerce:commerce_checkout

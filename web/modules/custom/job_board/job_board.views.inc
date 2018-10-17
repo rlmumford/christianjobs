@@ -16,17 +16,42 @@ function job_board_views_data_alter(array &$data) {
       $data[$table_name][$field_name]['argument']['entity_type'] = 'job_role';
       $data[$table_name][$field_name]['argument']['field_name'] = $field_name;
     }
-  }
 
-  foreach (['job_role__featured_dates', 'job_role_revision__featured_dates'] as $table_name) {
-    $data[$table_name]['featured_dates_value']['filter']['id'] = 'datetime';
-    $data[$table_name]['featured_dates_value']['filter']['entity_type'] = 'job_role';
-    $data[$table_name]['featured_dates_value']['filter']['field_name'] = 'featured_dates';
-    $data[$table_name]['featured_dates_value']['argument']['id'] = 'datetime';
-    $data[$table_name]['featured_dates_value']['argument']['entity_type'] = 'job_role';
-    $data[$table_name]['featured_dates_value']['argument']['field_name'] = 'featured_dates';
-    $data[$table_name]['featured_dates_value']['sort']['id'] = 'datetime';
-    $data[$table_name]['featured_dates_value']['sort']['entity_type'] = 'job_role';
-    $data[$table_name]['featured_dates_value']['sort']['field_name'] = 'featured_dates';
+    // Industry field.
+    $data[$table_name]['industry']['filter']['id'] = 'taxonomy_index_tid';
+    $data[$table_name]['industry']['filter']['entity_type'] = 'job_role';
+    $data[$table_name]['industry']['filter']['field_name'] = 'industry';
+
+    // List fields.
+    foreach (['hours', 'compensation'] as $field_name) {
+      $data[$table_name][$field_name]['filter'] = [
+        'id' => 'list_field',
+        'entity_type' => 'job_role',
+        'field_name' => $field_name,
+      ] + $data[$table_name][$field_name]['filter'];
+    }
+
+    // Address fields.
+    foreach (['location', 'contact_address'] as $field_name) {
+      // Add the custom country_code filter.
+      $data[$table_name][$field_name . '__country_code']['filter'] = [
+        'id' => 'country_code',
+        'entity_type' => 'job_role',
+        'field_name' => $field_name,
+      ] + $data[$table_name][$field_name.'__country_code']['filter'];
+      // Add the custom administrative_area filter.
+      $data[$table_name][$field_name . '__administrative_area']['filter'] = [
+        'id' => 'administrative_area',
+        'entity_type' => 'job_role',
+        'field_name' => $field_name,
+      ] + $data[$table_name][$field_name.'__administrative_area']['filter'];
+    }
+
+    // Keywords field
+    $data[$table_name.'__keywords']['keywords_target_id']['filter'] = [
+      'id' => 'taxonomy_index_tid',
+      'entity_type' => 'job_role',
+      'field_name' => 'keywords',
+    ] + $data[$table_name.'__keywords']['keywords_target_id']['filter'];
   }
 }
