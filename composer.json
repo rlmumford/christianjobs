@@ -109,9 +109,6 @@
             "drupal/ckeditor_youtube": {
                 "Compatable with Composer Plugin": "./patches/ckeditor_youtube-composer_compat.patch"
             },
-            "drupal/commerce": {
-                "Support getPrice properly": "https://www.drupal.org/files/issues/2018-10-08/3005098-4.patch"
-            },
             "drupal/ctools": {
                 "Fix TypedData Relationship Deriver": "https://www.drupal.org/files/issues/2018-10-16/3007028-2.patch"
             }
