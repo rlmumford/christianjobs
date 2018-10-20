@@ -1,6 +1,11 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: services
 label: 'Job Board Job Role'
 id: job_board_job_role
 purchasableEntityType: job_role

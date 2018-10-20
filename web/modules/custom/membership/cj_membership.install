@@ -1,0 +1,24 @@
+<?php
+
+use Drupal\Core\Config\FileStorage;
+
+/**
+ * Install the tax
+ */
+function cj_membership_update_8001() {
+  // Install modules
+  \Drupal::service('module_installer')->install([
+    'commerce_tax',
+  ]);
+
+  $source = new FileStorage(drupal_get_path('module', 'cj_membership').'/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  $configs_to_install = [
+    'commerce_order.commerce_order_item_type.cj_membership',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config_storage->write($name, $source->read($name));
+  }
+}

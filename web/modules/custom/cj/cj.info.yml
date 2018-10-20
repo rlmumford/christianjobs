@@ -9,3 +9,5 @@ dependencies:
 - job_board
 - flexiform
 - layout_builder
+- commerce:commerce_tax
+- commerce:commerce_promotion

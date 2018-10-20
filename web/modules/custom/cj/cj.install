@@ -37,7 +37,7 @@ function cj_install() {
     'uid' => 1,
     'mail' => $user->mail->value,
     'name' => 'Christian Jobs',
-    'currency' => 'GBP',
+    'default_currency' => 'GBP',
     'address' => [
       'country_code' => 'GB',
       'address_line1' => 'Christian Jobs Ltd, The Enterprise Centre, 34 Benchill Rd',
@@ -46,7 +46,20 @@ function cj_install() {
       'postal_code' => 'M22 8LF',
     ],
     'billing_countries' => ['GB'],
+    'tax_registrations' => ['GB'],
   ]);
   $store->save();
   $storage->markAsDefault($store);
+}
+
+/**
+ *
+ */
+function cj_update_8001() {
+  $storage = \Drupal::entityTypeManager()->getStorage('commerce_store');
+  $ids = $storage->getQuery()->condition('name', 'Christian Jobs')->execute();
+  $store = $storage->load(reset($ids));
+  $store->tax_registrations = ['GB'];
+  $store->default_currency = 'GBP';
+  $store->save();
 }
