@@ -58,8 +58,9 @@ function cj_install() {
 function cj_update_8001() {
   $storage = \Drupal::entityTypeManager()->getStorage('commerce_store');
   $ids = $storage->getQuery()->condition('name', 'Christian Jobs')->execute();
-  $store = $storage->load(reset($ids));
-  $store->tax_registrations = ['GB'];
-  $store->default_currency = 'GBP';
-  $store->save();
+  if ($store = $storage->load(reset($ids))) {
+    $store->tax_registrations = ['GB'];
+    $store->default_currency = 'GBP';
+    $store->save();
+  }
 }
