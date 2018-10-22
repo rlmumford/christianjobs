@@ -37,6 +37,31 @@ class JobPostForm extends ContentEntityForm {
       $cart = $cart_provider->createCart('default');
     }
 
+    if (!$this->entity->rpo->value) {
+      $form['rpo_upsell'] = [
+        '#weight' => 51,
+        '#type' => 'container',
+        '#tree' => TRUE,
+        '#attributes' => [
+          'class' => ['card-item', 'card-text', 'divider-top'],
+        ],
+        'title' => [
+          '#type' => 'html_tag',
+          '#tag' => 'h3',
+          '#value' => $this->t('Recruitment Process Outsourcing'),
+        ],
+        'description' => [
+          '#type' => 'html_tag',
+          '#tag' => 'p',
+          '#value' => $this->t('Some marketing text about RPO'),
+        ],
+        'rpo' => [
+          '#type' => 'checkbox',
+          '#title' => $this->t('Upgrade to an Outsourced Recruitment Process (+£620)')
+        ],
+      ];
+    }
+
     // Add a membership options to this form.
     if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {
       /** @var \Drupal\cj_membership\MembershipStorage $membership_storage */
@@ -52,17 +77,34 @@ class JobPostForm extends ContentEntityForm {
       }
 
       if (!$membership_in_cart && !$membership) {
-        $form['membership']['#type'] = 'container';
         $form['membership']['new'] = [
           '#type' => 'checkbox',
-          '#title' => $this->t('Become a Christian Jobs Member'),
+          '#title' => $this->t('Become a Christian Jobs Member (+£220)'),
         ];
       }
       else if (!$membership_in_cart && $membership && $membership->status->value == Membership::STATUS_EXPIRED) {
-        $form['membership']['#type'] = 'container';
         $form['membership']['extend'] = [
           '#type' => 'checkbox',
-          '#title' => $this->t('Renew Membership'),
+          '#title' => $this->t('Renew Christian Jobs Membership Membership (+£220)'),
+        ];
+      }
+
+      if (!empty($form['membership'])) {
+        $form['membership']['#type'] = 'container';
+        $form['membership']['#tree'] = TRUE;
+        $form['membership']['#weight'] = 50;
+        $form['membership']['#attributes']['class']= ['card-item', 'card-text', 'divider-top'];
+        $form['membership']['title'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'h3',
+          '#value' => $this->t('Membership'),
+          '#weight' => -5,
+        ];
+        $form['membership']['description'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'p',
+          '#value' => $this->t('Membership offers a wide variety of benefits!'),
+          '#weight' => -4,
         ];
       }
     }
@@ -92,6 +134,11 @@ class JobPostForm extends ContentEntityForm {
   }
 
   public function submitFormAddToCart(array $form, FormStateInterface $form_state) {
+    // If this job has been upgraded to a RPO ser values appropriately.
+    if ($form_state->getValue(['rpo_upsell', 'rpo'])) {
+      $this->getEntity()->rpo = TRUE;
+    }
+
     $cart_provider = \Drupal::service('commerce_cart.cart_provider');
     /** @var \Drupal\commerce_cart\CartManagerInterface $cart_manager */
     $cart_manager = \Drupal::service('commerce_cart.cart_manager');

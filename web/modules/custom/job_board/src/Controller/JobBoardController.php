@@ -82,6 +82,18 @@ class JobBoardController extends ControllerBase {
     $job = $this->entityTypeManager()->getStorage('job_role')->create($initial_values);
     $job->organisation = $current_user->id();
     $job->setOwnerId($current_user->id());
+
+    if ($profile->address) {
+      // @todo: Set value correctly.
+      $job->contact_address = $profile->address->getValue();
+    }
+    if ($profile->email) {
+      $job->contact_email = $profile->email;
+    }
+    if ($profile->tel) {
+      $job->contact_phone = $profile->tel;
+    }
+
     return $this->entityFormBuilder()->getForm($job, 'post');
   }
 
