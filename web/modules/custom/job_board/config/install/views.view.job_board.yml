@@ -3,18 +3,17 @@ status: true
 dependencies:
   config:
     - field.storage.profile.employer_name
+    - field.storage.profile.logo
+    - image.style.large
     - system.menu.main
-    - taxonomy.vocabulary.industries
-    - taxonomy.vocabulary.keywords
   module:
     - address
     - datetime
-    - file
+    - image
     - job_role
     - options
     - profile
     - range
-    - taxonomy
     - text
     - user
 id: job_board
@@ -78,7 +77,7 @@ display:
         type: default
         options:
           grouping: {  }
-          row_class: card
+          row_class: ''
           default_row_class: true
       row:
         type: fields
@@ -212,10 +211,10 @@ display:
           entity_type: job_role
           entity_field: organisation
           plugin_id: field
-        employer_name:
-          id: employer_name
-          table: profile__employer_name
-          field: employer_name
+        logo:
+          id: logo
+          table: profile__logo
+          field: logo
           relationship: profile_type
           group_type: group
           admin_label: ''
@@ -224,8 +223,8 @@ display:
           alter:
             alter_text: false
             text: ''
-            make_link: true
-            path: '/employer/{{ organisation }}'
+            make_link: false
+            path: ''
             absolute: false
             external: false
             replace_spaces: false
@@ -260,11 +259,12 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
+          click_sort_column: target_id
+          type: image
           settings:
-            link_to_entity: false
-          group_column: value
+            image_style: large
+            image_link: ''
+          group_column: ''
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -275,10 +275,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        salary__from:
-          id: salary__from
-          table: job_role
-          field: salary__from
+        keywords_target_id:
+          id: keywords_target_id
+          table: job_role__keywords
+          field: keywords_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -317,7 +317,72 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
-          element_wrapper_class: 'card-item card-text'
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 10
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: job_role
+          entity_field: keywords
+          plugin_id: field
+        salary__from:
+          id: salary__from
+          table: job_role
+          field: salary__from
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Salary
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
           element_default_classes: true
           empty: ''
           hide_empty: false
@@ -345,6 +410,263 @@ display:
           field_api_classes: false
           entity_type: job_role
           entity_field: salary
+          plugin_id: field
+        compensation:
+          id: compensation
+          table: job_role
+          field: compensation
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Type
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: job_role
+          entity_field: compensation
+          plugin_id: field
+        hours:
+          id: hours
+          table: job_role
+          field: hours
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Hours
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: job_role
+          entity_field: hours
+          plugin_id: field
+        industry:
+          id: industry
+          table: job_role
+          field: industry
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Industry
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: job_role
+          entity_field: industry
+          plugin_id: field
+        location__langcode:
+          id: location__langcode
+          table: job_role
+          field: location__langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Location
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: locality
+          type: address_default
+          settings: {  }
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: job_role
+          entity_field: location
           plugin_id: field
         description__value:
           id: description__value
@@ -388,15 +710,16 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
-          element_wrapper_class: 'card-item card-text'
+          element_wrapper_class: ''
           element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: text_default
-          settings: {  }
+          type: text_trimmed
+          settings:
+            trim_length: 300
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -410,11 +733,11 @@ display:
           entity_type: job_role
           entity_field: description
           plugin_id: field
-        files_target_id:
-          id: files_target_id
-          table: job_role__files
-          field: files_target_id
-          relationship: none
+        employer_name:
+          id: employer_name
+          table: profile__employer_name
+          field: employer_name
+          relationship: profile_type
           group_type: group
           admin_label: ''
           label: ''
@@ -422,8 +745,8 @@ display:
           alter:
             alter_text: false
             text: ''
-            make_link: false
-            path: ''
+            make_link: true
+            path: '/employer/{{ organisation }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -434,7 +757,7 @@ display:
             link_class: ''
             prefix: ''
             suffix: ''
-            target: ''
+            target: _blank
             nl2br: false
             max_length: 0
             word_boundary: true
@@ -452,28 +775,26 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
-          element_wrapper_class: 'card-item card-text'
+          element_wrapper_class: ''
           element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: file_table
+          click_sort_column: value
+          type: string
           settings:
-            use_description_as_link_text: true
-          group_column: ''
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
-          delta_limit: 2
+          delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: job_role
-          entity_field: files
           plugin_id: field
       filters:
         label:
@@ -608,193 +929,6 @@ display:
           entity_type: job_role
           entity_field: end_date
           plugin_id: datetime
-        industry:
-          id: industry
-          table: job_role
-          field: industry
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: industry_op
-            label: Industry
-            description: ''
-            use_operator: false
-            operator: industry_op
-            identifier: industry
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              employer: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: industries
-          hierarchy: false
-          error_message: true
-          entity_type: job_role
-          entity_field: industry
-          plugin_id: taxonomy_index_tid
-        keywords_target_id:
-          id: keywords_target_id
-          table: job_role__keywords
-          field: keywords_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: keywords_target_id_op
-            label: Keywords
-            description: ''
-            use_operator: false
-            operator: keywords_target_id_op
-            identifier: keywords_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              employer: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: keywords
-          hierarchy: false
-          error_message: true
-          entity_type: job_role
-          entity_field: keywords
-          plugin_id: taxonomy_index_tid
-        compensation:
-          id: compensation
-          table: job_role
-          field: compensation
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: compensation_op
-            label: Type
-            description: ''
-            use_operator: false
-            operator: compensation_op
-            identifier: compensation
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              employer: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          entity_type: job_role
-          entity_field: compensation
-          plugin_id: list_field
-        location__administrative_area:
-          id: location__administrative_area
-          table: job_role
-          field: location__administrative_area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: location__administrative_area_op
-            label: Region
-            description: ''
-            use_operator: false
-            operator: location__administrative_area_op
-            identifier: location__administrative_area
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              employer: '0'
-            reduce: false
-            label_type: static
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          country:
-            country_source: static
-            country_argument_id: ''
-            country_filter_id: ''
-            country_static_code: GB
-          entity_type: job_role
-          entity_field: location
-          plugin_id: administrative_area
       sorts: {  }
       title: 'Find a Job'
       header: {  }
@@ -836,9 +970,9 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
       tags:
         - 'config:field.storage.profile.employer_name'
+        - 'config:field.storage.profile.logo'
   page:
     display_plugin: page
     id: page
@@ -858,6 +992,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
       tags:
         - 'config:field.storage.profile.employer_name'
+        - 'config:field.storage.profile.logo'

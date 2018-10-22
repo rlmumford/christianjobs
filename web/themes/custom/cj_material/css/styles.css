@@ -3464,4 +3464,54 @@ a.button-cta.button-orange:hover {
   color: #FF904B;
 }
 
+h2.company-name {
+  margin-top: -0.5em;
+}
+
+/* Layout Builder */
+#layout-builder .hidden-sm, #layout-builder .hidden-md, #layout-builder .hidden-lg,
+#layout-builder .visible-sm, #layout-builder .visible-md, #layout-builder .visible-lg {
+  display: block !important;
+  background-color: rgba(255, 0, 0, 0.6);
+}
+#layout-builder .draggable {
+  min-height: 2em;
+}
+
+/* Job Result */
+.job-result {
+  margin: 0.5em 0;
+}
+
+.job-result .subtitle.employer-name a {
+  color: #FF904b;
+  font-weight: bold;
+}
+
+.job-result span.views-label {
+  color: #FF904B;
+  min-width: 5em;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.job-result .views-field-keywords-target-id {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.job-result p.address {
+  display: inline-block;
+}
+
+.job-result p.address br {
+  display: none;
+}
+.job-result p.address span::after {
+  content: ",";
+}
+.job-result p.address span:last-child::after {
+  content: "";
+}
+
 /*# sourceMappingURL=styles.css.map */

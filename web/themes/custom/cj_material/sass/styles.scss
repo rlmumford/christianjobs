@@ -142,3 +142,53 @@ a.button-cta.button-orange:hover {
   font-weight: bold;
   color: #FF904B;
 }
+
+h2.company-name {
+  margin-top: -0.5em;
+}
+
+/* Layout Builder */
+#layout-builder {
+  .hidden-sm, .hidden-md, .hidden-lg,
+  .visible-sm, .visible-md, .visible-lg {
+    display: block !important;
+    background-color: rgba(255,0,0,.6);
+  }
+  .draggable {
+    min-height: 2em;
+  }
+}
+
+/* Job Result */
+.job-result {
+  margin: 0.5em 0;
+}
+.job-result .subtitle.employer-name a {
+  color: #FF904b;
+  font-weight: bold;
+}
+.job-result span.views-label {
+  color: #FF904B;
+  min-width: 5em;
+  display: inline-block;
+  font-weight: bold;
+}
+.job-result .views-field-keywords-target-id {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.job-result p.address {
+  display: inline-block;
+  margin-bottom: 0;
+}
+.job-result p.address {
+  br {
+    display: none;
+  }
+  span::after {
+    content: ',';
+  }
+  span:last-child::after {
+    content: '';
+  }
+}

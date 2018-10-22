@@ -18,7 +18,7 @@ class MembershipStorage extends SqlContentEntityStorage {
     $membership_ids = $this->getQuery()
       ->condition('member.target_id', $account->id())
       ->execute();
-    return $this->load(reset($membership_ids));
+    return $membership_ids ? $this->load(reset($membership_ids)) : NULL;
   }
 
 }

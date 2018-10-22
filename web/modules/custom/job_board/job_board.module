@@ -69,7 +69,7 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE)
     ->setDisplayOptions('form', [
-      'type' => 'date_popup',
+      'type' => 'datetime_default',
     ]);
   $fields['end_date'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)

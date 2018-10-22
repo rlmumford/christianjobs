@@ -125,7 +125,13 @@ class Membership extends ContentEntityBase implements EntityOwnerInterface, Purc
 
     // If no label then make one from the members username
     if (!$label) {
-      return new TranslatableMarkup('@members\'s Membership', ['@member' => $this->member->entity->label()]);
+      $member_user = $this->member->entity;
+      /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
+      $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+      $profile = $profile_storage->loadDefaultByUser($member_user, 'employer');
+      $name = $profile ? $profile->employer_name->value : $member_user->label();
+
+      return new TranslatableMarkup('@members\'s Membership', ['@member' => $name]);
     }
 
     return $label;

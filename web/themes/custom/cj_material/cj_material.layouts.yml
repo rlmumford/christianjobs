@@ -5,8 +5,10 @@ cj_9_3:
   category: 'Columns: 2'
   default_region: content
   icon_map:
-    - [content, aside]
+    - [top, content, aside]
   regions:
+    top:
+      label: Top
     content:
       label: Content
     aside:

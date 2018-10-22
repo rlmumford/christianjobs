@@ -88,7 +88,9 @@ third_party_settings:
                 third_party_settings: {  }
               context_mapping:
                 entity: employer_profile
-            additional: {  }
+            additional:
+              class: visible-md
+              field_label_override: 0
             weight: 1
           2c75227f-145a-4a4d-8ea4-74917eda74c3:
             uuid: 2c75227f-145a-4a4d-8ea4-74917eda74c3
@@ -223,7 +225,9 @@ third_party_settings:
                 third_party_settings: {  }
               context_mapping:
                 entity: employer_profile
-            additional: {  }
+            additional:
+              class: visible-md
+              field_label_override: 0
             weight: 2
           fc588edb-09ab-4a60-a15c-729ad782e9b9:
             uuid: fc588edb-09ab-4a60-a15c-729ad782e9b9
@@ -242,8 +246,10 @@ third_party_settings:
                 weight: 0
               context_mapping:
                 entity: layout_builder.entity
-            additional: {  }
-            weight: 9
+            additional:
+              class: visible-md
+              field_label_override: 0
+            weight: 10
           0c224e40-3739-4406-afc0-78155243ba0f:
             uuid: 0c224e40-3739-4406-afc0-78155243ba0f
             region: aside
@@ -260,8 +266,114 @@ third_party_settings:
                 weight: 0
               context_mapping:
                 entity: layout_builder.entity
-            additional: {  }
-            weight: 10
+            additional:
+              class: visible-md
+              field_label_override: 0
+            weight: 11
+          bdc835fc-8f40-4f78-b9e7-5791d3372f0d:
+            uuid: bdc835fc-8f40-4f78-b9e7-5791d3372f0d
+            region: top
+            configuration:
+              id: 'field_block:job_role:job_role:label'
+              label: Title
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string_tag
+                settings:
+                  tag: h1
+                  class: page-title
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 1
+          69ac936c-13eb-42a5-bd26-287af3162478:
+            uuid: 69ac936c-13eb-42a5-bd26-287af3162478
+            region: top
+            configuration:
+              id: 'entity_field:profile:employer_name'
+              label: 'Employer Name'
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string_tag
+                settings:
+                  tag: h2
+                  class: company-name
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: employer_profile
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 2
+          9b80f93e-8115-4b18-b4f3-4a79e0ccc3ab:
+            uuid: 9b80f93e-8115-4b18-b4f3-4a79e0ccc3ab
+            region: content
+            configuration:
+              id: 'entity_field:job_role:contact_address'
+              label: 'Contact Details'
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: above
+                type: address_default
+                settings: {  }
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional:
+              class: hidden-md
+              field_label_override: 0
+            weight: 5
+          268c0b54-2cd8-449a-98c2-e4593d8ee006:
+            uuid: 268c0b54-2cd8-449a-98c2-e4593d8ee006
+            region: content
+            configuration:
+              id: 'entity_field:job_role:contact_email'
+              label: 'Contact E-mail Address'
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: email_mailto
+                settings: {  }
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional:
+              class: hidden-md
+              field_label_override: 0
+            weight: 6
+          e80e7d91-9652-43eb-9ab2-ab78966e6039:
+            uuid: e80e7d91-9652-43eb-9ab2-ab78966e6039
+            region: content
+            configuration:
+              id: 'entity_field:job_role:contact_phone'
+              label: 'Contact Telephone'
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: telephone_link
+                settings:
+                  title: ''
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional:
+              class: hidden-md
+              field_label_override: 0
+            weight: 7
           79e0bf9c-2b02-4388-b020-6080dcfadebb:
             uuid: 79e0bf9c-2b02-4388-b020-6080dcfadebb
             region: aside
@@ -278,8 +390,10 @@ third_party_settings:
                 weight: 0
               context_mapping:
                 entity: layout_builder.entity
-            additional: {  }
-            weight: 11
+            additional:
+              class: visible-md
+              field_label_override: 0
+            weight: 9
   flexilayout_builder:
     relationships:
       organisation:

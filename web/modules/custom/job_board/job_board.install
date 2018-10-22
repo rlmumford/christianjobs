@@ -421,3 +421,21 @@ function job_board_update_8006() {
     $config_storage->write($name, $source->read($name));
   }
 }
+
+/**
+ * Update layout.
+ */
+function job_board_update_8007() {
+  $source = new FileStorage(drupal_get_path('module', 'job_board').'/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  $configs_to_install = [
+    'core.entity_view_display.job_role.job_role.full',
+    'core.entity_view_mode.job_role.search_re',
+    'views.view.job_board',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config_storage->write($name, $source->read($name));
+  }
+}
