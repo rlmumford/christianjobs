@@ -9,8 +9,10 @@
 namespace Drupal\job_board\Form;
 
 use Drupal\cj_membership\Entity\Membership;
+use Drupal\commerce_order\Adjustment;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 class JobPostForm extends ContentEntityForm {
 
@@ -146,25 +148,35 @@ class JobPostForm extends ContentEntityForm {
     if (!$cart) {
       $cart = $cart_provider->createCart('default');
     }
-    $cart_manager->addEntity($cart, $this->getEntity());
+    $job_post_item = $cart_manager->addEntity($cart, $this->getEntity());
 
     // If the membership options have been selected then add the membership to
     // the cart.
     if (\Drupal::service('module_handler')->moduleExists('cj_membership')) {
+      $current_user = \Drupal::currentUser();
       /** @var \Drupal\cj_membership\MembershipStorage $membership_storage */
       $membership_storage = \Drupal::service('entity_type.manager')->getStorage('cj_membership');
-      $current_user = \Drupal::currentUser();
+      $current_membership = $membership_storage->getAccountMembership($current_user);
       if ($form_state->getValue(['membership', 'new'])) {
-        $membership = $membership_storage->create()
-          ->setOwnerId($current_user->id());
+        $membership = $membership_storage->create()->setOwnerId($current_user->id());
         $membership->start->value = date(DateTimeItemInterface::DATE_STORAGE_FORMAT);
       }
       elseif ($form_state->getValue(['membership', 'extend'])) {
-        $membership = $membership_storage->getAccountMembership($current_user);
+        $membership = $current_membership;
       }
 
       if ($membership) {
         $cart_manager->addEntity($cart, $membership);
+      }
+
+      if ($membership || $current_membership->status->value == Membership::STATUS_ACTIVE) {
+        $job_post_item->addAdjustment(new Adjustment([
+          'type' => 'membership_discount',
+          'label' => $this->t('Membership Discount'),
+          'amount' => $job_post_item->getTotalPrice()->multiply('-0.25')->round(),
+          'percentage' => '25%',
+          'source_id' => $membership ? $membership->id() : $current_membership->id(),
+        ]));
       }
     }
   }

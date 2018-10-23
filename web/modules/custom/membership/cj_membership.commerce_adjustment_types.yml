@@ -1,0 +1,4 @@
+membership_discount:
+  label: Membership Discount
+  has_ui: true
+  weight: 0

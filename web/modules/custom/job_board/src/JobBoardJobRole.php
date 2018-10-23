@@ -70,7 +70,6 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
    *   The price, or NULL.
    */
   public function getPrice(Context $context = NULL) {
-    // @todo: Membership prices.
     if ($this->rpo->value) {
       $price = new Price('695.00', 'GBP');
     }
