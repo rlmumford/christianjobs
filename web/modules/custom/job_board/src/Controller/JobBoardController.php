@@ -84,8 +84,7 @@ class JobBoardController extends ControllerBase {
     $job->setOwnerId($current_user->id());
 
     if ($profile->address) {
-      // @todo: Set value correctly.
-      $job->contact_address = $profile->address->getValue();
+      $job->contact_address = $profile->address;
     }
     if ($profile->email) {
       $job->contact_email = $profile->email;
