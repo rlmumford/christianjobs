@@ -29,6 +29,33 @@ class JobPostForm extends ContentEntityForm {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
+    // Move the contact_ fields into their own section.
+    $form['contact_details'] = [
+      '#weight' => 48,
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['card-item', 'card-text', 'divider-top'],
+      ],
+      'title' => [
+        '#type' => 'html_tag',
+        '#tag' => 'h3',
+        '#value' => $this->t('Contact Details'),
+      ],
+      'description' => [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#attributes' => [
+          'class' => ['section-summary'],
+        ],
+        '#value' => $this->t('Please provide any contact information an applicant may need to apply for the job.'),
+      ],
+    ];
+    foreach (['contact_address', 'contact_email', 'contact_phone'] as $contact_field) {
+      $form['contact_details'][$contact_field] = $form[$contact_field];
+      unset($form[$contact_field]);
+    }
+    $form['contact_details']['contact_phone']['#weight'] = 100;
+
     $form['#attributes']['class'][] = 'card';
     $form['#attributes']['class'][] = 'card-main';
 

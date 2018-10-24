@@ -53,7 +53,7 @@ function cj_install() {
 }
 
 /**
- *
+ * Set commerce store infomration.
  */
 function cj_update_8001() {
   $storage = \Drupal::entityTypeManager()->getStorage('commerce_store');
@@ -63,4 +63,14 @@ function cj_update_8001() {
     $store->default_currency = 'GBP';
     $store->save();
   }
+}
+
+/**
+ * Add email registration and recaptcha.
+ */
+function cj_update_8002() {
+  \Drupal::service('module_installer')->install([
+    'recaptcha',
+    'email_registration',
+  ]);
 }

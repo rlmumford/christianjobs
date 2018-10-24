@@ -290,6 +290,8 @@ function job_board_user_register_form_submit_redirect(array $form, FormStateInte
  * Implements hook_form_alter().
  */
 function job_board_form_user_employer_details_form_alter(array &$form, FormStateInterface $form_state) {
+  $form['#attributes']['class'][] = 'card';
+  $form['#attributes']['class'][] = 'card-main';
   if (\Drupal::request()->cookies->get('Drupal_visitor_jobPostRegister')) {
     $form['actions']['submit']['#submit'][] = 'job_board_user_employer_details_form_submit_redirect';
   }
