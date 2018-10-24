@@ -39,6 +39,39 @@ class JobPostForm extends ContentEntityForm {
       $cart = $cart_provider->createCart('default');
     }
 
+    if ($this->entity->initial_duration->isEmpty() || $this->entity->initial_duration->value == 'P30D') {
+      $form['duration_upsell'] = [
+        '#weight' => 49,
+        '#type' => 'container',
+        '#tree' => TRUE,
+        '#attributes' => [
+          'class' => ['card-item', 'card-text', 'divider-top'],
+        ],
+        'title' => [
+          '#type' => 'html_tag',
+          '#tag' => 'h3',
+          '#value' => $this->t('More Exposure'),
+        ],
+        'description' => [
+          '#type' => 'html_tag',
+          '#tag' => 'p',
+          '#value' => $this->t('Our standard job postings stay live for 30 days from the publish date you specify. Need more exposure? For only <strong>£25</strong> you can double this limit.'),
+        ],
+        'extend' => [
+          '#type' => 'checkbox',
+          '#title' => $this->t('Publish for 60 days.'),
+          '#states' => [
+            'checked' => [
+              '.rpo-checkbox, .membership-checkbox' => ['checked' => TRUE],
+            ],
+            'disabled' => [
+              '.rpo-checkbox, .membership-checkbox' => ['checked' => TRUE],
+            ]
+          ]
+        ],
+      ];
+    }
+
     if (!$this->entity->rpo->value) {
       $form['rpo_upsell'] = [
         '#weight' => 51,
@@ -59,7 +92,10 @@ class JobPostForm extends ContentEntityForm {
         ],
         'rpo' => [
           '#type' => 'checkbox',
-          '#title' => $this->t('Upgrade to an Outsourced Recruitment Process (+£620)')
+          '#title' => $this->t('Upgrade to an Outsourced Recruitment Process (+£620)'),
+          '#attributes' => [
+            'class' => ['rpo-checkbox'],
+          ],
         ],
       ];
     }
@@ -82,12 +118,18 @@ class JobPostForm extends ContentEntityForm {
         $form['membership']['new'] = [
           '#type' => 'checkbox',
           '#title' => $this->t('Become a Christian Jobs Member (+£220)'),
+          '#attributes' => [
+            'class' => ['membership-checkbox'],
+          ],
         ];
       }
       else if (!$membership_in_cart && $membership && $membership->status->value == Membership::STATUS_EXPIRED) {
         $form['membership']['extend'] = [
           '#type' => 'checkbox',
           '#title' => $this->t('Renew Christian Jobs Membership Membership (+£220)'),
+          '#attributes' => [
+            'class' => ['membership-checkbox'],
+          ],
         ];
       }
 
@@ -137,6 +179,9 @@ class JobPostForm extends ContentEntityForm {
 
   public function submitFormAddToCart(array $form, FormStateInterface $form_state) {
     // If this job has been upgraded to a RPO ser values appropriately.
+    if ($form_state->getValue(['duration_upsell']['extend'])) {
+      $this->getEntity()->initial_duration = 'P60D';
+    }
     if ($form_state->getValue(['rpo_upsell', 'rpo'])) {
       $this->getEntity()->rpo = TRUE;
     }

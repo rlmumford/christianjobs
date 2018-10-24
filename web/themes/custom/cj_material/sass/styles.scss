@@ -66,6 +66,10 @@ details > div {
   padding: 12px 16px 12px 40px;
 }
 
+.form-item input[type=checkbox]:checked:disabled:before {
+  color: #BBBBBB;
+}
+
 .path-frontpage header#header {
   background-image: url(../header-bg.jpg);
   background-color: #b8e6ff;
