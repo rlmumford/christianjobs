@@ -28,22 +28,6 @@ function job_board_install() {
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
-  $fields['featured_dates'] = BaseFieldDefinition::create('datetime')
-    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
-    ->setLabel(t('Featured Dates'))
-    ->setDescription(t('The dates on which this job is featured.'))
-    ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
-    ->setRevisionable(TRUE)
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
-  $fields['package'] = BaseFieldDefinition::create('list_string')
-    ->setSetting('allowed_values_function', 'job_board_job_package_options')
-    ->setLabel(t('Package'))
-    ->setDescription(t('The base backage to use with this job.'))
-    ->setCardinality(1)
-    ->setRevisionable(TRUE)
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
   $fields['paid'] = BaseFieldDefinition::create('boolean')
     ->setLabel(t('Paid'))
     ->setDescription(t('Has this job role been paid for.'))
@@ -437,5 +421,17 @@ function job_board_update_8007() {
   ];
   foreach ($configs_to_install as $name) {
     $config_storage->write($name, $source->read($name));
+  }
+}
+
+/**
+ * Uninstall field definitions if present.
+ */
+function job_board_update_8008() {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  foreach (['featured_dates', 'package'] as $field_name) {
+    if ($storage_def = $update_manager->getFieldStorageDefinition($field_name, 'job_role')) {
+      $update_manager->uninstallFieldStorageDefinition($storage_def);
+    }
   }
 }
