@@ -115,6 +115,9 @@ class JobPostForm extends ContentEntityForm {
         'description' => [
           '#type' => 'html_tag',
           '#tag' => 'p',
+          '#attributes' => [
+            'class' => ['section-summary'],
+          ],
           '#value' => $this->t('Some marketing text about RPO'),
         ],
         'rpo' => [
@@ -175,6 +178,9 @@ class JobPostForm extends ContentEntityForm {
           '#type' => 'html_tag',
           '#tag' => 'p',
           '#value' => $this->t('Membership offers a wide variety of benefits!'),
+          '#attributes' => [
+            'class' => ['section-summary'],
+          ],
           '#weight' => -4,
         ];
       }
