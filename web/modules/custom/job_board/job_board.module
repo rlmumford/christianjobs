@@ -263,6 +263,15 @@ function job_board_form_user_register_form_alter(array &$form, FormStateInterfac
   $form['user_picture']['#access'] = FALSE;
   $form['timezone']['#access'] = FALSE;
 
+  if (!empty($form['legal'])) {
+    $form['legal']['#type'] = 'container';
+    unset($form['legal']['#title']);
+    $form['legal']['#weight'] = $form['captcha']['#weight'] + .1;
+    $form['legal']['#attached']['library'] = [
+      'core/drupal.dialog.ajax',
+    ];
+  }
+
   $cookies = \Drupal::request()->cookies;
   if ($cookies->get('Drupal_visitor_jobPostRegister') || $form_state->get('job_post_register')) {
     $form_state->set('job_post_register', TRUE);
