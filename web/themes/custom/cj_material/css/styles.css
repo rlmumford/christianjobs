@@ -3695,5 +3695,18 @@ p.scripture {
     bottom: 16px;
   }
 }
+div.footer-logo {
+  line-height: 0;
+}
+
+div.footer-contact, div.footer-links {
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: initial;
+}
+
+div.footer-contact a, div.footer-links a {
+  color: black;
+}
 
 /*# sourceMappingURL=styles.css.map */
