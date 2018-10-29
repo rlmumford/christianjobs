@@ -145,8 +145,6 @@ class JobBoardController extends ControllerBase {
     foreach ($packages as $key => $package) {
       /** @var Price $price */
       $price = $package['price'];
-      /** @var Price $membership_price */
-      $membership_price = $package['member_price'];
 
       $output[$key] = [
         '#type' => 'container',
@@ -211,11 +209,18 @@ class JobBoardController extends ControllerBase {
       foreach ($package['features'] as $feature) {
         $classes = $feature['classes'] ?: [];
 
+        $attributes = [
+          'class' => ['package-feature-item'] + $classes,
+        ];
+
+        if (!empty($feature['description'])) {
+          $attributes['class'][] = 'tooltip';
+          $attributes['data-tooltip'] = $feature['description'];
+        }
+
         $output[$key]['features']['features']['#items'][] = [
           '#markup' => $feature['title'],
-          '#wrapper_attributes' => [
-            'class' => [ 'package-feature-item' ] + $classes,
-          ],
+          '#wrapper_attributes' => $attributes,
         ];
       }
     }

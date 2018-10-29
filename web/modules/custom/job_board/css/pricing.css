@@ -70,6 +70,15 @@ a.package-cta:hover {
   border: 3px solid #4BBAFF;
 }
 
+.packages .package .package-features-wrapper h3 {
+  font-size: 1em;
+  padding-left: 20px;
+  color: #4BBAFF;
+}
+.package .package .package-features-wrapper li.package-feature-item {
+  list-style-type: square;
+}
+
 @media (min-width: 767px) {
   .packages {
     -webkit-box-sizing: border-box;

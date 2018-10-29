@@ -19,45 +19,156 @@ class ExecSearchInitForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['#attributes']['class'] = ['card', 'card-form'];
-    $form['name'] = [
+    $form['#attributes']['class'][] = 'row';
+    $form['blurb'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['col-xs-12', 'col-md-8'],
+      ],
+      'p1' => [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#value' => 'Finding the key talent for your organisation can be daunting. Where do you look? How do you know you have searched thoroughly? Where do you find the time to search properly? How do you contact these great prospects? Will the right candidates even be open to talking to you? How do you manage negotiations in a delicate manner?',
+      ],
+      'p2' => [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#value' => 'With more than 12 years of executive search experience across both non and for-profit industries this is where ChristianJobs.co.uk can help. We know how to manage the delicate and challenging search process that results in the best appointment for your organisation.',
+      ],
+      'p3' => [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#value' => 'Executive campaigns allow our team to search, source and secure the best candidates for your organisation in a proactive and supportive manner.',
+      ],
+      'p4' => [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#value' => 'Our efficient and effective multistep approach begins long before the actual search itself. We are committed to our clients throughout every step of the executive search journey and our deliberate and structured search process is proven in attaining a successful outcome.',
+      ],
+      'h4' => [
+        '#type' => 'html_tag',
+        '#tag' => 'h4',
+        '#value' => new TranslatableMarkup('What\'s Included'),
+      ],
+      'list' => [
+        '#theme' => 'item_list',
+        '#list_type' => 'ul',
+        '#items' => [
+          [
+            '#wrapper_attributes' => [
+              'class' => ['item'],
+            ],
+            '#children' => 'Free 30-day featured advertising on ChristianJobs.co.uk (with option to extend to 60 days if required).',
+          ],
+          [
+            '#wrapper_attributes' => [
+              'class' => ['item'],
+            ],
+            '#children' => 'Promoted social media advertising',
+          ],
+          [
+            '#wrapper_attributes' => [
+              'class' => ['item'],
+            ],
+            '#children' => 'Dedicated Account Manager',
+          ],
+          [
+            '#wrapper_attributes' => [
+              'class' => ['item'],
+            ],
+            '#children' => 'Outsourced advertising management',
+          ],
+          [
+            '#wrapper_attributes' => [
+              'class' => ['item'],
+            ],
+            '#children' => 'ChristianJobs.co.uk membership for 12 months*',
+          ],
+          [
+            '#wrapper_attributes' => [
+              'class' => ['item'],
+            ],
+            '#children' => 'Thomas PPA behavioural assessment for final stage candidates',
+          ],
+          [
+            '#wrapper_attributes' => [
+              'class' => ['item'],
+            ],
+            '#children' => 'Six month placement guarantee',
+          ],
+          [
+            '#wrapper_attributes' => [
+              'class' => ['item'],
+            ],
+            '#children' => 'Flat fee agreement',
+          ],
+        ]
+      ]
+    ];
+
+    $form['container'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['col-xs-12', 'col-md-4', 'card', 'card-form'],
+      ],
+    ];
+    $form['container']['title'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['card-item', 'card-title'],
+      ],
+      'title' => [
+        '#type' => 'html_tag',
+        '#tag' => 'h3',
+        '#value' => new TranslatableMarkup('Request a Callback'),
+      ],
+      'subtitle' => [
+        '#type' => 'html_tag',
+        '#tag' => 'span',
+        '#attributes' => [
+          'class' => ['subtitle'],
+        ],
+        '#value' => new TranslatableMarkup('Please fill out the form below and one of our account managers will be in touch with you shortly.'),
+      ]
+    ];
+    $form['container']['name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Name'),
       '#description' => $this->t('Enter your name'),
       '#required' => TRUE,
     ];
-    $form['organisation'] = [
+    $form['container']['organisation'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Organisation'),
     ];
-    $form['phone_number'] = [
+    $form['container']['phone_number'] = [
       '#type' => 'tel',
       '#title' => $this->t('Phone Number'),
       '#required' => TRUE,
     ];
-    $form['email'] = [
+    $form['container']['email'] = [
       '#type' => 'email',
       '#title' => $this->t('Email Address'),
       '#required' => TRUE,
     ];
-    $form['position'] = [
+    $form['container']['position'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Role Title'),
       '#required' => TRUE,
     ];
-    $form['position_description'] = [
+    $form['container']['position_description'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Role Description'),
       '#required' => TRUE,
     ];
-    $form['callback_time'] = [
+    $form['container']['callback_time'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Callback Time'),
       '#description' => $this->t('What is the best time for us to call you back about this placement?'),
       '#required' => TRUE,
     ];
 
-    $form['actions'] = [
+    $form['container']['actions'] = [
       '#type' => 'actions',
       '#attributes' => [
         'class' => ['card-item', 'card-actions', 'divider-top']
@@ -81,7 +192,7 @@ class ExecSearchInitForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $mail_manager = \Drupal::service('plugin.manager.mail');
-    $mail_manager->mail('job_board', 'new_exec_search_req', 'info@christianjobs.co.uk', LANGUAGE_NONE, $form_state->getValues(), NULL, TRUE);
+    $mail_manager->mail('job_board', 'new_exec_search_req', 'info@christianjobs.co.uk', 'en', $form_state->getValues(), NULL, TRUE);
 
     \Drupal::messenger()->addStatus(new TranslatableMarkup('Thank you for your interest. An agent will be in touch shortly.'));
   }
