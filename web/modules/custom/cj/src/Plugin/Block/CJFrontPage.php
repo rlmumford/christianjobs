@@ -96,7 +96,7 @@ class CJFrontPage extends BlockBase implements ContainerFactoryPluginInterface {
           'content' => [
             '#type' => 'container',
             '#attributes' => [
-              'class' => ['col-left-content'],
+              'class' => ['col-left-content', 'card'],
             ],
             'scripture' => [
               '#type' => 'html_tag',
@@ -130,7 +130,7 @@ class CJFrontPage extends BlockBase implements ContainerFactoryPluginInterface {
           'content' => [
             '#type' => 'container',
             '#attributes' => [
-              'class' => ['col-right-content'],
+              'class' => ['col-right-content', 'card'],
             ],
             'content' => [
               '#type' => 'processed_text',

@@ -3389,9 +3389,33 @@ details.captcha div.g-recaptcha {
   color: #BBBBBB;
 }
 
+.path-frontpage header#header::before {
+  content: "";
+  background-image: url(../peoplebglesssmall.png);
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  bottom: 0;
+  left: 0;
+  background-size: 400px;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 992px) {
+  .path-frontpage header#header::before {
+    background-size: 300px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .path-frontpage header#header::before {
+    background: none;
+  }
+}
 .path-frontpage header#header {
   background-image: url(../header-bg.jpg);
   background-color: #b8e6ff;
+  position: relative;
 }
 
 .path-frontpage.navbar-fixed #navbar {
@@ -3612,24 +3636,36 @@ h2.company-name {
 .front-features .col-left {
   display: flex;
   z-index: 2;
-  background-color: #FF904b;
 }
 
 .front-features .col-left-content {
-  margin: 48px 0;
+  margin: 16px 0;
   align-items: center;
   position: relative;
   width: 100%;
   color: #FFFFFF;
-}
-
-.front-features .col-right {
-  background: #eceff1;
+  background: #FF904b;
 }
 
 .front-features .col-right-content {
-  margin: 48px 0;
+  margin: 16px 0;
   position: relative;
+  background-color: #4bbaff;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.path-frontpage .package {
+  margin-top: 0;
+}
+
+.path-frontpage .package .package-title-container {
+  background-color: #FFFFFF;
+}
+
+.path-frontpage .package:hover .package-title-container {
+  background-color: #fafafa;
 }
 
 p.scripture {
@@ -3639,7 +3675,7 @@ p.scripture {
 
 @media only screen and (min-width: 992px) {
   .front-features .col-right-content {
-    margin: 64px 24px;
+    margin: 32px 12px;
     max-width: 568px;
     justify-content: flex-end;
     min-height: 240px;
@@ -3650,13 +3686,13 @@ p.scripture {
   }
 
   .front-features .col-left-content {
-    margin: 64px 24px;
+    margin: 32px 12px;
     max-width: 568px;
   }
 
   .front-features div.pull-bottom {
     position: absolute;
-    bottom: 0;
+    bottom: 16px;
   }
 }
 

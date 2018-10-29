@@ -25,7 +25,7 @@ class FrontPageController extends ControllerBase {
         'library' => ['job_board/pricing'],
       ],
       '#attributes' => [
-        'class' => ['packages'],
+        'class' => ['packages', 'z-level-3'],
       ],
     ];
     $packages = job_board_job_package_info();
