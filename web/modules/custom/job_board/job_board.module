@@ -332,7 +332,6 @@ function job_board_job_package_info($key = NULL) {
     'label' => t('Basic Advert'),
     'description' => t('Advertise your Job on ChristianJobs.co.uk'),
     'price' => new Price('75.00', 'GBP'),
-    'member_price' => new Price('50.00', 'GBP'),
     'allowed_featured_dates' => 1,
     'cta_url' => Url::fromRoute('job_board.post'),
     'features' => [
@@ -343,7 +342,7 @@ function job_board_job_package_info($key = NULL) {
   ];
   $info['membership'] = [
     'label' => t('Membership'),
-    'price' => new Price('295.00', 'GBP'),
+    'price' => new Price('349.00', 'GBP'),
     'description' => t('Become a Christian Jobs member and receive all these benefits.'),
     'allowed_featured_dates' => 5,
     'cta_url' => Url::fromRoute('job_board.post', [], [
