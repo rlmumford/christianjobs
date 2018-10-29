@@ -280,3 +280,51 @@ h2.company-name {
     content: '';
   }
 }
+
+/* Front Sections */
+.front-features .col-left {
+  display: flex;
+  z-index: 2;
+  background-color: #FF904b;
+}
+
+.front-features .col-left-content {
+  margin: 48px 0;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  color: #FFFFFF;
+}
+
+.front-features .col-right {
+  background: #eceff1;
+}
+.front-features .col-right-content {
+  margin: 48px 0;
+  position: relative;
+}
+
+p.scripture {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+@media only screen and (min-width: $md) {
+  .front-features .col-right-content {
+    margin: 64px 24px;
+    max-width: 568px;
+    justify-content: flex-end;
+    min-height: 240px;
+  }
+  .front-features .col-left {
+    justify-content: flex-end;
+  }
+  .front-features .col-left-content {
+    margin: 64px 24px;
+    max-width: 568px;
+  }
+  .front-features div.pull-bottom {
+    position: absolute;
+    bottom: 0;
+  }
+}

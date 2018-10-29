@@ -1,0 +1,7 @@
+cj.home:
+  path: '/home'
+  defaults:
+    _controller: '\Drupal\cj\Controller\FrontPageController::frontPage'
+    _title: 'Home Page'
+  requirements:
+    _access: 'TRUE'
