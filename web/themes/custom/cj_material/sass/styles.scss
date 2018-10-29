@@ -193,11 +193,27 @@ a.button-cta.button-orange:hover {
 #block-cj-material-local-actions nav .button.button-action {
   margin-top: 0;
   padding: .5em;
+  min-height: initial;
 }
 #block-cj-material-local-actions nav li {
   list-style-type: none;
 }
 
+.path-jobs #block-cj-material-local-actions {
+  float: right;
+  margin-top: 16px;
+}
+.path-jobs #block-cj-material-page-title {
+  float: left;
+}
+.path-jobs #block-cj-material-content {
+  clear: both;
+}
+
+.views-exposed-form input.button {
+  padding: 6px 0;
+  min-height: 0;
+}
 
 @media only screen and (min-width: $sm) {
   .layout__region--aside div.field-name-logo,
