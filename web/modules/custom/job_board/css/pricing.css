@@ -75,7 +75,7 @@ a.package-cta:hover {
   padding-left: 20px;
   color: #4BBAFF;
 }
-.package .package .package-features-wrapper li.package-feature-item {
+.packages .package .package-features-wrapper li.package-feature-item {
   list-style-type: square;
 }
 

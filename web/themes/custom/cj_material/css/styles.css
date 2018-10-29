@@ -3465,7 +3465,7 @@ details.captcha div.g-recaptcha {
 
 /* CTA Buttons */
 a.button-cta,
-.block-cj-material-local-actions nav .button.button-action,
+#block-cj-material-local-actions nav .button.button-action,
 input.button {
   margin-top: 1em;
   border: 3px solid transparent;
@@ -3501,7 +3501,7 @@ a.button-cta:hover {
 }
 
 input.button.button-orange,
-.block-cj-material-local-actions nav .button.button-action,
+#block-cj-material-local-actions nav .button.button-action,
 a.button-cta.button-orange {
   background: #FF904B;
 }
@@ -3513,12 +3513,12 @@ a.button-cta.button-orange:hover {
   border: 3px solid #FF904B;
 }
 
-.block-cj-material-local-actions nav .button.button-action {
+#block-cj-material-local-actions nav .button.button-action {
   margin-top: 0;
   padding: 0.5em;
 }
 
-.block-cj-material-local-actions nav li {
+#block-cj-material-local-actions nav li {
   list-style-type: none;
 }
 
