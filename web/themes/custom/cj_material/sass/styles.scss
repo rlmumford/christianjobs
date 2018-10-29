@@ -146,6 +146,7 @@ details.captcha {
 
 /* CTA Buttons */
 a.button-cta,
+.block-cj-material-local-actions nav .button.button-action,
 input.button {
   margin-top: 1em;
   border: 3px solid transparent;
@@ -178,6 +179,7 @@ a.button-cta:hover {
   border: 3px solid #4BBAFF;
 }
 input.button.button-orange,
+.block-cj-material-local-actions nav .button.button-action,
 a.button-cta.button-orange {
   background: #FF904B;
 }
@@ -187,6 +189,15 @@ a.button-cta.button-orange:hover {
   color: #FF904B;
   border: 3px solid #FF904B;
 }
+
+.block-cj-material-local-actions nav .button.button-action {
+  margin-top: 0;
+  padding: .5em;
+}
+.block-cj-material-local-actions nav li {
+  list-style-type: none;
+}
+
 
 @media only screen and (min-width: $sm) {
   .layout__region--aside div.field-name-logo,

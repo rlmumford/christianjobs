@@ -292,7 +292,11 @@ function job_board_user_register_form_submit_redirect(array $form, FormStateInte
 function job_board_form_user_employer_details_form_alter(array &$form, FormStateInterface $form_state) {
   $form['#attributes']['class'][] = 'card';
   $form['#attributes']['class'][] = 'card-main';
+  $form['actions']['#attributes']['class'][] = 'card-item';
+  $form['actions']['#attributes']['class'][] = 'card-actions';
+  $form['actions']['#attributes']['class'][] = 'divider-top';
   if (\Drupal::request()->cookies->get('Drupal_visitor_jobPostRegister')) {
+    $form['actions']['submit']['#value'] = new TranslatableMarkup('Save & Continuee');
     $form['actions']['submit']['#submit'][] = 'job_board_user_employer_details_form_submit_redirect';
   }
 }
