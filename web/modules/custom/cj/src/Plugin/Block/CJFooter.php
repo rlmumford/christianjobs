@@ -73,7 +73,7 @@ class CJFooter extends BlockBase implements ContainerFactoryPluginInterface {
     $build = [
       '#markup' => '<div class="pull-center">
       <div class="footer-logo"><img src="/themes/custom/cj_material/logo.svg" width="40px" height="40px"></div>
-      <div class="footer-contact"><a href="mailto:info@christianjobs.co.uk">info@christianjobs.co.uk</a> | <a href="tel:07837551763">07837551763</a></div>
+      <div class="footer-contact"><a href="mailto:info@christianjobs.co.uk">info@christianjobs.co.uk</a> | <a href="tel:07885670623">07885670623</a></div>
       <div class="footer-links"><a href="/terms">Terms of Use</a> | &copy; Christian Jobs Ltd 2018</div>
     </div>',
     ];
