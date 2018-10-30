@@ -83,6 +83,14 @@ class CJFrontPage extends BlockBase implements ContainerFactoryPluginInterface {
       '#attributes' => [
         'class' => ['row-wrapper'],
       ],
+      'message' => [
+        '#markup' => '<div class="row"><div class="pull-center messages-wrapper">
+              <div role="contentinfo" aria-label="Warning message" class="messages messages-warning">
+                              <h2 class="visually-hidden">Warning message</h2>
+                                ChristianJobs is currently undergoing testing. We will formally launch on November 1st 2018
+                        </div>
+                  </div></div>',
+      ],
       'row' => [
         '#type' => 'container',
         '#attributes' => [
