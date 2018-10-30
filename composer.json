@@ -50,7 +50,7 @@
         "drupal/block_class": "^1.0",
         "drupal/bootstrap": "^3.11",
         "drupal/ckeditor_youtube": "^1.1",
-        "drupal/commerce": "^2.9",
+        "drupal/commerce": "^2.10",
         "drupal/commerce_braintree": "^1.0",
         "drupal/commerce_paypal": "^1.0@beta",
         "drupal/commerce_square": "^1.2",

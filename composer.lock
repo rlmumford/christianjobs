@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2823e8e375bdf833547e430f762a64c5",
+    "content-hash": "0dc3a0a61ea38c4a2e6a35f650271cae",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3813,7 +3813,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/entity",
-                "reference": "af42eee8aa19ce03d6aaa54906c6fafe02198bf0"
+                "reference": "7c6d7c89b7b648a8f8ec77af269ad8e425f47024"
             },
             "require": {
                 "drupal/core": "^8.6"
@@ -3863,7 +3863,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/entity"
             },
-            "time": "2018-10-11T15:38:44+00:00"
+            "time": "2018-10-23T11:48:13+00:00"
         },
         {
             "name": "drupal/entity_reference_revisions",
