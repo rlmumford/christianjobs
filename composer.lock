@@ -798,16 +798,16 @@
         },
         {
             "name": "consolidation/config",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/config.git",
-                "reference": "c9fc25e9088a708637e18a256321addc0670e578"
+                "reference": "925231dfff32f05b787e1fddb265e789b939cf4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/config/zipball/c9fc25e9088a708637e18a256321addc0670e578",
-                "reference": "c9fc25e9088a708637e18a256321addc0670e578",
+                "url": "https://api.github.com/repos/consolidation/config/zipball/925231dfff32f05b787e1fddb265e789b939cf4c",
+                "reference": "925231dfff32f05b787e1fddb265e789b939cf4c",
                 "shasum": ""
             },
             "require": {
@@ -848,7 +848,7 @@
                 }
             ],
             "description": "Provide configuration services for a commandline tool.",
-            "time": "2018-08-07T22:57:00+00:00"
+            "time": "2018-10-24T17:55:35+00:00"
         },
         {
             "name": "consolidation/log",
@@ -1038,16 +1038,16 @@
         },
         {
             "name": "consolidation/self-update",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/self-update.git",
-                "reference": "4422e52d3fabeca9129ecb1780f198f202debdce"
+                "reference": "a1c273b14ce334789825a09d06d4c87c0a02ad54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/self-update/zipball/4422e52d3fabeca9129ecb1780f198f202debdce",
-                "reference": "4422e52d3fabeca9129ecb1780f198f202debdce",
+                "url": "https://api.github.com/repos/consolidation/self-update/zipball/a1c273b14ce334789825a09d06d4c87c0a02ad54",
+                "reference": "a1c273b14ce334789825a09d06d4c87c0a02ad54",
                 "shasum": ""
             },
             "require": {
@@ -1084,20 +1084,20 @@
                 }
             ],
             "description": "Provides a self:update command for Symfony Console applications.",
-            "time": "2018-10-21T20:17:55+00:00"
+            "time": "2018-10-28T01:52:03+00:00"
         },
         {
             "name": "consolidation/site-alias",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/site-alias.git",
-                "reference": "247f3e52604b9d76a075e6c06d5d1dd73bbae892"
+                "reference": "eb062894c4c0e617cd6549e0ad4d2554e81885f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/site-alias/zipball/247f3e52604b9d76a075e6c06d5d1dd73bbae892",
-                "reference": "247f3e52604b9d76a075e6c06d5d1dd73bbae892",
+                "url": "https://api.github.com/repos/consolidation/site-alias/zipball/eb062894c4c0e617cd6549e0ad4d2554e81885f2",
+                "reference": "eb062894c4c0e617cd6549e0ad4d2554e81885f2",
                 "shasum": ""
             },
             "require": {
@@ -1140,7 +1140,7 @@
                 }
             ],
             "description": "Template project for PHP libraries.",
-            "time": "2018-09-22T04:11:38+00:00"
+            "time": "2018-10-28T00:37:34+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -3344,12 +3344,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "d59029a69416fc359e57b3bc07f7335e6cd68085"
+                "reference": "f8e1ae17ffd64252408929be0d80e738e8b82f9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/d59029a69416fc359e57b3bc07f7335e6cd68085",
-                "reference": "d59029a69416fc359e57b3bc07f7335e6cd68085",
+                "url": "https://api.github.com/repos/drupal/core/zipball/f8e1ae17ffd64252408929be0d80e738e8b82f9f",
+                "reference": "f8e1ae17ffd64252408929be0d80e738e8b82f9f",
                 "shasum": ""
             },
             "require": {
@@ -3576,7 +3576,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2018-10-22T05:36:44+00:00"
+            "time": "2018-10-29T20:49:17+00:00"
         },
         {
             "name": "drupal/ctools",
@@ -4084,7 +4084,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/flexiform",
-                "reference": "e6d67f654f5497d2011e76fb55ab7721778fdbff"
+                "reference": "cb8ada609937792d13a60ce0c6a3aea3fbf5dcd4"
             },
             "require": {
                 "drupal/core": "^8.5",
@@ -4100,8 +4100,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha4+27-dev",
-                    "datestamp": "1539790381",
+                    "version": "8.x-1.0-alpha4+28-dev",
+                    "datestamp": "1540068481",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4141,7 +4141,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/flexiform"
             },
-            "time": "2018-10-20T20:45:46+00:00"
+            "time": "2018-10-30T17:40:59+00:00"
         },
         {
             "name": "drupal/fontawesome",
@@ -6156,16 +6156,16 @@
         },
         {
             "name": "masterminds/html5",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Masterminds/html5-php.git",
-                "reference": "2c37c6c520b995b761674de3be8455a381679067"
+                "reference": "33f8d475d28741398be26cdff7a10a63003324a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/2c37c6c520b995b761674de3be8455a381679067",
-                "reference": "2c37c6c520b995b761674de3be8455a381679067",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/33f8d475d28741398be26cdff7a10a63003324a3",
+                "reference": "33f8d475d28741398be26cdff7a10a63003324a3",
                 "shasum": ""
             },
             "require": {
@@ -6217,7 +6217,7 @@
                 "serializer",
                 "xml"
             ],
-            "time": "2017-09-04T12:26:28+00:00"
+            "time": "2018-10-22T16:58:34+00:00"
         },
         {
             "name": "mikey179/vfsStream",
@@ -8019,16 +8019,16 @@
         },
         {
             "name": "square/connect",
-            "version": "2.20180918.0",
+            "version": "2.20180918.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/square/connect-php-sdk.git",
-                "reference": "3bf9e23ad0cff99747ca92267d15fc83d37bdec3"
+                "reference": "fd6f52f3dc54556467f6ab88ef37e43488272d1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/square/connect-php-sdk/zipball/3bf9e23ad0cff99747ca92267d15fc83d37bdec3",
-                "reference": "3bf9e23ad0cff99747ca92267d15fc83d37bdec3",
+                "url": "https://api.github.com/repos/square/connect-php-sdk/zipball/fd6f52f3dc54556467f6ab88ef37e43488272d1f",
+                "reference": "fd6f52f3dc54556467f6ab88ef37e43488272d1f",
                 "shasum": ""
             },
             "require": {
@@ -8066,7 +8066,7 @@
                 "sdk",
                 "swagger"
             ],
-            "time": "2018-09-18T17:54:18+00:00"
+            "time": "2018-10-24T19:26:01+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
