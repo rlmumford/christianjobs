@@ -3409,7 +3409,9 @@ details.captcha div.g-recaptcha {
 }
 @media only screen and (max-width: 768px) {
   .path-frontpage header#header::before {
-    background: none;
+    background-image: none;
+    width: 0;
+    height: 0;
   }
 }
 .path-frontpage header#header {
