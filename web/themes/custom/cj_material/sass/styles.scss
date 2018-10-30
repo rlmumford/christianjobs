@@ -385,3 +385,9 @@ span.upsell-price .tax {
 .card .card-item.card-actions .form-actions {
   margin: 0;
 }
+
+@media (max-width: $xs) {
+  .header-front-ctas .button-cta {
+    margin: 8px 15px;
+  }
+}

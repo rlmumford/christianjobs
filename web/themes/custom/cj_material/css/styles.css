@@ -3721,4 +3721,10 @@ span.upsell-price .tax {
   margin: 0;
 }
 
+@media (max-width: 568px) {
+  .header-front-ctas .button-cta {
+    margin: 8px 15px;
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */
