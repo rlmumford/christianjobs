@@ -110,7 +110,7 @@ class JobPostForm extends ContentEntityForm {
         'title' => [
           '#type' => 'html_tag',
           '#tag' => 'h3',
-          '#value' => $this->t('Recruitment Process Outsourcing'),
+          '#value' => $this->t('Outsourced Help (RPO)'),
         ],
         'description' => [
           '#type' => 'html_tag',
@@ -118,11 +118,11 @@ class JobPostForm extends ContentEntityForm {
           '#attributes' => [
             'class' => ['section-summary'],
           ],
-          '#value' => $this->t('Some marketing text about RPO'),
+          '#value' => $this->t('Get this Job <strong>FREE</strong> when you purchase our RPO package.'),
         ],
         'rpo' => [
           '#type' => 'checkbox',
-          '#title' => $this->t('Upgrade to an Outsourced Recruitment Process (+£620)'),
+          '#title' => $this->t('Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right">£795<span class="tax">+VAT</span></span>'),
           '#attributes' => [
             'class' => ['rpo-checkbox'],
           ],
@@ -147,7 +147,7 @@ class JobPostForm extends ContentEntityForm {
       if (!$membership_in_cart && !$membership) {
         $form['membership']['new'] = [
           '#type' => 'checkbox',
-          '#title' => $this->t('Become a Christian Jobs Member (+£220)'),
+          '#title' => $this->t('Become a Christian Jobs Community Member <span class="upsell-price pull-right">£349<span class="tax">+VAT</span></span>'),
           '#attributes' => [
             'class' => ['membership-checkbox'],
           ],
@@ -156,7 +156,7 @@ class JobPostForm extends ContentEntityForm {
       else if (!$membership_in_cart && $membership && $membership->status->value == Membership::STATUS_EXPIRED) {
         $form['membership']['extend'] = [
           '#type' => 'checkbox',
-          '#title' => $this->t('Renew Christian Jobs Membership Membership (+£220)'),
+          '#title' => $this->t('Renew Christian Jobs Community Membership <span class="upsell-price pull-right">£349<span class="tax">+VAT</span></span>'),
           '#attributes' => [
             'class' => ['membership-checkbox'],
           ],
@@ -177,7 +177,7 @@ class JobPostForm extends ContentEntityForm {
         $form['membership']['description'] = [
           '#type' => 'html_tag',
           '#tag' => 'p',
-          '#value' => $this->t('Membership offers a wide variety of benefits!'),
+          '#value' => $this->t('Get this Job <strong>FREE</strong> when you become a Christian Jobs Community Member. Find out more <a href="/membership" target="_blank">here</a>'),
           '#attributes' => [
             'class' => ['section-summary'],
           ],
@@ -243,16 +243,21 @@ class JobPostForm extends ContentEntityForm {
         $membership = $current_membership;
       }
 
+      $free_job = FALSE;
       if ($membership) {
         $cart_manager->addEntity($cart, $membership);
+        $free_job = TRUE;
       }
 
       if ($membership || $current_membership->status->value == Membership::STATUS_ACTIVE) {
+        $adjustment_amount = $job_post_item->getTotalPrice()->multiply($free_job ? '-1' : '-0.25');
+        $adjustment_amount = \Drupal::service('commerce_price.rounder')->round($adjustment_amount);
+
         $job_post_item->addAdjustment(new Adjustment([
           'type' => 'membership_discount',
-          'label' => $this->t('Membership Discount'),
-          'amount' => $job_post_item->getTotalPrice()->multiply('-0.25')->round(),
-          'percentage' => '25%',
+          'label' => $free_job ? $this->t('First Job Free!') : $this->t('Membership Discount'),
+          'amount' => $adjustment_amount,
+          'percentage' => $free_job ? '100%' : '25%',
           'source_id' => $membership ? $membership->id() : $current_membership->id(),
         ]));
       }

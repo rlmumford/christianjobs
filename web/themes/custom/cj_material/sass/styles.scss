@@ -9,7 +9,7 @@
 @import "../../../contrib/material_base/sass/variables";
 @import "../../../contrib/material_base/sass/modules";
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Raleway');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Lato');
 
 // put your styles here
 // you can @extend anything from base theme
@@ -325,7 +325,6 @@ h2.company-name {
   position: relative;
   background-color: #4bbaff;
   color: #FFFFFF;
-  font-weight: bold;
   font-size: 1.2em;
 }
 
@@ -341,7 +340,6 @@ h2.company-name {
 
 p.scripture {
   font-size: 1.2em;
-  font-weight: bold;
 }
 
 @media only screen and (min-width: $md) {
@@ -374,4 +372,16 @@ div.footer-contact, div.footer-links {
 }
 div.footer-contact a, div.footer-links a {
   color: black;
+}
+
+span.upsell-price {
+  font-weight: bold;
+  color: #FF904b;
+}
+span.upsell-price .tax {
+  font-size: 0.7em;
+}
+
+.card .card-item.card-actions .form-actions {
+  margin: 0;
 }

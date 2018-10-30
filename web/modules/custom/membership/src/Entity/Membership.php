@@ -131,7 +131,7 @@ class Membership extends ContentEntityBase implements EntityOwnerInterface, Purc
       $profile = $profile_storage->loadDefaultByUser($member_user, 'employer');
       $name = $profile ? $profile->employer_name->value : $member_user->label();
 
-      return new TranslatableMarkup('@members\'s Membership', ['@member' => $name]);
+      return (new TranslatableMarkup('@members\'s Membership', ['@member' => $name]))->render();
     }
 
     return $label;

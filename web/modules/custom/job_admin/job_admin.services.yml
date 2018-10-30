@@ -1,6 +1,6 @@
 services:
   job_admin.order_complete:
-    class: Drupal\job_board\EventSubscriber\OrderCompleteSubscriber
+    class: Drupal\job_admin\EventSubscriber\OrderCompleteSubscriber
     arguments: [ '@entity_type.manager' ]
     tags:
       - { name: event_subscriber }

@@ -119,7 +119,7 @@ class OrderCompleteSubscriber implements EventSubscriberInterface {
       $set_service = $this->getStorage('service')->create([
         'state' => TRUE,
         'type' => 'job_post_set_support',
-        'job_posts' => $job_posts,
+        'job_roles' => $job_posts,
         'manager' => $account_manager,
         'recipients' => [ $first_job->getOwnerId() ],
       ]);
@@ -131,7 +131,7 @@ class OrderCompleteSubscriber implements EventSubscriberInterface {
       $rpo_service = $this->getStorage('service')->create([
         'state' => TRUE,
         'type' => 'rpo',
-        'job_post' => $rpo,
+        'job_role' => $rpo,
         'manager' => $account_manager,
         'recipients' => [ $rpo->getOwnerId() ],
       ]);

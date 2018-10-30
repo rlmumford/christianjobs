@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import url("https://fonts.googleapis.com/css?family=Montserrat:600|Raleway");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:600|Lato");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -107,7 +107,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 body {
-  font-family: "Raleway";
+  font-family: "Lato";
   font-size: 16px;
   line-height: 1.5;
   color: rgba(0, 0, 0, 0.87);
@@ -178,7 +178,7 @@ h3 + h1, h3 + h2, h3 + h3, h3 + h4, h3 + h5, h3 + h6, h3 + .h1, h3 + .h2, h3 + .
 }
 
 .font-text {
-  font-family: "Raleway";
+  font-family: "Lato";
 }
 
 a {
@@ -1115,7 +1115,7 @@ pre {
   outline: 0;
   background: none;
   border: 0;
-  font-family: "Raleway";
+  font-family: "Lato";
   font-size: 14px;
   vertical-align: middle;
   font-weight: 500;
@@ -1231,7 +1231,7 @@ colored but not raised
   border: 0;
   color: rgba(0, 0, 0, 0.87);
   text-decoration: none;
-  font-family: "Raleway";
+  font-family: "Lato";
   font-size: 24px;
   line-height: 24px;
   vertical-align: middle;
@@ -1464,7 +1464,7 @@ tr.selected:hover {
   appearance: none;
   border-radius: 0;
   color: rgba(0, 0, 0, 0.87);
-  font-family: "Raleway";
+  font-family: "Lato";
   font-size: 16px;
 }
 .form-item input[type=text], .form-item input[type=email], .form-item input[type=password], .form-item input[type=search], .form-item input[type=tel], .form-item textarea, .form-item select {
@@ -2163,7 +2163,7 @@ navbar overlaying header-content (for sliders)
   display: block;
   padding: 8px 12px 8px 12px;
   color: rgba(0, 0, 0, 0.87);
-  font-family: "Raleway";
+  font-family: "Lato";
   font-size: 16px;
   line-height: 24px;
 }
@@ -3653,7 +3653,6 @@ h2.company-name {
   position: relative;
   background-color: #4bbaff;
   color: #FFFFFF;
-  font-weight: bold;
   font-size: 1.2em;
 }
 
@@ -3671,7 +3670,6 @@ h2.company-name {
 
 p.scripture {
   font-size: 1.2em;
-  font-weight: bold;
 }
 
 @media only screen and (min-width: 992px) {
@@ -3708,6 +3706,19 @@ div.footer-contact, div.footer-links {
 
 div.footer-contact a, div.footer-links a {
   color: black;
+}
+
+span.upsell-price {
+  font-weight: bold;
+  color: #FF904b;
+}
+
+span.upsell-price .tax {
+  font-size: 0.7em;
+}
+
+.card .card-item.card-actions .form-actions, .content-card .card-holder .card-item.card-actions .form-actions {
+  margin: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

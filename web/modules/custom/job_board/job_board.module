@@ -319,7 +319,7 @@ function job_board_form_user_employer_details_form_alter(array &$form, FormState
   $form['actions']['#attributes']['class'][] = 'card-actions';
   $form['actions']['#attributes']['class'][] = 'divider-top';
   if (\Drupal::request()->cookies->get('Drupal_visitor_jobPostRegister')) {
-    $form['actions']['submit']['#value'] = new TranslatableMarkup('Save & Continuee');
+    $form['actions']['submit']['#value'] = new TranslatableMarkup('Save & Continue');
     $form['actions']['submit']['#submit'][] = 'job_board_user_employer_details_form_submit_redirect';
   }
 }
