@@ -99,36 +99,36 @@ class JobPostForm extends ContentEntityForm {
       ];
     }
 
-    if (!$this->entity->rpo->value) {
-      $form['rpo_upsell'] = [
-        '#weight' => 51,
-        '#type' => 'container',
-        '#tree' => TRUE,
+    $form['rpo_upsell'] = [
+      '#weight' => 51,
+      '#type' => 'container',
+      '#tree' => TRUE,
+      '#attributes' => [
+        'class' => ['card-item', 'card-text', 'divider-top'],
+      ],
+      'title' => [
+        '#type' => 'html_tag',
+        '#tag' => 'h3',
+        '#value' => $this->t('Outsourced Help (RPO)'),
+      ],
+      'description' => [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
         '#attributes' => [
-          'class' => ['card-item', 'card-text', 'divider-top'],
+          'class' => ['section-summary'],
         ],
-        'title' => [
-          '#type' => 'html_tag',
-          '#tag' => 'h3',
-          '#value' => $this->t('Outsourced Help (RPO)'),
+        '#value' => $this->t('Get this Job <strong>FREE</strong> when you purchase our RPO package.'),
+      ],
+      'rpo' => [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right">£795<span class="tax">+VAT</span></span>'),
+        '#default_value' => !empty($this->entity->rpo->value),
+        '#attributes' => [
+          'class' => ['rpo-checkbox'],
         ],
-        'description' => [
-          '#type' => 'html_tag',
-          '#tag' => 'p',
-          '#attributes' => [
-            'class' => ['section-summary'],
-          ],
-          '#value' => $this->t('Get this Job <strong>FREE</strong> when you purchase our RPO package.'),
-        ],
-        'rpo' => [
-          '#type' => 'checkbox',
-          '#title' => $this->t('Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right">£795<span class="tax">+VAT</span></span>'),
-          '#attributes' => [
-            'class' => ['rpo-checkbox'],
-          ],
-        ],
-      ];
-    }
+      ],
+    ];
+
 
     // Add a membership options to this form.
     if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {
@@ -142,6 +142,11 @@ class JobPostForm extends ContentEntityForm {
         if ($order_item->getPurchasedEntity() instanceof Membership) {
           $membership_in_cart = TRUE;
         }
+      }
+
+      if (!$membership_in_cart && $membership && !in_array($membership->status->value, [Membership::STATUS_ACTIVE, Membership::STATUS_EXPIRED])) {
+        $membership->delete();
+        $membership = FALSE;
       }
 
       if (!$membership_in_cart && !$membership) {
