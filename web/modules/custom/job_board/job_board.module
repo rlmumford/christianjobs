@@ -249,7 +249,31 @@ function job_board_form_views_exposed_form_alter(array &$form, FormStateInterfac
   $form['#attributes']['class'][] = 'card';
   $form['actions']['#attributes']['class'] = ['card-item', 'card-actions', 'divider-top'];
   $form['actions']['submit']['#value'] = new TranslatableMarkup('Search');
-  $form['label']['#wrapper_attributes']['class'] = ['card-item', 'card-text'];
+  $form['filters'] = [
+    '#type' => 'container',
+    '#attributes' => [
+      'class' => ['row', 'card-item', 'card-text'],
+    ],
+  ];
+  $form['filters']['label'] = $form['label'];
+  unset($form['label']);
+  $form['filters']['label']['#title'] = $form['#info']['filter-label']['label'];
+  $form['filters']['label']['#wrapper_attributes']['class'] = ['col-xs-12'];
+
+  $form['filters']['location__administrative_area'] = $form['location__administrative_area'];
+  unset($form['location__administrative_area']);
+  $form['filters']['location__administrative_area']['#title'] = $form['#info']['filter-location__administrative_area']['label'];
+  $form['filters']['location__administrative_area']['#wrapper_attributes']['class'] = ['col-xs-12', 'col-md-5'];
+
+  $form['filters']['compensation'] = $form['compensation'];
+  unset($form['compensation']);
+  $form['filters']['compensation']['#title'] = $form['#info']['filter-compensation']['label'];
+  $form['filters']['compensation']['#wrapper_attributes']['class'] = ['col-xs-6', 'col-md-3'];
+
+  $form['filters']['industry'] = $form['industry'];
+  unset($form['industry']);
+  $form['filters']['industry']['#title'] = $form['#info']['filter-industry']['label'];
+  $form['filters']['industry']['#wrapper_attributes']['class'] = ['col-xs-6', 'col-md-3'];
 }
 
 /**
