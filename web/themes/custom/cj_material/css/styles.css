@@ -3453,7 +3453,7 @@ details.captcha div.g-recaptcha {
 
 .path-frontpage .header-front span.tagline {
   color: #FF904b;
-  font-weight: bold;
+  font-size: 1.1em;
 }
 
 .header-front-ctas .button-cta {
@@ -3732,6 +3732,16 @@ span.upsell-price .tax {
   .header-front-ctas .button-cta {
     margin: 8px 15px;
   }
+}
+.col-md select, .col-md-1 select, .col-md-2 select, .col-md-3 select, .col-md-4 select, .col-md-5 select, .col-md-6 select, .col-md-7 select, .col-md-8 select, .col-md-9 select, .col-md-10 select,
+.col-md-11 select, .col-md-12 select, .col-xs select, .col-xs-1 select, .col-xs-2 select, .col-xs-3 select, .col-xs-4 select, .col-xs-5 select, .col-xs-6 select, .col-xs-7 select, .col-xs-8 select,
+.col-xs-9 select, .col-xs-10 select, .col-xs-11 select, .col-xs-12 select {
+  width: 100%;
+}
+.col-md input, .col-md-1 input, .col-md-2 input, .col-md-3 input, .col-md-4 input, .col-md-5 input, .col-md-6 input, .col-md-7 input, .col-md-8 input, .col-md-9 input, .col-md-10 input,
+.col-md-11 input, .col-md-12 input, .col-xs input, .col-xs-1 input, .col-xs-2 input, .col-xs-3 input, .col-xs-4 input, .col-xs-5 input, .col-xs-6 input, .col-xs-7 input, .col-xs-8 input,
+.col-xs-9 input, .col-xs-10 input, .col-xs-11 input, .col-xs-12 input {
+  width: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

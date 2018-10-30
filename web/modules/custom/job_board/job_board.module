@@ -134,10 +134,10 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
         'industries' => 'industries',
       ],
       'auto_create' => TRUE,
-      'auto_create_bundle' => 'keywords',
+      'auto_create_bundle' => 'industries',
     ])
-    ->setLabel(t('Industry'))
-    ->setDescription(t('Select an industry.'))
+    ->setLabel(t('Category'))
+    ->setDescription(t('Select an category.'))
     ->setCardinality(1)
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
