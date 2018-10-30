@@ -306,6 +306,10 @@ h2.company-name {
     content: '';
   }
 }
+.job-result .card-media.media-cover img {
+  -o-object-fit: contain;
+  object-fit: contain;
+}
 
 /* Front Sections */
 .front-features .col-left {
