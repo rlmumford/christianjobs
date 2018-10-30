@@ -3431,6 +3431,7 @@ details.captcha div.g-recaptcha {
   display: inline-block;
   position: relative;
   padding-left: 120px;
+  text-align: left;
 }
 
 .path-frontpage .header-front::before {
