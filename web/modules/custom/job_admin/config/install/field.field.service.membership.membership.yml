@@ -2,20 +2,20 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.service.job_role
-    - service.service_type.job_post_support
-id: service.job_post_support.job_role
-field_name: job_role
+    - field.storage.service.membership
+    - service.service_type.membership
+id: service.membership.membership
+field_name: membership
 entity_type: service
-bundle: job_post_support
-label: 'Job Post'
+bundle: membership
+label: 'Membership'
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:job_role'
+  handler: 'default:cj_membership'
   handler_settings:
     target_bundles: null
     sort:

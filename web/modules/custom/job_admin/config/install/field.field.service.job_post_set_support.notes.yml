@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.service.notes
+    - service.service_type.job_post_set_support
+  module:
+    - text
+id: service.job_post_set_support.notes
+field_name: notes
+entity_type: service
+bundle: job_post_set_support
+label: Notes
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

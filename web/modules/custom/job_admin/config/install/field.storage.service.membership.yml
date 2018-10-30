@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - job_role
+    - cj_membership
+    - service
+id: service.membership
+field_name: membership
+entity_type: service
+type: entity_reference
+settings:
+  target_type: cj_membership
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
