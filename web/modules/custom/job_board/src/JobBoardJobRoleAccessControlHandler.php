@@ -26,6 +26,14 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
 
       return $result;
     }
+    if ($operation == 'update') {
+      $result = AccessResult::allowedIfHasPermission('update any job_role');
+      $result->orIf(
+        AccessResult::allowedIfHasPermission('update own job_role')
+          ->andIf(AccessResult::allowedIf($entity->owner->target_id == $account->id()))
+      );
+      return $result;
+    }
 
     return parent::checkAccess($entity, $operation, $account);
   }
