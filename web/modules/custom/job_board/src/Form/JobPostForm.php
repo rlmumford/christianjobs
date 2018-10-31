@@ -223,6 +223,9 @@ class JobPostForm extends ContentEntityForm {
     if ($form_state->getValue(['rpo_upsell', 'rpo'])) {
       $this->getEntity()->rpo = TRUE;
     }
+    else {
+      $this->getEntity()->rpo = FALSE;
+    }
 
     $cart_provider = \Drupal::service('commerce_cart.cart_provider');
     /** @var \Drupal\commerce_cart\CartManagerInterface $cart_manager */
@@ -240,11 +243,12 @@ class JobPostForm extends ContentEntityForm {
       /** @var \Drupal\cj_membership\MembershipStorage $membership_storage */
       $membership_storage = \Drupal::service('entity_type.manager')->getStorage('cj_membership');
       $current_membership = $membership_storage->getAccountMembership($current_user);
-      if ($form_state->getValue(['membership', 'new'])) {
+      $membership_values = $form_state->getValue(['membership']);
+      if (isset($membership_values['new']) && !empty($membership_values['new'])) {
         $membership = $membership_storage->create()->setOwnerId($current_user->id());
         $membership->start->value = date(DateTimeItemInterface::DATE_STORAGE_FORMAT);
       }
-      elseif ($form_state->getValue(['membership', 'extend'])) {
+      elseif (isset($membership_values['extend']) && !empty($membership_values['extend'])) {
         $membership = $current_membership;
       }
 
