@@ -71,6 +71,16 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDisplayOptions('form', [
       'type' => 'datetime_default',
     ]);
+  $fields['application_deadline'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Application Deadline'))
+    ->setDescription(t('The last date on which applications will be submitted. If this is before the end of the adverts duration, the job will not be visible after this date.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'datetime_default',
+    ]);
   $fields['end_date'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
     ->setLabel(t('End Date'))

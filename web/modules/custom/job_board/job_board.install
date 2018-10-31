@@ -435,3 +435,24 @@ function job_board_update_8008() {
     }
   }
 }
+
+/**
+ * Install application deadline field.
+ */
+function job_board_update_8009() {
+  $fields['application_deadline'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Application Deadline'))
+    ->setDescription(t('The last date on which applications will be submitted. If this is before the end of the adverts duration, the job will not be visible after this date.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'datetime_default',
+    ]);
+
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  foreach ($fields as $field_name => $definition) {
+    $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $definition);
+  }
+}

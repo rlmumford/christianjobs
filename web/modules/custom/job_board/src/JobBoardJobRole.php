@@ -25,6 +25,10 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
       $end_date->add(new \DateInterval($this->initial_duration->value ?: 'P30D'));
       $this->end_date->value = $end_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
     }
+
+    if ($this->application_deadline->value && ($this->application_deadline->value < $this->end_date->value)) {
+      $this->end_date->value = $this->application_deadline->value;
+    }
   }
 
   /**
