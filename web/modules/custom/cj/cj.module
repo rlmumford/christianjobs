@@ -1,0 +1,24 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function cj_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter' && isset($implementations['cj'])) {
+    $group = $implementations['cj'];
+    unset($implementations['cj']);
+    $implementations['cj'] = $group;
+  }
+}
+
+/**
+ * Implements hook_form_user_form_alter().
+ */
+function cj_form_user_form_alter(array &$form, FormStateInterface $form_state) {
+  $form['contact']['#access'] = FALSE;
+  $form['contact']['contact']['#default_value'] = FALSE;
+  $form['user_picture']['#access'] = FALSE;
+  $form['timezone']['#access'] = FALSE;
+}

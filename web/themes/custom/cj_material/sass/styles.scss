@@ -315,6 +315,9 @@ h2.company-name {
     content: '';
   }
 }
+.job-result .card-media.media-cover {
+  padding: 4px;
+}
 .job-result .card-media.media-cover img {
   -o-object-fit: contain;
   object-fit: contain;
@@ -417,3 +420,19 @@ span.upsell-price .tax {
     width: 100%;
   }
 }
+
+#navbar-user-button {
+  .navbar-icon {
+    height: 36px;
+    width: 36px;
+    margin: 6px;
+    font-size: 36px;
+  }
+  .navbar-icon:hover {
+    color: #4BBAFF;
+  }
+  .navbar-icon.user-authenticated {
+    color: #FF904B;
+  }
+}
+

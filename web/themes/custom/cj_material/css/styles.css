@@ -3327,6 +3327,10 @@ h2 {
   color: #FF904B;
 }
 
+p strong {
+  font-weight: bold;
+}
+
 .region.region-content {
   position: relative;
 }
@@ -3642,6 +3646,10 @@ h2.company-name {
   content: "";
 }
 
+.job-result .card-media.media-cover {
+  padding: 4px;
+}
+
 .job-result .card-media.media-cover img {
   -o-object-fit: contain;
   object-fit: contain;
@@ -3749,6 +3757,19 @@ span.upsell-price .tax {
 .col-md-11 input, .col-md-12 input, .col-xs input, .col-xs-1 input, .col-xs-2 input, .col-xs-3 input, .col-xs-4 input, .col-xs-5 input, .col-xs-6 input, .col-xs-7 input, .col-xs-8 input,
 .col-xs-9 input, .col-xs-10 input, .col-xs-11 input, .col-xs-12 input {
   width: 100%;
+}
+
+#navbar-user-button .navbar-icon {
+  height: 36px;
+  width: 36px;
+  margin: 6px;
+  font-size: 36px;
+}
+#navbar-user-button .navbar-icon:hover {
+  color: #4BBAFF;
+}
+#navbar-user-button .navbar-icon.user-authenticated {
+  color: #FF904B;
 }
 
 /*# sourceMappingURL=styles.css.map */
