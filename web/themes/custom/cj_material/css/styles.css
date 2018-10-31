@@ -3557,13 +3557,14 @@ a.button-cta.button-orange:hover {
 }
 
 #block-cj-material-local-actions nav li {
+  display: inline-block;
   list-style-type: none;
 }
 
 #block-cj-material-local-actions {
   position: absolute;
   right: 0;
-  top: 8px;
+  top: 0;
 }
 
 .path-jobs #block-cj-material-page-title {

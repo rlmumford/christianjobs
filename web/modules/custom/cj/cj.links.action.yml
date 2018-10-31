@@ -1,0 +1,11 @@
+cj.edit_employer:
+  route_name: job_board.employer_edit
+  title: 'Edit Employer'
+  appears_on:
+    - entity.user.canonical
+cj.post_job:
+  route_name: job_board.post
+  title: 'Post a Job'
+  weight: -1
+  appears_on:
+    - entity.user.canonical

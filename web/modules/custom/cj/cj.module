@@ -22,3 +22,10 @@ function cj_form_user_form_alter(array &$form, FormStateInterface $form_state) {
   $form['user_picture']['#access'] = FALSE;
   $form['timezone']['#access'] = FALSE;
 }
+
+/**
+ * Implements hook_local_tasks_alter().
+ */
+function cj_local_tasks_alter(&$local_tasks) {
+  $local_tasks['entity.user.edit_form']['title'] = 'Edit Account';
+}
