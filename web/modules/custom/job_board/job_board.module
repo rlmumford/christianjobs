@@ -305,6 +305,13 @@ function job_board_form_user_register_form_alter(array &$form, FormStateInterfac
     $form['legal']['#attached']['library'] = [
       'core/drupal.dialog.ajax',
     ];
+
+    $form['legal']['legal_accept']['#title'] = new TranslatableMarkup(
+      "<strong>Accept</strong> <a href=\":terms\" class=\"use-ajax\" data-dialog-type=\"modal\" data-dialog-options='{\"width\":600}'>Terms & Conditions</a> of Use",
+      [
+        ':terms' => '/legal',
+      ]
+    );
   }
 
   $cookies = \Drupal::request()->cookies;
