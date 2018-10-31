@@ -3773,4 +3773,8 @@ span.upsell-price .tax {
   color: #FF904B;
 }
 
+.pager .pager-item.item-current > a, .pager .pager-item.item-current > span {
+  color: #FF904b;
+}
+
 /*# sourceMappingURL=styles.css.map */
