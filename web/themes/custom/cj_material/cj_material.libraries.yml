@@ -6,3 +6,9 @@ styles:
     js/custom.js: {}
   dependencies:
     - core/jquery
+select2.theme:
+  css:
+    component:
+      css/select2.css: {}
+  js:
+    js/select2.js: {}

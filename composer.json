@@ -40,6 +40,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/FreelyGive/contacts.git"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ],
     "require": {
@@ -67,8 +71,11 @@
         "drupal/recaptcha": "^2.3",
         "drupal/search_api": "^1.8",
         "drupal/search_api_solr": "^2.0",
+        "drupal/select2": "^1.0@beta",
         "drupal/token": "^1.5",
         "drush/drush": "^9.0.0",
+        "npm-asset/select2": "^4.0",
+        "oomphinc/composer-installers-extender": "^1.1",
         "rlmumford/common": "dev-master",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-core-require-dev": "8.7.x",
@@ -119,11 +126,16 @@
         "installer-paths": {
             "web/core": ["type:drupal-core"],
             "web/modules/rlmumford": ["rlmumford/common"],
-            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/Commands/{$name}": ["type:drupal-drush"]
-        }
+        },
+        "installer-types": ["bower-asset", "npm-asset"]
     }
 }
