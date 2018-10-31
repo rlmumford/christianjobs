@@ -67,6 +67,7 @@
         "drupal/recaptcha": "^2.3",
         "drupal/search_api": "^1.8",
         "drupal/search_api_solr": "^2.0",
+        "drupal/token": "^1.5",
         "drush/drush": "^9.0.0",
         "rlmumford/common": "dev-master",
         "vlucas/phpdotenv": "^2.4",

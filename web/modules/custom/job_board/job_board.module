@@ -20,6 +20,7 @@ use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
 use Drupal\user\Entity\User;
 use Drupal\user\EntityOwnerInterface;
 use Drupal\user\ProfileForm;
+use Drupal\user\UserInterface;
 
 /**
  * Implements hook_module_implements_alter().
@@ -560,4 +561,22 @@ function job_board_mail($key, &$message, $params) {
       break;
   }
 
+}
+
+/**
+ * Implements hook_user_formate_name_alter.
+ */
+function job_board_user_format_name_alter(&$name, AccountInterface $account) {
+  if (!($account instanceof UserInterface)) {
+    $account = entity_load('user', $account->id());
+  }
+
+  /** @var \Drupal\user\UserInterface $account */
+  if ($account->hasRole('employer')) {
+    /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
+    $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+    if ($profile = $profile_storage->loadDefaultByUser($account, 'employer')) {
+      $name = $profile->employer_name->value;
+    }
+  }
 }

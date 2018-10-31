@@ -31,3 +31,21 @@ function job_admin_update_8001() {
     $config_storage->write($name, $source->read($name));
   }
 }
+
+/**
+ * Update layout.
+ */
+function job_admin_update_8002() {
+  $source = new FileStorage(drupal_get_path('module', 'job_admin').'/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  $configs_to_install = [
+    'service.service_type.job_post_set_support',
+    'service.service_type.membership',
+    'service.service_type.rpo',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config_storage->write($name, $source->read($name));
+  }
+}

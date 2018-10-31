@@ -4,4 +4,4 @@ dependencies: {  }
 id: rpo
 label: RPO
 default_uri: 'service/[service:id]'
-default_label: ''
+default_label: '[service:job_role:entity:label] RPO'

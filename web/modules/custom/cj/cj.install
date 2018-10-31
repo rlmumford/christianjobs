@@ -74,3 +74,12 @@ function cj_update_8002() {
     'email_registration',
   ]);
 }
+
+/**
+ * Add token module.
+ */
+function cj_update_8003() {
+  \Drupal::service('module_installer')->install([
+    'token',
+  ]);
+}
