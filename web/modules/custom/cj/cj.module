@@ -28,4 +28,5 @@ function cj_form_user_form_alter(array &$form, FormStateInterface $form_state) {
  */
 function cj_local_tasks_alter(&$local_tasks) {
   $local_tasks['entity.user.edit_form']['title'] = 'Edit Account';
+  unset($local_tasks['entity.commerce_payment_method.collection']);
 }
