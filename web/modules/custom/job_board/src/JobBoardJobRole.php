@@ -93,11 +93,11 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
    * @return boolean
    */
   public function isActive() {
-    $start_date = $this->publish_date->date;
-    $end_date = $this->end_date->date;
-    $current_date = new DrupalDateTime();
+    $start_date = $this->publish_date->date->format('Y-m-d');
+    $end_date = $this->end_date->date->format('Y-m-d');
+    $current_date = (new DrupalDateTime())->format('Y-m-d');
 
-    return ($current_date > $start_date) && ($current_date < $end_date);
+    return ($current_date >= $start_date) && ($current_date <= $end_date);
   }
 
   /**
