@@ -19,7 +19,7 @@ class CJUserButton extends BlockBase {
    */
   public function build() {
     $class = \Drupal::currentUser()->isAuthenticated() ? 'user-authenticated' : 'user-anonymous';
-    $title = \Drupal::currentUser()->isAuthenticated() ? 'Log-in' : 'Your Dashboard';
+    $title = \Drupal::currentUser()->isAuthenticated() ? 'Your Dashboard' : 'Log-in';
 
     return [
       '#prefix' => '<div id="navbar-user-button">',
