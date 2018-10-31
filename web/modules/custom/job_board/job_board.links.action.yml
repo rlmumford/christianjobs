@@ -3,3 +3,13 @@ job_board.post_job:
   title: 'Post a Job'
   appears_on:
     - view.job_board.page
+job_board.edit_job:
+  route_name: entity.job_role.edit_form
+  title: 'Edit'
+  appears_on:
+    - entity.job_role.canonical
+job_board.edit_employer:
+  route_name: job_board.employer_edit
+  title: 'Edit'
+  appears_on:
+    - job_board.employer

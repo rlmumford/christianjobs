@@ -19,6 +19,18 @@ class JobForm extends ContentEntityForm {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    parent::submitForm($form, $form_state);
+
+    $form_state->setRedirect(
+      'entity.job_role.canonical',
+      ['job_role' => $this->getEntity()->id()]
+    );
+  }
+
+  /**
    * @param array $form
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *
