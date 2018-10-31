@@ -76,7 +76,7 @@ class CJFooter extends BlockBase implements ContainerFactoryPluginInterface {
       </div></div>
       <div>
       <div class="footer-contact footer-item pull-left"><a href="mailto:info@christianjobs.co.uk">info@christianjobs.co.uk</a> | <a href="tel:01619463550">0161 946 3550</a></div>
-      <div class="footer-links footer-item pull-right"><a href="/legal">Terms of Use</a> | &copy; Christian Jobs Ltd 2018</div>
+      <div class="footer-links footer-item pull-right"><a href="/pricing">Pricing</a> | <a href="/legal">Terms of Use</a> | &copy; Christian Jobs Ltd 2018</div>
     </div>',
     ];
 
