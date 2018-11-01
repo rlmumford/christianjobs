@@ -24,6 +24,14 @@ job_board.post:
   options:
     no_cache: 'TRUE'
 
+job_board.boost:
+  path: '/job/{job_role}/boost'
+  defaults:
+    _form: '\Drupal\job_board\Form\JobBoostForm'
+    _title_callback: '\Drupal\job_board\Controller\JobBoardController::boostJobTitle'
+  requirements:
+    _entity_access: 'job_role.boost'
+
 job_board.employer:
   path: '/employer/{user}'
   defaults:

@@ -508,6 +508,7 @@ h2.section-header::after {
     padding-bottom: 75px;
   }
 }
+a.job-card:hover, a.job-card:focus,
 a.partner-card:hover, a.partner-card:focus {
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
@@ -515,7 +516,8 @@ a.partner-card:hover, a.partner-card:focus {
   height: 215px;
   object-position: bottom;
 }
-.partner-card .card-item {
+.partner-card .card-item,
+.job-card .card-item {
   color: rgb(65,65,65);
 }
 .partner-card .partner-cta {

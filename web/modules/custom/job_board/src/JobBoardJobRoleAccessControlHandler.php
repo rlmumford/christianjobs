@@ -36,6 +36,9 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
       $result->addCacheableDependency($entity);
       return $result;
     }
+    if ($operation == 'boost') {
+      return AccessResult::allowedIfHasPermission($account, 'boost any job_role');
+    }
 
     return parent::checkAccess($entity, $operation, $account);
   }

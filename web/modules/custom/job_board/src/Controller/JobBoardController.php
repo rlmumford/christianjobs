@@ -7,8 +7,10 @@ use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_price\Price;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\TransactionNameNonUniqueException;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\job_role\Entity\JobRoleInterface;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -94,6 +96,13 @@ class JobBoardController extends ControllerBase {
     }
 
     return $this->entityFormBuilder()->getForm($job, 'post');
+  }
+
+  /**
+   * Boost job title.
+   */
+  public function boostJobTitle(JobRoleInterface $job_role) {
+    return new TranslatableMarkup('Boost @job', ['@job' => $job_role->label()]);
   }
 
   /**

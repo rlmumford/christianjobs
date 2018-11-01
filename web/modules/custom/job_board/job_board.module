@@ -90,6 +90,21 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
+  $fields['boost_start_date'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Boost Start Date'))
+    ->setDescription(t('Thedate on which to start boosting this job.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['boost_end_date'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Boost Start Date'))
+    ->setDescription(t('Thedate on which to start boosting this job.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
   $fields['initial_duration'] = BaseFieldDefinition::create('list_string')
     ->setSetting('allowed_values', [
       'P30D' => new TranslatableMarkup('30 Days'),

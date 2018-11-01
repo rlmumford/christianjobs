@@ -489,3 +489,28 @@ function job_board_update_8011() {
     $config_storage->write($name, $source->read($name));
   }
 }
+
+/**
+ * Install application deadline field.
+ */
+function job_board_update_8012() {
+  $fields['boost_start_date'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Boost Start Date'))
+    ->setDescription(t('Thedate on which to start boosting this job.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['boost_end_date'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Boost End Date'))
+    ->setDescription(t('The date on which to stop boosting this job.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  foreach ($fields as $field_name => $definition) {
+    $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $definition);
+  }
+}

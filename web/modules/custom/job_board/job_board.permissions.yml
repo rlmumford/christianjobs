@@ -5,3 +5,5 @@ view published jobs:
   title: 'View Published Jobs'
 view unpublished jobs:
   title: 'View Unpublished Jobs'
+boost any job_role:
+  title: 'Boost Any Job'
