@@ -3869,4 +3869,8 @@ a.partner-card:hover, a.partner-card:focus {
   color: #FF904B;
 }
 
+details.captcha {
+  overflow-x: hidden;
+}
+
 /*# sourceMappingURL=styles.css.map */
