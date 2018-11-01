@@ -3499,6 +3499,15 @@ details.captcha div.g-recaptcha {
   margin-left: 0px;
 }
 
+#block-christianjobsuserbutton {
+  margin-right: 0;
+}
+
+@media (max-width: 360px) {
+  .navbar-title a {
+    font-size: initial;
+  }
+}
 .form-type-select .description {
   display: none;
 }
