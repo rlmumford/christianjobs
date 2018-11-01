@@ -60,9 +60,14 @@ class JobStructuredData extends BlockBase {
           '@type' => 'PostalAddress',
           'addressCountry' => $job->location->country_code,
           'addressRegion' => $job->location->administrative_area,
+          'addressLocality' => $job->location->locality,
         ],
       ],
     ];
+
+    if (!$job->industry->isEmpty()) {
+      $structured_data['industry'] = $job->industry->entity->label();
+    }
 
     // Hiring organisation
     if (!$job->organisation->isEmpty()) {
@@ -93,7 +98,12 @@ class JobStructuredData extends BlockBase {
     }
 
     // Compensation
-    if (!$job->compensation->isEmpty()) {
+    if (!$job->compensation->isEmpty() || !$job->hours->isEmpty()) {
+      $key = $job->compensation->value;
+      if (!$key || $key == 'salaried' || $key == 'pro_rate') {
+        $key = !$job->hours->isEmpty() ? $job->hours->value : 'other';
+      }
+
       $compensation_map = [
         'part_time' => 'PART_TIME',
         'full_time' => 'FULL_TIME',
@@ -101,8 +111,9 @@ class JobStructuredData extends BlockBase {
         'zero_hours' => 'TEMPORARY',
         'flexible' => 'PART_TIME',
         'apprentice' => 'OTHER',
+        'other' => 'OTHER',
       ];
-      $structured_data['employmentType'] = $compensation_map[$job->compensation->value];
+      $structured_data['employmentType'] = $compensation_map[$key];
     }
 
     // Base Salary data.
