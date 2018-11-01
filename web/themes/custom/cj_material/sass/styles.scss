@@ -23,6 +23,9 @@ h2 {
 p strong {
   font-weight: bold;
 }
+a.card {
+  display: block;
+}
 .region.region-content {
   position: relative;
 }
@@ -381,16 +384,35 @@ p.scripture {
   }
 }
 
+#footer {
+  background: #414141;
+  color: #BDBDBD;
+}
+#footer .services-icons.icon-primary {
+  background: #B1B1B1;
+  transition: background-color .2s ease-out;
+  margin-bottom: -3px;
+}
+#footer .services-icons.icon-primary:hover,
+#footer .services-icons.icon-primary:focus {
+  background-color: #FFFFFF;
+}
+
 div.footer-logo {
   line-height: 0;
+  margin-bottom: 16px;
+  margin-top: 8px;
 }
 div.footer-contact, div.footer-links {
   font-size: 1.1em;
-  font-weight: bold;
-  line-height: initial;
 }
 div.footer-contact a, div.footer-links a {
-  color: black;
+  color: #BDBDBD;
+  transition: color .2s ease-out;
+}
+div.footer-contact a:hover, div.footer-links a:hover,
+div.footer-contact a:hover, div.footer-links a:focus {
+  color: #FFFFFF;
 }
 
 span.upsell-price {
@@ -441,3 +463,51 @@ span.upsell-price .tax {
   color: #FF904b;
 }
 
+.section-wrapper {
+  padding-bottom: 30px;
+  padding-top: 25px;
+}
+.section-wrapper--grey {
+  background: #f6f6f6;
+}
+.section-wrapper .section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+h2.section-header {
+  margin-bottom: 40px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 25px;
+}
+h2.section-header::after {
+  background: #04baff;
+  bottom: 0;
+  content: '';
+  height: 3px;
+  left: 0;
+  position: absolute;
+  width: 80px;
+}
+
+@media (min-width: $md) {
+  .section-wrapper {
+    padding-bottom: 75px;
+  }
+}
+a.partner-card:hover, a.partner-card:focus {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.partner-card .card-media img {
+  height: 215px;
+  object-position: bottom;
+}
+.partner-card .card-item {
+  color: rgb(65,65,65);
+}
+.partner-card .partner-cta {
+  color: #FF904B;
+}
