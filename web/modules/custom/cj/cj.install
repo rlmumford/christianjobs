@@ -83,3 +83,15 @@ function cj_update_8003() {
     'token',
   ]);
 }
+
+/**
+ * Add metatag modules
+ */
+function cj_update_8004() {
+  \Drupal::service('module_installer')->install([
+    'metatag',
+    'metatag_views',
+    'metatag_mobile',
+  ]);
+}
+
