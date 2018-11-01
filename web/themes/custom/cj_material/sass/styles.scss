@@ -525,3 +525,13 @@ a.partner-card:hover, a.partner-card:focus {
 details.captcha {
   overflow-x: hidden;
 }
+
+.card .social-media-sharing ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100%;
+  display: flex;
+}
+.card .social-media-sharing ul li {
+  flex: auto;
+}

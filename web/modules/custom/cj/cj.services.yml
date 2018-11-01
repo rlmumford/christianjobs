@@ -1,0 +1,5 @@
+services:
+  cj.social_media_subscriber:
+    class: Drupal\cj\EventSubscriber\SocialMediaEventSubscriber
+    tags:
+      - { name: event_subscriber }

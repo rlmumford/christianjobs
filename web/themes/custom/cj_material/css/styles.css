@@ -3873,4 +3873,15 @@ details.captcha {
   overflow-x: hidden;
 }
 
+.card .social-media-sharing ul, .content-card .card-holder .social-media-sharing ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100%;
+  display: flex;
+}
+
+.card .social-media-sharing ul li, .content-card .card-holder .social-media-sharing ul li {
+  flex: auto;
+}
+
 /*# sourceMappingURL=styles.css.map */

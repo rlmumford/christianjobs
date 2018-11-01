@@ -5,7 +5,7 @@ cj_9_3:
   category: 'Columns: 2'
   default_region: content
   icon_map:
-    - [top, content, aside]
+    - [top, content, aside, bottom]
   regions:
     top:
       label: Top
@@ -13,6 +13,8 @@ cj_9_3:
       label: Content
     aside:
       label: Aside
+    bottom:
+      label: Bottom
 cj_3_9:
   label: 'Two Column 3/9'
   path: layouts/cj_3_9

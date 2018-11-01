@@ -6,6 +6,7 @@ dependencies:
     - field.storage.profile.logo
     - image.style.large
     - system.menu.main
+    - taxonomy.vocabulary.industries
   module:
     - address
     - datetime
@@ -14,6 +15,7 @@ dependencies:
     - options
     - profile
     - range
+    - taxonomy
     - text
     - user
 id: job_board
@@ -56,23 +58,26 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: mini
+        type: full
         options:
-          items_per_page: 15
+          items_per_page: 10
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
+            items_per_page_options_all: true
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
+          quantity: 9
       style:
         type: default
         options:
@@ -929,7 +934,182 @@ display:
           entity_type: job_role
           entity_field: end_date
           plugin_id: datetime
-      sorts: {  }
+        location__administrative_area:
+          id: location__administrative_area
+          table: job_role_revision
+          field: location__administrative_area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: location__administrative_area_op
+            label: Location
+            description: ''
+            use_operator: false
+            operator: location__administrative_area_op
+            identifier: location__administrative_area
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              employer: '0'
+              account_manager: '0'
+              team_manager: '0'
+            reduce: false
+            label_type: static
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          country:
+            country_source: static
+            country_argument_id: ''
+            country_filter_id: ''
+            country_static_code: GB
+          entity_type: job_role
+          entity_field: location
+          plugin_id: administrative_area
+        compensation:
+          id: compensation
+          table: job_role
+          field: compensation
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: compensation_op
+            label: Type
+            description: ''
+            use_operator: false
+            operator: compensation_op
+            identifier: compensation
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              employer: '0'
+              account_manager: '0'
+              team_manager: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          entity_type: job_role
+          entity_field: compensation
+          plugin_id: list_field
+        industry:
+          id: industry
+          table: job_role
+          field: industry
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: industry_op
+            label: Industry
+            description: ''
+            use_operator: false
+            operator: industry_op
+            identifier: industry
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              employer: '0'
+              account_manager: '0'
+              team_manager: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: industries
+          hierarchy: false
+          error_message: true
+          entity_type: job_role
+          entity_field: industry
+          plugin_id: taxonomy_index_tid
+      sorts:
+        publish_date:
+          id: publish_date
+          table: job_role
+          field: publish_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: day
+          entity_type: job_role
+          entity_field: publish_date
+          plugin_id: datetime
+        changed:
+          id: changed
+          table: job_role
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          entity_type: job_role
+          entity_field: changed
+          plugin_id: date
       title: 'Find a Job'
       header: {  }
       footer: {  }
@@ -970,6 +1150,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
       tags:
         - 'config:field.storage.profile.employer_name'
         - 'config:field.storage.profile.logo'
@@ -985,6 +1166,7 @@ display:
         type: normal
         title: Jobs
         menu_name: main
+        weight: -46
     cache_metadata:
       max-age: -1
       contexts:
@@ -992,6 +1174,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
       tags:
         - 'config:field.storage.profile.employer_name'
         - 'config:field.storage.profile.logo'
