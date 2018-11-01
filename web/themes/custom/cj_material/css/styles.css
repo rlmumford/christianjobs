@@ -3333,6 +3333,7 @@ p strong {
 
 a.card, .content-card a.card-holder {
   display: block;
+  margin-bottom: 8px;
 }
 
 .region.region-content {
