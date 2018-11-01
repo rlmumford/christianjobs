@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - job_role
+id: job_role
+label: 'Job Role'
+type: 'canonical_entities:job_role'
+pattern: 'jobs/[job_role:organisation:entity:name]/[job_role:id]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

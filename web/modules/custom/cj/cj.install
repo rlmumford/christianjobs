@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Config\FileStorage;
+
 /**
  * Implements hook_install()
  */
@@ -95,3 +97,24 @@ function cj_update_8004() {
   ]);
 }
 
+/**
+ * Add pathauto
+ */
+function cj_update_8005() {
+  \Drupal::service('module_installer')->install([
+    'pathauto',
+  ]);
+
+  $source = new FileStorage(drupal_get_path('module', 'cj').'/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  $configs_to_install = [
+    'pathauto.pattern.job_categories',
+    'pathauto.pattern.job_keyword',
+    'pathauto.pattern.job_role',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config_storage->write($name, $source->read($name));
+  }
+}

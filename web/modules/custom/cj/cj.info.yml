@@ -13,3 +13,4 @@ dependencies:
 - commerce:commerce_promotion
 - email_registration
 - recaptcha
+- pathauto
