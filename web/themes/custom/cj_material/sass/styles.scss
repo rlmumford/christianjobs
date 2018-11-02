@@ -545,11 +545,19 @@ details.captcha {
 
   .job-card {
     height: 100%;
+    position: relative;
   }
 
   .card-media img {
     height: 200px;
     object-fit: scale-down;
     object-position: center;
+  }
+
+  .job-card .pull-bottom {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
   }
 }

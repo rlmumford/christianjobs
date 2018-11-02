@@ -211,7 +211,7 @@ class FrontPageBoostedJobs extends BlockBase implements ContainerFactoryPluginIn
     $build['content']['cta'] = [
       '#type' => 'container',
       '#attributes' => [
-        'class' => ['card-item', 'card-text', 'text-align-right'],
+        'class' => ['card-item', 'card-text', 'text-align-right', 'pull-bottom'],
       ],
       'content' => [
         '#type' => 'html_tag',

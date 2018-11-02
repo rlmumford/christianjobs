@@ -3891,11 +3891,18 @@ details.captcha {
 }
 .section-wrapper.boosted-jobs .job-card {
   height: 100%;
+  position: relative;
 }
 .section-wrapper.boosted-jobs .card-media img {
   height: 200px;
   object-fit: scale-down;
   object-position: center;
+}
+.section-wrapper.boosted-jobs .job-card .pull-bottom {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
 }
 
 /*# sourceMappingURL=styles.css.map */
