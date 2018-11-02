@@ -48,7 +48,6 @@ class JobStructuredData extends BlockBase {
       'name' => (string) $job->label(),
       'description' => check_markup($job->description->value, $job->description->format),
       'datePosted' => $job->publish_date->date->format('Y-m-d'),
-      'validThrough' => $job->end_date->date->format('Y-m-d\T00:00'),
       'identifier' => [
         '@type' => 'PropertyValue',
         'name' => 'ChristianJobs.co.uk',
@@ -65,6 +64,9 @@ class JobStructuredData extends BlockBase {
       ],
     ];
 
+    if (!$job->end_date->isEmpty()) {
+      $structured_data['validThrough'] = $job->end_date->date->format('Y-m-d\T00:00');
+    }
     if (!$job->industry->isEmpty()) {
       $structured_data['industry'] = $job->industry->entity->label();
     }
