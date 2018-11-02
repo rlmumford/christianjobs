@@ -3892,6 +3892,7 @@ details.captcha {
 .section-wrapper.boosted-jobs .job-card {
   height: 100%;
   position: relative;
+  padding-bottom: 46px;
 }
 .section-wrapper.boosted-jobs .card-media img {
   height: 200px;
