@@ -107,6 +107,7 @@ class JobBoostForm extends FormBase {
       ]
     ));
 
+    \Drupal\Core\Cache\Cache::invalidateTags(['boosted_jobs']);
     $form_state->setRedirect('entity.job_role.canonical', ['job_role' => $job->id()]);
   }
 }

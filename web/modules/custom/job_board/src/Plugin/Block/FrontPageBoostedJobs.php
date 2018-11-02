@@ -95,6 +95,10 @@ class FrontPageBoostedJobs extends BlockBase implements ContainerFactoryPluginIn
       '#attributes' => [
         'class' => ['row-wrapper', 'partners', 'section-wrapper'],
       ],
+      '#cache' => [
+        'tags' => ['boosted_jobs'],
+        'max-age' => 60*60*24,
+      ],
       'row' => [
         '#type' => 'container',
         '#attributes' => [
@@ -197,6 +201,11 @@ class FrontPageBoostedJobs extends BlockBase implements ContainerFactoryPluginIn
       'salary' => $job->salary->view([
         'label' => 'inline',
         'type' => 'range_default',
+        'settings' => [
+          'thousand_separator' => ',',
+          'from_prefix_suffix' => TRUE,
+          'to_prefix_suffix' => TRUE,
+        ],
       ]),
     ];
     $build['content']['cta'] = [
