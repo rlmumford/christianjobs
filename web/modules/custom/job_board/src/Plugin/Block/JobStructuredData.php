@@ -76,6 +76,9 @@ class JobStructuredData extends BlockBase {
       $profile = $profile_storage->loadDefaultByUser($job->organisation->entity, 'employer');
 
       if ($profile) {
+        if ($profile->logo->isEmpty()) {
+          $structured_data['image'] = $profile->logo->entity->url();
+        }
         $organisation = array_filter([
           '@type' => 'Organization',
           'name' => $profile->employer_name->value,
