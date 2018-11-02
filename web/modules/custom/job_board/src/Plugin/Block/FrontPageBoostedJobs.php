@@ -93,7 +93,7 @@ class FrontPageBoostedJobs extends BlockBase implements ContainerFactoryPluginIn
     $build = [
       '#type' => 'container',
       '#attributes' => [
-        'class' => ['row-wrapper', 'partners', 'section-wrapper'],
+        'class' => ['row-wrapper', 'boosted-jobs', 'section-wrapper'],
       ],
       '#cache' => [
         'tags' => ['boosted_jobs'],

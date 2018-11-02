@@ -3886,4 +3886,16 @@ details.captcha {
   flex: auto;
 }
 
+.section-wrapper.boosted-jobs .section {
+  align-items: stretch;
+}
+.section-wrapper.boosted-jobs .job-card {
+  height: 100%;
+}
+.section-wrapper.boosted-jobs .card-media img {
+  height: 200px;
+  object-fit: scale-down;
+  object-position: center;
+}
+
 /*# sourceMappingURL=styles.css.map */

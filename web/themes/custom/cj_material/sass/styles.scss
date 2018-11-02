@@ -537,3 +537,19 @@ details.captcha {
 .card .social-media-sharing ul li {
   flex: auto;
 }
+
+.section-wrapper.boosted-jobs {
+  .section {
+    align-items: stretch;
+  }
+
+  .job-card {
+    height: 100%;
+  }
+
+  .card-media img {
+    height: 200px;
+    object-fit: scale-down;
+    object-position: center;
+  }
+}
