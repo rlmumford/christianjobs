@@ -3889,6 +3889,9 @@ details.captcha {
 .section-wrapper.boosted-jobs .section {
   align-items: stretch;
 }
+.section-wrapper.boosted-jobs .row > div {
+  margin-bottom: 8px;
+}
 .section-wrapper.boosted-jobs .job-card {
   height: 100%;
   position: relative;
