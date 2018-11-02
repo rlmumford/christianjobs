@@ -200,7 +200,7 @@ class FrontPageBoostedJobs extends BlockBase implements ContainerFactoryPluginIn
       ]),
       'salary' => $job->salary->view([
         'label' => 'inline',
-        'type' => 'range_default',
+        'type' => 'range_decimal',
         'settings' => [
           'thousand_separator' => ',',
           'from_prefix_suffix' => TRUE,
