@@ -109,6 +109,13 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'rockuklogo.svg',
           Url::fromUri('https://rockuk.org')
         ),
+        'ashburnham' => $this->buildPartnerCard(
+          'Ashburnham Place',
+          'Retreat, Rest & Refreshment',
+          'Set in 220 acres of stunning grounds and gardens, the Christian community at Ashburnham Place is committed to serving and resourcing people.',
+          'ashburnhamlogo.jpg',
+          Url::fromUri('https://www.ashburnham.org.uk')
+        ),
       ]
     ];
 
