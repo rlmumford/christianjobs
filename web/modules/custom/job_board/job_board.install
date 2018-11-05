@@ -530,3 +530,20 @@ function job_board_update_8013() {
     $config_storage->write($name, $source->read($name));
   }
 }
+
+/**
+ * Organisation filter.
+ */
+function job_board_update_8014() {
+  $source = new FileStorage(drupal_get_path('module', 'job_board').'/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  $configs_to_install = [
+    'views.view.job_board',
+    'views.view.employer_selection',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config_storage->write($name, $source->read($name));
+  }
+}

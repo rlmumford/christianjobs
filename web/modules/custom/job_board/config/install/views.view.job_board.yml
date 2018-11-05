@@ -888,20 +888,12 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          handler: 'default:user'
+          handler: views
           handler_settings:
-            include_anonymous: true
-            filter:
-              type: role
-              role:
-                employer: employer
-                administrator: '0'
-                account_manager: '0'
-                team_manager: '0'
-            target_bundles: null
-            sort:
-              field: _none
-            auto_create: false
+            view:
+              view_name: employer_selection
+              display_name: entity_reference
+              arguments: {  }
           type: auto-complete
           entity_type: job_role
           entity_field: organisation
