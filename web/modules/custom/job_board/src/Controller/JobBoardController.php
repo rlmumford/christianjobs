@@ -195,7 +195,7 @@ class JobBoardController extends ControllerBase {
         ],
         'cta' => [
           '#type' => 'link',
-          '#title' => $this->t('Get Started'),
+          '#title' => $package['cta_text'],
           '#url' => $package['cta_url'],
           '#attributes' => [
             'class' => ['button', 'package-cta'],
