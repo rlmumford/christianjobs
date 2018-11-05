@@ -846,6 +846,66 @@ display:
           entity_type: job_role
           entity_field: label
           plugin_id: string
+        organisation:
+          id: organisation
+          table: job_role
+          field: organisation
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: organisation_op
+            label: Organisation
+            description: ''
+            use_operator: false
+            operator: organisation_op
+            identifier: organisation
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              employer: '0'
+              account_manager: '0'
+              team_manager: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          handler: 'default:user'
+          handler_settings:
+            include_anonymous: true
+            filter:
+              type: role
+              role:
+                employer: employer
+                administrator: '0'
+                account_manager: '0'
+                team_manager: '0'
+            target_bundles: null
+            sort:
+              field: _none
+            auto_create: false
+          type: auto-complete
+          entity_type: job_role
+          entity_field: organisation
+          plugin_id: entity_reference
         publish_date:
           id: publish_date
           table: job_role

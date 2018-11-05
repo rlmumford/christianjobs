@@ -124,6 +124,9 @@
             },
             "drupal/ctools": {
                 "Fix TypedData Relationship Deriver": "https://www.drupal.org/files/issues/2018-10-16/3007028-2.patch"
+            },
+            "drupal/core": {
+                "Entity reference views filter": "https://www.drupal.org/files/issues/2018-11-02/22429699-114.patch"
             }
         },
         "installer-paths": {

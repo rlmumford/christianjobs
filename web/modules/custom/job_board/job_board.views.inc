@@ -22,6 +22,11 @@ function job_board_views_data_alter(array &$data) {
     $data[$table_name]['industry']['filter']['entity_type'] = 'job_role';
     $data[$table_name]['industry']['filter']['field_name'] = 'industry';
 
+    // Organisation field.
+    $data[$table_name]['organisation']['filter']['id'] = 'entity_reference';
+    $data[$table_name]['organisation']['filter']['entity_type'] = 'job_role';
+    $data[$table_name]['organisation']['filter']['field_name'] = 'organisation';
+
     // List fields.
     foreach (['hours', 'compensation'] as $field_name) {
       $data[$table_name][$field_name]['filter'] = [

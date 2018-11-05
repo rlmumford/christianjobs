@@ -284,7 +284,20 @@ function job_board_form_views_exposed_form_alter(array &$form, FormStateInterfac
   $form['filters']['label'] = $form['label'];
   unset($form['label']);
   $form['filters']['label']['#title'] = $form['#info']['filter-label']['label'];
-  $form['filters']['label']['#wrapper_attributes']['class'] = ['col-xs-12'];
+  $form['filters']['label']['#wrapper_attributes']['class'] = ['col-xs-12', 'col-md-6'];
+
+  /**
+  $form['organisation']['#type'] = 'select2';
+  $form['organisation']['#cardinality'] = 1;
+  $form['organisation']['#autocomplete'] = 1;
+  $form['organisation']['#select2'] = [
+    'width' => '100%',
+  ];
+   * **/
+  $form['filters']['organisation'] = $form['organisation'];
+  unset($form['organisation']);
+  $form['filters']['organisation']['#title'] = $form['#info']['filter-organisation']['label'];
+  $form['filters']['organisation']['#wrapper_attributes']['class'] = ['col-xs-12', 'col-md-6'];
 
   $form['filters']['location__administrative_area'] = $form['location__administrative_area'];
   unset($form['location__administrative_area']);
