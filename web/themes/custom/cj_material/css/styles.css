@@ -3796,6 +3796,9 @@ span.upsell-price .tax {
   width: 100%;
 }
 
+#navbar-user-button a {
+  display: inline-block;
+}
 #navbar-user-button .navbar-icon {
   height: 36px;
   width: 36px;
@@ -3807,6 +3810,26 @@ span.upsell-price .tax {
 }
 #navbar-user-button .navbar-icon.user-authenticated {
   color: #FF904B;
+}
+#navbar-user-button .navbar-icon.cart-icon.has-items {
+  color: #FF904B;
+  position: relative;
+}
+#navbar-user-button .navbar-icon.cart-icon.has-items::after {
+  content: attr(item-count);
+  font-size: 10px;
+  font-family: Lato;
+  text-align: center;
+  line-height: 14px;
+  font-weight: bold;
+  background: #d32f2f;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #FFFFFF;
+  border-radius: 8px;
 }
 
 .pager .pager-item.item-current > a, .pager .pager-item.item-current > span {
