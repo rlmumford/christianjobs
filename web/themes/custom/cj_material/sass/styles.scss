@@ -75,6 +75,21 @@ details > div {
   border-bottom: 1px solid rgba(0,0,0,.12);
   padding: 12px 16px 12px 40px;
 }
+.details-wrapper > .form-item--error-message {
+  background: rgb(255, 235, 238);
+  padding: 16px 24px 16px 64px;
+  position: relative;
+}
+.details-wrapper > .form-item--error-message::before {
+  content: "warning";
+  font-family: "Material Icons";
+  color: rgb(211, 47, 47);
+  display: block;
+  position: absolute;
+  font-size: 24px;
+  left: 24px;
+  line-height: 24px;
+}
 
 details.captcha {
   summary {

@@ -191,7 +191,30 @@ class JobPostForm extends ContentEntityForm {
       }
     }
 
+    // Make the salary widget more useable.
+    $form['salary']['widget']['0']['#element_validate'] = [static::class.'::salaryWidgetValidate'];
+    $form['salary']['widget']['0']['from']['#error_no_message'] = TRUE;
+    $form['salary']['widget']['0']['to']['#error_no_message'] = TRUE;
+    $form['salary']['widget']['0']['#type'] = 'details';
+    $form['salary']['widget']['0']['#open'] = TRUE;
+
+    // Don't use chrome validation.
+    $form['#attributes']['novalidate'] = 'novalidate';
+
     return $form;
+  }
+
+  /**
+   * Validate that both part of the range are filled if any are.
+   */
+  public static function salaryWidgetValidate($element, FormStateInterface $form_state, $complete_form) {
+    $values = $form_state->getValue($element['#parents']);
+    if ((!empty($values['from']) && empty($values['to'])) || (!empty($values['to']) && empty($values['from']) && $values['from'] !== '0')) {
+      $form_state->setError($element, 'Please provide both parts of the salary range.');
+    }
+    if (!empty($values['from']) && !empty($values['to']) && ($values['from'] > $values['to'])) {
+      $form_state->setError($element, 'Please ensure that the salary from value is less than the salary to value.');
+    }
   }
 
   /**

@@ -15,6 +15,15 @@ class JobForm extends ContentEntityForm {
     $form['#attributes']['class'][] = 'card';
     $form['#attributes']['class'][] = 'card-main';
 
+    $form['salary']['widget']['0']['#element_validate'] = [JobPostForm::class.'::salaryWidgetValidate'];
+    $form['salary']['widget']['0']['from']['#error_no_message'] = TRUE;
+    $form['salary']['widget']['0']['to']['#error_no_message'] = TRUE;
+    $form['salary']['widget']['0']['#type'] = 'details';
+    $form['salary']['widget']['0']['#open'] = 'true';
+
+    // Don't use chrome validation.
+    $form['#attributes']['novalidate'] = 'novalidate';
+
     return $form;
   }
 

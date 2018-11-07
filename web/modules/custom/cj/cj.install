@@ -118,3 +118,12 @@ function cj_update_8005() {
     $config_storage->write($name, $source->read($name));
   }
 }
+
+/**
+ * Install inline_form_errors
+ */
+function cj_update_8006() {
+  \Drupal::service('module_installer')->install([
+    'inline_form_errors',
+  ]);
+}

@@ -26,13 +26,14 @@
   {%- if title -%}
     <summary{{ summary_attributes.addClass(summary_classes) }}>{{ title }}{% if description %}<span class="description">{{ description }}</span>{% endif %}</summary>
   {%- endif -%}
-
+  <div class="details-wrapper">
   {% if errors %}
-    <div>
+    <div class="form-item--error-message">
       {{ errors }}
     </div>
   {% endif %}
 
   {{ children }}
   {{ value }}
+  </div>
 </details>
