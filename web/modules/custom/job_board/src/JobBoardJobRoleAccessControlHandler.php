@@ -36,6 +36,16 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
       $result->addCacheableDependency($entity);
       return $result;
     }
+    if ($operation == 'delete') {
+      $result = AccessResult::allowedIfHasPermission($account, 'delete any job_role');
+      $result = $result->orIf(
+        AccessResult::allowedIfHasPermission($account, 'delete own job_role')
+          ->andIf(AccessResult::allowedIf($entity->owner->target_id == $account->id()))
+      );
+      $result->cachePerUser();
+      $result->addCacheableDependency($entity);
+      return $result;
+    }
     if ($operation == 'boost') {
       return AccessResult::allowedIfHasPermission($account, 'boost any job_role');
     }
