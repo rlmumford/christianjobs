@@ -696,3 +696,7 @@ details.captcha {
   margin-bottom: 30px;
 }
 
+#drawer nav ul.menu {
+  display: flex;
+  flex-direction: column-reverse;
+}
