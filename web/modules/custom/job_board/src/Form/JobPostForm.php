@@ -238,18 +238,29 @@ class JobPostForm extends ContentEntityForm {
     return $actions;
   }
 
-  public function submitFormAddToCart(array $form, FormStateInterface $form_state) {
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    parent::submitForm($form, $form_state);
+
     // If this job has been upgraded to a RPO ser values appropriately.
     if ($form_state->getValue(['duration_upsell']['extend'])) {
-      $this->getEntity()->initial_duration = 'P60D';
+      $this->entity->initial_duration = 'P60D';
     }
     if ($form_state->getValue(['rpo_upsell', 'rpo'])) {
-      $this->getEntity()->rpo = TRUE;
+      $this->entity->rpo = TRUE;
     }
     else {
-      $this->getEntity()->rpo = FALSE;
+      $this->entity->rpo = FALSE;
     }
+  }
 
+  /**
+   * @param array $form
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   */
+  public function submitFormAddToCart(array $form, FormStateInterface $form_state) {
     $cart_provider = \Drupal::service('commerce_cart.cart_provider');
     /** @var \Drupal\commerce_cart\CartManagerInterface $cart_manager */
     $cart_manager = \Drupal::service('commerce_cart.cart_manager');
