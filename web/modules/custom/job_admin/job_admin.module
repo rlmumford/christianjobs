@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * Implements hook_page_attachments().
+ */
+function job_admin_page_attachments(array &$page) {
+  if (!\Drupal::currentUser()->hasPermission('access toolbar')) {
+    return;
+  }
+
+  $page['#attached']['library'][] = 'job_admin/toolbar-icons';
+}

@@ -1,0 +1,7 @@
+.toolbar #toolbar-link-view-jobs_admin-list::before {
+  background-image: url(../assets/jobs_admin-icon.svg);
+}
+
+.toolbar #toolbar-link-view-jobs_admin_services-list::before {
+  background-image: url(../assets/services_admin-icon.svg);
+}

@@ -13,6 +13,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
+use Drupal\job_board\Form\JobDeleteForm;
 use Drupal\job_board\Form\JobForm;
 use Drupal\job_board\Form\JobPostForm;
 use Drupal\job_board\JobBoardJobRole;
@@ -43,9 +44,11 @@ function job_board_entity_type_build(&$entity_types) {
     $entity_type->setClass(JobBoardJobRole::class);
     $entity_type->setFormClass('edit', JobForm::class);
     $entity_type->setFormClass('post', JobPostForm::class);
+    $entity_type->setFormClass('delete', JobDeleteForm::class);
     $entity_type->setHandlerClass('access', JobBoardJobRoleAccessControlHandler::class);
     $entity_type->setLinkTemplate('canonical', '/job/{job_role}');
     $entity_type->setLinkTemplate('edit-form', '/job/{job_role}/edit');
+    $entity_type->setLinkTemplate('delete-form', '/job/{job_role}/delete');
   }
 
   if ($entity_type = $entity_types['user']) {
