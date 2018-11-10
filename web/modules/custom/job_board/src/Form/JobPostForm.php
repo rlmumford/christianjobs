@@ -245,8 +245,11 @@ class JobPostForm extends ContentEntityForm {
     parent::submitForm($form, $form_state);
 
     // If this job has been upgraded to a RPO ser values appropriately.
-    if ($form_state->getValue(['duration_upsell']['extend'])) {
+    if ($form_state->getValue(['duration_upsell', 'extend'])) {
       $this->entity->initial_duration = 'P60D';
+    }
+    else {
+      $this->entity->initial_duration = 'P30D';
     }
     if ($form_state->getValue(['rpo_upsell', 'rpo'])) {
       $this->entity->rpo = TRUE;
