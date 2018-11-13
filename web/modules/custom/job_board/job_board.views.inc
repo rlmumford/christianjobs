@@ -27,6 +27,33 @@ function job_board_views_data_alter(array &$data) {
     $data[$table_name]['organisation']['filter']['entity_type'] = 'job_role';
     $data[$table_name]['organisation']['filter']['field_name'] = 'organisation';
 
+    // Location field
+    $data[$table_name]['location_geo__proximity'] = [
+      'title' => 'Location Geo Proximity',
+      'field' => [
+        'id' => 'geofield_proximity_field',
+        'real field' => $field_name,
+        'float' => TRUE,
+        'click sortable' => TRUE,
+        'additional fields' => [
+          'latitude' => [
+            'field' => 'location_geo__lat',
+          ],
+          'longitude' => [
+            'field' => 'location_geo__lon',
+          ],
+        ],
+      ],
+      'filter' => [
+        'id' => 'geofield_proximity_filter',
+        'entity_type' => 'job_role',
+        'field_name' => 'location_geo',
+        'real field' => 'location_geo_',
+      ],
+    ];
+
+
+
     // List fields.
     foreach (['hours', 'compensation'] as $field_name) {
       $data[$table_name][$field_name]['filter'] = [

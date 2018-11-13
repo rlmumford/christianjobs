@@ -64,6 +64,8 @@
         "drupal/eu_cookie_compliance": "^1.2",
         "drupal/facets": "^1.0",
         "drupal/fontawesome": "^2.2",
+        "drupal/geocoder": "^2.0@beta",
+        "drupal/geofield": "^1.0@beta",
         "drupal/legal": "^1.0@beta",
         "drupal/material_base": "^1.5",
         "drupal/metatag": "^1.7",
@@ -127,6 +129,9 @@
             },
             "drupal/core": {
                 "Entity reference views filter": "https://www.drupal.org/files/issues/2018-11-02/22429699-114.patch"
+            },
+            "drupal/geofield": {
+                "Proximity Filter": "https://www.drupal.org/files/issues/2018-11-10/geofield_proximity_view_handlers_system_3012750_%235.diff"
             }
         },
         "installer-paths": {

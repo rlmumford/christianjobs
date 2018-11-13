@@ -64,6 +64,17 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     return [];
   }
 
+  $fields['description_summary'] = BaseFieldDefinition::create('text_long')
+    ->setLabel(t('Summary'))
+    ->setRevisionable(TRUE)
+    ->setRequired(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayOptions('form', [
+      'weight' => -5,
+      'type' => 'text_textarea',
+    ]);
+
   $fields['publish_date'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
     ->setLabel(t('Publish Date'))
@@ -150,8 +161,10 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDescription(t('Select up to 10 keywords to describe this job.'))
     ->setCardinality(10)
     ->setRevisionable(TRUE)
+    ->setRequired(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayOptions('form', [
+      'weight' => -6,
       'type' => 'entity_reference_autocomplete_tags',
     ])
     ->setDisplayConfigurable('form', TRUE);
@@ -168,9 +181,11 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setLabel(t('Category'))
     ->setDescription(t('Select an category.'))
     ->setCardinality(1)
+    ->setRequired(TRUE)
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayOptions('form', [
+      'weight' => -7,
       'type' => 'entity_reference_autocomplete',
     ])
     ->setDisplayConfigurable('form', TRUE);
@@ -181,9 +196,11 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
       'apprentice' => t('Apprentice'),
       'pro_rate' => t('Pro-Rata'),
       'salaried' => t('Salaried'),
+      'self_funded' => t('Self-Funded'),
     ])
     ->setLabel(t('Compensation'))
     ->setDescription(t('How is the role compensated?'))
+    ->setRequired(TRUE)
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayOptions('form', [
@@ -205,6 +222,24 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ])
     ->setDisplayConfigurable('form', TRUE);
 
+  $fields['location_type'] = BaseFieldDefinition::create('list_string')
+    ->setLabel(t('Location Type'))
+    ->setSetting('allowed_values', [
+      'home' => new TranslatableMarkup('Home based'),
+      'remote' => new TranslatableMarkup('Remote working'),
+      'office' => new TranslatableMarkup('Office based'),
+      'location' => new TranslatableMarkup('On location'),
+    ])
+    ->setRevisionable(TRUE)
+    ->setRequired(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['location_geo'] = BaseFieldDefinition::create('geofield')
+    ->setLabel('Location Geo')
+    ->setRevisionable(TRUE)
+    ->setRequired(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
   $fields['location'] = BaseFieldDefinition::create('address')
     ->setLabel(t('Location'))
     ->setSetting('field_overrides', [
@@ -275,6 +310,18 @@ function job_board_form_views_exposed_form_alter(array &$form, FormStateInterfac
     return;
   }
 
+  if (!empty($form['location_geo__proximity'])) {
+    $form['location_geo__proximity']['#type'] = 'container';
+    $form['location_geo__proximity']['value']['#title'] = 'Location';
+    $form['location_geo__proximity']['value']['#description'] = NULL;
+    $form['location_geo__proximity']['value']['#size'] = 5;
+    $form['location_geo__proximity']['value']['#wrapper_attributes']['class'] = ['distance-container'];
+    $form['location_geo__proximity']['value']['#field_prefix'] = new TranslatableMarkup('Within');
+    $form['location_geo__proximity']['value']['#field_suffix'] = new TranslatableMarkup(' miles of ');
+    $form['location_geo__proximity']['source_configuration']['origin']['#title'] = NULL;
+    $form['location_geo__proximity']['source_configuration']['#attributes']['class'] = ['origin-container'];
+  }
+
   $form['#attributes']['class'][] = 'card';
   $form['actions']['#attributes']['class'] = ['card-item', 'card-actions', 'divider-top'];
   $form['actions']['submit']['#value'] = new TranslatableMarkup('Search');
@@ -289,6 +336,17 @@ function job_board_form_views_exposed_form_alter(array &$form, FormStateInterfac
   $form['filters']['label']['#title'] = $form['#info']['filter-label']['label'];
   $form['filters']['label']['#wrapper_attributes']['class'] = ['col-xs-12', 'col-md-6'];
 
+  $form['filters']['organisation'] = $form['organisation'];
+  unset($form['organisation']);
+  $form['filters']['organisation']['#title'] = $form['#info']['filter-organisation']['label'];
+  $form['filters']['organisation']['#wrapper_attributes']['class'] = ['col-xs-12', 'col-md-6'];
+
+  $form['filters']['location_geo__proximity'] = $form['location_geo__proximity'];
+  unset($form['location_geo__proximity']);
+  $form['filters']['location_geo__proximity']['#attributes']['class'] = ['col-xs-12', 'col-md-7', 'form-item', 'proximity-filter-container'];
+
+
+
   /**
   $form['organisation']['#type'] = 'select2';
   $form['organisation']['#cardinality'] = 1;
@@ -297,20 +355,11 @@ function job_board_form_views_exposed_form_alter(array &$form, FormStateInterfac
     'width' => '100%',
   ];
    * **/
-  $form['filters']['organisation'] = $form['organisation'];
-  unset($form['organisation']);
-  $form['filters']['organisation']['#title'] = $form['#info']['filter-organisation']['label'];
-  $form['filters']['organisation']['#wrapper_attributes']['class'] = ['col-xs-12', 'col-md-6'];
-
-  $form['filters']['location__administrative_area'] = $form['location__administrative_area'];
-  unset($form['location__administrative_area']);
-  $form['filters']['location__administrative_area']['#title'] = $form['#info']['filter-location__administrative_area']['label'];
-  $form['filters']['location__administrative_area']['#wrapper_attributes']['class'] = ['col-xs-12', 'col-md-5'];
 
   $form['filters']['compensation'] = $form['compensation'];
   unset($form['compensation']);
   $form['filters']['compensation']['#title'] = $form['#info']['filter-compensation']['label'];
-  $form['filters']['compensation']['#wrapper_attributes']['class'] = ['col-xs-6', 'col-md-3'];
+  $form['filters']['compensation']['#wrapper_attributes']['class'] = ['col-xs-6', 'col-md-2'];
 
   $form['filters']['industry'] = $form['industry'];
   unset($form['industry']);

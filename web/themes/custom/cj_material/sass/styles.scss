@@ -328,6 +328,7 @@ h2.company-name {
 .job-result .views-field-keywords-target-id {
   font-size: 0.9em;
   font-weight: bold;
+  text-transform: capitalize;
 }
 .job-result p.address {
   display: inline-block;
@@ -699,4 +700,31 @@ details.captcha {
 #drawer nav ul.menu {
   display: flex;
   flex-direction: column-reverse;
+}
+
+.field--name-description-summary .filter-wrapper {
+  display: none;
+}
+
+/* Location Filter */
+div.proximity-filter-container {
+  div.distance-container {
+    display: inline-block;
+
+    span, input {
+      display: inline;
+    }
+
+    label {
+      display: block;
+    }
+
+    input {
+      width: 50px;
+    }
+  }
+
+  div.origin-container {
+    display: inline-block;
+  }
 }

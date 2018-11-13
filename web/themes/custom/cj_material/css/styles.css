@@ -3661,6 +3661,7 @@ h2.company-name {
 .job-result .views-field-keywords-target-id {
   font-size: 0.9em;
   font-weight: bold;
+  text-transform: capitalize;
 }
 
 .job-result p.address {
@@ -4041,6 +4042,27 @@ details.captcha {
 #drawer nav ul.menu {
   display: flex;
   flex-direction: column-reverse;
+}
+
+.field--name-description-summary .filter-wrapper {
+  display: none;
+}
+
+/* Location Filter */
+div.proximity-filter-container div.distance-container {
+  display: inline-block;
+}
+div.proximity-filter-container div.distance-container span, div.proximity-filter-container div.distance-container input {
+  display: inline;
+}
+div.proximity-filter-container div.distance-container label {
+  display: block;
+}
+div.proximity-filter-container div.distance-container input {
+  width: 50px;
+}
+div.proximity-filter-container div.origin-container {
+  display: inline-block;
 }
 
 /*# sourceMappingURL=styles.css.map */

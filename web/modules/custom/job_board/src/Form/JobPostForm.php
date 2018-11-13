@@ -12,6 +12,7 @@ use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_order\Adjustment;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 class JobPostForm extends ContentEntityForm {
@@ -28,6 +29,43 @@ class JobPostForm extends ContentEntityForm {
    */
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
+    $form['label']['#weight'] = -10;
+    $form['industry']['#weight'] = -7;
+    $form['keywords']['#weight'] = -6;
+
+    $form['description_summary']['widget'][0]['#maxlength'] = 350;
+    $form['description_summary']['widget'][0]['#placeholder'] = t('Enter a short summary of your opportunity.');
+    $form['description_summary']['widget'][0]['#rows'] = 4;
+    $form['description_summary']['widget'][0]['#format'] = 'restricted_html';
+
+
+    $form['location']['widget'][0]['type'] = [
+      '#type' => 'select',
+      '#weight' => -1,
+      '#title' => new TranslatableMarkup('Type'),
+      '#options' => [
+        'home' => new TranslatableMarkup('Home based'),
+        'remote' => new TranslatableMarkup('Remote working'),
+        'office' => new TranslatableMarkup('Office based'),
+        'location' => new TranslatableMarkup('On location'),
+      ],
+      '#default_value' => $this->entity->location_type->value,
+    ];
+
+    $form['salary']['widget'][0]['compensation'] = [
+      '#type' => 'select',
+      '#weight' => -1,
+      '#title' => new TranslatableMarkup('Type'),
+      '#options' => [
+        'volunteer' => t('Volunteer'),
+        'apprentice' => t('Apprentice'),
+        'pro_rate' => t('Pro-Rata'),
+        'salaried' => t('Salaried'),
+        'self_funded' => t('Self-Funded'),
+      ],
+      '#default_value' => $this->entity->compensation->value,
+    ];
+    $form['compensation']['#access'] = FALSE;
 
     // Move the contact_ fields into their own section.
     $form['contact_details'] = [
@@ -256,6 +294,13 @@ class JobPostForm extends ContentEntityForm {
     }
     else {
       $this->entity->rpo = FALSE;
+    }
+
+    if ($location_type = $form_state->getValue(['location', '0', 'type'])) {
+      $this->entity->location_type = $location_type;
+    }
+    if ($salary_type = $form_state->getValue(['salary', '0', 'compsensation'])) {
+      $this->entity->compensation = $salary_type;
     }
   }
 

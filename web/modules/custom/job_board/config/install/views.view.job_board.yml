@@ -12,6 +12,7 @@ dependencies:
   module:
     - address
     - datetime
+    - geofield
     - image
     - job_role
     - options
@@ -988,56 +989,6 @@ display:
           entity_type: job_role
           entity_field: end_date
           plugin_id: datetime
-        location__administrative_area:
-          id: location__administrative_area
-          table: job_role_revision
-          field: location__administrative_area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: location__administrative_area_op
-            label: Location
-            description: ''
-            use_operator: false
-            operator: location__administrative_area_op
-            identifier: location__administrative_area
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              employer: '0'
-              account_manager: '0'
-              team_manager: '0'
-            reduce: false
-            label_type: static
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          country:
-            country_source: static
-            country_argument_id: ''
-            country_filter_id: ''
-            country_static_code: GB
-          entity_type: job_role
-          entity_field: location
-          plugin_id: administrative_area
         compensation:
           id: compensation
           table: job_role
@@ -1133,6 +1084,64 @@ display:
           entity_type: job_role
           entity_field: industry
           plugin_id: taxonomy_index_tid
+        location_geo__proximity:
+          id: location_geo__proximity
+          table: job_role
+          field: location_geo__proximity
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '<='
+          value:
+            min: '0'
+            max: '100'
+            value: '30'
+          group: 1
+          exposed: true
+          expose:
+            operator_id: location_geo__proximity_op
+            label: 'Location Geo Proximity'
+            description: ''
+            use_operator: false
+            operator: location_geo__proximity_op
+            identifier: location_geo__proximity
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              employer: '0'
+              account_manager: '0'
+              team_manager: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: 'Location Geo Proximity'
+            description: null
+            identifier: location_geo__proximity
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
+          units: GEOFIELD_MILES
+          source: job_board_geocoded_string_origin
+          source_configuration:
+            exposed_summary: 1
+            origin: {  }
+            origin_unexposed: 0
+            origin_unexposed_summary: 1
+          entity_type: job_role
+          plugin_id: geofield_proximity_filter
       sorts:
         publish_date:
           id: publish_date
@@ -1167,7 +1176,20 @@ display:
       title: Jobs
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No results found for your search criteria. '
+            format: basic_html
+          plugin_id: text
       relationships:
         organisation:
           id: organisation
