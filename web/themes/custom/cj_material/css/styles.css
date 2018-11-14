@@ -3327,6 +3327,14 @@ h2 {
   color: #FF904B;
 }
 
+h3 {
+  color: #40BAFF;
+}
+
+h4 {
+  color: #FF904B;
+}
+
 p strong {
   font-weight: bold;
 }
@@ -4035,10 +4043,6 @@ details.captcha {
     line-height: 54px;
   }
 }
-.row-wrapper.section-wrapper .row {
-  margin-bottom: 30px;
-}
-
 #drawer nav ul.menu {
   display: flex;
   flex-direction: column-reverse;
