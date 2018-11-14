@@ -205,7 +205,7 @@ details.captcha {
 }
 
 /* CTA Buttons */
-a.button-cta,
+.eu-cookie-compliance-buttons button, a.button-cta,
 #block-cj-material-local-actions nav .button.button-action,
 input.button {
   margin-top: 1em;
@@ -234,19 +234,19 @@ input.button {
 }
 input.button:hover,
 #block-cj-material-local-actions nav .button.button-action:hover,
-a.button-cta:hover {
+.eu-cookie-compliance-buttons button:hover, a.button-cta:hover {
   color: #4BBAFF;
   background: #FFFFFF;
   border: 3px solid #4BBAFF;
 }
 input.button.button-orange,
 #block-cj-material-local-actions nav .button.button-action,
-a.button-cta.button-orange {
+.eu-cookie-compliance-buttons button.decline-button, a.button-cta.button-orange {
   background: #FF904B;
 }
 input.button.button-orange:hover,
 #block-cj-material-local-actions nav .button.button-action:hover,
-a.button-cta.button-orange:hover {
+.eu-cookie-compliance-buttons button.decline-button:hover, a.button-cta.button-orange:hover {
   background: #FFFFFF;
   color: #FF904B;
   border: 3px solid #FF904B;
@@ -727,4 +727,21 @@ div.proximity-filter-container {
   div.origin-container {
     display: inline-block;
   }
+}
+
+#sliding-popup h1, #sliding-popup h2, #sliding-popup h3, #sliding-popup p,
+.eu-cookie-compliance-more-button, .eu-cookie-compliance-secondary-button, .eu-cookie-withdraw-tab {
+  color: #414141;
+  font-weight: normal;
+}
+
+div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-withdraw-tab {
+  background: #FF904B;
+}
+
+.eu-cookie-compliance-buttons button {
+  margin-top: 0;
+  min-height: 0;
+  box-shadow: none;
+  text-shadow: none;
 }
