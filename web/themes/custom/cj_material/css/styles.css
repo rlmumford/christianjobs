@@ -4086,4 +4086,50 @@ div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-with
   text-shadow: none;
 }
 
+.rpo-step .step-heading, .rpo-step .step-sub-heading {
+  padding-left: 130px;
+}
+.rpo-step .step-sub-heading {
+  margin-bottom: 24px;
+}
+
+.rpo-step::before {
+  content: url(../assets/intake_session_with_client.svg);
+  width: 120px;
+  height: 120px;
+  position: absolute;
+}
+
+.rpo-step.rpo-step-2::before {
+  content: url(../assets/create_bio_details_job_advert.svg);
+}
+
+.rpo-step.rpo-step-3::before {
+  content: url(../assets/posting_job_advert.svg);
+}
+
+.rpo-step.rpo-step-4::before {
+  content: url(../assets/response_to_candidates.svg);
+}
+
+.rpo-step.rpo-step-5::before {
+  content: url(../assets/end_of_week_review.svg);
+}
+
+.rpo-step.rpo-step-6::before {
+  content: url(../assets/submission_of_candidates.svg);
+}
+
+.rpo-step.rpo-step-7::before {
+  content: url(../assets/interview_process.svg);
+}
+
+.rpo-step.rpo-step-8::before {
+  content: url(../assets/hiring_candidate.svg);
+}
+
+.rpo-step.rpo-step-9::before {
+  content: url(../assets/feedback_from_client.svg);
+}
+
 /*# sourceMappingURL=styles.css.map */
