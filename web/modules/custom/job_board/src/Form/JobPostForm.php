@@ -215,13 +215,6 @@ class JobPostForm extends JobForm {
     else {
       $this->entity->rpo = FALSE;
     }
-
-    if ($location_type = $form_state->getValue(['location', '0', 'type'])) {
-      $this->entity->location_type = $location_type;
-    }
-    if ($salary_type = $form_state->getValue(['salary', '0', 'compsensation'])) {
-      $this->entity->compensation = $salary_type;
-    }
   }
 
   /**

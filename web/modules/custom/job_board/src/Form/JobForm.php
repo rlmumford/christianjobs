@@ -99,6 +99,13 @@ class JobForm extends ContentEntityForm {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
 
+    if ($location_type = $form_state->getValue(['location', '0', 'type'])) {
+      $this->entity->location_type = $location_type;
+    }
+    if ($salary_type = $form_state->getValue(['salary', '0', 'compsensation'])) {
+      $this->entity->compensation = $salary_type;
+    }
+
     $form_state->setRedirect(
       'entity.job_role.canonical',
       ['job_role' => $this->getEntity()->id()]
