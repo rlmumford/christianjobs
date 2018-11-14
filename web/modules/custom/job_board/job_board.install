@@ -552,7 +552,7 @@ function job_board_update_8014() {
  * Field Improvements.
  */
 function job_board_update_8016() {
-  \Drupal::service('module_installer')->install(['geofield', 'geocoder', 'geocoder_address', 'geocoder_geofield', 'geocoder_field']);
+  \Drupal::service('module_installer')->install(['geofield', 'geocoder', 'geocoder_address', 'geocoder_geofield', 'geocoder_field', 'google_analytics']);
 
   $fields['location_type'] = BaseFieldDefinition::create('list_string')
     ->setLabel(t('Location Type'))
