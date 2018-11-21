@@ -788,3 +788,11 @@ div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-with
 .rpo-step.rpo-step-9::before {
   content: url(../assets/feedback_from_client.svg);
 }
+
+.partner-card--church-insight img {
+  object-fit: contain;
+  object-position: center;
+}
+.partner-card--cpo img {
+  object-fit: contain;
+}

@@ -4132,4 +4132,13 @@ div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-with
   content: url(../assets/feedback_from_client.svg);
 }
 
+.partner-card--church-insight img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.partner-card--cpo img {
+  object-fit: contain;
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -116,6 +116,20 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'ashburnhamlogo.jpg',
           Url::fromUri('https://www.ashburnham.org.uk')
         ),
+        'cpo' => $this->buildPartnerCard(
+          'CPO',
+          'Design, Print, Digital & Training',
+          'CPO is an organisation committed to serving churches and charities in communication and outreach through design, print & digital resources, training and support.',
+          'CPO-logo.jpg',
+          Url::fromUri('https://cpo.org.uk/about')
+        ),
+        'endis' => $this->buildPartnerCard(
+          'Church Insight',
+          'Website, Fundraising and Online Marketing',
+          'Church Insight are experts in designing and building easy-to-use websites for Christian organisations.',
+          'ChurchInsight-logo-750.png',
+          Url::fromUri('https://churchinsight.co.uk/')
+        )
       ]
     ];
 
@@ -136,7 +150,7 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
         '#type' => 'html_tag',
         '#tag' => 'a',
         '#attributes' => [
-          'class' => ['card', 'partner-card'],
+          'class' => ['card', 'partner-card', 'partner-card--'.str_replace(' ', '-', strtolower($name))],
           'href' => $url->toString(),
           'target' => '_blank',
         ],
