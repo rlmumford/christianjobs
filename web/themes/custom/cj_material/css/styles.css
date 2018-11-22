@@ -3427,31 +3427,6 @@ details.captcha div.g-recaptcha {
   color: #BBBBBB;
 }
 
-.path-frontpage header#header::before {
-  content: "";
-  background-image: url(../peoplebglesssmall.png);
-  position: absolute;
-  width: 400px;
-  height: 300px;
-  bottom: 0;
-  left: 0;
-  background-size: 400px;
-  background-position-y: bottom;
-  background-repeat: no-repeat;
-}
-
-@media only screen and (max-width: 992px) {
-  .path-frontpage header#header::before {
-    background-size: 300px;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .path-frontpage header#header::before {
-    background-image: none;
-    width: 0;
-    height: 0;
-  }
-}
 .path-frontpage header#header {
   background-image: url(../header-bg.jpg);
   background-color: #b8e6ff;
@@ -3496,6 +3471,7 @@ details.captcha div.g-recaptcha {
 
 .header-front-ctas .button-cta {
   margin: 40px 15px;
+  border-radius: 50px;
 }
 
 .navbar-fixed #navbar,
@@ -3902,6 +3878,19 @@ h2.section-header::after {
   left: 0;
   position: absolute;
   width: 80px;
+}
+
+.path-frontpage div.section-header-wrapper {
+  text-align: center;
+}
+.path-frontpage h2.section-header {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  font-size: 24px;
+  display: inline-block;
+}
+.path-frontpage h2.section-header::after {
+  width: 100%;
 }
 
 .section-wrapper--blue h2.section-header {

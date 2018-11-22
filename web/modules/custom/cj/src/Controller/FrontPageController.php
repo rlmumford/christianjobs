@@ -5,6 +5,7 @@ namespace Drupal\cj\Controller;
 use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
 use Drupal\commerce_price\Price;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 class FrontPageController extends ControllerBase {
 
@@ -81,6 +82,27 @@ class FrontPageController extends ControllerBase {
         ],
       ];
     }
+
+    $build['title'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['row', 'section'],
+      ],
+      'title' => [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['col-xs-12', 'section-header-wrapper'],
+        ],
+        'title' => [
+          '#type' => 'html_tag',
+          '#tag' => 'h2',
+          '#attributes' => [
+            'class' => [ 'section-header' ]
+          ],
+          '#value' => new TranslatableMarkup('Pricing'),
+        ],
+      ],
+    ];
     $build['pricing'] = $row;
 
     // @todo: References.

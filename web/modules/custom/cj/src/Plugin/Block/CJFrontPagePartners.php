@@ -84,7 +84,7 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
         'title' => [
           '#type' => 'container',
           '#attributes' => [
-            'class' => ['col-xs-12'],
+            'class' => ['col-xs-12', 'section-header-wrapper'],
           ],
           'title' => [
             '#type' => 'html_tag',
