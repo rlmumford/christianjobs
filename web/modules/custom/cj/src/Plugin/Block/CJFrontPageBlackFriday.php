@@ -120,7 +120,7 @@ class CJFrontPageBlackFriday extends BlockBase implements ContainerFactoryPlugin
             '#type' => 'html_tag',
             '#tag' => 'ul',
             '#value' => '<li>1 <strong>free</strong> 60 day advert worth £100</li>
-              <li>20% off all adverts for 1 year</li>
+              <li>25% off all adverts for 1 year</li>
               <li>1 <strong>free</strong> ticket to each of our quarterly training & networking events</li>
               <li>1 <strong>free</strong> copy of Every Good Endeavour by Tim Keller</li>
               <li><strong>10%</strong> off all resources from <a href="https://cpo.org.uk" title="CPO" alt="CPO Homepage">CPO</a></li>
