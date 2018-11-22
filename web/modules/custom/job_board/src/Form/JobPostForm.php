@@ -278,7 +278,7 @@ class JobPostForm extends JobForm {
     ]);
   }
 
-  public function submitFormRedirectToJobMost(array $form, FormStateInterface $form_state) {
+  public function submitFormRedirectToJobPost(array $form, FormStateInterface $form_state) {
     $form_state->setRedirect('job_board.post');
   }
 }
