@@ -120,7 +120,13 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
    *   The order item title.
    */
   public function getOrderItemTitle() {
-    return $this->label();
+    $title = $this->label()." (".($this->initial_duration->value == 'P60D' ? '60 Days' : '30 Days').")";
+
+    if ($this->isRPO()) {
+      $title .= " [RPO]";
+    }
+
+    return $title;
   }
 
   /**
@@ -164,5 +170,14 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
    * Set whether the job is active.
    */
   public function setActive($active) {}
+
+  /**
+   * Is this job post an RPO.
+   *
+   * @return boolean
+   */
+  public function isRPO() {
+    return $this->rpo->value ? TRUE : FALSE;
+  }
 
 }

@@ -1,0 +1,6 @@
+services:
+  cj_membership.promotion_order_processor:
+    class: Drupal\cj_membership\MembershipOrderProcessor
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: commerce_order.order_processor, priority: 51, adjustment_type: promotion }

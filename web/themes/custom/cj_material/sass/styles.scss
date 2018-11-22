@@ -26,7 +26,7 @@ h3 {
 h4 {
   color: #FF904B;
 }
-p strong {
+strong {
   font-weight: bold;
 }
 a.card {
@@ -786,4 +786,9 @@ div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-with
 }
 .partner-card--cpo img {
   object-fit: contain;
+}
+
+.section-wrapper--black {
+  background: #0f0f0f;
+  color: #f1f1f1;
 }

@@ -14,11 +14,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Provides a block that displays page contemt.
  *
  * @Block(
- *   id = "cj_front_page_partners",
- *   admin_label = @Translation("Christian Jobs Front Page Partners"),
+ *   id = "cj_front_page_black_friday",
+ *   admin_label = @Translation("Christian Jobs Front Page Black Friday"),
  * )
  */
-class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInterface {
+class CJFrontPageBlackFriday extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * Creates a CJHeaderBlock instance.
@@ -74,7 +74,7 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
     $build = [
       '#type' => 'container',
       '#attributes' => [
-        'class' => ['row-wrapper', 'partners', 'section-wrapper', 'section-wrapper--grey'],
+        'class' => ['row-wrapper', 'partners', 'section-wrapper', 'section-wrapper--black'],
       ],
       'row' => [
         '#type' => 'container',
@@ -92,44 +92,104 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
             '#attributes' => [
               'class' => [ 'section-header' ]
             ],
-            '#value' => new TranslatableMarkup('Our Partners'),
+            '#value' => new TranslatableMarkup('Black Friday Deals'),
           ],
         ],
-        'edwards' => $this->buildPartnerCard(
-          'Edwards Insurance Brokers',
-          'Specialist Insurance Brokers',
-          'Edwards Insurance Brokers is a family run business that specialise in church insurance, charity insurance, commercial insurance and insurance for high value homeowners.',
-          'edwardsinsurancelogo.png',
-          Url::fromUri('https://www.edwardsinsurance.co.uk/')
-        ),
-        'rock' => $this->buildPartnerCard(
-          'Rock UK',
-          'Outdoor Adventure for All',
-          'Four nationwide centres offer tailor-made programmes of challenging activities to encourage resilience, confidence and independence.',
-          'rockuklogo.svg',
-          Url::fromUri('https://rockuk.org')
-        ),
-        'ashburnham' => $this->buildPartnerCard(
-          'Ashburnham Place',
-          'Retreat, Rest & Refreshment',
-          'Set in 220 acres of stunning grounds and gardens, the Christian community at Ashburnham Place is committed to serving and resourcing people.',
-          'ashburnhamlogo.jpg',
-          Url::fromUri('https://www.ashburnham.org.uk')
-        ),
-        'cpo' => $this->buildPartnerCard(
-          'CPO',
-          'Design, Print, Digital & Training',
-          'CPO is an organisation committed to serving churches and charities in communication and outreach through design, print & digital resources, training and support.',
-          'CPO-logo.jpg',
-          Url::fromUri('https://cpo.org.uk/about')
-        ),
-        'endis' => $this->buildPartnerCard(
-          'Church Insight',
-          'Website, Fundraising and Online Marketing',
-          'Church Insight are experts in designing and building easy-to-use websites for Christian organisations.',
-          'ChurchInsight-logo-750.png',
-          Url::fromUri('https://churchinsight.co.uk/')
-        )
+        'membership' => [
+          '#type' => 'container',
+          '#attributes' => [
+            'class' => [ 'col-xs-12', 'col-md-6', 'hero' ],
+          ],
+          'title' => [
+            '#type' => 'html_tag',
+            '#tag' => 'h2',
+            '#attributes' => [
+              'class' => [ 'hero--title' ],
+            ],
+            '#value' => '40% off Community Membership',
+          ],
+          'description' => [
+            '#type' => 'html_tag',
+            '#tag' => 'p',
+            '#attributes' => [
+              'class' => [ 'hero--text' ],
+            ],
+            '#value' => 'Become a Community Member and get access to exclusive member benefits:',
+          ],
+          'list' => [
+            '#type' => 'html_tag',
+            '#tag' => 'ul',
+            '#value' => '<li>1 <strong>free</strong> 60 day advert worth £100</li>
+              <li>20% off all adverts for 1 year</li>
+              <li>1 <strong>free</strong> ticket to each of our quarterly training & networking events</li>
+              <li>1 <strong>free</strong> copy of Every Good Endeavour by Tim Keller</li>
+              <li><strong>10%</strong> off all resources from <a href="https://cpo.org.uk" title="CPO" alt="CPO Homepage">CPO</a></li>
+              <li><strong>£500</strong> off a new website project with <a href="https://churchinsight.co.uk" title="ChurchInsight" alt="Church Insight Homepage">ChurchInsight</a></li>
+              <li><strong>10%</strong> off all Team Building days at any one of <a href="https://rockuk.org" title="RockUK" alt="Rock UK Homepage">Rock UK\'s</a> four nationwide centres</li>
+              <li>Exclusive discounts on specialist insurance products from <a href="https://www.edwardsinsurance.co.uk/" title="Edwards Insurance" alt="Edwards Insurance Homepage">Edwards Insurance</a></li>
+              <li>Much, much more...</li>',
+          ],
+          'follow' => [
+            '#type' => 'html_tag',
+            '#tag' => 'p',
+            '#attributes' => [
+              'class' => [ 'hero--text' ],
+            ],
+            '#value' => 'Usually <del>£349+vat</del> <strong>NOW £209+vat</strong>',
+          ],
+          'cta' => [
+            '#type' => 'html_tag',
+            '#tag' => 'a',
+            '#attributes' => [
+              'class' => ['button', 'button-cta', 'button-orange'],
+              'href' => '/jobs/post?membership=membership',
+              'title' => 'Join Christian Jobs',
+              'alt' => 'Join Christian Jobs',
+            ],
+            '#value' => new TranslatableMarkup('Join Now')
+          ],
+        ],
+        'jobs' => [
+          '#type' => 'container',
+          '#attributes' => [
+            'class' => [ 'col-xs-12', 'col-md-6', 'hero' ],
+          ],
+          'title' => [
+            '#type' => 'html_tag',
+            '#tag' => 'h2',
+            '#attributes' => [
+              'class' => [ 'hero--title' ],
+            ],
+            '#value' => '30 days free',
+          ],
+          'description' => [
+            '#type' => 'html_tag',
+            '#tag' => 'p',
+            '#attributes' => [
+              'class' => [ 'hero--text' ],
+            ],
+            '#value' => 'Advertise your opportunity with us and get <strong>30 Days extra exposure for free!</strong>',
+          ],
+          'description_2' => [
+            '#type' => 'html_tag',
+            '#tag' => 'p',
+            '#attributes' => [
+              'class' => [ 'hero--text' ],
+            ],
+            '#value' => 'There are no hidden extra costs and social media sharing is included. Volunteer, salaried and self-funded roles are all catered for.',
+          ],
+          'cta' => [
+            '#type' => 'html_tag',
+            '#tag' => 'a',
+            '#attributes' => [
+              'class' => ['button', 'button-cta', 'button-orange'],
+              'href' => '/jobs/post',
+              'title' => 'Post a Job',
+              'alt' => 'Post a Job',
+            ],
+            '#value' => new TranslatableMarkup('Post a Job'),
+          ],
+        ],
       ]
     ];
 

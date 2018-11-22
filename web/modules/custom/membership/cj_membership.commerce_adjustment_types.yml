@@ -2,3 +2,7 @@ membership_discount:
   label: Membership Discount
   has_ui: true
   weight: 0
+membership_one_free:
+  label: Membership One Job Free
+  has_ui: true
+  weight: 0

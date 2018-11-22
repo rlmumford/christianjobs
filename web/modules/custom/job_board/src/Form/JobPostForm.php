@@ -206,9 +206,13 @@ class JobPostForm extends JobForm {
     if ($form_state->getValue(['duration_upsell', 'extend'])) {
       $this->entity->initial_duration = 'P60D';
     }
+    else if ($form_state->getValue(['membership', 'new']) || $form_state->getValue(['membership', 'extend'])) {
+      $this->entity->initial_duration = 'P60D';
+    }
     else {
       $this->entity->initial_duration = 'P30D';
     }
+
     if ($form_state->getValue(['rpo_upsell', 'rpo'])) {
       $this->entity->rpo = TRUE;
     }
@@ -229,7 +233,7 @@ class JobPostForm extends JobForm {
     if (!$cart) {
       $cart = $cart_provider->createCart('default');
     }
-    $job_post_item = $cart_manager->addEntity($cart, $this->getEntity());
+    $cart_manager->addEntity($cart, $this->getEntity());
 
     // If the membership options have been selected then add the membership to
     // the cart.
@@ -247,23 +251,8 @@ class JobPostForm extends JobForm {
         $membership = $current_membership;
       }
 
-      $free_job = FALSE;
       if ($membership) {
         $cart_manager->addEntity($cart, $membership);
-        $free_job = TRUE;
-      }
-
-      if ($membership || $current_membership->status->value == Membership::STATUS_ACTIVE) {
-        $adjustment_amount = $job_post_item->getTotalPrice()->multiply($free_job ? '-1' : '-0.25');
-        $adjustment_amount = \Drupal::service('commerce_price.rounder')->round($adjustment_amount);
-
-        $job_post_item->addAdjustment(new Adjustment([
-          'type' => 'membership_discount',
-          'label' => $free_job ? $this->t('First Job Free!') : $this->t('Membership Discount'),
-          'amount' => $adjustment_amount,
-          'percentage' => $free_job ? '100%' : '25%',
-          'source_id' => $membership ? $membership->id() : $current_membership->id(),
-        ]));
       }
     }
   }
