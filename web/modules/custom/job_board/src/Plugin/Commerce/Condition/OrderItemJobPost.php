@@ -29,7 +29,6 @@ class OrderItemJobPost extends ConditionBase {
    */
   public function defaultConfiguration() {
     $defaults = parent::defaultConfiguration();
-    $defaults['types'] = ['standard'];
     return $defaults;
   }
 
@@ -67,7 +66,7 @@ class OrderItemJobPost extends ConditionBase {
     parent::submitConfigurationForm($form, $form_state);
 
     $values = $form_state->getValue($form['#parents']);
-    $this->configuration['types'] = array_filter($values['types']);
+    $this->configuration['types'] = $values['types'];
     $this->configuration['max_jobs'] = $values['max_jobs'];
   }
 
@@ -126,7 +125,7 @@ class OrderItemJobPost extends ConditionBase {
    */
   protected function getJobTypes() {
     $configuration = $this->getConfiguration();
-    return isset($configuration['types']) ? $configuration['types'] : [];
+    return isset($configuration['types']) ? array_filter($configuration['types']) : [];
   }
 
   /**

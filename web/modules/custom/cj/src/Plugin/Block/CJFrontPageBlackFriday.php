@@ -123,7 +123,6 @@ class CJFrontPageBlackFriday extends BlockBase implements ContainerFactoryPlugin
               <li>25% off all adverts for 1 year</li>
               <li>1 <strong>free</strong> ticket to each of our quarterly training & networking events</li>
               <li>1 <strong>free</strong> copy of Every Good Endeavour by Tim Keller</li>
-              <li><strong>10%</strong> off all resources from <a href="https://cpo.org.uk" title="CPO" alt="CPO Homepage">CPO</a></li>
               <li><strong>£500</strong> off a new website project with <a href="https://churchinsight.co.uk" title="ChurchInsight" alt="Church Insight Homepage">ChurchInsight</a></li>
               <li><strong>10%</strong> off all Team Building days at any one of <a href="https://rockuk.org" title="RockUK" alt="Rock UK Homepage">Rock UK\'s</a> four nationwide centres</li>
               <li>Exclusive discounts on specialist insurance products from <a href="https://www.edwardsinsurance.co.uk/" title="Edwards Insurance" alt="Edwards Insurance Homepage">Edwards Insurance</a></li>
