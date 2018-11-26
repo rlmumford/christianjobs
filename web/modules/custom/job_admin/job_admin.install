@@ -83,3 +83,20 @@ function job_admin_update_8004() {
 
   \Drupal::service('module_installer')->install(['cshs']);
 }
+
+/**
+ * Install employer and membership views.
+ */
+function job_admin_update_8005() {
+  $source = new FileStorage(drupal_get_path('module', 'job_admin') . '/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  $configs_to_install = [
+    'views.view.employer_admin',
+    'views.view.membership_admin',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config_storage->write($name, $source->read($name));
+  }
+}

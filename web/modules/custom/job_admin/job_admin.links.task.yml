@@ -1,0 +1,12 @@
+job_admin.job_board:
+  route_name: view.jobs_admin.list
+  title: 'Jobs'
+  base_route: view.jobs_admin.list
+job_admin.employers:
+  route_name: view.employer_admin.list
+  title: 'Employers'
+  base_route: view.jobs_admin.list
+job_admin.memberships:
+  route_name: view.membership_admin.list
+  title: 'Memberships'
+  base_route: view.jobs_admin.list
