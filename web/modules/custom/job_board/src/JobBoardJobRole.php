@@ -68,7 +68,7 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
       }
 
       $address_collection = isset($value['value']) ? \Drupal::service('geocoder')->geocode($value['value'], ['googlemaps', 'googlemaps_business']) : NULL;
-
+dpm($address_collection);
       if ($address_collection) {
         $result[$delta] = $dumper->dump($address_collection->first());
 

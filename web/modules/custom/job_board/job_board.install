@@ -602,3 +602,37 @@ function job_board_update_8016() {
     $config_storage->write($name, $source->read($name));
   }
 }
+
+/**
+ * Location Tree Field
+ */
+function job_board_update_8017() {
+  $fields['location_tree'] = BaseFieldDefinition::create('entity_reference')
+    ->setLabel('Location (Tree)')
+    ->setSetting('target_type', 'taxonomy_term')
+    ->setSetting('handler', 'default:taxonomy_term')
+    ->setSetting('handler_settings', [
+      'target_bundles' => [
+        'locations' => 'locations',
+      ],
+      'auto_create' => TRUE,
+      'auto_create_bundle' => 'locations',
+    ])
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED);
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  foreach ($fields as $field_name => $definition) {
+    $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $definition);
+  }
+
+  $vocab = \Drupal::entityTypeManager()->getStorage('taxonomy_vocabulary')
+    ->create([
+      'status' => TRUE,
+      'name' => 'Locations',
+      'vid' => 'locations',
+      'hierarchy' => 1,
+      'description' => 'Location Region Tree',
+    ]);
+  $vocab->save();
+}

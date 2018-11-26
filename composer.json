@@ -60,6 +60,7 @@
         "drupal/commerce_square": "^1.2",
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.6",
+        "drupal/cshs": "^1.0@beta",
         "drupal/email_registration": "^1.0@RC",
         "drupal/eu_cookie_compliance": "^1.2",
         "drupal/facets": "^1.0",

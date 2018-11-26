@@ -240,6 +240,20 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setRequired(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
+  $fields['location_tree'] = BaseFieldDefinition::create('entity_reference')
+    ->setLabel('Location Tree')
+    ->setSetting('target_type', 'taxonomy_term')
+    ->setSetting('handler', 'default:taxonomy_term')
+    ->setSetting('handler_settings', [
+      'target_bundles' => [
+        'locations' => 'locations',
+      ],
+      'auto_create' => TRUE,
+      'auto_create_bundle' => 'locations',
+    ])
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED);
   $fields['location'] = BaseFieldDefinition::create('address')
     ->setLabel(t('Location'))
     ->setSetting('field_overrides', [

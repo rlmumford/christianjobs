@@ -85,5 +85,12 @@ function job_board_views_data_alter(array &$data) {
       'entity_type' => 'job_role',
       'field_name' => 'keywords',
     ] + $data[$table_name.'__keywords']['keywords_target_id']['filter'];
+
+    // location_tree field
+    $data[$table_name.'__location_tree']['location_tree_target_id']['filter'] = [
+      'id' => 'cshs_taxonomy_index_tid',
+      'entity_type' => 'job_role',
+      'field_name' => 'location_tree',
+    ] + $data[$table_name.'__location_tree']['location_tree_target_id']['filter'];
   }
 }

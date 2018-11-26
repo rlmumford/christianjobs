@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Locations
+vid: locations
+description: 'Location Tree'
+hierarchy: 1
+weight: 0
