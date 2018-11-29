@@ -134,7 +134,7 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'The Good Book Co.',
           'Biblical, Relevant & Accessible',
           'The Good Book Co. is dedicated to helping individual Christians and local churches grow.',
-          'TBGC-logo.png',
+          'TGBC-logo.png',
           Url::fromUri('https://www.thegoodbook.co.uk/')
         )
       ]
