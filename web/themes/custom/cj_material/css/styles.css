@@ -4149,7 +4149,7 @@ div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-with
   position: relative;
 }
 
-.partner-card.pull-bottom {
+.partner-card .pull-bottom {
   position: absolute;
   bottom: 24px;
   right: 24px;
