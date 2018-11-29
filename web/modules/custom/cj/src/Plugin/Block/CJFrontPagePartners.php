@@ -131,7 +131,7 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           Url::fromUri('https://churchinsight.co.uk/')
         ),
         'tgbc' => $this->buildPartnerCard(
-          'The Good Book Co.',
+          'The Good Book Co',
           'Biblical, Relevant & Accessible',
           'The Good Book Co. is dedicated to helping individual Christians and local churches grow.',
           'TGBC-logo.png',
