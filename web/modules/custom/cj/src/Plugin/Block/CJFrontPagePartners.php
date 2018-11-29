@@ -129,6 +129,13 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'Church Insight are experts in designing and building easy-to-use websites for Christian organisations.',
           'ChurchInsight-logo-750.png',
           Url::fromUri('https://churchinsight.co.uk/')
+        ),
+        'tgbc' => $this->buildPartnerCard(
+          'The Good Book Co.',
+          'Biblical, Relevant & Accessible',
+          'The Good Book Co. is dedicated to helping individual Christians and local churches grow.',
+          'TBGC-logo.png',
+          Url::fromUri('https://www.thegoodbook.co.uk/')
         )
       ]
     ];

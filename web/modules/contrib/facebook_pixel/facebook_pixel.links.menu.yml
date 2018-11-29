@@ -1,0 +1,6 @@
+facebook_pixel.admin:
+  title: 'Facebook Pixel'
+  route_name: facebook_pixel.settings_form
+  description: 'Facebook Pixel Settings'
+  parent: system.admin_config_development
+  weight: 100
