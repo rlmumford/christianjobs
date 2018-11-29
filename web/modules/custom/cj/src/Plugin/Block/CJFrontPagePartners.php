@@ -95,12 +95,12 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
             '#value' => new TranslatableMarkup('Our Partners'),
           ],
         ],
-        'edwards' => $this->buildPartnerCard(
-          'Edwards Insurance Brokers',
-          'Specialist Insurance Brokers',
-          'Edwards Insurance Brokers is a family run business that specialise in church insurance, charity insurance, commercial insurance and insurance for high value homeowners.',
-          'edwardsinsurancelogo.png',
-          Url::fromUri('https://www.edwardsinsurance.co.uk/')
+        'tgbc' => $this->buildPartnerCard(
+          'The Good Book Co',
+          'Biblical, Relevant & Accessible',
+          'The Good Book Co. is dedicated to helping individual Christians and local churches grow.',
+          'TGBC-logo.png',
+          Url::fromUri('https://www.thegoodbook.co.uk/')
         ),
         'rock' => $this->buildPartnerCard(
           'Rock UK',
@@ -109,12 +109,12 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'rockuklogo.svg',
           Url::fromUri('https://rockuk.org')
         ),
-        'ashburnham' => $this->buildPartnerCard(
-          'Ashburnham Place',
-          'Retreat, Rest & Refreshment',
-          'Set in 220 acres of stunning grounds and gardens, the Christian community at Ashburnham Place is committed to serving and resourcing people.',
-          'ashburnhamlogo.jpg',
-          Url::fromUri('https://www.ashburnham.org.uk')
+        'endis' => $this->buildPartnerCard(
+          'Church Insight',
+          'Website, Fundraising and Online Marketing',
+          'Church Insight are experts in designing and building easy-to-use websites for Christian organisations.',
+          'ChurchInsight-logo-750.png',
+          Url::fromUri('https://churchinsight.co.uk/')
         ),
         'cpo' => $this->buildPartnerCard(
           'CPO',
@@ -123,20 +123,20 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'CPO-logo.jpg',
           Url::fromUri('https://cpo.org.uk/about')
         ),
-        'endis' => $this->buildPartnerCard(
-          'Church Insight',
-          'Website, Fundraising and Online Marketing',
-          'Church Insight are experts in designing and building easy-to-use websites for Christian organisations.',
-          'ChurchInsight-logo-750.png',
-          Url::fromUri('https://churchinsight.co.uk/')
+        'edwards' => $this->buildPartnerCard(
+          'Edwards Insurance Brokers',
+          'Specialist Insurance Brokers',
+          'Edwards Insurance Brokers is a family run business that specialise in church insurance, charity insurance, commercial insurance and insurance for high value homeowners.',
+          'edwardsinsurancelogo.png',
+          Url::fromUri('https://www.edwardsinsurance.co.uk/')
         ),
-        'tgbc' => $this->buildPartnerCard(
-          'The Good Book Co',
-          'Biblical, Relevant & Accessible',
-          'The Good Book Co. is dedicated to helping individual Christians and local churches grow.',
-          'TGBC-logo.png',
-          Url::fromUri('https://www.thegoodbook.co.uk/')
-        )
+        'ashburnham' => $this->buildPartnerCard(
+          'Ashburnham Place',
+          'Retreat, Rest & Refreshment',
+          'Set in 220 acres of stunning grounds and gardens, the Christian community at Ashburnham Place is committed to serving and resourcing people.',
+          'ashburnhamlogo.jpg',
+          Url::fromUri('https://www.ashburnham.org.uk')
+        ),
       ]
     ];
 
