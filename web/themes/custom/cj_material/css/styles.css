@@ -4140,4 +4140,19 @@ div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-with
   color: #f1f1f1;
 }
 
+.partners .col-xs,
+.partners .col-md {
+  display: flex;
+}
+
+.partner-card {
+  position: relative;
+}
+
+.partner-card.pull-bottom {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+}
+
 /*# sourceMappingURL=styles.css.map */

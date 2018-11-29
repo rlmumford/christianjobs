@@ -151,7 +151,7 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
       '#type' => 'html_tag',
       '#tag' => 'div',
       '#attributes' => [
-        'class' => ['col-xs-12', 'col-md-4'],
+        'class' => ['col-xs', 'col-xs-12', 'col-md', 'col-md-4'],
       ],
       'content' => [
         '#type' => 'html_tag',
@@ -198,7 +198,7 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
         'cta' => [
           '#type' => 'container',
           '#attributes' => [
-            'class' => ['card-item', 'card-text', 'text-align-right'],
+            'class' => ['card-item', 'card-text', 'text-align-right', 'pull-bottom'],
           ],
           'content' => [
             '#type' => 'html_tag',
