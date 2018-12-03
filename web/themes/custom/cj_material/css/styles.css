@@ -4140,6 +4140,19 @@ div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-with
   color: #f1f1f1;
 }
 
+.section-wrapper--dark-blue {
+  background: #1e5168;
+  color: #f1f1f1;
+}
+
+.section-wrapper.cre {
+  padding-bottom: 30px;
+}
+
+.cre-text .hero--text {
+  font-size: 22px;
+}
+
 .partners .col-xs,
 .partners .col-md {
   display: flex;
