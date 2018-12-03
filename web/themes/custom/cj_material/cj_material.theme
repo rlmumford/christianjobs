@@ -5,6 +5,7 @@
  * Functions to support theming in the theme.
  */
 
+use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 
 /**
@@ -13,4 +14,31 @@ use Drupal\Core\Template\Attribute;
 function cj_material_preprocess_html(&$variables) {
   // Add sticky navbar class
   $variables['attributes']['class'][] = 'navbar-fixed';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for pages.
+ */
+function cj_material_preprocess_page(&$variables) {
+  if ($node = $variables['node']) {
+    /** @var \Drupal\node\Entity\Node $node */
+    if ($node->getType() == 'article') {
+      $variables['page']['content']['#attributes']['class'][] = 'card';
+      $variables['page']['content']['#attributes']['class'][] = 'card-main';
+
+      foreach (Element::children($variables['page']['content']) as $id) {
+        $block_render = &$variables['page']['content'][$id];
+        if (!empty($block_render['#lazy_builder'])) {
+          continue;
+        }
+        $block_render['#attributes']['class'][] = 'card-item';
+        if ($id == 'cj_material_page_title') {
+          $block_render['#attributes']['class'][] = 'card-title';
+        }
+        else {
+          $block_render['#attributes']['class'][] = 'card-text';
+        }
+      }
+    }
+  }
 }

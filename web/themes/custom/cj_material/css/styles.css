@@ -3917,7 +3917,9 @@ h2.section-header::after {
   }
 }
 a.job-card:hover, a.job-card:focus,
-a.partner-card:hover, a.partner-card:focus {
+a.partner-card:hover, a.partner-card:focus,
+article.card:hover,
+.content-card article.card-holder:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -4166,6 +4168,43 @@ div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-with
   position: absolute;
   bottom: 24px;
   right: 24px;
+}
+
+article.card, .content-card article.card-holder {
+  background: #f6f6f6;
+}
+
+article.card footer, .content-card article.card-holder footer {
+  position: relative;
+  background: #FFFFFF;
+}
+
+article.card a.read-more-pointer, .content-card article.card-holder a.read-more-pointer {
+  box-shadow: rgba(0, 0, 0, 0.4) 0 2px 5px;
+  transition: background-color 0.5s ease-out;
+  width: 50px;
+  height: 50px;
+  display: block;
+  border-radius: 25px;
+  background: #4BBAFF;
+  color: #f1f1f1;
+  text-align: center;
+  position: absolute;
+  right: 20px;
+  top: -25px;
+}
+
+article.card a.read-more-pointer:hover, .content-card article.card-holder a.read-more-pointer:hover {
+  background: #1E5168;
+}
+
+article.card a.read-more-pointer span, .content-card article.card-holder a.read-more-pointer span {
+  line-height: 50px;
+}
+
+article .field-name-field-image {
+  float: left;
+  margin-right: 15px;
 }
 
 /*# sourceMappingURL=styles.css.map */
