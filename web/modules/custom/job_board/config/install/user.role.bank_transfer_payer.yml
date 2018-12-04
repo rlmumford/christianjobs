@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bank_transfer_payer
+label: 'Bank Transfer Payer'
+weight: 6
+is_admin: null
+permissions: {  }

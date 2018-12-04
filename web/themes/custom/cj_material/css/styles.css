@@ -3797,6 +3797,11 @@ span.upsell-price .tax {
 .col-xs-9 input, .col-xs-10 input, .col-xs-11 input, .col-xs-12 input {
   width: 100%;
 }
+.col-md input[type=radio], .col-md-1 input[type=radio], .col-md-2 input[type=radio], .col-md-3 input[type=radio], .col-md-4 input[type=radio], .col-md-5 input[type=radio], .col-md-6 input[type=radio], .col-md-7 input[type=radio], .col-md-8 input[type=radio], .col-md-9 input[type=radio], .col-md-10 input[type=radio],
+.col-md-11 input[type=radio], .col-md-12 input[type=radio], .col-xs input[type=radio], .col-xs-1 input[type=radio], .col-xs-2 input[type=radio], .col-xs-3 input[type=radio], .col-xs-4 input[type=radio], .col-xs-5 input[type=radio], .col-xs-6 input[type=radio], .col-xs-7 input[type=radio], .col-xs-8 input[type=radio],
+.col-xs-9 input[type=radio], .col-xs-10 input[type=radio], .col-xs-11 input[type=radio], .col-xs-12 input[type=radio] {
+  width: initial;
+}
 
 #navbar-user-button a {
   display: inline-block;

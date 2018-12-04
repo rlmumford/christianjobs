@@ -450,6 +450,9 @@ span.upsell-price .tax {
   input {
     width: 100%;
   }
+  input[type="radio"] {
+    width: initial;
+  }
 }
 
 #navbar-user-button {

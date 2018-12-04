@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bank_transfer
+label: 'Bank Transfer'
+weight: null
+plugin: manual
+configuration:
+  instructions:
+    value: "<p>Please send the balance via wire transfer to&nbsp;<strong>Christian Jobs Ltd.</strong></p>\r\n\r\n<p><strong>Account Number:&nbsp;</strong>31281834<br />\r\n<strong>Sort Code:&nbsp;</strong>09-01-29</p>\r\n\r\n<p>Please include your order number as the payment reference.</p>\r\n"
+    format: basic_html
+  display_label: 'Bank Transfer'
+  mode: n/a
+  payment_method_types:
+    - credit_card
+conditions:
+  -
+    plugin: order_customer_role
+    configuration:
+      roles:
+        - bank_transfer_payer
+conditionOperator: AND
