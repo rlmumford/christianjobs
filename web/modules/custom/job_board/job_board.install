@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\Core\Config\Config;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -657,7 +658,7 @@ function job_board_update_8018() {
  * Add pathauto
  */
 function job_board_update_8019() {
-  $source = new FileStorage(drupal_get_path('module', 'cj').'/config/install');
+  $source = new FileStorage(drupal_get_path('module', 'job_board').'/config/install');
   /** @var \Drupal\Core\Config\StorageInterface $config_storage */
   $config_storage = \Drupal::service('config.storage');
 
