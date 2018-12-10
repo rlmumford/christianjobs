@@ -3428,17 +3428,12 @@ details.captcha div.g-recaptcha {
 }
 
 .path-frontpage header#header {
-  background-image: url(../header-bg.jpg);
-  background-color: #b8e6ff;
+  background-color: #1E5168;
   position: relative;
 }
 
-.path-frontpage.navbar-fixed #navbar {
-  background-color: rgba(255, 255, 255, 0.6);
-}
-
 .path-frontpage #header-content {
-  margin: 120px 0 80px;
+  margin: 50px 0 20px;
   text-align: center;
 }
 
@@ -3462,11 +3457,12 @@ details.captcha div.g-recaptcha {
 .path-frontpage .header-front h1 {
   margin-bottom: 0;
   margin-top: 24px;
+  color: #F1F1F1;
 }
 
 .path-frontpage .header-front span.tagline {
-  color: #FF904b;
   font-size: 1.1em;
+  color: #F1F1F1;
 }
 
 .header-front-ctas .button-cta {
