@@ -4203,7 +4203,7 @@ article.card a.read-more-pointer span, .content-card article.card-holder a.read-
   line-height: 50px;
 }
 
-article .field-name-field-image {
+.page-node-type-article article .field-name-field-image {
   float: left;
   margin-right: 15px;
 }
