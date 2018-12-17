@@ -3433,7 +3433,7 @@ details.captcha div.g-recaptcha {
 }
 
 .path-frontpage #header-content {
-  margin: 50px 0 20px;
+  margin: 20px 0;
   text-align: center;
 }
 
@@ -3470,32 +3470,59 @@ details.captcha div.g-recaptcha {
   border-radius: 50px;
 }
 
+.navbar-item .navbar-icon {
+  color: #F1F1F1;
+}
+
 .navbar-fixed #navbar,
 .navbar-fixed #navbar.navbar-bg {
-  background-color: #FFFFFF;
+  background-color: #1E5168;
 }
 
 .navbar-title a {
-  color: #4bbaff;
+  color: #F1F1F1;
   font-weight: bolder;
   font-family: "Montserrat";
 }
 
 .navbar-menu .menu a {
-  color: #4bbaff !important;
+  color: #F1F1F1;
   font-weight: bolder;
 }
 
 .navbar-menu .menu .active-trail a,
 .navbar-menu .menu .is-active,
 .navbar-menu .menu a:hover {
-  border-color: #4bbaff;
+  color: #F1F1F1;
+  border-color: #F1F1F1;
 }
 
 .navbar-branding > div:not(.contextual) + div {
   margin-left: 0px;
 }
 
+/**
+.path-frontpage.navbar-fixed #navbar,
+.path-frontpage.navbar-fixed #navbar.navbar-bg {
+  background-color: #FFFFFF;
+}
+
+.path-frontpage {
+  .navbar-title a {
+    color: color($color-accent-base, 400);
+  }
+
+  .navbar-menu .menu a {
+    color: color($color-accent-base, 400) !important;
+  }
+
+  .navbar-menu .menu .active-trail a,
+  .navbar-menu .menu .is-active,
+  .navbar-menu .menu a:hover {
+    border-color: color($color-accent-base, 400);
+  }
+}
+**/
 #block-christianjobsuserbutton {
   margin-right: 0;
 }
@@ -3730,12 +3757,12 @@ p.scripture {
   }
 }
 #footer {
-  background: #414141;
-  color: #BDBDBD;
+  background: #1E5168;
+  color: #F1F1F1;
 }
 
 #footer .services-icons.icon-primary {
-  background: #B1B1B1;
+  background: #F1F1F1;
   transition: background-color 0.2s ease-out;
   margin-bottom: -3px;
 }
@@ -3756,7 +3783,7 @@ div.footer-contact, div.footer-links {
 }
 
 div.footer-contact a, div.footer-links a {
-  color: #BDBDBD;
+  color: #F1F1F1;
   transition: color 0.2s ease-out;
 }
 
