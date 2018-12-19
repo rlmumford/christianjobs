@@ -26,10 +26,6 @@ class MembershipPurchaseButton extends BlockBase {
   }
 
   /**
-   * 
-   */
-
-  /**
    * {@inheritdoc}
    */
   public function getCacheContexts() {

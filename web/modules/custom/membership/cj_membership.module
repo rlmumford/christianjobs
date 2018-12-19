@@ -1,0 +1,55 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_form_user_register_form_alter().
+ *
+ * @param array $form
+ * @param FormStateInterface $form_state
+ */
+function cj_membership_form_user_register_form_alter(array &$form, FormStateInterface $form_state) {
+  $cookies = \Drupal::request()->cookies;
+  if ($cookies->get('Drupal_visitor_membershipPurchaseRegister') || $form_state->get('membership_purchase_register')) {
+    $form_state->set('membership_purchase_register', TRUE);
+    $form['actions']['submit']['#submit'][] = 'cj_membership_user_register_form_submit_redirect';
+  }
+}
+
+/**
+ * Redirect the register form the the employer edit page in the correct circumstances.
+ */
+function cj_membership_user_register_form_submit_redirect(array $form, FormStateInterface $form_state) {
+  /** @var \Drupal\user\UserInterface $user */
+  $user = $form_state->get('user');
+  $user->addRole('employer');
+  $user->save();
+
+  $form_state->setRedirect('job_board.employer_edit', [
+    'user' => $user->id(),
+  ]);
+
+  $cookies = [
+    'membershipPurchaseRegister' => TRUE,
+  ];
+  user_cookie_save($cookies);
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function cj_membership_form_user_employer_details_form_alter(array &$form, FormStateInterface $form_state) {
+  if (\Drupal::request()->cookies->get('Drupal_visitor_membershipPurchaseRegister')) {
+    $form['actions']['submit']['#value'] = new TranslatableMarkup('Save & Purchase Membership');
+    $form['actions']['submit']['#submit'][] = 'cj_membership_user_employer_details_form_submit_redirect';
+  }
+}
+
+/**
+ * Redirect the employer details form to the job post form in correct circumstances.
+ */
+function cj_membership_user_employer_details_form_submit_redirect(array $form, FormStateInterface $form_state) {
+  $form_state->setRedirect('membership.purchase');
+  user_cookie_delete('membershipPurchaseRegister');
+}

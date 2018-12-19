@@ -1,0 +1,9 @@
+membership.purchase:
+  path: '/membership/join'
+  defaults:
+    _controller: '\Drupal\cj_membership\Controller\MembershipController::buyMembership'
+    _title: 'Become a Member'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: 'TRUE'
