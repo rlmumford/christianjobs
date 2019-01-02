@@ -78,6 +78,13 @@ class GeocodedStringOriginDefault extends GeofieldProximitySourceBase {
 
     if (is_string($values) && !empty($values)) {
       $text = $values;
+
+      // If there are no commas, assume that a town name has been put in, and
+      // add ', UK'
+      if (strpos($text, ',') === FALSE) {
+        $text = ', UK';
+      }
+
       /** @var \Geocoder\Model\AddressCollection $address_collection */
       $address_collection = \Drupal::service('geocoder')->geocode($text, [
         'googlemaps',
