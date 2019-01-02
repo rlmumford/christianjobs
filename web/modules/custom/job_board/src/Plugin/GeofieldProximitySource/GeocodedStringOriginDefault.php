@@ -82,7 +82,7 @@ class GeocodedStringOriginDefault extends GeofieldProximitySourceBase {
       // If there are no commas, assume that a town name has been put in, and
       // add ', UK'
       if (strpos($text, ',') === FALSE) {
-        $text = ', UK';
+        $text .= ', UK';
       }
 
       /** @var \Geocoder\Model\AddressCollection $address_collection */

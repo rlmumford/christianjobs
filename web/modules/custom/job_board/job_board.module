@@ -318,6 +318,7 @@ function job_board_entity_base_field_info_alter(&$fields, EntityTypeInterface $e
   }
 
   $fields['files']->setSetting('file_extensions', 'pdf txt doc docx pptx ppt png');
+  $fields['files']->setCardinality(5);
 }
 
 /**
