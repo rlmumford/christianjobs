@@ -49,6 +49,18 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
     if ($operation == 'boost') {
       return AccessResult::allowedIfHasPermission($account, 'boost any job_role');
     }
+    if ($operation == 'extend') {
+      $result = AccessResult::allowedIf(
+        ($entity->owner->target_id == $account->id() && $account->hasPermission('extend own job_role'))
+        || $account->hasPermission('extend any job_role')
+      );
+
+      $result->addCacheContexts(['user.permissions']);
+      $result->cachePerUser();
+      $result->addCacheableDependency($entity);
+
+      return $result;
+    }
 
     return parent::checkAccess($entity, $operation, $account);
   }

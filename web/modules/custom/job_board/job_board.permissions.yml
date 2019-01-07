@@ -7,3 +7,9 @@ view unpublished jobs:
   title: 'View Unpublished Jobs'
 boost any job_role:
   title: 'Boost Any Job'
+extend own job_role:
+  title: 'Extend own job'
+extend any job_role:
+  title: 'Extend any job'
+administer job extensions:
+  title: 'Administer Job Extensions'

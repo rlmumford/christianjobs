@@ -8,6 +8,11 @@ job_board.boost:
   title: 'Boost'
   appears_on:
     - entity.job_role.canonical
+job_board.extend:
+  route_name: job_board.extend
+  title: 'Extend'
+  appears_on:
+    - entity.job_role.canonical
 job_board.edit_job:
   route_name: entity.job_role.edit_form
   title: 'Edit'

@@ -106,6 +106,13 @@ class JobBoardController extends ControllerBase {
   }
 
   /**
+   * Extend job title.
+   */
+  public function extendJobTitle(JobRoleInterface $job_role) {
+    return new TranslatableMarkup('Extend @job', ['@job' => $job_role->label()]);
+  }
+
+  /**
    * Return the employer page title.
    */
   public function employerTitle(UserInterface $user) {/** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
