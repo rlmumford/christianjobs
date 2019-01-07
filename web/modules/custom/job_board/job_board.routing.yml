@@ -38,7 +38,7 @@ job_board.extend:
     _form: '\Drupal\job_board\Form\JobExtendForm'
     _title_callback: '\Drupal\job_board\Controller\JobBoardController::extendJobTitle'
   requirements:
-    _entity_Acces: 'job_role.edit'
+    _entity_access: 'job_role.extend'
 
 job_board.employer:
   path: '/employer/{user}'

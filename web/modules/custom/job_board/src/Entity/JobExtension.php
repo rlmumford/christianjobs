@@ -4,11 +4,13 @@ namespace Drupal\job_board\Entity;
 
 use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_price\Price;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Job Role Extension Entity.
@@ -53,6 +55,10 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
 
       /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
       $end_date = clone $job->end_date->date;
+      $today_date = new DrupalDateTime();
+      if ($today_date > $end_date) {
+        $end_date = $today_date;
+      }
       $end_date->add(new \DateInterval($this->duration->value ?: 'P30D'));
       $job->end_date->value = $end_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
 
@@ -62,6 +68,14 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
 
       $job->save();
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function label() {
+    $duration = ($this->duration->value == 'P30D') ? "30 day" : "60 day";
+    return $duration." extension of ".$this->job->entity->label();
   }
 
   /**
@@ -108,7 +122,12 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
    *   The price, or NULL.
    */
   public function getPrice() {
-    return new Price('25.00', 'GBP');
+    if ($this->duration->value == 'P30D') {
+      return new Price('25.00', 'GBP');
+    }
+    else {
+      return new Price('50.00', 'GBP');
+    }
   }
 
   /**

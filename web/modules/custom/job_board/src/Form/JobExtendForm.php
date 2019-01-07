@@ -26,16 +26,12 @@ class JobExtendForm extends FormBase {
     $form['job'] = [
       '#type' => 'item',
       '#title' => new TranslatableMarkup('Job'),
-      'title' => [
-        '#markup' => $job_role->label(),
-      ],
+      '#markup' => "<div>".$job_role->label()."</div>",
     ];
     $form['end_date'] = [
       '#type' => 'item',
       '#title' => new TranslatableMarkup('Current Expiry'),
-      'title' => [
-        '#markup' => "This job currently expires on ".$job_role->end_date->date->format("d/m/Y"),
-      ],
+      '#markup' => "<div>This job currently expires on ".$job_role->end_date->date->format("d/m/Y")."</div>",
     ];
     $form['duration'] = [
       '#type' => 'select',
@@ -57,6 +53,9 @@ class JobExtendForm extends FormBase {
 
     $form['actions'] = [
       '#type' => 'actions',
+      '#attributes' => [
+        'class' => [ 'card-item', 'card-actions', 'divider-top' ]
+      ],
       'submit' => [
         '#type' => 'submit',
         '#value' => new TranslatableMarkup('Add Extension to Cart'),
@@ -71,6 +70,12 @@ class JobExtendForm extends FormBase {
       ],
     ];
 
+    $form['#attributes']['class'][] = 'card';
+    $form['#attributes']['class'][] = 'card-main';
+
+    // Don't use chrome validation.
+    $form['#attributes']['novalidate'] = 'novalidate';
+
     return $form;
   }
 
@@ -79,7 +84,9 @@ class JobExtendForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $job_role = $form_state->get('job');
-    $job_role->application_deadline->value = $form_state->getValue('application_deadline')->format('Y-m-d');
+    if ($application_deadline = $form_state->getValue('application_deadline')) {
+      $job_role->application_deadline->value = $application_deadline->format('Y-m-d');
+    }
     $job_role->save();
 
     /** @var \Drupal\job_board\JobExtensionStorage $storage */
