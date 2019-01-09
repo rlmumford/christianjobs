@@ -166,19 +166,6 @@ class JobPostForm extends JobForm {
   }
 
   /**
-   * Validate that both part of the range are filled if any are.
-   */
-  public static function salaryWidgetValidate($element, FormStateInterface $form_state, $complete_form) {
-    $values = $form_state->getValue($element['#parents']);
-    if ((!empty($values['from']) && empty($values['to'])) || (!empty($values['to']) && empty($values['from']) && $values['from'] !== '0')) {
-      $form_state->setError($element, 'Please provide both parts of the salary range.');
-    }
-    if (!empty($values['from']) && !empty($values['to']) && ($values['from'] > $values['to'])) {
-      $form_state->setError($element, 'Please ensure that the salary from value is less than the salary to value.');
-    }
-  }
-
-  /**
    * {@inheritdoc}
    */
   protected function actions(array $form, FormStateInterface $form_state) {

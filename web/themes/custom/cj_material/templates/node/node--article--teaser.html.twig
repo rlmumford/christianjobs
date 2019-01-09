@@ -93,7 +93,7 @@
 
   {% if display_submitted %}
     <footer class="card-item card-text pull-buttom divider-top">
-      <a href="{{ url }}" title="Read more of {{ label|striptags }}" class="read-more-pointer"><span class="material-icons">chevron_right</span></a>
+      <a href="{{ url }}" title="Read more of {{ node.label|striptags }}" class="read-more-pointer"><span class="material-icons">chevron_right</span></a>
       {{ author_picture }}
       <div{{ author_attributes }}>
         {% trans %}{{ author_name }} on {{ date }}{% endtrans %}

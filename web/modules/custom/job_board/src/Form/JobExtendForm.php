@@ -28,11 +28,13 @@ class JobExtendForm extends FormBase {
       '#title' => new TranslatableMarkup('Job'),
       '#markup' => "<div>".$job_role->label()."</div>",
     ];
-    $form['end_date'] = [
-      '#type' => 'item',
-      '#title' => new TranslatableMarkup('Current Expiry'),
-      '#markup' => "<div>This job currently expires on ".$job_role->end_date->date->format("d/m/Y")."</div>",
-    ];
+    if (!$job_role->end_date->isEmpty()) {
+      $form['end_date'] = [
+        '#type' => 'item',
+        '#title' => new TranslatableMarkup('Current Expiry'),
+        '#markup' => "<div>This job currently expires on " . $job_role->end_date->date->format("d/m/Y") . "</div>",
+      ];
+    }
     $form['duration'] = [
       '#type' => 'select',
       '#title' => new TranslatableMarkup('How long would you like to extend this job advert for?'),
