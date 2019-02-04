@@ -54,3 +54,11 @@ job_board.employer_edit:
     _title_callback: '\Drupal\job_board\Controller\JobBoardController::employerEditTitle'
   requirements:
     _entity_access: 'user.update'
+
+entity.volunteer_role.admin_form:
+  path: '/admin/structure/volunteer'
+  defaults:
+    _form: '\Drupal\job_role\Form\JobRoleSettingsForm'
+    _title: 'Volunteer Roles'
+  requirements:
+    _permission: 'administer volunteer roles'
