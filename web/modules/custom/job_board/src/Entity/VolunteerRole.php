@@ -3,7 +3,7 @@
 namespace Drupal\job_board\Entity;
 
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\job_board\JobBoardJobRole;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\job_role\Entity\JobRole;
 
 /**
