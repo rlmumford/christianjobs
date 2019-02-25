@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.employer_is_charity
+    - profile.type.employer
+id: profile.employer.employer_is_charity
+field_name: employer_is_charity
+entity_type: profile
+bundle: employer
+label: 'Is this organisation a registered charity?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean
