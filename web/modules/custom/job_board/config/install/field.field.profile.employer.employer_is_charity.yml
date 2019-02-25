@@ -8,7 +8,7 @@ id: profile.employer.employer_is_charity
 field_name: employer_is_charity
 entity_type: profile
 bundle: employer
-label: 'Is this organisation a registered charity?'
+label: 'This organisation is a registered charity.'
 description: ''
 required: false
 translatable: false

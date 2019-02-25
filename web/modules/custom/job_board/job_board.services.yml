@@ -9,6 +9,7 @@ services:
       - { name: event_subscriber }
   job_board.charity_aware_tax_rate_resolver:
     class: Drupal\job_board\CharityAwareTaxRateResolver
+    arguments: [ '@entity_type.manager' ]
     tags:
       - { name: commerce_tax.tax_rate_resolver, priority: 0 }
   job_board.great_britain_aa_subscriber:
