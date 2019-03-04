@@ -102,7 +102,7 @@ class CJFrontPageEventBanner extends BlockBase implements ContainerFactoryPlugin
             'class' => ['col-xs', 'col-xs-6', 'col-md', 'col-md-9', 'col-md-offset-1', 'cre-text'],
           ],
           'content' => [
-            '#markup' => '<p class="hero--text">Come to our <a href="https://www.eventbrite.co.uk/e/career-and-networking-showcase-with-nazarene-theological-college-tickets-57086207383" target="_blank">Careers & Networking Showcase</a></p><p>Nazarene Theological College, Manachester, UK | 26th March 2019 | 14:30 - 20:30 | FREE Entry & Food</p><p>Want to exhibit? Only £75 (+VAT) administration fee or FREE for members. <a href="https://www.eventbrite.co.uk/e/career-and-networking-showcase-with-nazarene-theological-college-exhibitors-tickets-57115970405" target="_blank">Click here</a> for more information.</p>',
+            '#markup' => '<p class="hero--text">Come to our <a href="https://www.eventbrite.co.uk/e/career-and-networking-showcase-with-nazarene-theological-college-tickets-57086207383" target="_blank">Careers & Networking Showcase</a></p><p>Nazarene Theological College, Manchester, UK | 26th March 2019 | 14:30 - 20:30 | FREE Entry & Food</p><p>Want to exhibit? Only £75 (+VAT) administration fee or FREE for members. <a href="https://www.eventbrite.co.uk/e/career-and-networking-showcase-with-nazarene-theological-college-exhibitors-tickets-57115970405" target="_blank">Click here</a> for more information.</p>',
           ],
         ]
       ],
