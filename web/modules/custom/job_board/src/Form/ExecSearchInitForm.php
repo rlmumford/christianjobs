@@ -58,7 +58,7 @@ class ExecSearchInitForm extends FormBase {
             '#wrapper_attributes' => [
               'class' => ['item'],
             ],
-            '#children' => 'Free 60-day featured advertising on ChristianJobs.co.uk.',
+            '#children' => 'Free 30-day featured advertising on ChristianJobs.co.uk (with option to extend to 60 days).',
           ],
           [
             '#wrapper_attributes' => [
@@ -70,19 +70,13 @@ class ExecSearchInitForm extends FormBase {
             '#wrapper_attributes' => [
               'class' => ['item'],
             ],
-            '#children' => 'Christian Jobs director engagement',
+            '#children' => 'Christian Jobs director engagement & dedicated account manager',
           ],
           [
             '#wrapper_attributes' => [
               'class' => ['item'],
             ],
             '#children' => 'Outsourced application management',
-          ],
-          [
-            '#wrapper_attributes' => [
-              'class' => ['item'],
-            ],
-            '#children' => 'ChristianJobs.co.uk membership for 12 months*',
           ],
           [
             '#wrapper_attributes' => [
@@ -95,12 +89,6 @@ class ExecSearchInitForm extends FormBase {
               'class' => ['item'],
             ],
             '#children' => 'Six month placement guarantee',
-          ],
-          [
-            '#wrapper_attributes' => [
-              'class' => ['item'],
-            ],
-            '#children' => 'Flat fee agreement',
           ],
         ]
       ]
