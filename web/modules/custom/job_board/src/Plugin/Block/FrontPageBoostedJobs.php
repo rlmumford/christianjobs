@@ -96,6 +96,7 @@ class FrontPageBoostedJobs extends BlockBase implements ContainerFactoryPluginIn
         'class' => ['row-wrapper', 'boosted-jobs', 'section-wrapper', 'section-wrapper--grey'],
       ],
       '#cache' => [
+        'contexts' => [],
         'tags' => ['boosted_jobs'],
         'max-age' => 60*60*24,
       ],
@@ -123,6 +124,8 @@ class FrontPageBoostedJobs extends BlockBase implements ContainerFactoryPluginIn
 
     foreach ($this->storage->loadMultiple($ids) as $job) {
       $build['row'][$job->id()] = $this->buildJobCard($job);
+      $build['#cache']['contexts'] += $job->getCacheContexts();
+      $build['#cache']['tags'] += $job->getCacheTags();
     }
 
     return $build;
