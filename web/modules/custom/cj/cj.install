@@ -193,14 +193,6 @@ function cj_update_8008() {
   $configs_to_install = [
     'contact.form.showcase_attendee',
     'core.entity_form_display.contact_message.showcase_attendee.default',
-    'field.field.contact_message.showcase_attendee.field_arrival_time',
-    'field.field.contact_message.showcase_attendee.field_attendee_com_consent',
-    'field.field.contact_message.showcase_attendee.field_attendee_how_hear',
-    'field.field.contact_message.showcase_attendee.field_attendee_organisation',
-    'field.field.contact_message.showcase_attendee.field_attendee_origin',
-    'field.field.contact_message.showcase_attendee.field_attendee_phone',
-    'field.field.contact_message.showcase_attendee.field_attendee_storage_consent',
-    'field.field.contact_message.showcase_attendee.field_ntc_connection',
     'field.storage.contact_message.field_arrival_time',
     'field.storage.contact_message.field_attendee_com_consent',
     'field.storage.contact_message.field_attendee_how_hear',
@@ -209,6 +201,14 @@ function cj_update_8008() {
     'field.storage.contact_message.field_attendee_phone',
     'field.storage.contact_message.field_attendee_storage_consent',
     'field.storage.contact_message.field_ntc_connection',
+    'field.field.contact_message.showcase_attendee.field_arrival_time',
+    'field.field.contact_message.showcase_attendee.field_attendee_com_consent',
+    'field.field.contact_message.showcase_attendee.field_attendee_how_hear',
+    'field.field.contact_message.showcase_attendee.field_attendee_organisation',
+    'field.field.contact_message.showcase_attendee.field_attendee_origin',
+    'field.field.contact_message.showcase_attendee.field_attendee_phone',
+    'field.field.contact_message.showcase_attendee.field_attendee_storage_consent',
+    'field.field.contact_message.showcase_attendee.field_ntc_connection',
   ];
   foreach ($configs_to_install as $name) {
     $config = new Config(
