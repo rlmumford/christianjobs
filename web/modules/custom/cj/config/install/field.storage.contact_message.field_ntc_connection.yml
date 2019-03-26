@@ -1,0 +1,30 @@
+uuid: 173ae45c-7713-4729-a882-068833d81fd2
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact
+    - options
+id: contact_message.field_ntc_connection
+field_name: field_ntc_connection
+entity_type: contact_message
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Student
+      label: Student
+    -
+      value: Employee
+      label: Employee
+    -
+      value: 'No'
+      label: 'No'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

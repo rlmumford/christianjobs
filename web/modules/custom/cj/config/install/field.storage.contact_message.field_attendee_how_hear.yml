@@ -1,0 +1,54 @@
+uuid: 382c07ec-6bd6-4e2a-b6a9-c2ead93da904
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact
+    - options
+id: contact_message.field_attendee_how_hear
+field_name: field_attendee_how_hear
+entity_type: contact_message
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Announcement at church'
+      label: 'Announcement at church'
+    -
+      value: 'Christian Jobs at the Christian Resource Exhibition'
+      label: 'Christian Jobs at the Christian Resource Exhibition'
+    -
+      value: 'Previous Christian Jobs Event'
+      label: 'Previous Christian Jobs event'
+    -
+      value: 'Christian Jobs Website'
+      label: 'Christian Jobs website'
+    -
+      value: Facebook
+      label: Facebook
+    -
+      value: Twitter
+      label: Twitter
+    -
+      value: Instagram
+      label: Instagram
+    -
+      value: LinkedIn
+      label: LinkedIn
+    -
+      value: 'NTC connections'
+      label: 'NTC connections'
+    -
+      value: 'Other NTC events'
+      label: 'Other NTC events'
+    -
+      value: Friends
+      label: Friends
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

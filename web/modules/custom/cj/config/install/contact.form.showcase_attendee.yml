@@ -1,0 +1,12 @@
+uuid: c5dd27bb-da19-41cc-a137-f1c11610af76
+langcode: en
+status: true
+dependencies: {  }
+id: showcase_attendee
+label: 'Showcase Registration'
+recipients:
+  - info@christianjobs.co.uk
+reply: ''
+weight: 0
+message: 'Thank you for attending the Careers & Networking Showcase'
+redirect: /

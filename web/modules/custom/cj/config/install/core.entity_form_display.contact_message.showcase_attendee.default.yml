@@ -1,0 +1,120 @@
+uuid: 5e979d7a-211d-4351-99d6-41b18f7cf0b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.showcase_attendee
+    - field.field.contact_message.showcase_attendee.field_arrival_time
+    - field.field.contact_message.showcase_attendee.field_attendee_com_consent
+    - field.field.contact_message.showcase_attendee.field_attendee_how_hear
+    - field.field.contact_message.showcase_attendee.field_attendee_organisation
+    - field.field.contact_message.showcase_attendee.field_attendee_origin
+    - field.field.contact_message.showcase_attendee.field_attendee_phone
+    - field.field.contact_message.showcase_attendee.field_attendee_storage_consent
+    - field.field.contact_message.showcase_attendee.field_ntc_connection
+  module:
+    - flexiform
+    - telephone
+    - time_field
+third_party_settings:
+  flexiform:
+    enhancer:
+      multiple_entities:
+        id: multiple_entities
+      page_exposure:
+        id: page_exposure
+      submit_button_ajax:
+        ajax:
+          'actions::submit':
+            enabled: false
+            response: refresh
+          'actions::preview':
+            enabled: false
+            response: refresh
+        id: submit_button_ajax
+      submit_button_label:
+        label:
+          'actions::submit': ''
+          'actions::preview': ''
+        id: submit_button_label
+      submit_button_redirect:
+        redirect:
+          'actions::submit': ''
+          'actions::preview': ''
+        id: submit_button_redirect
+id: contact_message.showcase_attendee.default
+targetEntityType: contact_message
+bundle: showcase_attendee
+mode: default
+content:
+  field_arrival_time:
+    weight: 4
+    settings:
+      enabled: false
+      step: 5
+    third_party_settings: {  }
+    type: time_widget
+    region: content
+  field_attendee_com_consent:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_attendee_how_hear:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_attendee_organisation:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_attendee_origin:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_attendee_phone:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+    region: content
+  field_attendee_storage_consent:
+    weight: 8
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_ntc_connection:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  mail:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  copy: true
+  message: true
+  preview: true
+  subject: true

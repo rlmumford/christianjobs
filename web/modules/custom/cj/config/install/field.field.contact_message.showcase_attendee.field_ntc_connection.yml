@@ -1,0 +1,21 @@
+uuid: 0bab39a4-ae32-4634-8b47-4079db01b6a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.showcase_attendee
+    - field.storage.contact_message.field_ntc_connection
+  module:
+    - options
+id: contact_message.showcase_attendee.field_ntc_connection
+field_name: field_ntc_connection
+entity_type: contact_message
+bundle: showcase_attendee
+label: 'Are you a student or employee of NTC?'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

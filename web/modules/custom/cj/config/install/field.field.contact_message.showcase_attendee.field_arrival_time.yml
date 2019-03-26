@@ -1,0 +1,23 @@
+uuid: 2664db3b-cfc6-4d8f-9829-d29af5550fdb
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.showcase_attendee
+    - field.storage.contact_message.field_arrival_time
+  module:
+    - time_field
+id: contact_message.showcase_attendee.field_arrival_time
+field_name: field_arrival_time
+entity_type: contact_message
+bundle: showcase_attendee
+label: 'Arrival Time'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 52200
+default_value_callback: ''
+settings: {  }
+field_type: time

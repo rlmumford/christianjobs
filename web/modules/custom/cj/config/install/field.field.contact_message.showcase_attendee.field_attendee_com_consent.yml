@@ -1,0 +1,21 @@
+uuid: 7a4e37f0-9ffe-4c3a-9a3f-41961dc561b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.showcase_attendee
+    - field.storage.contact_message.field_attendee_com_consent
+  module:
+    - options
+id: contact_message.showcase_attendee.field_attendee_com_consent
+field_name: field_attendee_com_consent
+entity_type: contact_message
+bundle: showcase_attendee
+label: 'I wish to receive e-mails from NTC and/or Christian Jobs regarding the following:'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

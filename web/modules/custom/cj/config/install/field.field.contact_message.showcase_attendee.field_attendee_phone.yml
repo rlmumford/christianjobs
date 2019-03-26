@@ -1,0 +1,21 @@
+uuid: 087f1562-aac8-4ecf-abe6-5d7af77b4f31
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.showcase_attendee
+    - field.storage.contact_message.field_attendee_phone
+  module:
+    - telephone
+id: contact_message.showcase_attendee.field_attendee_phone
+field_name: field_attendee_phone
+entity_type: contact_message
+bundle: showcase_attendee
+label: Phone
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

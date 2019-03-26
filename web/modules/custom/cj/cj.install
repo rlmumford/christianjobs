@@ -175,3 +175,70 @@ function cj_update_8007() {
     }
   }
 }
+
+/**
+ * Add Attendee Registration Form.
+ */
+function cj_update_8008() {
+  \Drupal::service('module_installer')->install([
+    'time_field',
+  ]);
+
+  $source = new FileStorage(drupal_get_path('module', 'cj').'/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  /** @var \Drupal\Core\Config\ConfigManagerInterface $config_manager */
+  $config_manager = \Drupal::service('config.manager');
+  $configs_to_install = [
+    'contact.form.showcase_attendee',
+    'core.entity_form_display.contact_message.showcase_attendee.default',
+    'field.field.contact_message.showcase_attendee.field_arrival_time',
+    'field.field.contact_message.showcase_attendee.field_attendee_com_consent',
+    'field.field.contact_message.showcase_attendee.field_attendee_how_hear',
+    'field.field.contact_message.showcase_attendee.field_attendee_organisation',
+    'field.field.contact_message.showcase_attendee.field_attendee_origin',
+    'field.field.contact_message.showcase_attendee.field_attendee_phone',
+    'field.field.contact_message.showcase_attendee.field_attendee_storage_consent',
+    'field.field.contact_message.showcase_attendee.field_ntc_connection',
+    'field.storage.contact_message.field_arrival_time',
+    'field.storage.contact_message.field_attendee_com_consent',
+    'field.storage.contact_message.field_attendee_how_hear',
+    'field.storage.contact_message.field_attendee_organisation',
+    'field.storage.contact_message.field_attendee_origin',
+    'field.storage.contact_message.field_attendee_phone',
+    'field.storage.contact_message.field_attendee_storage_consent',
+    'field.storage.contact_message.field_ntc_connection',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config = new Config(
+      $name,
+      \Drupal::service('config.storage'),
+      \Drupal::service('event_dispatcher'),
+      \Drupal::service('config.typed')
+    );
+    $config->setData($source->read($name));
+
+    if ($entity_type = $config_manager->getEntityTypeIdByName($name)) {
+      /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
+      $entity_storage = $config_manager->getEntityManager()->getStorage($entity_type);
+
+      $id = $entity_storage->getIDFromConfigName($name, $entity_storage->getEntityType()->getConfigPrefix());
+      if ($config_storage->exists($name)) {
+        /** @var \Drupal\Core\Config\Entity\ConfigEntityBase $entity */
+        $entity = $entity_storage->load($id);
+        $entity = $entity_storage->updateFromStorageRecord($entity, $config->get());
+      }
+      else {
+        $entity = $entity_storage->createFromStorageRecord($config->get());
+      }
+
+      if ($entity->isInstallable()) {
+        $entity->trustData()->save();
+      }
+    }
+    else {
+      $config->save();
+    }
+  }
+}

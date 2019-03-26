@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Implements hook_module_implements_alter().
@@ -11,6 +12,43 @@ function cj_module_implements_alter(&$implementations, $hook) {
     unset($implementations['cj']);
     $implementations['cj'] = $group;
   }
+}
+
+/**
+ * Implements hook_form_contact_form_alter().
+ */
+function cj_form_contact_message_showcase_attendee_form_alter(array &$form, FormStateInterface $form_state) {
+  $form['#attributes']['class'][] = 'card-main';
+  $form['#attributes']['class'][] = 'card';
+
+  $form['name']['#title_display'] = 'invisible';
+  $form['name']['#placeholder'] = 'Full Name';
+
+  $form['mail']['#title_display'] = 'invisible';
+  $form['mail']['#placeholder'] = 'Email Address';
+
+  $form['field_attendee_phone']['widget'][0]['value']['#placeholder'] = 'Phone';
+  $form['field_attendee_phone']['widget'][0]['value']['#title_display'] = 'invisible';
+
+  $form['field_attendee_organisation']['widget'][0]['value']['#placeholder'] = 'Church/Organisation';
+  $form['field_attendee_organisation']['widget'][0]['value']['#title_display'] = 'invisible';
+
+  $form['field_arrival_time']['#attributes']['class'][] = 'divider-top';
+  $form['field_arrival_time']['#attributes']['class'][] = 'pl-24';
+  $form['field_arrival_time']['#attributes']['class'][] = 'pr-24';
+  $form['field_arrival_time']['#attributes']['class'][] = 'card-item';
+  $form['field_attendee_how_hear']['#attributes']['class'][] = 'divider-top';
+  $form['field_attendee_how_hear']['#attributes']['class'][] = 'pl-24';
+  $form['field_attendee_how_hear']['#attributes']['class'][] = 'pr-24';
+  $form['field_attendee_how_hear']['#attributes']['class'][] = 'card-item';
+  $form['field_attendee_storage_consent']['#attributes']['class'][] = 'divider-top';
+  $form['field_attendee_storage_consent']['#attributes']['class'][] = 'pl-24';
+  $form['field_attendee_storage_consent']['#attributes']['class'][] = 'pr-24';
+  $form['field_attendee_storage_consent']['#attributes']['class'][] = 'card-item';
+
+  $form['actions']['#attributes']['class'] = ['card-item', 'card-actions', 'divider-top'];
+  $form['actions']['preview']['#access'] = FALSE;
+  $form['actions']['submit']['#value'] = new TranslatableMarkup('Submit');
 }
 
 /**
