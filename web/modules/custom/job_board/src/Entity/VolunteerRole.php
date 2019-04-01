@@ -19,12 +19,11 @@ use Drupal\job_role\Entity\JobRole;
  *     plural = "@count voluntary positions"
  *   ),
  *   handlers = {
- *     "list_builder" = "Drupal\job_board\JobRoleListBuilder",
- *     "storage" = "Drupal\job_role\JobRoleStorage",
- *     "access" = "Drupal\job_board\JobBoardJobRoleAccessControlHandler",
- *     "permission_provider" = "Drupal\job_role\JobRolePermissionProvider",
+ *     "list_builder" = "Drupal\job_board\Entity\VolunteerRoleListBuilder",
+ *     "storage" = "Drupal\job_board\Entity\VolunteerRoleStorage",
+ *     "access" = "Drupal\job_board\Entity\VolunteerRoleAccessControlHandler",
  *     "form" = {
- *       "default" = "Drupal\job_role\JobRoleForm"
+ *       "default" = "Drupal\job_board\Form\VolunteerRoleForm"
  *     },
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "route_provider" = {
@@ -33,9 +32,7 @@ use Drupal\job_role\Entity\JobRole;
  *   },
  *   base_table = "volunteer_role",
  *   revision_table = "volunteer_role_revision",
- *   data_table = "volunteer_role_data",
  *   field_ui_base_route = "entity.volunteer_role.admin_form",
- *   revision_data_table = "volunteer_role_revision_data",
  *   admin_permission = "administer volunteer roles",
  *   entity_keys = {
  *     "id" = "id",
@@ -54,6 +51,16 @@ class VolunteerRole extends JobRole {
     $fields = parent::baseFieldDefinitions($entity_type);
 
     unset($fields['salary']);
+
+    $fields['published'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('Published'))
+      ->setRevisionable(TRUE)
+      ->setCardinality(1)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'boolean_checkbox',
+      ])
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['keywords'] = BaseFieldDefinition::create('entity_reference')
       ->setSetting('target_type', 'taxonomy_term')
@@ -97,6 +104,31 @@ class VolunteerRole extends JobRole {
         'type' => 'entity_reference_autocomplete',
       ])
       ->setDisplayConfigurable('form', TRUE);
+
+    $fields['places'] =  BaseFieldDefinition::create('entity_reference')
+      ->setSetting('target_type', 'place')
+      ->setSetting('handler', 'default:place')
+      ->setSetting('handler_settings', [
+        'target_bundles' => [
+          'address',
+          'office',
+        ],
+        'auto_create' => TRUE,
+        'auto_create_bundle' => 'address',
+      ])
+      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setRequired(TRUE)
+      ->setRevisionable(TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'inline_entity_form_complex',
+        'settings' => [
+          'allow_new' => TRUE,
+          'allow_existing' => TRUE,
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+
 
     $fields['contact_phone'] = BaseFieldDefinition::create('telephone')
       ->setLabel(t('Contact Telephone'))
