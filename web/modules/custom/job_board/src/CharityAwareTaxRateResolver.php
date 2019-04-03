@@ -73,6 +73,11 @@ class CharityAwareTaxRateResolver extends DefaultTaxRateResolver {
 
     $resolved_rate = FALSE;
     foreach ($rates as $rate) {
+      // We don't zero out vat on RPOs
+      if ($purchased_entity instanceof JobRole && $purchased_entity->rpo->value) {
+        return FALSE;
+      }
+
       if ($rate->getId() == "zero") {
         $resolved_rate = $rate;
         break;
