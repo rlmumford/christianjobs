@@ -1,0 +1,66 @@
+diff --git a/src/Plugin/views/filter/CshsTaxonomyIndex.php b/src/Plugin/views/filter/CshsTaxonomyIndex.php
+index 1806892..4641879 100644
+--- a/src/Plugin/views/filter/CshsTaxonomyIndex.php
++++ b/src/Plugin/views/filter/CshsTaxonomyIndex.php
+@@ -3,6 +3,7 @@
+ namespace Drupal\cshs\Plugin\views\filter;
+ 
+ use Drupal\Core\Form\FormStateInterface;
++use Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface;
+ use Drupal\Core\Entity\EntityRepositoryInterface;
+ use Drupal\Core\Entity\EntityTypeManagerInterface;
+ use Drupal\cshs\CshsOptionsFromHelper;
+@@ -24,16 +25,17 @@ trait CshsTaxonomyIndex {
+     array $configuration,
+     $plugin_id,
+     $plugin_definition,
++    SelectionPluginManagerInterface $selection_plugin_manager,
+     EntityTypeManagerInterface $entity_type_manager,
+     EntityRepositoryInterface $entity_repository
+   ) {
+-    /* @see \Drupal\taxonomy\Plugin\views\filter\TaxonomyIndexTid::__construct() */
++    /* @see Drupal\views\Plugin\views\filter\EntityReference::__construct() */
+     parent::__construct(
+       $configuration,
+       $plugin_id,
+       $plugin_definition,
+-      $entity_type_manager->getStorage('taxonomy_vocabulary'),
+-      $entity_type_manager->getStorage('taxonomy_term')
++      $selection_plugin_manager,
++      $entity_type_manager
+     );
+ 
+     $this->entityRepository = $entity_repository;
+@@ -47,6 +49,7 @@ trait CshsTaxonomyIndex {
+       $configuration,
+       $plugin_id,
+       $plugin_definition,
++      $container->get('plugin.manager.entity_reference_selection'),
+       $container->get('entity_type.manager'),
+       $container->get('entity.repository')
+     );
+@@ -136,21 +139,21 @@ trait CshsTaxonomyIndex {
+    * {@inheritdoc}
+    */
+   protected function getVocabularyStorage() {
+-    return $this->vocabularyStorage;
++    return $this->entityTypeManager->getStorage('taxonomy_vocabulary');
+   }
+ 
+   /**
+    * {@inheritdoc}
+    */
+   protected function getTermStorage() {
+-    return $this->termStorage;
++    return $this->entityTypeManager->getStorage('taxonomy_term');
+   }
+ 
+   /**
+    * {@inheritdoc}
+    */
+   public function getVocabulary() {
+-    return $this->vocabularyStorage->load($this->options['vid']);
++    return $this->getVocabularyStorage()->load($this->options['vid']);
+   }
+ 
+ }

@@ -55,7 +55,7 @@
         "drupal/commerce_square": "^1.2",
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.6",
-        "drupal/cshs": "^1.0@beta",
+        "drupal/cshs": "1.x-dev",
         "drupal/decoupled_auth": "^1.0@alpha",
         "drupal/email_registration": "^1.0@RC",
         "drupal/eu_cookie_compliance": "^1.2",
@@ -130,6 +130,9 @@
             },
             "drupal/core": {
                 "Entity reference views filter": "https://www.drupal.org/files/issues/2019-02-18/generic_entityreference_filter_22429699-148.patch"
+            },
+            "drupal/cshs": {
+                "Compat with entity reference view filter": "./patches/cshs-entityreference_views_handler_compat.patch"
             }
         },
         "installer-paths": {
