@@ -4161,6 +4161,11 @@ div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-with
   object-position: center;
 }
 
+.partner-card--kingdom-bank.partner-card .card-media img {
+  object-fit: contain;
+  object-position: center;
+}
+
 .partner-card--cpo img {
   object-fit: contain;
 }
