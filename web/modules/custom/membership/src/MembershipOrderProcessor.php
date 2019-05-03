@@ -47,6 +47,7 @@ class MembershipOrderProcessor implements OrderProcessorInterface {
     $one_free_job = FALSE;
 
     // This membership is being bought this time.
+    $membership_in_cart = FALSE;
     foreach ($order->getItems() as $item) {
       if ($item->getPurchasedEntity() instanceof Membership) {
         $membership_in_cart = $item->getPurchasedEntity();
@@ -58,7 +59,7 @@ class MembershipOrderProcessor implements OrderProcessorInterface {
       $membership = $this->membershipStorage->getAccountMembership($order->getCustomer());
     }
 
-    if ($membership_in_cart || ($membership->status->value == Membership::STATUS_ACTIVE)) {
+    if ($membership_in_cart || ($membership && $membership->status->value == Membership::STATUS_ACTIVE)) {
       foreach ($order->getItems() as $item) {
         $entity = $item->getPurchasedEntity();
         if (!($entity instanceof JobBoardJobRole)) {

@@ -119,7 +119,7 @@ class JobBoardController extends ControllerBase {
     $profile_storage = $this->entityTypeManager()->getStorage('profile');
     $profile = $profile_storage->loadDefaultByUser($user, 'employer');
 
-    if ($profile->employer_name->value) {
+    if ($profile && $profile->employer_name->value) {
       return $profile->employer_name->value;
     }
     else if ($user->id() == \Drupal::currentUser()->id()) {

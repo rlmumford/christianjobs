@@ -238,7 +238,7 @@ class JobPostForm extends JobForm {
         $membership = $current_membership;
       }
 
-      if ($membership) {
+      if (!empty($membership)) {
         $cart_manager->addEntity($cart, $membership);
       }
     }
