@@ -130,12 +130,12 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'edwardsinsurancelogo.png',
           Url::fromUri('https://www.edwardsinsurance.co.uk/')
         ),
-        'ashburnham' => $this->buildPartnerCard(
-          'Ashburnham Place',
-          'Retreat, Rest & Refreshment',
-          'Set in 220 acres of stunning grounds and gardens, the Christian community at Ashburnham Place is committed to serving and resourcing people.',
-          'ashburnhamlogo.jpg',
-          Url::fromUri('https://www.ashburnham.org.uk')
+        'kingdom' => $this->buildPartnerCard(
+          'Kingdom Bank',
+          'A Bank with a Difference',
+          'Kingdom Bank is a truly christian bank. They care for everyone they work with - colleagues, customers & suppliers.',
+          'kingdombanklogo.png',
+          Url::fromUri('http://www.kingdom.bank')
         ),
       ]
     ];

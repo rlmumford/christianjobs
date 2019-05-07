@@ -51,13 +51,18 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
     }
     if ($operation == 'extend') {
       $result = AccessResult::allowedIf(
-        ($entity->owner->target_id == $account->id() && $account->hasPermission('extend own job_role'))
+        (
+          $entity->owner->target_id == $account->id()
+          && $account->hasPermission('extend own job_role')
+          && $entity->end_date->date->format('Y-m-d') <= (new DrupalDateTime())->format('Y-m-d')
+        )
         || $account->hasPermission('extend any job_role')
       );
 
       $result->addCacheContexts(['user.permissions']);
       $result->cachePerUser();
       $result->addCacheableDependency($entity);
+      $result->setCacheMaxAge(60*60*24);
 
       return $result;
     }
