@@ -133,7 +133,7 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
         'kingdom' => $this->buildPartnerCard(
           'Kingdom Bank',
           'A Bank with a Difference',
-          'Kingdom Bank is a truly christian bank. They care for everyone the work with - colleagues, customers & suppliers',
+          'Kingdom Bank is a truly christian bank. They care for everyone they work with - colleagues, customers & suppliers.',
           'kingdombanklogo.png',
           Url::fromUri('http://www.kingdom.bank')
         ),
