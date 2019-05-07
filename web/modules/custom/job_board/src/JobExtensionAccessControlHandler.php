@@ -2,7 +2,7 @@
 
 namespace Drupal\job_board;
 
-use Drupal\entity\EntityAccessControlHandler;
+use Drupal\Core\Entity\EntityAccessControlHandler;
 
 class JobExtensionAccessControlHandler extends EntityAccessControlHandler {
 }
