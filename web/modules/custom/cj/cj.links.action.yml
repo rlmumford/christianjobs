@@ -1,3 +1,9 @@
+cj.logout:
+  route_name: user.logout
+  title: 'Logout'
+  weight: 5
+  appears_on:
+    - entity.user.canonical
 cj.edit_employer:
   route_name: job_board.employer_edit
   title: 'Edit Employer'
