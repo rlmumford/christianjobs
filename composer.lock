@@ -10492,12 +10492,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "932e85745a01b2ada336cf3ec2d72321ebb660b3"
+                "reference": "bdfd6441b8ea3fb769e1fb336c0f91d7fd3d9c55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/932e85745a01b2ada336cf3ec2d72321ebb660b3",
-                "reference": "932e85745a01b2ada336cf3ec2d72321ebb660b3",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/bdfd6441b8ea3fb769e1fb336c0f91d7fd3d9c55",
+                "reference": "bdfd6441b8ea3fb769e1fb336c0f91d7fd3d9c55",
                 "shasum": ""
             },
             "require": {
@@ -10544,7 +10544,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2019-05-02T19:57:36+00:00"
+            "time": "2019-05-13T10:39:31+00:00"
         },
         {
             "name": "sainsburys/guzzle-oauth2-plugin",
