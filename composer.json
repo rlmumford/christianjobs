@@ -131,12 +131,6 @@
         "patches": {
             "drupal/ckeditor_youtube": {
                 "Compatable with Composer Plugin": "./patches/ckeditor_youtube-composer_compat.patch"
-            },
-            "drupal/core": {
-                "Entity reference views filter": "https://www.drupal.org/files/issues/2019-02-18/generic_entityreference_filter_22429699-148.patch"
-            },
-            "drupal/cshs": {
-                "Compat with entity reference view filter": "./patches/cshs-entityreference_views_handler_compat.patch"
             }
         },
         "installer-paths": {
