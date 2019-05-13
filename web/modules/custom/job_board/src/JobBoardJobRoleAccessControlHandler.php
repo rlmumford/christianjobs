@@ -5,6 +5,7 @@ namespace Drupal\job_board;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\job_role\JobRoleAccessControlHandler;
 
 class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
@@ -54,7 +55,7 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
         (
           $entity->owner->target_id == $account->id()
           && $account->hasPermission('extend own job_role')
-          && $entity->end_date->date->format('Y-m-d') <= (new DrupalDateTime())->format('Y-m-d')
+          && $entity->end_date->date->format('Y-m-d') >= (new DrupalDateTime())->format('Y-m-d')
         )
         || $account->hasPermission('extend any job_role')
       );
