@@ -131,6 +131,12 @@
         "patches": {
             "drupal/ckeditor_youtube": {
                 "Compatable with Composer Plugin": "./patches/ckeditor_youtube-composer_compat.patch"
+            },
+            "drupal/core": {
+                "Layout builder context hook": "https://www.drupal.org/files/issues/2019-05-10/3001188-5.patch"
+            },
+            "drupal/name": {
+                "Set mainPropertyName correctly": "https://www.drupal.org/files/issues/2019-05-15/3054937-2.patch"
             }
         },
         "installer-paths": {

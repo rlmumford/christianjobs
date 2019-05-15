@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "053130777ee8e9d4ea870d6fd69d6067",
+    "content-hash": "ab195df126feff70b4d3571cb7a1d1a3",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -10492,12 +10492,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "bdfd6441b8ea3fb769e1fb336c0f91d7fd3d9c55"
+                "reference": "0443d201ec23e297ce61fea1596d9b798a6c0f98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/bdfd6441b8ea3fb769e1fb336c0f91d7fd3d9c55",
-                "reference": "bdfd6441b8ea3fb769e1fb336c0f91d7fd3d9c55",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/0443d201ec23e297ce61fea1596d9b798a6c0f98",
+                "reference": "0443d201ec23e297ce61fea1596d9b798a6c0f98",
                 "shasum": ""
             },
             "require": {
@@ -10544,7 +10544,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2019-05-13T10:39:31+00:00"
+            "time": "2019-05-15T15:44:15+00:00"
         },
         {
             "name": "sainsburys/guzzle-oauth2-plugin",
