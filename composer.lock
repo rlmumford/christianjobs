@@ -124,16 +124,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.93.2",
+            "version": "3.93.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "f0e3e528bb96c6602d7076d51dba312396cd2cc9"
+                "reference": "047622ae51d49a89f4045c2daa138c2b47d2e089"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f0e3e528bb96c6602d7076d51dba312396cd2cc9",
-                "reference": "f0e3e528bb96c6602d7076d51dba312396cd2cc9",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/047622ae51d49a89f4045c2daa138c2b47d2e089",
+                "reference": "047622ae51d49a89f4045c2daa138c2b47d2e089",
                 "shasum": ""
             },
             "require": {
@@ -203,7 +203,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-05-02T19:45:02+00:00"
+            "time": "2019-05-14T18:16:56+00:00"
         },
         {
             "name": "behat/mink",
@@ -5467,6 +5467,48 @@
             }
         },
         {
+            "name": "drupal/mini_layouts",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/mini_layouts.git",
+                "reference": "4d8008638873338e586ac96f364c183875f8d739"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1557940688",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "rlmumford",
+                    "homepage": "https://www.drupal.org/user/794682"
+                }
+            ],
+            "description": "Create re-usable layout sections to place as blocks.",
+            "homepage": "https://www.drupal.org/project/mini_layouts",
+            "support": {
+                "source": "https://git.drupalcode.org/project/mini_layouts"
+            },
+            "time": "2019-05-15T17:07:07+00:00"
+        },
+        {
             "name": "drupal/name",
             "version": "1.0.0-rc1",
             "source": {
@@ -10492,12 +10534,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "0443d201ec23e297ce61fea1596d9b798a6c0f98"
+                "reference": "bb3095d071dc6ad4570c313dc78adb696d1b94e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/0443d201ec23e297ce61fea1596d9b798a6c0f98",
-                "reference": "0443d201ec23e297ce61fea1596d9b798a6c0f98",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/bb3095d071dc6ad4570c313dc78adb696d1b94e3",
+                "reference": "bb3095d071dc6ad4570c313dc78adb696d1b94e3",
                 "shasum": ""
             },
             "require": {
@@ -10506,6 +10548,7 @@
                 "drupal/block_class": "1.x-dev",
                 "drupal/entity": "^1.0-rc2",
                 "drupal/flexiform": "1.x-dev",
+                "drupal/mini_layouts": "1.x-dev",
                 "drupal/range": "1.x-dev",
                 "drupal/rules": "^3.0@alpha",
                 "webflo/drupal-finder": "^1.0.0",
@@ -10544,7 +10587,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2019-05-15T15:44:15+00:00"
+            "time": "2019-05-15T17:32:31+00:00"
         },
         {
             "name": "sainsburys/guzzle-oauth2-plugin",
