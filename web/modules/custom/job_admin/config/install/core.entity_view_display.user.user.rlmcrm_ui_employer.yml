@@ -1,0 +1,129 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.rlmcrm_ui_employer
+    - field.field.user.user.commerce_remote_id
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+    - views.view.job_board__contact_jobs
+  module:
+    - communication
+    - image
+    - layout_builder
+    - user
+    - views
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          column_widths: 50-50
+        components:
+          0afb3c94-cfa8-450c-a357-ab16d51cede3:
+            uuid: 0afb3c94-cfa8-450c-a357-ab16d51cede3
+            region: first
+            configuration:
+              id: 'field_block:user:user:profile_employer'
+              label: 'Employer Details'
+              provider: layout_builder
+              label_display: visible
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional:
+              class: panel
+              field_label_override: 0
+            weight: 0
+          5d90238b-b4f7-4fa7-9d04-840c63842cf4:
+            uuid: 5d90238b-b4f7-4fa7-9d04-840c63842cf4
+            region: second
+            configuration:
+              id: 'views_block:job_board__contact_jobs-contact_jobs'
+              label: Jobs
+              provider: views
+              label_display: visible
+              views_label: Jobs
+              items_per_page: none
+              context_mapping:
+                organisation: layout_builder.entity
+            additional:
+              class: panel
+              field_label_override: null
+            weight: 0
+        third_party_settings: {  }
+id: user.user.rlmcrm_ui_employer
+targetEntityType: user
+bundle: user
+mode: rlmcrm_ui_employer
+content:
+  communication_contact_addresses:
+    type: contact_info_summary
+    region: content
+    weight: 13
+    label: above
+    settings:
+      info_label_display: none
+    third_party_settings: {  }
+  communication_contact_emails:
+    type: contact_info_summary
+    region: content
+    weight: 11
+    label: above
+    settings:
+      info_label_display: none
+    third_party_settings: {  }
+  communication_contact_telephones:
+    type: contact_info_summary
+    region: content
+    weight: 12
+    label: above
+    settings:
+      info_label_display: none
+    third_party_settings: {  }
+  member_for:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  profile_individual:
+    type: entity_reference_entity_view
+    weight: 10
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  profile_organisation:
+    type: entity_reference_entity_view
+    weight: 10
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  user_picture:
+    type: image
+    weight: 0
+    region: content
+    settings:
+      image_style: thumbnail
+      image_link: content
+    third_party_settings: {  }
+    label: hidden
+hidden:
+  commerce_remote_id: true
+  profile_customer: true
+  profile_employer: true
+  role_label_individual: true
+  role_label_organisation: true
