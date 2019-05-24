@@ -52,6 +52,35 @@ function cj_form_contact_message_showcase_attendee_form_alter(array &$form, Form
 }
 
 /**
+ * Implements hook_form_contact_form_alter().
+ */
+function cj_form_contact_message_elim_interest_form_form_alter(array &$form, FormStateInterface $form_state) {
+  $form['#attributes']['class'][] = 'card-main';
+  $form['#attributes']['class'][] = 'card';
+
+  $form['field_name']['widget'][0]['value']['#title_display'] = 'invisible';
+  $form['field_name']['widget'][0]['value']['#placeholder'] = 'Full Name';
+
+  $form['field_contact_email']['widget'][0]['value']['#title_display'] = 'invisible';
+  $form['field_contact_email']['widget'][0]['value']['#placeholder'] = 'Email Address';
+
+  $form['field_attendee_phone']['widget'][0]['value']['#placeholder'] = 'Phone';
+  $form['field_attendee_phone']['widget'][0]['value']['#title_display'] = 'invisible';
+
+  $form['field_attendee_organisation']['widget'][0]['value']['#placeholder'] = 'Church/Organisation';
+  $form['field_attendee_organisation']['widget'][0]['value']['#title_display'] = 'invisible';
+  $form['field_attendee_storage_consent']['#attributes']['class'][] = 'divider-top';
+  $form['field_attendee_storage_consent']['#attributes']['class'][] = 'pl-24';
+  $form['field_attendee_storage_consent']['#attributes']['class'][] = 'pr-24';
+  $form['field_attendee_storage_consent']['#attributes']['class'][] = 'card-item';
+
+  $form['actions']['#attributes']['class'] = ['card-item', 'card-actions', 'divider-top'];
+  $form['actions']['preview']['#access'] = FALSE;
+  $form['actions']['submit']['#value'] = new TranslatableMarkup('Submit');
+}
+
+
+/**
  * Implements hook_form_user_form_alter().
  */
 function cj_form_user_form_alter(array &$form, FormStateInterface $form_state) {
