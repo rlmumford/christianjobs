@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.cj_consultant
+    - profile.type.organisation
+id: profile.organisation.cj_consultant
+field_name: cj_consultant
+entity_type: profile
+bundle: organisation
+label: Consultant
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user_role_labels'
+  handler_settings:
+    include_anonymous: 1
+    filter:
+      type: role
+      role:
+        staff: staff
+        administrator: 0
+        employer: 0
+        account_manager: 0
+        individual: 0
+        organisation: 0
+        team_manager: 0
+        bank_transfer_payer: 0
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_roles:
+      administrator: 0
+      employer: 0
+      account_manager: 0
+      individual: 0
+      organisation: 0
+      staff: 0
+      team_manager: 0
+      bank_transfer_payer: 0
+field_type: entity_reference

@@ -2,7 +2,6 @@
 
 use Drupal\commerce_price\Price;
 use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -13,6 +12,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
+use Drupal\job_board\Form\EmployerEditForm;
 use Drupal\job_board\Form\JobDeleteForm;
 use Drupal\job_board\Form\JobForm;
 use Drupal\job_board\Form\JobPostForm;
@@ -20,7 +20,6 @@ use Drupal\job_board\JobBoardJobRole;
 use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
 use Drupal\user\Entity\User;
 use Drupal\user\EntityOwnerInterface;
-use Drupal\user\ProfileForm;
 use Drupal\user\UserInterface;
 
 /**
@@ -52,7 +51,7 @@ function job_board_entity_type_build(&$entity_types) {
   }
 
   if ($entity_type = $entity_types['user']) {
-    $entity_type->setFormClass('employer_details', ContentEntityForm::class);
+    $entity_type->setFormClass('employer_details', EmployerEditForm::class);
   }
 }
 

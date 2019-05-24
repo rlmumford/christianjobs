@@ -106,7 +106,15 @@ function job_admin_update_8005() {
  * Update layout.
  */
 function job_admin_update_8006() {
-  \Drupal::service('module_installer')->install(['rlmcrm_ui']);
+  \Drupal::service('module_installer')->install(['rlmcrm_ui', 'rlmcrm_ui_billing', 'rlmcrm_notes', 'cj_crm']);
+  drupal_flush_all_caches();
+
+  // Make sure the roles get presaved correctly.
+  $role_storage = \Drupal::entityTypeManager()->getStorage('user_role');
+  foreach (['organisation', 'individual'] as $rid) {
+    $role = $role_storage->load($rid);
+    user_role_labels_user_role_presave($role);
+  }
 
   $source = new FileStorage(drupal_get_path('module', 'job_admin').'/config/install');
   /** @var \Drupal\Core\Config\StorageInterface $config_storage */

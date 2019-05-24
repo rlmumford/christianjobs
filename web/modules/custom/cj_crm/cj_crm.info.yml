@@ -1,0 +1,9 @@
+type: module
+core: 8.x
+name: Christian Jobs CRM
+description: 'Christian Jobs Database Tools'
+package: Christian Jobs
+
+dependencies:
+  - rlmcrm
+  - rlmcrm_ui
