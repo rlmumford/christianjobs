@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "099b7580803bc950528d53becb82dac5",
+    "content-hash": "d01ffa1f6573c03dd60b0f1c26ff6fa3",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3737,16 +3737,16 @@
         },
         {
             "name": "drupal/console-core",
-            "version": "1.8.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hechoendrupal/drupal-console-core.git",
-                "reference": "bf1fb4a6f689377acec1694267f674178d28e5d1"
+                "reference": "491455688ef6abeed7f155b6f935a10791927c06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-core/zipball/bf1fb4a6f689377acec1694267f674178d28e5d1",
-                "reference": "bf1fb4a6f689377acec1694267f674178d28e5d1",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-core/zipball/491455688ef6abeed7f155b6f935a10791927c06",
+                "reference": "491455688ef6abeed7f155b6f935a10791927c06",
                 "shasum": ""
             },
             "require": {
@@ -3814,7 +3814,7 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2018-03-21T19:33:23+00:00"
+            "time": "2019-05-23T20:57:22+00:00"
         },
         {
             "name": "drupal/console-en",
@@ -14123,6 +14123,12 @@
             "alias_normalized": "1.6.0.0",
             "version": "dev-dev-relative-patches",
             "package": "cweagans/composer-patches"
+        },
+        {
+            "alias": "1.8.0",
+            "alias_normalized": "1.8.0.0",
+            "version": "9999999-dev",
+            "package": "drupal/console-core"
         }
     ],
     "minimum-stability": "dev",
@@ -14131,6 +14137,7 @@
         "drupal/commerce_paypal": 10,
         "drupal/communication": 20,
         "drupal/console": 20,
+        "drupal/console-core": 20,
         "drupal/cshs": 20,
         "drupal/decoupled_auth": 15,
         "drupal/email_registration": 5,

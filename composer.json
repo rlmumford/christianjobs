@@ -55,6 +55,7 @@
         "drupal/commerce_square": "^1.2",
         "drupal/communication": "1.x-dev",
         "drupal/console": "dev-master",
+        "drupal/console-core" : "dev-master as 1.8.0",
         "drupal/core": "^8.6",
         "drupal/cshs": "1.x-dev",
         "drupal/decoupled_auth": "^1.0@alpha",
