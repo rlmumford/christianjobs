@@ -55,6 +55,7 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
         (
           $entity->owner->target_id == $account->id()
           && $account->hasPermission('extend own job_role')
+          && $entity->end_date->date
           && $entity->end_date->date->format('Y-m-d') >= (new DrupalDateTime())->format('Y-m-d')
         )
         || $account->hasPermission('extend any job_role')
