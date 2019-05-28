@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies: {  }
+id: candidate
+label: Candidate
+registration: false
+multiple: false
+roles:
+  candidate: candidate
+weight: 0
+use_revisions: true
+description: ''

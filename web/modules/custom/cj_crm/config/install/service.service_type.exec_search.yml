@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: exec_search
+label: Exec Search
+default_uri: 'service/[service:id]'
+default_label: '[service:job_role:entity:label] Executive Search'

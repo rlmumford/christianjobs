@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.service.job_role
+    - service.service_type.exec_search
+id: service.exec_search.job_role
+field_name: job_role
+entity_type: service
+bundle: exec_search
+label: 'Job Role'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:job_role'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

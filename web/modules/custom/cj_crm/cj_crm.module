@@ -1,0 +1,15 @@
+<?php
+
+use Drupal\cj_crm\Form\UserAddCandidateForm;
+
+/**
+ * Implements hook_entity_type_build()
+ *
+ * @param \Drupal\Core\Entity\EntityTypeInterface[] $entity_types
+ */
+function cj_crm_entity_type_build(&$entity_types) {
+  if ($entity_type = $entity_types['user']) {
+    $entity_type->setFormClass('add_candidate', UserAddCandidateForm::class);
+    $entity_type->setFormClass('edit_candidate', UserAddCandidateForm::class);
+  }
+}
