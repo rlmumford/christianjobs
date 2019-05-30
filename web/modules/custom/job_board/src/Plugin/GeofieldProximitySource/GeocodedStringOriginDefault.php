@@ -28,8 +28,8 @@ class GeocodedStringOriginDefault extends GeofieldProximitySourceBase {
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->origin['lat'] = isset($configuration['origin']) && is_numeric($configuration['origin']['lat']) ? $configuration['origin']['lat'] : '';
-    $this->origin['lon'] = isset($configuration['origin']) && is_numeric($configuration['origin']['lon']) ? $configuration['origin']['lon'] : '';
+    $this->origin['lat'] = isset($configuration['origin']['lat']) && is_numeric($configuration['origin']['lat']) ? $configuration['origin']['lat'] : '';
+    $this->origin['lon'] = isset($configuration['origin']['lon']) && is_numeric($configuration['origin']['lon']) ? $configuration['origin']['lon'] : '';
   }
 
   /**
@@ -40,7 +40,7 @@ class GeocodedStringOriginDefault extends GeofieldProximitySourceBase {
     $form["origin"] = [
       '#title' => t('Origin'),
       '#type' => 'textfield',
-      '#default_value' => $this->configuration['origin']['text'],
+      '#default_value' => !empty($this->configuration['origin']['text']) ? $this->configuration['origin']['text'] : NULL,
       '#element_validate' => [[static::class, 'originTextElementValidate']],
     ];
 

@@ -30,6 +30,7 @@ function job_board_views_data_alter(array &$data) {
     // Location field
     $data[$table_name]['location_geo__proximity'] = [
       'title' => 'Location Geo Proximity',
+      'help' => 'Geometric Location Proximity',
       'field' => [
         'id' => 'geofield_proximity_field',
         'real field' => $field_name,

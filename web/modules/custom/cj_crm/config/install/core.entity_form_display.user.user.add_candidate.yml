@@ -50,7 +50,7 @@ third_party_settings:
             create: 1
       page_exposure:
         id: page_exposure
-id: user.user.add_individual
+id: user.user.add_candidate
 targetEntityType: user
 bundle: user
 mode: add_candidate

@@ -45,7 +45,7 @@ third_party_settings:
             create: 1
       page_exposure:
         id: page_exposure
-id: user.user.edit_individual
+id: user.user.edit_candidate
 targetEntityType: user
 bundle: user
 mode: edit_candidate

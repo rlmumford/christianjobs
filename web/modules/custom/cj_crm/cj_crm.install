@@ -1,7 +1,30 @@
 <?php
+
+use Drupal\cj_crm\Entity\ServiceCandidateAccessControlHandler;
+use Drupal\cj_crm\Entity\ServiceCandidateStorage;
+use Drupal\Core\Entity\ContentEntityType;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\views\EntityViewsData;
+
 /**
- * Created by PhpStorm.
- * User: Rob
- * Date: 28/05/2019
- * Time: 09:33
+ * Install the service candidate entity type.
+ *
+ * @throws \Drupal\Core\Entity\Exception\EntityTypeIdLengthException
  */
+function cj_crm_update_8001() {
+  \Drupal::entityDefinitionUpdateManager()->installEntityType(new ContentEntityType([
+    "id" => "cj_service_candidate",
+    "label" => new TranslatableMarkup("Service Candidate"),
+    "base_table" => "cj_service_candidate",
+    "handlers" => [
+      "storage" => ServiceCandidateStorage::class,
+      "views_data" => EntityViewsData::class,
+      "access" => ServiceCandidateAccessControlHandler::class,
+    ],
+    "entity_keys" => [
+      "id" => "id",
+      "uuid" => "uuid",
+    ],
+    "admin_permission" => "administer candidates",
+  ]));
+}
