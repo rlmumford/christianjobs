@@ -172,6 +172,7 @@ class JobPostForm extends JobForm {
     $actions = parent::actions($form, $form_state);
 
     $actions['submit']['#submit'][] = '::submitFormAddToCart';
+    $actions['submit']['#attributes']['formnovalidate'] = 'formnovalidate';
 
     $actions['submit_another'] = $actions['submit'];
     $actions['submit_another']['#value'] = $this->t('Save & Post Another Job');
