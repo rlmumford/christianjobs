@@ -498,7 +498,7 @@ function job_board_job_package_info($key = NULL) {
   ];
   $info['membership'] = [
     'label' => t('Community Membership'),
-    'price' => new Price('349.00', 'GBP'),
+    'price' => new Price('425.00', 'GBP'),
     'description' => t('Receive discounts, priority access and support by becoming a Community Member.'),
     'allowed_featured_dates' => 5,
     'cta_text' => new TranslatableMarkup('Find Out More'),

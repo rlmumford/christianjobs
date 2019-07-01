@@ -227,6 +227,6 @@ class Membership extends ContentEntityBase implements EntityOwnerInterface, Purc
    *   The price, or NULL.
    */
   public function getPrice(Context $context = NULL) {
-    return new Price('349.00', 'GBP');
+    return new Price('425.00', 'GBP');
   }
 }

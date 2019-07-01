@@ -123,7 +123,7 @@ class JobPostForm extends JobForm {
       if (!$membership_in_cart && !$membership) {
         $form['membership']['new'] = [
           '#type' => 'checkbox',
-          '#title' => $this->t('Become a Christian Jobs Community Member <span class="upsell-price pull-right">£349<span class="tax">+VAT</span></span>'),
+          '#title' => $this->t('Become a Christian Jobs Community Member <span class="upsell-price pull-right">£425<span class="tax">+VAT</span></span>'),
           '#attributes' => [
             'class' => ['membership-checkbox'],
           ],
@@ -132,7 +132,7 @@ class JobPostForm extends JobForm {
       else if (!$membership_in_cart && $membership && $membership->status->value == Membership::STATUS_EXPIRED) {
         $form['membership']['extend'] = [
           '#type' => 'checkbox',
-          '#title' => $this->t('Renew Christian Jobs Community Membership <span class="upsell-price pull-right">£349<span class="tax">+VAT</span></span>'),
+          '#title' => $this->t('Renew Christian Jobs Community Membership <span class="upsell-price pull-right">£425<span class="tax">+VAT</span></span>'),
           '#attributes' => [
             'class' => ['membership-checkbox'],
           ],
