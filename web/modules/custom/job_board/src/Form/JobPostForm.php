@@ -92,7 +92,7 @@ class JobPostForm extends JobForm {
       ],
       'rpo' => [
         '#type' => 'checkbox',
-        '#title' => $this->t('Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right">£795<span class="tax">+VAT</span></span>'),
+        '#title' => $this->t('Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right">£895<span class="tax">+VAT</span></span>'),
         '#default_value' => !empty($this->entity->rpo->value),
         '#attributes' => [
           'class' => ['rpo-checkbox'],

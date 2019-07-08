@@ -136,7 +136,7 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
    */
   public function getPrice(Context $context = NULL) {
     if ($this->rpo->value) {
-      $price = new Price('795.00', 'GBP');
+      $price = new Price('895.00', 'GBP');
     }
     else if ($this->initial_duration->value == 'P60D') {
       $price = new Price('100.00', 'GBP');
