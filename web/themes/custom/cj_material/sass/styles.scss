@@ -9,19 +9,37 @@
 @import "../../../contrib/material_base/sass/variables";
 @import "../../../contrib/material_base/sass/modules";
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Lato');
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:400,600&display=swap');
 
 // put your styles here
 // you can @extend anything from base theme
-
+h1, h2, h3 {
+  font-weight: bold;
+}
 h1 {
-  color: #4BBAFF;
+  color: #1E5168;
+  text-transform: uppercase;
+  margin-top: 0;
+  padding-bottom: 10px;
+}
+h1:after {
+  background: #FF904B;
+  content: "";
+  height: 6px;
+  position: absolute;
+  left: 200px;
+  bottom: 0px;
+  width: 1600px;
 }
 h2 {
-  color: #FF904B;
+  color: #1E5168;
 }
 h3 {
   color: #40BAFF;
+}
+h2 a, h3 a {
+  color: #1E5168;
+  text-transform: uppercase;
 }
 h4 {
   color: #FF904B;
@@ -124,8 +142,21 @@ details.captcha {
 .form-item input[type=checkbox]:checked:disabled:before {
   color: #BBBBBB;
 }
+
+div#block-cj-material-page-title {
+  float: none;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  padding-top: 10px;
+}
+div#main-content {
+  background: #FFFFFF;
+  padding: 0 20px 30px;
+}
+
 .path-frontpage header#header {
-  background-color: #1E5168;
+  background-color: #FFFFFF;
   position: relative;
 }
 .path-frontpage #header-content {
@@ -150,38 +181,37 @@ details.captcha {
 .path-frontpage .header-front h1 {
   margin-bottom: 0;
   margin-top: 24px;
-  color: #F1F1F1;
+  color: #1E5168;
 }
 .path-frontpage .header-front span.tagline {
   font-size: 1.1em;
-  color: #F1F1F1;
+  color: #1E5168;
 }
 .header-front-ctas .button-cta {
   margin: 40px 15px;
-  border-radius: 50px;
 }
 
 .navbar-item .navbar-icon {
-  color: #F1F1F1;
+  color: #1E5168;
 }
 .navbar-fixed #navbar,
 .navbar-fixed #navbar.navbar-bg {
-  background-color: #1E5168;
+  background-color: #FFFFFF;
 }
 .navbar-title a {
-  color: #F1F1F1;
+  color: #1E5168;
   font-weight: bolder;
   font-family: "Montserrat";
 }
 .navbar-menu .menu a {
-  color: #F1F1F1;
+  color: #1E5168;
   font-weight: bolder;
 }
 .navbar-menu .menu .active-trail a,
 .navbar-menu .menu .is-active,
 .navbar-menu .menu a:hover {
-  color: #F1F1F1;
-  border-color: #F1F1F1;
+  color: #1E5168;
+  border-color: #1E5168;
 }
 .navbar-branding > div:not(.contextual) + div {
   margin-left: 0px;
@@ -299,6 +329,9 @@ input.button.button-orange:hover,
   min-height: 0;
 }
 
+.layout-content {
+  padding-top: 12px;
+}
 @media only screen and (min-width: $sm) {
   .layout__region--aside div.field-name-logo,
   .layout__region--aside div.field-name-employer-name {
@@ -333,6 +366,19 @@ h2.company-name {
 /* Job Result */
 .job-result {
   margin: 0.5em 0;
+  border-radius: 0;
+  box-shadow: none;
+  position: relative;
+  padding-top: 6px;
+}
+.job-result:before {
+  background: #FF904B;
+  content: "";
+  height: 6px;
+  position: absolute;
+  left: 200px;
+  top: 0px;
+  width: 1600px;
 }
 .job-result .subtitle.employer-name a {
   color: #FF904b;
@@ -534,54 +580,73 @@ span.upsell-price .tax {
   color: #FF904b;
 }
 
+#content {
+  background-color: #1E5168;
+  overflow: hidden;
+}
+
 .section-wrapper {
   padding-bottom: 30px;
   padding-top: 25px;
 }
-.section-wrapper--grey {
-  background: #f6f6f6;
-}
-.section-wrapper--blue {
-  background: #4BBAFF;
-}
-.section-wrapper--orange {
-  background: #FF904b;
-}
 .section-wrapper .section {
   max-width: 1200px;
   margin: 0 auto;
+  background: #FFFFFF;
+  padding: 0 20px 75px 20px;
+  position: relative;
+}
+.section-wrapper .section:after {
+  background: #FF904B;
+  bottom: 30px;
+  content: "";
+  height: 6px;
+  left: 220px;
+  position: absolute;
+  width: 1600px;
+}
+.section-wrapper-header {
+  position: relative;
+  margin-bottom: 10px;
 }
 h2.section-header {
-  margin-bottom: 40px;
+  overflow: hidden;
+  margin-bottom: 30px;
   margin-top: 10px;
   text-transform: uppercase;
   font-size: 16px;
-  font-weight: 500;
-  position: relative;
   padding-bottom: 25px;
+  line-height: 36px;
 }
 h2.section-header::after {
-  background: #04baff;
+  background: #FF904B;
   bottom: 0;
   content: '';
-  height: 3px;
-  left: 0;
+  height: 6px;
+  left: 200px;
   position: absolute;
-  width: 80px;
+  width: 1600px;
 }
 
 .path-frontpage {
   div.section-header-wrapper {
     text-align: center;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  h1 {
+    text-transform: none;
+    padding-bottom: 0;
+  }
+  h1:after {
+    content: none;
   }
   h2.section-header {
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    font-size: 24px;
+    margin-bottom: 0;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    font-size: 30px;
     display: inline-block;
-  }
-  h2.section-header::after {
-    width: 100%;
   }
 }
 
@@ -901,4 +966,9 @@ article.card a.read-more-pointer span {
 
 .user-logged-in.path-job .block-cj-material-page-title {
   padding-right: 205px;
+}
+
+form#views-exposed-form-job-board-page {
+  border-radius: 0;
+  box-shadow: none;
 }

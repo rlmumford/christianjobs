@@ -86,21 +86,15 @@ class FrontPageController extends ControllerBase {
     $build['title'] = [
       '#type' => 'container',
       '#attributes' => [
-        'class' => ['row', 'section'],
+        'class' => ['col-xs-12', 'section-header-wrapper'],
       ],
       'title' => [
-        '#type' => 'container',
+        '#type' => 'html_tag',
+        '#tag' => 'h2',
         '#attributes' => [
-          'class' => ['col-xs-12', 'section-header-wrapper'],
+          'class' => [ 'section-header' ]
         ],
-        'title' => [
-          '#type' => 'html_tag',
-          '#tag' => 'h2',
-          '#attributes' => [
-            'class' => [ 'section-header' ]
-          ],
-          '#value' => new TranslatableMarkup('Pricing'),
-        ],
+        '#value' => new TranslatableMarkup('Pricing'),
       ],
     ];
     $build['pricing'] = $row;

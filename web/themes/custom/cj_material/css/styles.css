@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import url("https://fonts.googleapis.com/css?family=Montserrat:600|Lato");
+@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat:400,600&display=swap");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -77,7 +77,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .material-icons, .pager .pager-item.item-last > a:before, .pager .pager-item.item-last > span:before, .pager .pager-item.item-next > a:before, .pager .pager-item.item-next > span:before, .pager .pager-item.item-ellipsis > a:before, .pager .pager-item.item-ellipsis > span:before, .pager .pager-item.item-previous > a:before, .pager .pager-item.item-previous > span:before, .pager .pager-item.item-first > a:before, .pager .pager-item.item-first > span:before, .collapsible-toggle:before, .sidebar .menu .expanded > a:after, .sidebar .menu .collapsed > a:after, .navbar-account-menu .menu a:before, .form-item.form-type-select:after, .form-item input[type=radio]:before, .form-item input[type=checkbox]:before, .info:before, .messages-error:before, .messages-warning:before, .messages-status:before, .important:before, .breadcrumb ol li:not(:last-child):after {
-  font-family: "Material Icons";
+  font-family: "Material Icons", "Material Icons Local";
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -216,14 +216,14 @@ p {
   margin-bottom: 8px;
 }
 
-p.icon-left, p.services-icon-left {
+p.icon-left, p.services-icon-left, p.filetypes-icon-left {
   padding-left: 36px;
 }
-p.icon-left:before, p.services-icon-left:before {
+p.icon-left:before, p.services-icon-left:before, p.filetypes-icon-left:before {
   margin-left: -36px;
 }
 
-p .material-icons, p .pager .pager-item.item-last > a:before, .pager p .pager-item.item-last > a:before, p .pager .pager-item.item-last > span:before, .pager p .pager-item.item-last > span:before, p .pager .pager-item.item-next > a:before, .pager p .pager-item.item-next > a:before, p .pager .pager-item.item-next > span:before, .pager p .pager-item.item-next > span:before, p .pager .pager-item.item-ellipsis > a:before, .pager p .pager-item.item-ellipsis > a:before, p .pager .pager-item.item-ellipsis > span:before, .pager p .pager-item.item-ellipsis > span:before, p .pager .pager-item.item-previous > a:before, .pager p .pager-item.item-previous > a:before, p .pager .pager-item.item-previous > span:before, .pager p .pager-item.item-previous > span:before, p .pager .pager-item.item-first > a:before, .pager p .pager-item.item-first > a:before, p .pager .pager-item.item-first > span:before, .pager p .pager-item.item-first > span:before, p .collapsible-toggle:before, p .sidebar .menu .expanded > a:after, .sidebar .menu p .expanded > a:after, p .sidebar .menu .collapsed > a:after, .sidebar .menu p .collapsed > a:after, p .navbar-account-menu .menu a:before, .navbar-account-menu .menu p a:before, p .form-item.form-type-select:after, p .form-item input[type=radio]:before, .form-item p input[type=radio]:before, p .form-item input[type=checkbox]:before, .form-item p input[type=checkbox]:before, p .info:before, p .messages-error:before, p .messages-warning:before, p .messages-status:before, p .important:before, p .breadcrumb ol li:not(:last-child):after, .breadcrumb ol p li:not(:last-child):after, p .services-icons,
+p .material-icons, p .pager .pager-item.item-last > a:before, .pager p .pager-item.item-last > a:before, p .pager .pager-item.item-last > span:before, .pager p .pager-item.item-last > span:before, p .pager .pager-item.item-next > a:before, .pager p .pager-item.item-next > a:before, p .pager .pager-item.item-next > span:before, .pager p .pager-item.item-next > span:before, p .pager .pager-item.item-ellipsis > a:before, .pager p .pager-item.item-ellipsis > a:before, p .pager .pager-item.item-ellipsis > span:before, .pager p .pager-item.item-ellipsis > span:before, p .pager .pager-item.item-previous > a:before, .pager p .pager-item.item-previous > a:before, p .pager .pager-item.item-previous > span:before, .pager p .pager-item.item-previous > span:before, p .pager .pager-item.item-first > a:before, .pager p .pager-item.item-first > a:before, p .pager .pager-item.item-first > span:before, .pager p .pager-item.item-first > span:before, p .collapsible-toggle:before, p .sidebar .menu .expanded > a:after, .sidebar .menu p .expanded > a:after, p .sidebar .menu .collapsed > a:after, .sidebar .menu p .collapsed > a:after, p .navbar-account-menu .menu a:before, .navbar-account-menu .menu p a:before, p .form-item.form-type-select:after, p .form-item input[type=radio]:before, .form-item p input[type=radio]:before, p .form-item input[type=checkbox]:before, .form-item p input[type=checkbox]:before, p .info:before, p .messages-error:before, p .messages-warning:before, p .messages-status:before, p .important:before, p .breadcrumb ol li:not(:last-child):after, .breadcrumb ol p li:not(:last-child):after, p .services-icons, p .filetypes-icons,
 ul:not(.menu) li .material-icons,
 ul:not(.menu) li .pager .pager-item.item-last > a:before,
 .pager ul:not(.menu) li .pager-item.item-last > a:before,
@@ -265,6 +265,7 @@ ul:not(.menu) li .important:before,
 ul:not(.menu) li .breadcrumb ol li:not(:last-child):after,
 .breadcrumb ol ul:not(.menu) li li:not(:last-child):after,
 ul:not(.menu) li .services-icons,
+ul:not(.menu) li .filetypes-icons,
 .btn .material-icons,
 .btn .pager .pager-item.item-last > a:before,
 .pager .btn .pager-item.item-last > a:before,
@@ -376,20 +377,20 @@ ul:not(.menu) li .services-icons,
 .breadcrumb ol .pager .pager-item > a li:not(:last-child):after,
 .pager .breadcrumb ol .pager-item > a li:not(:last-child):after,
 .breadcrumb ol .pager .pager-item > span li:not(:last-child):after,
-.pager .breadcrumb ol .pager-item > span li:not(:last-child):after, .btn .services-icons, .pager .pager-item > a .services-icons, .pager .pager-item > span .services-icons {
+.pager .breadcrumb ol .pager-item > span li:not(:last-child):after, .btn .services-icons, .pager .pager-item > a .services-icons, .pager .pager-item > span .services-icons, .btn .filetypes-icons, .pager .pager-item > a .filetypes-icons, .pager .pager-item > span .filetypes-icons {
   vertical-align: -30%;
 }
 
-p a.icon-left:not(.btn), p a.services-icon-left:not(.btn), ul:not(.menu) li a.icon-left:not(.btn), ul:not(.menu) li a.services-icon-left:not(.btn), td a.icon-left:not(.btn), td a.services-icon-left:not(.btn), th a.icon-left:not(.btn), th a.services-icon-left:not(.btn) {
+p a.icon-left:not(.btn), p a.services-icon-left:not(.btn), p a.filetypes-icon-left:not(.btn), ul:not(.menu) li a.icon-left:not(.btn), ul:not(.menu) li a.services-icon-left:not(.btn), ul:not(.menu) li a.filetypes-icon-left:not(.btn), td a.icon-left:not(.btn), td a.services-icon-left:not(.btn), td a.filetypes-icon-left:not(.btn), th a.icon-left:not(.btn), th a.services-icon-left:not(.btn), th a.filetypes-icon-left:not(.btn) {
   display: inline-block;
 }
-p a.icon-left:not(.btn):before, p a.services-icon-left:not(.btn):before, ul:not(.menu) li a.icon-left:not(.btn):before, ul:not(.menu) li a.services-icon-left:not(.btn):before, td a.icon-left:not(.btn):before, td a.services-icon-left:not(.btn):before, th a.icon-left:not(.btn):before, th a.services-icon-left:not(.btn):before {
+p a.icon-left:not(.btn):before, p a.services-icon-left:not(.btn):before, p a.filetypes-icon-left:not(.btn):before, ul:not(.menu) li a.icon-left:not(.btn):before, ul:not(.menu) li a.services-icon-left:not(.btn):before, ul:not(.menu) li a.filetypes-icon-left:not(.btn):before, td a.icon-left:not(.btn):before, td a.services-icon-left:not(.btn):before, td a.filetypes-icon-left:not(.btn):before, th a.icon-left:not(.btn):before, th a.services-icon-left:not(.btn):before, th a.filetypes-icon-left:not(.btn):before {
   margin-right: 4px;
 }
-p a.icon-right:not(.btn), p a.services-icon-right:not(.btn), ul:not(.menu) li a.icon-right:not(.btn), ul:not(.menu) li a.services-icon-right:not(.btn), td a.icon-right:not(.btn), td a.services-icon-right:not(.btn), th a.icon-right:not(.btn), th a.services-icon-right:not(.btn) {
+p a.icon-right:not(.btn), p a.services-icon-right:not(.btn), p a.filetypes-icon-right:not(.btn), ul:not(.menu) li a.icon-right:not(.btn), ul:not(.menu) li a.services-icon-right:not(.btn), ul:not(.menu) li a.filetypes-icon-right:not(.btn), td a.icon-right:not(.btn), td a.services-icon-right:not(.btn), td a.filetypes-icon-right:not(.btn), th a.icon-right:not(.btn), th a.services-icon-right:not(.btn), th a.filetypes-icon-right:not(.btn) {
   display: inline-block;
 }
-p a.icon-right:not(.btn):after, p a.services-icon-right:not(.btn):after, ul:not(.menu) li a.icon-right:not(.btn):after, ul:not(.menu) li a.services-icon-right:not(.btn):after, td a.icon-right:not(.btn):after, td a.services-icon-right:not(.btn):after, th a.icon-right:not(.btn):after, th a.services-icon-right:not(.btn):after {
+p a.icon-right:not(.btn):after, p a.services-icon-right:not(.btn):after, p a.filetypes-icon-right:not(.btn):after, ul:not(.menu) li a.icon-right:not(.btn):after, ul:not(.menu) li a.services-icon-right:not(.btn):after, ul:not(.menu) li a.filetypes-icon-right:not(.btn):after, td a.icon-right:not(.btn):after, td a.services-icon-right:not(.btn):after, td a.filetypes-icon-right:not(.btn):after, th a.icon-right:not(.btn):after, th a.services-icon-right:not(.btn):after, th a.filetypes-icon-right:not(.btn):after {
   margin-left: 4px;
 }
 
@@ -987,11 +988,13 @@ pre {
   .one-sidebar #sidebar-first {
     order: 1;
     flex: 0 0 240px;
+    width: 240px;
     margin-right: 24px;
   }
   .one-sidebar #sidebar-second {
     order: 3;
     flex: 0 0 240px;
+    width: 240px;
     margin-left: 24px;
   }
 
@@ -1178,7 +1181,10 @@ pre {
   margin-bottom: -2px;
 }
 
-.btn.services-icon-left:before, .pager .pager-item > a.services-icon-left:before, .pager .pager-item > span.services-icon-left:before, .btn.services-icon-right:after, .pager .pager-item > a.services-icon-right:after, .pager .pager-item > span.services-icon-right:after, .btn .services-icons, .pager .pager-item > a .services-icons, .pager .pager-item > span .services-icons {
+.btn.services-icon-left:before, .pager .pager-item > a.services-icon-left:before, .pager .pager-item > span.services-icon-left:before, .btn.services-icon-right:after, .pager .pager-item > a.services-icon-right:after, .pager .pager-item > span.services-icon-right:after, .btn .services-icons, .pager .pager-item > a .services-icons, .pager .pager-item > span .services-icons,
+.btn.filetypes-icon-left:before,
+.pager .pager-item > a.filetypes-icon-left:before,
+.pager .pager-item > span.filetypes-icon-left:before, .btn.filetypes-icon-right:after, .pager .pager-item > a.filetypes-icon-right:after, .pager .pager-item > span.filetypes-icon-right:after, .btn .filetypes-icons, .pager .pager-item > a .filetypes-icons, .pager .pager-item > span .filetypes-icons {
   margin-top: -2px;
   margin-bottom: -1px;
 }
@@ -1186,18 +1192,24 @@ pre {
 .btn.icon-left:before, .pager .pager-item > a.icon-left:before, .pager .pager-item > span.icon-left:before, .btn .material-icons, .btn .pager .pager-item.item-last > a:before, .pager .btn .pager-item.item-last > a:before, .btn .pager .pager-item.item-last > span:before, .pager .btn .pager-item.item-last > span:before, .btn .pager .pager-item.item-next > a:before, .pager .btn .pager-item.item-next > a:before, .btn .pager .pager-item.item-next > span:before, .pager .btn .pager-item.item-next > span:before, .btn .pager .pager-item.item-ellipsis > a:before, .pager .btn .pager-item.item-ellipsis > a:before, .btn .pager .pager-item.item-ellipsis > span:before, .pager .btn .pager-item.item-ellipsis > span:before, .btn .pager .pager-item.item-previous > a:before, .pager .btn .pager-item.item-previous > a:before, .btn .pager .pager-item.item-previous > span:before, .pager .btn .pager-item.item-previous > span:before, .btn .pager .pager-item.item-first > a:before, .pager .btn .pager-item.item-first > a:before, .btn .pager .pager-item.item-first > span:before, .pager .btn .pager-item.item-first > span:before, .pager .pager-item > a .material-icons, .pager .pager-item > a .pager-item.item-last > a:before, .pager .pager-item > a .pager-item.item-last > span:before, .pager .pager-item > a .pager-item.item-next > a:before, .pager .pager-item > a .pager-item.item-next > span:before, .pager .pager-item > a .pager-item.item-ellipsis > a:before, .pager .pager-item > a .pager-item.item-ellipsis > span:before, .pager .pager-item > a .pager-item.item-previous > a:before, .pager .pager-item > a .pager-item.item-previous > span:before, .pager .pager-item > a .pager-item.item-first > a:before, .pager .pager-item > a .pager-item.item-first > span:before, .pager .pager-item > span .material-icons, .pager .pager-item > span .pager-item.item-last > a:before, .pager .pager-item > span .pager-item.item-last > span:before, .pager .pager-item > span .pager-item.item-next > a:before, .pager .pager-item > span .pager-item.item-next > span:before, .pager .pager-item > span .pager-item.item-ellipsis > a:before, .pager .pager-item > span .pager-item.item-ellipsis > span:before, .pager .pager-item > span .pager-item.item-previous > a:before, .pager .pager-item > span .pager-item.item-previous > span:before, .pager .pager-item > span .pager-item.item-first > a:before, .pager .pager-item > span .pager-item.item-first > span:before, .btn .collapsible-toggle:before, .pager .pager-item > a .collapsible-toggle:before, .pager .pager-item > span .collapsible-toggle:before, .btn .sidebar .menu .expanded > a:after, .pager .pager-item > a .sidebar .menu .expanded > a:after, .pager .pager-item > span .sidebar .menu .expanded > a:after, .sidebar .menu .btn .expanded > a:after, .sidebar .menu .pager .pager-item > a .expanded > a:after, .pager .sidebar .menu .pager-item > a .expanded > a:after, .sidebar .menu .pager .pager-item > span .expanded > a:after, .pager .sidebar .menu .pager-item > span .expanded > a:after, .btn .sidebar .menu .collapsed > a:after, .pager .pager-item > a .sidebar .menu .collapsed > a:after, .pager .pager-item > span .sidebar .menu .collapsed > a:after, .sidebar .menu .btn .collapsed > a:after, .sidebar .menu .pager .pager-item > a .collapsed > a:after, .pager .sidebar .menu .pager-item > a .collapsed > a:after, .sidebar .menu .pager .pager-item > span .collapsed > a:after, .pager .sidebar .menu .pager-item > span .collapsed > a:after, .btn .navbar-account-menu .menu a:before, .pager .pager-item > a .navbar-account-menu .menu a:before, .pager .pager-item > span .navbar-account-menu .menu a:before, .navbar-account-menu .menu .btn a:before, .navbar-account-menu .menu .pager .pager-item > a a:before, .pager .navbar-account-menu .menu .pager-item > a a:before, .navbar-account-menu .menu .pager .pager-item > span a:before, .pager .navbar-account-menu .menu .pager-item > span a:before, .btn .form-item.form-type-select:after, .pager .pager-item > a .form-item.form-type-select:after, .pager .pager-item > span .form-item.form-type-select:after, .btn .form-item input[type=radio]:before, .pager .pager-item > a .form-item input[type=radio]:before, .pager .pager-item > span .form-item input[type=radio]:before, .form-item .btn input[type=radio]:before, .form-item .pager .pager-item > a input[type=radio]:before, .pager .form-item .pager-item > a input[type=radio]:before, .form-item .pager .pager-item > span input[type=radio]:before, .pager .form-item .pager-item > span input[type=radio]:before, .btn .form-item input[type=checkbox]:before, .pager .pager-item > a .form-item input[type=checkbox]:before, .pager .pager-item > span .form-item input[type=checkbox]:before, .form-item .btn input[type=checkbox]:before, .form-item .pager .pager-item > a input[type=checkbox]:before, .pager .form-item .pager-item > a input[type=checkbox]:before, .form-item .pager .pager-item > span input[type=checkbox]:before, .pager .form-item .pager-item > span input[type=checkbox]:before, .btn .breadcrumb ol li:not(:last-child):after, .pager .pager-item > a .breadcrumb ol li:not(:last-child):after, .pager .pager-item > span .breadcrumb ol li:not(:last-child):after, .breadcrumb ol .btn li:not(:last-child):after, .breadcrumb ol .pager .pager-item > a li:not(:last-child):after, .pager .breadcrumb ol .pager-item > a li:not(:last-child):after, .breadcrumb ol .pager .pager-item > span li:not(:last-child):after, .pager .breadcrumb ol .pager-item > span li:not(:last-child):after, .btn .info:before, .btn .messages-error:before, .btn .messages-warning:before, .btn .messages-status:before, .pager .pager-item > a .info:before, .pager .pager-item > a .messages-error:before, .pager .pager-item > a .messages-warning:before, .pager .pager-item > a .messages-status:before, .pager .pager-item > span .info:before, .pager .pager-item > span .messages-error:before, .pager .pager-item > span .messages-warning:before, .pager .pager-item > span .messages-status:before, .btn .important:before, .pager .pager-item > a .important:before, .pager .pager-item > span .important:before,
 .btn.services-icon-left:before,
 .pager .pager-item > a.services-icon-left:before,
-.pager .pager-item > span.services-icon-left:before, .btn .services-icons, .pager .pager-item > a .services-icons, .pager .pager-item > span .services-icons {
+.pager .pager-item > span.services-icon-left:before, .btn .services-icons, .pager .pager-item > a .services-icons, .pager .pager-item > span .services-icons,
+.btn.filetypes-icon-left:before,
+.pager .pager-item > a.filetypes-icon-left:before,
+.pager .pager-item > span.filetypes-icon-left:before, .btn .filetypes-icons, .pager .pager-item > a .filetypes-icons, .pager .pager-item > span .filetypes-icons {
   margin-left: -2px;
 }
 
 .btn.icon-right:after, .pager .pager-item > a.icon-right:after, .pager .pager-item > span.icon-right:after, .btn .material-icons, .btn .pager .pager-item.item-last > a:before, .pager .btn .pager-item.item-last > a:before, .btn .pager .pager-item.item-last > span:before, .pager .btn .pager-item.item-last > span:before, .btn .pager .pager-item.item-next > a:before, .pager .btn .pager-item.item-next > a:before, .btn .pager .pager-item.item-next > span:before, .pager .btn .pager-item.item-next > span:before, .btn .pager .pager-item.item-ellipsis > a:before, .pager .btn .pager-item.item-ellipsis > a:before, .btn .pager .pager-item.item-ellipsis > span:before, .pager .btn .pager-item.item-ellipsis > span:before, .btn .pager .pager-item.item-previous > a:before, .pager .btn .pager-item.item-previous > a:before, .btn .pager .pager-item.item-previous > span:before, .pager .btn .pager-item.item-previous > span:before, .btn .pager .pager-item.item-first > a:before, .pager .btn .pager-item.item-first > a:before, .btn .pager .pager-item.item-first > span:before, .pager .btn .pager-item.item-first > span:before, .pager .pager-item > a .material-icons, .pager .pager-item > a .pager-item.item-last > a:before, .pager .pager-item > a .pager-item.item-last > span:before, .pager .pager-item > a .pager-item.item-next > a:before, .pager .pager-item > a .pager-item.item-next > span:before, .pager .pager-item > a .pager-item.item-ellipsis > a:before, .pager .pager-item > a .pager-item.item-ellipsis > span:before, .pager .pager-item > a .pager-item.item-previous > a:before, .pager .pager-item > a .pager-item.item-previous > span:before, .pager .pager-item > a .pager-item.item-first > a:before, .pager .pager-item > a .pager-item.item-first > span:before, .pager .pager-item > span .material-icons, .pager .pager-item > span .pager-item.item-last > a:before, .pager .pager-item > span .pager-item.item-last > span:before, .pager .pager-item > span .pager-item.item-next > a:before, .pager .pager-item > span .pager-item.item-next > span:before, .pager .pager-item > span .pager-item.item-ellipsis > a:before, .pager .pager-item > span .pager-item.item-ellipsis > span:before, .pager .pager-item > span .pager-item.item-previous > a:before, .pager .pager-item > span .pager-item.item-previous > span:before, .pager .pager-item > span .pager-item.item-first > a:before, .pager .pager-item > span .pager-item.item-first > span:before, .btn .collapsible-toggle:before, .pager .pager-item > a .collapsible-toggle:before, .pager .pager-item > span .collapsible-toggle:before, .btn .sidebar .menu .expanded > a:after, .pager .pager-item > a .sidebar .menu .expanded > a:after, .pager .pager-item > span .sidebar .menu .expanded > a:after, .sidebar .menu .btn .expanded > a:after, .sidebar .menu .pager .pager-item > a .expanded > a:after, .pager .sidebar .menu .pager-item > a .expanded > a:after, .sidebar .menu .pager .pager-item > span .expanded > a:after, .pager .sidebar .menu .pager-item > span .expanded > a:after, .btn .sidebar .menu .collapsed > a:after, .pager .pager-item > a .sidebar .menu .collapsed > a:after, .pager .pager-item > span .sidebar .menu .collapsed > a:after, .sidebar .menu .btn .collapsed > a:after, .sidebar .menu .pager .pager-item > a .collapsed > a:after, .pager .sidebar .menu .pager-item > a .collapsed > a:after, .sidebar .menu .pager .pager-item > span .collapsed > a:after, .pager .sidebar .menu .pager-item > span .collapsed > a:after, .btn .navbar-account-menu .menu a:before, .pager .pager-item > a .navbar-account-menu .menu a:before, .pager .pager-item > span .navbar-account-menu .menu a:before, .navbar-account-menu .menu .btn a:before, .navbar-account-menu .menu .pager .pager-item > a a:before, .pager .navbar-account-menu .menu .pager-item > a a:before, .navbar-account-menu .menu .pager .pager-item > span a:before, .pager .navbar-account-menu .menu .pager-item > span a:before, .btn .form-item.form-type-select:after, .pager .pager-item > a .form-item.form-type-select:after, .pager .pager-item > span .form-item.form-type-select:after, .btn .form-item input[type=radio]:before, .pager .pager-item > a .form-item input[type=radio]:before, .pager .pager-item > span .form-item input[type=radio]:before, .form-item .btn input[type=radio]:before, .form-item .pager .pager-item > a input[type=radio]:before, .pager .form-item .pager-item > a input[type=radio]:before, .form-item .pager .pager-item > span input[type=radio]:before, .pager .form-item .pager-item > span input[type=radio]:before, .btn .form-item input[type=checkbox]:before, .pager .pager-item > a .form-item input[type=checkbox]:before, .pager .pager-item > span .form-item input[type=checkbox]:before, .form-item .btn input[type=checkbox]:before, .form-item .pager .pager-item > a input[type=checkbox]:before, .pager .form-item .pager-item > a input[type=checkbox]:before, .form-item .pager .pager-item > span input[type=checkbox]:before, .pager .form-item .pager-item > span input[type=checkbox]:before, .btn .breadcrumb ol li:not(:last-child):after, .pager .pager-item > a .breadcrumb ol li:not(:last-child):after, .pager .pager-item > span .breadcrumb ol li:not(:last-child):after, .breadcrumb ol .btn li:not(:last-child):after, .breadcrumb ol .pager .pager-item > a li:not(:last-child):after, .pager .breadcrumb ol .pager-item > a li:not(:last-child):after, .breadcrumb ol .pager .pager-item > span li:not(:last-child):after, .pager .breadcrumb ol .pager-item > span li:not(:last-child):after, .btn .info:before, .btn .messages-error:before, .btn .messages-warning:before, .btn .messages-status:before, .pager .pager-item > a .info:before, .pager .pager-item > a .messages-error:before, .pager .pager-item > a .messages-warning:before, .pager .pager-item > a .messages-status:before, .pager .pager-item > span .info:before, .pager .pager-item > span .messages-error:before, .pager .pager-item > span .messages-warning:before, .pager .pager-item > span .messages-status:before, .btn .important:before, .pager .pager-item > a .important:before, .pager .pager-item > span .important:before,
 .btn.services-icon-right:after,
 .pager .pager-item > a.services-icon-right:after,
-.pager .pager-item > span.services-icon-right:after, .btn .services-icons, .pager .pager-item > a .services-icons, .pager .pager-item > span .services-icons {
+.pager .pager-item > span.services-icon-right:after, .btn .services-icons, .pager .pager-item > a .services-icons, .pager .pager-item > span .services-icons,
+.btn.filetypes-icon-right:after,
+.pager .pager-item > a.filetypes-icon-right:after,
+.pager .pager-item > span.filetypes-icon-right:after, .btn .filetypes-icons, .pager .pager-item > a .filetypes-icons, .pager .pager-item > span .filetypes-icons {
   margin-right: -2px;
 }
 
-.btn.icon-right > span, .pager .pager-item > a.icon-right > span, .pager .pager-item > span.icon-right > span, .btn.services-icon-right > span, .pager .pager-item > a.services-icon-right > span, .pager .pager-item > span.services-icon-right > span {
+.btn.icon-right > span, .pager .pager-item > a.icon-right > span, .pager .pager-item > span.icon-right > span, .btn.services-icon-right > span, .pager .pager-item > a.services-icon-right > span, .pager .pager-item > span.services-icon-right > span, .btn.filetypes-icon-right > span, .pager .pager-item > a.filetypes-icon-right > span, .pager .pager-item > span.filetypes-icon-right > span {
   float: left;
 }
 
@@ -1801,7 +1813,7 @@ icon labels
 #drawer .menu li a.icon-left:before, #drawer .menu li a.icon-right:after {
   color: rgba(0, 0, 0, 0.54);
 }
-#drawer .menu li a.services-icon-left:before, #drawer .menu li a.services-icon-right:after {
+#drawer .menu li a.services-icon-left:before, #drawer .menu li a.services-icon-right:after, #drawer .menu li a.filetypes-icon-left:before, #drawer .menu li a.filetypes-icon-right:after {
   background: rgba(0, 0, 0, 0.54);
 }
 #drawer .menu .active-trail a, #drawer .menu .is-active {
@@ -1810,7 +1822,7 @@ icon labels
 #drawer .menu .active-trail a.icon-left:before, #drawer .menu .active-trail a.icon-right:after, #drawer .menu .is-active.icon-left:before, #drawer .menu .is-active.icon-right:after {
   color: #ffe558;
 }
-#drawer .menu .active-trail a.services-icon-left:before, #drawer .menu .active-trail a.services-icon-right:after, #drawer .menu .is-active.services-icon-left:before, #drawer .menu .is-active.services-icon-right:after {
+#drawer .menu .active-trail a.services-icon-left:before, #drawer .menu .active-trail a.services-icon-right:after, #drawer .menu .active-trail a.filetypes-icon-left:before, #drawer .menu .active-trail a.filetypes-icon-right:after, #drawer .menu .is-active.services-icon-left:before, #drawer .menu .is-active.services-icon-right:after, #drawer .menu .is-active.filetypes-icon-left:before, #drawer .menu .is-active.filetypes-icon-right:after {
   background: #ffe558;
 }
 
@@ -2176,6 +2188,9 @@ navbar overlaying header-content (for sliders)
   padding: 8px 12px 8px 60px;
 }
 
+.search-api-autocomplete-search .ui-menu-item-wrapper .search-api-autocomplete-suggestion {
+  padding: 0;
+}
 .search-api-autocomplete-search .ui-menu-item-wrapper.ui-state-active .search-api-autocomplete-suggestion {
   background: none;
   color: inherit;
@@ -3319,16 +3334,38 @@ ul.messages-list {
   display: none;
 }
 
+h1, h2, h3 {
+  font-weight: bold;
+}
+
 h1 {
-  color: #4BBAFF;
+  color: #1E5168;
+  text-transform: uppercase;
+  margin-top: 0;
+  padding-bottom: 10px;
+}
+
+h1:after {
+  background: #FF904B;
+  content: "";
+  height: 6px;
+  position: absolute;
+  left: 200px;
+  bottom: 0px;
+  width: 1600px;
 }
 
 h2 {
-  color: #FF904B;
+  color: #1E5168;
 }
 
 h3 {
   color: #40BAFF;
+}
+
+h2 a, h3 a {
+  color: #1E5168;
+  text-transform: uppercase;
 }
 
 h4 {
@@ -3443,8 +3480,21 @@ details.captcha div.g-recaptcha {
   color: #BBBBBB;
 }
 
+div#block-cj-material-page-title {
+  float: none;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  padding-top: 10px;
+}
+
+div#main-content {
+  background: #FFFFFF;
+  padding: 0 20px 30px;
+}
+
 .path-frontpage header#header {
-  background-color: #1E5168;
+  background-color: #FFFFFF;
   position: relative;
 }
 
@@ -3473,44 +3523,43 @@ details.captcha div.g-recaptcha {
 .path-frontpage .header-front h1 {
   margin-bottom: 0;
   margin-top: 24px;
-  color: #F1F1F1;
+  color: #1E5168;
 }
 
 .path-frontpage .header-front span.tagline {
   font-size: 1.1em;
-  color: #F1F1F1;
+  color: #1E5168;
 }
 
 .header-front-ctas .button-cta {
   margin: 40px 15px;
-  border-radius: 50px;
 }
 
 .navbar-item .navbar-icon {
-  color: #F1F1F1;
+  color: #1E5168;
 }
 
 .navbar-fixed #navbar,
 .navbar-fixed #navbar.navbar-bg {
-  background-color: #1E5168;
+  background-color: #FFFFFF;
 }
 
 .navbar-title a {
-  color: #F1F1F1;
+  color: #1E5168;
   font-weight: bolder;
   font-family: "Montserrat";
 }
 
 .navbar-menu .menu a {
-  color: #F1F1F1;
+  color: #1E5168;
   font-weight: bolder;
 }
 
 .navbar-menu .menu .active-trail a,
 .navbar-menu .menu .is-active,
 .navbar-menu .menu a:hover {
-  color: #F1F1F1;
-  border-color: #F1F1F1;
+  color: #1E5168;
+  border-color: #1E5168;
 }
 
 .navbar-branding > div:not(.contextual) + div {
@@ -3635,6 +3684,10 @@ input.button.button-orange:hover,
   min-height: 0;
 }
 
+.layout-content {
+  padding-top: 12px;
+}
+
 @media only screen and (min-width: 768px) {
   .layout__region--aside div.field-name-logo,
 .layout__region--aside div.field-name-employer-name {
@@ -3667,6 +3720,20 @@ h2.company-name {
 /* Job Result */
 .job-result {
   margin: 0.5em 0;
+  border-radius: 0;
+  box-shadow: none;
+  position: relative;
+  padding-top: 6px;
+}
+
+.job-result:before {
+  background: #FF904B;
+  content: "";
+  height: 6px;
+  position: absolute;
+  left: 200px;
+  top: 0px;
+  width: 1600px;
 }
 
 .job-result .subtitle.employer-name a {
@@ -3882,59 +3949,76 @@ span.upsell-price .tax {
   color: #FF904b;
 }
 
+#content {
+  background-color: #1E5168;
+}
+
 .section-wrapper {
   padding-bottom: 30px;
   padding-top: 25px;
 }
 
-.section-wrapper--grey {
-  background: #f6f6f6;
-}
-
-.section-wrapper--blue {
-  background: #4BBAFF;
-}
-
-.section-wrapper--orange {
-  background: #FF904b;
-}
-
 .section-wrapper .section {
   max-width: 1200px;
   margin: 0 auto;
+  background: #FFFFFF;
+  padding: 0 20px 75px 20px;
+  position: relative;
+}
+
+.section-wrapper .section:after {
+  background: #FF904B;
+  bottom: 30px;
+  content: "";
+  height: 6px;
+  left: 220px;
+  position: absolute;
+  width: 1600px;
+}
+
+.section-wrapper-header {
+  position: relative;
+  margin-bottom: 10px;
 }
 
 h2.section-header {
-  margin-bottom: 40px;
+  overflow: hidden;
+  margin-bottom: 30px;
   margin-top: 10px;
   text-transform: uppercase;
   font-size: 16px;
-  font-weight: 500;
-  position: relative;
   padding-bottom: 25px;
+  line-height: 36px;
 }
 
 h2.section-header::after {
-  background: #04baff;
+  background: #FF904B;
   bottom: 0;
   content: "";
-  height: 3px;
-  left: 0;
+  height: 6px;
+  left: 200px;
   position: absolute;
-  width: 80px;
+  width: 1600px;
 }
 
 .path-frontpage div.section-header-wrapper {
   text-align: center;
+  position: relative;
+  margin-bottom: 10px;
+}
+.path-frontpage h1 {
+  text-transform: none;
+  padding-bottom: 0;
+}
+.path-frontpage h1:after {
+  content: none;
 }
 .path-frontpage h2.section-header {
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  font-size: 24px;
+  margin-bottom: 0;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  font-size: 30px;
   display: inline-block;
-}
-.path-frontpage h2.section-header::after {
-  width: 100%;
 }
 
 .section-wrapper--blue h2.section-header {
@@ -4258,6 +4342,11 @@ article.card a.read-more-pointer span, .content-card article.card-holder a.read-
 
 .user-logged-in.path-job .block-cj-material-page-title {
   padding-right: 205px;
+}
+
+form#views-exposed-form-job-board-page {
+  border-radius: 0;
+  box-shadow: none;
 }
 
 /*# sourceMappingURL=styles.css.map */
