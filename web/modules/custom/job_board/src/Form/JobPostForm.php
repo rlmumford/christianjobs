@@ -43,7 +43,7 @@ class JobPostForm extends JobForm {
         '#type' => 'container',
         '#tree' => TRUE,
         '#attributes' => [
-          'class' => ['card-item', 'card-text', 'divider-top'],
+          'class' => ['divider-top'],
         ],
         'title' => [
           '#type' => 'html_tag',
@@ -75,7 +75,7 @@ class JobPostForm extends JobForm {
       '#type' => 'container',
       '#tree' => TRUE,
       '#attributes' => [
-        'class' => ['card-item', 'card-text', 'divider-top'],
+        'class' => ['divider-top'],
       ],
       'title' => [
         '#type' => 'html_tag',
@@ -143,7 +143,7 @@ class JobPostForm extends JobForm {
         $form['membership']['#type'] = 'container';
         $form['membership']['#tree'] = TRUE;
         $form['membership']['#weight'] = 50;
-        $form['membership']['#attributes']['class']= ['card-item', 'card-text', 'divider-top'];
+        $form['membership']['#attributes']['class']= ['divider-top'];
         $form['membership']['title'] = [
           '#type' => 'html_tag',
           '#tag' => 'h3',

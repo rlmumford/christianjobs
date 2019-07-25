@@ -55,7 +55,7 @@ class JobForm extends ContentEntityForm {
       '#weight' => 48,
       '#type' => 'container',
       '#attributes' => [
-        'class' => ['card-item', 'card-text', 'divider-top'],
+        'class' => ['divider-top'],
       ],
       'title' => [
         '#type' => 'html_tag',
@@ -76,9 +76,6 @@ class JobForm extends ContentEntityForm {
       unset($form[$contact_field]);
     }
     $form['contact_details']['contact_phone']['#weight'] = 100;
-
-    $form['#attributes']['class'][] = 'card';
-    $form['#attributes']['class'][] = 'card-main';
 
     // Make the salary widget more useable.
     $form['salary']['widget']['0']['#element_validate'] = [static::class.'::salaryWidgetValidate'];
@@ -120,8 +117,6 @@ class JobForm extends ContentEntityForm {
    */
   protected function actions(array $form, FormStateInterface $form_state) {
     $actions = parent::actions($form, $form_state);
-    $actions['#attributes']['class'][] = 'card-item';
-    $actions['#attributes']['class'][] = 'card-actions';
     $actions['#attributes']['class'][] = 'divider-top';
     return $actions;
   }

@@ -18,9 +18,6 @@ function cj_module_implements_alter(&$implementations, $hook) {
  * Implements hook_form_contact_form_alter().
  */
 function cj_form_contact_message_showcase_attendee_form_alter(array &$form, FormStateInterface $form_state) {
-  $form['#attributes']['class'][] = 'card-main';
-  $form['#attributes']['class'][] = 'card';
-
   $form['name']['#title_display'] = 'invisible';
   $form['name']['#placeholder'] = 'Full Name';
 

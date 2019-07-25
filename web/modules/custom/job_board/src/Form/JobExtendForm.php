@@ -56,7 +56,7 @@ class JobExtendForm extends FormBase {
     $form['actions'] = [
       '#type' => 'actions',
       '#attributes' => [
-        'class' => [ 'card-item', 'card-actions', 'divider-top' ]
+        'class' => [ 'divider-top' ]
       ],
       'submit' => [
         '#type' => 'submit',
@@ -71,9 +71,6 @@ class JobExtendForm extends FormBase {
         ],
       ],
     ];
-
-    $form['#attributes']['class'][] = 'card';
-    $form['#attributes']['class'][] = 'card-main';
 
     // Don't use chrome validation.
     $form['#attributes']['novalidate'] = 'novalidate';
