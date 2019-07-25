@@ -4411,6 +4411,10 @@ form#views-exposed-form-job-board-page .divider-top {
   border-top: none;
 }
 
+.region.region-before-main {
+  padding-top: 25px;
+}
+
 .region.region-highlighted {
   padding-top: 8px;
 }

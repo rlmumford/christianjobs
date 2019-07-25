@@ -123,10 +123,10 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
    */
   public function getPrice() {
     if ($this->duration->value == 'P30D') {
-      return new Price('25.00', 'GBP');
+      return new Price('35.00', 'GBP');
     }
     else {
-      return new Price('50.00', 'GBP');
+      return new Price('60.00', 'GBP');
     }
   }
 
