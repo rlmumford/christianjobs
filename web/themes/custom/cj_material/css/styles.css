@@ -3500,7 +3500,7 @@ div#main-content {
 }
 
 .path-frontpage #header-content {
-  margin: 20px 0;
+  margin: 40px 0 20px;
   text-align: center;
 }
 
@@ -3544,31 +3544,69 @@ div#main-content {
   color: #4BBAFF;
 }
 
-.navbar-item .navbar-icon {
+#navbar {
+  -webkit-transition: background-color 0.5s ease;
+  -moz-transition: background-color 0.5s ease;
+  -o-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+}
+
+.navbar-item .navbar-icon,
+.path-frontpage.navbar-fixed #navbar.navbar-shadow .navbar-item .navbar-icon {
   color: #1E5168;
 }
 
+.path-frontpage.navbar-fixed #navbar .navbar-item .navbar-icon {
+  color: #FFFFFf;
+}
+
 .navbar-fixed #navbar,
-.navbar-fixed #navbar.navbar-bg {
+.navbar-fixed #navbar.navbar-bg,
+.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow {
   background-color: #FFFFFF;
 }
 
-.navbar-title a {
+.path-frontpage.navbar-fixed #navbar,
+.path-frontpage.navbar-fixed #navbar.navbar-bg {
+  background-color: #1E5168;
+}
+
+.navbar-title a,
+.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-title a {
   color: #1E5168;
   font-weight: bolder;
   font-family: "Montserrat";
 }
 
-.navbar-menu .menu a {
+.path-frontpage .navbar-title a {
+  color: #FFFFFF;
+}
+
+.navbar-menu .menu a,
+.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu a {
   color: #1E5168;
   font-weight: bolder;
 }
 
+.path-frontpage .navbar-menu .menu a {
+  color: #FFFFFF;
+}
+
 .navbar-menu .menu .active-trail a,
 .navbar-menu .menu .is-active,
-.navbar-menu .menu a:hover {
+.navbar-menu .menu a:hover, 
+.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu .active-trail a,
+.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu .is-active,
+.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu a:hover {
   color: #1E5168;
   border-color: #1E5168;
+}
+
+.path-frontpage .navbar-menu .menu .active-trail a,
+.path-frontpage .navbar-menu .menu .is-active,
+.path-frontpage .navbar-menu .menu a:hover {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
 }
 
 .navbar-branding > div:not(.contextual) + div {
