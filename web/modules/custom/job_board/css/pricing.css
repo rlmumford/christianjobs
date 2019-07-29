@@ -28,7 +28,6 @@
 }
 
 h3.package-title {
-  color: #FF904B;
   min-height: 3em;
 }
 
@@ -48,7 +47,7 @@ a.package-cta {
   border: 3px solid transparent;
   border-radius: 2px;
   color: #fff;
-  background: #4BBAFF;
+  background: #1E5168;
   cursor: pointer;
   display: inline-block;
   font-size: 16px;
@@ -65,9 +64,9 @@ a.package-cta {
   will-change: background-color;
 }
 a.package-cta:hover {
-  color: #4BBAFF;
+  color: #1E5168;
   background: #FFFFFF;
-  border: 3px solid #4BBAFF;
+  border: 3px solid #1E5168;
 }
 
 .packages .package .package-features-wrapper h3 {
