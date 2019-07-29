@@ -3594,23 +3594,12 @@ div#main-content {
 
 .navbar-menu .menu .active-trail a,
 .navbar-menu .menu .is-active,
-.navbar-menu .menu a:hover, 
+.navbar-menu .menu a:hover,
 .path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu .active-trail a,
 .path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu .is-active,
 .path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu a:hover {
   color: #1E5168;
   border-color: #1E5168;
-}
-
-.path-frontpage .navbar-menu .menu .active-trail a,
-.path-frontpage .navbar-menu .menu .is-active,
-.path-frontpage .navbar-menu .menu a:hover {
-  color: #FFFFFF;
-  border-color: #FFFFFF;
-}
-
-.navbar-branding > div:not(.contextual) + div {
-  margin-left: 0px;
 }
 
 /**
@@ -3768,6 +3757,10 @@ h2.company-name {
 }
 #layout-builder .draggable {
   min-height: 2em;
+}
+
+#block-frontpageboostedjobs .card-title span.subtitle {
+  color: #FF904B;
 }
 
 /* Job Result */
@@ -4488,6 +4481,11 @@ form#views-exposed-form-job-board-page .divider-top {
 }
 .card .divider-top:before, .content-card .card-holder .divider-top:before {
   content: none;
+}
+
+article footer {
+  color: #FF904B;
+  font-style: italic;
 }
 
 /*# sourceMappingURL=styles.css.map */
