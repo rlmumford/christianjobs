@@ -3592,6 +3592,13 @@ div#main-content {
   color: #FFFFFF;
 }
 
+.path-frontpage .navbar-menu .menu .active-trail a,
+.path-frontpage .navbar-menu .menu .is-active,
+.path-frontpage .navbar-menu .menu a:hover {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
 .navbar-menu .menu .active-trail a,
 .navbar-menu .menu .is-active,
 .navbar-menu .menu a:hover,
@@ -4486,6 +4493,11 @@ form#views-exposed-form-job-board-page .divider-top {
 article footer {
   color: #FF904B;
   font-style: italic;
+}
+
+.form-item label {
+  font-size: 14px;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=styles.css.map */
