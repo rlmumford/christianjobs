@@ -4500,4 +4500,12 @@ article footer {
   font-weight: bold;
 }
 
+div.footer-verse p {
+  font-size: 1.1em;
+}
+span.bible-reference {
+  color: #FF904B;
+  font-style: italic;
+}
+
 /*# sourceMappingURL=styles.css.map */

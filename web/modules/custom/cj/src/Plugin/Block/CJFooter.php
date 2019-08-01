@@ -73,11 +73,12 @@ class CJFooter extends BlockBase implements ContainerFactoryPluginInterface {
     $build = [
       '#markup' => '<div><div class="pull-center">
       <div class="footer-logo"><img src="/themes/custom/cj_material/logo.svg" width="40px" height="40px"></div>
+      <div class="footer-verse"><p>Whatever you do, work at it with all your heart, as working for the Lord.</p><span class="bible-reference">Colossians 3:23</span></div>
       </div></div>
       <div>
       <div class="footer-contact footer-item pull-left">
         <a href="http://www.instagram.com/christianjobs.co.uk" class="services-icons icon-primary" data-icon="instagram"></a> | <a href="http://www.linkedin.com/company/christianjobs-co-uk" class="services-icons icon-primary" data-icon="linkedin"></a> | <a href="http://www.twitter.com/ukchristianjobs" class="services-icons icon-primary" data-icon="twitter"></a> | <a href="http://www.facebook.com/ukchristianjobs" class="services-icons icon-primary" data-icon="facebook"></a> | <a href="mailto:info@christianjobs.co.uk">info@christianjobs.co.uk</a> | <a href="tel:01619463550">0161 946 3550</a></div>
-      <div class="footer-links footer-item pull-right">'.(\Drupal::currentUser()->isAuthenticated() ? '<a href="/user/logout"> Logout</a> | ' : '').'<a href="/pricing">Pricing</a> | <a href="/legal">Terms of Use</a> | &copy; Christian Jobs Ltd 2018</div>
+      <div class="footer-links footer-item pull-right">'.(\Drupal::currentUser()->isAuthenticated() ? '<a href="/user/logout"> Logout</a> | ' : '').'<a href="/pricing">Pricing</a> | <a href="/legal">Terms of Use</a> | &copy; Christian Jobs Ltd 2019</div>
     </div>',
       '#cache' => [
         'contexts' => ['user.roles:authenticated'],
