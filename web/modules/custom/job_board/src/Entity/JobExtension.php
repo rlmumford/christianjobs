@@ -54,13 +54,13 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
       $job = $this->job->entity;
 
       /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
-      $end_date = clone $job->end_date->date;
+      $paid_to_date = clone $job->paid_to_date->date;
       $today_date = new DrupalDateTime();
-      if ($today_date > $end_date) {
-        $end_date = $today_date;
+      if ($today_date > $paid_to_date) {
+        $paid_to_date = $today_date;
       }
-      $end_date->add(new \DateInterval($this->duration->value ?: 'P30D'));
-      $job->end_date->value = $end_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
+      $paid_to_date->add(new \DateInterval($this->duration->value ?: 'P30D'));
+      $job->end_date->value = $job->paid_to_date->value = $paid_to_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
 
       if ($job->application_deadline->value && ($job->application_deadline->value < $job->end_date->value)) {
         $job->end_date->value = $job->application_deadline->value;

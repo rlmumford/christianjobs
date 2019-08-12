@@ -20,13 +20,14 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
    * {@inheritdoc}
    */
   public function preSave(EntityStorageInterface $storage) {
-    if ($this->paid->value && !$this->end_date->value) {
-      /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
-      $end_date = clone $this->publish_date->date;
-      $end_date->add(new \DateInterval($this->initial_duration->value ?: 'P30D'));
-      $this->end_date->value = $end_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
+    if ($this->paid->value && !$this->paid_to_date->value) {
+      /** @var \Drupal\Core\Datetime\DrupalDateTime $paid_to_date */
+      $paid_to_date = clone $this->publish_date->date;
+      $paid_to_date->add(new \DateInterval($this->initial_duration->value ?: 'P30D'));
+      $this->paid_to_date->value = $paid_to_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
     }
 
+    $this->end_date->value = $this->paid_to_date->value;
     if ($this->application_deadline->value && ($this->application_deadline->value < $this->end_date->value)) {
       $this->end_date->value = $this->application_deadline->value;
     }

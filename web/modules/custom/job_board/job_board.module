@@ -103,6 +103,14 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
+  $fields['paid_to_date'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Paid To Date'))
+    ->setDescription(t('The last date up to which this job has been paid.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
   $fields['boost_start_date'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
     ->setLabel(t('Boost Start Date'))

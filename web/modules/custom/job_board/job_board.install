@@ -22,6 +22,13 @@ function job_board_install() {
     ->setName('publish_date')
     ->setTargetEntityTypeId('job_role')
     ->setProvider('job_board');
+  $fields['paid_to_date'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Paid To Date'))
+    ->setDescription(t('The last date up to which this job has been paid.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
   $fields['end_date'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
     ->setLabel(t('End Date'))
@@ -808,4 +815,25 @@ function job_board_update_8021() {
   $update_manager = \Drupal::entityDefinitionUpdateManager();
   $entity_type_manager = \Drupal::entityTypeManager();
   $update_manager->installEntityType($entity_type_manager->getDefinition('job_board_job_extension'));
+}
+
+/**
+ * Install paid_to_date field.
+ */
+function job_board_update_8022() {
+  $field_name = 'paid_to_date';
+  $definition = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Paid To Date'))
+    ->setDescription(t('The last date up to which this job has been paid.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition(
+    $field_name,
+    'job_role',
+    'job_board',
+    $definition
+  );
 }

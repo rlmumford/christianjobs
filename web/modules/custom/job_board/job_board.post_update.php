@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Component\Utility\Html;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Set short summary on job roles.
@@ -73,4 +74,50 @@ function job_board_post_update_set_location_tree() {
     $job_role->location_tree = $terms;
     $job_role->save();
   }
+}
+
+/**
+ * Set the initial paid_to_date.
+ */
+function job_board_post_update_set_paid_to_date(&$sandbox = NULL) {
+  $storage = \Drupal::entityTypeManager()->getStorage('job_role');
+
+  if (!isset($sandbox['max'])) {
+    $sandbox['max'] = $storage->getQuery()->count()->execute();
+    $sandbox['progress'] = $sandbox['last_id'] = 0;
+  }
+
+  $query = $storage->getQuery();
+  $query->condition('id', $sandbox['last_id'], '>');
+  $query->sort('id', 'ASC');
+  $query->range(0, 20);
+
+  /** @var \Drupal\job_board\JobBoardJobRole $job_role */
+  foreach ($storage->loadMultiple($query->execute()) as $job_role) {
+    $sandbox['progress']++;
+    $sandbox['last_id'] = $job_role->id();
+
+    if (!$job_role->paid_to_date->isEmpty()) {
+      continue;
+    }
+
+    /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
+    $end_date = $job_role->end_date->date;
+
+
+    /** @var \Drupal\Core\Datetime\DrupalDateTime $paid_to_date */
+    $paid_to_date = clone $job_role->publish_date->date;
+    $paid_to_date->add(new \DateInterval($job_role->initial_duration->value ?: 'P30D'));
+
+    if ($end_date > $paid_to_date) {
+      $job_role->paid_to_date->value = $end_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
+    }
+    else {
+      $job_role->paid_to_date->value = $paid_to_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
+    }
+    $job_role->save();
+  }
+
+  $sandbox['#finished'] = min(1, $sandbox['progress']/$sandbox['max']);
+  return "Processed ".number_format($sandbox['#finished']*100,2)."%";
 }
