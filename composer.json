@@ -138,9 +138,6 @@
                 "Layout builder form blocks": "https://www.drupal.org/files/issues/2019-05-22/3045171-21.patch",
                 "Entity reference views autocomplete filters": "https://www.drupal.org/files/issues/2019-05-07/generic_entityreference_filter_22429699-162.patch"
             },
-            "drupal/name": {
-                "Set mainPropertyName correctly": "https://www.drupal.org/files/issues/2019-05-15/3054937-2.patch"
-            },
             "drupal/cshs": {
                 "Compatability with entityreference filter": "./patches/cshs-entityreference_views_handler_compat.patch"
             }

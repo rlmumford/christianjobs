@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed0f02a11a522d8c7d4f57c4a4a22fd6",
+    "content-hash": "7ec23d65074c967b018a8dc4b4316d21",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3127,7 +3127,7 @@
             "version": "8.3.4",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/coder.git",
+                "url": "https://git.drupalcode.org/project/coder.git",
                 "reference": "0a274321f4930f186d9f246783f0b4d743501cf8"
             },
             "require": {
@@ -5596,7 +5596,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/name.git",
-                "reference": "fdc0033e8f11d243dd50bf02f30ac5a153fcdc06"
+                "reference": "34de0d5fa30bbf99286b07c49b46056f89c26a5b"
             },
             "require": {
                 "drupal/core": "^8.4"
@@ -5610,8 +5610,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-rc1+59-dev",
-                    "datestamp": "1542679984",
+                    "version": "8.x-1.0-rc2+13-dev",
+                    "datestamp": "1564289584",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -5649,7 +5649,7 @@
                 "source": "http://cgit.drupalcode.org/name",
                 "issues": "https://www.drupal.org/project/issues/name"
             },
-            "time": "2018-11-20T01:57:34+00:00"
+            "time": "2019-07-28T05:04:28+00:00"
         },
         {
             "name": "drupal/og",
