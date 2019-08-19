@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.is_practising_christian
+    - profile.type.candidate
+id: profile.individual.is_practising_christian
+field_name: is_practising_christian
+entity_type: profile
+bundle: candidate
+label: 'I am a practising Christian'
+description: 'Many of our organisations advertise roles with a genuine occupational requirement (GOR) that applicants be practising Christians. By ticking this box, you confirm that you meet that requirement.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

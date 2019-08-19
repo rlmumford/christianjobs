@@ -5,3 +5,10 @@ cj.home:
     _title: 'Home Page'
   requirements:
     _access: 'TRUE'
+cj.self_edit_candidate:
+  path: '/user/{user}/profile'
+  defaults:
+    _entity_form: user.self_edit_candidate
+    _title: 'Edit Profile'
+  requirements:
+    _entity_access: 'user.update'

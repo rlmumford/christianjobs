@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.consent_date__events_update
+    - profile.type.individual
+  module:
+    - datetime
+id: profile.individual.consent_date__events_update
+field_name: consent_date__events_update
+entity_type: profile
+bundle: individual
+label: 'Consent Date for Events & Partners Updates'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

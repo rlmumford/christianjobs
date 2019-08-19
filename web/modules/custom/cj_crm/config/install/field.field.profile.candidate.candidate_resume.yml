@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.candidate_resume
+    - profile.type.candidate
+  module:
+    - file
+id: profile.candidate.candidate_resume
+field_name: candidate_resume
+entity_type: profile
+bundle: candidate
+label: 'Candidate Resume'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'resumes/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf doc docx odt'
+  max_filesize: '4 MB'
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

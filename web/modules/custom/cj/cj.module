@@ -1,6 +1,9 @@
 <?php
 
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
@@ -11,6 +14,175 @@ function cj_module_implements_alter(&$implementations, $hook) {
     $group = $implementations['cj'];
     unset($implementations['cj']);
     $implementations['cj'] = $group;
+  }
+}
+
+/**
+ * Implements hook_entity_type_build()
+ *
+ * @param \Drupal\Core\Entity\EntityTypeInterface[] $entity_types
+ */
+function cj_entity_type_build(&$entity_types) {
+  if ($entity_type = $entity_types['user']) {
+    $entity_type->setFormClass('self_edit_candidate', ContentEntityForm::class);
+  }
+}
+
+/**
+ * Implements hook_form_user_register_form_alter().
+ */
+function cj_form_user_register_form_alter(array &$form, FormStateInterface $form_state) {
+  $form['account']['account_type'] = [
+    '#type' => 'radios',
+    '#options' => [
+      'seeker' => t('Seeker'),
+      'employer' => t('Employer'),
+    ],
+    '#attributes' => [
+      'class' => ['account-type-radios'],
+    ],
+    '#weight' => -100,
+  ];
+
+  $cookies = \Drupal::request()->cookies;
+  if ($cookies->get('Drupal_visitor_jobPostRegister') || $form_state->get('job_post_register')) {
+    $form['account']['account_type']['#default_value'] = 'employer';
+  }
+
+  $form['account']['org_name'] = [
+    '#type' => 'textfield',
+    '#title' => new TranslatableMarkup('Name'),
+    '#states' => [
+      'visible' => [
+        ':input[name="account_type"]' => ['value' => 'employer'],
+      ],
+    ],
+    '#weight' => -90,
+  ];
+  $form['account']['indiv_name_wrapper'] = [
+    '#type' => 'container',
+    '#weight' => -90,
+    '#states' => [
+      'visible' => [
+        ':input[name="account_type"]' => ['value' => 'seeker'],
+      ],
+    ],
+  ];
+  $form['account']['indiv_name_wrapper']['indiv_name'] = [
+    '#type' => 'name',
+    '#title' => new TranslatableMarkup('Name'),
+    '#minimum_components' => ['given' => 'given', 'family' => 'family'],
+    '#allow_family_or_given' => TRUE,
+    '#parents' => ['indiv_name'],
+    '#components' => [
+      'title' => [
+        'exclude' => TRUE,
+      ],
+      'given' => [
+        'type' => 'textfield',
+        'title' => new TranslatableMarkup('First Name'),
+        'title_display' => 'label',
+        'size' => 60,
+        'maxlength' => 60,
+      ],
+      'middle' => [
+        'exclude' => TRUE,
+      ],
+      'family' => [
+        'type' => 'textfield',
+        'title' => new TranslatableMarkup('Last Name'),
+        'title_display' => 'label',
+        'size' => 60,
+        'maxlength' => 60,
+      ],
+      'generational' => [
+        'exclude' => TRUE,
+      ],
+      'credentials' => [
+        'exclude' => TRUE,
+      ],
+    ],
+  ];
+
+  $button = &$form['actions']['submit'];
+  $sub_form_key = array_search('::submitForm', $button['#submit']);
+  array_splice($button['#submit'], $sub_form_key+1, 0, ['cj_user_register_form_submit_set_role']);
+  $button['#submit'][] = 'cj_user_register_form_submit_set_name';
+}
+
+/**
+ * Add the correct role to the person registering.
+ *
+ * @param array $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ */
+function cj_user_register_form_submit_set_role(array $form, FormStateInterface $form_state) {
+  $type = $form_state->getValue('account_type');
+
+  /** @var \Drupal\user\UserInterface $account */
+  $account = $form_state->getFormObject()->getEntity();
+  if ($type == 'seeker') {
+    $account->addRole('individual');
+    $account->addRole('candidate');
+  }
+  else {
+    $account->addRole('organisation');
+    $account->addRole('employer');
+  }
+}
+
+/**
+ *
+ */
+function cj_user_register_form_submit_set_name(array $form, FormStateInterface $form_state) {
+  $type = $form_state->getValue('account_type');
+
+  /** @var \Drupal\profile\ProfileStorageInterface $storage */
+  $storage = \Drupal::entityTypeManager()->getStorage('profile');
+
+  /** @var \Drupal\user\UserInterface $account */
+  $account = $form_state->getFormObject()->getEntity();
+  if ($type == 'seeker') {
+    $name = $form_state->getValue('indiv_name');
+
+    $profile = $storage->loadDefaultByUser($account, 'individual');
+    if (!$profile) {
+      $profile = $storage->create([
+        'uid' => $account->id(),
+        'type' => 'individual',
+      ]);
+    }
+
+    $profile->name = $name;
+    $profile->save();
+  }
+  else if ($type == 'employer') {
+    $name = $form_state->getValue('org_name');
+
+    $profile = $storage->loadDefaultByUser($account, 'employer');
+    if (!$profile) {
+      $profile = $storage->create([
+        'uid' => $account->id(),
+        'type' => 'employer',
+      ]);
+    }
+    $profile->employer_name = $name;
+    $profile->save();
+
+    $profile = $storage->loadDefaultByUser($account, 'organisation');
+    if (!$profile) {
+      $profile = $storage->create([
+        'uid' => $account->id(),
+        'type' => 'organisation',
+      ]);
+    }
+    $profile->organisation_name = $name;
+    $profile->save();
+
+    $form_state->setRedirect(
+      'job_board.employer_edit',
+      ['user' => $account->id()]
+    );
   }
 }
 
@@ -81,10 +253,46 @@ function cj_form_contact_message_elim_interest_form_form_alter(array &$form, For
  * Implements hook_form_user_form_alter().
  */
 function cj_form_user_form_alter(array &$form, FormStateInterface $form_state) {
+  // Email registration doesn't check whether the account portion of the form
+  // exists before fiddling with it. Undo those fiddles here.
+  if ($form['account']['name']['#type'] == 'value' && !isset($form['account']['name']['#value'])) {
+    unset($form['account']);
+  }
+
   $form['contact']['#access'] = FALSE;
   $form['contact']['contact']['#default_value'] = FALSE;
   $form['user_picture']['#access'] = FALSE;
   $form['timezone']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_form_user_self_edit_candidate_form_alter().
+ */
+function cj_form_user_self_edit_candidate_form_alter(array &$form, FormStateInterface $form_state) {
+  $current_user = \Drupal::currentUser();
+  /** @var \Drupal\user\UserInterface $form_user */
+  $form_user = $form_state->getFormObject()->getEntity();
+
+  foreach (Element::children($form) as $namespace) {
+    if (substr($namespace, 0, strlen('individual_profile:consent')) != 'individual_profile:consent') {
+      continue;
+    }
+
+    if (isset($form[$namespace]['widget'][0]['value'])) {
+      if ($form[$namespace]['widget'][0]['value']['#type'] == 'datetime') {
+        // The dates are never directly editable.
+        $form[$namespace]['#access'] = FALSE;
+
+        if ($form_user->id() == $current_user->id()) {
+          $form[$namespace]['widget'][0]['value']['#default_value'] = new DrupalDateTime();
+        }
+      }
+    }
+
+    if ($current_user->id() != $form_user->id()) {
+      $form[$namespace]['#access'] = FALSE;
+    }
+  }
 }
 
 /**

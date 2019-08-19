@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.consent__job_update
+    - profile.type.individual
+  module:
+    - options
+id: profile.individual.consent__job_update
+field_name: consent__job_update
+entity_type: profile
+bundle: individual
+label: 'I would like to receive regular updates regarding new opportunities via'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

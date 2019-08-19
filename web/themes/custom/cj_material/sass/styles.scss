@@ -113,6 +113,7 @@ details > div {
   border-bottom: 1px solid rgba(0,0,0,.12);
   padding: 12px 16px 12px 40px;
 }
+
 .details-wrapper > .form-item--error-message {
   background: rgb(255, 235, 238);
   padding: 16px 24px 16px 64px;
@@ -138,6 +139,9 @@ details.captcha {
     padding: 0 0 12px;
     border: none;
   }
+}
+details.captcha > div {
+   padding: 12px 0px;
 }
 
 .form-item input[type=checkbox]:checked:disabled:before {
@@ -1100,6 +1104,9 @@ form#views-exposed-form-job-board-page {
   .divider-top:before {
     content: none;
   }
+  .divider-top.form-actions.card-actions {
+    padding: 0;
+  }
 }
 
 article footer {
@@ -1119,5 +1126,94 @@ div.footer-verse p {
 span.bible-reference {
   color: #FF904B;
   font-style: italic;
+}
+
+.tabledrag-toggle-weight {
+  @extend .btn;
+  margin: 0;
+}
+tr.draggable td.field-multiple-drag a {
+  display: none;
+}
+tr.draggable td:nth-child(2) {
+  padding: 5px 12px;
+}
+.field-multiple-table {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.field-multiple-table .button,
+.field-add-more-submit.button {
+  min-height: 0;
+  padding: 0 10px;
+  margin-top: 0;
+}
+.field-add-more-submit.button {
+  float: right;
+}
+
+.field--name-email-addresses, .field--name-telephone-numbers {
+  .paragraph-type-title {
+    display: none;
+  }
+
+  .paragraph-type-top {
+    float: right;
+  }
+
+  th.field-label h4 {
+    margin: 0;
+  }
+
+  table {
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+}
+
+.ief-form,
+.field--widget-inline-entity-form-complex {
+  .button {
+    min-height: 0;
+    padding: 0 10px;
+    margin-top: 0;
+  }
+}
+
+.user-self-edit-candidate-form {
+  /* Make Global? */
+  .name-component-wrapper {
+    display: inline-block;
+    margin-right: 16px;
+  }
+
+  .tabledrag-toggle-weight {
+    display: none;
+  }
+
+  .form-item label.options {
+    font-weight: normal;
+  }
+
+  .form-item label:not(.option),
+  span.fieldset-legend {
+    text-transform: uppercase;
+    color: #FF904B;
+    font-weight: normal;
+    font-size: 16px;
+  }
+
+  .field-multiple-table {
+    .form-item label {
+      font-weight: bold;
+      font-size: 12px;
+      color: rgba(0,0,0,0.54);
+      text-transform: none;
+    }
+  }
+
+  #edit-individual-profile-places .form-item-individual-profile-places-actions-bundle {
+    display: block;
+  }
 }
 

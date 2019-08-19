@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.candidate_locations
+    - profile.type.candidate
+    - taxonomy.vocabulary.industries
+id: profile.candidate.candidate_locations
+field_name: candidate_locations
+entity_type: profile
+bundle: candidate
+label: Locations
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      industries: locations
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

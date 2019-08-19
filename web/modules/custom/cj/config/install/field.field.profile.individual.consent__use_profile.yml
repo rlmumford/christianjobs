@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.consent__use_profile
+    - profile.type.individual
+id: profile.individual.consent__use_profile
+field_name: consent__use_profile
+entity_type: profile
+bundle: individual
+label: 'Christian Jobs Ltd can use the information I provide to find specific roles that may be of interest to me'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

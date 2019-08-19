@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.candidate_interests
+    - profile.type.candidate
+    - taxonomy.vocabulary.industries
+id: profile.candidate.candidate_interests
+field_name: candidate_interests
+entity_type: profile
+bundle: candidate
+label: Interests
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      industries: industries
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

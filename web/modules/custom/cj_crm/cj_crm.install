@@ -2,6 +2,9 @@
 
 use Drupal\cj_crm\Entity\ServiceCandidateAccessControlHandler;
 use Drupal\cj_crm\Entity\ServiceCandidateStorage;
+use Drupal\Core\Config\Config;
+use Drupal\Core\Config\Entity\ConfigDependencyManager;
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\ContentEntityType;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\views\EntityViewsData;
@@ -27,4 +30,78 @@ function cj_crm_update_8001() {
     ],
     "admin_permission" => "administer candidates",
   ]));
+}
+
+/**
+ * Install Configuration
+ */
+function cj_crm_update_8002() {
+  $source = new FileStorage(drupal_get_path('module', 'cj_crm').'/config/install');
+  $config_to_install = $source->readMultiple([
+    'core.entity_form_display.user.user.add_candidate',
+    'core.entity_form_display.user.user.edit_candidate',
+    'core.entity_form_mode.user.add_candidate',
+    'core.entity_form_mode.user.edit_candidate',
+    'field.field.profile.organisation.cj_consultant',
+    'field.storage.profile.cj_consultant',
+    'profile.type.candidate',
+    'user.role.candidate',
+    'user.role.staff',
+    'field.field.profile.candidate.candidate_interests',
+    'field.field.profile.candidate.candidate_locations',
+    'field.field.profile.candidate.is_practising_christian',
+    'field.field.profile.candidate.candidate_resume',
+    'field.storage.profile.candidate_interests',
+    'field.storage.profile.candidate_locations',
+    'field.storage.profile.is_practising_christian',
+    'field.storage.profile.candidate_resume',
+  ]);
+
+  $dependency_manager = new ConfigDependencyManager();
+  $config_names = $dependency_manager
+    ->setData($config_to_install)
+    ->sortAll();
+
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+  /** @var \Drupal\Core\Config\ConfigManagerInterface $config_manager */
+  $config_manager = \Drupal::service('config.manager');
+
+  foreach ($config_names as $name) {
+    if ($name === '.info') {
+      continue;
+    }
+    $config = new Config($name,
+      $config_storage,
+      \Drupal::service('event_dispatcher'),
+      \Drupal::service('config.typed')
+    );
+    if ($config_to_install[$name] !== FALSE) {
+      $config->setData($config_to_install[$name]);
+    }
+    if ($entity_type = $config_manager->getEntityTypeIdByName($name)) {
+      /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
+      $entity_storage = $config_manager
+        ->getEntityManager()
+        ->getStorage($entity_type);
+      $id = $entity_storage->getIDFromConfigName($name, $entity_storage->getEntityType()->getConfigPrefix());
+      if ($config_storage->exists($name)) {
+        $entity = $entity_storage->load($id);
+        $entity = $entity_storage->updateFromStorageRecord($entity, $config->get());
+      }
+      else {
+        $entity = $entity_storage->createFromStorageRecord($config->get());
+      }
+      if ($entity->isInstallable()) {
+        $entity->trustData()->save();
+        if ($id !== $entity->id()) {
+          trigger_error(sprintf('The configuration name "%s" does not match the ID "%s"', $name, $entity->id()), E_USER_WARNING);
+        }
+      }
+    }
+    else {
+      $config->save(TRUE);
+    }
+  }
+
 }
