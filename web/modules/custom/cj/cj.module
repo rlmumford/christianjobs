@@ -155,6 +155,11 @@ function cj_user_register_form_submit_set_name(array $form, FormStateInterface $
 
     $profile->name = $name;
     $profile->save();
+
+    $form_state->setRedirect(
+      'cj.self_edit_candidate',
+      ['user' => $account->id()]
+    );
   }
   else if ($type == 'employer') {
     $name = $form_state->getValue('org_name');
