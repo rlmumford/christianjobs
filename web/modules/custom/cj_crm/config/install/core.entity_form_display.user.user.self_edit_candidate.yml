@@ -1,0 +1,217 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.user.self_edit_candidate
+    - field.field.user.user.commerce_remote_id
+    - field.field.user.user.user_picture
+  module:
+    - flexiform
+    - user
+third_party_settings:
+  flexiform:
+    enhancer:
+      submit_button_ajax:
+        ajax:
+          'actions::submit':
+            enabled: false
+            response: refresh
+        id: submit_button_ajax
+      submit_button_label:
+        label:
+          'actions::submit': ''
+        id: submit_button_label
+      submit_button_redirect:
+        redirect:
+          'actions::submit': ''
+        id: submit_button_redirect
+      multiple_entities:
+        id: multiple_entities
+        entities:
+          candidate_profile:
+            label: 'Candidate Profile'
+            plugin: 'user_profile:candidate'
+            save_on_submit: 1
+            context_mapping:
+              user: ''
+            create: 1
+          individual_profile:
+            label: 'Individual Profile'
+            plugin: 'user_profile:individual'
+            save_on_submit: 1
+            context_mapping:
+              user: ''
+            create: 1
+      page_exposure:
+        id: page_exposure
+_core:
+  default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
+id: user.user.self_edit_candidate
+targetEntityType: user
+bundle: user
+mode: self_edit_candidate
+content:
+  'candidate_profile:candidate_interests':
+    type: entity_reference_autocomplete_tags
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'candidate_profile:candidate_locations':
+    type: entity_reference_autocomplete_tags
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'candidate_profile:candidate_resume':
+    type: file_generic
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'candidate_profile:is_practising_christian':
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:consent__events_update':
+    type: options_buttons
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:consent__job_update':
+    type: options_buttons
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:consent__share_profile':
+    type: boolean_checkbox
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:consent__spec_job_update':
+    type: options_buttons
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:consent__use_profile':
+    type: boolean_checkbox
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:consent_date__events_update':
+    type: datetime_default
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:consent_date__job_update':
+    type: datetime_default
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:consent_date__share_profile':
+    type: datetime_default
+    weight: 15
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:consent_date__spec_job_update':
+    type: datetime_default
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:consent_date__use_profile':
+    type: datetime_default
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'individual_profile:email_addresses':
+    settings:
+      title: 'Email Address'
+      title_plural: 'Email Addresses'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: email_address
+    third_party_settings:
+      flexiform:
+        field_definition:
+          label: ''
+    type: entity_reference_paragraphs
+    weight: 1
+    region: content
+  'individual_profile:name':
+    settings:
+      override_field_settings: true
+      widget_layout: inline
+      show_component_required_marker: true
+      labels:
+        given: Given
+        family: Family
+        title: Title
+        middle: 'Middle name(s)'
+        generational: Generational
+        credentials: Credentials
+      title_display:
+        given: title
+        family: title
+        title: description
+        middle: description
+        generational: description
+        credentials: description
+      size:
+        given: 20
+        family: 20
+        title: 6
+        middle: 20
+        generational: 5
+        credentials: 35
+      credentials_inline: false
+    third_party_settings:
+      flexiform:
+        field_definition:
+          label: ''
+    type: name_default
+    weight: 0
+    region: content
+  'individual_profile:telephone_numbers':
+    settings:
+      title: 'Telephone Number'
+      title_plural: 'Telephone Numbers'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: telephone_number
+    third_party_settings:
+      flexiform:
+        field_definition:
+          label: ''
+    type: entity_reference_paragraphs
+    weight: 2
+    region: content
+hidden:
+  account: true
+  'candidate_profile:field_candidate_interests': true
+  'candidate_profile:field_candidate_resume': true
+  commerce_remote_id: true
+  contact: true
+  google_analytics: true
+  'individual_profile:field_consent__job_update': true
+  'individual_profile:field_consent__use_profile': true
+  'individual_profile:places': true
+  individuals: true
+  language: true
+  organisations: true
+  path: true
+  timezone: true
+  user_picture: true

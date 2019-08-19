@@ -55,6 +55,7 @@ function cj_crm_update_8002() {
     'field.storage.profile.candidate_locations',
     'field.storage.profile.is_practising_christian',
     'field.storage.profile.candidate_resume',
+    'core.entity_form_display.user.user.self_edit_candidate',
   ]);
 
   $dependency_manager = new ConfigDependencyManager();
