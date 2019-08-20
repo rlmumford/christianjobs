@@ -35,13 +35,14 @@ function cj_form_user_register_form_alter(array &$form, FormStateInterface $form
   $form['account']['account_type'] = [
     '#type' => 'radios',
     '#options' => [
-      'seeker' => t('Seeker'),
+      'seeker' => t('Job Seeker'),
       'employer' => t('Employer'),
     ],
     '#attributes' => [
       'class' => ['account-type-radios'],
     ],
     '#weight' => -100,
+    '#required' => TRUE,
   ];
 
   $cookies = \Drupal::request()->cookies;
@@ -51,7 +52,7 @@ function cj_form_user_register_form_alter(array &$form, FormStateInterface $form
 
   $form['account']['org_name'] = [
     '#type' => 'textfield',
-    '#title' => new TranslatableMarkup('Name'),
+    '#title' => new TranslatableMarkup('Organisation Name'),
     '#states' => [
       'visible' => [
         ':input[name="account_type"]' => ['value' => 'employer'],
@@ -154,6 +155,14 @@ function cj_user_register_form_submit_set_name(array $form, FormStateInterface $
     }
 
     $profile->name = $name;
+
+    $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+    $email_paragraph = $paragraph_storage->create([
+      'type' => 'email_address',
+      'email_address' => $account->getEmail(),
+      'email_type' => 'personal',
+    ]);
+    $profile->email_addresses[] = $email_paragraph;
     $profile->save();
 
     $form_state->setRedirect(
@@ -298,6 +307,18 @@ function cj_form_user_self_edit_candidate_form_alter(array &$form, FormStateInte
       $form[$namespace]['#access'] = FALSE;
     }
   }
+
+  $form['actions']['submit']['#value'] = new TranslatableMarkup('Save Profile');
+  $form['actions']['submit']['#submit'][] = 'cj_form_user_self_edit_candidate_form_submit_message';
+
+  unset($form['individual_profile:places']['widget']['entities']['#table_fields']['type']);
+}
+
+/**
+ * Submit function to show a message.
+ */
+function cj_form_user_self_edit_candidate_form_submit_message($form, FormStateInterface $form_state) {
+  \Drupal::messenger()->addStatus(new TranslatableMarkup('Thanks for updating your profile. You can keep your profile up to date at any time by logging in to Christian Jobs and clicking the \'Edit Profile\' button at the top of your dashboard.'));
 }
 
 /**
@@ -306,4 +327,6 @@ function cj_form_user_self_edit_candidate_form_alter(array &$form, FormStateInte
 function cj_local_tasks_alter(&$local_tasks) {
   $local_tasks['entity.user.edit_form']['title'] = 'Edit Account';
   unset($local_tasks['entity.commerce_payment_method.collection']);
+  unset($local_tasks['entity.profile.user_profile_form:profile.type.individual']);
+  unset($local_tasks['entity.profile.user_profile_form:profile.type.organisation']);
 }

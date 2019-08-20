@@ -140,6 +140,9 @@
             },
             "drupal/cshs": {
                 "Compatability with entityreference filter": "./patches/cshs-entityreference_views_handler_compat.patch"
+            },
+            "drupal/inline_entity_form": {
+                "Bundle selection fix": "https://www.drupal.org/files/issues/2019-08-20/3076005-2.patch"
             }
         },
         "installer-paths": {

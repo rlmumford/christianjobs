@@ -53,85 +53,89 @@ mode: self_edit_candidate
 content:
   'candidate_profile:candidate_interests':
     type: entity_reference_autocomplete_tags
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   'candidate_profile:candidate_locations':
     type: entity_reference_autocomplete_tags
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   'candidate_profile:candidate_resume':
+    settings:
+      progress_indicator: throbber
+    third_party_settings:
+      flexiform:
+        field_definition:
+          label: Resume/CV
     type: file_generic
     weight: 6
     region: content
-    settings: {  }
-    third_party_settings: {  }
   'candidate_profile:is_practising_christian':
     type: boolean_checkbox
-    weight: 5
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   'individual_profile:consent__events_update':
     type: options_buttons
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   'individual_profile:consent__job_update':
     type: options_buttons
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   'individual_profile:consent__share_profile':
     type: boolean_checkbox
-    weight: 11
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   'individual_profile:consent__spec_job_update':
     type: options_buttons
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   'individual_profile:consent__use_profile':
     type: boolean_checkbox
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   'individual_profile:consent_date__events_update':
     type: datetime_default
-    weight: 16
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
   'individual_profile:consent_date__job_update':
     type: datetime_default
-    weight: 12
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   'individual_profile:consent_date__share_profile':
     type: datetime_default
-    weight: 15
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
   'individual_profile:consent_date__spec_job_update':
     type: datetime_default
-    weight: 14
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   'individual_profile:consent_date__use_profile':
     type: datetime_default
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -184,6 +188,25 @@ content:
     type: name_default
     weight: 0
     region: content
+  'individual_profile:places':
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings:
+      flexiform:
+        field_definition:
+          label: Address
+    type: inline_entity_form_complex
+    weight: 3
+    region: content
   'individual_profile:telephone_numbers':
     settings:
       title: 'Telephone Number'
@@ -208,7 +231,6 @@ hidden:
   google_analytics: true
   'individual_profile:field_consent__job_update': true
   'individual_profile:field_consent__use_profile': true
-  'individual_profile:places': true
   individuals: true
   language: true
   organisations: true

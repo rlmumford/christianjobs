@@ -4604,7 +4604,8 @@ tr.draggable td:nth-child(2) {
 }
 
 .ief-form .button,
-.field--widget-inline-entity-form-complex .button {
+.field--widget-inline-entity-form-complex .button,
+.form-managed-file .button {
   min-height: 0;
   padding: 0 10px;
   margin-top: 0;
@@ -4638,6 +4639,49 @@ tr.draggable td:nth-child(2) {
 }
 .user-self-edit-candidate-form #edit-individual-profile-places .form-item-individual-profile-places-actions-bundle {
   display: block;
+}
+
+.tabs ul li a.is-active, ul.tabs li a.is-active {
+  border-color: #FF904B;
+  color: #FF904B;
+}
+
+.tabs ul li a:hover, ul.tabs li a:hover {
+  border-color: rgba(255, 144, 75, 0.5);
+}
+
+.form-item-account-type.btn, .pager .pager-item > a.form-item-account-type, .pager .pager-item > span.form-item-account-type, .form-item-account-type.tabledrag-toggle-weight {
+  margin-left: 4px;
+  margin-right: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+div#edit-individual-profile-email-addresses strong, div#edit-individual-profile-telephone-numbers strong {
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #FF904B;
+  font-size: 16px;
+}
+
+div#edit-individual-profile-consent-job-update-wrapper:before, div#edit-candidate-profile-candidate-locations-wrapper:before {
+  background: #FF904B;
+  content: "";
+  height: 6px;
+  position: absolute;
+  left: 200px;
+  top: 0px;
+  width: 1600px;
+}
+
+div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profile-candidate-locations-wrapper {
+  position: relative;
+  padding-top: 10px;
+}
+
+.form-checkboxes .form-type-checkbox {
+  display: inline-block;
+  margin-right: 16px;
 }
 
 /*# sourceMappingURL=styles.css.map */
