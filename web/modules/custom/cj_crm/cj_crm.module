@@ -1,6 +1,11 @@
 <?php
 
 use Drupal\cj_crm\Form\UserAddCandidateForm;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Implements hook_entity_type_build()
@@ -12,4 +17,15 @@ function cj_crm_entity_type_build(&$entity_types) {
     $entity_type->setFormClass('add_candidate', UserAddCandidateForm::class);
     $entity_type->setFormClass('edit_candidate', UserAddCandidateForm::class);
   }
+}
+
+/**
+ * Implements hook_entity_field_access()
+ */
+function cj_crm_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) {
+  if ($operation == 'edit' && in_array($field_definition->getName(), ['email_notes', 'number_notes'])) {
+    return AccessResult::forbiddenIf(!in_array('staff', $account->getRoles()), new TranslatableMarkup('Only staff can edit email notes.'));
+  }
+
+  return AccessResult::neutral();
 }
