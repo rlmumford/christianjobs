@@ -269,7 +269,7 @@ function cj_form_contact_message_elim_interest_form_form_alter(array &$form, For
 function cj_form_user_form_alter(array &$form, FormStateInterface $form_state) {
   // Email registration doesn't check whether the account portion of the form
   // exists before fiddling with it. Undo those fiddles here.
-  if ($form['account']['name']['#type'] == 'value' && !isset($form['account']['name']['#value'])) {
+  if ($form['account']['name']['#type'] == 'value' && !isset($form['account']['name']['#default_value'])) {
     unset($form['account']);
   }
 

@@ -12,3 +12,4 @@ cj.self_edit_candidate:
     _title: 'Edit Profile'
   requirements:
     _entity_access: 'user.update'
+    _custom_access: '\Drupal\cj\Controller\FrontPageController::selfEditCandidateAccess'

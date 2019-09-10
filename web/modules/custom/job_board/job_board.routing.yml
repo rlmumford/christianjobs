@@ -54,4 +54,4 @@ job_board.employer_edit:
     _title_callback: '\Drupal\job_board\Controller\JobBoardController::employerEditTitle'
   requirements:
     _entity_access: 'user.update'
-    _role: 'employer'
+    _custom_access: '\Drupal\job_board\Controller\JobBoardController::employerEditAccess'
