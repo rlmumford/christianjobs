@@ -4,8 +4,10 @@ namespace Drupal\cj\Controller;
 
 use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
 use Drupal\commerce_price\Price;
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\user\UserInterface;
 
 class FrontPageController extends ControllerBase {
 
@@ -102,5 +104,16 @@ class FrontPageController extends ControllerBase {
     // @todo: References.
 
     return $build;
+  }
+
+  /**
+   * Check the self edit candidate access.
+   */
+  public function selfEditCandidateAccess(UserInterface $user) {
+    if ($user->hasRole('candidate')) {
+      return AccessResult::allowed();
+    }
+
+    return AccessResult::forbidden();
   }
 }

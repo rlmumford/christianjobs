@@ -5,6 +5,7 @@ namespace Drupal\job_board\Controller;
 use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
 use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_price\Price;
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\TransactionNameNonUniqueException;
 use Drupal\Core\Datetime\DrupalDateTime;
@@ -170,6 +171,17 @@ class JobBoardController extends ControllerBase {
     return $this->t('Edit @employer', [
       '@employer' => $this->employerTitle($user),
     ]);
+  }
+
+  /**
+   * Check the employer role exist.
+   */
+  public function employerEditAccess(UserInterface $user) {
+    if ($user->hasRole('employer')) {
+      return AccessResult::allowed();
+    }
+
+    return AccessResult::forbidden();
   }
 
   /**
