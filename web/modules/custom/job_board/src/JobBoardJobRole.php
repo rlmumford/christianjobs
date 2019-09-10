@@ -88,6 +88,25 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
+    parent::postSave($storage, $update);
+
+    // If this is active, make sure the organisation is visible in the directory.
+    if ($this->isActive()) {
+      /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
+      $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+      $profile = $profile_storage->loadDefaultByUser($this->organisation->entity, 'employer');
+
+      if (!$profile->employer_on_directory->value) {
+        $profile->employer_on_directory = TRUE;
+        $profile->save();
+      }
+    }
+  }
+
+  /**
    * Gets the stores through which the purchasable entity is sold.
    *
    * @return \Drupal\commerce_store\Entity\StoreInterface[]

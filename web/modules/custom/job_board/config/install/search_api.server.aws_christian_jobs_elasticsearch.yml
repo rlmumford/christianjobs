@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - elasticsearch_connector
+id: aws_christian_jobs_elasticsearch
+name: 'AWS Christian Jobs Elasticsearch'
+description: ''
+backend: elasticsearch
+backend_config:
+  cluster_settings:
+    cluster: aws_christian_jobs
+  fuzziness: auto
+  scheme: http
+  host: localhost
+  port: '9200'
+  path: ''
+  excerpt: false
+  retrieve_data: false
+  highlight_data: false
+  http_method: AUTO
+  autocorrect_spell: true
+  autocorrect_suggest_words: true

@@ -1,6 +1,8 @@
 <?php
 
+use Drupal\cj_membership\Entity\Membership;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
@@ -116,6 +118,65 @@ function job_board_post_update_set_paid_to_date(&$sandbox = NULL) {
       $job_role->paid_to_date->value = $paid_to_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
     }
     $job_role->save();
+  }
+
+  $sandbox['#finished'] = min(1, $sandbox['progress']/$sandbox['max']);
+  return "Processed ".number_format($sandbox['#finished']*100,2)."%";
+}
+
+/**
+ * Set the on directory value.
+ */
+function job_board_post_update_set_on_directory(&$sandbox = NULL) {
+  $storage = \Drupal::entityTypeManager()->getStorage('profile');
+
+  if (!isset($sandbox['max'])) {
+    $sandbox['max'] = $storage->getQuery()->condition('type','employer')->count()->execute();
+    $sandbox['progress'] = $sandbox['last_id'] = 0;
+  }
+
+  $query = $storage->getQuery();
+  $query->condition('type', 'employer');
+  $query->condition('id', $sandbox['last_id'], '>');
+  $query->sort('id', 'ASC');
+  $query->range(0, 20);
+
+  $job_storage = \Drupal::entityTypeManager()->getStorage('job_role');
+  /** @var \Drupal\profile\Entity\Profile $profile */
+  foreach ($storage->loadMultiple($query->execute()) as $profile) {
+    $sandbox['progress']++;
+    $sandbox['last_id'] = $profile->id();
+
+    $on_directory = FALSE;
+    /** @var \Drupal\user\UserInterface $user */
+    $user = $profile->getOwner();
+
+    // Query for finding membership.
+    if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {
+      /** @var \Drupal\cj_membership\MembershipStorage $membership_storage */
+      $membership_storage = \Drupal::entityTypeManager()->getStorage('cj_membership');
+      $membership = $membership_storage->getAccountMembership($user);
+
+      if ($membership && $membership->status->value == Membership::STATUS_ACTIVE) {
+        $on_directory = TRUE;
+      }
+    }
+
+    // Prepare query for finding jobs.
+    $job_query = $job_storage->getQuery();
+    $job_query->condition('organisation', $user->id());
+    $job_query->condition('paid_to_date', (new DrupalDateTime())->format('Y-m-d'), '>');
+    $job_query->condition('start_date', (new DrupalDateTime())->format('Y-m-d'), '<=');
+
+    // If the user is a member, $on_directory is true.
+    if (!$on_directory && $job_query->count()->execute() > 0) {
+      $on_directory = TRUE;
+    }
+
+    if ($on_directory) {
+      $profile->employer_on_directory = TRUE;
+      $profile->save();
+    }
   }
 
   $sandbox['#finished'] = min(1, $sandbox['progress']/$sandbox['max']);

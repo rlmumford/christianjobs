@@ -1,7 +1,25 @@
 <?php
 
+use Drupal\cj_membership\Entity\Membership;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_cron().
+ */
+function cj_membership_cron() {
+  $membership_storage = \Drupal::entityTypeManager()->getStorage('cj_membership');
+  $query = $membership_storage->getQuery();
+  $query->condition('status', Membership::STATUS_EXPIRED, '<>');
+  $query->condition('expiry', (new DrupalDateTime())->format('Y-m-d'), '<');
+  $ids = $query->execute();
+
+  foreach ($membership_storage->loadMultiple($ids) as $membership) {
+    $membership->status = Membership::STATUS_EXPIRED;
+    $membership->save();
+  }
+}
 
 /**
  * Implements hook_form_user_register_form_alter().
