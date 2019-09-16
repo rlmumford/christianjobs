@@ -130,12 +130,6 @@
     "extra": {
         "enable-patching": true,
         "patches": {
-            "drupal/core": {
-                "Layout builder context hook": "https://www.drupal.org/files/issues/2019-05-10/3001188-5.patch",
-                "Layout builder visibility rules": "https://www.drupal.org/files/issues/2019-05-03/2916876-52.patch",
-                "Layout builder form blocks": "https://www.drupal.org/files/issues/2019-08-12/3045171-79.patch",
-                "Entity reference views autocomplete filters": "https://www.drupal.org/files/issues/2019-05-07/generic_entityreference_filter_22429699-162.patch"
-            },
             "drupal/cshs": {
                 "Compatability with entityreference filter": "./patches/cshs-entityreference_views_handler_compat.patch"
             },
