@@ -13,6 +13,11 @@ job_board.extend:
   title: 'Extend'
   appears_on:
     - entity.job_role.canonical
+job_board.repost:
+  route_name: job_board.repost
+  title: 'Repost'
+  appears_on:
+    - entity.job_role.canonical
 job_board.edit_job:
   route_name: entity.job_role.edit_form
   title: 'Edit'

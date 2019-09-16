@@ -39,6 +39,13 @@ job_board.extend:
     _title_callback: '\Drupal\job_board\Controller\JobBoardController::extendJobTitle'
   requirements:
     _entity_access: 'job_role.extend'
+job_board.repost:
+  path: '/job/{job_role}/repost'
+  defaults:
+    _controller: '\Drupal\job_board\Controller\JobBoardController::repostJob'
+    _title_callback: '\Drupal\job_board\Controller\JobBoardController::repostJobTitle'
+  requirements:
+    _entity_access: 'job_role.repost'
 
 job_board.employer:
   path: '/employer/{user}'

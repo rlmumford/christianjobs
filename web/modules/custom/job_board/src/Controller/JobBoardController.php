@@ -7,6 +7,7 @@ use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_price\Price;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\TransactionNameNonUniqueException;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
@@ -15,6 +16,37 @@ use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class JobBoardController extends ControllerBase {
+
+  /**
+   * Repost job.
+   *
+   * @param \Drupal\job_role\Entity\JobRoleInterface $job_role
+   *
+   * @return array
+   */
+  public function repostJob(JobRoleInterface $job_role) {
+    /** @var \Drupal\job_board\JobBoardJobRole $repost_job */
+    $repost_job = $this->entityTypeManager()->getStorage('job_role')->create([]);
+
+    foreach ($job_role->getFields() as $field_name => $item_list) {
+      if (!in_array($field_name, [
+        'id', 'uuid', 'vid', 'publish_date', 'end_date', 'initial_duration',
+        'paid', 'paid_to_date', 'path', 'boost_start_date', 'boost_end_date',
+      ])) {
+        $repost_job->set($field_name, $item_list->getValue());
+      }
+    }
+    $repost_job->publish_date = (new DrupalDateTime())->format('Y-m-d');
+
+    return $this->entityFormBuilder()->getForm($repost_job, 'post');
+  }
+
+  /**
+   * Repost job title.
+   */
+  public function repostJobTitle(JobRoleInterface $job_role) {
+    return new TranslatableMarkup('Re-post @job', ['@job' => $job_role->label()]);
+  }
 
   /**
    * Page to post a new job.

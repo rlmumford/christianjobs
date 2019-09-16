@@ -137,8 +137,8 @@ function job_board_post_update_set_on_directory(&$sandbox = NULL) {
 
   $query = $storage->getQuery();
   $query->condition('type', 'employer');
-  $query->condition('id', $sandbox['last_id'], '>');
-  $query->sort('id', 'ASC');
+  $query->condition('profile_id', $sandbox['last_id'], '>');
+  $query->sort('profile_id', 'ASC');
   $query->range(0, 20);
 
   $job_storage = \Drupal::entityTypeManager()->getStorage('job_role');
@@ -166,7 +166,7 @@ function job_board_post_update_set_on_directory(&$sandbox = NULL) {
     $job_query = $job_storage->getQuery();
     $job_query->condition('organisation', $user->id());
     $job_query->condition('paid_to_date', (new DrupalDateTime())->format('Y-m-d'), '>');
-    $job_query->condition('start_date', (new DrupalDateTime())->format('Y-m-d'), '<=');
+    $job_query->condition('publish_date', (new DrupalDateTime())->format('Y-m-d'), '<=');
 
     // If the user is a member, $on_directory is true.
     if (!$on_directory && $job_query->count()->execute() > 0) {

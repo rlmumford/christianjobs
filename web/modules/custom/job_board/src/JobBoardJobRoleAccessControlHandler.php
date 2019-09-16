@@ -68,6 +68,24 @@ class JobBoardJobRoleAccessControlHandler extends JobRoleAccessControlHandler {
 
       return $result;
     }
+    if ($operation == 'repost') {
+      $result = AccessResult::allowedIf(
+        (
+          $entity->owner->target_id == $account->id()
+          && $account->hasPermission('repost own job_role')
+          && $entity->paid_to_date->date
+          && $entity->paid_to_date->date->format('Y-m-d') < (new DrupalDateTime())->format('Y-m-d')
+        )
+        || $account->hasPermission('repost any job_role')
+      );
+
+      $result->addCacheContexts(['user.permissions']);
+      $result->cachePerUser();
+      $result->addCacheableDependency($entity);
+      $result->setCacheMaxAge(60*60*24);
+
+      return $result;
+    }
 
     return parent::checkAccess($entity, $operation, $account);
   }
