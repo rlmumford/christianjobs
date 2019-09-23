@@ -13,7 +13,6 @@ dependencies:
     - views.view.job_board
   module:
     - communication
-    - ctools_block
     - flexilayout_builder
     - image
     - layout_builder
@@ -32,9 +31,9 @@ third_party_settings:
             uuid: 9dc94514-3fc4-493f-8076-69301ae2c60e
             region: content
             configuration:
-              id: 'entity_field:profile:employer_description'
+              id: 'field_block:profile:employer:employer_description'
               label: 'Employer Description'
-              provider: ctools_block
+              provider: layout_builder
               label_display: '0'
               formatter:
                 label: hidden
@@ -52,9 +51,9 @@ third_party_settings:
             uuid: 1f9fbe55-e16d-409b-9f13-c2e08c9c5fae
             region: aside
             configuration:
-              id: 'entity_field:profile:logo'
+              id: 'field_block:profile:employer:logo'
               label: Logo
-              provider: ctools_block
+              provider: layout_builder
               label_display: '0'
               formatter:
                 label: hidden
@@ -74,9 +73,9 @@ third_party_settings:
             uuid: c6ae7b3b-0494-47f7-a020-46dad8cc68eb
             region: aside
             configuration:
-              id: 'entity_field:profile:email'
+              id: 'field_block:profile:employer:email'
               label: Email
-              provider: ctools_block
+              provider: layout_builder
               label_display: '0'
               formatter:
                 label: inline
@@ -94,9 +93,9 @@ third_party_settings:
             uuid: 0fe6f9f6-ecf7-4ea4-b97a-87af63adb3b2
             region: aside
             configuration:
-              id: 'entity_field:profile:tel'
+              id: 'field_block:profile:employer:tel'
               label: Tel
-              provider: ctools_block
+              provider: layout_builder
               label_display: '0'
               formatter:
                 label: inline
@@ -115,9 +114,9 @@ third_party_settings:
             uuid: d8b17cfc-c749-4f1b-83ae-d203da96dbac
             region: aside
             configuration:
-              id: 'entity_field:profile:address'
+              id: 'field_block:profile:employer:address'
               label: Address
-              provider: ctools_block
+              provider: layout_builder
               label_display: '0'
               formatter:
                 label: hidden
@@ -147,23 +146,6 @@ third_party_settings:
               class: ''
               field_label_override: null
             weight: 0
-          f3a570b1-851f-4041-86f3-f1ac4cb0aa1f:
-            uuid: f3a570b1-851f-4041-86f3-f1ac4cb0aa1f
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:user:user:profile_candidate'
-              formatter:
-                type: entity_reference_entity_view
-                label: above
-                settings:
-                  view_mode: default
-                  link: false
-                third_party_settings: {  }
-            additional: {  }
-            weight: 1
           370cab7d-2538-4de1-abd8-dda265c7fec1:
             uuid: 370cab7d-2538-4de1-abd8-dda265c7fec1
             region: aside
@@ -239,8 +221,6 @@ third_party_settings:
         settings:
           context_mapping:
             user: entity
-_core:
-  default_config_hash: V51QPCKkgNREKtSmB9Iu2wmAMEpktVpnzklWaZV8UYo
 id: user.user.employer_page
 targetEntityType: user
 bundle: user

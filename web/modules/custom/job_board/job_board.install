@@ -831,11 +831,9 @@ function job_board_update_8022() {
 }
 
 /**
- * Install organisation directory.
+ * Install organisation directory fields.
  */
 function job_board_update_8023() {
-  // @todo: Install fields for organisation directory.
-
   $source = new FileStorage(drupal_get_path('module', 'job_board') . '/config/install');
   /** @var \Drupal\Core\Config\StorageInterface $config_storage */
   $config_storage = \Drupal::service('config.storage');
@@ -851,6 +849,56 @@ function job_board_update_8023() {
     'field.field.profile.employer.employer_type',
     'field.field.profile.employer.employer_website',
     'field.field.profile.employer.employer_on_directory',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config = new Config($name, \Drupal::service('config.storage'), \Drupal::service('event_dispatcher'), \Drupal::service('config.typed'));
+    $config->setData($source->read($name));
+
+    if ($entity_type = $config_manager->getEntityTypeIdByName($name)) {
+      /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
+      $entity_storage = $config_manager->getEntityManager()->getStorage($entity_type);
+
+      $id = $entity_storage->getIDFromConfigName($name, $entity_storage->getEntityType()->getConfigPrefix());
+      if ($config_storage->exists($name)) {
+        /** @var \Drupal\Core\Config\Entity\ConfigEntityBase $entity */
+        $entity = $entity_storage->load($id);
+        $entity = $entity_storage->updateFromStorageRecord($entity, $config->get());
+      }
+      else {
+        $entity = $entity_storage->createFromStorageRecord($config->get());
+      }
+
+      if ($entity->isInstallable()) {
+        $entity->trustData()->save();
+      }
+    }
+    else {
+      $config->save();
+    }
+  }
+
+  // Clear plugin manager caches.
+  \Drupal::getContainer()->get('plugin.cache_clearer')->clearCachedDefinitions();
+}
+
+/**
+ * Install organisation directory pages and search.
+ */
+function job_board_update_8024() {
+  /** @var \Drupal\Core\Extension\ModuleInstallerInterface $installer */
+  $installer = \Drupal::service('module_installer');
+  $installer->install([
+    'search_api', 'elasticsearch_connector', 'elasticsearch_aws_connector',
+  ]);
+
+
+  $source = new FileStorage(drupal_get_path('module', 'job_board') . '/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  /** @var \Drupal\Core\Config\ConfigManagerInterface $config_manager */
+  $config_manager = \Drupal::service('config.manager');
+  $configs_to_install = [
     'elasticsearch_connector.cluster.aws_christian_jobs',
     'search_api.server.aws_christian_jobs_elasticsearch',
     'search_api.index.employer_directory',
