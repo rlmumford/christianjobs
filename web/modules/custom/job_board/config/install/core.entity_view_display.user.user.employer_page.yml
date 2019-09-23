@@ -1,0 +1,309 @@
+uuid: d646b8b0-8fce-480b-bf7f-2bb6b1321cea
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.employer_page
+    - field.field.profile.employer.employer_categories
+    - field.field.profile.employer.employer_type
+    - field.field.profile.employer.employer_website
+    - field.field.user.user.commerce_remote_id
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+    - views.view.job_board
+  module:
+    - communication
+    - ctools_block
+    - flexilayout_builder
+    - image
+    - layout_builder
+    - user
+    - views
+  theme:
+    - cj_material
+third_party_settings:
+  layout_builder:
+    sections:
+      -
+        layout_id: cj_9_3
+        layout_settings: {  }
+        components:
+          9dc94514-3fc4-493f-8076-69301ae2c60e:
+            uuid: 9dc94514-3fc4-493f-8076-69301ae2c60e
+            region: content
+            configuration:
+              id: 'entity_field:profile:employer_description'
+              label: 'Employer Description'
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: employer_profile
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 0
+          1f9fbe55-e16d-409b-9f13-c2e08c9c5fae:
+            uuid: 1f9fbe55-e16d-409b-9f13-c2e08c9c5fae
+            region: aside
+            configuration:
+              id: 'entity_field:profile:logo'
+              label: Logo
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: image
+                settings:
+                  image_style: medium
+                  image_link: ''
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: employer_profile
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 0
+          c6ae7b3b-0494-47f7-a020-46dad8cc68eb:
+            uuid: c6ae7b3b-0494-47f7-a020-46dad8cc68eb
+            region: aside
+            configuration:
+              id: 'entity_field:profile:email'
+              label: Email
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: inline
+                type: email_mailto
+                settings: {  }
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: employer_profile
+            additional:
+              class: ''
+              field_label_override: 1
+            weight: 4
+          0fe6f9f6-ecf7-4ea4-b97a-87af63adb3b2:
+            uuid: 0fe6f9f6-ecf7-4ea4-b97a-87af63adb3b2
+            region: aside
+            configuration:
+              id: 'entity_field:profile:tel'
+              label: Tel
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: inline
+                type: telephone_link
+                settings:
+                  title: ''
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: employer_profile
+            additional:
+              class: ''
+              field_label_override: 1
+            weight: 5
+          d8b17cfc-c749-4f1b-83ae-d203da96dbac:
+            uuid: d8b17cfc-c749-4f1b-83ae-d203da96dbac
+            region: aside
+            configuration:
+              id: 'entity_field:profile:address'
+              label: Address
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: address_default
+                settings: {  }
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: employer_profile
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 6
+          515a1291-6600-42d1-b1e7-e8345fb73b04:
+            uuid: 515a1291-6600-42d1-b1e7-e8345fb73b04
+            region: bottom
+            configuration:
+              id: 'views_block:job_board-employer_jobs'
+              label: ''
+              provider: views
+              label_display: visible
+              views_label: ''
+              items_per_page: none
+              context_mapping:
+                organisation: layout_builder.entity
+            additional:
+              class: ''
+              field_label_override: null
+            weight: 0
+          f3a570b1-851f-4041-86f3-f1ac4cb0aa1f:
+            uuid: f3a570b1-851f-4041-86f3-f1ac4cb0aa1f
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:user:user:profile_candidate'
+              formatter:
+                type: entity_reference_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: false
+                third_party_settings: {  }
+            additional: {  }
+            weight: 1
+          370cab7d-2538-4de1-abd8-dda265c7fec1:
+            uuid: 370cab7d-2538-4de1-abd8-dda265c7fec1
+            region: aside
+            configuration:
+              id: 'field_block:profile:employer:employer_type'
+              label: Type
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: inline
+                type: list_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: employer_profile
+            additional:
+              class: ''
+              field_label_override: 1
+            weight: 1
+          2555758d-ac78-4d26-a708-7ffd248b3e93:
+            uuid: 2555758d-ac78-4d26-a708-7ffd248b3e93
+            region: aside
+            configuration:
+              id: 'field_block:profile:employer:employer_categories'
+              label: Categories
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: inline
+                type: entity_reference_label
+                settings:
+                  link: true
+                third_party_settings: {  }
+              context_mapping:
+                entity: employer_profile
+            additional:
+              class: ''
+              field_label_override: 1
+            weight: 2
+          1a21b2a9-5b8c-40af-9152-a7e1d28fa2dd:
+            uuid: 1a21b2a9-5b8c-40af-9152-a7e1d28fa2dd
+            region: aside
+            configuration:
+              id: 'field_block:profile:employer:employer_website'
+              label: Website
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: inline
+                type: link
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: _blank
+                third_party_settings: {  }
+              context_mapping:
+                entity: employer_profile
+            additional:
+              class: ''
+              field_label_override: 1
+            weight: 3
+        third_party_settings: {  }
+    allow_custom: false
+    enabled: true
+  flexilayout_builder:
+    relationships:
+      employer_profile:
+        plugin: 'default_profile:employer'
+        label: 'Employer Profile'
+        description: ''
+        settings:
+          context_mapping:
+            user: entity
+_core:
+  default_config_hash: V51QPCKkgNREKtSmB9Iu2wmAMEpktVpnzklWaZV8UYo
+id: user.user.employer_page
+targetEntityType: user
+bundle: user
+mode: employer_page
+content:
+  communication_contact_addresses:
+    type: contact_info_summary
+    region: content
+    weight: 8
+    label: above
+    settings:
+      info_label_display: none
+    third_party_settings: {  }
+  communication_contact_emails:
+    type: contact_info_summary
+    region: content
+    weight: 6
+    label: above
+    settings:
+      info_label_display: none
+    third_party_settings: {  }
+  communication_contact_telephones:
+    type: contact_info_summary
+    region: content
+    weight: 7
+    label: above
+    settings:
+      info_label_display: none
+    third_party_settings: {  }
+  member_for:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  profile_candidate:
+    type: entity_reference_entity_view
+    weight: 10
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  user_picture:
+    type: image
+    weight: 0
+    region: content
+    settings:
+      image_style: thumbnail
+      image_link: content
+    third_party_settings: {  }
+    label: hidden
+hidden:
+  candidate_profiles: true
+  commerce_remote_id: true
+  customer_profiles: true
+  employer_profiles: true
+  individual_profiles: true
+  organisation_profiles: true
+  profile_customer: true
+  profile_employer: true
+  profile_individual: true
+  profile_organisation: true
+  role_label_individual: true
+  role_label_organisation: true
+  search_api_excerpt: true

@@ -1,9 +1,10 @@
-uuid: 92207566-95b3-4161-943c-1bf7f7ea8964
+uuid: 8d5392ac-531e-4c9f-9dc6-a3381fe023ea
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_form_mode.user.employer_details
+    - field.field.user.user.commerce_remote_id
     - field.field.user.user.user_picture
   module:
     - flexiform
@@ -11,11 +12,25 @@ dependencies:
 third_party_settings:
   flexiform:
     enhancer:
+      submit_button_ajax:
+        ajax:
+          'actions::submit':
+            enabled: false
+            response: refresh
+        id: submit_button_ajax
+      submit_button_label:
+        label:
+          'actions::submit': ''
+        id: submit_button_label
+      submit_button_redirect:
+        redirect:
+          'actions::submit': ''
+        id: submit_button_redirect
       multiple_entities:
         id: multiple_entities
         entities:
-          employer_profile_from_user:
-            label: 'Employer Profile from User'
+          employer_profile:
+            label: 'Employer Profile'
             plugin: 'user_profile:employer'
             save_on_submit: 1
             context_mapping:
@@ -23,30 +38,6 @@ third_party_settings:
             create: 1
       page_exposure:
         id: page_exposure
-      submit_button_ajax:
-        ajax:
-          'user_picture::widget::0::upload_button':
-            enabled: false
-            response: refresh
-          'user_picture::widget::0::remove_button':
-            enabled: false
-            response: refresh
-          'actions::submit':
-            enabled: false
-            response: refresh
-        id: submit_button_ajax
-      submit_button_label:
-        label:
-          'user_picture::widget::0::upload_button': ''
-          'user_picture::widget::0::remove_button': ''
-          'actions::submit': ''
-        id: submit_button_label
-      submit_button_redirect:
-        redirect:
-          'user_picture::widget::0::upload_button': ''
-          'user_picture::widget::0::remove_button': ''
-          'actions::submit': ''
-        id: submit_button_redirect
 _core:
   default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
 id: user.user.employer_details
@@ -54,45 +45,92 @@ targetEntityType: user
 bundle: user
 mode: employer_details
 content:
-  'employer_profile_from_user:address':
+  'employer_profile:address':
     type: address_default
-    weight: 4
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
-  'employer_profile_from_user:email':
+  'employer_profile:email':
     type: email_default
-    weight: 2
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
-  'employer_profile_from_user:employer_description':
+  'employer_profile:employer_charity_number':
+    type: string_textfield
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'employer_profile:employer_description':
     type: text_textarea
     weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
-  'employer_profile_from_user:employer_name':
+  'employer_profile:employer_is_charity':
+    type: boolean_checkbox
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'employer_profile:employer_name':
     type: string_textfield
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'employer_profile:employer_categories':
+    type: select2_entity_reference
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  'employer_profile:employer_type':
+    type: options_select
     weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
-  'employer_profile_from_user:logo':
+  'employer_profile:employer_website':
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings:
+      flexiform:
+        field_definition:
+          label: ''
+    type: link_default
+    weight: 4
+    region: content
+  'employer_profile:logo':
     type: image_image
-    weight: 6
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
-  'employer_profile_from_user:tel':
+  'employer_profile:tel':
     type: telephone_default
-    weight: 3
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   account: true
+  candidate_profiles: true
+  commerce_remote_id: true
   contact: true
+  customer_profiles: true
+  'employer_profile:employer_on_directory': true
+  'employer_profile:is_default': true
+  employer_profiles: true
+  google_analytics: true
+  individual_profiles: true
+  individuals: true
   language: true
+  organisation_profiles: true
+  organisations: true
+  path: true
   timezone: true
   user_picture: true

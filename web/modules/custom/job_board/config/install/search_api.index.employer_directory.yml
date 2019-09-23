@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - decoupled_auth
+    - profile_tools
     - profile
     - user
     - search_api
@@ -17,7 +17,7 @@ description: ''
 read_only: false
 field_settings:
   description_summary:
-    label: 'Reverse reference: <em class="placeholder">Job</em> using <em class="placeholder">Organisation</em> » Summary'
+    label: 'Employer Jobs » Summary'
     datasource_id: 'entity:user'
     property_path: 'search_api_reverse_entity_references_job_role__organisation:description_summary'
     type: text
@@ -29,7 +29,7 @@ field_settings:
     type: string
     dependencies:
       module:
-        - decoupled_auth
+        - profile_tools
         - profile
       config:
         - field.storage.profile.email
@@ -40,7 +40,7 @@ field_settings:
     type: text
     dependencies:
       module:
-        - decoupled_auth
+        - profile_tools
         - profile
       config:
         - field.storage.profile.employer_description
@@ -52,7 +52,7 @@ field_settings:
     boost: !!float 2
     dependencies:
       module:
-        - decoupled_auth
+        - profile_tools
         - profile
       config:
         - field.storage.profile.employer_name

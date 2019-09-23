@@ -2288,10 +2288,10 @@ color themes
 .card.card-vertical .card-column-left, .content-card .card-vertical.card-holder .card-column-left, .card.card-vertical .card-column-right, .content-card .card-vertical.card-holder .card-column-right {
   padding: 24px;
 }
-.card > .breadcrumbs:first-child, .content-card .card-holder > .breadcrumbs:first-child, .card > .title:first-child, .content-card .card-holder > .title:first-child, .card > .block:first-child, .content-card .card-holder > .block:first-child, .card > div > .breadcrumbs:first-child, .content-card .card-holder > div > .breadcrumbs:first-child, .card > div > .title:first-child, .content-card .card-holder > div > .title:first-child, .card > div > .block:first-child, .content-card .card-holder > div > .block:first-child {
+.card > *:not(.card-item):first-child, .content-card .card-holder > *:not(.card-item):first-child, .card > div > .breadcrumbs:first-child, .content-card .card-holder > div > .breadcrumbs:first-child, .card > div > .title:first-child, .content-card .card-holder > div > .title:first-child, .card > div > .block:first-child, .content-card .card-holder > div > .block:first-child {
   margin-top: 0 !important;
 }
-.card > .block:last-child, .content-card .card-holder > .block:last-child, .card > div > .block:last-child, .content-card .card-holder > div > .block:last-child {
+.card > *:not(.card-item):last-child, .content-card .card-holder > *:not(.card-item):last-child, .card > div > .block:last-child, .content-card .card-holder > div > .block:last-child {
   margin-bottom: 0 !important;
 }
 
@@ -2428,16 +2428,16 @@ color themes
 }
 
 .card-text {
-  padding: 16px 24px 8px 24px;
-}
-.card-text:last-child {
-  padding-bottom: 16px;
+  padding: 16px 24px;
 }
 .card-title + .card-text {
   padding-top: 0;
 }
 .card-title.divider-bottom + .card-text, .card-title + .card-text.divider-top {
   padding-top: 16px;
+}
+.card-text > *:last-child {
+  margin-bottom: 0;
 }
 
 .card-bg-red {
@@ -3530,6 +3530,14 @@ details.captcha > div {
   color: #BBBBBB;
 }
 
+.form-item input[type=url] {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 8px 0;
+}
+
 div#block-cj-material-page-title {
   float: none;
   width: 100%;
@@ -4485,17 +4493,23 @@ article.card a.read-more-pointer span, .content-card article.card-holder a.read-
   padding-right: 205px;
 }
 
-form#views-exposed-form-job-board-page {
+form#views-exposed-form-job-board-page,
+form#views-exposed-form-employer-directory-page {
   border-radius: 0;
   box-shadow: none;
 }
-form#views-exposed-form-job-board-page .card-actions {
+form#views-exposed-form-job-board-page .card-actions, form#views-exposed-form-job-board-page .form-actions,
+form#views-exposed-form-employer-directory-page .card-actions,
+form#views-exposed-form-employer-directory-page .form-actions {
   text-align: center;
 }
-form#views-exposed-form-job-board-page .card-actions input.button {
+form#views-exposed-form-job-board-page .card-actions input.button, form#views-exposed-form-job-board-page .form-actions input.button,
+form#views-exposed-form-employer-directory-page .card-actions input.button,
+form#views-exposed-form-employer-directory-page .form-actions input.button {
   width: 50%;
 }
-form#views-exposed-form-job-board-page .divider-top {
+form#views-exposed-form-job-board-page .divider-top,
+form#views-exposed-form-employer-directory-page .divider-top {
   border-top: none;
 }
 

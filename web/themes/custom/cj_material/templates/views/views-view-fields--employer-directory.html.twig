@@ -42,11 +42,11 @@
   <div class="card-column-right card-column-stretch main">
     <div class="card-item card-title">
       <h3>{{ fields.employer_name.content }}</h3>
-      <span class="subtitle">{{ fields.field_employer_website.content }}</span>
+      <span class="subtitle">{{ fields.employer_website.content }}</span>
     </div>
     <div class="card-item card-text">
       <div class="row">
-        {% set extra_fields = fields|without('logo','employer_name', 'employer_description', 'field_employer_website') %}
+        {% set extra_fields = fields|without('logo','employer_name', 'employer_description', 'employer_website') %}
         <div class="col-xs-12 col-sm-12 {% if extra_fields is empty -%}col-md-12 col-lg-12{%- else -%}col-md-8 col-lg-8{%- endif %} first-md">
           {{ fields.employer_description.content }}
         </div>

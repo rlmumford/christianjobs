@@ -148,6 +148,14 @@ details.captcha > div {
   color: #BBBBBB;
 }
 
+.form-item input[type=url] {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  padding: 8px 0;
+}
+
 div#block-cj-material-page-title {
   float: none;
   width: 100%;
@@ -1052,11 +1060,12 @@ article.card a.read-more-pointer span {
   padding-right: 205px;
 }
 
-form#views-exposed-form-job-board-page {
+form#views-exposed-form-job-board-page,
+form#views-exposed-form-employer-directory-page {
   border-radius: 0;
   box-shadow: none;
 
-  .card-actions {
+  .card-actions, .form-actions {
     text-align: center;
 
     input.button {
