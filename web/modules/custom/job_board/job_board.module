@@ -21,6 +21,7 @@ use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
 use Drupal\user\Entity\User;
 use Drupal\user\EntityOwnerInterface;
 use Drupal\user\UserInterface;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_cron().
@@ -797,6 +798,31 @@ function job_board_cj_membership_insert(Membership $membership) {
     if (!$profile->employer_on_directory->value) {
       $profile->employer_on_directory = TRUE;
       $profile->save();
+    }
+  }
+}
+
+function job_board_views_post_execute(ViewExecutable $view) {
+  if ($view->id() === 'employer_directory') {
+    $ids = [];
+    foreach ($view->result as $key => $row) {
+      $ids[$key] = $row->_object->getEntity()->id();
+    }
+
+    $query = \Drupal::database()->select('job_role', 'jr');
+    $query->condition('organisation', $ids, 'IN');
+    $query->condition('publish_date', (new DrupalDateTime())->format('Y-m-d'), '<=');
+    $query->condition('end_date', (new DrupalDateTime())->format('Y-m-d'), '>');
+    $query->condition('paid', 1);
+    $query->addField('jr', 'organisation', 'org');
+    $query->addExpression('COUNT(IF(jr.compensation = :volunteer, 1, NULL))', 'vol_count', [':volunteer' => 'volunteer']);
+    $query->addExpression('COUNT(IF(jr.compensation <> :not_volunteer, 1, NULL))', 'paid_count', [':not_volunteer' => 'volunteer']);
+    $query->groupBy('organisation');
+
+    $ids = array_flip($ids);
+    foreach ($query->execute()->fetchAll() as $count_row) {
+      $view->result[$ids[$count_row->org]]->voluntary_role_count = $count_row->vol_count;
+      $view->result[$ids[$count_row->org]]->paid_role_count = $count_row->paid_count;
     }
   }
 }

@@ -69,6 +69,31 @@ a.card {
   position: relative;
 }
 
+.chip {
+  display: inline-block;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 32px;
+  margin-right: 8px;
+  background: rgba(35,47,52,0.12);
+  line-height: 32px;
+  font-size: 13px;
+}
+
+.chip:hover {
+  background: rgba(35,47,52,0.24);
+}
+
+.chip .material-icons {
+  display: block;
+  float: left;
+  width: 32px;
+  margin: 0 8px 0 -8px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+}
+
 details > summary {
   padding: 12px 16px 12px 40px;
   position: relative;
