@@ -809,6 +809,10 @@ function job_board_views_post_execute(ViewExecutable $view) {
       $ids[$key] = $row->_object->getEntity()->id();
     }
 
+    if (empty($ids)) {
+      return;
+    }
+
     $query = \Drupal::database()->select('job_role', 'jr');
     $query->condition('organisation', $ids, 'IN');
     $query->condition('publish_date', (new DrupalDateTime())->format('Y-m-d'), '<=');

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d72e963ab494736fbe6465bd0b3a7c67",
+    "content-hash": "6f6bd4ba4291f3e8f3c7ab8df1e49c6d",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -569,9 +569,7 @@
             "version": "2.1.10",
             "dist": {
                 "type": "zip",
-                "url": "https://download.ckeditor.com/youtube/releases/youtube_2.1.10.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://download.ckeditor.com/youtube/releases/youtube_2.1.10.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -4959,6 +4957,83 @@
             }
         },
         {
+            "name": "drupal/flag",
+            "version": "dev-4.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/flag.git",
+                "reference": "cadf39186fa7f4917b08ab359dd8d78c69c9af93"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/rules": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-4.x": "4.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-4.0-alpha3+14-dev",
+                    "datestamp": "1539832685",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "fubhy",
+                    "homepage": "https://www.drupal.org/user/761344"
+                },
+                {
+                    "name": "joachim",
+                    "homepage": "https://www.drupal.org/user/107701"
+                },
+                {
+                    "name": "merlinofchaos",
+                    "homepage": "https://www.drupal.org/user/26979"
+                },
+                {
+                    "name": "mooffie",
+                    "homepage": "https://www.drupal.org/user/78454"
+                },
+                {
+                    "name": "quicksketch",
+                    "homepage": "https://www.drupal.org/user/35821"
+                },
+                {
+                    "name": "shabana.navas",
+                    "homepage": "https://www.drupal.org/user/1311398"
+                },
+                {
+                    "name": "socketwench",
+                    "homepage": "https://www.drupal.org/user/65793"
+                }
+            ],
+            "description": "Create customized flags that users can set on entities.",
+            "homepage": "https://www.drupal.org/project/flag",
+            "support": {
+                "source": "https://git.drupalcode.org/project/flag"
+            },
+            "time": "2019-09-24T20:44:18+00:00"
+        },
+        {
             "name": "drupal/flexiform",
             "version": "dev-1.x",
             "source": {
@@ -9174,9 +9249,7 @@
             "version": "4.0.10",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/select2/-/select2-4.0.10.tgz",
-                "reference": null,
-                "shasum": null
+                "url": "https://registry.npmjs.org/select2/-/select2-4.0.10.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -14577,6 +14650,7 @@
         "drupal/decoupled_auth": 15,
         "drupal/elasticsearch_aws_connector": 20,
         "drupal/email_registration": 5,
+        "drupal/flag": 20,
         "drupal/geocoder": 10,
         "drupal/geofield": 10,
         "drupal/legal": 10,
