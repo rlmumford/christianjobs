@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override to present all communication
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.field_example'. Fields attached to a user
+ *   such as 'user_picture' are available as 'content.user_picture'.
+ * - attributes: HTML attributes for the container element.
+ * - communication: A Drupal communication entity.
+ *
+ * @see template_preprocess_communication()
+ */
+#}
+<article{{ attributes }}>
+  TEST THEME
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</article>

@@ -569,7 +569,9 @@
             "version": "2.1.10",
             "dist": {
                 "type": "zip",
-                "url": "https://download.ckeditor.com/youtube/releases/youtube_2.1.10.zip"
+                "url": "https://download.ckeditor.com/youtube/releases/youtube_2.1.10.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -3660,7 +3662,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/communication.git",
-                "reference": "53d93ca36bcf8d72686aec0cc6783a8a7ece86fb"
+                "reference": "f1b56c038cda780fc250c159d67937c339c25298"
             },
             "require": {
                 "drupal/core": "*",
@@ -3676,7 +3678,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1559131086",
+                    "datestamp": "1559208184",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3698,7 +3700,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/communication"
             },
-            "time": "2019-05-30T09:21:59+00:00"
+            "time": "2019-10-08T09:27:33+00:00"
         },
         {
             "name": "drupal/console",
@@ -9249,7 +9251,9 @@
             "version": "4.0.10",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/select2/-/select2-4.0.10.tgz"
+                "url": "https://registry.npmjs.org/select2/-/select2-4.0.10.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
