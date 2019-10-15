@@ -8,6 +8,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Locale\CountryManager;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
@@ -18,6 +19,7 @@ use Drupal\job_board\Form\JobForm;
 use Drupal\job_board\Form\JobPostForm;
 use Drupal\job_board\JobBoardJobRole;
 use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
+use Drupal\profile\Entity\Profile;
 use Drupal\user\Entity\User;
 use Drupal\user\EntityOwnerInterface;
 use Drupal\user\UserInterface;
@@ -538,6 +540,94 @@ function job_board_form_user_employer_details_form_alter(array &$form, FormState
 function job_board_user_employer_details_form_submit_redirect(array $form, FormStateInterface $form_state) {
   $form_state->setRedirect('job_board.post');
   user_cookie_delete('jobPostRegister');
+}
+
+/**
+ * Implements hook_profile_presave().
+ */
+function job_board_profile_presave(Profile $profile) {
+  if ($profile->bundle() !== 'employer') {
+    return;
+  }
+
+  /** @var \Drupal\geocoder_field\PreprocessorPluginManager $preprocessor_manager */
+  $preprocessor_manager = \Drupal::service('plugin.manager.geocoder.preprocessor');
+  /** @var \Drupal\geocoder\DumperPluginManager $dumper_manager */
+  $dumper_manager = \Drupal::service('plugin.manager.geocoder.dumper');
+
+  $address = $profile->address;
+  if ($profile->original) {
+    $original_address = $profile->original->address;
+  }
+
+  // First we need to Pre-process field.
+  // Note: in case of Address module integration this creates the
+  // value as formatted address.
+  $preprocessor_manager->preprocess($address);
+
+  // Skip any action if:
+  // geofield has value and remote field value has not changed.
+  if (isset($original_address) && !$profile->get('address_geo')->isEmpty() && $address->getValue() == $original_address->getValue()) {
+    return;
+  }
+
+  /** @var \Drupal\geocoder\DumperBase $dumper */
+  $dumper = $dumper_manager->createInstance('geojson');
+  $result = [];
+
+  foreach ($address->getValue() as $delta => $value) {
+    if ($address->getFieldDefinition()->getType() == 'address_country') {
+      $value['value'] = CountryManager::getStandardList()[$value['value']];
+    }
+
+    $address_collection = isset($value['value']) ? \Drupal::service('geocoder')->geocode($value['value'], ['googlemaps', 'googlemaps_business']) : NULL;
+    if ($address_collection) {
+      $result[$delta] = $dumper->dump($address_collection->first());
+
+      // We can't use DumperPluginManager::fixDumperFieldIncompatibility
+      // because we do not have a FieldConfigInterface.
+      // Fix not UTF-8 encoded result strings.
+      // https://stackoverflow.com/questions/6723562/how-to-detect-malformed-utf-8-string-in-php
+      if (is_string($result[$delta])) {
+        if (!preg_match('//u', $result[$delta])) {
+          $result[$delta] = utf8_encode($result[$delta]);
+        }
+      }
+    }
+  }
+
+  $profile->set('address_geo', $result);
+
+  $terms = [];
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $data = json_decode($profile->address_geo->value);
+  if (!$data || !isset($data->properties->adminLevels)) {
+    return;
+  }
+
+  // First get the tem for the country.
+  if (!($term = reset($term_storage->loadByProperties(['vid' => 'locations', 'name' => $data->properties->country])))) {
+    $term = $term_storage->create([
+      'vid' => 'locations',
+      'name' => $data->properties->country,
+    ]);
+    $term->save();
+  }
+  $terms[] = $term;
+
+  foreach ($data->properties->adminLevels as $level) {
+    if (!($next_term = reset($term_storage->loadByProperties(['vid' => 'locations', 'name' => $level->name, 'parent' => $term->id()])))) {
+      $next_term = $term_storage->create([
+        'vid' => 'locations',
+        'name' => $level->name,
+        'parent' => $term->id(),
+      ]);
+      $next_term->save();
+    }
+    $terms[] = $term = $next_term;
+  }
+
+  $profile->address_tree = $terms;
 }
 
 /**

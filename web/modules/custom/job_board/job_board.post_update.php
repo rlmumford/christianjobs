@@ -3,6 +3,7 @@
 use Drupal\cj_membership\Entity\Membership;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Locale\CountryManager;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
@@ -177,6 +178,114 @@ function job_board_post_update_set_on_directory(&$sandbox = NULL) {
       $profile->employer_on_directory = TRUE;
       $profile->save();
     }
+  }
+
+  $sandbox['#finished'] = min(1, $sandbox['progress']/$sandbox['max']);
+  return "Processed ".number_format($sandbox['#finished']*100,2)."%";
+}
+
+/**
+ * Set location tree things.
+ */
+function job_board_post_update_set_employer_address_geo_and_tree() {
+  /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
+  $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+  /** @var \Drupal\taxonomy\TermStorage $term_storage */
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  if (!isset($sandbox['max'])) {
+    $sandbox['max'] = $profile_storage->getQuery()->condition('type','employer')->count()->execute();
+    $sandbox['progress'] = $sandbox['last_id'] = 0;
+  }
+
+  $query = $profile_storage->getQuery();
+  $query->condition('type', 'employer');
+  $query->condition('profile_id', $sandbox['last_id'], '>');
+  $query->sort('profile_id', 'ASC');
+  $query->range(0, 20);
+
+  /** @var \Drupal\profile\Entity\Profile $profile */
+  foreach ($profile_storage->loadMultiple($query->execute()) as $profile) {
+    $sandbox['progress']++;
+    $sandbox['last_id'] = $profile->id();
+
+    if (!$profile->address_tree->isEmpty()) {
+      continue;
+    }
+
+    if ($profile->address->isEmpty()) {
+      continue;
+    }
+
+    /** @var \Drupal\geocoder_field\PreprocessorPluginManager $preprocessor_manager */
+    $preprocessor_manager = \Drupal::service('plugin.manager.geocoder.preprocessor');
+    /** @var \Drupal\geocoder\DumperPluginManager $dumper_manager */
+    $dumper_manager = \Drupal::service('plugin.manager.geocoder.dumper');
+
+    $address = $profile->address;
+
+    // First we need to Pre-process field.
+    // Note: in case of Address module integration this creates the
+    // value as formatted address.
+    $preprocessor_manager->preprocess($address);
+
+    /** @var \Drupal\geocoder\DumperBase $dumper */
+    $dumper = $dumper_manager->createInstance('geojson');
+    $result = [];
+
+    foreach ($address->getValue() as $delta => $value) {
+      if ($address->getFieldDefinition()->getType() == 'address_country') {
+        $value['value'] = CountryManager::getStandardList()[$value['value']];
+      }
+
+      $address_collection = isset($value['value']) ? \Drupal::service('geocoder')->geocode($value['value'], ['googlemaps', 'googlemaps_business']) : NULL;
+      if ($address_collection) {
+        $result[$delta] = $dumper->dump($address_collection->first());
+
+        // We can't use DumperPluginManager::fixDumperFieldIncompatibility
+        // because we do not have a FieldConfigInterface.
+        // Fix not UTF-8 encoded result strings.
+        // https://stackoverflow.com/questions/6723562/how-to-detect-malformed-utf-8-string-in-php
+        if (is_string($result[$delta])) {
+          if (!preg_match('//u', $result[$delta])) {
+            $result[$delta] = utf8_encode($result[$delta]);
+          }
+        }
+      }
+    }
+
+    $profile->set('address_geo', $result);
+
+    $terms = [];
+    $data = json_decode($profile->address_geo->value);
+    if (!$data || !isset($data->properties->adminLevels)) {
+      continue;
+    }
+
+    // First get the tem for the country.
+    if (!($term = reset($term_storage->loadByProperties(['vid' => 'locations', 'name' => $data->properties->country])))) {
+      $term = $term_storage->create([
+        'vid' => 'locations',
+        'name' => $data->properties->country,
+      ]);
+      $term->save();
+    }
+    $terms[] = $term;
+
+    foreach ($data->properties->adminLevels as $level) {
+      if (!($next_term = reset($term_storage->loadByProperties(['vid' => 'locations', 'name' => $level->name, 'parent' => $term->id()])))) {
+        $next_term = $term_storage->create([
+          'vid' => 'locations',
+          'name' => $level->name,
+          'parent' => $term->id(),
+        ]);
+        $next_term->save();
+      }
+      $terms[] = $term = $next_term;
+    }
+
+    $profile->address_tree = $terms;
+    $profile->save();
   }
 
   $sandbox['#finished'] = min(1, $sandbox['progress']/$sandbox['max']);

@@ -1,0 +1,29 @@
+uuid: e0e3909c-f86c-4b57-934d-74bf91b9aa48
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.address_tree
+    - profile.type.employer
+    - taxonomy.vocabulary.locations
+id: profile.employer.address_tree
+field_name: address_tree
+entity_type: profile
+bundle: employer
+label: 'Address Tree'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      locations: locations
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

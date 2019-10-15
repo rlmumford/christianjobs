@@ -898,6 +898,10 @@ function job_board_update_8024() {
   /** @var \Drupal\Core\Config\ConfigManagerInterface $config_manager */
   $config_manager = \Drupal::service('config.manager');
   $configs_to_install = [
+    'field.storage.profile.address_geo',
+    'field.storage.profile.address_tree',
+    'field.field.profile.employer.address_geo',
+    'field.field.profile.employer.address_tree',
     'elasticsearch_connector.cluster.aws_christian_jobs',
     'search_api.server.aws_christian_jobs_elasticsearch',
     'search_api.index.employer_directory',
@@ -906,6 +910,9 @@ function job_board_update_8024() {
     'core.entity_form_display.user.user.employer_details',
     'core.entity_view_mode.user.employer_page',
     'core.entity_view_display.user.user.employer_page',
+    'facets.facet.employer_address_tree',
+    'facets.facet.employer_categories',
+    'facets.facet_source.search_api__views_page__employer_directory__page',
   ];
   foreach ($configs_to_install as $name) {
     $config = new Config($name, \Drupal::service('config.storage'), \Drupal::service('event_dispatcher'), \Drupal::service('config.typed'));
