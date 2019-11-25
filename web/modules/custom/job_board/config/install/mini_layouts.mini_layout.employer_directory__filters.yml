@@ -1,0 +1,42 @@
+uuid: baef1a9a-bac1-49e4-9e7c-9167efbab9fd
+langcode: en
+status: true
+dependencies: {  }
+id: employer_directory__filters
+admin_label: 'Directory Filters'
+category: ''
+required_context: {  }
+sections:
+  -
+    layout_id: layout_twocol_section
+    layout_settings:
+      column_widths: 50-50
+    components:
+      1eb76c30-16a7-4df6-843d-93b7193f5a02:
+        uuid: 1eb76c30-16a7-4df6-843d-93b7193f5a02
+        region: first
+        configuration:
+          id: 'facet_block:employer_categories'
+          label: Category
+          provider: facets
+          label_display: visible
+          context_mapping: {  }
+        additional:
+          class: ''
+          field_label_override: null
+        weight: 0
+      088c94da-9ae8-4504-a7fa-2c3c1a19fe11:
+        uuid: 088c94da-9ae8-4504-a7fa-2c3c1a19fe11
+        region: second
+        configuration:
+          id: 'facet_block:employer_address_tree'
+          label: Location
+          provider: facets
+          label_display: visible
+          context_mapping: {  }
+        additional:
+          class: ''
+          field_label_override: null
+        weight: 0
+    third_party_settings: {  }
+locked: null

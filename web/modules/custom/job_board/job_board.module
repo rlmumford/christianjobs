@@ -920,3 +920,11 @@ function job_board_views_post_execute(ViewExecutable $view) {
     }
   }
 }
+
+function job_board_preprocess_block(&$variables) {
+  if ($variables['plugin_id'] !== 'mini_layout:employer_directory__filters') {
+    return;
+  }
+
+  $variables['content'][0]['#attached']['library'][] = 'job_board/collapsible-filters';
+}

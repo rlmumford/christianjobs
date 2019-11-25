@@ -1,0 +1,30 @@
+uuid: 6f9fbefe-2274-453d-b07c-d9d6f3960f7d
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - mini_layouts
+    - system
+  theme:
+    - cj_material
+third_party_settings:
+  block_class:
+    classes: collapsible-filter-block
+id: employer_directory__filters
+theme: cj_material
+region: content
+weight: -6
+provider: null
+plugin: 'mini_layout:employer_directory__filters'
+settings:
+  id: 'mini_layout:employer_directory__filters'
+  label: Filters
+  provider: mini_layouts
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }

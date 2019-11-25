@@ -3,3 +3,15 @@ pricing:
   css:
     component:
       css/pricing.css: {}
+collapsible-filters:
+  version: 1.x
+  js:
+    js/collapsible-filters.js: {}
+  css:
+    component:
+      css/collapsible-filters.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
+
