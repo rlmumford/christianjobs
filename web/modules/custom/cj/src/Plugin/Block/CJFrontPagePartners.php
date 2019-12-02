@@ -102,12 +102,12 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'TGBC-logo.png',
           Url::fromUri('https://www.thegoodbook.co.uk/')
         ),
-        'rock' => $this->buildPartnerCard(
-          'Rock UK',
-          'Outdoor Adventure for All',
-          'Four nationwide centres offer tailor-made programmes of challenging activities to encourage resilience, confidence and independence.',
-          'rockuklogo.svg',
-          Url::fromUri('https://rockuk.org')
+        'trustedhr' => $this->buildPartnerCard(
+          'Trusted HR',
+          'HR support tailored to your values and needs',
+          'We take time to get to know every church and/or a charity to fully match our service to them. We are passionate and understanding the aims, mission, values and needs.',
+          'trustedhrlogo.png',
+          Url::fromUri('https://trustedhr.co.uk/cj')
         ),
         'endis' => $this->buildPartnerCard(
           'Church Insight',
