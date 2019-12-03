@@ -1,4 +1,4 @@
-uuid: 6f9fbefe-2274-453d-b07c-d9d6f3960f7d
+uuid: 59553a2c-f4c5-4a03-83e2-fc10d9d9e912
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ dependencies:
 third_party_settings:
   block_class:
     classes: collapsible-filter-block
-id: employer_directory__filters
+id: directoryfilters
 theme: cj_material
 region: content
 weight: -6

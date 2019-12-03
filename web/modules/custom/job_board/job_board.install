@@ -962,7 +962,7 @@ function job_board_update_8025() {
   $configs_to_install = [
     'flag.flag.employer_like',
     'mini_layouts.mini_layout.employer_directory__filters',
-    'block.block.employer_directory__filters',
+    'block.block.directoryfilters',
   ];
   foreach ($configs_to_install as $name) {
     $config = new Config($name, \Drupal::service('config.storage'), \Drupal::service('event_dispatcher'), \Drupal::service('config.typed'));

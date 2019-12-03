@@ -410,54 +410,90 @@ function job_board_form_views_exposed_form_alter(array &$form, FormStateInterfac
     $form['actions']['submit']['#value'] = new TranslatableMarkup('Search');
   }
 
-  if ($form['#id'] != 'views-exposed-form-job-board-page') {
-    return;
+  if ($form['#id'] == 'views-exposed-form-job-board-page') {
+    if (!empty($form['location_geo__proximity'])) {
+      $form['location_geo__proximity']['#type'] = 'container';
+      $form['location_geo__proximity']['value']['#title'] = 'Location';
+      $form['location_geo__proximity']['value']['#description'] = NULL;
+      $form['location_geo__proximity']['value']['#size'] = 5;
+      $form['location_geo__proximity']['value']['#wrapper_attributes']['class'] = ['distance-container'];
+      $form['location_geo__proximity']['value']['#field_prefix'] = new TranslatableMarkup('Within');
+      $form['location_geo__proximity']['value']['#field_suffix'] = new TranslatableMarkup(' miles of ');
+      $form['location_geo__proximity']['source_configuration']['origin']['#title'] = NULL;
+      $form['location_geo__proximity']['source_configuration']['#attributes']['class'] = ['origin-container'];
+    }
+
+    $form['#attributes']['class'][] = 'card';
+    $form['actions']['#attributes']['class'] = [
+      'card-item',
+      'card-actions',
+      'divider-top'
+    ];
+    $form['filters'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['row', 'card-item', 'card-text'],
+      ],
+    ];
+    $form['filters']['label'] = $form['label'];
+    unset($form['label']);
+    $form['filters']['label']['#title'] = $form['#info']['filter-label']['label'];
+    $form['filters']['label']['#prefix'] = '<div class="col-xs-12 col-md-6">';
+    $form['filters']['label']['#suffix'] = '</div>';
+
+    $form['filters']['organisation'] = $form['organisation'];
+    unset($form['organisation']);
+    $form['filters']['organisation']['#title'] = $form['#info']['filter-organisation']['label'];
+    $form['filters']['organisation']['#prefix'] = '<div class="col-xs-12 col-md-6">';
+    $form['filters']['organisation']['#suffix'] = '</div>';
+
+    $form['filters']['location_geo__proximity'] = $form['location_geo__proximity'];
+    unset($form['location_geo__proximity']);
+    $form['filters']['location_geo__proximity']['#prefix'] = '<div class="col-xs-12 col-md-7">';
+    $form['filters']['location_geo__proximity']['#suffix'] = '</div>';
+    $form['filters']['location_geo__proximity']['#attributes']['class'] = [
+      'form-item',
+      'proximity-filter-container'
+    ];
+
+    $form['filters']['compensation'] = $form['compensation'];
+    unset($form['compensation']);
+    $form['filters']['compensation']['#title'] = $form['#info']['filter-compensation']['label'];
+    $form['filters']['compensation']['#prefix'] = '<div class="col-xs-6 col-md-2">';
+    $form['filters']['compensation']['#suffix'] = '</div>';
+
+    $form['filters']['industry'] = $form['industry'];
+    unset($form['industry']);
+    $form['filters']['industry']['#title'] = $form['#info']['filter-industry']['label'];
+    $form['filters']['industry']['#prefix'] = '<div class="col-xs-6 col-md-3">';
+    $form['filters']['industry']['#suffix'] = '</div>';
+  }
+  else if ($form['#id'] == 'views-exposed-form-employer-directory-page') {
+    $form['filters'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['row', 'inside'],
+      ],
+      '#weight' => -5,
+    ];
+    $form['filters']['field_address_tree'] = $form['field_address_tree'];
+    unset($form['field_address_tree']);
+    $form['filters']['field_address_tree']['#title'] = $form['#info']['filter-field_address_tree']['label'];
+    $form['filters']['field_address_tree']['#prefix'] = '<div class="col-xs-12 col-md-6">';
+    $form['filters']['field_address_tree']['#suffix'] = '</div>';
+
+    $form['filters']['employer_categories'] = $form['employer_categories'];
+    unset($form['employer_categories']);
+    $form['filters']['employer_categories']['#title'] = $form['#info']['filter-employer_categories']['label'];
+    $form['filters']['employer_categories']['#prefix'] = '<div class="col-xs-12 col-md-6">';
+    $form['filters']['employer_categories']['#suffix'] = '</div>';
+
+    $form['search']['#size'] = 128;
+    $form['search']['#wrapper_attributes']['class'] =[
+      'search-wrapper',
+    ];
   }
 
-  if (!empty($form['location_geo__proximity'])) {
-    $form['location_geo__proximity']['#type'] = 'container';
-    $form['location_geo__proximity']['value']['#title'] = 'Location';
-    $form['location_geo__proximity']['value']['#description'] = NULL;
-    $form['location_geo__proximity']['value']['#size'] = 5;
-    $form['location_geo__proximity']['value']['#wrapper_attributes']['class'] = ['distance-container'];
-    $form['location_geo__proximity']['value']['#field_prefix'] = new TranslatableMarkup('Within');
-    $form['location_geo__proximity']['value']['#field_suffix'] = new TranslatableMarkup(' miles of ');
-    $form['location_geo__proximity']['source_configuration']['origin']['#title'] = NULL;
-    $form['location_geo__proximity']['source_configuration']['#attributes']['class'] = ['origin-container'];
-  }
-
-  $form['#attributes']['class'][] = 'card';
-  $form['actions']['#attributes']['class'] = ['card-item', 'card-actions', 'divider-top'];
-  $form['filters'] = [
-    '#type' => 'container',
-    '#attributes' => [
-      'class' => ['row', 'card-item', 'card-text'],
-    ],
-  ];
-  $form['filters']['label'] = $form['label'];
-  unset($form['label']);
-  $form['filters']['label']['#title'] = $form['#info']['filter-label']['label'];
-  $form['filters']['label']['#wrapper_attributes']['class'] = ['col-xs-12', 'col-md-6'];
-
-  $form['filters']['organisation'] = $form['organisation'];
-  unset($form['organisation']);
-  $form['filters']['organisation']['#title'] = $form['#info']['filter-organisation']['label'];
-  $form['filters']['organisation']['#wrapper_attributes']['class'] = ['col-xs-12', 'col-md-6'];
-
-  $form['filters']['location_geo__proximity'] = $form['location_geo__proximity'];
-  unset($form['location_geo__proximity']);
-  $form['filters']['location_geo__proximity']['#attributes']['class'] = ['col-xs-12', 'col-md-7', 'form-item', 'proximity-filter-container'];
-
-
-  $form['filters']['compensation'] = $form['compensation'];
-  unset($form['compensation']);
-  $form['filters']['compensation']['#title'] = $form['#info']['filter-compensation']['label'];
-  $form['filters']['compensation']['#wrapper_attributes']['class'] = ['col-xs-6', 'col-md-2'];
-
-  $form['filters']['industry'] = $form['industry'];
-  unset($form['industry']);
-  $form['filters']['industry']['#title'] = $form['#info']['filter-industry']['label'];
-  $form['filters']['industry']['#wrapper_attributes']['class'] = ['col-xs-6', 'col-md-3'];
 }
 
 /**
@@ -666,7 +702,7 @@ function job_board_job_package_info($key = NULL) {
   ];
   $info['membership'] = [
     'label' => t('Community Membership'),
-    'price' => new Price('425.00', 'GBP'),
+    'price' => new Price('450.00', 'GBP'),
     'description' => t('Receive discounts, priority access and support by becoming a Community Member.'),
     'allowed_featured_dates' => 5,
     'cta_text' => new TranslatableMarkup('Find Out More'),
@@ -700,7 +736,7 @@ function job_board_job_package_info($key = NULL) {
   $info['rpo'] = [
     'label' => t('Outsourced Help (RPO)'),
     'description' => t('Let Christian Jobs manage your recruitment process.'),
-    'price' => new Price('895.00', 'GBP'),
+    'price' => new Price('1495.00', 'GBP'),
     'cta_text' => new TranslatableMarkup('Find Out More'),
     'cta_url' => Url::fromUri('internal:/outsourced-help'),
     'features' => [
@@ -926,5 +962,5 @@ function job_board_preprocess_block(&$variables) {
     return;
   }
 
-  $variables['content'][0]['#attached']['library'][] = 'job_board/collapsible-filters';
+  $variables['#attached']['library'][] = 'job_board/collapsible-filters';
 }

@@ -12,11 +12,11 @@ name: 'Employer » Address Tree'
 url_alias: employer_address_tree
 weight: 0
 min_count: 1
-show_only_one_result: false
-field_identifier: address_tree
+show_only_one_result: true
+field_identifier: field_address_tree
 facet_source_id: 'search_api:views_page__employer_directory__page'
 widget:
-  type: links
+  type: checkbox
   config:
     show_numbers: true
     soft_limit: 0
@@ -25,7 +25,7 @@ widget:
       show_more_label: 'Show more'
     show_reset_link: true
     reset_text: 'Show all'
-    hide_reset_when_no_selection: false
+    hide_reset_when_no_selection: true
 query_operator: or
 use_hierarchy: true
 expand_hierarchy: false

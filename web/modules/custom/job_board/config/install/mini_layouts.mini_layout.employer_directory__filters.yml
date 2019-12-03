@@ -39,4 +39,23 @@ sections:
           field_label_override: null
         weight: 0
     third_party_settings: {  }
+  -
+    layout_id: layout_onecol
+    layout_settings: {  }
+    components:
+      99f33d4e-099d-4b0e-a7eb-4aa5c1a61779:
+        uuid: 99f33d4e-099d-4b0e-a7eb-4aa5c1a61779
+        region: content
+        configuration:
+          id: 'views_exposed_filter_block:employer_directory-page'
+          label: ''
+          provider: views
+          label_display: '0'
+          views_label: ''
+          context_mapping: {  }
+        additional:
+          class: ''
+          field_label_override: null
+        weight: 0
+    third_party_settings: {  }
 locked: null

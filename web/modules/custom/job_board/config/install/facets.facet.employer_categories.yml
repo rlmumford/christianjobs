@@ -16,16 +16,16 @@ show_only_one_result: false
 field_identifier: employer_categories
 facet_source_id: 'search_api:views_page__employer_directory__page'
 widget:
-  type: links
+  type: checkbox
   config:
-    show_numbers: false
+    show_numbers: true
     soft_limit: 0
     soft_limit_settings:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
-    show_reset_link: false
+    show_reset_link: true
     reset_text: 'Show all'
-    hide_reset_when_no_selection: false
+    hide_reset_when_no_selection: true
 query_operator: or
 use_hierarchy: true
 expand_hierarchy: false

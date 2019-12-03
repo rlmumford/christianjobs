@@ -90,3 +90,13 @@ function cj_material_preprocess_views_view_fields__employer_directory(&$variable
     "<span class=\"directory-vol-role-count directory-icon chip\"><span class=\"material-icons\">emoji_people</span>{$vol_count}</span>"
   );
 }
+
+function cj_material_preprocess_layout__twocol_section(&$variables) {
+  $variables['content']['#attributes']['class'][] = 'row';
+  $variables['attributes']['class'][] = 'row';
+
+  $variables['content']['first']['#attributes']['class'] = ['col-xs-12', 'col-md-6'];
+  $variables['region_attributes']['first']['class'] = ['col-xs-12', 'col-md-6'];
+  $variables['content']['second']['#attributes']['class'] = ['col-xs-12', 'col-md-6'];
+  $variables['region_attributes']['second']['class'] = ['col-xs-12', 'col-md-6'];
+}

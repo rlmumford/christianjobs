@@ -946,6 +946,10 @@ display:
       display_extenders:
         metatag_display_extender: {  }
       title: Directory
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
@@ -981,6 +985,11 @@ display:
         weight: 0
         context: '0'
         menu_name: main
+      cache:
+        type: none
+      defaults:
+        cache: false
+      exposed_block: true
     cache_metadata:
       max-age: -1
       contexts:
