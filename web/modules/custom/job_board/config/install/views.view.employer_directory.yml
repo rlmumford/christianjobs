@@ -6,7 +6,7 @@ dependencies:
     - field.storage.profile.address
     - field.storage.profile.email
     - field.storage.profile.employer_categories
-    - field.storage.profile.employer_description
+    - field.storage.profile.employer_description_summary
     - field.storage.profile.employer_name
     - field.storage.profile.employer_type
     - field.storage.profile.employer_website
@@ -324,10 +324,10 @@ display:
             multi_separator: ', '
           entity_type: profile
           plugin_id: search_api_field
-        employer_description:
-          id: employer_description
+        employer_description_summary:
+          id: employer_description_summary
           table: search_api_entity_profile
-          field: employer_description
+          field: employer_description_summary
           relationship: profile_employer
           group_type: group
           admin_label: ''
@@ -923,7 +923,7 @@ display:
           min_length: null
           fields:
             - description_summary
-            - employer_description
+            - employer_description_summary
             - employer_name
           plugin_id: search_api_fulltext
       sorts: {  }
@@ -961,7 +961,7 @@ display:
         - 'config:field.storage.profile.address'
         - 'config:field.storage.profile.email'
         - 'config:field.storage.profile.employer_categories'
-        - 'config:field.storage.profile.employer_description'
+        - 'config:field.storage.profile.employer_description_summary'
         - 'config:field.storage.profile.employer_name'
         - 'config:field.storage.profile.employer_type'
         - 'config:field.storage.profile.employer_website'
@@ -1001,7 +1001,7 @@ display:
         - 'config:field.storage.profile.address'
         - 'config:field.storage.profile.email'
         - 'config:field.storage.profile.employer_categories'
-        - 'config:field.storage.profile.employer_description'
+        - 'config:field.storage.profile.employer_description_summary'
         - 'config:field.storage.profile.employer_name'
         - 'config:field.storage.profile.employer_type'
         - 'config:field.storage.profile.employer_website'

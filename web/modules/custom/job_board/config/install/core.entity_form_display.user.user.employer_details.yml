@@ -63,6 +63,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  'employer_profile:employer_description_summary':
+    type: text_textarea
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   'employer_profile:employer_description':
     type: text_textarea
     weight: 5

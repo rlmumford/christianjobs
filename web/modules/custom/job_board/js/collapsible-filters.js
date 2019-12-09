@@ -2,6 +2,8 @@
   Drupal.behaviors.jobBoardCollapsibleFilters = {
     attach: function attach(context) {
       $(".collapsible-filter-block", context).once("collapsible-filter-block").each(function() {
+        $(this).addClass('collapsible-filter-block-processed');
+
         let block = this;
 
         $(this).children("form, .layout").hide();

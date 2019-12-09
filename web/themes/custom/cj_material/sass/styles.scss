@@ -1111,6 +1111,7 @@ div.proximity-filter-container {
 
   div.origin-container {
     display: inline-block;
+    max-width: 390px;
   }
 }
 
@@ -1481,6 +1482,7 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   margin-bottom: 1em;
   border-radius: 1em;
   overflow: hidden;
+  padding-bottom: 1em;
 }
 .collapsible-filter-block > h2 {
   padding-top: 16px;
@@ -1496,6 +1498,9 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
 .collapsible-filter-block.collapsible-filter-block-processed > h2 {
   margin-bottom: 0;
 }
+.collapsible-filter-block.collapsible-filter-block-processed {
+  padding-bottom: 0;
+}
 
 .collapsible-filter-block > h2:before {
   content: url(../assets/icon/plus_white.png);
@@ -1506,6 +1511,9 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
 }
 .collapsible-filter-block.collapsible-filter-block-processed.collapsible-filter-block-expanded > h2 {
   margin-bottom: 1em;
+}
+.collapsible-filter-block.collapsible-filter-block-processed.collapsible-filter-block-expanded {
+  padding-bottom: 1em;
 }
 .collapsible-filter-block.collapsible-filter-block-expanded > h2:before {
   content: url(../assets/icon/minus_white.png);

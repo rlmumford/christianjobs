@@ -87,6 +87,17 @@ field_settings:
         - profile
       config:
         - field.storage.profile.employer_description
+  employer_description_summary:
+    label: 'Employer » Profile » Employer Description Summary'
+    datasource_id: 'entity:user'
+    property_path: 'profile_employer:entity:employer_description_summary'
+    type: text
+    dependencies:
+      module:
+        - profile_tools
+        - profile
+      config:
+        - field.storage.profile.employer_description_summary
   employer_name:
     label: 'Employer » Profile » Employer Name'
     datasource_id: 'entity:user'

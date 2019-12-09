@@ -900,8 +900,10 @@ function job_board_update_8024() {
   $configs_to_install = [
     'field.storage.profile.address_geo',
     'field.storage.profile.address_tree',
+    'field.storage.profile.employer_description_summary',
     'field.field.profile.employer.address_geo',
     'field.field.profile.employer.address_tree',
+    'field.field.profile.employer.employer_description_summary',
     'elasticsearch_connector.cluster.aws_christian_jobs',
     'search_api.server.aws_christian_jobs_elasticsearch',
     'search_api.index.employer_directory',

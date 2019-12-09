@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.employer_description_summary
+    - profile.type.employer
+  module:
+    - text
+id: profile.employer.employer_description_summary
+field_name: employer_description_summary
+entity_type: profile
+bundle: employer
+label: 'Employer Description Summary'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
