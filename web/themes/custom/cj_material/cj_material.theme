@@ -89,6 +89,39 @@ function cj_material_preprocess_views_view_fields__employer_directory(&$variable
   $variables['vol_count'] = Markup::create(
     "<span class=\"directory-vol-role-count directory-icon chip\"><span class=\"material-icons\">emoji_people</span>{$vol_count}</span>"
   );
+
+  /** @var \Drupal\flag\FlagLinkBuilderInterface $link_builder */
+  $link_builder = \Drupal::service('flag.link_builder');
+  $variables['like_count'] = $link_builder->build(
+    'user',
+    $row->_object->getEntity()->id(),
+    'employer_like'
+  );
+  $variables['like_count']['#attributes']['title'] = $variables['like_count']['#title'];
+  $variables['like_count']['#title'] = isset($row->like_count) ? $row->like_count : 0;
+
+  if (empty($variables['like_count']['#theme'])) {
+    $variables['like_count'] = Markup::create(
+      "<span class=\"directory-like-count directory-icon chip\">".(isset($row->like_count) ? $row->like_count : 0)."</span>"
+    );
+  }
+}
+
+function cj_material_preprocess_flag(&$variables) {
+  if ($variables['flag']->id() === 'employer_like') {
+    $variables['attributes']['class'][] = 'chip';
+    $variables['attributes']['class'][] = 'directory-icon';
+    $variables['attributes']['class'][] = 'directory-like-count';
+
+    if (!is_numeric($variables['title'])) {
+      $variables['attributes']['title'] = $variables['title'];
+
+      /** @var \Drupal\flag\FlagCountManagerInterface $count_service */
+      $count_service = \Drupal::service('flag.count');
+      $counts = $count_service->getEntityFlagCounts($variables['flaggable']);
+      $variables['title'] = !empty($counts['employer_like']) ? $counts['employer_like'] : 0;
+    }
+  }
 }
 
 function cj_material_preprocess_layout__twocol_section(&$variables) {

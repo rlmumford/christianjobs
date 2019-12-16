@@ -6,7 +6,6 @@ dependencies:
     - field.field.profile.employer.employer_name
     - field.field.profile.employer.logo
   module:
-    - cj_material
     - ctools_block
     - file
     - flexilayout_builder
@@ -14,7 +13,10 @@ dependencies:
     - job_role
     - layout_builder
     - range
+    - social_media
     - text
+  theme:
+    - cj_material
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -249,7 +251,7 @@ third_party_settings:
             additional:
               class: visible-md
               field_label_override: 0
-            weight: 10
+            weight: 11
           0c224e40-3739-4406-afc0-78155243ba0f:
             uuid: 0c224e40-3739-4406-afc0-78155243ba0f
             region: aside
@@ -269,28 +271,7 @@ third_party_settings:
             additional:
               class: visible-md
               field_label_override: 0
-            weight: 11
-          bdc835fc-8f40-4f78-b9e7-5791d3372f0d:
-            uuid: bdc835fc-8f40-4f78-b9e7-5791d3372f0d
-            region: top
-            configuration:
-              id: 'field_block:job_role:job_role:label'
-              label: Title
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: string_tag
-                settings:
-                  tag: h1
-                  class: page-title
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional:
-              class: ''
-              field_label_override: 0
-            weight: 1
+            weight: 12
           69ac936c-13eb-42a5-bd26-287af3162478:
             uuid: 69ac936c-13eb-42a5-bd26-287af3162478
             region: top
@@ -393,7 +374,43 @@ third_party_settings:
             additional:
               class: visible-md
               field_label_override: 0
+            weight: 10
+          ad8b8be1-4ab0-465b-8bd1-1654b8a88eda:
+            uuid: ad8b8be1-4ab0-465b-8bd1-1654b8a88eda
+            region: aside
+            configuration:
+              id: 'entity_field:job_role:application_deadline'
+              label: Deadline
+              provider: ctools_block
+              label_display: '0'
+              formatter:
+                label: inline
+                type: datetime_default
+                settings:
+                  timezone_override: ''
+                  format_type: medium
+                third_party_settings: {  }
+                weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+            additional:
+              class: ''
+              field_label_override: 1
             weight: 9
+          cc1a6dad-20f9-4a82-9ec7-7b297bd4f068:
+            uuid: cc1a6dad-20f9-4a82-9ec7-7b297bd4f068
+            region: aside
+            configuration:
+              id: social_sharing_block
+              label: 'Social Sharing block'
+              provider: social_media
+              label_display: '0'
+              context_mapping: {  }
+            additional:
+              class: 'card-item card-text divider-top mt-16'
+              field_label_override: null
+            weight: 13
+        third_party_settings: {  }
   flexilayout_builder:
     relationships:
       organisation:
@@ -402,7 +419,7 @@ third_party_settings:
         description: ''
         settings:
           context_mapping:
-            base: layout_builder.entity
+            base: entity
       employer_profile:
         plugin: 'default_profile:employer'
         label: 'Employer Profile'
@@ -410,6 +427,8 @@ third_party_settings:
         settings:
           context_mapping:
             user: organisation
+_core:
+  default_config_hash: 1o5du8ZlKUKlyV5V0-SYvL-F9t-IXegJ75AYKcL_W2U
 id: job_role.job_role.full
 targetEntityType: job_role
 bundle: job_role
@@ -445,16 +464,25 @@ content:
       to_prefix_suffix: false
     third_party_settings: {  }
 hidden:
+  application_deadline: true
+  boost_end_date: true
+  boost_start_date: true
   compensation: true
   contact_address: true
   contact_email: true
   contact_phone: true
+  description_summary: true
   end_date: true
   hours: true
   industry: true
   initial_duration: true
   keywords: true
   location: true
+  location_geo: true
+  location_tree: true
+  location_type: true
   paid: true
+  paid_to_date: true
   publish_date: true
   rpo: true
+  search_api_excerpt: true

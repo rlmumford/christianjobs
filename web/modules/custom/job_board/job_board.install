@@ -910,6 +910,7 @@ function job_board_update_8024() {
     'views.view.employer_directory',
     'views.view.job_board',
     'core.entity_form_display.user.user.employer_details',
+    'core.entity_view_display.job_role.job_role.full',
     'core.entity_view_mode.user.employer_page',
     'core.entity_view_display.user.user.employer_page',
     'facets.facet.employer_address_tree',

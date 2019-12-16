@@ -3512,6 +3512,27 @@ a.card, .content-card a.card-holder {
   border-radius: 50%;
 }
 
+.directory-like-count::before {
+  content: "";
+  background-image: url(../assets/icon/heart_empty-black.png);
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 8px 0 -8px;
+  display: block;
+  float: left;
+}
+
+.action-unflag .directory-like-count::before {
+  background-image: url(../assets/icon/heart_full-black.png);
+}
+
+.flag-employer-like .ajax-progress {
+  display: none;
+}
+
 details > summary {
   padding: 12px 16px 12px 40px;
   position: relative;
@@ -4126,6 +4147,9 @@ h2.company-name {
 .job-result .subtitle.employer-name a {
   color: #1E5168;
   font-weight: bold;
+}
+.job-result .subtitle.employer-name a:hover {
+  color: #569BDD;
 }
 
 .job-result span.views-label {

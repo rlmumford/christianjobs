@@ -30,8 +30,10 @@
       </div>
     {% endif %}
     {% if content.aside %}
-      <div {{ region_attributes.aside.addClass('layout__region', 'layout__region--aside', 'col-xs-12', 'col-md-4', 'col-lg-4', 'first-xs', 'card') }}>
-        {{ content.aside }}
+      <div {{ region_attributes.aside.addClass('layout__region', 'layout__region--aside', 'col-xs-12', 'col-md-4', 'col-lg-4', 'first-xs') }}>
+        <div class="card">
+          {{ content.aside }}
+        </div>
       </div>
     {% endif %}
     {% if content.bottom %}

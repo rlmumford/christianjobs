@@ -1683,6 +1683,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
+            "abandoned": "psr/container",
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
@@ -4964,7 +4965,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/flag.git",
-                "reference": "cadf39186fa7f4917b08ab359dd8d78c69c9af93"
+                "reference": "d40565e4fecec6e7ef0b58503a0f32fc4f7e27e1"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -4978,8 +4979,8 @@
                     "dev-4.x": "4.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-4.0-alpha3+14-dev",
-                    "datestamp": "1539832685",
+                    "version": "8.x-4.0-beta1+1-dev",
+                    "datestamp": "1572506886",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -5033,7 +5034,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/flag"
             },
-            "time": "2019-09-24T20:44:18+00:00"
+            "time": "2019-11-19T20:37:01+00:00"
         },
         {
             "name": "drupal/flexiform",
@@ -14130,6 +14131,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "require-dev dependencies from drupal/core",
+            "abandoned": "drupal/core-dev",
             "time": "2019-08-07T19:31:42+00:00"
         },
         {

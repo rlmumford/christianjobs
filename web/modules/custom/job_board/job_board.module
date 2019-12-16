@@ -949,18 +949,62 @@ function job_board_views_post_execute(ViewExecutable $view) {
     $query->addExpression('COUNT(IF(jr.compensation <> :not_volunteer, 1, NULL))', 'paid_count', [':not_volunteer' => 'volunteer']);
     $query->groupBy('organisation');
 
-    $ids = array_flip($ids);
+    $flipped_ids = array_flip($ids);
     foreach ($query->execute()->fetchAll() as $count_row) {
-      $view->result[$ids[$count_row->org]]->voluntary_role_count = $count_row->vol_count;
-      $view->result[$ids[$count_row->org]]->paid_role_count = $count_row->paid_count;
+      $view->result[$flipped_ids[$count_row->org]]->voluntary_role_count = $count_row->vol_count;
+      $view->result[$flipped_ids[$count_row->org]]->paid_role_count = $count_row->paid_count;
+    }
+
+    // Get the flow counts.
+    $query = \Drupal::database()->select('flag_counts', 'fc');
+    $query->condition('fc.flag_id', 'employer_like');
+    $query->condition('fc.entity_type', 'user');
+    $query->condition('fc.entity_id', $ids, 'IN');
+    $query->addField('fc', 'entity_id', 'org');
+    $query->addField('fc', 'count', 'count');
+    foreach ($query->execute()->fetchAll() as $count_row) {
+      $view->result[$flipped_ids[$count_row->org]]->like_count = $count_row->count;
     }
   }
 }
 
+/**
+ * Implements hook_preprocess_block.
+ *
+ * @param $variables
+ */
 function job_board_preprocess_block(&$variables) {
-  if ($variables['plugin_id'] !== 'mini_layout:employer_directory__filters') {
-    return;
+  if ($variables['plugin_id'] === 'mini_layout:employer_directory__filters') {
+    $variables['#attached']['library'][] = 'job_board/collapsible-filters';
   }
+  else if ($variables['plugin_id'] === 'entity_field:profile:employer_name') {
+    if (!empty($variables['content']['field'][0]['#tag']) && $variables['content']['field'][0]['#tag'] == 'h2') {
+      $element = &$variables['content']['field'][0];
+      $element['content'] = [
+        '#type' => 'link',
+        '#title' => $element['#value'],
+        '#url' => Url::fromRoute('job_board.employer', [
+          'user' => $variables['content']['field']['#object']->getOwnerId(),
+        ])
+      ];
+      unset($element['#value']);
 
-  $variables['#attached']['library'][] = 'job_board/collapsible-filters';
+      $variables['elements']['content'] = $variables['content'];
+    }
+  }
+  else if ($variables['plugin_id'] === 'field_block:profile:employer:employer_name') {
+    if (!empty($variables['content'][0]['#tag']) && $variables['content'][0]['#tag'] == 'h2') {
+      $element = &$variables['content'][0];
+      $element['content'] = [
+        '#type' => 'link',
+        '#title' => $element['#value'],
+        '#url' => Url::fromRoute('job_board.employer', [
+          'user' => $variables['content']['#object']->getOwnerId(),
+        ])
+      ];
+      unset($element['#value']);
+
+      $variables['elements']['content'] = $variables['content'];
+    }
+  }
 }
