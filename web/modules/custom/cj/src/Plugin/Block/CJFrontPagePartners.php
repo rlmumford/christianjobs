@@ -109,12 +109,12 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'trustedhrlogo.png',
           Url::fromUri('https://trustedhr.co.uk/cj')
         ),
-        'endis' => $this->buildPartnerCard(
-          'Church Insight',
-          'Website, Fundraising and Online Marketing',
-          'Church Insight are experts in designing and building easy-to-use websites for Christian organisations.',
-          'ChurchInsight-logo-750.png',
-          Url::fromUri('https://churchinsight.co.uk/')
+        'css' => $this->buildPartnerCard(
+          'Christian Safeguarding Services',
+          'Safeguarding training to churches and faith-based organisations',
+          'Christian Safeguarding Service support churches and faith-based organisations with policy development, bespoke training and consultancy services. We have a support and advice line and an answerphone service.',
+          'css-logo.png',
+          Url::fromUri('https://christiansafeguardingservices.phasic-ltd.co.uk/')
         ),
         'cpo' => $this->buildPartnerCard(
           'CPO',
