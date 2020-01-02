@@ -209,11 +209,11 @@ function job_board_post_update_set_employer_address_geo_and_tree() {
     $sandbox['progress']++;
     $sandbox['last_id'] = $profile->id();
 
-    if (!$profile->address_tree->isEmpty()) {
+    if (!isset($profile->address_tree) || !$profile->address_tree->isEmpty()) {
       continue;
     }
 
-    if ($profile->address->isEmpty()) {
+    if (!isset($profile->address) || $profile->address->isEmpty()) {
       continue;
     }
 
