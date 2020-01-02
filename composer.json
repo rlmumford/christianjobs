@@ -54,8 +54,8 @@
         "drupal/commerce_paypal": "^1.0@beta",
         "drupal/commerce_square": "^1.2",
         "drupal/communication": "1.x-dev",
-        "drupal/console": "dev-master",
-        "drupal/console-core": "dev-master as 1.9.2",
+        "drupal/console": "^1.9",
+        "drupal/console-core": "^1.9",
         "drupal/core": "^8.7",
         "drupal/cshs": "1.x-dev",
         "drupal/decoupled_auth": "^1.0@alpha",
@@ -130,6 +130,9 @@
     },
     "extra": {
         "enable-patching": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
         "patches": {
             "drupal/cshs": {
                 "Compatability with entityreference filter": "./patches/cshs-entityreference_views_handler_compat.patch"
