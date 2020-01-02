@@ -5073,4 +5073,8 @@ li.facet-item {
   line-height: 30px;
 }
 
+form#views-exposed-form-job-board-page {
+  margin-bottom: 16px;
+}
+
 /*# sourceMappingURL=styles.css.map */
