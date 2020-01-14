@@ -27,9 +27,10 @@ h1:after {
   content: "";
   height: 6px;
   position: absolute;
-  left: 200px;
+  left: -20px;
+  top: 76px;
   bottom: 0px;
-  width: 1600px;
+  width: 1200px;
 }
 h3 {
   color: #1E5168;
@@ -40,7 +41,8 @@ h2 a, h3 a {
 }
 h4 {
   color: #FF904B;
-  font-weight: normal;
+  font-weight: bold;
+  font-size: 20px;
 }
 strong {
   font-weight: bold;
@@ -908,9 +910,9 @@ span.upsell-price .tax {
   bottom: 30px;
   content: "";
   height: 6px;
-  left: 220px;
+  left: 0px;
   position: absolute;
-  width: 1600px;
+  width: 1200px;
 }
 .section-wrapper-header {
   position: relative;

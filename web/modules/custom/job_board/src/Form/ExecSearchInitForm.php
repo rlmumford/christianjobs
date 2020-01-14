@@ -45,6 +45,15 @@ class ExecSearchInitForm extends FormBase {
         '#tag' => 'p',
         '#value' => 'Our efficient and effective multistep approach begins long before the actual search itself. We are committed to our clients throughout every step of the executive search journey and our deliberate and structured search process is proven in attaining a successful outcome.',
       ],
+      'p5' => [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#value' => 'Look! A new paragraph',
+        '#attributes' => [
+          'class' => [ 'my-class' ],
+          'style' => 'background: blue;',
+        ],
+      ],
       'h4' => [
         '#type' => 'html_tag',
         '#tag' => 'h4',
