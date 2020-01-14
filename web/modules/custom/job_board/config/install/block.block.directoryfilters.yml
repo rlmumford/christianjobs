@@ -14,7 +14,7 @@ third_party_settings:
 id: directoryfilters
 theme: cj_material
 region: content
-weight: -6
+weight: -8
 provider: null
 plugin: 'mini_layout:employer_directory__filters'
 settings:

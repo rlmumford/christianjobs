@@ -8,11 +8,13 @@ dependencies:
     - taxonomy
     - user
     - search_api
+    - job_board
   config:
-    - field.storage.profile.employer_categories
     - field.storage.profile.address_tree
+    - field.storage.profile.employer_categories
     - field.storage.profile.email
     - field.storage.profile.employer_description
+    - field.storage.profile.employer_description_summary
     - field.storage.profile.employer_name
     - search_api.server.aws_christian_jobs_elasticsearch
 id: employer_directory
@@ -20,12 +22,23 @@ name: 'Employer Directory'
 description: ''
 read_only: false
 field_settings:
+  address_tree:
+    label: 'Employer » Address Tree'
+    datasource_id: 'entity:user'
+    property_path: 'profile_employer:entity:address_tree'
+    type: integer
+    dependencies:
+      module:
+        - profile_tools
+        - profile
+      config:
+        - field.storage.profile.address_tree
   admin_level_name:
     label: 'Location » Name'
     datasource_id: 'entity:user'
     property_path: 'profile_employer:entity:address_tree:entity:name'
     type: text
-    boost: 0.8
+    boost: 0.79999999999995
     dependencies:
       module:
         - profile_tools
@@ -39,7 +52,7 @@ field_settings:
     datasource_id: 'entity:user'
     property_path: 'profile_employer:entity:employer_categories:entity:name'
     type: text
-    boost: 0.8
+    boost: 0.79999999999995
     dependencies:
       module:
         - profile_tools
@@ -110,17 +123,6 @@ field_settings:
         - profile
       config:
         - field.storage.profile.employer_name
-  address_tree:
-    label: 'Employer » Address Tree'
-    datasource_id: 'entity:user'
-    property_path: 'profile_employer:entity:address_tree'
-    type: integer
-    dependencies:
-      module:
-        - profile_tools
-        - profile
-      config:
-        - field.storage.profile.address_tree
   uid:
     label: 'User ID'
     datasource_id: 'entity:user'
@@ -137,13 +139,15 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  employer_on_directory: {  }
   entity_status: {  }
   hierarchy:
     fields:
-      employer_categories: taxonomy_term-parent
       address_tree: taxonomy_term-parent
+      employer_categories: taxonomy_term-parent
     weights:
       preprocess_index: -45
+  language_with_fallback: {  }
   rendered_item: {  }
   reverse_entity_references: {  }
   role_filter:

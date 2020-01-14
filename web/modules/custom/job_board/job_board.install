@@ -888,7 +888,7 @@ function job_board_update_8024() {
   /** @var \Drupal\Core\Extension\ModuleInstallerInterface $installer */
   $installer = \Drupal::service('module_installer');
   $installer->install([
-    'search_api', 'elasticsearch_connector', 'elasticsearch_aws_connector',
+    'search_api', 'elasticsearch_connector', 'elasticsearch_aws_connector', 'facets',
   ]);
 
   $source = new FileStorage(drupal_get_path('module', 'job_board') . '/config/install');
