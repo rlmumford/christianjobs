@@ -31,7 +31,7 @@
  * @ingroup themeable
  */
 #}
-<div class="card card-vertical job-result">
+<div class="card card-vertical job-result{% if is_member %} is-member{% endif %}">
   <div class="card-column-left card-column-240 visible-md aside">
     {% if fields.logo %}
       <div class="card-item card-media media-cover">

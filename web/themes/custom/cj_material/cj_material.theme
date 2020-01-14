@@ -5,9 +5,11 @@
  * Functions to support theming in the theme.
  */
 
+use Drupal\cj_membership\Entity\Membership;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Implements hook_form_user_register_form_alter().
@@ -80,6 +82,16 @@ function cj_material_preprocess_page(&$variables) {
 function cj_material_preprocess_views_view_fields__employer_directory(&$variables) {
   $row = $variables['row'];
 
+  $user = $row->_object->getValue();
+  /** @var \Drupal\cj_membership\Entity\Membership $membership */
+  $membership = \Drupal::entityTypeManager()
+    ->getStorage('cj_membership')
+    ->getAccountMembership($user);
+  $variables['is_member'] = FALSE;
+  if ($membership && ($membership->status->value == Membership::STATUS_ACTIVE)) {
+    $variables['is_member'] = TRUE;
+  }
+
   $paid_count = isset($row->paid_role_count) ? $row->paid_role_count : 0;
   $vol_count = isset($row->voluntary_role_count) ? $row->voluntary_role_count : 0;
 
@@ -97,7 +109,7 @@ function cj_material_preprocess_views_view_fields__employer_directory(&$variable
     $row->_object->getEntity()->id(),
     'employer_like'
   );
-  $variables['like_count']['#attributes']['title'] = $variables['like_count']['#title'];
+  $variables['like_count']['#attributes']['title'] = !empty($variables['like_count']['#title']) ? $variables['like_count']['#title'] : new TranslatableMarkup('Likes');
   $variables['like_count']['#title'] = isset($row->like_count) ? $row->like_count : 0;
 
   if (empty($variables['like_count']['#theme'])) {

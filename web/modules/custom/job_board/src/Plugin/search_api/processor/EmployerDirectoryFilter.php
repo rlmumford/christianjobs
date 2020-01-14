@@ -45,10 +45,11 @@ class EmployerDirectoryFilter extends ProcessorPluginBase {
     foreach ($items as $item_id => $item) {
       $profile = $item->getOriginalObject()->getValue();
       if ($profile instanceof UserInterface) {
-        $profile = $profile_storage->loadDefaultByUser($profile, 'employer');
+        $profile = $profile_storage->loadByUser($profile, 'employer');
       }
 
-      if ($profile->bundle() != 'employer') {
+      if (!$profile || ($profile->bundle() != 'employer')) {
+        unset($items[$item_id]);
         continue;
       }
 

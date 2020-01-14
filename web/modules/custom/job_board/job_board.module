@@ -469,25 +469,6 @@ function job_board_form_views_exposed_form_alter(array &$form, FormStateInterfac
     $form['filters']['industry']['#suffix'] = '</div>';
   }
   else if ($form['#id'] == 'views-exposed-form-employer-directory-page') {
-    $form['filters'] = [
-      '#type' => 'container',
-      '#attributes' => [
-        'class' => ['row', 'inside'],
-      ],
-      '#weight' => -5,
-    ];
-    $form['filters']['field_address_tree'] = $form['field_address_tree'];
-    unset($form['field_address_tree']);
-    $form['filters']['field_address_tree']['#title'] = $form['#info']['filter-field_address_tree']['label'];
-    $form['filters']['field_address_tree']['#prefix'] = '<div class="col-xs-12 col-md-6">';
-    $form['filters']['field_address_tree']['#suffix'] = '</div>';
-
-    $form['filters']['employer_categories'] = $form['employer_categories'];
-    unset($form['employer_categories']);
-    $form['filters']['employer_categories']['#title'] = $form['#info']['filter-employer_categories']['label'];
-    $form['filters']['employer_categories']['#prefix'] = '<div class="col-xs-12 col-md-6">';
-    $form['filters']['employer_categories']['#suffix'] = '</div>';
-
     $form['search']['#size'] = 128;
     $form['search']['#wrapper_attributes']['class'] =[
       'search-wrapper',

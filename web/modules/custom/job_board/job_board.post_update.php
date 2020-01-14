@@ -291,3 +291,41 @@ function job_board_post_update_set_employer_address_geo_and_tree() {
   $sandbox['#finished'] = min(1, $sandbox['progress']/$sandbox['max']);
   return "Processed ".number_format($sandbox['#finished']*100,2)."%";
 }
+
+/**
+ * Set the description summary
+ */
+function job_board_post_update_set_employer_description_summary(&$sandbox = NULL) {
+  $storage = \Drupal::entityTypeManager()->getStorage('profile');
+
+  if (!isset($sandbox['max'])) {
+    $sandbox['max'] = $storage->getQuery()->condition('type','employer')->count()->execute();
+    $sandbox['progress'] = $sandbox['last_id'] = 0;
+  }
+
+  $query = $storage->getQuery();
+  $query->condition('type', 'employer');
+  $query->condition('profile_id', $sandbox['last_id'], '>');
+  $query->sort('profile_id', 'ASC');
+  $query->range(0, 20);
+
+  /** @var \Drupal\profile\Entity\Profile $profile */
+  foreach ($storage->loadMultiple($query->execute()) as $profile) {
+    $sandbox['progress']++;
+    $sandbox['last_id'] = $profile->id();
+
+    if (!$profile->employer_description->isEmpty() && $profile->employer_description_summary->isEmpty()) {
+      $cut_point = strpos($profile->employer_description->value, ' ', 500);
+
+      $summary = [
+        'value' => strip_tags(substr($profile->employer_description->value, 0, $cut_point)),
+        'format' => 'restricted_html',
+      ];
+      $profile->employer_description_summary = $summary;
+      $profile->save();
+    }
+
+    $sandbox['#finished'] = min(1, $sandbox['progress']/$sandbox['max']);
+    return "Processed ".number_format($sandbox['#finished']*100,2)."%";
+  }
+}

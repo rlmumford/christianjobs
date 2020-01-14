@@ -5067,6 +5067,12 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   margin: 0;
 }
 
+.facets-widget-checkbox ul ul {
+  overflow-y: auto;
+  margin-left: 1em;
+  max-height: none;
+}
+
 input.facets-checkbox {
   max-width: 18px;
 }
