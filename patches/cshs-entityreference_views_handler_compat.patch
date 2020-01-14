@@ -1,22 +1,27 @@
 diff --git a/src/Plugin/views/filter/CshsTaxonomyIndex.php b/src/Plugin/views/filter/CshsTaxonomyIndex.php
-index 1806892..4641879 100644
+index 1806892..d871acb 100644
 --- a/src/Plugin/views/filter/CshsTaxonomyIndex.php
 +++ b/src/Plugin/views/filter/CshsTaxonomyIndex.php
-@@ -3,6 +3,7 @@
+@@ -3,8 +3,10 @@
  namespace Drupal\cshs\Plugin\views\filter;
  
  use Drupal\Core\Form\FormStateInterface;
 +use Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface;
  use Drupal\Core\Entity\EntityRepositoryInterface;
  use Drupal\Core\Entity\EntityTypeManagerInterface;
++use Drupal\Core\Messenger\MessengerInterface;
  use Drupal\cshs\CshsOptionsFromHelper;
-@@ -24,16 +25,17 @@ trait CshsTaxonomyIndex {
+ use Drupal\views\ViewExecutable;
+ use Drupal\views\Plugin\views\display\DisplayPluginBase;
+@@ -24,16 +26,19 @@ trait CshsTaxonomyIndex {
      array $configuration,
      $plugin_id,
      $plugin_definition,
 +    SelectionPluginManagerInterface $selection_plugin_manager,
      EntityTypeManagerInterface $entity_type_manager,
-     EntityRepositoryInterface $entity_repository
+-    EntityRepositoryInterface $entity_repository
++    EntityRepositoryInterface $entity_repository,
++    MessengerInterface $messenger
    ) {
 -    /* @see \Drupal\taxonomy\Plugin\views\filter\TaxonomyIndexTid::__construct() */
 +    /* @see Drupal\views\Plugin\views\filter\EntityReference::__construct() */
@@ -27,19 +32,33 @@ index 1806892..4641879 100644
 -      $entity_type_manager->getStorage('taxonomy_vocabulary'),
 -      $entity_type_manager->getStorage('taxonomy_term')
 +      $selection_plugin_manager,
-+      $entity_type_manager
++      $entity_type_manager,
++      $messenger
      );
  
      $this->entityRepository = $entity_repository;
-@@ -47,6 +49,7 @@ trait CshsTaxonomyIndex {
+@@ -47,8 +52,10 @@ trait CshsTaxonomyIndex {
        $configuration,
        $plugin_id,
        $plugin_definition,
 +      $container->get('plugin.manager.entity_reference_selection'),
        $container->get('entity_type.manager'),
-       $container->get('entity.repository')
+-      $container->get('entity.repository')
++      $container->get('entity.repository'),
++      $container->get('messenger')
      );
-@@ -136,21 +139,21 @@ trait CshsTaxonomyIndex {
+   }
+ 
+@@ -64,7 +71,7 @@ trait CshsTaxonomyIndex {
+   /**
+    * {@inheritdoc}
+    */
+-  public function defineOptions() {
++  public function defineOptions() : array {
+     $options = parent::defineOptions();
+ 
+     foreach (static::defaultSettings() + ['type' => static::ID] as $option => $value) {
+@@ -136,21 +143,21 @@ trait CshsTaxonomyIndex {
     * {@inheritdoc}
     */
    protected function getVocabularyStorage() {

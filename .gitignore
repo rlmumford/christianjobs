@@ -7,8 +7,13 @@
 /web/themes/contrib/
 /web/profiles/contrib/
 /web/libraries/
+/web/.htaccess
 /web/sites/default/default.settings.php
+/web/sites/default/private
+/web/sites/default/settings.*
+/web/sites/example.settings.local.php
 /web/sites/example.sites.php
+/web/web.config
 
 # Ignore node_modules used by material
 /web/themes/custom/cj_material/node_modules/
