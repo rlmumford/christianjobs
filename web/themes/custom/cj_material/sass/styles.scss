@@ -27,6 +27,8 @@ h1, .h1 {
   position: relative;
 }
 
+
+
 strong {
   font-size: 20px;
   font-family: Montserrat;
@@ -1375,10 +1377,37 @@ article footer {
   font-style: italic;
 }
 
+/* BP - Job Post Page */
+
 .form-item label {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: bold;
+  font-family: Montserrat;
+  line-height: 2em;
 }
+
+.form-item input[type=text], .form-item input[type=email], .form-item input[type=password], .form-item input[type=search], .form-item input[type=tel], .form-item textarea, .form-item select {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 8px 0;
+}
+
+input#edit-label-0-value {
+    background-color: #e6e6e6;
+}
+
+textarea#edit-description-summary-0-value {
+    background-color: #e6e6e6;
+}
+
+form#job-role-post-form {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* END */
 
 div.footer-verse p {
   font-size: 1.1em;
