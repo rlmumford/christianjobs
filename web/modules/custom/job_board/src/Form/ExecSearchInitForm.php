@@ -28,7 +28,12 @@ class ExecSearchInitForm extends FormBase {
       'p1' => [
         '#type' => 'html_tag',
         '#tag' => 'p',
-        '#value' => '<strong>Finding the key talent for your organisation can be daunting.</strong><br> Where do you look? How do you know you have searched thoroughly? Where do you find the time to search properly? How do you contact these great prospects? Will the right candidates even be open to talking to you? How do you manage negotiations in a delicate manner?',
+        '#value' => '<strong>Finding the key talent for your organisation can be daunting.</strong>',
+      ],
+      'p12' => [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#value' => 'Where do you look? How do you know you have searched thoroughly? Where do you find the time to search properly? How do you contact these great prospects? Will the right candidates even be open to talking to you? How do you manage negotiations in a delicate manner?',
       ],
       'p2' => [
         '#type' => 'html_tag',
@@ -60,7 +65,7 @@ class ExecSearchInitForm extends FormBase {
         '#items' => [
           [
             '#wrapper_attributes' => [
-              'class' => ['item', 'item-spaced'],
+              'class' => ['item'],
             ],
             '#children' => 'Free 30-day featured advertising on ChristianJobs.co.uk (with option to extend to 60 days).',
           ],

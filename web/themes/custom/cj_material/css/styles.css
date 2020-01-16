@@ -3437,7 +3437,7 @@ strong {
   font-size: 20px;
   font-family: Montserrat;
   font-weight: bold;
-  line-height: 2;
+  line-height: 2em;
 }
 
 p, h4 {
