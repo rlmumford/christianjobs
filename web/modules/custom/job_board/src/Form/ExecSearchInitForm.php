@@ -28,7 +28,7 @@ class ExecSearchInitForm extends FormBase {
       'p1' => [
         '#type' => 'html_tag',
         '#tag' => 'p',
-        '#value' => 'Finding the key talent for your organisation can be daunting. Where do you look? How do you know you have searched thoroughly? Where do you find the time to search properly? How do you contact these great prospects? Will the right candidates even be open to talking to you? How do you manage negotiations in a delicate manner?',
+        '#value' => '<strong>Finding the key talent for your organisation can be daunting.</strong><br> Where do you look? How do you know you have searched thoroughly? Where do you find the time to search properly? How do you contact these great prospects? Will the right candidates even be open to talking to you? How do you manage negotiations in a delicate manner?',
       ],
       'p2' => [
         '#type' => 'html_tag',
@@ -45,27 +45,22 @@ class ExecSearchInitForm extends FormBase {
         '#tag' => 'p',
         '#value' => 'Our efficient and effective multistep approach begins long before the actual search itself. We are committed to our clients throughout every step of the executive search journey and our deliberate and structured search process is proven in attaining a successful outcome.',
       ],
-      'p5' => [
-        '#type' => 'html_tag',
-        '#tag' => 'p',
-        '#value' => 'Look! A new paragraph',
-        '#attributes' => [
-          'class' => [ 'my-class' ],
-          'style' => 'background: blue;',
-        ],
-      ],
+      
       'h4' => [
         '#type' => 'html_tag',
         '#tag' => 'h4',
-        '#value' => new TranslatableMarkup('What\'s Included'),
+        '#value' => new TranslatableMarkup('What\'s Included:'),
       ],
       'list' => [
         '#theme' => 'item_list',
         '#list_type' => 'ul',
+        '#attributes' => [
+          'class' => ['spaced'],
+        ],
         '#items' => [
           [
             '#wrapper_attributes' => [
-              'class' => ['item'],
+              'class' => ['item', 'item-spaced'],
             ],
             '#children' => 'Free 30-day featured advertising on ChristianJobs.co.uk (with option to extend to 60 days).',
           ],
