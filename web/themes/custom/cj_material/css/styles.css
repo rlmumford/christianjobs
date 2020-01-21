@@ -3441,7 +3441,6 @@ strong {
 }
 
 p, h4 {
-  padding-left: 18px;
   padding-right: 18px;
 }
 
@@ -4047,7 +4046,7 @@ input.button {
 }
 
 .form-actions input.button {
-  margin-top: 8px;
+  margin-top: 50px;
 }
 
 input.button:hover,
@@ -4870,7 +4869,7 @@ form#views-exposed-form-employer-directory-page .divider-top {
 }
 
 .divider-top p.section-summary {
-  padding-left: 200px;
+  padding-left: 0px;
 }
 
 .card .divider-top, .content-card .card-holder .divider-top {
@@ -4906,16 +4905,270 @@ article footer {
 }
 
 input#edit-label-0-value {
-  background-color: #e6e6e6;
+  background-color: #f6f4f4;
+  text-indent: 10px;
 }
 
 textarea#edit-description-summary-0-value {
-  background-color: #e6e6e6;
+  background-color: #f6f4f4;
+  text-indent: 10px;
 }
 
 form#job-role-post-form {
   padding-left: 20px;
   padding-right: 20px;
+}
+
+/* BP Post a Job 21/1/2020 */
+summary {
+  border: 2px solid;
+  border-color: #ff8f48;
+}
+
+.divider-top:before {
+  background: #FF904B;
+  content: "";
+  height: 6px;
+  position: absolute;
+  left: -40px;
+  top: 0px;
+  width: 1200px;
+}
+
+.form-item input[type=text]:focus, .form-item input[type=text].error:focus, .form-item input[type=email]:focus, .form-item input[type=email].error:focus, .form-item input[type=password]:focus, .form-item input[type=password].error:focus, .form-item input[type=search]:focus, .form-item input[type=search].error:focus, .form-item input[type=tel]:focus, .form-item input[type=tel].error:focus, .form-item textarea:focus, .form-item textarea.error:focus, .form-item select:focus, .form-item select.error:focus {
+  border: 2px solid #FF904B;
+  padding-bottom: 7px;
+}
+
+div#edit-description-wrapper {
+  padding-bottom: 20px;
+}
+
+div.details-wrapper {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+select#edit-salary-0-compensation {
+  text-indent: 10px;
+}
+
+span.field-prefix {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 20px;
+}
+
+input#edit-salary-0-from {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+input#edit-salary-0-from {
+  background-color: #f6f4f4;
+  border: 1px solid;
+}
+
+input#edit-salary-0-to {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+input#edit-salary-0-to {
+  background-color: #f6f4f4;
+  border: 1px solid;
+}
+
+select#edit-description-0-format--2 {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+select#edit-industry {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+select#edit-hours {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+input.select2-search__field {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+select#edit-location-0-type {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+select#edit-location-0-address-country-code--2 {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+select#edit-contact-address-0-address-country-code--2 {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+input#edit-contact-email-0-value {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+input#edit-contact-phone-0-value {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+summary {
+  margin-top: 40px;
+}
+
+input#edit-contact-phone-0-value {
+  text-indent: 10px;
+}
+
+span.upsell-price.pull-right.temp-class:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: #FFFFFF transparent transparent transparent;
+  border-width: 93px 250px 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+div.form-item:focus-within label {
+  color: #FF904B;
+}
+
+div.cke_focus {
+  border: solid 2px #FF904B;
+}
+
+div.field--type-datetime h4 {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.form-item input, .form-item textarea, .form-item select {
+  border: 0;
+  margin: 0;
+  background: none;
+  outline: 0;
+  appearance: none;
+  border-radius: 0;
+  color: rgba(0, 0, 0, 0.12);
+  font-family: "Lato";
+  font-size: 16px;
+}
+
+div#edit-publish-date-wrapper {
+  font-size: 10px;
+}
+
+div#edit-application-deadline-wrapper {
+  font-size: 10px;
+}
+
+label.js-form-required.form-required {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+input#edit-contact-address-0-address-given-name--i-OKRu88mlw {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+input#edit-contact-address-0-address-family-name--jwHQsLoQYME {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+input#edit-contact-address-0-address-organization--6li2uvvuf38 {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+input#edit-contact-address-0-address-address-line1--uR26dQpjOrQ {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+input#edit-contact-address-0-address-address-line2--Jo-ql6jJX64 {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+input#edit-contact-address-0-address-locality--_HFF7j9Itd0 {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+input#edit-contact-address-0-address-postal-code--BOnScAqSBfQ {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+input#edit-contact-phone-0-value {
+  text-indent: 10px;
+  background-color: #f6f4f4;
+}
+
+select#edit-contact-address-0-address-administrative-area--A4M-QFF2DVY {
+  text-indent: 10px;
+}
+
+select#edit-contact-address-0-address-country-code--2pf3n-vZbDM {
+  text-indent: 10px;
+}
+
+span.upsell-price temp-class pull-right {
+  color: #FFFFFF;
+  background-color: #FF904B;
+  display: block;
+  position: absolute;
+  right: -40px;
+  bottom: -26px;
+  padding: 40px 40px 20px 140px;
+}
+
+span.upsell-price.pull-right.temp-class:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: #FFFFFF transparent transparent transparent;
+  border-width: 93px 250px 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+span.upsell-price.pull-right {
+  color: #FFFFFF;
+  background-color: #FF904B;
+  display: block;
+  position: absolute;
+  right: -40px;
+  bottom: 0px;
+  padding: 40px 40px 20px 140px;
+}
+
+span.upsell-price.pull-right:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: #FFFFFF transparent transparent transparent;
+  border-width: 93px 250px 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* END */
