@@ -5,6 +5,13 @@ cj.home:
     _title: 'Home Page'
   requirements:
     _access: 'TRUE'
+cj.config.bank_details:
+  path: '/admin/commerce/config/stores/bank_details'
+  defaults:
+    _form: '\Drupal\cj\Form\BankDetailsForm'
+    _title: 'Bank Details'
+  requirements:
+      _permission: 'access commerce administration pages'
 cj.self_edit_candidate:
   path: '/user/{user}/profile'
   defaults:

@@ -1,0 +1,13 @@
+cj.bank_details:
+  type: config_object
+  label: 'Bank Information'
+  mapping:
+    bank_name:
+      type: string
+      label: 'Bank Name'
+    sort_code:
+      type: string
+      label: 'Sort Code'
+    account_number:
+      type: string
+      label: 'Account Number'
