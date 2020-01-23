@@ -3376,7 +3376,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/communication.git",
-                "reference": "3d4601bb9dce1875799ded752cda502a6d3c08ff"
+                "reference": "d0d87dd8247c5257cbf320fb949e7f008ab0a852"
             },
             "require": {
                 "drupal/core": "*",
@@ -3385,8 +3385,6 @@
             "require-dev": {
                 "drupal/address": "*",
                 "drupal/communication_postal": "*",
-                "drupal/identity": "*",
-                "drupal/identity_address": "*",
                 "drupal/mailgun": "*",
                 "drupal/pdf_tools": "*"
             },
@@ -3397,7 +3395,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1579793580",
+                    "datestamp": "1579796287",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3419,7 +3417,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/communication"
             },
-            "time": "2020-01-23T16:14:52+00:00"
+            "time": "2020-01-23T16:30:45+00:00"
         },
         {
             "name": "drupal/console",
@@ -9839,12 +9837,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "c178dc723288501102cfb24995ce38f1148be5b7"
+                "reference": "75007fe6e1bd96bfe4317903ce0a1a413fa2fd86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/c178dc723288501102cfb24995ce38f1148be5b7",
-                "reference": "c178dc723288501102cfb24995ce38f1148be5b7",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/75007fe6e1bd96bfe4317903ce0a1a413fa2fd86",
+                "reference": "75007fe6e1bd96bfe4317903ce0a1a413fa2fd86",
                 "shasum": ""
             },
             "require": {
@@ -9912,7 +9910,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2020-01-23T16:18:51+00:00"
+            "time": "2020-01-23T16:31:23+00:00"
         },
         {
             "name": "ruflin/elastica",
