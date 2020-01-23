@@ -16,4 +16,3 @@ dependencies:
 - pathauto
 - commerce_invoice
 - pdf_tools
-- pdf_tools_docker

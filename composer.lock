@@ -3376,14 +3376,19 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/communication.git",
-                "reference": "f1b56c038cda780fc250c159d67937c339c25298"
+                "reference": "3d4601bb9dce1875799ded752cda502a6d3c08ff"
             },
             "require": {
                 "drupal/core": "*",
                 "drupal/entity": "*"
             },
             "require-dev": {
-                "drupal/mailgun": "*"
+                "drupal/address": "*",
+                "drupal/communication_postal": "*",
+                "drupal/identity": "*",
+                "drupal/identity_address": "*",
+                "drupal/mailgun": "*",
+                "drupal/pdf_tools": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -3392,7 +3397,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1559208184",
+                    "datestamp": "1579793580",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3414,7 +3419,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/communication"
             },
-            "time": "2019-10-08T09:27:33+00:00"
+            "time": "2020-01-23T16:14:52+00:00"
         },
         {
             "name": "drupal/console",
@@ -6073,6 +6078,48 @@
             }
         },
         {
+            "name": "drupal/pdf_tools",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/pdf_tools.git",
+                "reference": "42287da1c875e4f00e5baf1a94edc6f5e7e35994"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1579796287",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "rlmumford",
+                    "homepage": "https://www.drupal.org/user/794682"
+                }
+            ],
+            "description": "Provides tools and services for working with PDFs.",
+            "homepage": "https://www.drupal.org/project/pdf_tools",
+            "support": {
+                "source": "https://git.drupalcode.org/project/pdf_tools"
+            },
+            "time": "2020-01-23T16:11:56+00:00"
+        },
+        {
             "name": "drupal/profile",
             "version": "1.0.0",
             "source": {
@@ -7955,6 +8002,7 @@
                 }
             ],
             "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
+            "abandoned": true,
             "time": "2018-07-31T13:22:33+00:00"
         },
         {
@@ -9791,12 +9839,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "d854586ac68c7418e72bafd3d9f8c25072882d8f"
+                "reference": "c178dc723288501102cfb24995ce38f1148be5b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/d854586ac68c7418e72bafd3d9f8c25072882d8f",
-                "reference": "d854586ac68c7418e72bafd3d9f8c25072882d8f",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/c178dc723288501102cfb24995ce38f1148be5b7",
+                "reference": "c178dc723288501102cfb24995ce38f1148be5b7",
                 "shasum": ""
             },
             "require": {
@@ -9810,6 +9858,7 @@
                 "drupal/mini_layouts": "1.x-dev",
                 "drupal/name": "1.x-dev",
                 "drupal/paragraphs": "^1.8",
+                "drupal/pdf_tools": "1.x-dev",
                 "drupal/range": "1.x-dev",
                 "drupal/rules": "^3.0@alpha",
                 "drupal/select_or_other": "1.x-dev",
@@ -9863,7 +9912,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2020-01-22T14:19:57+00:00"
+            "time": "2020-01-23T16:18:51+00:00"
         },
         {
             "name": "ruflin/elastica",
