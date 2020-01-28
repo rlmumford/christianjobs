@@ -49,33 +49,28 @@ class JobForm extends ContentEntityForm {
       '#default_value' => $this->entity->compensation->value,
     ];
     $form['compensation']['#access'] = FALSE;
+    $form['salary']['widget'][0]['hours'] = [
+      '#type' => 'select',
+      '#weight' => -1,
+      '#title' => new TranslatableMarkup('Hours'),
+      '#options' => $form['hours']['widget']['#options'],
+      '#default_value' => $this->entity->hours->value,
+    ];
+    $form['hours']['#access'] = FALSE;
 
     // Move the contact_ fields into their own section.
     $form['contact_details'] = [
       '#weight' => 48,
-      '#type' => 'container',
-      '#attributes' => [
-        'class' => ['divider-top'],
-      ],
-      'title' => [
-        '#type' => 'html_tag',
-        '#tag' => 'h3',
-        '#value' => $this->t('Contact Details'),
-      ],
-      'description' => [
-        '#type' => 'html_tag',
-        '#tag' => 'p',
-        '#attributes' => [
-          'class' => ['section-summary'],
-        ],
-        '#value' => $this->t('Please provide any contact information an applicant may need to apply for the job.'),
-      ],
+      '#type' => 'details',
+      '#title' => $this->t('Contact Details'),
+      '#description' => $this->t('Please provide any contact information an applicant may need to apply for the job.'),
     ];
     foreach (['contact_address', 'contact_email', 'contact_phone'] as $contact_field) {
       $form['contact_details'][$contact_field] = $form[$contact_field];
       unset($form[$contact_field]);
     }
     $form['contact_details']['contact_phone']['#weight'] = 100;
+    $form['contact_details']['contact_address']['widget'][0]['#type'] = 'container';
 
     // Make the salary widget more useable.
     $form['salary']['widget']['0']['#element_validate'] = [static::class.'::salaryWidgetValidate'];
@@ -83,6 +78,8 @@ class JobForm extends ContentEntityForm {
     $form['salary']['widget']['0']['to']['#error_no_message'] = TRUE;
     $form['salary']['widget']['0']['#type'] = 'details';
     $form['salary']['widget']['0']['#open'] = TRUE;
+    $form['salary']['widget']['0']['#title'] = new TranslatableMarkup('Salary & Hours');
+    $form['salary']['widget']['0']['#description'] = new TranslatableMarkup('Remuneration and Hour expectations.');
 
     // Don't use chrome validation.
     $form['#attributes']['novalidate'] = 'novalidate';
@@ -101,6 +98,9 @@ class JobForm extends ContentEntityForm {
     }
     if ($salary_type = $form_state->getValue(['salary', '0', 'compensation'])) {
       $this->entity->compensation = $salary_type;
+    }
+    if ($hours = $form_state->getValue(['salary', '0', 'hours'])) {
+      $this->entity->hours = $hours;
     }
 
     $form_state->setRedirect(

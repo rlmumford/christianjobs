@@ -27,8 +27,6 @@ h1, .h1 {
   position: relative;
 }
 
-
-
 strong {
   font-size: 20px;
   font-family: Montserrat;
@@ -166,11 +164,11 @@ details > summary::before {
   -webkit-font-feature-settings: 'liga';
   font-feature-settings: 'liga';
   content: "chevron_right";
-  font-size: 20px;
+  font-size: 30px;
   position: absolute;
-  left: 12px;
+  left: 6px;
   top: 14px;
-  color: rgba(0,0,0,.54);
+  color: #FFFFFF;
   transition: transform 0.25s ease;
 }
 details[open] > summary::before {
@@ -182,9 +180,6 @@ details > summary span.description {
 }
 details > div {
   margin-top: 0 !important;
-  border-top: 1px solid rgba(0,0,0,.12);
-  border-bottom: 1px solid rgba(0,0,0,.12);
-  padding: 12px 16px 12px 40px;
 }
 
 .details-wrapper > .form-item--error-message {
@@ -217,6 +212,7 @@ details.captcha > div {
    padding: 12px 0px;
 }
 
+/*
 .collapsible-filter-block, .views-exposed-form {
   input, textarea, select { border: 0; margin: 0; background: none; outline: 0;
     -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0;
@@ -231,9 +227,6 @@ details.captcha > div {
   .form-item.form-type-select, .form-item.form-type-textfield, .form-item.form-type-entity-autocomplete,
   .form-item.form-type-textarea, .form-item.form-type-email, .form-item.form-type-tel,
   .form-item.proximity-filter-container, .block-facet--checkbox {
-    border: 1px solid #FF904B;
-    border-radius: 4px;
-    padding: 4px;
     padding-bottom: 0;
     padding-right: 0;
     overflow: hidden;
@@ -304,7 +297,7 @@ details.captcha > div {
       margin: 0;
     }
     .form-item > input[type="text"] {
-      max-width: 450px;
+      max-width: 300px;
     }
 
     > div {
@@ -337,7 +330,7 @@ details.captcha > div {
   input[type="checkbox"]:checked:hover,
   input[type="checkbox"]:checked:focus {
     border-color: #CACACA;
-  }*/
+  }*
 
   .form-item.search-wrapper {
     border: solid 1px #FF904B;
@@ -384,7 +377,7 @@ details.captcha > div {
     width: 100%;
     border-bottom: none;
   }
-}
+}*/
 
 .form-item input[type=checkbox]:checked:disabled:before {
   color: #BBBBBB;
@@ -1378,46 +1371,78 @@ article footer {
 
 /* BP - Job Post Page */
 
-.form-item label {
-  font-size: 20px;
-  font-weight: bold;
-  font-family: Montserrat;
-  line-height: 2em;
-}
+.form-item {
+  label, h4 {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Montserrat;
+    line-height: 2em;
+  }
+  &:focus-within label {
+    color: #FF904B;
+  }
 
-.form-item input[type=text], .form-item input[type=email], .form-item input[type=password], .form-item input[type=search], .form-item input[type=tel], .form-item textarea, .form-item select {
+  input[type=text], input[type=url], input[type=date], input[type=number], input[type=email], input[type=password], input[type=search], input[type=tel], textarea, select {
     display: block;
     width: 100%;
     max-width: 1200px;
     border: 1px solid rgba(0, 0, 0, 0.12);
     padding: 8px 0;
-}
-
-input#edit-label-0-value {
-    background-color: #f6f4f4;
     text-indent: 10px;
+    background-color: #F6F4F4;
+
+    &:focus {
+      border: 2px solid #FF904B;
+      padding-bottom: 7px;
+    }
+    &[type=date], &[type=number] {
+      width: initial;
+      display: inline-block;
+    }
+
+  }
+}
+.form-wrapper {
+  h4 {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Montserrat;
+    line-height: 2em;
+    color: rgba(0,0,0,0.54);
+  }
 }
 
-textarea#edit-description-summary-0-value {
-    background-color: #f6f4f4;
+.field--type-text, .field--type-string, .field--type-datetime, .field--type-text-long {
+  input, textarea {
+    background-color: #F6F4F4;
     text-indent: 10px;
+  }
 }
 
-form#job-role-post-form {
-    padding-left: 20px;
-    padding-right: 20px;
+.proximity-filter-container .form-item input[type=text] {
+  display: inline-block;
 }
 
-/* BP Post a Job 21/1/2020 */
+form {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* BP Changes to Post A Job Page */
 
 summary {
-    border: 2px solid;
-    border-color: #ff8f48;
+  border: 2px solid #FF8F48;
+  background-color: #FF904B;
+  color: #FFFFFF;
+  font-family: Montserrat;
+  font-weight: 800;
+  font-size: 23px;
+  margin: 40px -40px 20px;
 }
 
 .divider-top:before {
-    background: #FF904B;
     content: "";
+    background: #FF904B;
     height: 6px;
     position: absolute;
     left: -40px;
@@ -1425,22 +1450,9 @@ summary {
     width: 1200px;
 }
 
-.form-item input[type=text]:focus, .form-item input[type=text].error:focus, .form-item input[type=email]:focus, .form-item input[type=email].error:focus, .form-item input[type=password]:focus, .form-item input[type=password].error:focus, .form-item input[type=search]:focus, .form-item input[type=search].error:focus, .form-item input[type=tel]:focus, .form-item input[type=tel].error:focus, .form-item textarea:focus, .form-item textarea.error:focus, .form-item select:focus, .form-item select.error:focus {
-    border: 2px solid #FF904B;
-    padding-bottom: 7px;
-}
-
-div#edit-description-wrapper {
-    padding-bottom: 20px;
-}
-
 div.details-wrapper {
     padding-left: 0px;
     padding-right: 0px;
-}
-
-select#edit-salary-0-compensation {
-    text-indent: 10px;
 }
 
 span.field-prefix {
@@ -1449,205 +1461,38 @@ span.field-prefix {
     font-size: 20px;
 }
 
-input#edit-salary-0-from {
-    border-color: rgba(0,0,0,0.12);
-}
-
-input#edit-salary-0-from {
-    background-color: #f6f4f4;
-    border: 1px solid;
-}
-
-input#edit-salary-0-to {
-    border-color: rgba(0,0,0,0.12);
-}
-
-input#edit-salary-0-to {
-    background-color: #f6f4f4;
-    border: 1px solid;
-}
-
-select#edit-description-0-format--2 {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-select#edit-industry {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-select#edit-hours {
-    text-indent:  10px;
-    background-color: #f6f4f4;
-}
-
-input.select2-search__field {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-select#edit-location-0-type {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-select#edit-location-0-address-country-code--2 {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-select#edit-contact-address-0-address-country-code--2 {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-input#edit-contact-email-0-value {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-input#edit-contact-phone-0-value {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-summary {
-    margin-top: 40px;
-}
-
-input#edit-contact-phone-0-value {
-    text-indent: 10px;
-}
-
-span.upsell-price.pull-right.temp-class:before {content: '';width: 0;height: 0;border-style: solid;border-color: #FFFFFF transparent transparent transparent;border-width: 93px 250px 0 0;position: absolute;top: 0;left: 0;}
-
-div.form-item:focus-within label {
-    color: #FF904B;
-}
-
 div.cke_focus {
     border: solid 2px #FF904B;
 }
 
-div.field--type-datetime h4 {
-    font-size: 20px;
-    color: rgba(0,0,0,0.54);
-}
-
-.form-item input, .form-item textarea, .form-item select {
-    border: 0;
-    margin: 0;
-    background: none;
-    outline: 0;
-    appearance: none;
-    border-radius: 0;
-    color: rgba(0, 0, 0, 0.12);
-    font-family: "Lato";
-    font-size: 16px;
-}
-
-div#edit-publish-date-wrapper {
+div#edit-publish-date-wrapper, div#edit-application-deadline-wrapper {
     font-size: 10px;
 }
 
-div#edit-application-deadline-wrapper {
-    font-size: 10px;
-}
-
-label.js-form-required.form-required {
+label.form-required {
     color: rgba(0,0,0,0.54);
 }
 
-input#edit-contact-address-0-address-given-name--i-OKRu88mlw {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
+span.upsell-price.pull-right.orange-triangle {
+  color: #FFFFFF;
+  background-color: #FF904B;
+  display: block;
+  position: absolute;
+  right: -40px;
+  bottom: -0px;
+  padding: 40px 50px 20px 150px;
 
-input#edit-contact-address-0-address-family-name--jwHQsLoQYME {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-input#edit-contact-address-0-address-organization--6li2uvvuf38 {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-input#edit-contact-address-0-address-address-line1--uR26dQpjOrQ {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-input#edit-contact-address-0-address-address-line2--Jo-ql6jJX64 {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-input#edit-contact-address-0-address-locality--_HFF7j9Itd0 {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-input#edit-contact-address-0-address-postal-code--BOnScAqSBfQ {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-input#edit-contact-phone-0-value {
-    text-indent: 10px;
-    background-color: #f6f4f4;
-}
-
-select#edit-contact-address-0-address-administrative-area--A4M-QFF2DVY {
-    text-indent: 10px;
-}
-
-select#edit-contact-address-0-address-country-code--2pf3n-vZbDM {
-    text-indent: 10px;
-}
-
-span.upsell-price temp-class pull-right{
-    color: #FFFFFF;
-    background-color: #FF904B;
-    display: block;
-    position: absolute;
-    right: -40px;
-    bottom: -26px;
-    padding: 40px 40px 20px 140px;
-}
-
-span.upsell-price.pull-right.temp-class:before {
+  &:before {
     content: '';
     width: 0;
     height: 0;
     border-style: solid;
     border-color: #FFFFFF transparent transparent transparent;
-    border-width: 93px 250px 0 0;
-    position: absolute;
-    top: 0;left: 0;
-}
-
-span.upsell-price.pull-right {
-    color: #FFFFFF;
-    background-color: #FF904B;
-    display: block;
-    position: absolute;
-    right: -40px;
-    bottom: -0px;
-    padding: 40px 40px 20px 140px;
-}
-
-span.upsell-price.pull-right:before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-color: #FFFFFF transparent transparent transparent;
-    border-width: 93px 250px 0 0;
+    border-width: 93px 270px 0 0;
     position: absolute;
     top: 0;
     left: 0;
+  }
 }
 
 /* END */
