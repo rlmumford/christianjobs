@@ -3544,7 +3544,7 @@ details > summary::before {
   position: absolute;
   left: 6px;
   top: 14px;
-  color: #FFFFFF;
+  color: #2A556B;
   transition: transform 0.25s ease;
 }
 
@@ -4819,9 +4819,19 @@ article footer {
   text-indent: 10px;
   background-color: #F6F4F4;
 }
+.form-item input[type=text].select2-search__field, .form-item input[type=url].select2-search__field, .form-item input[type=date].select2-search__field, .form-item input[type=number].select2-search__field, .form-item input[type=email].select2-search__field, .form-item input[type=password].select2-search__field, .form-item input[type=search].select2-search__field, .form-item input[type=tel].select2-search__field, .form-item textarea.select2-search__field, .form-item select.select2-search__field {
+  border: none;
+  background: none;
+}
+.form-item input[type=text].select2-search__field:focus, .form-item input[type=url].select2-search__field:focus, .form-item input[type=date].select2-search__field:focus, .form-item input[type=number].select2-search__field:focus, .form-item input[type=email].select2-search__field:focus, .form-item input[type=password].select2-search__field:focus, .form-item input[type=search].select2-search__field:focus, .form-item input[type=tel].select2-search__field:focus, .form-item textarea.select2-search__field:focus, .form-item select.select2-search__field:focus {
+  border: none;
+}
 .form-item input[type=text]:focus, .form-item input[type=url]:focus, .form-item input[type=date]:focus, .form-item input[type=number]:focus, .form-item input[type=email]:focus, .form-item input[type=password]:focus, .form-item input[type=search]:focus, .form-item input[type=tel]:focus, .form-item textarea:focus, .form-item select:focus {
   border: 2px solid #FF904B;
   padding-bottom: 7px;
+}
+.form-item input[type=text]:focus-within label, .form-item input[type=url]:focus-within label, .form-item input[type=date]:focus-within label, .form-item input[type=number]:focus-within label, .form-item input[type=email]:focus-within label, .form-item input[type=password]:focus-within label, .form-item input[type=search]:focus-within label, .form-item input[type=tel]:focus-within label, .form-item textarea:focus-within label, .form-item select:focus-within label {
+  color: #FF904B;
 }
 .form-item input[type=text][type=date], .form-item input[type=text][type=number], .form-item input[type=url][type=date], .form-item input[type=url][type=number], .form-item input[type=date][type=date], .form-item input[type=date][type=number], .form-item input[type=number][type=date], .form-item input[type=number][type=number], .form-item input[type=email][type=date], .form-item input[type=email][type=number], .form-item input[type=password][type=date], .form-item input[type=password][type=number], .form-item input[type=search][type=date], .form-item input[type=search][type=number], .form-item input[type=tel][type=date], .form-item input[type=tel][type=number], .form-item textarea[type=date], .form-item textarea[type=number], .form-item select[type=date], .form-item select[type=number] {
   width: initial;
@@ -4841,6 +4851,42 @@ article footer {
   text-indent: 10px;
 }
 
+ul.select2-selection__rendered {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding-left: 10px !important;
+  background: #F6F4F4;
+}
+ul.select2-selection__rendered:focus-within {
+  border-color: #FF904B;
+}
+
+.select2-container--cj_material span.select2-selection.select2-selection--multiple {
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.select2-container--cj_material .select2-results__option {
+  cursor: pointer;
+  clear: both;
+  color: #FFFFFF;
+  background-color: #49BCFB;
+  line-height: 0.9rem;
+  text-align: left;
+  text-transform: none;
+  font-size: 1.2rem;
+  display: block;
+  padding: 1rem;
+}
+
+.select2-dropdown {
+  margin-top: -23px;
+  width: 1120px;
+  max-width: 30%;
+  background: transparent;
+}
+
 .proximity-filter-container .form-item input[type=text] {
   display: inline-block;
 }
@@ -4852,9 +4898,9 @@ form {
 
 /* BP Changes to Post A Job Page */
 summary {
-  border: 2px solid #FF8F48;
-  background-color: #FF904B;
-  color: #FFFFFF;
+  border-bottom: 6px solid #FF904B;
+  background-color: #FFFFFF;
+  color: #FF904B;
   font-family: Montserrat;
   font-weight: 800;
   font-size: 23px;
