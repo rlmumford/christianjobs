@@ -3965,7 +3965,7 @@ input.button {
   background: #1E5168;
   cursor: pointer;
   display: inline-block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.5px;
   text-align: center;
@@ -4766,8 +4766,8 @@ form#views-exposed-form-employer-directory-page .form-actions {
 form#views-exposed-form-job-board-page .card-actions input.button, form#views-exposed-form-job-board-page .form-actions input.button,
 form#views-exposed-form-employer-directory-page .card-actions input.button,
 form#views-exposed-form-employer-directory-page .form-actions input.button {
-  width: 10%;
-  font-size: 120%;
+  width: 50px;
+  font-size: 1.2em;
   height: 50px;
   margin-bottom: 30px;
   margin-top: -10px;
@@ -4775,6 +4775,10 @@ form#views-exposed-form-employer-directory-page .form-actions input.button {
 form#views-exposed-form-job-board-page .divider-top,
 form#views-exposed-form-employer-directory-page .divider-top {
   border-top: none;
+}
+
+input.btn-accent {
+  margin-left: 25px;
 }
 
 .region.region-before-main {
@@ -4789,10 +4793,6 @@ form#views-exposed-form-employer-directory-page .divider-top {
   position: relative;
   border-top: none;
   padding: 10px 0;
-}
-
-.divider-top h3 {
-  padding-left: 200px;
 }
 
 .divider-top p.section-summary {
@@ -4940,10 +4940,6 @@ a.btn.pull-right, .pager .pager-item > a.pull-right, a.pull-right.tabledrag-togg
 }
 
 strong {
-  font-size: 15px;
-}
-
-a.use-ajax {
   font-size: 15px;
 }
 

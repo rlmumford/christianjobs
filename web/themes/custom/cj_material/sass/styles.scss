@@ -293,12 +293,12 @@ fieldset#edit-individual-profile-consent-job-update--wrapper {
 }
 
 tr {
-    border-bottom: 1px solid #FF904B;
-    background-color: #FFFFFF;
+  border-bottom: 1px solid #FF904B;
+  background-color: #FFFFFF;
 
-    &:hover {
-      background-color: #FFFFFF;
-    }
+  &:hover {
+    background-color: #FFFFFF;
+  }
 }
 
 div.paragraphs-dropbutton-wrapper {
@@ -589,23 +589,16 @@ input.button {
   background: #1E5168;
   cursor: pointer;
   display: inline-block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: .5px;
-  //line-height: 20px;
-  //min-height: 54px;
-  //height: initial;
-  //min-width: 100px;
-  //padding: 15px 24px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   transition: color .15s cubic-bezier(.4,0,.2,1),background-color .15s cubic-bezier(.4,0,.2,1);
   will-change: background-color;
 }
-.form-actions input.button {
-  //margin-top: 50px;
-}
+
 input.button:hover,
 #block-cj-material-local-actions nav .button.button-action:hover,
 .eu-cookie-compliance-buttons button:hover, a.button-cta:hover {
@@ -1362,8 +1355,8 @@ form#views-exposed-form-employer-directory-page {
     text-align: center;
 
     input.button {
-      width: 10%;
-      font-size: 120%;
+      width: 50px;
+      font-size: 1.2em;
       height: 50px;
       margin-bottom: 30px;
       margin-top: -10px;
@@ -1373,6 +1366,10 @@ form#views-exposed-form-employer-directory-page {
   .divider-top {
     border-top: none;
   }
+}
+
+input.btn-accent {
+  margin-left: 25px;
 }
 
 .region.region-before-main {
@@ -1387,9 +1384,7 @@ form#views-exposed-form-employer-directory-page {
   border-top: none;
   padding: 10px 0;
 }
-.divider-top h3 {
-  padding-left: 200px;
-}
+
 .divider-top p.section-summary {
   padding-left: 0px;
 }
@@ -1479,8 +1474,6 @@ tr.draggable td:nth-child(2) {
   }
 }
 
-//BP - Changes to Edit Profile page //
-
 .field--widget-entity-reference-paragraphs {
   position: relative;
   .paragraphs-dropbutton-wrapper {
@@ -1556,10 +1549,6 @@ strong {
   font-size: 15px;
 }
 
-a.use-ajax {
-  font-size:  15px;
-}
-
 div.distance-container input[type="number"] {
   margin-right: 5px;
   max-width: 20%;
@@ -1568,8 +1557,6 @@ div.distance-container input[type="number"] {
 .form-item, .views-exposed-form {
   margin-top: 0px;
 }
-
-//END//
 
 .ief-form,
 .field--widget-inline-entity-form-complex,
