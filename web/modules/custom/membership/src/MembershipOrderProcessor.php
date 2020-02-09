@@ -74,7 +74,7 @@ class MembershipOrderProcessor implements OrderProcessorInterface {
         $adjustment_amount = \Drupal::service('commerce_price.rounder')->round($adjustment_amount);
 
         $item->addAdjustment(new Adjustment([
-          'type' => $one_free_job ? 'membership_one_free' : 'membership_discount',
+          'type' => 'promotion',
           'label' => $one_free_job ? new TranslatableMarkup('First Membership Job Free!') : new TranslatableMarkup('Membership Discount'),
           'amount' => $adjustment_amount,
           'percentage' => $one_free_job ? '100' : '25',
