@@ -303,9 +303,7 @@
             "version": "2.1.10",
             "dist": {
                 "type": "zip",
-                "url": "https://download.ckeditor.com/youtube/releases/youtube_2.1.10.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://download.ckeditor.com/youtube/releases/youtube_2.1.10.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -8051,6 +8049,7 @@
                 "Guzzle",
                 "stream"
             ],
+            "abandoned": true,
             "time": "2014-10-12T19:18:40+00:00"
         },
         {
@@ -8661,9 +8660,7 @@
             "version": "4.0.12",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/select2/-/select2-4.0.12.tgz",
-                "reference": null,
-                "shasum": null
+                "url": "https://registry.npmjs.org/select2/-/select2-4.0.12.tgz"
             },
             "type": "npm-asset",
             "license": [
