@@ -6123,7 +6123,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/pdf_tools.git",
-                "reference": "0df9e52254e8a3ab6a06d8c9ec68084ce74c815b"
+                "reference": "b03e661c4a2dab3f4dd2e2517b96b1fbc6ff4f3a"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -6135,7 +6135,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1580303087",
+                    "datestamp": "1580397492",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -6157,7 +6157,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/pdf_tools"
             },
-            "time": "2020-01-30T14:20:51+00:00"
+            "time": "2020-02-10T17:57:36+00:00"
         },
         {
             "name": "drupal/profile",
@@ -15337,17 +15337,6 @@
         {
             "name": "webflo/drupal-core-require-dev",
             "version": "8.8.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webflo/drupal-core-require-dev.git",
-                "reference": "5685684fd06541b8e4a453371542fe04455a56d2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/webflo/drupal-core-require-dev/zipball/5685684fd06541b8e4a453371542fe04455a56d2",
-                "reference": "5685684fd06541b8e4a453371542fe04455a56d2",
-                "shasum": ""
-            },
             "require": {
                 "behat/mink": "1.7.x-dev",
                 "behat/mink-goutte-driver": "^1.2",

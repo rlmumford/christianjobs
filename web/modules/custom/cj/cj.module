@@ -338,8 +338,10 @@ function cj_local_tasks_alter(&$local_tasks) {
  * Implements hook_commerce_invoice_pdf_options_alter().
  */
 function cj_commerce_invoice_pdf_options_alter(array &$options, Order $order) {
-  $options['footer-html'] = \Drupal::request()->getBaseUrl().'/'.drupal_get_path('module', 'cj').'/assets/letter-footer.html';
-  $options['header-html'] = \Drupal::request()->getBaseUrl().'/'.drupal_get_path('module', 'cj').'/assets/letter-header.html';
+  $options['footer-type'] = 'file';
+  $options['footer-file'] = drupal_get_path('module', 'cj').'/assets/letter-footer.html';
+  $options['header-type'] = 'file';
+  $options['header-file'] = drupal_get_path('module', 'cj').'/assets/letter-header.html';
 }
 
 /**
