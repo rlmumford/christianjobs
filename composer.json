@@ -38,6 +38,10 @@
             "url": "git@github.com:rlmumford/composer-patches.git"
         },
         {
+            "type": "vcs",
+            "url": "git@github.com:rlmumford/commerce_gocardless.git"
+        },
+        {
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
@@ -51,7 +55,7 @@
         "drupal/ckeditor_youtube": "^1.1",
         "drupal/commerce": "^2.10",
         "drupal/commerce_braintree": "^1.0",
-        "drupal/commerce_gocardless": "1.x-dev",
+        "drupal/commerce_gocardless": "dev-feature/redirect_flow as 1.x-dev",
         "drupal/commerce_paypal": "^1.0@beta",
         "drupal/commerce_square": "^1.2",
         "drupal/communication": "1.x-dev",

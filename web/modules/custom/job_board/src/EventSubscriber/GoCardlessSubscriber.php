@@ -16,9 +16,13 @@ class GoCardlessSubscriber implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
-    return [
-      CommerceGoCardlessEvents::CHECKOUT_PAYMENTS => 'checkoutPayments',
-    ];
+    if (class_exists(CommerceGoCardlessEvents::class)) {
+      return [
+        CommerceGoCardlessEvents::CHECKOUT_PAYMENTS => 'checkoutPayments',
+      ];
+    }
+
+    return [];
   }
 
   /**
