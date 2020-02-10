@@ -4766,7 +4766,6 @@ form#views-exposed-form-employer-directory-page .form-actions {
 form#views-exposed-form-job-board-page .card-actions input.button, form#views-exposed-form-job-board-page .form-actions input.button,
 form#views-exposed-form-employer-directory-page .card-actions input.button,
 form#views-exposed-form-employer-directory-page .form-actions input.button {
-  width: 50px;
   font-size: 1.2em;
   height: 50px;
   margin-bottom: 30px;
