@@ -1,6 +1,9 @@
 <?php
 
+use Drupal\cj_membership\Entity\Membership;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Install the tax
@@ -21,4 +24,24 @@ function cj_membership_update_8001() {
   foreach ($configs_to_install as $name) {
     $config_storage->write($name, $source->read($name));
   }
+}
+
+/**
+ * Install the level field.
+ */
+function cj_membership_update_8002() {
+  \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition(
+    'level',
+    'cj_membership',
+    'cj_membership',
+    BaseFieldDefinition::create('list_integer')
+      ->setLabel(new TranslatableMarkup('Membership Level'))
+      ->setSetting('allowed_values', [
+        Membership::LEVEL_DIRECTORY => new TranslatableMarkup('Directory'),
+        Membership::LEVEL_FULL => new TranslatableMarkup('Full'),
+      ])
+      ->setRevisionable(TRUE)
+      ->setDisplayConfigurable('view', TRUE
+    )
+  );
 }

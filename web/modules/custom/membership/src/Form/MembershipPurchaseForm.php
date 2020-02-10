@@ -62,7 +62,9 @@ class MembershipPurchaseForm extends FormBase {
     $membership = $membership_storage->getAccountMembership($user);
     if (!$membership) {
       /** @var \Drupal\cj_membership\Entity\Membership $membership */
-      $membership = $membership_storage->create()->setOwnerId($user->id());
+      $membership = $membership_storage->create([
+        'level' => Membership::LEVEL_FULL,
+      ])->setOwnerId($user->id());
       $membership->start->value = date(DateTimeItemInterface::DATE_STORAGE_FORMAT);
     }
 

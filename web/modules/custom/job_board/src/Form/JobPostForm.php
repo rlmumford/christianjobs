@@ -153,7 +153,7 @@ class JobPostForm extends JobForm {
         $form['membership']['description'] = [
           '#type' => 'html_tag',
           '#tag' => 'p',
-          '#value' => $this->t('Get this Job <strong>FREE</strong> when you become a Christian Jobs Community Member. Find out more <a href="/membership" target="_blank">here</a>'),
+          '#value' => $this->t('Get this Job <strong>FREE</strong> when you become a full Christian Jobs Community Member. Find out more <a href="/membership" target="_blank">here</a>'),
           '#attributes' => [
             'class' => ['section-summary'],
           ],
@@ -232,7 +232,7 @@ class JobPostForm extends JobForm {
       $current_membership = $membership_storage->getAccountMembership($current_user);
       $membership_values = $form_state->getValue(['membership']);
       if (isset($membership_values['new']) && !empty($membership_values['new'])) {
-        $membership = $membership_storage->create()->setOwnerId($current_user->id());
+        $membership = $membership_storage->create(['level' => Membership::LEVEL_FULL])->setOwnerId($current_user->id());
         $membership->start->value = date(DateTimeItemInterface::DATE_STORAGE_FORMAT);
       }
       elseif (isset($membership_values['extend']) && !empty($membership_values['extend'])) {

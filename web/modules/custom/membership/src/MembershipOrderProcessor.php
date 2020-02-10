@@ -60,6 +60,14 @@ class MembershipOrderProcessor implements OrderProcessorInterface {
     }
 
     if ($membership_in_cart || ($membership && $membership->status->value == Membership::STATUS_ACTIVE)) {
+      // If the membership is not full then no discount applies.
+      if (
+        ($membership_in_cart && $membership_in_cart->level->value < Membership::LEVEL_FULL) ||
+        ($membership && $membership->level->value < Membership::LEVEL_FULL)
+      ) {
+        return;
+      }
+
       foreach ($order->getItems() as $item) {
         $entity = $item->getPurchasedEntity();
         if (!($entity instanceof JobBoardJobRole)) {
