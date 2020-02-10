@@ -135,6 +135,9 @@
             "drupal/core": "-p2"
         },
         "patches": {
+            "drupal/core": {
+                "Field definition missing in block deriver": "./patches/field-block-deriver-missing-field-def.patch"
+            },
             "drupal/cshs": {
                 "Compatability with entityreference filter": "./patches/cshs-entityreference_views_handler_compat.patch"
             },
