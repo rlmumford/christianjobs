@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc618bf83d917ebbcb6f3caa04d9b345",
+    "content-hash": "a6cccf329e86b3a037d64c6d9dcbd84a",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -15337,6 +15337,17 @@
         {
             "name": "webflo/drupal-core-require-dev",
             "version": "8.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webflo/drupal-core-require-dev.git",
+                "reference": "5685684fd06541b8e4a453371542fe04455a56d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webflo/drupal-core-require-dev/zipball/5685684fd06541b8e4a453371542fe04455a56d2",
+                "reference": "5685684fd06541b8e4a453371542fe04455a56d2",
+                "shasum": ""
+            },
             "require": {
                 "behat/mink": "1.7.x-dev",
                 "behat/mink-goutte-driver": "^1.2",
