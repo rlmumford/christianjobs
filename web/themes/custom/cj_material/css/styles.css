@@ -3608,8 +3608,8 @@ details.captcha > div {
   width: 100%;
   max-width: 1200px;
   border: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 8px 0;
-  text-indent: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: #F6F4F4;
 }
 .form-item input[type=text].select2-search__field, .form-item input[type=url].select2-search__field, .form-item input[type=date].select2-search__field, .form-item input[type=number].select2-search__field, .form-item input[type=email].select2-search__field, .form-item input[type=password].select2-search__field, .form-item input[type=search].select2-search__field, .form-item input[type=tel].select2-search__field, .form-item textarea.select2-search__field, .form-item select.select2-search__field {
@@ -3653,7 +3653,8 @@ fieldset#edit-individual-profile-consent-job-update--wrapper {
 
 .field--type-text input, .field--type-text textarea, .field--type-string input, .field--type-string textarea, .field--type-datetime input, .field--type-datetime textarea, .field--type-text-long input, .field--type-text-long textarea {
   background-color: #F6F4F4;
-  text-indent: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 tr {

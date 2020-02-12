@@ -234,8 +234,8 @@ details.captcha > div {
     width: 100%;
     max-width: 1200px;
     border: 1px solid rgba(0, 0, 0, 0.12);
-    padding: 8px 0;
-    text-indent: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     background-color: #F6F4F4;
 
     &.select2-search__field {
@@ -288,7 +288,8 @@ fieldset#edit-individual-profile-consent-job-update--wrapper {
 .field--type-text, .field--type-string, .field--type-datetime, .field--type-text-long {
   input, textarea {
     background-color: #F6F4F4;
-    text-indent: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
