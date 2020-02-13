@@ -4348,6 +4348,56 @@ span.upsell-price .tax {
   min-height: 0;
 }
 
+.front-page-luova-block {
+  background-image: url("../assets/LuovaBanner.png");
+  margin-top: -15px;
+  height: 350px;
+  border-bottom: 1px solid #FFFFFF;
+}
+.front-page-luova-block h2 {
+  color: #FFFFFF;
+  font-weight: bolder;
+  line-height: 1.25em;
+  font-size: 3.5em;
+}
+.front-page-luova-block p {
+  color: #FFFFFF;
+  font-size: 20px;
+  padding-right: 150px;
+}
+.front-page-luova-block a:hover {
+  color: #49BCFB;
+}
+.front-page-luova-block .btn, .front-page-luova-block .tabledrag-toggle-weight, .front-page-luova-block .pager .pager-item > a, .pager .front-page-luova-block .pager-item > a, .front-page-luova-block .pager .pager-item > span, .pager .front-page-luova-block .pager-item > span {
+  margin-top: 15px;
+  margin-left: 0px;
+  background-color: #00B0FF;
+  color: #FFFFFF;
+  font-size: 1.2em;
+  padding: 4px 10px;
+}
+@media (max-width: 1520px) {
+  .front-page-luova-block {
+    background-image: url("../assets/LuovaBanner2.png");
+    height: 500px;
+  }
+}
+@media (max-width: 992px) {
+  .front-page-luova-block {
+    background-image: url("../assets/LuovaBanner3.png");
+    height: 500px;
+  }
+}
+@media (max-width: 768px) {
+  .front-page-luova-block {
+    background-image: url("../assets/LuovaBanner3.png");
+    height: 500px;
+  }
+  .front-page-luova-block h2 {
+    font-size: 2.5em;
+  }
+}
+
 .section-wrapper {
   padding-bottom: 30px;
   padding-top: 0;

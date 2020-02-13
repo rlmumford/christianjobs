@@ -951,6 +951,56 @@ span.upsell-price .tax {
   min-height: 0;
 }
 
+.front-page-luova-block {
+  background-image: url("../assets/LuovaBanner.png");
+  margin-top: -15px;
+  height: 350px;
+  border-bottom: 1px solid #FFFFFF;
+
+  h2 {
+    color: #FFFFFF;
+    font-weight: bolder;
+    line-height: 1.25em;
+    font-size: 3.5em;
+  }
+
+  p {
+    color: #FFFFFF;
+    font-size: 20px;
+    padding-right: 150px;
+  }
+
+  a:hover {
+    color: #49BCFB;
+  }
+
+  .btn {
+    margin-top: 15px;
+    margin-left: 0px;
+    background-color: #00B0FF;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    padding: 4px 10px;  
+  }
+
+  @media (max-width: $xl) {
+    background-image: url("../assets/LuovaBanner2.png");
+    height: 500px;
+  }
+  @media (max-width: $md) {
+      background-image: url("../assets/LuovaBanner3.png");
+      height: 500px;
+  }
+  @media (max-width: $sm) {
+      background-image: url("../assets/LuovaBanner3.png");
+      height: 500px;
+
+    h2 {
+      font-size: 2.5em;
+    }
+  }
+}
+
 .section-wrapper {
   padding-bottom: 30px;
   padding-top: 0;
