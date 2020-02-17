@@ -32,6 +32,15 @@ class GoCardlessSubscriber implements EventSubscriberInterface {
    */
   public function checkoutPayments(CheckoutPaymentsEvent $event) {
     $order = $event->getOrder();
+
+    // @todo: This is a bit of a hack. Get the order number *before* we send
+    //        stuff to gc.
+    if (!$order->getOrderNumber()) {
+      $order->setOrderNumber(
+        'CJ' . date('y') . str_pad($order->id(), 6, "0", STR_PAD_LEFT)
+      );
+    }
+
     $payments = $event->getPayments();
     $initial_payment = &$payments[0];
 
@@ -52,12 +61,12 @@ class GoCardlessSubscriber implements EventSubscriberInterface {
         $direct_debit_payment = [
           'type' => 'instalment_schedule',
           'name' => $membership->label(),
-          'price' => $value,
+          'price' => new Price($value, $item->getTotalPrice()->getCurrencyCode()),
           'schedule' => [
             'start_date' => (new DrupalDateTime())->format('Y-m-d'),
             'interval_unit' => 'monthly',
             'interval' => 1,
-            'amounts' => $amounts,
+            'amounts' => array_values($amounts),
           ],
           'metadata' => (object) [
             'membership' => $membership->id(),
