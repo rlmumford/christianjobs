@@ -8,7 +8,6 @@ use Drupal\commerce_price\Price;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\SynchronizableEntityTrait;
-use Drupal\Core\Entity\SynchronizableInterface;
 use Drupal\Core\Locale\CountryManager;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\job_role\Entity\JobRole;
@@ -85,25 +84,6 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
     }
 
     $this->set('location_geo', $result);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
-    parent::postSave($storage, $update);
-
-    // If this is active, make sure the organisation is visible in the directory.
-    if ($this->isActive()) {
-      /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
-      $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
-      $profile = $profile_storage->loadDefaultByUser($this->organisation->entity, 'employer');
-
-      if (!$profile->employer_on_directory->value) {
-        $profile->employer_on_directory = TRUE;
-        $profile->save();
-      }
-    }
   }
 
   /**

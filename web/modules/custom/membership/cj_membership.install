@@ -1,7 +1,9 @@
 <?php
 
 use Drupal\cj_membership\Entity\Membership;
+use Drupal\cj_membership\Entity\VolunteerRole;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\ContentEntityType;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
@@ -44,4 +46,46 @@ function cj_membership_update_8002() {
       ->setDisplayConfigurable('view', TRUE
     )
   );
+}
+
+/**
+ * Install volunteer roles.
+ *
+ * @throws \Drupal\Core\Entity\Exception\EntityTypeIdLengthException
+ */
+function cj_membership_update_8003() {
+  \Drupal::entityDefinitionUpdateManager()->installEntityType(new ContentEntityType([
+    "id" => "volunteer_role",
+    "class" => VolunteerRole::class,
+    "label" => new TranslatableMarkup("Volunteer Role"),
+    "label_singular" => new TranslatableMarkup("volunteer role"),
+    "label_plural" => new TranslatableMarkup("volunteer roles"),
+    "handlers" =>[
+      "storage" => \Drupal\Core\Entity\Sql\SqlContentEntityStorage::class,
+      "access" => \Drupal\cj_membership\Entity\VolunteerRoleAccessControlHandler::class,
+      "permission_provider" => \Drupal\cj_membership\Entity\VolunteerRolePermissionProvider::class,
+      "form" => [
+        "default" => \Drupal\cj_membership\Form\VolunteerRoleForm::class
+      ],
+      "views_data" => \Drupal\views\EntityViewsData::class,
+      "route_provider" => [
+        "html" => \Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider::class,
+      ]
+    ],
+    "base_table" => "volunteer_role",
+    "revision_table" => "volunteer_role_revision",
+    "admin_permission" => "administer volunteer roles",
+    "links" => [
+      "canonical" => "/volunteer/[volunteer_role]",
+      "edit-form" => "/volunteer/[volunteer_role]/edit",
+      "delete-form" => "/volunteer/[volunteer_role]/delete",
+    ],
+    "entity_keys" => [
+      "id" => "id",
+      "revision" => "vid",
+      "uuid" => "uuid",
+      "label" => "label",
+      "owner" => "owner"
+    ]
+  ]));
 }
