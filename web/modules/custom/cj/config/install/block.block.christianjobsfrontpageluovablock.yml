@@ -1,0 +1,30 @@
+uuid: 3cebc1b5-6d5b-4449-bc80-e9c1bd98bc4a
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - cj
+    - system
+  theme:
+    - cj_material
+third_party_settings:
+  block_class:
+    classes: front-page-luova-block
+id: christianjobsfrontpageluovablock
+theme: cj_material
+region: before_main
+weight: 0
+provider: null
+plugin: cj_front_page_luova_block
+settings:
+  id: cj_front_page_luova_block
+  label: 'Christian Jobs Front Page Luova Block'
+  provider: cj
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
