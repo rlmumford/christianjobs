@@ -9,11 +9,6 @@ cj.edit_employer:
   title: 'Edit Employer'
   appears_on:
     - entity.user.canonical
-cj.edit_employer:
-  route_name: job_board.employer_edit
-  title: 'Edit Employer'
-  appears_on:
-    - entity.user.canonical
 cj.self_edit_candidate:
   route_name: cj.self_edit_candidate
   title: 'Edit Profile'
