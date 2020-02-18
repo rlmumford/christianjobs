@@ -37,9 +37,11 @@ class OrderNumberSubscriber implements EventSubscriberInterface {
   public function setOrderNumber(WorkflowTransitionEvent $event) {
     /** @var \Drupal\commerce_order\Entity\OrderInterface $order */
     $order = $event->getEntity();
-    $order->setOrderNumber(
-      'CJ'.date('y').str_pad($order->id(), 6, "0", STR_PAD_LEFT)
-    );
+    if (!$order->getOrderNumber()) {
+      $order->setOrderNumber(
+        'CJ' . date('y') . str_pad($order->id(), 6, "0", STR_PAD_LEFT)
+      );
+    }
   }
 
 }

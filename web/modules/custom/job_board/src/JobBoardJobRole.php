@@ -8,7 +8,6 @@ use Drupal\commerce_price\Price;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\SynchronizableEntityTrait;
-use Drupal\Core\Entity\SynchronizableInterface;
 use Drupal\Core\Locale\CountryManager;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\job_role\Entity\JobRole;
@@ -88,25 +87,6 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
   }
 
   /**
-   * {@inheritdoc}
-   */
-  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
-    parent::postSave($storage, $update);
-
-    // If this is active, make sure the organisation is visible in the directory.
-    if ($this->isActive()) {
-      /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
-      $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
-      $profile = $profile_storage->loadDefaultByUser($this->organisation->entity, 'employer');
-
-      if (!$profile->employer_on_directory->value) {
-        $profile->employer_on_directory = TRUE;
-        $profile->save();
-      }
-    }
-  }
-
-  /**
    * Gets the stores through which the purchasable entity is sold.
    *
    * @return \Drupal\commerce_store\Entity\StoreInterface[]
@@ -156,7 +136,7 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
    */
   public function getPrice(Context $context = NULL) {
     if ($this->rpo->value) {
-      $price = new Price('1495.00', 'GBP');
+      $price = new Price('2995.00', 'GBP');
     }
     else if ($this->initial_duration->value == 'P60D') {
       $price = new Price('100.00', 'GBP');

@@ -55,6 +55,9 @@ class Membership extends ContentEntityBase implements EntityOwnerInterface, Purc
   const STATUS_INACTIVE = 'inactive';
   const STATUS_EXPIRED = 'expired';
 
+  const LEVEL_FULL = 100;
+  const LEVEL_DIRECTORY = 50;
+
   /**
    * {@inheritdoc}
    */
@@ -73,6 +76,15 @@ class Membership extends ContentEntityBase implements EntityOwnerInterface, Purc
       ->setSetting('target_type', 'user')
       ->setRevisionable(TRUE)
       ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $definitions['level'] = BaseFieldDefinition::create('list_integer')
+      ->setLabel(new TranslatableMarkup('Membership Level'))
+      ->setSetting('allowed_values', [
+        static::LEVEL_DIRECTORY => new TranslatableMarkup('Directory'),
+        static::LEVEL_FULL => new TranslatableMarkup('Full'),
+      ])
+      ->setRevisionable(TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
     $definitions['expiry'] = BaseFieldDefinition::create('datetime')
@@ -227,6 +239,11 @@ class Membership extends ContentEntityBase implements EntityOwnerInterface, Purc
    *   The price, or NULL.
    */
   public function getPrice(Context $context = NULL) {
-    return new Price('450.00', 'GBP');
+    if ($this->level->value == static::LEVEL_FULL) {
+      return new Price('595.00', 'GBP');
+    }
+    else {
+      return new Price('295.00', 'GBP');
+    }
   }
 }

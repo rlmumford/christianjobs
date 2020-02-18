@@ -1,7 +1,10 @@
 <?php
 
+use Drupal\commerce_order\Entity\Order;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityForm;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -269,7 +272,7 @@ function cj_form_contact_message_elim_interest_form_form_alter(array &$form, For
 function cj_form_user_form_alter(array &$form, FormStateInterface $form_state) {
   // Email registration doesn't check whether the account portion of the form
   // exists before fiddling with it. Undo those fiddles here.
-  if ($form['account']['name']['#type'] == 'value' && !isset($form['account']['name']['#default_value'])) {
+  if (!isset($form['account']['name']) || ($form['account']['name']['#type'] == 'value' && !isset($form['account']['name']['#default_value']))) {
     unset($form['account']);
   }
 
@@ -329,4 +332,130 @@ function cj_local_tasks_alter(&$local_tasks) {
   unset($local_tasks['entity.commerce_payment_method.collection']);
   unset($local_tasks['entity.profile.user_profile_form:profile.type.individual']);
   unset($local_tasks['entity.profile.user_profile_form:profile.type.organisation']);
+}
+
+/**
+ * Implements hook_commerce_invoice_pdf_options_alter().
+ */
+function cj_commerce_invoice_pdf_options_alter(array &$options, Order $order) {
+  $options['footer-type'] = 'file';
+  $options['footer-file'] = drupal_get_path('module', 'cj').'/assets/letter-footer.html';
+  $options['header-type'] = 'file';
+  $options['header-file'] = drupal_get_path('module', 'cj').'/assets/letter-header.html';
+}
+
+/**
+ * Implements hook_commerce_order_view_alter().
+ */
+function cj_commerce_order_view_alter(array &$build, EntityInterface $order, EntityViewDisplayInterface $display) {
+  /** @var \Drupal\commerce_order\Entity\Order $order */
+  if ($build['#view_mode'] === 'invoice') {
+    $config = \Drupal::config('cj.bank_details');
+
+    $build['#attached']['library'][] = 'cj/invoice';
+
+    /** @var \Drupal\Core\Datetime\DrupalDateTime $placed_date */
+    $due_date = DrupalDateTime::createFromTimestamp($order->getPlacedTime())
+      ->add(new DateInterval('P1D'));
+
+    $build['placed']['#title'] = new TranslatableMarkup('<strong>Invoice Date</strong>');
+
+    $build['due'] = $build['placed'];
+    $build['due']['#title'] = new TranslatableMarkup('<strong>Due Date</strong>');
+    $build['due'][0]['#markup'] = $due_date->format('d/m/Y');
+
+    $build['order_number']['#title'] = new TranslatableMarkup('<strong>Invoice Reference</strong>');
+
+    $build['invoice_details'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#weight' => $build['order_number']['#weight'],
+      '#attributes' => [
+        'class' => [ 'invoice-details' ],
+      ],
+      'placed' => ['#weight' => 0] + $build['placed'],
+      'due' => ['#weight' => 2] + $build['due'],
+      'order_number' => ['#weight' => 1] + $build['order_number'],
+    ];
+    unset($build['placed']); unset($build['due']); unset($build['order_number']);
+
+    $cover = [
+      '#type' => 'html_tag',
+      '#weight' => 100,
+      '#tag' => 'div',
+      '#attributes' => [
+        'style' => 'page-break-before: always;',
+        'class' => [ 'cover-letter' ]
+      ],
+    ];
+    $cover['date'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#attributes' => [
+        'class' => [ 'letter-date' ],
+      ],
+      '#value' => (new DrupalDateTime())->format('d/m/Y'),
+    ];
+    $cover['dear'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#attributes' => [
+        'class' => [ 'letter-content', 'letter-dear' ],
+      ],
+      '#value' => new TranslatableMarkup("Dear @name,", ['@name' => $order->getBillingProfile()->get('address')->given_name]),
+    ];
+    $cover['content'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#attributes' => [
+        'class' => [ 'letter-content' ],
+      ],
+      '#value' => new TranslatableMarkup(
+        "Please find invoice @order_number representing your recent purchase. This is due for immediate payment via the bank details below. Please include the invoice reference in your payment.",
+        [
+          '@order_number' => $order->getOrderNumber(),
+        ]
+      ),
+    ];
+    $cover['payment'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#attributes' => [
+        'class' => [ 'letter-content' ],
+      ],
+      '#value' => new TranslatableMarkup(
+        "<strong>Payment Details</strong><br />Bank Name: @bank_name<br />Company: Christian Jobs Ltd<br />Sort Code: @sort_code<br />Account Number: @account_number<br />Invoice Reference: @order_number",
+        [
+          '@bank_name' => $config->get('bank_name'),
+          '@sort_code' => $config->get('sort_code'),
+          '@account_number' => $config->get('account_number'),
+          '@order_number' => $order->getOrderNumber(),
+        ]
+      ),
+    ];
+    $cover['content2'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#attributes' => [
+        'class' => [ 'letter-content' ],
+      ],
+      '#value' => new TranslatableMarkup(
+        "Due to our environmental policy we no longer supply hard copies of invoices. Please print a copy of this document for your files."
+      ),
+    ];
+    $cover['from'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#attributes' => [
+        'class' => [ 'letter-content' ],
+      ],
+      '#value' => new TranslatableMarkup(
+        "Regards,<br /><img src=\"@signature_uri\" style=\"max-height: 100px;\"><br />James Everall<br />Managing Partner",
+        [
+          '@signature_uri' => file_create_url('/'.drupal_get_path('module', 'cj').'/assets/jesig.png'),
+        ]
+      ),
+    ];
+    $build['cover_letter'] = $cover;
+  }
 }

@@ -1,0 +1,13 @@
+div.invoice-details {
+  padding: 36px 24px;
+  background: rgb(242,242,242);
+  max-width: 40%;
+}
+
+span.given-name, span.family-name {
+  font-weight: bold;
+}
+
+div.field--name-order-items {
+  margin-top: 24px;
+}

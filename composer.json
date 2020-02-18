@@ -38,6 +38,10 @@
             "url": "git@github.com:rlmumford/composer-patches.git"
         },
         {
+            "type": "vcs",
+            "url": "git@github.com:rlmumford/commerce_gocardless.git"
+        },
+        {
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
@@ -51,6 +55,7 @@
         "drupal/ckeditor_youtube": "^1.1",
         "drupal/commerce": "^2.10",
         "drupal/commerce_braintree": "^1.0",
+        "drupal/commerce_gocardless": "dev-feature/redirect_flow as 1.x-dev",
         "drupal/commerce_paypal": "^1.0@beta",
         "drupal/commerce_square": "^1.2",
         "drupal/communication": "1.x-dev",
@@ -134,11 +139,17 @@
             "drupal/core": "-p2"
         },
         "patches": {
+            "drupal/core": {
+                "Field definition missing in block deriver": "./patches/field-block-deriver-missing-field-def.patch"
+            },
             "drupal/cshs": {
                 "Compatability with entityreference filter": "./patches/cshs-entityreference_views_handler_compat.patch"
             },
             "drupal/inline_entity_form": {
                 "Bundle selection fix": "https://www.drupal.org/files/issues/2019-08-20/3076005-2.patch"
+            },
+            "drupal/decoupled_auth": {
+                "Account Form fix": "https://www.drupal.org/files/issues/2020-02-12/3113064-2.patch"
             }
         },
         "installer-paths": {

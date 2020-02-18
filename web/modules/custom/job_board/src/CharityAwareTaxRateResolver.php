@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Rob
- * Date: 25/02/2019
- * Time: 13:13
- */
 
 namespace Drupal\job_board;
 
@@ -53,9 +47,7 @@ class CharityAwareTaxRateResolver extends DefaultTaxRateResolver {
       return FALSE;
     }
 
-    // Get the employer profile to check the charity profile.
-    $user = $customer_profile->getOwner();
-    $employer_profile = $this->profileStorage->loadDefaultByUser($user, 'employer');
+    $employer_profile = $this->profileStorage->loadDefaultByUser($purchased_entity->getOwner(), 'employer');
     if (!$employer_profile) {
       return FALSE;
     }

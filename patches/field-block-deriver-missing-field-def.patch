@@ -1,0 +1,15 @@
+diff --git a/core/modules/layout_builder/src/Plugin/Derivative/FieldBlockDeriver.php b/core/modules/layout_builder/src/Plugin/Derivative/FieldBlockDeriver.php
+index a2a94a0..0d47dce 100644
+--- a/core/modules/layout_builder/src/Plugin/Derivative/FieldBlockDeriver.php
++++ b/core/modules/layout_builder/src/Plugin/Derivative/FieldBlockDeriver.php
+@@ -101,6 +101,10 @@ public function getDerivativeDefinitions($base_plugin_definition) {
+           $derivative = $base_plugin_definition;
+           $field_definition = $this->entityFieldManager->getFieldDefinitions($entity_type_id, $bundle)[$field_name];
+ 
++          if (!$field_definition) {
++            continue;
++          }
++
+           // Store the default formatter on the definition.
+           $derivative['default_formatter'] = '';
+           $field_type_definition = $this->fieldTypeManager->getDefinition($field_info['type']);

@@ -1,8 +1,8 @@
 diff --git a/src/Plugin/views/filter/CshsTaxonomyIndex.php b/src/Plugin/views/filter/CshsTaxonomyIndex.php
-index 1806892..d871acb 100644
+index 1806892..5ed87e2 100644
 --- a/src/Plugin/views/filter/CshsTaxonomyIndex.php
 +++ b/src/Plugin/views/filter/CshsTaxonomyIndex.php
-@@ -3,8 +3,10 @@
+@@ -3,9 +3,12 @@
  namespace Drupal\cshs\Plugin\views\filter;
  
  use Drupal\Core\Form\FormStateInterface;
@@ -11,9 +11,11 @@ index 1806892..d871acb 100644
  use Drupal\Core\Entity\EntityTypeManagerInterface;
 +use Drupal\Core\Messenger\MessengerInterface;
  use Drupal\cshs\CshsOptionsFromHelper;
++use Drupal\views\Plugin\views\filter\EntityReference;
  use Drupal\views\ViewExecutable;
  use Drupal\views\Plugin\views\display\DisplayPluginBase;
-@@ -24,16 +26,19 @@ trait CshsTaxonomyIndex {
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+@@ -24,16 +27,19 @@ trait CshsTaxonomyIndex {
      array $configuration,
      $plugin_id,
      $plugin_definition,
@@ -37,7 +39,13 @@ index 1806892..d871acb 100644
      );
  
      $this->entityRepository = $entity_repository;
-@@ -47,8 +52,10 @@ trait CshsTaxonomyIndex {
+@@ -42,13 +48,15 @@ trait CshsTaxonomyIndex {
+   /**
+    * {@inheritdoc}
+    */
+-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
++  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): EntityReference {
+     return new static(
        $configuration,
        $plugin_id,
        $plugin_definition,
@@ -49,7 +57,7 @@ index 1806892..d871acb 100644
      );
    }
  
-@@ -64,7 +71,7 @@ trait CshsTaxonomyIndex {
+@@ -64,7 +72,7 @@ trait CshsTaxonomyIndex {
    /**
     * {@inheritdoc}
     */
@@ -58,7 +66,7 @@ index 1806892..d871acb 100644
      $options = parent::defineOptions();
  
      foreach (static::defaultSettings() + ['type' => static::ID] as $option => $value) {
-@@ -136,21 +143,21 @@ trait CshsTaxonomyIndex {
+@@ -136,21 +144,21 @@ trait CshsTaxonomyIndex {
     * {@inheritdoc}
     */
    protected function getVocabularyStorage() {

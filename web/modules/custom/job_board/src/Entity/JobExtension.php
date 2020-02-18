@@ -11,6 +11,8 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\user\EntityOwnerInterface;
+use Drupal\user\EntityOwnerTrait;
 
 /**
  * Job Role Extension Entity.
@@ -38,10 +40,12 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
  *     "id" = "id",
  *     "revision" = "vid",
  *     "uuid" = "uuid",
+ *     "owner" = "owner",
  *   }
  * )
  */
-class JobExtension extends ContentEntityBase implements PurchasableEntityInterface {
+class JobExtension extends ContentEntityBase implements PurchasableEntityInterface, EntityOwnerInterface {
+  use EntityOwnerTrait;
 
   /**
    * {@inheritdoc}

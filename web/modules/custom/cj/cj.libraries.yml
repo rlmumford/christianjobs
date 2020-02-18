@@ -1,0 +1,5 @@
+invoice:
+  version: VERSION
+  css:
+    theme:
+      css/cj.invoice.css: {}

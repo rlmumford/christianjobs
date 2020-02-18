@@ -53,7 +53,7 @@ class MembershipController extends ControllerBase {
     $added = FALSE;
     if (!$membership_in_cart) {
       if (!$membership) {
-        $membership = $membership_storage->create()->setOwnerId($current_user->id());
+        $membership = $membership_storage->create(['level' => Membership::LEVEL_FULL])->setOwnerId($current_user->id());
         $membership->start->value = date(DateTimeItemInterface::DATE_STORAGE_FORMAT);
         \Drupal::service('commerce_cart.cart_manager')->addEntity($cart, $membership);
         $added = TRUE;

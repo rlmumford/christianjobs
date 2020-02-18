@@ -1,0 +1,6 @@
+cj.config.bank_details:
+  title: 'Bank Details'
+  route_name: 'cj.config.bank_details'
+  parent: 'commerce.store_configuration'
+  description: 'Configure Bank Details used in Invoice Generation.'
+  weight: 5

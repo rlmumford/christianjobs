@@ -14,3 +14,5 @@ dependencies:
 - email_registration
 - recaptcha
 - pathauto
+- commerce_invoice
+- pdf_tools

@@ -35,8 +35,7 @@ function job_board_cron() {
   // Manage the employer_on_directory status. We do this with a raw query as it
   // involves lots and lots of joining.
 
-  // Find all profiles marked as on the directory that do not have an active job
-  // or active membership.
+  // Find all profiles marked as on the directory that do not have an active membership.
   $query = \Drupal::database()->select('profile__employer_on_directory', 'eod');
   $query->condition('eod.employer_on_directory_value', 1);
   $query->join('profile', 'p', 'p.profile_id = eod.entity_id');
@@ -46,13 +45,6 @@ function job_board_cron() {
     'p.uid = m.member AND m.status = :active',
     [':active' => Membership::STATUS_ACTIVE]
   );
-  $query->leftJoin(
-    'job_role',
-    'j',
-    'j.organisation = p.uid AND p.publish_date <= :today AND p.paid_to_date >= :today',
-    [':today' => (new DrupalDateTime())->format('Y-m-d')]
-  );
-  $query->isNull('j.id');
   $query->isNull('m.id');
   $query->addField('p','profile_id', 'id');
 
@@ -61,8 +53,7 @@ function job_board_cron() {
     $profile->save();
   }
 
-  // Find all profiles not marked as on the directory that have an active membership
-  // or an active job.
+  // Find all profiles not marked as on the directory that have an active membership.
   $query = \Drupal::database()->select('profile', 'p');
   $query->leftJoin('profile__employer_on_directory', 'eod', 'eod.entity_id = p.profile_id');
   $query->condition(
@@ -76,17 +67,7 @@ function job_board_cron() {
     'p.uid = m.member AND m.status = :active',
     [':active' => Membership::STATUS_ACTIVE]
   );
-  $query->leftJoin(
-    'job_role',
-    'j',
-    'j.organisation = p.uid AND p.publish_date <= :today AND p.paid_to_date >= :today',
-    [':today' => (new DrupalDateTime())->format('Y-m-d')]
-  );
-  $query->condition(
-    $query->orConditionGroup()
-      ->isNotNull('m.id')
-      ->isNotNull('j.id')
-  );
+  $query->isNotNull('m.id');
   $query->addField('p','profile_id', 'id');
   $query->groupBy('p.profile_id');
 
@@ -623,7 +604,8 @@ function job_board_profile_presave(Profile $profile) {
   }
 
   // First get the tem for the country.
-  if (!($term = reset($term_storage->loadByProperties(['vid' => 'locations', 'name' => $data->properties->country])))) {
+  $loc_terms = $term_storage->loadByProperties(['vid' => 'locations', 'name' => $data->properties->country]);
+  if (!($term = reset($loc_terms))) {
     $term = $term_storage->create([
       'vid' => 'locations',
       'name' => $data->properties->country,
@@ -633,7 +615,8 @@ function job_board_profile_presave(Profile $profile) {
   $terms[] = $term;
 
   foreach ($data->properties->adminLevels as $level) {
-    if (!($next_term = reset($term_storage->loadByProperties(['vid' => 'locations', 'name' => $level->name, 'parent' => $term->id()])))) {
+    $level_terms = $term_storage->loadByProperties(['vid' => 'locations', 'name' => $level->name, 'parent' => $term->id()]);
+    if (!($next_term = reset($level_terms))) {
       $next_term = $term_storage->create([
         'vid' => 'locations',
         'name' => $level->name,
@@ -668,13 +651,13 @@ function job_board_job_package_info($key = NULL) {
   $info = [];
   $info['advert'] = [
     'label' => t('Job Advertisement'),
-    'description' => t('Advertise your Job on ChristianJobs.co.uk for 30 days.'),
-    'price' => new Price('75.00', 'GBP'),
+    'description' => t('Advertise your Job on ChristianJobs.co.uk for 60 days.'),
+    'price' => new Price('100.00', 'GBP'),
     'allowed_featured_dates' => 1,
     'cta_text' => new TranslatableMarkup('Get Started'),
     'cta_url' => Url::fromRoute('job_board.post'),
     'features' => [
-      [ 'title' => t('30 days exposure'), ],
+      [ 'title' => t('60 days exposure'), ],
       [ 'title' => t('Optional 30 additional days exposure (+£25)'), ],
       [
         'title' => t('Social media posting'),
@@ -683,7 +666,7 @@ function job_board_job_package_info($key = NULL) {
   ];
   $info['membership'] = [
     'label' => t('Community Membership'),
-    'price' => new Price('450.00', 'GBP'),
+    'price' => new Price('595.00', 'GBP'),
     'description' => t('Receive discounts, priority access and support by becoming a Community Member.'),
     'allowed_featured_dates' => 5,
     'cta_text' => new TranslatableMarkup('Find Out More'),
@@ -717,7 +700,7 @@ function job_board_job_package_info($key = NULL) {
   $info['rpo'] = [
     'label' => t('Outsourced Help (RPO)'),
     'description' => t('Let Christian Jobs manage your recruitment process.'),
-    'price' => new Price('1495.00', 'GBP'),
+    'price' => new Price('2995.00', 'GBP'),
     'cta_text' => new TranslatableMarkup('Find Out More'),
     'cta_url' => Url::fromUri('internal:/outsourced-help'),
     'features' => [
