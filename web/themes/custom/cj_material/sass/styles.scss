@@ -951,17 +951,48 @@ span.upsell-price .tax {
   min-height: 0;
 }
 
+/**.front-page-luova-block:before {
+  content: '';
+  background: url("../assets/LuovaLogo.png");
+  background-repeat: no-repeat;
+  background-size: 150px;
+  position: absolute;
+  left: 300px;
+  top: 40px;
+  height: 100%;
+  width: 100%;
+}
+
+.front-page-luova-block:after {
+  content: '';
+  background: url("../assets/VCISLogo.png");
+  background-repeat: no-repeat;
+  background-size: 150px;
+  position: absolute;
+  left: 300px;
+  top: 160px;
+  height: 100%;
+  width: 100%;
+}*/
+
 .front-page-luova-block {
-  background-image: url("../assets/LuovaBanner.png");
+  background-image: url("../assets/LuovaBanner868x250.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   margin-top: -15px;
-  height: 350px;
   border-bottom: 1px solid #FFFFFF;
+  position: relative;
+
+  .ml-24 {
+    margin-left: 24px !important;
+    margin-bottom: 24px !important;
+  }
 
   h2 {
     color: #FFFFFF;
     font-weight: bolder;
     line-height: 1.25em;
-    font-size: 3.5em;
+    font-size: 2.5em;
   }
 
   p {
@@ -980,23 +1011,41 @@ span.upsell-price .tax {
     background-color: #00B0FF;
     color: #FFFFFF;
     font-size: 1.2em;
-    padding: 4px 10px;  
+    padding: 4px 10px;
+
+    &:hover {
+      border: 2px solid #00B0FF;
+      background-color: #FFFFFF;
+      color: #00B0FF;
+    }
   }
 
-  @media (max-width: $xl) {
-    background-image: url("../assets/LuovaBanner2.png");
-    height: 500px;
+  .luova-education-group {
+    color: #FF9049;
   }
-  @media (max-width: $md) {
-      background-image: url("../assets/LuovaBanner3.png");
-      height: 500px;
+  .victory-christian-international-school {
+    color: #FF9049;
   }
-  @media (max-width: $sm) {
-      background-image: url("../assets/LuovaBanner3.png");
-      height: 500px;
+  .luova-banner-logo {
+    max-width: 220px;
+  }
+  .luova-logo-wrapper {
+    text-align: center;
+  }
+
+  @media (min-width: $md) {
+    background-image: url("../assets/LuovaBanner753x347.png");
+
+    .luova-banner-logo {
+      display: block;
+      width: 100%;
+    }
+  }
+  @media (min-width: $lg) {
+    background-image: url("../assets/LuovaBanner1905x433.png");
 
     h2 {
-      font-size: 2.5em;
+      font-size: 3.5em;
     }
   }
 }
@@ -1540,7 +1589,7 @@ tr.draggable td:nth-child(2) {
       .field--type-email, .field--type-telephone {
         margin-right: 100px;
       }
-    }  
+    }
 
     td div.form-wrapper {
       padding-top: 0;
