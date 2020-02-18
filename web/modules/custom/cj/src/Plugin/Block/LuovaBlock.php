@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Drupal\cj\Plugin\Block;
-
 
 use Drupal\Core\Block\BlockBase;
 
