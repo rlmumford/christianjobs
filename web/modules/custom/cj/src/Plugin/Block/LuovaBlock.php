@@ -21,8 +21,8 @@ class LuovaBlock extends BlockBase {
     $content = [];
     $content['#markup'] = '<div class="row ml-24">
 <div class="col col-xs-12 col-md-2 col-md-offset-1 first-md luova-logo-wrapper">
-<img src="'.drupal_get_path('theme', 'cj_material').'/assets/LuovaLogo.png" class="luova-banner-logo mt-24" />
-<img src="'.drupal_get_path('theme', 'cj_material').'/assets/VCISLogo.png" class="luova-banner-logo mt-24" />
+<img src="/'.drupal_get_path('theme', 'cj_material').'/assets/LuovaLogo.png" class="luova-banner-logo mt-24" />
+<img src="/'.drupal_get_path('theme', 'cj_material').'/assets/VCISLogo.png" class="luova-banner-logo mt-24" />
 </div>
 <div class="col col-xs-12 col-md-9">
 <h2>Are you passionate about impacting the next generation through education?</h2>
