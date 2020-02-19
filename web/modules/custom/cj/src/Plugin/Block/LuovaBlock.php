@@ -28,7 +28,7 @@ class LuovaBlock extends BlockBase {
 <h2>Are you passionate about impacting the next generation through education?</h2>
 
 <p><span>In partnership with <span class="luova-education-group">Luova Education Group</span> and <span class="victory-christian-international-school">Victory Christian International School</span> Christian Jobs are actively recruiting teachers to join an exciting new Christian school program in Busan, South Korea.</span></p>
-<a class="btn" href="https://www.christianjobs.co.uk/jobs/christian-jobs-ltd/1333">Find out more</a></div>
+<a class="btn" href="https://www.christianjobs.co.uk/jobs/keyword/busan">Find out more</a></div>
 </div>';
 
     return $content;
