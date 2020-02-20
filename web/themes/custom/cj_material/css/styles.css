@@ -3397,7 +3397,7 @@ strong {
   font-size: 20px;
   font-family: Montserrat;
   font-weight: bold;
-  line-height: 2em;
+  line-height: 1em;
 }
 
 p, h4 {
@@ -3419,8 +3419,8 @@ h1:after {
   height: 6px;
   position: absolute;
   left: -20px;
+  right: -20px;
   bottom: 0px;
-  width: 1200px;
 }
 
 h3 {
@@ -3475,16 +3475,9 @@ a.card, .content-card a.card-holder {
 .chip {
   display: inline-block;
   height: 32px;
-  padding: 0 12px;
-  border-radius: 32px;
-  margin-right: 8px;
-  background: rgba(35, 47, 52, 0.12);
+  padding-left: 20px;
   line-height: 32px;
   font-size: 13px;
-}
-
-.chip:hover {
-  background: rgba(35, 47, 52, 0.24);
 }
 
 .chip .material-icons, .chip .breadcrumb ol li:not(:last-child):after, .breadcrumb ol .chip li:not(:last-child):after, .chip .info:before, .chip .important:before, .chip .form-item input[type=checkbox]:before, .form-item .chip input[type=checkbox]:before, .chip .form-item input[type=radio]:before, .form-item .chip input[type=radio]:before, .chip .form-item.form-type-select:after, .chip .navbar-account-menu .menu a:before, .navbar-account-menu .menu .chip a:before, .chip .sidebar .menu .collapsed > a:after, .sidebar .menu .chip .collapsed > a:after, .chip .sidebar .menu .expanded > a:after, .sidebar .menu .chip .expanded > a:after, .chip .collapsible-toggle:before, .chip .pager .pager-item.item-first > a:before, .pager .chip .pager-item.item-first > a:before, .chip .pager .pager-item.item-first > span:before, .pager .chip .pager-item.item-first > span:before, .chip .pager .pager-item.item-previous > a:before, .pager .chip .pager-item.item-previous > a:before, .chip .pager .pager-item.item-previous > span:before, .pager .chip .pager-item.item-previous > span:before, .chip .pager .pager-item.item-ellipsis > a:before, .pager .chip .pager-item.item-ellipsis > a:before, .chip .pager .pager-item.item-ellipsis > span:before, .pager .chip .pager-item.item-ellipsis > span:before, .chip .pager .pager-item.item-next > a:before, .pager .chip .pager-item.item-next > a:before, .chip .pager .pager-item.item-next > span:before, .pager .chip .pager-item.item-next > span:before, .chip .pager .pager-item.item-last > a:before, .pager .chip .pager-item.item-last > a:before, .chip .pager .pager-item.item-last > span:before, .pager .chip .pager-item.item-last > span:before, .chip .messages-status:before, .chip .messages-warning:before, .chip .messages-error:before {
@@ -3497,9 +3490,13 @@ a.card, .content-card a.card-holder {
   border-radius: 50%;
 }
 
+span.material-icons, span.info:before, span.important:before, span.form-item.form-type-select:after, span.collapsible-toggle:before, .pager .pager-item.item-first > span:before, .pager .pager-item.item-previous > span:before, .pager .pager-item.item-ellipsis > span:before, .pager .pager-item.item-next > span:before, .pager .pager-item.item-last > span:before, span.messages-status:before, span.messages-warning:before, span.messages-error:before {
+  color: #FF9049;
+}
+
 .directory-like-count::before {
   content: "";
-  background-image: url(../assets/icon/heart_empty-black.png);
+  background-image: url(../assets/icon/heart_empty-orange-copy.png);
   background-size: 24px;
   background-repeat: no-repeat;
   background-position: center;
@@ -3511,7 +3508,7 @@ a.card, .content-card a.card-holder {
 }
 
 .action-unflag .directory-like-count::before {
-  background-image: url(../assets/icon/heart_full-black.png);
+  background-image: url(../assets/icon/heart_full-orange-copy.png);
 }
 
 .flag-employer-like .ajax-progress {
@@ -4081,6 +4078,7 @@ h2.company-name {
   box-shadow: none;
   position: relative;
   padding-top: 0.5em;
+  padding-bottom: 0.8em;
 }
 
 .job-result:before {
@@ -4089,8 +4087,8 @@ h2.company-name {
   height: 6px;
   position: absolute;
   left: -20px;
+  right: -20px;
   top: 0px;
-  width: 1200px;
 }
 
 .job-result .subtitle.employer-name a {
@@ -4433,8 +4431,8 @@ span.upsell-price .tax {
   content: "";
   height: 6px;
   left: 0px;
+  right: 0px;
   position: absolute;
-  width: 1200px;
 }
 
 .section-wrapper-header {
@@ -4823,7 +4821,7 @@ form#views-exposed-form-job-board-page,
 form#views-exposed-form-employer-directory-page {
   border-radius: 0;
   box-shadow: none;
-  padding: 10px;
+  padding: 13px;
 }
 form#views-exposed-form-job-board-page .card-actions, form#views-exposed-form-job-board-page .form-actions,
 form#views-exposed-form-employer-directory-page .card-actions,
@@ -4835,8 +4833,6 @@ form#views-exposed-form-employer-directory-page .card-actions input.button,
 form#views-exposed-form-employer-directory-page .form-actions input.button {
   font-size: 1.2em;
   height: 50px;
-  margin-bottom: 30px;
-  margin-top: -10px;
 }
 form#views-exposed-form-job-board-page .divider-top,
 form#views-exposed-form-employer-directory-page .divider-top {
@@ -5116,8 +5112,8 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
 }
 
 .collapsible-filter-block {
-  margin-bottom: 1em;
-  border-radius: 1em;
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
   overflow: hidden;
   padding-bottom: 1em;
 }
@@ -5150,16 +5146,63 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   left: 10px;
 }
 
-.collapsible-filter-block.collapsible-filter-block-processed.collapsible-filter-block-expanded > h2 {
-  margin-bottom: 1em;
-}
-
-.collapsible-filter-block.collapsible-filter-block-processed.collapsible-filter-block-expanded {
-  padding-bottom: 1em;
-}
-
 .collapsible-filter-block.collapsible-filter-block-expanded > h2:before {
   content: url(../assets/icon/minus_white.png);
+}
+
+.col-xs-12.col-md-6.layout__region.layout__region--first {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.collapsible-filter-block-expanded > * h2 {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.col-xs-12.col-md-6.layout__region.layout__region--second {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.facets-widget-checkbox {
+  background-color: #F6F4F4;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.extra-fields-container {
+  background-color: #F6F4F4;
+  padding: 20px;
+}
+.extra-fields-container h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.extra-fields-container span.views-label {
+  font-family: Montserrat;
+  font-weight: bolder;
+  color: #49BCFB;
+  display: table;
+  line-height: 2em;
+}
+
+.description-container {
+  margin-top: 20px;
+}
+
+.company-info-container {
+  background-color: #F6F4F4;
+  box-shadow: none;
+  margin: 15px;
+  padding-top: 0;
+}
+.company-info-container .field-label {
+  font-family: Montserrat;
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: #49BCFB;
+  display: table;
 }
 
 .facets-widget-checkbox ul {
@@ -5170,6 +5213,10 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   margin: 0;
 }
 
+.field-name-employer-description {
+  padding-left: 20px;
+}
+
 .facets-widget-checkbox ul ul {
   overflow-y: auto;
   margin-left: 1em;
@@ -5178,6 +5225,7 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
 
 input.facets-checkbox {
   max-width: 18px;
+  margin-left: 8px;
 }
 
 li.facet-item {
