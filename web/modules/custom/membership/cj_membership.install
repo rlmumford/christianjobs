@@ -9,6 +9,19 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
+ * Implements hook_update_dependencies().
+ */
+function cj_membership_update_dependencies() {
+  $d = [];
+
+  $d['cj_membership'][8004] = [
+    'job_board' => 8026,
+  ];
+
+  return $d;
+}
+
+/**
  * Install the tax
  */
 function cj_membership_update_8001() {
@@ -92,7 +105,7 @@ function cj_membership_update_8003() {
 }
 
 function cj_membership_update_8004() {
-  $source = new FileStorage(drupal_get_path('module', 'job_board') . '/config/install');
+  $source = new FileStorage(drupal_get_path('module', 'cj_membership') . '/config/install');
   /** @var \Drupal\Core\Config\StorageInterface $config_storage */
   $config_storage = \Drupal::service('config.storage');
 
