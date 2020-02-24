@@ -1001,7 +1001,7 @@ function job_board_update_8025() {
 function job_board_update_8026() {
   /** @var \Drupal\Core\Extension\ModuleInstallerInterface $module_installer */
   $module_installer = \Drupal::service('module_installer');
-  $module_installer->uninstall(['cshs']);
+  $module_installer->uninstall(['cshs', 'geofield_map']);
 
   $source = new FileStorage(drupal_get_path('module', 'job_board') . '/config/install');
   /** @var \Drupal\Core\Config\StorageInterface $config_storage */
