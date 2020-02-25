@@ -1,0 +1,8 @@
+volunteer_board.list:
+  title: 'List'
+  route_name: view.volunteer_board.list_page
+  base_route: view.volunteer_board.list_page
+volunteer_board.map:
+  title: 'Map'
+  route_name: view.volunteer_board.map_page
+  base_route: view.volunteer_board.list_page
