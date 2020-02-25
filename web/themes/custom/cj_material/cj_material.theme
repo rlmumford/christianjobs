@@ -96,10 +96,10 @@ function cj_material_preprocess_views_view_fields__employer_directory(&$variable
   $vol_count = isset($row->voluntary_role_count) ? $row->voluntary_role_count : 0;
 
   $variables['paid_count'] = Markup::create(
-    "<span class=\"directory-paid-role-count directory-icon chip\"><span class=\"material-icons\">work</span>{$paid_count}</span>"
+    "<span class=\"directory-paid-role-count directory-icon\"><span class=\"material-icons\">work</span>{$paid_count}</span>"
   );
   $variables['vol_count'] = Markup::create(
-    "<span class=\"directory-vol-role-count directory-icon chip\"><span class=\"material-icons\">emoji_people</span>{$vol_count}</span>"
+    "<span class=\"directory-vol-role-count directory-icon\"><span class=\"material-icons\">emoji_people</span>{$vol_count}</span>"
   );
 
   /** @var \Drupal\flag\FlagLinkBuilderInterface $link_builder */
@@ -114,7 +114,7 @@ function cj_material_preprocess_views_view_fields__employer_directory(&$variable
 
   if (empty($variables['like_count']['#theme'])) {
     $variables['like_count'] = Markup::create(
-      "<span class=\"directory-like-count directory-icon chip\">".(isset($row->like_count) ? $row->like_count : 0)."</span>"
+      "<span class=\"directory-like-count directory-icon\">".(isset($row->like_count) ? $row->like_count : 0)."</span>"
     );
   }
 }

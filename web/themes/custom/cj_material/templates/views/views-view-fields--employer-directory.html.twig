@@ -40,18 +40,26 @@
     {% endif %}
   </div>
   <div class="card-column-right card-column-stretch main">
-    <div class="card-item card-title">
+    <div class="card-item card-title visible-md pb-0">
       <h3>{{ fields.employer_name.content }}</h3>
-      <span class="subtitle">{{ fields.employer_website.content }}</span>
+      {%  if fields.employer_website %}
+        <span class="subtitle">{{ fields.employer_website.content }}</span>
+      {%  endif %}
     </div>
     <div class="card-item card-text">
       <div class="row">
-        {% set extra_fields = fields|without('logo','employer_name', 'employer_description_summary', 'employer_description', 'employer_website') %}
-        <div class="col-xs-12 col-sm-12 {% if extra_fields is empty -%}col-md-12 col-lg-12{%- else -%}col-md-8 col-lg-8{%- endif %} first-md">
+        {% set extra_fields = fields|without('logo', 'employer_name', 'employer_description_summary', 'employer_description', 'employer_website') %}
+        <div class="col-xs-12 col-sm-12 {% if extra_fields is empty -%}col-md-12 col-lg-12{%- else -%}col-md-8 col-lg-8{%- endif %} first-md description-container">
           {{ fields.employer_description_summary.content }}
         </div>
         {% if extra_fields is not empty -%}
-          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 first-sm first-xs">
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 first-sm first-xs extra-fields-container">
+            <div class="hidden-md">
+              <h3>{{ fields.employer_name.content }}</h3>
+              {%  if fields.employer_website %}
+                <span class="subtitle">{{ fields.employer_website.content }}</span>
+              {% endif %}
+            </div>
             {% for field in extra_fields -%}
               {{ field.separator }}
               {%- if field.wrapper_element -%}

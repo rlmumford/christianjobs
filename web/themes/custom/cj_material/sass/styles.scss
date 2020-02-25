@@ -31,7 +31,7 @@ strong {
   font-size: 20px;
   font-family: Montserrat;
   font-weight: bold;
-  line-height: 2em;
+  line-height: 1em;
 }
 
 p, h4 {
@@ -53,8 +53,8 @@ h1:after {
   height: 6px;
   position: absolute;
   left: -20px;
+  right: -20px;
   bottom: 0px;
-  width: 1200px;
 }
 
 h3 {
@@ -100,22 +100,15 @@ a.card {
   position: relative;
 }
 
-.chip {
+.directory-icon {
   display: inline-block;
   height: 32px;
-  padding: 0 12px;
-  border-radius: 32px;
-  margin-right: 8px;
-  background: rgba(35,47,52,0.12);
+  padding-left: 20px;
   line-height: 32px;
   font-size: 13px;
 }
 
-.chip:hover {
-  background: rgba(35,47,52,0.24);
-}
-
-.chip .material-icons {
+.directory-icon .material-icons {
   display: block;
   float: left;
   width: 32px;
@@ -123,11 +116,12 @@ a.card {
   height: 32px;
   line-height: 32px;
   border-radius: 50%;
+  color: #FF9049;
 }
 
 .directory-like-count::before {
   content: '';
-  background-image: url(../assets/icon/heart_empty-black.png);
+  background-image: url(../assets/icon/heart_empty-orange.png);
   background-size: 24px;
   background-repeat: no-repeat;
   background-position: center;
@@ -139,7 +133,7 @@ a.card {
 }
 
 .action-unflag .directory-like-count::before {
-  background-image: url(../assets/icon/heart_full-black.png);
+  background-image: url(../assets/icon/heart_full-orange-copy.png);
 }
 
 .flag-employer-like .ajax-progress {
@@ -469,7 +463,7 @@ div#main-content {
   color: #1E5168;
 }
 .path-frontpage .header-front span.tagline {
-  font-size: 1.1em;
+  font-size: 1.3em;
   color: #1E5168;
 }
 .header-front-ctas .button-cta {
@@ -703,6 +697,7 @@ h2.company-name {
   box-shadow: none;
   position: relative;
   padding-top: 0.5em;
+  padding-bottom: 0.8em;
 }
 .job-result:before {
   background: #FF904B;
@@ -710,8 +705,8 @@ h2.company-name {
   height: 6px;
   position: absolute;
   left: -20px;
+  right: -20px;
   top: 0px;
-  width: 1200px;
 }
 .job-result .subtitle.employer-name a {
   color: #1E5168;
@@ -1039,8 +1034,8 @@ span.upsell-price .tax {
   content: "";
   height: 6px;
   left: 0px;
+  right: 0px;
   position: absolute;
-  width: 1200px;
 }
 .section-wrapper-header {
   position: relative;
@@ -1421,7 +1416,7 @@ form#views-exposed-form-job-board-page,
 form#views-exposed-form-employer-directory-page {
   border-radius: 0;
   box-shadow: none;
-  padding: 10px;
+  padding: 12px;
 
   .card-actions, .form-actions {
     text-align: center;
@@ -1429,8 +1424,6 @@ form#views-exposed-form-employer-directory-page {
     input.button {
       font-size: 1.2em;
       height: 50px;
-      margin-bottom: 30px;
-      margin-top: -10px;
     }
   }
 
@@ -1737,8 +1730,8 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   margin: 0 12px;
 }
 .collapsible-filter-block {
-  margin-bottom: 1em;
-  border-radius: 1em;
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
   overflow: hidden;
   padding-bottom: 1em;
 }
@@ -1767,14 +1760,66 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   margin-top: -19px;
   left: 10px;
 }
-.collapsible-filter-block.collapsible-filter-block-processed.collapsible-filter-block-expanded > h2 {
-  margin-bottom: 1em;
-}
-.collapsible-filter-block.collapsible-filter-block-processed.collapsible-filter-block-expanded {
-  padding-bottom: 1em;
-}
+
 .collapsible-filter-block.collapsible-filter-block-expanded > h2:before {
   content: url(../assets/icon/minus_white.png);
+}
+
+
+
+.collapsible-filter-block-expanded {
+   > * h2 {
+    font-size: 20px;
+    color: rgba(0,0,0,0.54);
+  }
+}
+
+.block-facet--checkbox {
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.facets-widget-checkbox {
+  background-color: #F6F4F4;
+  border: 1px solid;
+  border-color: rgba(0,0,0,0.25);
+}
+
+.extra-fields-container {
+  background-color: #F6F4F4;
+  padding: 20px;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  span.views-label {
+    font-family: Montserrat;
+    font-weight: bolder;
+    color: #49BCFB;
+    display: table;
+    line-height: 2em;
+  }
+}
+
+.description-container {
+  margin-top: 20px;
+}
+
+.company-info-container {
+  background-color: #F6F4F4;
+  box-shadow: none;
+  margin: 15px;
+  padding-top: 0;
+
+  .field-label {
+    font-family: Montserrat;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: #49BCFB;
+    display: table;
+  }
 }
 
 .facets-widget-checkbox ul {
@@ -1784,6 +1829,11 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   overflow-y: scroll;
   margin: 0;
 }
+
+.field-name-employer-description {
+  padding-left: 20px;
+}
+
 .facets-widget-checkbox ul ul {
   overflow-y: auto;
   margin-left: 1em;
@@ -1792,6 +1842,7 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
 
 input.facets-checkbox {
   max-width: 18px;
+  margin-left: 8px;
 }
 
 li.facet-item {
