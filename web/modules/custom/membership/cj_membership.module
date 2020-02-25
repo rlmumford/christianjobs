@@ -30,10 +30,20 @@ function cj_membership_cron() {
  */
 function cj_membership_form_user_register_form_alter(array &$form, FormStateInterface $form_state) {
   $cookies = \Drupal::request()->cookies;
-  if ($cookies->get('Drupal_visitor_membershipPurchaseRegister') || $form_state->get('membership_purchase_register')) {
-    $form_state->set('membership_purchase_register', TRUE);
+  if (
+    $cookies->get('Drupal_visitor_membershipPurchaseRegister') || $form_state->get('membership_purchase_register') ||
+    $cookies->get('Drupal_visitor_volunteerPostRegister') || $form_state->get('volunteer_post_register')
+  ) {
+    if ($cookies->get('Drupal_visitor_membershipPurchaseRegister') || $form_state->get('membership_purchase_register')) {
+      $form_state->set('membership_purchase_register', TRUE);
+    }
+    if ($cookies->get('Drupal_visitor_volunteerPostRegister') || $form_state->get('volunteer_post_register')) {
+      $form_state->set('volunteer_post_register');
+    }
+
     $form['actions']['submit']['#submit'][] = 'cj_membership_user_register_form_submit_redirect';
   }
+
 }
 
 /**
@@ -49,9 +59,13 @@ function cj_membership_user_register_form_submit_redirect(array $form, FormState
     'user' => $user->id(),
   ]);
 
-  $cookies = [
-    'membershipPurchaseRegister' => TRUE,
-  ];
+  $cookies = [];
+  if ($form_state->get('membership_purchase_register')) {
+    $cookies['membershipPurchaseRegister'] = TRUE;
+  }
+  if ($form_state->get('volunteer_post_register')) {
+    $cookies['volunteerPostRegister'] = TRUE;
+  }
   user_cookie_save($cookies);
 }
 
@@ -63,6 +77,10 @@ function cj_membership_form_user_employer_details_form_alter(array &$form, FormS
     $form['actions']['submit']['#value'] = new TranslatableMarkup('Save & Purchase Membership');
     $form['actions']['submit']['#submit'][] = 'cj_membership_user_employer_details_form_submit_redirect';
   }
+  if (\Drupal::request()->cookies->get('Drupal_visitor_volunteerPostRegister')) {
+    $form['actions']['submit']['#value'] = new TranslatableMarkup('Save & Post Role');
+    $form['actions']['submit']['#submit'][] = 'cj_membership_user_employer_details_form_submit_volunteer_redirect';
+  }
 }
 
 /**
@@ -71,4 +89,72 @@ function cj_membership_form_user_employer_details_form_alter(array &$form, FormS
 function cj_membership_user_employer_details_form_submit_redirect(array $form, FormStateInterface $form_state) {
   $form_state->setRedirect('membership.purchase');
   user_cookie_delete('membershipPurchaseRegister');
+}
+
+/**
+ * Redirect the employer details form to the job post form in correct circumstances.
+ */
+function cj_membership_user_employer_details_form_submit_volunteer_redirect(array $form, FormStateInterface $form_state) {
+  $form_state->setRedirect('volunteer_board.post');
+  user_cookie_delete('volunteerPostRegister');
+}
+
+/**
+ * Implements hook_form_views_exposed_form_alter().
+ */
+function cj_membership_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state) {
+  if (strpos($form['#id'],'views-exposed-form-volunteer-board') === 0) {
+    $form['actions']['submit']['#value'] = new TranslatableMarkup('Search');
+
+    if (!empty($form['location_geo__proximity'])) {
+      $form['location_geo__proximity']['#type'] = 'container';
+      $form['location_geo__proximity']['value']['#title'] = 'Location';
+      $form['location_geo__proximity']['value']['#description'] = NULL;
+      $form['location_geo__proximity']['value']['#size'] = 5;
+      $form['location_geo__proximity']['value']['#wrapper_attributes']['class'] = ['distance-container'];
+      $form['location_geo__proximity']['value']['#field_prefix'] = new TranslatableMarkup('Within');
+      $form['location_geo__proximity']['value']['#field_suffix'] = new TranslatableMarkup(' miles of ');
+      $form['location_geo__proximity']['source_configuration']['origin']['#title'] = NULL;
+      $form['location_geo__proximity']['source_configuration']['#attributes']['class'] = ['origin-container'];
+    }
+
+    $form['#attributes']['class'][] = 'card';
+    $form['actions']['#attributes']['class'] = [
+      'card-item',
+      'card-actions',
+      'divider-top'
+    ];
+    $form['filters'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['row', 'card-item', 'card-text'],
+      ],
+    ];
+    $form['filters']['label'] = $form['label'];
+    unset($form['label']);
+    $form['filters']['label']['#title'] = $form['#info']['filter-label']['label'];
+    $form['filters']['label']['#prefix'] = '<div class="col-xs-12 col-md-6">';
+    $form['filters']['label']['#suffix'] = '</div>';
+
+    $form['filters']['organisation'] = $form['organisation'];
+    unset($form['organisation']);
+    $form['filters']['organisation']['#title'] = $form['#info']['filter-organisation']['label'];
+    $form['filters']['organisation']['#prefix'] = '<div class="col-xs-12 col-md-6">';
+    $form['filters']['organisation']['#suffix'] = '</div>';
+
+    $form['filters']['location_geo__proximity'] = $form['location_geo__proximity'];
+    unset($form['location_geo__proximity']);
+    $form['filters']['location_geo__proximity']['#prefix'] = '<div class="col-xs-12 col-md-7">';
+    $form['filters']['location_geo__proximity']['#suffix'] = '</div>';
+    $form['filters']['location_geo__proximity']['#attributes']['class'] = [
+      'form-item',
+      'proximity-filter-container'
+    ];
+
+    $form['filters']['industry'] = $form['industry'];
+    unset($form['industry']);
+    $form['filters']['industry']['#title'] = $form['#info']['filter-industry']['label'];
+    $form['filters']['industry']['#prefix'] = '<div class="col-xs-6 col-md-3">';
+    $form['filters']['industry']['#suffix'] = '</div>';
+  }
 }

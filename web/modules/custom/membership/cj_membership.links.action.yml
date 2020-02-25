@@ -1,0 +1,16 @@
+volunteer_board.post_job:
+  route_name: volunteer_board.post
+  title: 'Post a Role'
+  appears_on:
+    - view.volunteer_board.list_page
+    - view.volunteer_board.map_page
+entity.volunteer_role.edit:
+  route_name: entity.volunteer_role.edit_form
+  title: 'Edit'
+  appears_on:
+    - entity.volunteer_role.canonical
+entity.volunteer_role.delete:
+  route_name: entity.volunteer_role.delete_form
+  title: 'Delete'
+  appears_on:
+    - entity.volunteer_role.canonical

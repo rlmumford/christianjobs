@@ -73,6 +73,7 @@
         "drupal/fontawesome": "^2.2",
         "drupal/geocoder": "^2.0@beta",
         "drupal/geofield": "^1.0@beta",
+        "drupal/geofield_map": "^2.57",
         "drupal/google_analytics": "^2.3",
         "drupal/legal": "^1.0@beta",
         "drupal/mailgun": "^1.0@RC",

@@ -997,3 +997,52 @@ function job_board_update_8025() {
   // Clear plugin manager caches.
   \Drupal::getContainer()->get('plugin.cache_clearer')->clearCachedDefinitions();
 }
+
+function job_board_update_8026() {
+  /** @var \Drupal\Core\Extension\ModuleInstallerInterface $module_installer */
+  $module_installer = \Drupal::service('module_installer');
+  $module_installer->uninstall(['cshs']);
+  $module_installer->install(['geofield_map']);
+
+  // Clear plugin manager caches.
+  \Drupal::getContainer()->get('plugin.cache_clearer')->clearCachedDefinitions();
+
+  $source = new FileStorage(drupal_get_path('module', 'job_board') . '/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  /** @var \Drupal\Core\Config\ConfigManagerInterface $config_manager */
+  $config_manager = \Drupal::service('config.manager');
+  $configs_to_install = [
+    'views.view.directory_map',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config = new Config($name, \Drupal::service('config.storage'), \Drupal::service('event_dispatcher'), \Drupal::service('config.typed'));
+    $config->setData($source->read($name));
+
+    if ($entity_type = $config_manager->getEntityTypeIdByName($name)) {
+      /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
+      $entity_storage = $config_manager->getEntityManager()->getStorage($entity_type);
+
+      $id = $entity_storage->getIDFromConfigName($name, $entity_storage->getEntityType()->getConfigPrefix());
+      if ($config_storage->exists($name)) {
+        /** @var \Drupal\Core\Config\Entity\ConfigEntityBase $entity */
+        $entity = $entity_storage->load($id);
+        $entity = $entity_storage->updateFromStorageRecord($entity, $config->get());
+      }
+      else {
+        $entity = $entity_storage->createFromStorageRecord($config->get());
+      }
+
+      if ($entity->isInstallable()) {
+        $entity->trustData()->save();
+      }
+    }
+    else {
+      $config->save();
+    }
+  }
+
+  // Clear plugin manager caches.
+  \Drupal::getContainer()->get('plugin.cache_clearer')->clearCachedDefinitions();
+}

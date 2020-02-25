@@ -28,7 +28,8 @@ use Drupal\user\EntityOwnerTrait;
  *     "access" = "Drupal\cj_membership\Entity\VolunteerRoleAccessControlHandler",
  *     "permission_provider" = "Drupal\cj_membership\Entity\VolunteerRolePermissionProvider",
  *     "form" = {
- *       "default" = "Drupal\cj_membership\Form\VolunteerRoleForm"
+ *       "default" = "Drupal\cj_membership\Form\VolunteerRoleForm",
+ *       "post" = "Drupal\cj_membership\Form\VolunteerRolePostForm"
  *     },
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "route_provider" = {
@@ -65,6 +66,16 @@ class VolunteerRole extends JobRole implements EntityOwnerInterface {
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
+    $fields['label']->setDisplayOptions('form', [
+      'weight' => -20,
+      'type' => 'text_textfield',
+    ]);
+
+    $fields['files']->setDisplayOptions('form', [
+      'type' => 'file_generic',
+      'weight' => 51,
+    ]);
+
     unset($fields['salary']);
     $fields['description_summary'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Summary'))
@@ -73,9 +84,13 @@ class VolunteerRole extends JobRole implements EntityOwnerInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('form', [
-        'weight' => -5,
+        'weight' => -10,
         'type' => 'text_textarea',
       ]);
+    $fields['description']->setDisplayOptions('form', [
+      'weight' => -9,
+      'type' => 'text_textarea',
+    ]);
 
     $fields['keywords'] = BaseFieldDefinition::create('entity_reference')
       ->setSetting('target_type', 'taxonomy_term')
@@ -154,14 +169,15 @@ class VolunteerRole extends JobRole implements EntityOwnerInterface {
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED);
     $fields['location'] = BaseFieldDefinition::create('address')
       ->setLabel(t('Location'))
+      ->setDescription(t('Where will this role be based?'))
       ->setSetting('field_overrides', [
         'givenName' => ['override' => 'hidden'],
         'additionalName' => ['override' => 'hidden'],
         'familyName' => ['override' => 'hidden'],
         'organization' => ['override' => 'hidden'],
-        'addressLine1' => ['override' => 'hidden'],
+        'addressLine1' => ['override' => 'optional'],
         'addressLine2' => ['override' => 'hidden'],
-        'postalCode' => ['override' => 'hidden'],
+        'postalCode' => ['override' => 'optional'],
         'sortingCode' => ['override' => 'hidden'],
         'dependentLocality' => ['override' => 'hidden'],
       ])
@@ -170,6 +186,7 @@ class VolunteerRole extends JobRole implements EntityOwnerInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('form', [
         'type' => 'address_default',
+        'weight' => 20,
       ]);
 
     $fields['contact_phone'] = BaseFieldDefinition::create('telephone')

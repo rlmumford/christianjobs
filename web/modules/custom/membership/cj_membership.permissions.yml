@@ -1,3 +1,9 @@
 administer volunteer roles:
   title: 'Administer Volunteer Roles'
   restrict: 'TRUE'
+post volunteer board roles:
+  title: 'Post new volunteer board roles'
+view any volunteer_role:
+  title: 'View any volunteer board roles'
+view own volunteer_role:
+  title: 'View own volunteer board roles'

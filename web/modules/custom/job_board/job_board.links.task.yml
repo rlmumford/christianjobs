@@ -1,0 +1,8 @@
+directory.list:
+  title: 'List'
+  route_name: view.employer_directory.page
+  base_route: view.employer_directory.page
+directory.map:
+  title: 'Map'
+  route_name: view.directory_map.page
+  base_route: view.employer_directory.page

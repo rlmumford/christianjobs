@@ -27,7 +27,7 @@ class VolunteerRoleAccessControlHandler extends EntityAccessControlHandler imple
   public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
     return new static(
       $entity_type,
-      $container->get('entity_type.manager')->getStorage('membership')
+      $container->get('entity_type.manager')->getStorage('cj_membership')
     );
   }
 
@@ -75,7 +75,7 @@ class VolunteerRoleAccessControlHandler extends EntityAccessControlHandler imple
       $access = $access->orIf(
         AccessResult::forbiddenIf(
           $account->id() !== $entity->getOwnerId() &&
-          (!$membership || $membership->status !== Membership::STATUS_ACTIVE)
+          (!$membership || ($membership->status->value !== Membership::STATUS_ACTIVE))
         )
           ->addCacheableDependency($entity)
           ->addCacheableDependency($entity->getOwner())
