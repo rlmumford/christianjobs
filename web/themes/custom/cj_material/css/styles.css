@@ -3472,7 +3472,7 @@ a.card, .content-card a.card-holder {
   position: relative;
 }
 
-.chip {
+.directory-icon {
   display: inline-block;
   height: 32px;
   padding-left: 20px;
@@ -3480,7 +3480,7 @@ a.card, .content-card a.card-holder {
   font-size: 13px;
 }
 
-.chip .material-icons, .chip .breadcrumb ol li:not(:last-child):after, .breadcrumb ol .chip li:not(:last-child):after, .chip .info:before, .chip .important:before, .chip .form-item input[type=checkbox]:before, .form-item .chip input[type=checkbox]:before, .chip .form-item input[type=radio]:before, .form-item .chip input[type=radio]:before, .chip .form-item.form-type-select:after, .chip .navbar-account-menu .menu a:before, .navbar-account-menu .menu .chip a:before, .chip .sidebar .menu .collapsed > a:after, .sidebar .menu .chip .collapsed > a:after, .chip .sidebar .menu .expanded > a:after, .sidebar .menu .chip .expanded > a:after, .chip .collapsible-toggle:before, .chip .pager .pager-item.item-first > a:before, .pager .chip .pager-item.item-first > a:before, .chip .pager .pager-item.item-first > span:before, .pager .chip .pager-item.item-first > span:before, .chip .pager .pager-item.item-previous > a:before, .pager .chip .pager-item.item-previous > a:before, .chip .pager .pager-item.item-previous > span:before, .pager .chip .pager-item.item-previous > span:before, .chip .pager .pager-item.item-ellipsis > a:before, .pager .chip .pager-item.item-ellipsis > a:before, .chip .pager .pager-item.item-ellipsis > span:before, .pager .chip .pager-item.item-ellipsis > span:before, .chip .pager .pager-item.item-next > a:before, .pager .chip .pager-item.item-next > a:before, .chip .pager .pager-item.item-next > span:before, .pager .chip .pager-item.item-next > span:before, .chip .pager .pager-item.item-last > a:before, .pager .chip .pager-item.item-last > a:before, .chip .pager .pager-item.item-last > span:before, .pager .chip .pager-item.item-last > span:before, .chip .messages-status:before, .chip .messages-warning:before, .chip .messages-error:before {
+.directory-icon .material-icons, .directory-icon .breadcrumb ol li:not(:last-child):after, .breadcrumb ol .directory-icon li:not(:last-child):after, .directory-icon .info:before, .directory-icon .important:before, .directory-icon .form-item input[type=checkbox]:before, .form-item .directory-icon input[type=checkbox]:before, .directory-icon .form-item input[type=radio]:before, .form-item .directory-icon input[type=radio]:before, .directory-icon .form-item.form-type-select:after, .directory-icon .navbar-account-menu .menu a:before, .navbar-account-menu .menu .directory-icon a:before, .directory-icon .sidebar .menu .collapsed > a:after, .sidebar .menu .directory-icon .collapsed > a:after, .directory-icon .sidebar .menu .expanded > a:after, .sidebar .menu .directory-icon .expanded > a:after, .directory-icon .collapsible-toggle:before, .directory-icon .pager .pager-item.item-first > a:before, .pager .directory-icon .pager-item.item-first > a:before, .directory-icon .pager .pager-item.item-first > span:before, .pager .directory-icon .pager-item.item-first > span:before, .directory-icon .pager .pager-item.item-previous > a:before, .pager .directory-icon .pager-item.item-previous > a:before, .directory-icon .pager .pager-item.item-previous > span:before, .pager .directory-icon .pager-item.item-previous > span:before, .directory-icon .pager .pager-item.item-ellipsis > a:before, .pager .directory-icon .pager-item.item-ellipsis > a:before, .directory-icon .pager .pager-item.item-ellipsis > span:before, .pager .directory-icon .pager-item.item-ellipsis > span:before, .directory-icon .pager .pager-item.item-next > a:before, .pager .directory-icon .pager-item.item-next > a:before, .directory-icon .pager .pager-item.item-next > span:before, .pager .directory-icon .pager-item.item-next > span:before, .directory-icon .pager .pager-item.item-last > a:before, .pager .directory-icon .pager-item.item-last > a:before, .directory-icon .pager .pager-item.item-last > span:before, .pager .directory-icon .pager-item.item-last > span:before, .directory-icon .messages-status:before, .directory-icon .messages-warning:before, .directory-icon .messages-error:before {
   display: block;
   float: left;
   width: 32px;
@@ -3488,15 +3488,12 @@ a.card, .content-card a.card-holder {
   height: 32px;
   line-height: 32px;
   border-radius: 50%;
-}
-
-span.material-icons, span.info:before, span.important:before, span.form-item.form-type-select:after, span.collapsible-toggle:before, .pager .pager-item.item-first > span:before, .pager .pager-item.item-previous > span:before, .pager .pager-item.item-ellipsis > span:before, .pager .pager-item.item-next > span:before, .pager .pager-item.item-last > span:before, span.messages-status:before, span.messages-warning:before, span.messages-error:before {
   color: #FF9049;
 }
 
 .directory-like-count::before {
   content: "";
-  background-image: url(../assets/icon/heart_empty-orange-copy.png);
+  background-image: url(../assets/icon/heart_empty-orange.png);
   background-size: 24px;
   background-repeat: no-repeat;
   background-position: center;
@@ -3833,7 +3830,7 @@ div#main-content {
 }
 
 .path-frontpage .header-front span.tagline {
-  font-size: 1.1em;
+  font-size: 1.3em;
   color: #1E5168;
 }
 
@@ -4821,7 +4818,7 @@ form#views-exposed-form-job-board-page,
 form#views-exposed-form-employer-directory-page {
   border-radius: 0;
   box-shadow: none;
-  padding: 13px;
+  padding: 12px;
 }
 form#views-exposed-form-job-board-page .card-actions, form#views-exposed-form-job-board-page .form-actions,
 form#views-exposed-form-employer-directory-page .card-actions,
@@ -5150,19 +5147,14 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   content: url(../assets/icon/minus_white.png);
 }
 
-.col-xs-12.col-md-6.layout__region.layout__region--first {
-  padding-left: 25px;
-  padding-right: 25px;
-}
-
 .collapsible-filter-block-expanded > * h2 {
   font-size: 20px;
   color: rgba(0, 0, 0, 0.54);
 }
 
-.col-xs-12.col-md-6.layout__region.layout__region--second {
-  padding-right: 25px;
-  padding-left: 25px;
+.block-facet--checkbox {
+  padding-right: 12px;
+  padding-left: 12px;
 }
 
 .facets-widget-checkbox {
