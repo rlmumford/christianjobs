@@ -82,17 +82,13 @@
 
     <main role="main" id="main" class="section-wrapper row-wrapper">
       <div id="main-content" tabindex="-1" class="section">{# link is in html.html.twig #}
+        {{ page.breadcrumb }}
+        {{ page.highlighted }}
+        {{ page.help }}
 
-        <div class="card-holder">
-          {{ page.breadcrumb }}
-          {{ page.highlighted }}
-          {{ page.help }}
-
-          <div class="layout-content">
-            {{ page.content }}
-          </div>{# /.layout-content #}
-
-        </div>{# /.card-holder #}
+        <div class="layout-content">
+          {{ page.content }}
+        </div>{# /.layout-content #}
 
         {% if page.content_secondary %}
           <div id="content-secondary">
