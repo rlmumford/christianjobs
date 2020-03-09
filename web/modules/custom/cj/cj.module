@@ -52,6 +52,13 @@ function cj_form_user_register_form_alter(array &$form, FormStateInterface $form
   if ($cookies->get('Drupal_visitor_jobPostRegister') || $form_state->get('job_post_register')) {
     $form['account']['account_type']['#default_value'] = 'employer';
   }
+  if ($cookies->get('Drupal_visitor_volunteerPostRegister') || $form_state->get('volunteer_post_register')) {
+    $form['account']['account_type']['#default_value'] = 'employer';
+  }
+  if ($cookies->get('Drupal_visitor_membershipPurchaseRegister') || $form_state->get('membership_purchase_register')) {
+    $form['account']['account_type']['#default_value'] = 'employer';
+  }
+  
 
   $form['account']['org_name'] = [
     '#type' => 'textfield',

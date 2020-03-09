@@ -38,7 +38,7 @@ function cj_membership_form_user_register_form_alter(array &$form, FormStateInte
       $form_state->set('membership_purchase_register', TRUE);
     }
     if ($cookies->get('Drupal_visitor_volunteerPostRegister') || $form_state->get('volunteer_post_register')) {
-      $form_state->set('volunteer_post_register');
+      $form_state->set('volunteer_post_register', TRUE);
     }
 
     $form['actions']['submit']['#submit'][] = 'cj_membership_user_register_form_submit_redirect';

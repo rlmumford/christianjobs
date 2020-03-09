@@ -45,6 +45,7 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
       $form['membership']['new'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Become a Christian Jobs Directory Member <span class="upsell-price pull-right orange-triangle">£295<span class="tax">+VAT</span></span>'),
+        '#default_value' => TRUE,
         '#attributes' => [
           'class' => ['membership-checkbox'],
         ],
@@ -60,6 +61,7 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
             '@price' => $membership->level->value > Membership::LEVEL_DIRECTORY ? '£595' : '£295',
           ]
         ),
+        '#default_value' => TRUE,
         '#attributes' => [
           'class' => ['membership-checkbox'],
         ],

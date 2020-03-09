@@ -280,7 +280,8 @@ class VolunteerRole extends JobRole implements EntityOwnerInterface {
 
     // First get the tem for the country.
     $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
-    if (!($term = reset($term_storage->loadByProperties(['vid' => 'locations', 'name' => $data->properties->country])))) {
+    $lterms = $term_storage->loadByProperties(['vid' => 'locations', 'name' => $data->properties->country]);
+    if (!($term = reset($lterms))) {
       $term = $term_storage->create([
         'vid' => 'locations',
         'name' => $data->properties->country,
@@ -290,7 +291,8 @@ class VolunteerRole extends JobRole implements EntityOwnerInterface {
     $terms[] = $term;
 
     foreach ($data->properties->adminLevels as $level) {
-      if (!($next_term = reset($term_storage->loadByProperties(['vid' => 'locations', 'name' => $level->name, 'parent' => $term->id()])))) {
+      $lterms = $term_storage->loadByProperties(['vid' => 'locations', 'name' => $level->name, 'parent' => $term->id()]);
+      if (!($next_term = reset($lterms))) {
         $next_term = $term_storage->create([
           'vid' => 'locations',
           'name' => $level->name,

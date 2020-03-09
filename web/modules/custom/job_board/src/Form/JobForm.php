@@ -35,28 +35,32 @@ class JobForm extends ContentEntityForm {
       '#default_value' => $this->entity->location_type->value,
     ];
 
-    $form['salary']['widget'][0]['compensation'] = [
-      '#type' => 'select',
-      '#weight' => -1,
-      '#title' => new TranslatableMarkup('Type'),
-      '#options' => [
-        'volunteer' => t('Volunteer'),
-        'apprentice' => t('Apprentice'),
-        'pro_rate' => t('Pro-Rata'),
-        'salaried' => t('Salaried'),
-        'self_funded' => t('Self-Funded'),
-      ],
-      '#default_value' => $this->entity->compensation->value,
-    ];
-    $form['compensation']['#access'] = FALSE;
-    $form['salary']['widget'][0]['hours'] = [
-      '#type' => 'select',
-      '#weight' => -1,
-      '#title' => new TranslatableMarkup('Hours'),
-      '#options' => $form['hours']['widget']['#options'],
-      '#default_value' => $this->entity->hours->value,
-    ];
-    $form['hours']['#access'] = FALSE;
+    if (isset($form['compensation'])) {
+      $form['salary']['widget'][0]['compensation'] = [
+        '#type' => 'select',
+        '#weight' => -1,
+        '#title' => new TranslatableMarkup('Type'),
+        '#options' => [
+          'volunteer' => t('Volunteer'),
+          'apprentice' => t('Apprentice'),
+          'pro_rate' => t('Pro-Rata'),
+          'salaried' => t('Salaried'),
+          'self_funded' => t('Self-Funded'),
+        ],
+        '#default_value' => $this->entity->compensation ? $this->entity->compensation->value : NULL,
+      ];
+      $form['compensation']['#access'] = FALSE;
+    }
+    if (isset($form['hours'])) {
+      $form['salary']['widget'][0]['hours'] = [
+        '#type' => 'select',
+        '#weight' => -1,
+        '#title' => new TranslatableMarkup('Hours'),
+        '#options' => $form['hours']['widget']['#options'],
+        '#default_value' => $this->entity->hours ? $this->entity->hours->value : NULL,
+      ];
+      $form['hours']['#access'] = FALSE;
+    }
 
     // Move the contact_ fields into their own section.
     $form['contact_details'] = [
