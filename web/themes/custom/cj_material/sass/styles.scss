@@ -21,10 +21,22 @@ h1, h2 {
 h1, .h1 {
   text-transform: uppercase;
   margin-top: 0;
-  padding-bottom: 10px;
-  font-size: 40px;
-  padding-bottom: 34px;
+  font-size: 28px;
+  line-height: 1em;
+  padding-bottom: 30px;
   position: relative;
+}
+h2, .h2 {
+  font-size: 18px;
+}
+
+@media (min-width: $xs) {
+  h1, .h1 {
+    font-size: 40px;
+  }
+  h2, .h2 {
+    font-size: 24px;
+  }
 }
 
 strong {
@@ -36,6 +48,11 @@ strong {
 
 p, h4 {
   padding-right: 18px;
+  padding-left: 18px;
+}
+
+p.address {
+  padding-left: 0;
 }
 
 ul.spaced{
@@ -70,6 +87,7 @@ h2 a, h3 a {
   color: #1E5168;
   text-transform: uppercase;
 }
+
 h4 {
   color: #FF904B;
   font-weight: bold;
@@ -669,7 +687,7 @@ input.button.button-orange:hover,
 }
 
 h2.company-name {
-  margin-top: -0.5em;
+  margin-top: 0em;
   text-align: center;
 }
 
@@ -922,18 +940,19 @@ span.upsell-price .tax {
   color: #FF904b;
 }
 
-#content, #actions {
+#page {
   background-color: #1E5168;
   background-image: url(../assets/ExecSearch.png);
   overflow: hidden;
   background-size: 100%;
   background-attachment: fixed;
-
 }
+
 #actions {
   overflow-y: visible;
-  margin-bottom: -10px;
+  margin-bottom: 12px;
 }
+
 #actions .region-actions {
   max-width: 1200px;
   margin: 0 auto;
@@ -942,7 +961,7 @@ span.upsell-price .tax {
   text-align: right;
 }
 #actions nav .button.button-action {
-  padding: 10px 16px;
+  padding: 6px 10px;
   min-height: 0;
 }
 
@@ -1104,11 +1123,13 @@ h2.section-header {
   padding-bottom: 0;
 }
 
-@media (min-width: $md) {
+@media (min-width: $ss) {
   .section-wrapper {
+    padding-top: 0;
     padding-bottom: 75px;
   }
 }
+
 a.job-card:hover, a.job-card:focus,
 a.partner-card:hover, a.partner-card:focus,
 article.card:hover {
@@ -1232,9 +1253,26 @@ h1.hero--title:after {
   }
 }
 
+iframe {
+  padding: 0;
+  width: 100%;
+}
+
+@media (max-width: $ss) {
+  iframe {
+    width: 50%;
+  }
+}
+
 #drawer nav ul.menu {
   display: flex;
   flex-direction: column-reverse;
+}
+
+@media (max-width: $lg) {
+  ul.menu {
+    visibility: hidden;
+  }
 }
 
 .field--name-description-summary .filter-wrapper {
@@ -1686,13 +1724,23 @@ label.option {
   }
 }
 
+.tabs ul li a {
+  background-color: #D7D5D5;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
 .tabs ul li a.is-active, ul.tabs li a.is-active {
-  border-color: #FF904B;
-  color: #FF904B;
+  background-color: #FFFFFF;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  border-color: #FFFFFF;
+  color: #2a556b;
 }
 
 .tabs ul li a:hover, ul.tabs li a:hover {
-  border-color: rgba(255, 144, 75, 0.5)
+  border-color: #FF9049;
+  color: #FF9049;
 }
 
 .form-item-account-type.btn {
@@ -1811,7 +1859,7 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   background-color: #F6F4F4;
   box-shadow: none;
   margin: 15px;
-  padding-top: 0;
+  padding-top: 20px;
 
   .field-label {
     font-family: Montserrat;
@@ -1819,6 +1867,12 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
     text-transform: uppercase;
     color: #49BCFB;
     display: table;
+  }
+}
+
+@media (min-width: $md) {
+  .company-info-container {
+    padding-top: 0px;
   }
 }
 
@@ -1849,6 +1903,34 @@ li.facet-item {
   line-height: 30px;
 }
 
+.local-tasks-tabs li {
+  background-color: #FFFFFF;
+  max-width: fit-content;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  margin-right: 5px;
+}
+
+.tabs ul li a {
+  padding: 8px 12px;
+}
+
+.region-before-main .local-tasks-tabs {
+  margin: 0 auto;
+  max-width: 1224px;
+}
+
+ul.tabs {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 form#views-exposed-form-job-board-page {
   margin-bottom: 16px;
+}
+
+@media (min-width: $xs) {
+  .navbar-title {
+    margin-left: 0px;
+  }
 }
