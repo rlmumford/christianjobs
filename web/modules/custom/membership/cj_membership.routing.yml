@@ -16,3 +16,10 @@ volunteer_board.post:
     _access: 'TRUE'
   options:
     no_cache: 'TRUE'
+entity.volunteer_role.admin_form:
+  path: '/admin/structure/volunteer_roles'
+  defaults:
+    _form: '\Drupal\cj_membership\Form\VolunteerRoleSettingsForm'
+    _title: 'Volunteer Roles'
+  requirements:
+    _permission: 'administer volunteer roles'

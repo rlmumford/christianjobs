@@ -1,0 +1,10 @@
+uuid: a5a48399-2291-473b-a371-50571960f3ab
+langcode: en
+status: true
+dependencies:
+  module:
+    - cj_membership
+id: volunteer_role.popup
+label: Popup
+targetEntityType: volunteer_role
+cache: true

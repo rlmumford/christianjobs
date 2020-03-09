@@ -1,0 +1,10 @@
+uuid: 07437db5-68ca-4fb1-b3fc-855028cf88d5
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.employer_popup
+label: 'Employer Popup'
+targetEntityType: user
+cache: true

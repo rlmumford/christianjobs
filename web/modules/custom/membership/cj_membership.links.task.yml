@@ -6,3 +6,7 @@ volunteer_board.map:
   title: 'Map'
   route_name: view.volunteer_board.map_page
   base_route: view.volunteer_board.list_page
+entity.volunteer_role.admin_form:
+  title: 'Settings'
+  route_name: entity.volunteer_role.admin_form
+  base_route: entity.volunteer_role.admin_form
