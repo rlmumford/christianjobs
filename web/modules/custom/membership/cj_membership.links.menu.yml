@@ -1,0 +1,6 @@
+entity.volunteer_role.admin_form:
+  title: 'Volunteer Roles'
+  parent: system.admin_structure
+  description: 'Configure volunteer roles.'
+  weight: -10
+  route_name: entity.volunteer_role.admin_form

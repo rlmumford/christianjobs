@@ -39,6 +39,7 @@ use Drupal\user\EntityOwnerTrait;
  *   base_table = "volunteer_role",
  *   revision_table = "volunteer_role_revision",
  *   admin_permission = "administer volunteer roles",
+ *   field_ui_base_route = "entity.volunteer_role.admin_form",
  *   links = {
  *     "canonical" = "/volunteer/{volunteer_role}",
  *     "edit-form" = "/volunteer/{volunteer_role}/edit",
