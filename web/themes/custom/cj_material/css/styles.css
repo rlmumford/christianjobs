@@ -5365,43 +5365,45 @@ form#views-exposed-form-job-board-page {
   font-weight: 300;
   font-size: 13px;
 }
-.gm-style .gm-style-iw h2, .gm-style .gm-style-iw h2 a {
-  font-size: 14px;
-  margin: 8px 0 6px 0;
-  color: #FFFFFF;
-  text-transform: uppercase;
-}
-.gm-style .gm-style-iw h2:hover, .gm-style .gm-style-iw h2 a:hover {
-  color: #569BDD;
-}
-
-.gm-style .gm-style-iw h2, .h2 {
-  line-height: 1em;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #FF9049;
-  margin-right: 16px;
-}
-
-@media (max-width: 992px) {
-  .gm-style .gm-style-iw h2, .h2 {
-    margin-right: 0px;
-  }
-}
 .gm-style .gm-style-iw p {
   padding-left: 0px;
   padding-right: 20px;
   color: #FFFFFF;
 }
-
 .gm-style .gm-style-iw .row {
   margin-left: 0px;
   margin-right: 0px;
 }
-
 .gm-style .gm-style-iw p.address {
   color: #FFFFFF;
 }
+.gm-style .gm-style-iw div:first-child {
+  padding: 0px;
+}
+.gm-style .gm-style-iw p:first-child {
+  padding-right: 20px;
+}
+.gm-style .gm-style-iw h2 {
+  border-bottom: 1px solid #FF9049;
+}
+.gm-style .gm-style-iw h2, .gm-style .gm-style-iw h2 a {
+  font-size: 14px;
+  margin: 8px 0 6px 0;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  line-height: 1em;
+  padding-bottom: 12px;
+  margin-right: 16px;
+}
+.gm-style .gm-style-iw h2:hover, .gm-style .gm-style-iw h2 a:hover {
+  color: #569BDD;
+}
 
+@media (max-width: 992px) {
+  .gm-style .gm-style-iw h2 {
+    margin-right: 0px;
+  }
+}
 .gm-style .gm-style-iw-t::before {
   background: linear-gradient(45deg, #ff9049 50%, rgba(255, 255, 255, 0) 51%, rgba(255, 255, 255, 0) 100%);
   content: "";
@@ -5412,13 +5414,8 @@ form#views-exposed-form-job-board-page {
   transform: translate(-50%, -50%) rotate(-45deg);
   width: 30px;
 }
-
 .gm-style .gm-style-iw-t::after {
   visibility: hidden;
-}
-
-.gm-style .gm-style-iw div:first-child {
-  padding: 0px;
 }
 
 .company-info-container-map .field-label {
@@ -5439,10 +5436,6 @@ form#views-exposed-form-job-board-page {
   overflow: hidden !important;
 }
 
-.gm-style .gm-style-iw p:first-child {
-  padding-right: 20px;
-}
-
 .geofield-google-map-wrapper {
   margin: 0 -20px -30px;
 }
@@ -5451,9 +5444,6 @@ form#views-exposed-form-job-board-page {
   content: url(../assets/whiteclosebutton.png) !important;
   background-size: 15px 15px;
   padding: 2px;
-}
-
-.gm-ui-hover-effect {
   opacity: 1;
 }
 

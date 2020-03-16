@@ -389,9 +389,9 @@ div.details-wrapper {
 }
 
 span.field-prefix {
-   padding-right: 5px;
-   font-size: 20px;
- }
+  padding-right: 5px;
+  font-size: 20px;
+}
 
 div.cke_focus {
   border: solid 2px #FF904B;
@@ -1999,11 +1999,41 @@ form#views-exposed-form-job-board-page {
     font-weight: 300;
     font-size: 13px;
 
+    p {
+      padding-left: 0px;
+      padding-right: 20px;
+      color: #FFFFFF;
+    }
+
+    .row {
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+
+    p.address {
+      color: #FFFFFF;
+    }
+
+    div:first-child {
+      padding: 0px;
+    }
+
+    p:first-child {
+      padding-right: 20px;
+    }
+
+    h2 {
+      border-bottom: 1px solid #FF9049;
+    }
+
     h2, h2 a {
       font-size: 14px;
       margin: 8px 0 6px 0;
       color: #FFFFFF;
       text-transform: uppercase;
+      line-height: 1em;
+      padding-bottom: 12px;
+      margin-right: 16px;
 
       &:hover {
         color: #569BDD;
@@ -2012,51 +2042,26 @@ form#views-exposed-form-job-board-page {
   }
 }
 
-.gm-style .gm-style-iw h2, .h2 {
-  line-height: 1em;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #FF9049;
-  margin-right: 16px;
-}
-
 @media (max-width: $md) {
-  .gm-style .gm-style-iw h2, .h2 {
+  .gm-style .gm-style-iw h2 {
     margin-right: 0px;
   }
 }
 
-.gm-style .gm-style-iw p {
-  padding-left: 0px;
-  padding-right: 20px;
-  color: #FFFFFF;
-}
-
-.gm-style .gm-style-iw .row {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
-.gm-style .gm-style-iw p.address {
-  color: #FFFFFF;
-}
-
-.gm-style .gm-style-iw-t::before {
-  background: linear-gradient(45deg,rgba(255, 144, 73, 1) 50%,rgba(255,255,255,0) 51%,rgba(255,255,255,0) 100%);
-  content: "";
-  height: 30px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transform: translate(-50%,-50%) rotate(-45deg);
-  width: 30px;
-}
-
-.gm-style .gm-style-iw-t::after {
-  visibility: hidden;
-}
-
-.gm-style .gm-style-iw div:first-child {
-  padding: 0px;
+.gm-style .gm-style-iw-t {
+  &::before {
+    background: linear-gradient(45deg, rgba(255, 144, 73, 1) 50%, rgba(255, 255, 255, 0) 51%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    height: 30px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 30px;
+  }
+  &::after {
+    visibility: hidden;
+  }
 }
 
 .company-info-container-map .field-label {
@@ -2078,10 +2083,6 @@ form#views-exposed-form-job-board-page {
   overflow: hidden !important;
 }
 
-.gm-style .gm-style-iw p:first-child {
-  padding-right: 20px;
-}
-
 .geofield-google-map-wrapper {
   margin: 0 -20px -30px;
 }
@@ -2090,9 +2091,6 @@ form#views-exposed-form-job-board-page {
   content: url(../assets/whiteclosebutton.png) !important;
   background-size: 15px 15px;
   padding: 2px;
-}
-
-.gm-ui-hover-effect {
   opacity: 1;
 }
 
