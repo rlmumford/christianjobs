@@ -148,8 +148,13 @@ function cj_membership_form_views_exposed_form_alter(array &$form, FormStateInte
     $form['filters']['location_geo__proximity']['#suffix'] = '</div>';
     $form['filters']['location_geo__proximity']['#attributes']['class'] = [
       'form-item',
-      'proximity-filter-container'
+      'proximity-filter-container',
+      'row',
     ];
+    $form['filters']['location_geo__proximity']['value']['#wrapper_attributes']['class'][] = 'col-xs-12';
+    $form['filters']['location_geo__proximity']['value']['#wrapper_attributes']['class'][] = 'col-md-5';
+    $form['filters']['location_geo__proximity']['source_configuration']['#attributes']['class'][] = 'col-xs-12';
+    $form['filters']['location_geo__proximity']['source_configuration']['#attributes']['class'][] = 'col-md-7';
 
     $form['filters']['industry'] = $form['industry'];
     unset($form['industry']);

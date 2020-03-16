@@ -4683,9 +4683,17 @@ div.proximity-filter-container div.distance-container input {
   width: 50px;
 }
 
+.distance-container span.field-prefix {
+  font-size: 16px;
+}
+
+.distance-container {
+  width: 200px;
+}
+
 div.origin-container {
   display: inline-block;
-  width: 62%;
+  padding-top: 32px;
 }
 
 @media (max-width: 1256px) {
@@ -4695,12 +4703,14 @@ div.origin-container {
 }
 @media (max-width: 992px) {
   div.origin-container {
-    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 @media (max-width: 568px) {
   div.origin-container {
-    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 #sliding-popup h1, #sliding-popup h2, #sliding-popup h3, #sliding-popup p,
@@ -5057,7 +5067,7 @@ strong {
 
 div.distance-container input[type=number] {
   margin-right: 5px;
-  max-width: 30%;
+  max-width: 44%;
 }
 
 .form-item, .views-exposed-form {
@@ -5336,11 +5346,6 @@ form#views-exposed-form-job-board-page {
   }
 }
 .gm-style .gm-style-iw-c {
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -100%);
   background-color: rgba(42, 85, 107, 0.85);
   border: 2px solid #FF9049;
   border-radius: 0px;
@@ -5348,6 +5353,21 @@ form#views-exposed-form-job-board-page {
   padding-right: 20px !important;
   padding-bottom: 12px !important;
   box-shadow: none !important;
+}
+.gm-style .gm-style-iw-c .directory-vol-role-count {
+  color: #FFFFFF;
+}
+.gm-style .gm-style-iw-c .directory-like-count {
+  color: #FFFFFF;
+}
+.gm-style .gm-style-iw-c .directory-paid-role-count {
+  padding-left: 0;
+  color: #FFFFFF;
+}
+@media (max-width: 992px) {
+  .gm-style .gm-style-iw-c .field-name-employer-description-summary {
+    display: none;
+  }
 }
 
 .gm-style .gm-style-iw {
@@ -5362,7 +5382,7 @@ form#views-exposed-form-job-board-page {
   color: #FFFFFF;
 }
 .gm-style .gm-style-iw h2 a:hover {
-  color: #569bdd;
+  color: #569BDD;
 }
 
 .gm-style .gm-style-iw h2 {
@@ -5372,7 +5392,7 @@ form#views-exposed-form-job-board-page {
   text-transform: uppercase;
 }
 .gm-style .gm-style-iw h2:hover {
-  color: #569bdd;
+  color: #569BDD;
 }
 
 .gm-style .gm-style-iw h2, .h2 {
@@ -5443,19 +5463,10 @@ form#views-exposed-form-job-board-page {
   padding-right: 20px;
 }
 
-.distance-container span.field-prefix {
-  font-size: 16px;
-}
-
 .geofield-google-map-wrapper {
   margin: 0 -20px -30px;
 }
 
-@media (max-width: 992px) {
-  .field-name-employer-description-summary {
-    display: none;
-  }
-}
 .gm-ui-hover-effect img {
   content: url(../assets/whiteclosebutton.png) !important;
   background-size: 15px 15px;
@@ -5466,21 +5477,8 @@ form#views-exposed-form-job-board-page {
   opacity: 1;
 }
 
-.directory-paid-role-count {
-  padding-left: 0;
-  color: #FFFFFF;
-}
-
-.directory-vol-role-count {
-  color: #FFFFFF;
-}
-
 .flag-employer-like {
   display: inline-block;
-}
-
-.directory-like-count {
-  color: #FFFFFF;
 }
 
 .geofield-google-map-ajax-popup {
@@ -5495,9 +5493,6 @@ form#views-exposed-form-job-board-page {
   100% {
     transform: rotate(180deg);
   }
-}
-.distance-container {
-  width: 200px;
 }
 
 /*# sourceMappingURL=styles.css.map */

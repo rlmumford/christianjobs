@@ -1300,9 +1300,17 @@ div.proximity-filter-container {
   }
 }
 
+.distance-container span.field-prefix {
+  font-size: 16px;
+}
+
+.distance-container {
+  width: 200px;
+}
+
 div.origin-container {
   display: inline-block;
-  width: 62%;
+  padding-top: 32px;
 }
 
 @media (max-width: $lg) {
@@ -1313,13 +1321,15 @@ div.origin-container {
 
 @media (max-width: $md) {
   div.origin-container {
-    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
 @media (max-width: $xs) {
   div.origin-container {
-    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
@@ -1669,7 +1679,7 @@ strong {
 
 div.distance-container input[type="number"] {
   margin-right: 5px;
-  max-width: 30%;
+  max-width: 44%;
 }
 
 .form-item, .views-exposed-form {
@@ -1888,10 +1898,7 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
 }
 
 .company-info-container {
-  //background-color: #F6F4F4;
   box-shadow: none;
-  //margin: 15px;
-  //padding-top: 20px;
 
   .field-label {
     font-family: Montserrat;
@@ -1968,11 +1975,11 @@ form#views-exposed-form-job-board-page {
 }
 
 .gm-style .gm-style-iw-c {
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -100%);
+  //position: absolute;
+  //overflow: hidden;
+  //top: 0;
+  //left: 0;
+  //transform: translate(-50%, -100%);
   background-color: rgba(42, 85, 107, 0.85);
   border: 2px solid #FF9049;
   border-radius: 0px;
@@ -1980,6 +1987,25 @@ form#views-exposed-form-job-board-page {
   padding-right: 20px !important;
   padding-bottom: 12px !important;
   box-shadow: none !important;
+
+  .directory-vol-role-count {
+    color: #FFFFFF;
+  }
+
+  .directory-like-count {
+    color: #FFFFFF;
+  }
+
+  .directory-paid-role-count {
+    padding-left: 0;
+    color: #FFFFFF;
+  }
+
+  @media (max-width: $md) {
+    .field-name-employer-description-summary {
+      display: none;
+    }
+  }
 }
 
 .gm-style .gm-style-iw {
@@ -1994,7 +2020,7 @@ form#views-exposed-form-job-board-page {
   color: #FFFFFF;
 
   &:hover {
-    color: #569bdd;
+    color: #569BDD;
   }
 }
 
@@ -2005,7 +2031,7 @@ form#views-exposed-form-job-board-page {
   text-transform: uppercase;
 
   &:hover {
-    color: #569bdd;
+    color: #569BDD;
   }
 }
 
@@ -2079,18 +2105,8 @@ form#views-exposed-form-job-board-page {
   padding-right: 20px;
 }
 
-.distance-container span.field-prefix {
-  font-size: 16px;
-}
-
 .geofield-google-map-wrapper {
   margin: 0 -20px -30px;
-}
-
-@media (max-width: $md) {
-  .field-name-employer-description-summary {
-    display: none;
-  }
 }
 
 .gm-ui-hover-effect img {
@@ -2103,21 +2119,8 @@ form#views-exposed-form-job-board-page {
   opacity: 1;
 }
 
-.directory-paid-role-count {
-  padding-left: 0;
-  color: #FFFFFF;
-}
-
-.directory-vol-role-count {
-  color: #FFFFFF;
-}
-
 .flag-employer-like {
   display: inline-block;
-}
-
-.directory-like-count {
-  color: #FFFFFF;
 }
 
 .geofield-google-map-ajax-popup {
@@ -2132,8 +2135,4 @@ form#views-exposed-form-job-board-page {
   100% {
     transform: rotate(180deg);
   }
-}
-
-.distance-container {
-  width: 200px;
 }
