@@ -4694,20 +4694,6 @@ div.origin-container {
   padding-top: 32px;
 }
 
-@media (max-width: 992px) {
-  div.origin-container {
-    padding-top: 0px;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-}
-@media (max-width: 568px) {
-  div.origin-container {
-    padding-top: 0px;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-}
 #sliding-popup h1, #sliding-popup h2, #sliding-popup h3, #sliding-popup p,
 .eu-cookie-compliance-more-button, .eu-cookie-compliance-secondary-button, .eu-cookie-withdraw-tab {
   color: #414141;
