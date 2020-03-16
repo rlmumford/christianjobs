@@ -28,3 +28,20 @@ cj_3_9:
       label: Aside
     content:
       label: Content
+cj_6_6:
+  label: 'Two Column 6/6'
+  path: layouts/cj_6_6
+  template: layout--cj-6-6
+  category: 'Columns: 2'
+  default_region: content
+  icon_map:
+    - [top, content, aside, bottom]
+  regions:
+    top:
+      label: Top
+    content:
+      label: Content
+    aside:
+      label: Aside
+    bottom:
+      label: Bottom

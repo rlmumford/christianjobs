@@ -144,17 +144,28 @@ function cj_membership_form_views_exposed_form_alter(array &$form, FormStateInte
 
     $form['filters']['location_geo__proximity'] = $form['location_geo__proximity'];
     unset($form['location_geo__proximity']);
-    $form['filters']['location_geo__proximity']['#prefix'] = '<div class="col-xs-12 col-md-7">';
+    $form['filters']['location_geo__proximity']['#prefix'] = '<div class="col-xs-12 col-lg-6 col-md-6">';
     $form['filters']['location_geo__proximity']['#suffix'] = '</div>';
     $form['filters']['location_geo__proximity']['#attributes']['class'] = [
       'form-item',
-      'proximity-filter-container'
+      'proximity-filter-container',
+      'row',
     ];
+    $form['filters']['location_geo__proximity']['value']['#wrapper_attributes']['class'][] = 'col-xs-12';
+    $form['filters']['location_geo__proximity']['value']['#wrapper_attributes']['class'][] = 'col-md-5';
+    $form['filters']['location_geo__proximity']['source_configuration']['#attributes']['class'][] = 'col-xs-12';
+    $form['filters']['location_geo__proximity']['source_configuration']['#attributes']['class'][] = 'col-md-7';
 
     $form['filters']['industry'] = $form['industry'];
     unset($form['industry']);
     $form['filters']['industry']['#title'] = $form['#info']['filter-industry']['label'];
-    $form['filters']['industry']['#prefix'] = '<div class="col-xs-6 col-md-3">';
+    $form['filters']['industry']['#prefix'] = '<div class="col-xs-12 col-lg-6 col-md-6">';
     $form['filters']['industry']['#suffix'] = '</div>';
+  }
+}
+
+function cj_membership_volunteer_role_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  if ($build['#view_mode'] == 'popup') {
+    unset($build['label']);
   }
 }

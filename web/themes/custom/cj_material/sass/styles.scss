@@ -48,7 +48,6 @@ strong {
 
 p, h4 {
   padding-right: 18px;
-  padding-left: 18px;
 }
 
 p.address {
@@ -1283,29 +1282,34 @@ iframe {
 div.proximity-filter-container {
   div.distance-container {
     display: inline-block;
+    margin-top: 12px;
 
     span, input {
       display: inline;
-      margin-top: -2px;
+      margin-top: -5px;
     }
 
     label {
       display: block;
-      margin-top: -5px;
+      margin-top: -8px;
+      margin-bottom: 3px;
     }
 
-    input {
-      width: 50px;
+    span.field-prefix {
+      font-size: 16px;
+    }
+
+    input[type="number"] {
+      margin-right: 5px;
+      max-width: 90px;
+      height: 36px;
     }
   }
+}
 
-  div.origin-container {
-    display: inline-block;
-    max-width: 440px;
-    position: absolute;
-    margin-top: 32px;
-    margin-left: -100px;
-  }
+div.origin-container {
+  display: inline-block;
+  padding-top: 32px;
 }
 
 #sliding-popup h1, #sliding-popup h2, #sliding-popup h3, #sliding-popup p,
@@ -1451,10 +1455,12 @@ article.card a.read-more-pointer span {
 }
 
 form#views-exposed-form-job-board-page,
-form#views-exposed-form-employer-directory-page {
+form#views-exposed-form-employer-directory-page,
+form#views-exposed-form-volunteer-board-list-page {
   border-radius: 0;
   box-shadow: none;
   padding: 12px;
+  padding-bottom: 30px;
 
   .card-actions, .form-actions {
     text-align: center;
@@ -1492,7 +1498,6 @@ input.btn-accent {
 }
 .card {
   .divider-top {
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
     padding: inherit;
   }
   .divider-top:before {
@@ -1649,11 +1654,6 @@ a.btn.pull-right {
 
 strong {
   font-size: 15px;
-}
-
-div.distance-container input[type="number"] {
-  margin-right: 5px;
-  max-width: 20%;
 }
 
 .form-item, .views-exposed-form {
@@ -1855,17 +1855,30 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   margin-top: 20px;
 }
 
+.company-info-container-map {
+  padding-left: 20px !important;
+  margin-left: -10px !important;
+  background: none;
+  border-left: 1px solid #FF9049;
+  border-radius: 0px !important;
+  height: 100%;
+}
+
+@media (max-width: $md) {
+  .company-info-container-map {
+    border: none;
+    padding: 0px !important;
+  }
+}
+
 .company-info-container {
-  background-color: #F6F4F4;
   box-shadow: none;
-  margin: 15px;
-  padding-top: 20px;
 
   .field-label {
     font-family: Montserrat;
     font-weight: bolder;
     text-transform: uppercase;
-    color: #49BCFB;
+    color: #FF9049;
     display: table;
   }
 }
@@ -1932,5 +1945,153 @@ form#views-exposed-form-job-board-page {
 @media (min-width: $xs) {
   .navbar-title {
     margin-left: 0px;
+  }
+}
+
+.gm-style .gm-style-iw-c {
+  background-color: rgba(42, 85, 107, 0.85);
+  border: 2px solid #FF9049;
+  border-radius: 0px;
+  padding-left: 20px;
+  padding-right: 20px !important;
+  padding-bottom: 12px !important;
+  box-shadow: none !important;
+
+  .directory-vol-role-count {
+    color: #FFFFFF;
+  }
+
+  .directory-like-count {
+    color: #FFFFFF;
+  }
+
+  .directory-paid-role-count {
+    padding-left: 0;
+    color: #FFFFFF;
+  }
+
+  @media (max-width: $md) {
+    .field-name-employer-description-summary {
+      display: none;
+    }
+  }
+}
+
+.gm-style {
+  .gm-style-iw {
+    font-family: Lato;
+    font-weight: 300;
+    font-size: 13px;
+
+    p {
+      padding-left: 0px;
+      padding-right: 20px;
+      color: #FFFFFF;
+    }
+
+    .row {
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+
+    p.address {
+      color: #FFFFFF;
+    }
+
+    div:first-child {
+      padding: 0px;
+    }
+
+    p:first-child {
+      padding-right: 20px;
+    }
+
+    h2 {
+      border-bottom: 1px solid #FF9049;
+    }
+
+    h2, h2 a {
+      font-size: 14px;
+      margin: 8px 0 6px 0;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      line-height: 1em;
+      padding-bottom: 12px;
+      margin-right: 16px;
+
+      &:hover {
+        color: #569BDD;
+      }
+    }
+  }
+}
+
+@media (max-width: $md) {
+  .gm-style .gm-style-iw h2 {
+    margin-right: 0px;
+  }
+}
+
+.gm-style .gm-style-iw-t {
+  &::before {
+    background: linear-gradient(45deg, rgba(255, 144, 73, 1) 50%, rgba(255, 255, 255, 0) 51%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    height: 30px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 30px;
+  }
+  &::after {
+    visibility: hidden;
+  }
+}
+
+.company-info-container-map .field-label {
+  font-size: 1em;
+  font-family: Montserrat;
+  font-weight: 800;
+  color: #FF9049;
+}
+
+.company-info-container-map a {
+  color: #FFFFFF;
+
+  &:hover {
+    color: #569BDD;
+  }
+}
+
+.gm-style-iw-d {
+  overflow: hidden !important;
+}
+
+.geofield-google-map-wrapper {
+  margin: 0 -20px -30px;
+}
+
+.gm-ui-hover-effect img {
+  content: url(../assets/whiteclosebutton.png) !important;
+  background-size: 15px 15px;
+  padding: 2px;
+  opacity: 1;
+}
+
+.flag-employer-like {
+  display: inline-block;
+}
+
+.geofield-google-map-ajax-popup {
+  background: url(/themes/custom/cj_material/logo.svg);
+  background-size: 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: rotate 0.3s infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(180deg);
   }
 }
