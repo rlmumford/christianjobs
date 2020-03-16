@@ -389,9 +389,9 @@ div.details-wrapper {
 }
 
 span.field-prefix {
-  padding-right: 5px;
-  font-size: 20px;
-}
+   padding-right: 5px;
+   font-size: 20px;
+ }
 
 div.cke_focus {
   border: solid 2px #FF904B;
@@ -1286,26 +1286,25 @@ div.proximity-filter-container {
 
     span, input {
       display: inline;
-      margin-top: -2px;
+      margin-top: -5px;
     }
 
     label {
       display: block;
-      margin-top: -5px;
+      margin-top: -8px;
+      margin-bottom: 3px;
     }
 
-    input {
-      width: 50px;
+    span.field-prefix {
+      font-size: 16px;
+    }
+
+    input[type="number"] {
+      margin-right: 5px;
+      max-width: 90px;
+      height: 36px;
     }
   }
-}
-
-.distance-container span.field-prefix {
-  font-size: 16px;
-}
-
-.distance-container {
-  width: 200px;
 }
 
 div.origin-container {
@@ -1313,14 +1312,9 @@ div.origin-container {
   padding-top: 32px;
 }
 
-@media (max-width: $lg) {
-  div.origin-container {
-    width: 50%;
-  }
-}
-
 @media (max-width: $md) {
   div.origin-container {
+    padding-top: 0px;
     padding-left: 12px;
     padding-right: 12px;
   }
@@ -1328,6 +1322,7 @@ div.origin-container {
 
 @media (max-width: $xs) {
   div.origin-container {
+    padding-top: 0px;
     padding-left: 12px;
     padding-right: 12px;
   }
@@ -1677,11 +1672,6 @@ strong {
   font-size: 15px;
 }
 
-div.distance-container input[type="number"] {
-  margin-right: 5px;
-  max-width: 44%;
-}
-
 .form-item, .views-exposed-form {
   margin-top: 0px;
 }
@@ -1975,11 +1965,6 @@ form#views-exposed-form-job-board-page {
 }
 
 .gm-style .gm-style-iw-c {
-  //position: absolute;
-  //overflow: hidden;
-  //top: 0;
-  //left: 0;
-  //transform: translate(-50%, -100%);
   background-color: rgba(42, 85, 107, 0.85);
   border: 2px solid #FF9049;
   border-radius: 0px;
@@ -2008,30 +1993,22 @@ form#views-exposed-form-job-board-page {
   }
 }
 
-.gm-style .gm-style-iw {
-  font-family: Lato;
-  font-weight: 300;
-  font-size: 13px;
-}
+.gm-style {
+  .gm-style-iw {
+    font-family: Lato;
+    font-weight: 300;
+    font-size: 13px;
 
-.gm-style .gm-style-iw h2 a {
-  font-size: 14px;
-  margin: 8px 0 6px 0;
-  color: #FFFFFF;
+    h2, h2 a {
+      font-size: 14px;
+      margin: 8px 0 6px 0;
+      color: #FFFFFF;
+      text-transform: uppercase;
 
-  &:hover {
-    color: #569BDD;
-  }
-}
-
-.gm-style .gm-style-iw h2 {
-  font-size: 14px;
-  margin: 8px 0 6px 0;
-  color: #FFFFFF;
-  text-transform: uppercase;
-
-  &:hover {
-    color: #569BDD;
+      &:hover {
+        color: #569BDD;
+      }
+    }
   }
 }
 
