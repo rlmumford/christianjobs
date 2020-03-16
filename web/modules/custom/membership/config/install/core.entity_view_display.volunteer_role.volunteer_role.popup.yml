@@ -1,0 +1,159 @@
+uuid: 8c9c4658-fd2e-47a9-a707-74e9b2150aec
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.volunteer_role.popup
+  module:
+    - cj_membership
+    - file
+    - layout_builder
+    - text
+  theme:
+    - cj_material
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: cj_6_6
+        layout_settings:
+          label: ''
+        components:
+          26a466ba-7e48-4448-a89f-a0f7635ca71c:
+            uuid: 26a466ba-7e48-4448-a89f-a0f7635ca71c
+            region: aside
+            configuration:
+              id: 'field_block:volunteer_role:volunteer_role:contact_email'
+              label: 'Contact E-mail Address'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: email_mailto
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: entity
+                view_mode: view_mode
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 0
+          887e7054-6a1d-4c85-8260-c0f5bbf4e20d:
+            uuid: 887e7054-6a1d-4c85-8260-c0f5bbf4e20d
+            region: aside
+            configuration:
+              id: 'field_block:volunteer_role:volunteer_role:contact_phone'
+              label: 'Contact Telephone'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: telephone_link
+                settings:
+                  title: ''
+                third_party_settings: {  }
+              context_mapping:
+                entity: entity
+                view_mode: view_mode
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 1
+          a192f691-3f34-4f63-a627-031f890e2b30:
+            uuid: a192f691-3f34-4f63-a627-031f890e2b30
+            region: content
+            configuration:
+              id: 'field_block:volunteer_role:volunteer_role:label'
+              label: Title
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string_tag
+                settings:
+                  tag: h2
+                  class: ''
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 0
+          77a852df-cbdf-46a0-a50e-a47c55858bf0:
+            uuid: 77a852df-cbdf-46a0-a50e-a47c55858bf0
+            region: content
+            configuration:
+              id: 'field_block:volunteer_role:volunteer_role:description_summary'
+              label: Summary
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 2
+          96fcf608-b57b-4286-adce-b7700ef310ee:
+            uuid: 96fcf608-b57b-4286-adce-b7700ef310ee
+            region: aside
+            configuration:
+              id: 'field_block:volunteer_role:volunteer_role:location'
+              label: Location
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: address_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 2
+        third_party_settings: {  }
+id: volunteer_role.volunteer_role.popup
+targetEntityType: volunteer_role
+bundle: volunteer_role
+mode: popup
+content:
+  description:
+    label: above
+    type: text_default
+    region: content
+    weight: -4
+    settings: {  }
+    third_party_settings: {  }
+  files:
+    type: file_default
+    label: above
+    region: content
+    weight: -3
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+hidden:
+  contact_address: true
+  contact_email: true
+  contact_phone: true
+  description_summary: true
+  industry: true
+  keywords: true
+  location: true
+  location_geo: true
+  location_tree: true
+  location_type: true
+  search_api_excerpt: true

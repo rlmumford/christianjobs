@@ -155,6 +155,9 @@ function cj_membership_update_8005() {
   $configs_to_install = [
     'core.entity_view_mode.user.employer_popup',
     'core.entity_view_mode.volunteer_role.popup',
+    'core.entity_view_display.user.user.employer_popup',
+    'core.entity_view_display.volunteer_role.volunteer_role.popup',
+    'views.view.volunteer_board',
   ];
   foreach ($configs_to_install as $name) {
     $config = new Config($name, \Drupal::service('config.storage'), \Drupal::service('event_dispatcher'), \Drupal::service('config.typed'));

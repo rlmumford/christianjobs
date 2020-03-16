@@ -100,7 +100,7 @@ display:
             icon_image_path: ''
             infowindow_field: '#rendered_entity_ajax'
             multivalue_split: 0
-            view_mode: employer_page
+            view_mode: employer_popup
             tooltip_field: employer_name
             theming:
               plugin_id: none
