@@ -699,6 +699,44 @@ display:
           entity_type: volunteer_role
           entity_field: label
           plugin_id: string
+        employer_on_directory_value:
+          id: employer_on_directory_value
+          table: profile__employer_on_directory
+          field: employer_on_directory_value
+          relationship: profile_type
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
         industry:
           id: industry
           table: volunteer_role
