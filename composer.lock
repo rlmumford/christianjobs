@@ -303,7 +303,9 @@
             "version": "2.1.10",
             "dist": {
                 "type": "zip",
-                "url": "https://download.ckeditor.com/youtube/releases/youtube_2.1.10.zip"
+                "url": "https://download.ckeditor.com/youtube/releases/youtube_2.1.10.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -4947,7 +4949,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.7",
-                    "datestamp": "1582062548",
+                    "datestamp": "1580097184",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6775,7 +6777,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.7",
-                    "datestamp": "1581591836",
+                    "datestamp": "1580383224",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8805,7 +8807,9 @@
             "version": "4.0.13",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/select2/-/select2-4.0.13.tgz"
+                "url": "https://registry.npmjs.org/select2/-/select2-4.0.13.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -9979,12 +9983,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "621ba8a623990993420e8a0a05128c0939e953af"
+                "reference": "c5169f72df9b763c84ef9cc5523d7f44716c7105"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/621ba8a623990993420e8a0a05128c0939e953af",
-                "reference": "621ba8a623990993420e8a0a05128c0939e953af",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/c5169f72df9b763c84ef9cc5523d7f44716c7105",
+                "reference": "c5169f72df9b763c84ef9cc5523d7f44716c7105",
                 "shasum": ""
             },
             "require": {
@@ -10052,7 +10056,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2020-02-09T21:05:56+00:00"
+            "time": "2020-03-23T09:56:20+00:00"
         },
         {
             "name": "ruflin/elastica",

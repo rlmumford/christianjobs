@@ -2,6 +2,7 @@
 
 use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_price\Price;
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -86,6 +87,21 @@ function job_board_module_implements_alter(&$implementations, $hook) {
     unset($implementations['job_board']);
     $implementations['job_board'] = $group;
   }
+}
+
+/**
+ * Implements hook_user_access().
+ *
+ * Allow the public to view employers.
+ */
+function job_board_user_access(UserInterface $user, $operation, AccountInterface $account) {
+  if ($operation === 'view') {
+    return AccessResult::allowedIf($user->hasRole('employer'))
+      ->andIf(AccessResult::allowedIf(!$user->hasRole('individual')))
+      ->addCacheableDependency($user);
+  }
+
+  return AccessResult::neutral();
 }
 
 /**
