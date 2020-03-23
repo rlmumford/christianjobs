@@ -111,7 +111,7 @@ class VolunteerRole extends JobRole implements EntityOwnerInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayOptions('form', [
         'weight' => -6,
-        'type' => 'entity_reference_autocomplete_tags',
+        'type' => \Drupal::moduleHandler()->moduleExists('select2') ? 'select2_entity_reference' : 'entity_reference_autocomplete_tags',
       ])
       ->setDisplayConfigurable('form', TRUE);
     $fields['industry'] = BaseFieldDefinition::create('entity_reference')
@@ -132,7 +132,7 @@ class VolunteerRole extends JobRole implements EntityOwnerInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayOptions('form', [
         'weight' => -7,
-        'type' => 'entity_reference_autocomplete',
+        'type' => 'options_select',
       ])
       ->setDisplayConfigurable('form', TRUE);
 
