@@ -5450,5 +5450,99 @@ form#views-exposed-form-job-board-page {
     transform: rotate(180deg);
   }
 }
+.layout-checkout-form {
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 10px;
+  border-bottom: 0;
+}
+.layout-checkout-form label.option {
+  color: #FFFFFF;
+}
+.layout-checkout-form fieldset#edit-payment-information-payment-method--wrapper legend {
+  display: none;
+}
+.layout-checkout-form .checkout-address-book-edit-button {
+  width: min-content !important;
+  height: min-content;
+}
+.layout-checkout-form .form-item-payment-information-payment-method {
+  display: inline-block;
+  margin-right: 12px;
+  padding: 4px 12px;
+  background: #FF944D;
+  border-radius: 2px;
+}
+.layout-checkout-form .fieldset-legend {
+  color: #2A556B;
+  border-bottom: 1px solid #FF9049;
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.layout-checkout-form .form-item input[type=radio]:checked:before {
+  content: "radio_button_checked";
+  visibility: hidden;
+}
+.layout-checkout-form .form-item input[type=radio]:before {
+  content: "radio_button_unchecked";
+  margin-top: -7px;
+  color: rgba(0, 0, 0, 0);
+}
+
+.checkout-pane-order-summary {
+  background-color: #2A556B;
+  padding-bottom: 16px;
+}
+.checkout-pane-order-summary .field-type-commerce-price {
+  padding-left: 25px;
+}
+.checkout-pane-order-summary .views-field-title, .checkout-pane-order-summary .views-field-total-price__number {
+  background-color: #2A556B;
+  color: #FFFFFF;
+  border-bottom: 1px solid #FF9049;
+  font-family: Montserrat;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.checkout-pane-order-summary .order-total-line {
+  text-align: left;
+  display: table-row;
+}
+.checkout-pane-order-summary .order-total-line-label {
+  font-family: Montserrat;
+  color: #FF9049;
+}
+.checkout-pane-order-summary .order-total-line-value {
+  color: #FFFFFF;
+  display: table-cell;
+}
+
+.checkout-pane-coupon-redemption {
+  background-color: #FFFFFF;
+  border: 1px solid #FF9049;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 18px;
+  padding-top: 12px;
+  margin-top: 24px;
+}
+.checkout-pane-coupon-redemption label {
+  font-size: 18px;
+  color: #2A556B;
+}
+.checkout-pane-coupon-redemption .button {
+  background-color: #FF9049;
+  width: min-content;
+  height: min-content;
+}
+
+.divider-top input.button {
+  margin-left: 36px;
+  margin-top: -50px;
+  height: min-content;
+}
 
 /*# sourceMappingURL=styles.css.map */

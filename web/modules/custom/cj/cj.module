@@ -211,6 +211,19 @@ function cj_user_register_form_submit_set_name(array $form, FormStateInterface $
 }
 
 /**
+ * Implements hook_form_commerce_checkout_flow_multistep_default_alter()
+ */
+function cj_form_commerce_checkout_flow_multistep_default_alter(array &$form, FormStateInterface $form_state) {
+  if ($form['#step_id'] !== 'order_information') {
+    return;
+  }
+
+  if (!empty($form['payment_information']['billing_information']['edit_button'])) {
+    $form['payment_information']['billing_information']['edit_button']['#attributes']['class'][] = "checkout-address-book-edit-button";
+  }
+}
+
+/**
  * Implements hook_form_contact_form_alter().
  */
 function cj_form_contact_message_showcase_attendee_form_alter(array &$form, FormStateInterface $form_state) {
