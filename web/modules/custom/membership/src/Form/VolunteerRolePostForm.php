@@ -44,7 +44,7 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
     if (!$membership_in_cart && !$membership) {
       $form['membership']['new'] = [
         '#type' => 'checkbox',
-        '#title' => $this->t('<span class="directory-membership-cost">£295</span><span class="vat">+VAT</span><span class="or"> OR </span><span class="directory-monthly-cost">£25</span><span class="per-month">/MONTH</span><span class="directory-description"> Become a Christian Jobs Directory Member</span>'),
+        '#title' => $this->t('<span class="directory-membership-cost">£295</span><span class="vat">+VAT</span><span class="or"> OR </span><span class="directory-monthly-cost">£25</span><span class="per-month">+VAT/MONTH</span><span class="directory-description"> Become a Christian Jobs Directory Member</span>'),
         '#default_value' => TRUE,
         '#attributes' => [
           'class' => ['membership-checkbox'],
@@ -77,7 +77,7 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
         $form['membership']['upgrade'] = [
           '#type' => 'checkbox',
           '#title' => $this->t(
-            '<span class="directory-membership-cost">£595</span><span class="vat">+VAT</span><span class="or"> OR </span><span class="directory-monthly-cost">£50</span><span class="per-month">/MONTH</span><span class="directory-description"> Upgrade to full Christian Jobs Community Membership</span>'
+            '<span class="directory-membership-cost">£595</span><span class="vat">+VAT</span><span class="or"> OR </span><span class="directory-monthly-cost">£50</span><span class="per-month">+VAT/MONTH</span><span class="directory-description"> Upgrade to full Christian Jobs Community Membership</span>'
           ),
           '#attributes' => [
             'class' => ['membership-checkbox'],

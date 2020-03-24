@@ -5569,5 +5569,8 @@ div#edit-membership .form-item input[type=checkbox]:checked:before {
 div#edit-membership .form-item input[type=checkbox]:before {
   visibility: hidden;
 }
+div#edit-membership p.section-summary {
+  margin-bottom: 12px;
+}
 
 /*# sourceMappingURL=styles.css.map */
