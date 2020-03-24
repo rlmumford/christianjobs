@@ -2218,12 +2218,16 @@ div#edit-membership {
     color: #FF9049;
   }
 
-  .directory-membership-cost, .forward-slash, .directory-monthly-cost {
+  .directory-membership-cost, .directory-monthly-cost {
     font-size: 24px;
   }
 
-  .vat, .per-month {
+  .vat, .or, .per-month {
     font-size: 14px;
+  }
+
+  .or {
+    font-weight: lighter;
   }
 
   span.directory-description {

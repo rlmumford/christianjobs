@@ -5549,11 +5549,14 @@ div#edit-membership h3 {
 div#edit-membership span {
   color: #FF9049;
 }
-div#edit-membership .directory-membership-cost, div#edit-membership .forward-slash, div#edit-membership .directory-monthly-cost {
+div#edit-membership .directory-membership-cost, div#edit-membership .directory-monthly-cost {
   font-size: 24px;
 }
-div#edit-membership .vat, div#edit-membership .per-month {
+div#edit-membership .vat, div#edit-membership .or, div#edit-membership .per-month {
   font-size: 14px;
+}
+div#edit-membership .or {
+  font-weight: lighter;
 }
 div#edit-membership span.directory-description {
   color: #2A556B;
