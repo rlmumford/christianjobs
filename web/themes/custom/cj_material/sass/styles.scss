@@ -2183,10 +2183,7 @@ form#views-exposed-form-job-board-page {
 .checkout-pane-coupon-redemption {
   background-color: #FFFFFF;
   border: 1px solid #FF9049;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-bottom: 18px;
-  padding-top: 12px;
+  padding: 12px 24px 18px 24px;
   margin-top: 24px;
 
   label {
@@ -2201,10 +2198,45 @@ form#views-exposed-form-job-board-page {
   }
 }
 
-.divider-top {
-  input.button {
-    margin-left: 36px;
-    margin-top: -50px;
-    height: min-content;
+.commerce-checkout-flow {
+  .divider-top {
+    input.button {
+      margin-left: 36px;
+      margin-top: -120px;
+      height: min-content;
+    }
+  }
+}
+
+div#edit-membership {
+  h3 {
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+
+  span {
+    color: #FF9049;
+  }
+
+  .directory-membership-cost, .forward-slash, .directory-monthly-cost {
+    font-size: 24px;
+  }
+
+  .vat, .per-month {
+    font-size: 14px;
+  }
+
+  span.directory-description {
+    color: #2A556B;
+  }
+
+  .form-item input[type=checkbox]:checked:before {
+    content: "check_box";
+    color: #FF904B;
+    visibility: hidden;
+  }
+
+  .form-item input[type=checkbox]:before {
+    visibility: hidden;
   }
 }

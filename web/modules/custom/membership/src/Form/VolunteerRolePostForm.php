@@ -44,7 +44,7 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
     if (!$membership_in_cart && !$membership) {
       $form['membership']['new'] = [
         '#type' => 'checkbox',
-        '#title' => $this->t('Become a Christian Jobs Directory Member <span class="upsell-price pull-right orange-triangle">£295<span class="tax">+VAT</span></span>'),
+        '#title' => $this->t('<span class="directory-membership-cost">£295</span><span class="vat">+VAT</span><span class="forward-slash">/</span><span class="directory-monthly-cost">£25</span><span class="per-month">PM</span><span class="directory-description">- Become a Christian Jobs Directory Member</span>'),
         '#default_value' => TRUE,
         '#attributes' => [
           'class' => ['membership-checkbox'],
@@ -77,7 +77,7 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
         $form['membership']['upgrade'] = [
           '#type' => 'checkbox',
           '#title' => $this->t(
-            'Upgrade to full Christian Jobs Community Membership <span class="upsell-price pull-right orange-triangle">£595<span class="tax">+VAT</span></span>'
+            '<span class="directory-membership-cost">£595</span><span class="vat">+VAT</span><span class="forward-slash">/</span><span class="directory-monthly-cost">£50</span><span class="per-month">PM</span><span class="directory-description">- Upgrade to full Christian Jobs Community Membership</span>'
           ),
           '#attributes' => [
             'class' => ['membership-checkbox'],

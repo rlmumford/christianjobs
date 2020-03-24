@@ -5523,10 +5523,7 @@ form#views-exposed-form-job-board-page {
 .checkout-pane-coupon-redemption {
   background-color: #FFFFFF;
   border: 1px solid #FF9049;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-bottom: 18px;
-  padding-top: 12px;
+  padding: 12px 24px 18px 24px;
   margin-top: 24px;
 }
 .checkout-pane-coupon-redemption label {
@@ -5539,10 +5536,35 @@ form#views-exposed-form-job-board-page {
   height: min-content;
 }
 
-.divider-top input.button {
+.commerce-checkout-flow .divider-top input.button {
   margin-left: 36px;
-  margin-top: -50px;
+  margin-top: -120px;
   height: min-content;
+}
+
+div#edit-membership h3 {
+  font-size: 24px;
+  text-transform: uppercase;
+}
+div#edit-membership span {
+  color: #FF9049;
+}
+div#edit-membership .directory-membership-cost, div#edit-membership .forward-slash, div#edit-membership .directory-monthly-cost {
+  font-size: 24px;
+}
+div#edit-membership .vat, div#edit-membership .per-month {
+  font-size: 14px;
+}
+div#edit-membership span.directory-description {
+  color: #2A556B;
+}
+div#edit-membership .form-item input[type=checkbox]:checked:before {
+  content: "check_box";
+  color: #FF904B;
+  visibility: hidden;
+}
+div#edit-membership .form-item input[type=checkbox]:before {
+  visibility: hidden;
 }
 
 /*# sourceMappingURL=styles.css.map */
