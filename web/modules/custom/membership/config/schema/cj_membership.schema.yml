@@ -5,6 +5,12 @@ cj_membership.pricing:
     full:
       type: string
       label: 'Full Membership'
+    full_monthly:
+      type: string
+      label: 'Full Membership Monthly'
     directory:
       type: string
       label: 'Directory Membership'
+    directory_monthly:
+      type: string
+      label: 'Directory Membership Monthly'

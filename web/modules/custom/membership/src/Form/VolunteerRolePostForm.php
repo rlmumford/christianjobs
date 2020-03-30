@@ -49,8 +49,16 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
       $membership_pricing->get('full'),
       'GBP'
     );
+    $full_month_price = new Price(
+      $membership_pricing->get('full_monthly'),
+      'GBP'
+    );
     $dir_price = new Price(
       $membership_pricing->get('directory'),
+      'GBP'
+    );
+    $dir_month_price = new Price(
+      $membership_pricing->get('directory_monthly'),
       'GBP'
     );
 
@@ -58,14 +66,17 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
       $form['membership']['new'] = [
         '#type' => 'checkbox',
         '#title' => $this->t(
-          'Become a Christian Jobs Directory Member <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
+          '<span class="directory-membership-cost">@dir_price</span><span class="vat">+VAT</span><span class="or"> OR </span><span class="directory-monthly-cost">@dir_month_price</span><span class="per-month">+VAT/MONTH</span><span class="directory-description"> Become a Christian Jobs Directory Member</span>',
           [
-            '@price' => $formatter->format(
+            '@dir_price' => $formatter->format(
               $dir_price->getNumber(),
               $dir_price->getCurrencyCode()
+            ),
+            '@dir_month_price' => $formatter->format(
+              $dir_month_price->getNumber(),
+              $dir_month_price->getCurrencyCode()
             )
-          ]
-        ),
+          ]),
         '#default_value' => TRUE,
         '#attributes' => [
           'class' => ['membership-checkbox'],
@@ -101,11 +112,15 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
         $form['membership']['upgrade'] = [
           '#type' => 'checkbox',
           '#title' => $this->t(
-            'Upgrade to full Christian Jobs Community Membership <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
+            '<span class="directory-membership-cost">@full_price</span><span class="vat">+VAT</span><span class="or"> OR </span><span class="directory-monthly-cost">@full_month_price</span><span class="per-month">+VAT/MONTH</span><span class="directory-description"> Upgrade to full Christian Jobs Community Membership</span>',
             [
-              '@price' => $formatter->format(
+              '@full_price' => $formatter->format(
                 $full_price->getNumber(),
                 $full_price->getCurrencyCode()
+              ),
+              '@full_month_price' => $formatter->format(
+                $full_month_price->getNumber(),
+                $full_month_price->getCurrencyCode()
               )
             ]
           ),
