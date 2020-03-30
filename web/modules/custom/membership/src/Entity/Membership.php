@@ -239,11 +239,13 @@ class Membership extends ContentEntityBase implements EntityOwnerInterface, Purc
    *   The price, or NULL.
    */
   public function getPrice(Context $context = NULL) {
+    $config = \Drupal::config('cj_membership.pricing');
+
     if ($this->level->value == static::LEVEL_FULL) {
-      return new Price('595.00', 'GBP');
+      return new Price($config->get('full'), 'GBP');
     }
     else {
-      return new Price('295.00', 'GBP');
+      return new Price($config->get('directory'), 'GBP');
     }
   }
 }

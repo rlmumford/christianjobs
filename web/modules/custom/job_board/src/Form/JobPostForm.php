@@ -10,6 +10,7 @@ namespace Drupal\job_board\Form;
 
 use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_order\Adjustment;
+use Drupal\commerce_price\Price;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -30,6 +31,14 @@ class JobPostForm extends JobForm {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
+    /** @var \CommerceGuys\Intl\Formatter\CurrencyFormatterInterface $currency_formatter */
+    $currency_formatter = \Drupal::service('commerce_price.currency_formatter');
+    $job_board_pricing = \Drupal::config('job_board.pricing');
+
+    if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {
+      $membership_pricing = \Drupal::config('cj_membership.pricing');
+    }
+
     /** @var \Drupal\commerce_cart\CartProvider $cart_provider */
     $cart_provider = \Drupal::service('commerce_cart.cart_provider');
     $cart = $cart_provider->getCart('default');
@@ -38,6 +47,16 @@ class JobPostForm extends JobForm {
     }
 
     if ($this->entity->initial_duration->isEmpty() || $this->entity->initial_duration->value == 'P30D') {
+      $price_60d = new Price(
+        $job_board_pricing->get('job_60D'),
+        'GBP'
+      );
+      $price_30d = new Price(
+        $job_board_pricing->get('job_30D'),
+        'GBP'
+      );
+      $upsell_price = $price_60d->subtract($price_60d);
+
       $form['duration_upsell'] = [
         '#weight' => 49,
         '#type' => 'container',
@@ -53,7 +72,14 @@ class JobPostForm extends JobForm {
         'description' => [
           '#type' => 'html_tag',
           '#tag' => 'p',
-          '#value' => $this->t('Our standard job postings stay live for 30 days from the publish date you specify. Need more exposure? For only <strong>£25</strong> you can double this limit.'),
+          '#value' => $this->t(
+            'Our standard job postings stay live for 30 days from the publish date you specify. Need more exposure? For only <strong>@price</strong> you can double this limit.',
+            [
+              '@price' => $currency_formatter->format(
+                $upsell_price->getNumber(),
+                $upsell_price->getCurrencyCode()
+              )
+            ]),
         ],
         'extend' => [
           '#type' => 'checkbox',
@@ -70,6 +96,10 @@ class JobPostForm extends JobForm {
       ];
     }
 
+    $rpo_price = new Price(
+      $job_board_pricing->get('job_RPO'),
+      'GBP'
+    );
     $form['rpo_upsell'] = [
       '#weight' => 51,
       '#type' => 'container',
@@ -92,7 +122,15 @@ class JobPostForm extends JobForm {
       ],
       'rpo' => [
         '#type' => 'checkbox',
-        '#title' => $this->t('Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right orange-triangle">£2995<span class="tax">+VAT</span></span>'),
+        '#title' => $this->t(
+          'Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
+          [
+            '@price' => $currency_formatter->format(
+              $rpo_price->getNumber(),
+              $rpo_price->getCurrencyCode()
+            )
+          ]
+        ),
         '#default_value' => !empty($this->entity->rpo->value),
         '#attributes' => [
           'class' => ['rpo-checkbox'],
@@ -123,7 +161,15 @@ class JobPostForm extends JobForm {
       if (!$membership_in_cart && !$membership) {
         $form['membership']['new'] = [
           '#type' => 'checkbox',
-          '#title' => $this->t('Become a Christian Jobs Community Member <span class="upsell-price pull-right orange-triangle">£595<span class="tax">+VAT</span></span>'),
+          '#title' => $this->t(
+            'Become a Christian Jobs Community Member <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
+            [
+              '@price' => $currency_formatter->format(
+                $membership_pricing->get('full'),
+                'GBP'
+              ),
+            ]
+          ),
           '#attributes' => [
             'class' => ['membership-checkbox'],
           ],
@@ -132,7 +178,15 @@ class JobPostForm extends JobForm {
       else if (!$membership_in_cart && $membership && $membership->status->value == Membership::STATUS_EXPIRED) {
         $form['membership']['extend'] = [
           '#type' => 'checkbox',
-          '#title' => $this->t('Renew Christian Jobs Community Membership <span class="upsell-price pull-right orange-triangle">£595<span class="tax">+VAT</span></span>'),
+          '#title' => $this->t(
+            'Renew Christian Jobs Community Membership <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
+            [
+              '@price' => $currency_formatter->format(
+                $membership_pricing->get('full'),
+                'GBP'
+              ),
+            ]
+          ),
           '#attributes' => [
             'class' => ['membership-checkbox'],
           ],

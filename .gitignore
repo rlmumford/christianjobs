@@ -15,9 +15,6 @@
 /web/sites/example.sites.php
 /web/web.config
 
-# Ignore node_modules used by material
-/web/themes/custom/cj_material/node_modules/
-
 # Ignore sensitive information
 /web/sites/*/settings.php
 /web/sites/*/settings.local.php

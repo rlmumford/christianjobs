@@ -1,0 +1,10 @@
+cj_membership.pricing:
+  type: config_object
+  label: 'Membership Pricing'
+  mapping:
+    full:
+      type: string
+      label: 'Full Membership'
+    directory:
+      type: string
+      label: 'Directory Membership'

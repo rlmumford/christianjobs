@@ -3,6 +3,7 @@
 namespace Drupal\cj_membership\Form;
 
 use Drupal\cj_membership\Entity\Membership;
+use Drupal\commerce_price\Price;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
@@ -41,10 +42,30 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
       $membership = FALSE;
     }
 
+    /** @var \CommerceGuys\Intl\Formatter\CurrencyFormatterInterface $formatter */
+    $formatter = \Drupal::service('commerce_price.currency_formatter');
+    $membership_pricing = \Drupal::config('cj_membership.pricing');
+    $full_price = new Price(
+      $membership_pricing->get('full'),
+      'GBP'
+    );
+    $dir_price = new Price(
+      $membership_pricing->get('directory'),
+      'GBP'
+    );
+
     if (!$membership_in_cart && !$membership) {
       $form['membership']['new'] = [
         '#type' => 'checkbox',
-        '#title' => $this->t('Become a Christian Jobs Directory Member <span class="upsell-price pull-right orange-triangle">£295<span class="tax">+VAT</span></span>'),
+        '#title' => $this->t(
+          'Become a Christian Jobs Directory Member <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
+          [
+            '@price' => $formatter->format(
+              $dir_price->getNumber(),
+              $dir_price->getCurrencyCode()
+            )
+          ]
+        ),
         '#default_value' => TRUE,
         '#attributes' => [
           'class' => ['membership-checkbox'],
@@ -58,7 +79,10 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
           'Renew Christian Jobs @type Membership <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
           [
             '@type' => $membership->level->value > Membership::LEVEL_DIRECTORY ? 'Directory' : 'Community',
-            '@price' => $membership->level->value > Membership::LEVEL_DIRECTORY ? '£595' : '£295',
+            '@price' => $formatter->format(
+              $membership->level->value > Membership::LEVEL_DIRECTORY ? $full_price->getNumber() : $dir_price->getNumber(),
+              $full_price->getCurrencyCode()
+            ),
           ]
         ),
         '#default_value' => TRUE,
@@ -77,7 +101,13 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
         $form['membership']['upgrade'] = [
           '#type' => 'checkbox',
           '#title' => $this->t(
-            'Upgrade to full Christian Jobs Community Membership <span class="upsell-price pull-right orange-triangle">£595<span class="tax">+VAT</span></span>'
+            'Upgrade to full Christian Jobs Community Membership <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
+            [
+              '@price' => $formatter->format(
+                $full_price->getNumber(),
+                $full_price->getCurrencyCode()
+              )
+            ]
           ),
           '#attributes' => [
             'class' => ['membership-checkbox'],

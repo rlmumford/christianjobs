@@ -1,0 +1,19 @@
+job_board.pricing:
+  type: config_object
+  label: 'Job Board Pricing'
+  mapping:
+    job_30D:
+      type: string
+      label: '30 Day Advert'
+    job_60D:
+      type: string
+      label: '60 Day Advert'
+    job_RPO:
+      type: string
+      label: 'RPO'
+    jobext_30D:
+      type: string
+      label: '30 Day Extension'
+    jobext_60D:
+      type: string
+      label: '60 Day Extension'
