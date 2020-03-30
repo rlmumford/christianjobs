@@ -2242,6 +2242,10 @@ navbar overlaying header-content (for sliders)
 }
 
 /* tabs */
+nav.tabs {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .tabs ul, ul.tabs {
   list-style: none;
   display: flex;
