@@ -5464,7 +5464,7 @@ form#views-exposed-form-job-board-page {
 .layout-checkout-form label.option {
   color: #FFFFFF;
 }
-.layout-checkout-form fieldset#edit-payment-information-payment-method--wrapper legend {
+.layout-checkout-form fieldset.payment-method legend {
   display: none;
 }
 .layout-checkout-form .checkout-address-book-edit-button {
