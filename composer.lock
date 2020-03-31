@@ -2995,12 +2995,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/commerce_gocardless.git",
-                "reference": "2755a283ec679d18426b7b177acc05098e6b8f26"
+                "reference": "a9eaaeb2d8ce5a94e92e9c7e15c35a690be1b67f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/commerce_gocardless/zipball/2755a283ec679d18426b7b177acc05098e6b8f26",
-                "reference": "2755a283ec679d18426b7b177acc05098e6b8f26",
+                "url": "https://api.github.com/repos/rlmumford/commerce_gocardless/zipball/a9eaaeb2d8ce5a94e92e9c7e15c35a690be1b67f",
+                "reference": "a9eaaeb2d8ce5a94e92e9c7e15c35a690be1b67f",
                 "shasum": ""
             },
             "require": {
@@ -3019,7 +3019,7 @@
                 "source": "https://github.com/rlmumford/commerce_gocardless/tree/feature/redirect_flow",
                 "issues": "https://github.com/rlmumford/commerce_gocardless/issues"
             },
-            "time": "2020-02-17T15:43:43+00:00"
+            "time": "2020-03-31T08:54:33+00:00"
         },
         {
             "name": "drupal/commerce_number_pattern",
