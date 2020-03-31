@@ -2142,12 +2142,11 @@ form#views-exposed-form-job-board-page {
 
   .form-item input[type=radio]:checked:before {
     content: "radio_button_checked";
+    color: #2A556B;
   }
-
   .form-item input[type=radio]:before {
     content: "radio_button_unchecked";
-    margin-top: -7px;
-    color: rgba(0, 0, 0, 0);
+    padding-top: 5px;
   }
 }
 
