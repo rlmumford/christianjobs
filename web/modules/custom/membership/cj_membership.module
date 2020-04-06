@@ -187,7 +187,7 @@ function cj_membership_entity_field_access($operation, FieldDefinitionInterface 
     /** @var \Drupal\profile\Entity\Profile $profile */
     $profile = $items->getEntity();
 
-    return AccessResult::forbiddenIf($profile->employer_on_directory	->isEmpty() || !$profile->employer_on_directory->value())
+    return AccessResult::forbiddenIf($profile->employer_on_directory->isEmpty() || !$profile->employer_on_directory->value)
       ->addCacheableDependency($profile);
   }
 

@@ -49,7 +49,7 @@ class EmployerDirectoryDonateRedirectBlock extends BlockBase {
     $build = [
       '#type' => 'link',
       '#title' => new TranslatableMarkup('Donate'),
-      '#url' => Url::fromRoute('member.donate_redirect', ['user' => $employer->id()]),
+      '#url' => Url::fromRoute('membership.donate_redirect', ['user' => $employer->id()]),
       '#attributes' => [
         'rel' => 'nofollow',
         'class' => [
