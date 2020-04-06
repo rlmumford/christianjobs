@@ -49,7 +49,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 first-md description-container">
           {{ fields.description__value.content }}
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 first-sm first-xs extra-fields-container">
+        <div class=" col-xs-12 col-sm-12 col-md-6 col-lg-6 first-sm first-xs extra-fields-container">
           {% for field in fields|without('logo','employer_name', 'description__value', 'label') -%}
             {{ field.separator }}
             {%- if field.wrapper_element -%}
