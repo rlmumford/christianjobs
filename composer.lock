@@ -2995,12 +2995,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/commerce_gocardless.git",
-                "reference": "a9eaaeb2d8ce5a94e92e9c7e15c35a690be1b67f"
+                "reference": "02223b9fbbc727929235ab598321c9b1739c8def"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/commerce_gocardless/zipball/a9eaaeb2d8ce5a94e92e9c7e15c35a690be1b67f",
-                "reference": "a9eaaeb2d8ce5a94e92e9c7e15c35a690be1b67f",
+                "url": "https://api.github.com/repos/rlmumford/commerce_gocardless/zipball/02223b9fbbc727929235ab598321c9b1739c8def",
+                "reference": "02223b9fbbc727929235ab598321c9b1739c8def",
                 "shasum": ""
             },
             "require": {
@@ -3019,7 +3019,7 @@
                 "source": "https://github.com/rlmumford/commerce_gocardless/tree/feature/redirect_flow",
                 "issues": "https://github.com/rlmumford/commerce_gocardless/issues"
             },
-            "time": "2020-03-31T08:54:33+00:00"
+            "time": "2020-04-06T13:37:56+00:00"
         },
         {
             "name": "drupal/commerce_number_pattern",
@@ -8321,6 +8321,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -8367,6 +8368,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
