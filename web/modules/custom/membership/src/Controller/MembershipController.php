@@ -106,7 +106,7 @@ class MembershipController extends ControllerBase {
       'ip' => $request->getClientIp(),
     ])->save();
 
-    return new TrustedRedirectResponse($employer_profile->employer_donate_link->getUrl()->toString());
+    return new TrustedRedirectResponse($employer_profile->employer_donate_link->get(0)->getUrl()->toString());
   }
 
 }
