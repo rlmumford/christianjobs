@@ -1724,6 +1724,11 @@ label.option {
   }
 }
 
+nav.tabs {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .tabs ul li a {
   background-color: #D7D5D5;
   border-top-right-radius: 6px;
@@ -1845,14 +1850,10 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   span.views-label {
     font-family: Montserrat;
     font-weight: bolder;
-    color: #49BCFB;
+    color: #FF904B;
     display: table;
     line-height: 2em;
   }
-}
-
-.description-container {
-  margin-top: 20px;
 }
 
 .company-info-container-map {
@@ -2110,7 +2111,7 @@ form#views-exposed-form-job-board-page {
     color: #FFFFFF;
   }
 
-  fieldset#edit-payment-information-payment-method--wrapper legend {
+  fieldset.payment-method legend {
     display: none;
   }
 
@@ -2138,13 +2139,11 @@ form#views-exposed-form-job-board-page {
 
   .form-item input[type=radio]:checked:before {
     content: "radio_button_checked";
-    visibility: hidden;
+    color: #2A556B;
   }
-
   .form-item input[type=radio]:before {
     content: "radio_button_unchecked";
-    margin-top: -7px;
-    color: rgba(0, 0, 0, 0);
+    padding-top: 5px;
   }
 }
 
@@ -2209,10 +2208,9 @@ form#views-exposed-form-job-board-page {
   }
 }
 
-div#edit-membership {
+.volunteer-role-post-form div#edit-membership {
   h3 {
     font-size: 24px;
-    text-transform: uppercase;
   }
 
   span {
@@ -2238,11 +2236,6 @@ div#edit-membership {
   .form-item input[type=checkbox]:checked:before {
     content: "check_box";
     color: #FF904B;
-    visibility: hidden;
-  }
-
-  .form-item input[type=checkbox]:before {
-    visibility: hidden;
   }
 
   p.section-summary {

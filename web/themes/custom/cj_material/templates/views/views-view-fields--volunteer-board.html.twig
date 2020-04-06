@@ -47,10 +47,10 @@
     <div class="card-item card-text">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 first-md">
-          {{ fields.description__value.content }}
+          {{ fields.description_summary__value.content }}
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 first-sm first-xs extra-fields-container">
-          {% for field in fields|without('logo','employer_name', 'description__value', 'label') -%}
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 first-sm first-xs">
+          {% for field in fields|without('logo','employer_name', 'description__value', 'description_summary__value', 'label') -%}
             {{ field.separator }}
             {%- if field.wrapper_element -%}
               <{{ field.wrapper_element }}{{ field.wrapper_attributes }}>

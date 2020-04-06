@@ -664,59 +664,68 @@ function job_board_job_package_options() {
  * Get the Package Info.
  */
 function job_board_job_package_info($key = NULL) {
+  $config = \Drupal::config('job_board.pricing');
+
   $info = [];
   $info['advert'] = [
     'label' => t('Job Advertisement'),
     'description' => t('Advertise your Job on ChristianJobs.co.uk for 60 days.'),
-    'price' => new Price('100.00', 'GBP'),
+    'price' => new Price($config->get('job_60D'), 'GBP'),
     'allowed_featured_dates' => 1,
     'cta_text' => new TranslatableMarkup('Get Started'),
     'cta_url' => Url::fromRoute('job_board.post'),
     'features' => [
       [ 'title' => t('60 days exposure'), ],
-      [ 'title' => t('Optional 30 additional days exposure (+£25)'), ],
+      [ 'title' => t('Optional 30 additional days exposure (+35)'), ],
       [
         'title' => t('Social media posting'),
       ],
     ],
   ];
-  $info['membership'] = [
-    'label' => t('Community Membership'),
-    'price' => new Price('595.00', 'GBP'),
-    'description' => t('Receive discounts, priority access and support by becoming a Community Member.'),
-    'allowed_featured_dates' => 5,
-    'cta_text' => new TranslatableMarkup('Find Out More'),
-    'cta_url' => Url::fromUri('internal:/membership'),
-    'features' => [
-      [ 'title' => t('1 <strong>Free</strong> 60 day job advert'), ],
-      [
-        'title' => t('Discounted job adverts'),
-        'description' => t('25% off all job adverts posted for one year.'),
-      ],
-      [ 'title' => t('Social media posting'), ],
-      [ 'title' => t('Dedicated Account Manager'), ],
-      [
-        'title' => t('Priority access'),
-        'description' => t('Blurb'),
-      ],
-      [
-        'title' => t('Training & resources'),
-        'description' => t('Access up to 4 training conferences every year.')
-      ],
-      [
-        'title' => t('Partner discounts'),
-        'description' => t('Get great discounts from our valued partners.')
-      ],
-      [
-        'title' => t('Membership pack'),
-        'description' => t('Christian Jobs merchendise and a free copy of "Every Good Endeavour"'),
-      ],
-    ]
-  ];
+
+  if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {
+    $mem_config = \Drupal::config('cj_membership.pricing');
+    $info['membership'] = [
+      'label' => t('Community Membership'),
+      'price' => new Price(
+        $mem_config->get('full'),
+        'GBP'
+      ),
+      'description' => t('Receive discounts, priority access and support by becoming a Community Member.'),
+      'allowed_featured_dates' => 5,
+      'cta_text' => new TranslatableMarkup('Find Out More'),
+      'cta_url' => Url::fromUri('internal:/membership'),
+      'features' => [
+        ['title' => t('1 <strong>Free</strong> 60 day job advert'),],
+        [
+          'title' => t('Discounted job adverts'),
+          'description' => t('25% off all job adverts posted for one year.'),
+        ],
+        ['title' => t('Social media posting'),],
+        ['title' => t('Dedicated Account Manager'),],
+        [
+          'title' => t('Priority access'),
+          'description' => t('Blurb'),
+        ],
+        [
+          'title' => t('Training & resources'),
+          'description' => t('Access up to 4 training conferences every year.')
+        ],
+        [
+          'title' => t('Partner discounts'),
+          'description' => t('Get great discounts from our valued partners.')
+        ],
+        [
+          'title' => t('Membership pack'),
+          'description' => t('Christian Jobs merchendise and a free copy of "Every Good Endeavour"'),
+        ],
+      ]
+    ];
+  }
   $info['rpo'] = [
     'label' => t('Outsourced Help (RPO)'),
     'description' => t('Let Christian Jobs manage your recruitment process.'),
-    'price' => new Price('2995.00', 'GBP'),
+    'price' => new Price($config->get('job_RPO'), 'GBP'),
     'cta_text' => new TranslatableMarkup('Find Out More'),
     'cta_url' => Url::fromUri('internal:/outsourced-help'),
     'features' => [

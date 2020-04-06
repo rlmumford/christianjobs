@@ -3,6 +3,7 @@
 namespace Drupal\cj_membership\Form;
 
 use Drupal\cj_membership\Entity\Membership;
+use Drupal\commerce_price\Price;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
@@ -41,10 +42,41 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
       $membership = FALSE;
     }
 
+    /** @var \CommerceGuys\Intl\Formatter\CurrencyFormatterInterface $formatter */
+    $formatter = \Drupal::service('commerce_price.currency_formatter');
+    $membership_pricing = \Drupal::config('cj_membership.pricing');
+    $full_price = new Price(
+      $membership_pricing->get('full'),
+      'GBP'
+    );
+    $full_month_price = new Price(
+      $membership_pricing->get('full_monthly'),
+      'GBP'
+    );
+    $dir_price = new Price(
+      $membership_pricing->get('directory'),
+      'GBP'
+    );
+    $dir_month_price = new Price(
+      $membership_pricing->get('directory_monthly'),
+      'GBP'
+    );
+
     if (!$membership_in_cart && !$membership) {
       $form['membership']['new'] = [
         '#type' => 'checkbox',
-        '#title' => $this->t('<span class="directory-membership-cost">£295</span><span class="vat">+VAT</span><span class="or"> OR </span><span class="directory-monthly-cost">£25</span><span class="per-month">+VAT/MONTH</span><span class="directory-description"> Become a Christian Jobs Directory Member</span>'),
+        '#title' => $this->t(
+          '<span class="directory-membership-cost">@dir_price</span><span class="vat">+VAT</span><span class="or"> OR </span><span class="directory-monthly-cost">@dir_month_price</span><span class="per-month">+VAT/MONTH</span><span class="directory-description"> Become a Christian Jobs Directory Member</span>',
+          [
+            '@dir_price' => $formatter->format(
+              $dir_price->getNumber(),
+              $dir_price->getCurrencyCode()
+            ),
+            '@dir_month_price' => $formatter->format(
+              $dir_month_price->getNumber(),
+              $dir_month_price->getCurrencyCode()
+            )
+          ]),
         '#default_value' => TRUE,
         '#attributes' => [
           'class' => ['membership-checkbox'],
@@ -58,7 +90,10 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
           'Renew Christian Jobs @type Membership <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
           [
             '@type' => $membership->level->value > Membership::LEVEL_DIRECTORY ? 'Directory' : 'Community',
-            '@price' => $membership->level->value > Membership::LEVEL_DIRECTORY ? '£595' : '£295',
+            '@price' => $formatter->format(
+              $membership->level->value > Membership::LEVEL_DIRECTORY ? $full_price->getNumber() : $dir_price->getNumber(),
+              $full_price->getCurrencyCode()
+            ),
           ]
         ),
         '#default_value' => TRUE,
@@ -77,7 +112,17 @@ class VolunteerRolePostForm extends VolunteerRoleForm {
         $form['membership']['upgrade'] = [
           '#type' => 'checkbox',
           '#title' => $this->t(
-            '<span class="directory-membership-cost">£595</span><span class="vat">+VAT</span><span class="or"> OR </span><span class="directory-monthly-cost">£50</span><span class="per-month">+VAT/MONTH</span><span class="directory-description"> Upgrade to full Christian Jobs Community Membership</span>'
+            '<span class="directory-membership-cost">@full_price</span><span class="vat">+VAT</span><span class="or"> OR </span><span class="directory-monthly-cost">@full_month_price</span><span class="per-month">+VAT/MONTH</span><span class="directory-description"> Upgrade to full Christian Jobs Community Membership</span>',
+            [
+              '@full_price' => $formatter->format(
+                $full_price->getNumber(),
+                $full_price->getCurrencyCode()
+              ),
+              '@full_month_price' => $formatter->format(
+                $full_month_price->getNumber(),
+                $full_month_price->getCurrencyCode()
+              )
+            ]
           ),
           '#attributes' => [
             'class' => ['membership-checkbox'],

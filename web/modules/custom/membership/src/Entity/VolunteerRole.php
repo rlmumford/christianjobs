@@ -29,7 +29,8 @@ use Drupal\user\EntityOwnerTrait;
  *     "permission_provider" = "Drupal\cj_membership\Entity\VolunteerRolePermissionProvider",
  *     "form" = {
  *       "default" = "Drupal\cj_membership\Form\VolunteerRoleForm",
- *       "post" = "Drupal\cj_membership\Form\VolunteerRolePostForm"
+ *       "post" = "Drupal\cj_membership\Form\VolunteerRolePostForm",
+ *       "delete" = "Drupal\cj_membership\Form\VolunteerRoleDeleteForm"
  *     },
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "route_provider" = {

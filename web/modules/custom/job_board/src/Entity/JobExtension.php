@@ -126,11 +126,13 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
    *   The price, or NULL.
    */
   public function getPrice() {
+    $config = \Drupal::config('job_board.pricing');
+
     if ($this->duration->value == 'P30D') {
-      return new Price('35.00', 'GBP');
+      return new Price($config->get('jobext_30D'), 'GBP');
     }
     else {
-      return new Price('60.00', 'GBP');
+      return new Price($config->get('jobext_60D'), 'GBP');
     }
   }
 

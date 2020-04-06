@@ -135,14 +135,16 @@ class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
    *   The price, or NULL.
    */
   public function getPrice(Context $context = NULL) {
+    $config = \Drupal::config('job_board.pricing');
+
     if ($this->rpo->value) {
-      $price = new Price('2995.00', 'GBP');
+      $price = new Price($config->get('job_RPO'), 'GBP');
     }
     else if ($this->initial_duration->value == 'P60D') {
-      $price = new Price('100.00', 'GBP');
+      $price = new Price($config->get('job_60D'), 'GBP');
     }
     else {
-      $price = new Price('75.00', 'GBP');
+      $price = new Price($config->get('job_30D'), 'GBP');
     }
 
     return $price;
