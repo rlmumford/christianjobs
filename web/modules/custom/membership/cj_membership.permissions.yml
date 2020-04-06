@@ -7,3 +7,5 @@ view any volunteer_role:
   title: 'View any volunteer board roles'
 view own volunteer_role:
   title: 'View own volunteer board roles'
+administer referrals:
+  title: 'Administer Donation Referrals'

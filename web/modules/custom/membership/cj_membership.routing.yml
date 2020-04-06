@@ -23,3 +23,11 @@ entity.volunteer_role.admin_form:
     _title: 'Volunteer Roles'
   requirements:
     _permission: 'administer volunteer roles'
+membership.donate_redirect:
+  path: '/employer/{user}/donate'
+  defaults:
+    _controller: '\Drupal\cj_membership\Controller\MembershipController::donateRedirect'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: 'TRUE'

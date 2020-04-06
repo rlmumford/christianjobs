@@ -4,9 +4,13 @@ namespace Drupal\cj_membership\Controller;
 
 use Drupal\cj_membership\Entity\Membership;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MembershipController extends ControllerBase {
 
@@ -73,6 +77,36 @@ class MembershipController extends ControllerBase {
     else {
       return new RedirectResponse(Url::fromUri('internal:/membership')->toString());
     }
+  }
+
+  /**
+   * Redirect to a members donate page.
+   *
+   * @param \Drupal\user\UserInterface $user
+   */
+  public function donateRedirect(UserInterface $user, Request $request) {
+    /** @var \Drupal\profile\ProfileStorage $profile_storage */
+    $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+    $employer_profile = $profile_storage->loadDefaultByUser($user, 'employer');
+
+    if (
+      !$employer_profile ||
+      $employer_profile->employer_on_directory->isEmpty() ||
+      !$employer_profile->employer_on_directory->value ||
+      $employer_profile->employer_donate_link->isEmpty()
+    ) {
+      throw new NotFoundHttpException();
+    }
+
+    // Log the referral.
+    $ref_storage = \Drupal::entityTypeManager()->getStorage('cj_membership_donation_ref');
+    $ref_storage->create([
+      'user' => \Drupal::currentUser()->id(),
+      'member' => $user->id(),
+      'ip' => $request->getClientIp(),
+    ])->save();
+
+    return new TrustedRedirectResponse($employer_profile->employer_donate_link->getUrl()->toString());
   }
 
 }

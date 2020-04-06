@@ -1,8 +1,12 @@
 <?php
 
 use Drupal\cj_membership\Entity\Membership;
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 
@@ -168,4 +172,24 @@ function cj_membership_volunteer_role_view_alter(array &$build, \Drupal\Core\Ent
   if ($build['#view_mode'] == 'popup') {
     unset($build['label']);
   }
+}
+
+/**
+ * Implements hook_entity_field_Access().
+ *
+ * @param $operation
+ * @param \Drupal\Core\Field\FieldDefinitionInterface $field_definition
+ * @param \Drupal\Core\Session\AccountInterface $account
+ * @param \Drupal\Core\Field\FieldItemListInterface|NULL $items
+ */
+function cj_membership_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) {
+  if ($field_definition->getName() === 'employer_donate_link' && $items) {
+    /** @var \Drupal\profile\Entity\Profile $profile */
+    $profile = $items->getEntity();
+
+    return AccessResult::forbiddenIf($profile->employer_on_directory	->isEmpty() || !$profile->employer_on_directory->value())
+      ->addCacheableDependency($profile);
+  }
+
+  return AccessResult::neutral();
 }
