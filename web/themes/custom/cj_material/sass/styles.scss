@@ -1266,6 +1266,7 @@ iframe {
 #drawer nav ul.menu {
   display: flex;
   flex-direction: column-reverse;
+  visibility: visible;
 }
 
 @media (max-width: $lg) {
