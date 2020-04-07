@@ -5343,6 +5343,10 @@ form#views-exposed-form-job-board-page {
   padding-left: 0;
   color: #FFFFFF;
 }
+.gm-style .gm-style-iw-c .company-info-container-map {
+  box-shadow: none;
+  background: none;
+}
 @media (max-width: 992px) {
   .gm-style .gm-style-iw-c .field-name-employer-description-summary {
     display: none;
@@ -5568,6 +5572,23 @@ form#views-exposed-form-job-board-page {
 }
 .volunteer-role-post-form div#edit-membership p.section-summary {
   margin-bottom: 12px;
+}
+
+.donate-button {
+  background-color: #00B0FF;
+  border-radius: 2px;
+  border: 2px solid #00B0FF;
+  margin-top: 15px;
+  padding: 15px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  display: inline-block;
+}
+.donate-button:hover {
+  color: #00B0FF;
+  background-color: #FFFFFF;
+  border: 2px solid #00B0FF;
+  border-radius: 2px;
 }
 
 /*# sourceMappingURL=styles.css.map */
