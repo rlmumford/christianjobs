@@ -5574,6 +5574,12 @@ form#views-exposed-form-job-board-page {
   margin-bottom: 12px;
 }
 
+.donate-button::before {
+  content: "£ ";
+  font-size: 20px;
+  font-weight: bolder;
+}
+
 .donate-button {
   background-color: #00B0FF;
   border-radius: 2px;
