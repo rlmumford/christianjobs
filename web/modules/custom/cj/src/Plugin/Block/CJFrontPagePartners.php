@@ -137,8 +137,17 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'kingdombanklogo.png',
           Url::fromUri('http://www.kingdom.bank')
         ),
+        'konnect' => $this->buildPartnerCard(
+          'Konnect Radio',
+          'Together in Music',
+          'Konnect Radio is the UK’s first mixed-format Christian Radio Station. This means you will hear the likes of Coldplay, Adele and Avicii together with Rend Collective, Crowder and Lauren Daigle.',
+          'konnectlogo.png',
+          Url::fromUri('http://www.konnectradio.com')
+        ),
       ]
     ];
+
+    $build['row']['konnect']['#attributes']['class'][] = 'col-md-offset-4';
 
     return $build;
   }
