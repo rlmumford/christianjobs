@@ -1973,6 +1973,11 @@ form#views-exposed-form-job-board-page {
     color: #FFFFFF;
   }
 
+  .company-info-container-map {
+    box-shadow: none;
+    background: none;
+  }
+
   @media (max-width: $md) {
     .field-name-employer-description-summary {
       display: none;
@@ -2241,5 +2246,29 @@ form#views-exposed-form-job-board-page {
 
   p.section-summary {
     margin-bottom: 12px;
+  }
+}
+
+.donate-button::before {
+  content: "£ ";
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.donate-button {
+  background-color: #00B0FF;
+  border-radius: 2px;
+  border: 2px solid #00B0FF;
+  margin-top: 15px;
+  padding: 15px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  display: inline-block;
+
+  &:hover {
+    color: #00B0FF;
+    background-color: #FFFFFF;
+    border: 2px solid #00B0FF;
+    border-radius: 2px;
   }
 }
