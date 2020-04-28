@@ -1,0 +1,130 @@
+uuid: 7f822644-a915-407e-bd52-49a2752755f9
+langcode: en
+status: true
+dependencies:
+  module:
+    - organization
+    - taxonomy
+    - user
+    - search_api
+    - job_board
+  config:
+    - field.storage.place.tree
+    - field.storage.organization.categories
+    - field.storage.organization.description_summary
+    - search_api.server.aws_christian_jobs_elasticsearch
+id: organization_directory
+name: 'Organization Directory'
+description: ''
+read_only: false
+field_settings:
+  tree:
+    label: 'Place » Tree'
+    datasource_id: 'entity:organization'
+    property_path: 'place:entity:tree'
+    type: integer
+    dependencies:
+      module:
+        - organization
+        - place
+      config:
+        - field.storage.place.tree
+  admin_level_name:
+    label: 'Place » Tree » Name'
+    datasource_id: 'entity:organization'
+    property_path: 'place:entity:tree:entity:name'
+    type: text
+    boost: 0.79999999999995
+    dependencies:
+      module:
+        - place
+        - organization
+        - taxonomy
+      config:
+        - field.storage.place.tree
+  category_name:
+    label: 'Category » Name'
+    datasource_id: 'entity:organization'
+    property_path: 'categories:entity:name'
+    type: text
+    boost: 0.79999999999995
+    dependencies:
+      module:
+        - taxonomy
+      config:
+        - field.storage.organization.categories
+  description_summary:
+    label: 'Employer Jobs » Summary'
+    datasource_id: 'entity:organization'
+    property_path: 'search_api_reverse_entity_references_job_role__organization:description_summary'
+    type: text
+    boost: 0.5
+  email:
+    label: 'Employer » Profile » Email'
+    datasource_id: 'entity:organization'
+    property_path: 'email'
+    type: string
+    dependencies:
+      module:
+        - organization
+  employer_categories:
+    label: 'Categories'
+    datasource_id: 'entity:organization'
+    property_path: 'categories'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.organization.categories
+  employer_description:
+    label: 'Description'
+    datasource_id: 'entity:organization'
+    property_path: 'description'
+    type: text
+  employer_description_summary:
+    label: 'Description Summary'
+    datasource_id: 'entity:organization'
+    property_path: 'description_summary'
+    type: text
+    dependencies:
+      config:
+        - field.storage.organization.description_summary
+  employer_name:
+    label: 'Name'
+    datasource_id: 'entity:organization'
+    property_path: 'name'
+    type: text
+    boost: !!float 2
+  id:
+    label: 'Organization ID'
+    datasource_id: 'entity:organization'
+    property_path: id
+    type: integer
+    dependencies:
+      module:
+        - rganization
+datasource_settings:
+  'entity:organization':
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  employer_on_directory: {  }
+  entity_status: {  }
+  hierarchy:
+    fields:
+      tree: taxonomy_term-parent
+      categories: taxonomy_term-parent
+    weights:
+      preprocess_index: -45
+  language_with_fallback: {  }
+  rendered_item: {  }
+  reverse_entity_references: {  }
+tracker_settings:
+  default:
+    indexing_order: lifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: aws_christian_jobs_elasticsearch

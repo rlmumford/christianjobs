@@ -5,6 +5,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Locale\CountryManager;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\organization\Plugin\Field\FieldType\OrganizationMetadataReferenceItem;
 
 /**
  * Set short summary on job roles.
@@ -328,4 +329,78 @@ function job_board_post_update_set_employer_description_summary(&$sandbox = NULL
     $sandbox['#finished'] = min(1, $sandbox['progress']/$sandbox['max']);
     return "Processed ".number_format($sandbox['#finished']*100,2)."%";
   }
+}
+
+/**
+ * Migrate employer profiles to organization entities.
+ */
+function job_Board_post_update_migrate_organization(&$sandbox = NULL) {
+  $user_storage = \Drupal::entityTypeManager()->getStorage('user');
+  /** @var \Drupal\profile\ProfileStorage $profile_storage */
+  $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+  $job_storage = \Drupal::entityTypeManager()->getStorage('job_role');
+  $organization_storage = \Drupal::entityTypeManager()->getStorage('organization');
+  $place_storage = \Drupal::entityTypeManager()->getStorage('place');
+
+  $query = $user_storage->getQuery();
+  $query->condition('role', 'employer');
+
+  if (!isset($sandbox['max'])) {
+    $sandbox['max'] = (clone $query)->count()->execute();
+    $sandbox['last_id'] = $sandbox['progress'] = 0;
+  }
+
+  $query->condition('uid', $sandbox['last_id'], '>');
+  $query->sort('uid', 'ASC');
+  $query->range(0, 10);
+
+  /** @var \Drupal\user\Entity\User $employer */
+  foreach ($user_storage->loadMultiple($query->execute()) as $employer) {
+    /** @var \Drupal\profile\Entity\Profile $profile */
+    $profile = $profile_storage->loadDefaultByUser($employer, 'employer');
+
+    $place = $place_storage->create([
+      'owner' => $employer,
+      'type' => "address",
+      'address' => $profile->address->getValue(),
+      'tree' => $profile->address_tree->getValue(),
+      'geo' => $profile->address_geo->getValue(),
+    ]);
+    $organization = $organization_storage->create([
+      'owner' => $employer,
+      'name' => $profile->employer_name->getValue(),
+      'description' => $profile->employer_description->getValue(),
+      'description_summary' => $profile->employer_description_summary->getValue(),
+      'website' => $profile->employer_website->getValue(),
+      'logo' => $profile->logo->getValue(),
+      'is_charity' => $profile->employer_is_charity->getValue(),
+      'type' => $profile->employer_type->getValue(),
+      'on_directory' => $profile->employer_on_directory->getValue(),
+      'charity_number' => $profile->employer_charity_number->getValue(),
+      'categories' => $profile->employer_categories->getValue(),
+      'tel' => $profile->tel->getValue(),
+      'email' => $profile->email->getValue(),
+      'places' => [$place],
+    ]);
+    $organization->save();
+
+    $employer->organization[] = [
+      'target_id' => $organization->id(),
+      'entity' => $organization,
+      'role' => OrganizationMetadataReferenceItem::ROLE_OWNER,
+      'status' => OrganizationMetadataReferenceItem::STATUS_ACTIVE,
+    ];
+    $employer->save();
+
+    $query = $job_storage->getQuery();
+    $query->condition('organisation', $employer->id());
+    foreach ($job_storage->loadMultiple($query->execute()) as $job) {
+      $job->organization = $organization;
+      $job->save();
+    }
+
+    $sandbox['progress']++;
+    $sandbox['last_id'] = $employer->id();
+  }
+
 }

@@ -17,3 +17,4 @@ dependencies:
 - commerce:commerce_cart
 - commerce:commerce_checkout
 - commerce:commerce_tax
+- rlmumford:organization_user

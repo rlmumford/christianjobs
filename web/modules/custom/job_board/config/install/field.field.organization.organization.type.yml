@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.organization.type
+  module:
+    - options
+id: organization.organization.type
+field_name: type
+entity_type: organization
+bundle: organization
+label: 'Employer Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

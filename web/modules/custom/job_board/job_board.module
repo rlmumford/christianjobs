@@ -20,6 +20,7 @@ use Drupal\job_board\Form\JobForm;
 use Drupal\job_board\Form\JobPostForm;
 use Drupal\job_board\JobBoardJobRole;
 use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
+use Drupal\place\Entity\Place;
 use Drupal\profile\Entity\Profile;
 use Drupal\user\Entity\User;
 use Drupal\user\EntityOwnerInterface;
@@ -644,6 +645,45 @@ function job_board_profile_presave(Profile $profile) {
   }
 
   $profile->address_tree = $terms;
+}
+
+/**
+ * Implements hook_place_presave().
+ */
+function job_board_place_presave(Place $place) {
+  $json = $place->geo->value;
+  if ($place->hasField('tree') && $data = json_decode($json)) {
+    if (!isset($data->properties->adminLevels)) {
+      return;
+    }
+
+    // First get the tem for the country.
+    $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    $loc_terms = $term_storage->loadByProperties(['vid' => 'locations', 'name' => $data->properties->country]);
+    if (!($term = reset($loc_terms))) {
+      $term = $term_storage->create([
+        'vid' => 'locations',
+        'name' => $data->properties->country,
+      ]);
+      $term->save();
+    }
+    $terms[] = $term;
+
+    foreach ($data->properties->adminLevels as $level) {
+      $level_terms = $term_storage->loadByProperties(['vid' => 'locations', 'name' => $level->name, 'parent' => $term->id()]);
+      if (!($next_term = reset($level_terms))) {
+        $next_term = $term_storage->create([
+          'vid' => 'locations',
+          'name' => $level->name,
+          'parent' => $term->id(),
+        ]);
+        $next_term->save();
+      }
+      $terms[] = $term = $next_term;
+    }
+
+    $place->tree = $terms;
+  }
 }
 
 /**

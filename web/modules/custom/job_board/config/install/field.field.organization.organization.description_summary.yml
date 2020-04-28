@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.organization.description_summary
+  module:
+    - text
+id: organization.organization.description_summary
+field_name: description_summary
+entity_type: organization
+bundle: organization
+label: 'Employer Description Summary'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

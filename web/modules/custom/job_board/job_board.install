@@ -1093,3 +1093,64 @@ function job_board_update_8027() {
   // Clear plugin manager caches.
   \Drupal::getContainer()->get('plugin.cache_clearer')->clearCachedDefinitions();
 }
+
+/**
+ * Install organization_user module and install fields on organization entity
+ */
+function job_board_update_8028() {
+  \Drupal::service('module_installer')->install(['organization_user']);
+
+  $source = new FileStorage(drupal_get_path('module', 'job_board') . '/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  /** @var \Drupal\Core\Config\ConfigManagerInterface $config_manager */
+  $config_manager = \Drupal::service('config.manager');
+  $configs_to_install = [
+    'field.field.organization.organization.categories',
+    'field.field.organization.organization.charity_number',
+    'field.field.organization.organization.description_summary',
+    'field.field.organization.organization.is_charity',
+    'field.field.organization.organization.on_directory',
+    'field.field.organization.organization.type',
+    'field.field.place.address.tree',
+    'field.storage.organization.categories',
+    'field.storage.organization.charity_number',
+    'field.storage.organization.description_summary',
+    'field.storage.organization.is_charity',
+    'field.storage.organization.on_directory',
+    'field.storage.organization.type',
+    'field.storage.place.tree',
+    'search_api.index.organization_directory',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config = new Config($name, \Drupal::service('config.storage'), \Drupal::service('event_dispatcher'), \Drupal::service('config.typed'));
+    $config->setData($source->read($name));
+
+    if ($entity_type = $config_manager->getEntityTypeIdByName($name)) {
+      /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
+      $entity_storage = $config_manager->getEntityManager()->getStorage($entity_type);
+
+      $id = $entity_storage->getIDFromConfigName($name, $entity_storage->getEntityType()->getConfigPrefix());
+      if ($config_storage->exists($name)) {
+        /** @var \Drupal\Core\Config\Entity\ConfigEntityBase $entity */
+        $entity = $entity_storage->load($id);
+        $entity = $entity_storage->updateFromStorageRecord($entity, $config->get());
+      }
+      else {
+        $entity = $entity_storage->createFromStorageRecord($config->get());
+      }
+
+      if ($entity->isInstallable()) {
+        $entity->trustData()->save();
+      }
+    }
+    else {
+      $config->save();
+    }
+  }
+
+  // Clear plugin manager caches.
+  \Drupal::getContainer()->get('plugin.cache_clearer')->clearCachedDefinitions();
+}
+
