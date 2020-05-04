@@ -20,3 +20,7 @@ services:
     class: Drupal\job_board\EventSubscriber\GoCardlessSubscriber
     tags:
       - { name: event_subscriber }
+  job_board.route_subscriber:
+    class: Drupal\job_board\EventSubscriber\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
