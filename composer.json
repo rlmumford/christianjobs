@@ -103,8 +103,7 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
-        "drupal/devel": "^1.2",
-        "webflo/drupal-core-require-dev": "^8.7"
+        "drupal/devel": "^1.2"
     },
     "conflict": {
         "drupal/drupal": "*"
