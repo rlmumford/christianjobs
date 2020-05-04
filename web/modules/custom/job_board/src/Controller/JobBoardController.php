@@ -4,19 +4,81 @@ namespace Drupal\job_board\Controller;
 
 use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
 use Drupal\cj_membership\Entity\Membership;
+use Drupal\commerce_cart\CartManagerInterface;
+use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\commerce_price\Price;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\TransactionNameNonUniqueException;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\job_role\Entity\JobRoleInterface;
+use Drupal\organization\Entity\Organization;
+use Drupal\organization_user\UserOrganizationResolver;
 use Drupal\user\UserInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class JobBoardController extends ControllerBase {
+
+  /**
+   * @var \Drupal\organization_user\UserOrganizationResolver
+   */
+  protected $organizationResolver;
+
+  /**
+   * @var \Drupal\commerce_cart\CartProviderInterface
+   */
+  protected $cartProvider;
+
+  /**
+   * @var \Drupal\commerce_cart\CartManagerInterface
+   */
+  protected $cartManager;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('current_user'),
+      $container->get('entity_type.manager'),
+      $container->get('organization_user.organization_resolver'),
+      $container->get('module_handler'),
+      $container->get('commerce_cart.cart_provider'),
+      $container->get('commerce_cart.cart_manager')
+    );
+  }
+
+  /**
+   * JobBoardController constructor.
+   *
+   * @param \Drupal\Core\Session\AccountInterface $current_user
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * @param \Drupal\organization_user\UserOrganizationResolver $organization_resolver
+   */
+  public function __construct(
+    AccountInterface $current_user,
+    EntityTypeManagerInterface $entity_type_manager,
+    UserOrganizationResolver $organization_resolver,
+    ModuleHandlerInterface $module_handler,
+    CartProviderInterface $cart_provider,
+    CartManagerInterface $cart_manager
+  ) {
+    $this->currentUser = $current_user;
+    $this->entityTypeManager = $entity_type_manager;
+    $this->organizationResolver = $organization_resolver;
+    $this->moduleHandler = $module_handler;
+    $this->cartProvider = $cart_provider;
+    $this->cartManager = $cart_manager;
+  }
 
   /**
    * Repost job.
@@ -52,8 +114,7 @@ class JobBoardController extends ControllerBase {
   /**
    * Page to post a new job.
    */
-  public function postJob() {
-    $request = \Drupal::request();
+  public function postJob(Request $request) {
     $cookies = [
       'jobPostRegister' => TRUE,
     ];
@@ -64,32 +125,27 @@ class JobBoardController extends ControllerBase {
       $cookies['jobPostRpo'] = TRUE;
     }
 
-    $current_user = \Drupal::currentUser();
-    if ($current_user->isAnonymous() && !$current_user->hasPermission('post job board jobs')) {
+    if ($this->currentUser->isAnonymous() && !$this->currentUser->hasPermission('post job board jobs')) {
       user_cookie_save($cookies);
       return $this->redirect('user.register');
     }
 
-    /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
-    $profile_storage = $this->entityTypeManager()->getStorage('profile');
-    if (!($profile = $profile_storage->loadDefaultByUser($current_user, 'employer')) || !$profile->employer_name->value) {
+    if (!($organization = $this->organizationResolver->getOrganization($this->currentUser))) {
       user_cookie_save($cookies);
-      return $this->redirect('job_board.employer_edit', ['user' => $current_user->id()]);
+      return $this->redirect('job_board.post.organization');
     }
 
     if (!empty($cookies['jobPostMembership']) || $request->query->get('membership')) {
-      /** @var \Drupal\commerce_cart\CartProvider $cart_provider */
-      $cart_provider = \Drupal::service('commerce_cart.cart_provider');
-      $cart = $cart_provider->getCart('default');
+      $cart = $this->cartProvider->getCart('default');
       if (!$cart) {
-        $cart = $cart_provider->createCart('default');
+        $cart = $this->cartProvider->createCart('default');
       }
 
       // Add a membership options to this form.
-      if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {
+      if ($this->moduleHandler()->moduleExists('cj_membership')) {
         /** @var \Drupal\cj_membership\MembershipStorage $membership_storage */
-        $membership_storage = \Drupal::entityTypeManager()->getStorage('cj_membership');
-        $membership = $membership_storage->getAccountMembership($current_user);
+        $membership_storage = $this->entityTypeManager()->getStorage('cj_membership');
+        $membership = $membership_storage->getAccountMembership($this->currentUser);
 
         // Membership on current order.
         $membership_in_cart = FALSE;
@@ -101,9 +157,9 @@ class JobBoardController extends ControllerBase {
 
         if (!$membership && !$membership_in_cart) {
           $membership = $membership_storage->create()
-            ->setOwnerId($current_user->id());
+            ->setOwnerId($this->currentUser->id());
           $membership->start->value = date(DateTimeItemInterface::DATE_STORAGE_FORMAT);
-          \Drupal::service('commerce_cart.cart_manager')->addEntity($cart, $membership);
+          $this->cartManager->addEntity($cart, $membership);
         }
       }
     }
@@ -115,17 +171,17 @@ class JobBoardController extends ControllerBase {
 
     /** @var \Drupal\job_board\JobBoardJobRole $job */
     $job = $this->entityTypeManager()->getStorage('job_role')->create($initial_values);
-    $job->organisation = $current_user->id();
-    $job->setOwnerId($current_user->id());
+    $job->setOwnerId($this->currentUser->id());
+    $job->setOrganization($organization);
 
-    if ($profile->address) {
-      $job->contact_address = $profile->address;
+    if ($organization->address) {
+      $job->contact_address = $organization->address;
     }
-    if ($profile->email) {
-      $job->contact_email = $profile->email;
+    if ($organization->email) {
+      $job->contact_email = $organization->email;
     }
-    if ($profile->tel) {
-      $job->contact_phone = $profile->tel;
+    if ($organization->tel) {
+      $job->contact_phone = $organization->tel;
     }
 
     return $this->entityFormBuilder()->getForm($job, 'post');
@@ -146,42 +202,12 @@ class JobBoardController extends ControllerBase {
   }
 
   /**
-   * Return the employer page title.
-   */
-  public function employerTitle(UserInterface $user) {/** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
-    $profile_storage = $this->entityTypeManager()->getStorage('profile');
-    $profile = $profile_storage->loadDefaultByUser($user, 'employer');
-
-    if ($profile && $profile->employer_name->value) {
-      return $profile->employer_name->value;
-    }
-    else if ($user->id() == \Drupal::currentUser()->id()) {
-      return $this->t('Your Organisation');
-    }
-
-    return $this->t('@username\'s Organisation', [
-      '@username' => $user->label(),
-    ]);
-  }
-
-  /**
    * Return the employer edit page title.
    */
-  public function employerEditTitle(UserInterface $user) {
+  public function employerEditTitle(Organization $organization) {
     return $this->t('Edit @employer', [
-      '@employer' => $this->employerTitle($user),
+      '@employer' => $organization->label(),
     ]);
-  }
-
-  /**
-   * Check the employer role exist.
-   */
-  public function employerEditAccess(UserInterface $user) {
-    if ($user->hasRole('employer')) {
-      return AccessResult::allowed();
-    }
-
-    return AccessResult::forbidden();
   }
 
   /**

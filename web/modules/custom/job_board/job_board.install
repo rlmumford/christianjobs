@@ -1107,13 +1107,6 @@ function job_board_update_8028() {
   /** @var \Drupal\Core\Config\ConfigManagerInterface $config_manager */
   $config_manager = \Drupal::service('config.manager');
   $configs_to_install = [
-    'field.field.organization.organization.categories',
-    'field.field.organization.organization.charity_number',
-    'field.field.organization.organization.description_summary',
-    'field.field.organization.organization.is_charity',
-    'field.field.organization.organization.on_directory',
-    'field.field.organization.organization.type',
-    'field.field.place.address.tree',
     'field.storage.organization.categories',
     'field.storage.organization.charity_number',
     'field.storage.organization.description_summary',
@@ -1121,6 +1114,13 @@ function job_board_update_8028() {
     'field.storage.organization.on_directory',
     'field.storage.organization.type',
     'field.storage.place.tree',
+    'field.field.organization.organization.categories',
+    'field.field.organization.organization.charity_number',
+    'field.field.organization.organization.description_summary',
+    'field.field.organization.organization.is_charity',
+    'field.field.organization.organization.on_directory',
+    'field.field.organization.organization.type',
+    'field.field.place.address.tree',
     'search_api.index.organization_directory',
   ];
   foreach ($configs_to_install as $name) {

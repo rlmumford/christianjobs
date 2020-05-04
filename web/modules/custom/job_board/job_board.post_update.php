@@ -343,7 +343,7 @@ function job_Board_post_update_migrate_organization(&$sandbox = NULL) {
   $place_storage = \Drupal::entityTypeManager()->getStorage('place');
 
   $query = $user_storage->getQuery();
-  $query->condition('role', 'employer');
+  $query->condition('roles', 'employer');
 
   if (!isset($sandbox['max'])) {
     $sandbox['max'] = (clone $query)->count()->execute();

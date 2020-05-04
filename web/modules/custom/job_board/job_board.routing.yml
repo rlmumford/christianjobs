@@ -23,6 +23,15 @@ job_board.post:
     _access: 'TRUE'
   options:
     no_cache: 'TRUE'
+job_board.post.organization:
+  path: '/jobs/post/organization'
+  defaults:
+    _form: '\Drupal\job_board\Form\JobPostOrganizationForm'
+    _title: 'Post a Job'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  options:
+    no_cache: 'TRUE'
 
 job_board.boost:
   path: '/job/{job_role}/boost'
@@ -48,17 +57,16 @@ job_board.repost:
     _entity_access: 'job_role.repost'
 
 job_board.employer:
-  path: '/employer/{user}'
+  path: '/employer/{organization}'
   defaults:
-    _entity_view: 'user.employer_page'
-    _title_callback: '\Drupal\job_board\Controller\JobBoardController::employerTitle'
+    _entity_view: 'organization.employer_page'
+    _title_callback: '\Drupal\Core\Entity\Controller\EntityController::title'
   requirements:
     _access: 'TRUE'
 job_board.employer_edit:
-  path: '/employer/{user}/edit'
+  path: '/employer/{organization}/edit'
   defaults:
-    _entity_form: 'user.employer_details'
-    _title_callback: '\Drupal\job_board\Controller\JobBoardController::employerEditTitle'
+    _entity_form: 'organization.employer_details'
+    _title_callback: '\Drupal\Core\Entity\Controller\EntityController::title'
   requirements:
-    _entity_access: 'user.update'
-    _custom_access: '\Drupal\job_board\Controller\JobBoardController::employerEditAccess'
+    _entity_access: 'organization.update'

@@ -122,7 +122,7 @@ function job_board_entity_type_build(&$entity_types) {
     $entity_type->setLinkTemplate('delete-form', '/job/{job_role}/delete');
   }
 
-  if ($entity_type = $entity_types['user']) {
+  if ($entity_type = $entity_types['organization']) {
     $entity_type->setFormClass('employer_details', EmployerEditForm::class);
   }
 }
