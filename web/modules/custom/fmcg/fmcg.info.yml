@@ -1,10 +1,13 @@
 name: 'FMCG Jobs'
+description: 'Config for the FMCGJobs Site.'
 package: 'FMCG Jobs'
 type: module
 core: 8.x
 
 dependencies:
 - drupal:block
+- drupal:toolbar
+- drupal:link
 - block_class:block_class
 - job_board
 - flexiform:flexiform
@@ -20,3 +23,4 @@ dependencies:
 - rlmumford:commerce_invoice
 - rlmumford:rlm_material
 - pdf_tools:pdf_tools
+- social_media:social_media

@@ -1,8 +1,8 @@
 langcode: en
 status: '1'
 dependencies: {  }
-cluster_id: aws_christian_jobs
-name: 'AWS Christian Jobs'
+cluster_id: aws
+name: 'AWS'
 url: 'https://search-christianjobs-jlu553iladwx3grdlckv5s5bq4.eu-west-2.es.amazonaws.com:443'
 options:
   multiple_nodes_connection: false

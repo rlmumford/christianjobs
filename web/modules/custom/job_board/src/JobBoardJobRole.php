@@ -6,12 +6,15 @@ use Drupal\commerce\Context;
 use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_price\Price;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\SynchronizableEntityTrait;
+use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Locale\CountryManager;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\job_role\Entity\JobRole;
 use Drupal\organization_user\Entity\EntityOwnerOrganizationTrait;
+use Drupal\user\EntityOwnerInterface;
 
 class JobBoardJobRole extends JobRole implements PurchasableEntityInterface {
   use SynchronizableEntityTrait;

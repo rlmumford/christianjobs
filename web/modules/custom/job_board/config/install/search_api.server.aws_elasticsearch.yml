@@ -3,13 +3,13 @@ status: true
 dependencies:
   module:
     - elasticsearch_connector
-id: aws_christian_jobs_elasticsearch
-name: 'AWS Christian Jobs Elasticsearch'
+id: aws_elasticsearch
+name: 'AWS Elasticsearch'
 description: ''
 backend: elasticsearch
 backend_config:
   cluster_settings:
-    cluster: aws_christian_jobs
+    cluster: aws
   fuzziness: auto
   scheme: http
   host: localhost

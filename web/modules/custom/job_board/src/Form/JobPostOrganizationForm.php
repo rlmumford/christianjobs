@@ -2,6 +2,7 @@
 
 namespace Drupal\job_board\Form;
 
+use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\EntityFormBuilderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -99,7 +100,7 @@ class JobPostOrganizationForm extends FormBase {
 
     if (!$this->getFormDisplay($form_state)) {
       $form_display = EntityFormDisplay::collectRenderDisplay($organization, 'employer_details');
-      $this->setFormDisplay($form_display);
+      $this->setFormDisplay($form_display, $form_state);
     }
 
     $this->getFormDisplay($form_state)->buildForm($organization, $form['create'], $form_state);
@@ -109,21 +110,43 @@ class JobPostOrganizationForm extends FormBase {
       'select' => [
         '#type' => 'submit',
         '#value' => $this->t('Request to Join'),
+        '#limit_validation_errors' => [
+          ['select'],
+          ['actions', 'create'],
+        ],
         '#submit' => [
           '::submitFormSelect',
         ],
         '#validate' => [
           '::validateFormSelect',
         ],
+        '#states' => [
+          'visible' => [
+            ':input[name="mode"]' => [
+              'value' => 'select',
+            ],
+          ],
+        ],
       ],
       'create' => [
         '#type' => 'submit',
         '#value' => $this->t('Create Organization'),
+        '#limit_validation_errors' => [
+          ['create'],
+          ['actions', 'create'],
+        ],
         '#submit' => [
           '::submitFormCreate',
         ],
         '#validate' => [
           '::validateFormCreate',
+        ],
+        '#states' => [
+          'visible' => [
+            ':input[name="mode"]' => [
+              'value' => 'create',
+            ]
+          ]
         ]
       ]
     ];
@@ -141,6 +164,22 @@ class JobPostOrganizationForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // TODO: Implement submitForm() method.
+  }
+
+  public function validateFormCreate(array $form, FormStateInterface $form_state) {
+
+  }
+
+  public function validateFormSelect(array $form, FormStateInterface $form_state) {
+
+  }
+
+  public function submitFormCreate(array $form, FormStateInterface $form_state) {
+
+  }
+
+  public function submitFormSelect(array $form, FormStateInterface $form_state) {
+
   }
 
   /**

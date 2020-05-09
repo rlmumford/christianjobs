@@ -12,7 +12,7 @@ dependencies:
     - field.storage.place.tree
     - field.storage.organization.categories
     - field.storage.organization.description_summary
-    - search_api.server.aws_christian_jobs_elasticsearch
+    - search_api.server.aws_elasticsearch
 id: organization_directory
 name: 'Organization Directory'
 description: ''
@@ -127,4 +127,4 @@ tracker_settings:
 options:
   index_directly: true
   cron_limit: 50
-server: aws_christian_jobs_elasticsearch
+server: aws_elasticsearch
