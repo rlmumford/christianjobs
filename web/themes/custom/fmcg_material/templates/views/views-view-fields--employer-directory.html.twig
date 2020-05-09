@@ -1,0 +1,115 @@
+{#
+/**
+ * @file
+ * Default view template to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="card card-vertical job-result{% if is_member %} is-member{% endif %}">
+  <div class="card-column-left card-column-240 visible-md aside">
+    {% if fields.logo %}
+      <div class="card-item card-media media-cover">
+        {{ fields.logo.content }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="card-column-right card-column-stretch main">
+    <div class="card-item card-title visible-md pb-0">
+      <h3>{{ fields.employer_name.content }}</h3>
+      {%  if fields.employer_website %}
+        <span class="subtitle">{{ fields.employer_website.content }}</span>
+      {%  endif %}
+    </div>
+    <div class="card-item card-text">
+      <div class="row">
+        {% set extra_fields = fields|without('logo', 'employer_name', 'employer_description_summary', 'employer_description', 'employer_website') %}
+        <div class="col-xs-12 col-sm-12 {% if extra_fields is empty -%}col-md-12 col-lg-12{%- else -%}col-md-8 col-lg-8{%- endif %} first-md description-container">
+          {{ fields.employer_description_summary.content }}
+        </div>
+        {% if extra_fields is not empty -%}
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 first-sm first-xs extra-fields-container">
+            <div class="hidden-md">
+              <h3>{{ fields.employer_name.content }}</h3>
+              {%  if fields.employer_website %}
+                <span class="subtitle">{{ fields.employer_website.content }}</span>
+              {% endif %}
+            </div>
+            {% for field in extra_fields -%}
+              {{ field.separator }}
+              {%- if field.wrapper_element -%}
+                <{{ field.wrapper_element }}{{ field.wrapper_attributes }}>
+              {%- endif %}
+              {%- if field.label -%}
+                {%- if field.label_element -%}
+                  <{{ field.label_element }}{{ field.label_attributes }}>{{ field.label }}{{ field.label_suffix }}</{{ field.label_element }}>
+                {%- else -%}
+                  {{ field.label }}{{ field.label_suffix }}
+                {%- endif %}
+              {%- endif %}
+              {%- if field.element_type -%}
+                <{{ field.element_type }}{{ field.element_attributes }}>{{ field.content }}</{{ field.element_type }}>
+              {%- else -%}
+                {{ field.content }}
+              {%- endif %}
+              {%- if field.wrapper_element -%}
+                </{{ field.wrapper_element }}>
+              {%- endif %}
+            {%- endfor %}
+          </div>
+        {%- endif %}
+      </div>
+      <div class="row">
+        {{ paid_count }}{{ vol_count }}{{ like_count }}
+      </div>
+    </div>
+  </div>
+</div>
+{#
+{% for field in fields -%}
+  {{ field.separator }}
+  {%- if field.wrapper_element -%}
+    <{{ field.wrapper_element }}{{ field.wrapper_attributes }}>
+  {%- endif %}
+  {%- if field.label -%}
+    {%- if field.label_element -%}
+      <{{ field.label_element }}{{ field.label_attributes }}>{{ field.label }}{{ field.label_suffix }}</{{ field.label_element }}>
+    {%- else -%}
+      {{ field.label }}{{ field.label_suffix }}
+    {%- endif %}
+  {%- endif %}
+  {%- if field.element_type -%}
+    <{{ field.element_type }}{{ field.element_attributes }}>{{ field.content }}</{{ field.element_type }}>
+  {%- else -%}
+    {{ field.content }}
+  {%- endif %}
+  {%- if field.wrapper_element -%}
+    </{{ field.wrapper_element }}>
+  {%- endif %}
+{%- endfor %}
+#}

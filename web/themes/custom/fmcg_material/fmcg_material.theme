@@ -1,0 +1,131 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_form_user_register_form_alter().
+ */
+function fmcg_material_form_user_register_form_alter(array &$form, FormStateInterface $form_state) {
+  $form['account']['org_name']['#title'] = NULL;
+  $form['account']['org_name']['#attributes']['placeholder'] = t('Organisation Name');
+
+  $comps = &$form['account']['indiv_name_wrapper']['indiv_name']['#components'];
+  $form['account']['indiv_name_wrapper']['indiv_name']['#title'] = NULL;
+  $comps['given']['attributes']['placeholder'] = $comps['given']['title'];
+  $comps['given']['title_display'] = 'none';
+  $comps['family']['attributes']['placeholder'] = $comps['family']['title'];
+  $comps['family']['title_display'] = 'none';
+}
+
+/**
+ * Implments hook_form_user_self_edit_candidate_form_alter().
+ *
+ * @param array $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ */
+function fmcg_material_form_user_self_edit_candidate_form_alter(array &$form, FormStateInterface $form_state) {
+  $comps = &$form['individual_profile:name']['widget'][0]['#components'];
+  $comps['given']['attributes']['placeholder'] = $comps['given']['title'];
+  $comps['given']['title_display'] = 'none';
+  $comps['family']['attributes']['placeholder'] = $comps['family']['title'];
+  $comps['family']['title_display'] = 'none';
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ */
+function fmcg_material_preprocess_html(&$variables) {
+  // Add sticky navbar class
+  $variables['attributes']['class'][] = 'navbar-fixed';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for pages.
+ */
+function fmcg_material_preprocess_page(&$variables) {
+  if (!empty($variables['node'])) {
+    /** @var \Drupal\node\Entity\Node $node */
+    $node = $variables['node'];
+    if ($node->getType() == 'article') {
+      foreach (Element::children($variables['page']['content']) as $id) {
+        $block_render = &$variables['page']['content'][$id];
+        if (!empty($block_render['#lazy_builder'])) {
+          continue;
+        }
+        $block_render['#attributes']['class'][] = 'card-item';
+        if ($id == 'fmcg_material_page_title') {
+          $block_render['#attributes']['class'][] = 'card-title';
+        }
+        else {
+          $block_render['#attributes']['class'][] = 'card-text';
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Preprocess Views View Fields
+ *
+ * @param $variables
+ */
+function fmcg_material_preprocess_views_view_fields__employer_directory(&$variables) {
+  $row = $variables['row'];
+  $paid_count = isset($row->paid_role_count) ? $row->paid_role_count : 0;
+
+  $variables['paid_count'] = Markup::create(
+    "<span class=\"directory-paid-role-count directory-icon\"><span class=\"material-icons\">work</span>{$paid_count}</span>"
+  );
+
+  /** @var \Drupal\flag\FlagLinkBuilderInterface $link_builder */
+  $link_builder = \Drupal::service('flag.link_builder');
+  $variables['like_count'] = $link_builder->build(
+    'user',
+    $row->_object->getEntity()->id(),
+    'employer_like'
+  );
+  $variables['like_count']['#attributes']['title'] = !empty($variables['like_count']['#title']) ? $variables['like_count']['#title'] : new TranslatableMarkup('Likes');
+  $variables['like_count']['#title'] = isset($row->like_count) ? $row->like_count : 0;
+
+  if (empty($variables['like_count']['#theme'])) {
+    $variables['like_count'] = Markup::create(
+      "<span class=\"directory-like-count directory-icon\">".(isset($row->like_count) ? $row->like_count : 0)."</span>"
+    );
+  }
+}
+
+function fmcg_material_preprocess_flag(&$variables) {
+  if ($variables['flag']->id() === 'employer_like') {
+    $variables['attributes']['class'][] = 'chip';
+    $variables['attributes']['class'][] = 'directory-icon';
+    $variables['attributes']['class'][] = 'directory-like-count';
+
+    if (!is_numeric($variables['title'])) {
+      $variables['attributes']['title'] = $variables['title'];
+
+      /** @var \Drupal\flag\FlagCountManagerInterface $count_service */
+      $count_service = \Drupal::service('flag.count');
+      $counts = $count_service->getEntityFlagCounts($variables['flaggable']);
+      $variables['title'] = !empty($counts['employer_like']) ? $counts['employer_like'] : 0;
+    }
+  }
+}
+
+function fmcg_material_preprocess_layout__twocol_section(&$variables) {
+  $variables['content']['#attributes']['class'][] = 'row';
+  $variables['attributes']['class'][] = 'row';
+
+  $variables['content']['first']['#attributes']['class'] = ['col-xs-12', 'col-md-6'];
+  $variables['region_attributes']['first']['class'] = ['col-xs-12', 'col-md-6'];
+  $variables['content']['second']['#attributes']['class'] = ['col-xs-12', 'col-md-6'];
+  $variables['region_attributes']['second']['class'] = ['col-xs-12', 'col-md-6'];
+}

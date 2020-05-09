@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+// overrided variable
+$fmcg-blue: (
+  50:   #E3F6FF,
+  100:  #b8e6ff,
+  200:  #8bd7ff,
+  300:  #62c7ff,
+  400:  #4bbaff,
+  500:  #43adfd,
+  600:  #409fed,
+  700:  #3c8cd8,
+  800:  #377bc4,
+  900:  #305aa0,
+  a100: #b8e6ff,
+  a200: #8bd7ff,
+  a400: #62c7ff,
+  a700: #3c8cd8,
+);
+
+$fmcg-orange: (
+  50: #fffeeb,
+  100: #fffacb,
+  200: #fff5a8,
+  300: #fff087,
+  400: #ffea6e,
+  500: #ffe558,
+  600: #ffdc5c,
+  700: #ffcd5d,
+  800: #ffb656,
+  900: #ff904b,
+  a100: #fffacb,
+  a200: #fff5a8,
+  a400: #ffea6e,
+  a700: #ffcd5d,
+);
+
+$color-primary-base: $fmcg-orange;
+$color-accent-base: $fmcg-blue;
+
+$color-primary: #2A556B !default; //500
+$color-primary-hover: #FF9049 !default;
+$color-primary-active: #2A556B !default;
+
+$color-accent: #FF904B;
+
+$font-family: 'Lato';
+$heading-font-family: 'Montserrat';
