@@ -1,0 +1,45 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_commerce_checkout_flow_multistep_default_alter()
+ */
+function fmcg_form_commerce_checkout_flow_multistep_default_alter(array &$form, FormStateInterface $form_state) {
+  if ($form['#step_id'] !== 'order_information') {
+    return;
+  }
+
+  if (!empty($form['payment_information']['payment_method'])) {
+    $form['payment_information']['payment_method']['#attributes']['class'][] = 'payment-method';
+  }
+  if (!empty($form['payment_information']['billing_information']['edit_button'])) {
+    $form['payment_information']['billing_information']['edit_button']['#attributes']['class'][] = "checkout-address-book-edit-button";
+  }
+}
+
+/**
+ * Implements hook_form_user_form_alter().
+ */
+function fmcg_form_user_form_alter(array &$form, FormStateInterface $form_state) {
+  // Email registration doesn't check whether the account portion of the form
+  // exists before fiddling with it. Undo those fiddles here.
+  if (!isset($form['account']['name']) || (!empty($form['account']['name']['#type']) && $form['account']['name']['#type'] == 'value' && !isset($form['account']['name']['#default_value']))) {
+    unset($form['account']);
+  }
+
+  $form['contact']['#access'] = FALSE;
+  $form['contact']['contact']['#default_value'] = FALSE;
+  $form['user_picture']['#access'] = FALSE;
+  $form['timezone']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_local_tasks_alter().
+ */
+function fmcg_local_tasks_alter(&$local_tasks) {
+  $local_tasks['entity.user.edit_form']['title'] = 'Edit Account';
+  unset($local_tasks['entity.commerce_payment_method.collection']);
+  unset($local_tasks['entity.profile.user_profile_form:profile.type.individual']);
+  unset($local_tasks['entity.profile.user_profile_form:profile.type.organisation']);
+}
