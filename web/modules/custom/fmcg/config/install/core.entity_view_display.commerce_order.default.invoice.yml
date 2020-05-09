@@ -1,0 +1,75 @@
+uuid: 3d11e412-e3a5-44bb-b41e-68b9baa56c63
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.default
+    - core.entity_view_mode.commerce_order.invoice
+    - field.field.commerce_order.default.invoice_pdf
+  module:
+    - commerce_order
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+_core:
+  default_config_hash: DGdHybHLw9uLIR4f16miPoJYlsJxbxZk_li7kD13aE4
+id: commerce_order.default.invoice
+targetEntityType: commerce_order
+bundle: default
+mode: invoice
+content:
+  mail:
+    label: hidden
+    type: basic_string
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  order_items:
+    type: commerce_order_item_table
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    label: hidden
+    region: content
+  order_number:
+    type: string
+    weight: -4
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  placed:
+    label: inline
+    type: timestamp
+    weight: -5
+    settings:
+      date_format: short
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+    region: content
+  total_price:
+    type: commerce_order_total_summary
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    label: hidden
+    region: content
+hidden:
+  billing_profile: true
+  changed: true
+  completed: true
+  exvat_total_price: true
+  invoice_pdf: true
+  ip_address: true
+  paid: true
+  search_api_excerpt: true
+  state: true
+  store_id: true
+  total_paid: true
+  total_vat: true
+  uid: true
