@@ -23,7 +23,7 @@ third_party_settings:
     enabled: true
     sections:
       -
-        layout_id: cj_9_3
+        layout_id: rlm_material_9_3
         layout_settings: {  }
         components:
           cd485b9f-9c10-4ec9-9d72-72ae1618802e:

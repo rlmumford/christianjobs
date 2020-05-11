@@ -1,5 +1,5 @@
 cj_9_3:
-  label: 'Two Column 9/3'
+  label: 'Two Column 9/3 Deprecated'
   path: layouts/cj_9_3
   template: layout--cj-9-3
   category: 'Columns: 2'
@@ -16,7 +16,7 @@ cj_9_3:
     bottom:
       label: Bottom
 cj_3_9:
-  label: 'Two Column 3/9'
+  label: 'Two Column 3/9 Deprecated'
   path: layouts/cj_3_9
   template: layout--cj-3-9
   category: 'Columns: 2'
@@ -29,7 +29,7 @@ cj_3_9:
     content:
       label: Content
 cj_6_6:
-  label: 'Two Column 6/6'
+  label: 'Two Column 6/6 Deprecated'
   path: layouts/cj_6_6
   template: layout--cj-6-6
   category: 'Columns: 2'

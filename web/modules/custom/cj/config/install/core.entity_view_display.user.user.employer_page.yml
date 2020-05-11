@@ -24,7 +24,7 @@ third_party_settings:
   layout_builder:
     sections:
       -
-        layout_id: cj_9_3
+        layout_id: rlm_material_9_3
         layout_settings: {  }
         components:
           9dc94514-3fc4-493f-8076-69301ae2c60e:

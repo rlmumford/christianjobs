@@ -10180,12 +10180,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "0fa378a5df91ecf81f3136ef3461cbfe6a88d141"
+                "reference": "7c58c47be5c14692491ae95ef25fe35596a8f80e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/0fa378a5df91ecf81f3136ef3461cbfe6a88d141",
-                "reference": "0fa378a5df91ecf81f3136ef3461cbfe6a88d141",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/7c58c47be5c14692491ae95ef25fe35596a8f80e",
+                "reference": "7c58c47be5c14692491ae95ef25fe35596a8f80e",
                 "shasum": ""
             },
             "require": {
@@ -10251,7 +10251,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2020-05-11T10:17:14+00:00"
+            "time": "2020-05-11T11:13:45+00:00"
         },
         {
             "name": "ruflin/elastica",
