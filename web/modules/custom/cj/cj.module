@@ -6,6 +6,8 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Locale\CountryManager;
 use Drupal\Core\Render\Element;
@@ -84,6 +86,26 @@ function cj_entity_type_build(&$entity_types) {
   if ($entity_type = $entity_types['user']) {
     $entity_type->setFormClass('self_edit_candidate', ContentEntityForm::class);
   }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ *
+ * @todo: Remove once no longer needed.
+ */
+function cj_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() == 'job_role') {
+    return [
+      'organisation' => BaseFieldDefinition::create('entity_reference')
+        ->setLabel(t('Organisation'))
+        ->setDescription(t('The user/contact that is the organisation/employer for this role.'))
+        ->setRevisionable(TRUE)
+        ->setSetting('target_type', 'user')
+        ->setSetting('handler', 'default')
+    ];
+  }
+
+  return [];
 }
 
 /**
