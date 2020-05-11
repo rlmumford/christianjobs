@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityFormBuilderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\organization\Plugin\Field\FieldType\OrganizationMetadataReferenceItem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class JobPostOrganizationForm extends FormBase {
@@ -166,7 +167,13 @@ class JobPostOrganizationForm extends FormBase {
     // TODO: Implement submitForm() method.
   }
 
-  public function validateFormCreate(array $form, FormStateInterface $form_state) {
+  /**
+   * @param array $form
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *
+   * @return \Drupal\organization\Entity\Organization
+   */
+  protected function buildOrganization(array $form, FormStateInterface $form_state) {
     /** @var \Drupal\organization\Entity\Organization $organization */
     $organization = clone $form_state->get('organization');
     $extracted = $this->getFormDisplay($form_state)->extractFormValues($organization, $form, $form_state);
@@ -182,6 +189,18 @@ class JobPostOrganizationForm extends FormBase {
 
     // Mark the entity as requiring validation.
     $organization->setValidationRequired(!$form_state->getTemporaryValue('entity_validated'));
+
+    return $organization;
+  }
+
+  /**
+   * @param array $form
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *
+   * @return \Drupal\organization\Entity\Organization
+   */
+  public function validateFormCreate(array $form, FormStateInterface $form_state) {
+    $organization = $this->buildOrganization($form, $form_state);
 
     $violations = $organization->validate();
     // Remove violations of inaccessible fields.
@@ -223,14 +242,46 @@ class JobPostOrganizationForm extends FormBase {
     return $organization;
   }
 
+  /**
+   * @param array $form
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   */
   public function validateFormSelect(array $form, FormStateInterface $form_state) {
-
   }
 
+  /**
+   * @param array $form
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
   public function submitFormCreate(array $form, FormStateInterface $form_state) {
+    // Remove button and internal Form API values from submitted values.
+    $form_state->cleanValues();
+    $organization = $this->buildOrganization($form, $form_state);
+    $form_state->set('organization', $organization);
 
+    $organization->save();
+
+    $user = $this->entityTypeManager->getStorage('user')
+      ->load($this->currentUser()->id());
+
+    $user->organization[] = [
+      'target_id' => $organization->id(),
+      'status' => OrganizationMetadataReferenceItem::STATUS_ACTIVE,
+      'role' => OrganizationMetadataReferenceItem::ROLE_OWNER,
+    ];
+    $user->save();
+
+    $form_state->setRedirect('job_board.post');
   }
 
+  /**
+   * @param array $form
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   */
   public function submitFormSelect(array $form, FormStateInterface $form_state) {
 
   }

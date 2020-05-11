@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_order\Entity\Order;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityForm;
@@ -8,6 +9,58 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_cron().
+ */
+function cj_cron() {
+  /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
+  $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+
+  // Manage the employer_on_directory status. We do this with a raw query as it
+  // involves lots and lots of joining.
+
+  // Find all profiles marked as on the directory that do not have an active membership.
+  $query = \Drupal::database()->select('profile__employer_on_directory', 'eod');
+  $query->condition('eod.employer_on_directory_value', 1);
+  $query->join('profile', 'p', 'p.profile_id = eod.entity_id');
+  $query->leftJoin(
+    'cj_membership',
+    'm',
+    'p.uid = m.member AND m.status = :active',
+    [':active' => Membership::STATUS_ACTIVE]
+  );
+  $query->isNull('m.id');
+  $query->addField('p','profile_id', 'id');
+
+  foreach ($profile_storage->loadMultiple($query->execute()->fetchCol()) as $profile) {
+    $profile->employer_on_directory = FALSE;
+    $profile->save();
+  }
+
+  // Find all profiles not marked as on the directory that have an active membership.
+  $query = \Drupal::database()->select('profile', 'p');
+  $query->leftJoin('profile__employer_on_directory', 'eod', 'eod.entity_id = p.profile_id');
+  $query->condition(
+    $query->orConditionGroup()
+      ->isNull('eod.employer_on_directory_value')
+      ->condition('eod.employer_on_directory_value', 0)
+  );
+  $query->leftJoin(
+    'cj_membership',
+    'm',
+    'p.uid = m.member AND m.status = :active',
+    [':active' => Membership::STATUS_ACTIVE]
+  );
+  $query->isNotNull('m.id');
+  $query->addField('p','profile_id', 'id');
+  $query->groupBy('p.profile_id');
+
+  foreach ($profile_storage->loadMultiple($query->execute()->fetchCol()) as $profile) {
+    $profile->employer_on_directory = TRUE;
+    $profile->save();
+  }
+}
 
 /**
  * Implements hook_module_implements_alter().

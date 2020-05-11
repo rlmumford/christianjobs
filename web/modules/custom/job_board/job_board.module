@@ -27,57 +27,7 @@ use Drupal\user\EntityOwnerInterface;
 use Drupal\user\UserInterface;
 use Drupal\views\ViewExecutable;
 
-/**
- * Implements hook_cron().
- */
-function job_board_cron() {
-  /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
-  $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
 
-  // Manage the employer_on_directory status. We do this with a raw query as it
-  // involves lots and lots of joining.
-
-  // Find all profiles marked as on the directory that do not have an active membership.
-  $query = \Drupal::database()->select('profile__employer_on_directory', 'eod');
-  $query->condition('eod.employer_on_directory_value', 1);
-  $query->join('profile', 'p', 'p.profile_id = eod.entity_id');
-  $query->leftJoin(
-    'cj_membership',
-    'm',
-    'p.uid = m.member AND m.status = :active',
-    [':active' => Membership::STATUS_ACTIVE]
-  );
-  $query->isNull('m.id');
-  $query->addField('p','profile_id', 'id');
-
-  foreach ($profile_storage->loadMultiple($query->execute()->fetchCol()) as $profile) {
-    $profile->employer_on_directory = FALSE;
-    $profile->save();
-  }
-
-  // Find all profiles not marked as on the directory that have an active membership.
-  $query = \Drupal::database()->select('profile', 'p');
-  $query->leftJoin('profile__employer_on_directory', 'eod', 'eod.entity_id = p.profile_id');
-  $query->condition(
-    $query->orConditionGroup()
-      ->isNull('eod.employer_on_directory_value')
-      ->condition('eod.employer_on_directory_value', 0)
-  );
-  $query->leftJoin(
-    'cj_membership',
-    'm',
-    'p.uid = m.member AND m.status = :active',
-    [':active' => Membership::STATUS_ACTIVE]
-  );
-  $query->isNotNull('m.id');
-  $query->addField('p','profile_id', 'id');
-  $query->groupBy('p.profile_id');
-
-  foreach ($profile_storage->loadMultiple($query->execute()->fetchCol()) as $profile) {
-    $profile->employer_on_directory = TRUE;
-    $profile->save();
-  }
-}
 
 /**
  * Implements hook_module_implements_alter().
@@ -88,21 +38,6 @@ function job_board_module_implements_alter(&$implementations, $hook) {
     unset($implementations['job_board']);
     $implementations['job_board'] = $group;
   }
-}
-
-/**
- * Implements hook_user_access().
- *
- * Allow the public to view employers.
- */
-function job_board_user_access(UserInterface $user, $operation, AccountInterface $account) {
-  if ($operation === 'view') {
-    return AccessResult::allowedIf($user->hasRole('employer'))
-      ->andIf(AccessResult::allowedIf(!$user->hasRole('individual')))
-      ->addCacheableDependency($user);
-  }
-
-  return AccessResult::neutral();
 }
 
 /**
@@ -810,37 +745,32 @@ function job_board_job_package_info($key = NULL) {
  */
 function job_board_job_role_contact_default_value(FieldableEntityInterface $entity, FieldDefinitionInterface $field_definition) {
   // Get the correct employer profile.
-  if ($entity->organisation->entity) {
-    $organisation = $entity->organisation->entity;
-  }
-  else if ($entity instanceof EntityOwnerInterface) {
-    $organisation = $entity->getOwner();
-  }
-  else {
-    $organisation = User::load(\Drupal::currentUser()->id());
+  if ($entity->organization->entity) {
+    $organization = $entity->organization->entity;
   }
 
-  if (!$organisation) {
-    return [];
-  }
-
-  /** @var \Drupal\profile\Entity\ProfileInterface $employer_profile */
-  $employer_profile = $organisation->profile_employer->entity;
-  if (!$employer_profile) {
+  if (!$organization) {
     return [];
   }
 
   $fields_map = [
     'contact_phone' => 'tel',
-    'contact_address' => 'address',
     'contact_email' => 'email',
   ];
   $field_name = $field_definition->getName();
-  if (!$fields_map[$field_name]) {
+
+  if ($field_name === 'contact_address') {
+    if ($place = $organization->places[0]->entity) {
+      return $place->address->getValue();
+    }
+
+    return [];
+  }
+  else if (!$fields_map[$field_name]) {
     return [];
   }
 
-  return $employer_profile->{$fields_map[$field_name]}->getValue();
+  return $organization->{$fields_map[$field_name]}->getValue();
 }
 
 /**
