@@ -186,12 +186,7 @@ class JobPostOrganizationForm extends FormBase {
   protected function buildOrganization(array $form, FormStateInterface $form_state) {
     /** @var \Drupal\organization\Entity\Organization $organization */
     $organization = clone $form_state->get('organization');
-
-    dpm($form['create'], 'Create Form');
-    dpm($form_state->getValues(), 'Create Values');
     $extracted = $this->getFormDisplay($form_state)->extractFormValues($organization, $form['create'], $form_state);
-    dpm($extracted, 'Extracted');
-    dpm($organization->places, 'Places');
 
     // Then extract the values of fields that are not rendered through widgets,
     // by simply copying from top-level form values. This leaves the fields

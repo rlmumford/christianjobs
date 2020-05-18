@@ -181,6 +181,7 @@ function job_board_install() {
     ->setDisplayConfigurable('form', TRUE);
   $fields['locations'] = BaseFieldDefinition::create('entity_reference')
     ->setLabel(new TranslatableMarkup('Locations'))
+    ->setSetting('target_type', 'place')
     ->setSetting('handler', 'default')
     ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
     ->setDisplayOptions('form', [
@@ -1309,6 +1310,7 @@ function job_board_update_8102(&$sandbox = []) {
       ->setProvider('job_board')
       ->setTargetEntityTypeId('job_role')
       ->setLabel(new TranslatableMarkup('Locations'))
+      ->setSetting('target_type', 'place')
       ->setSetting('handler', 'default')
       ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
       ->setDisplayOptions('form', [

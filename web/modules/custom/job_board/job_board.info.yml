@@ -15,6 +15,7 @@ dependencies:
 - rlmumford:profile_tools
 - ctools:ctools_block
 - search_api:search_api
+- search_api_location:search_api_location
 - elasticsearch_connector:elasticsearch_connector
 - commerce:commerce
 - commerce:commerce_cart
