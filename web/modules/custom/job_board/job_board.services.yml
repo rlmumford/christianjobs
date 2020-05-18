@@ -3,10 +3,6 @@ services:
     class: Drupal\job_board\EventSubscriber\OrderCompleteSubscriber
     tags:
       - { name: event_subscriber }
-  job_board.order_number_subscriber:
-    class: Drupal\job_board\EventSubscriber\OrderNumberSubscriber
-    tags:
-      - { name: event_subscriber }
   job_board.charity_aware_tax_rate_resolver:
     class: Drupal\job_board\CharityAwareTaxRateResolver
     arguments: [ '@entity_type.manager' ]

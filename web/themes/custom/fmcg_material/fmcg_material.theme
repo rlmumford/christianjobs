@@ -1,29 +1,9 @@
 <?php
 
-/**
- * @file
- * Functions to support theming in the theme.
- */
-
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-
-/**
- * Implements hook_form_user_register_form_alter().
- */
-function fmcg_material_form_user_register_form_alter(array &$form, FormStateInterface $form_state) {
-  $form['account']['org_name']['#title'] = NULL;
-  $form['account']['org_name']['#attributes']['placeholder'] = t('Organisation Name');
-
-  $comps = &$form['account']['indiv_name_wrapper']['indiv_name']['#components'];
-  $form['account']['indiv_name_wrapper']['indiv_name']['#title'] = NULL;
-  $comps['given']['attributes']['placeholder'] = $comps['given']['title'];
-  $comps['given']['title_display'] = 'none';
-  $comps['family']['attributes']['placeholder'] = $comps['family']['title'];
-  $comps['family']['title_display'] = 'none';
-}
 
 /**
  * Implments hook_form_user_self_edit_candidate_form_alter().

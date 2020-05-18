@@ -96,6 +96,27 @@ function cj_entity_type_build(&$entity_types) {
 function cj_entity_base_field_info(EntityTypeInterface $entity_type) {
   if ($entity_type->id() == 'job_role') {
     return [
+      'compensation' => BaseFieldDefinition::create('list_string')
+        ->setSetting('allowed_values', [
+          'volunteer' => t('Volunteer'),
+          'apprentice' => t('Apprentice'),
+          'per_hour' => t('Per Hour'),
+          'per_day' => t('Per Day'),
+          'per_week' => t('Per Week'),
+          'per_month' => t('Per Month'),
+          'pro_rate' => t('Pro-Rata'),
+          'salaried' => t('Salaried'),
+          'self_funded' => t('Self-Funded'),
+        ])
+        ->setLabel(t('Compensation'))
+        ->setDescription(t('How is the role compensated?'))
+        ->setRequired(TRUE)
+        ->setRevisionable(TRUE)
+        ->setDisplayConfigurable('view', TRUE)
+        ->setDisplayOptions('form', [
+          'type' => 'options_select',
+        ])
+        ->setDisplayConfigurable('form', TRUE),
       'organisation' => BaseFieldDefinition::create('entity_reference')
         ->setLabel(t('Organisation'))
         ->setDescription(t('The user/contact that is the organisation/employer for this role.'))

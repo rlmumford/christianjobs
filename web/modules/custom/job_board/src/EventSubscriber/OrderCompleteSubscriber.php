@@ -4,12 +4,40 @@ namespace Drupal\job_board\EventSubscriber;
 
 use Drupal\commerce_order\Entity\Order;
 use Drupal\commerce_order\Entity\OrderItemInterface;
+use Drupal\commerce_product\Entity\ProductVariation;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\job_board\Entity\JobExtension;
 use Drupal\job_board\JobBoardJobRole;
+use Drupal\organization_user\UserOrganizationResolver;
 use Drupal\state_machine\Event\WorkflowTransitionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class OrderCompleteSubscriber implements EventSubscriberInterface {
+
+  /**
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $creditStorage;
+
+  /**
+   * @var \Drupal\organization_user\UserOrganizationResolver
+   */
+  protected $organizationResolver;
+
+  /**
+   * OrderCompleteSubscriber constructor.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, UserOrganizationResolver $organization_resolver) {
+    $this->creditStorage = $entity_type_manager->getStorage('job_credit');
+    $this->organizationResolver = $organization_resolver;
+  }
 
   /**
    * {@inheritdoc}
@@ -38,6 +66,19 @@ class OrderCompleteSubscriber implements EventSubscriberInterface {
       else if ($job instanceof JobExtension) {
         $job->paid->value = TRUE;
         $job->save();
+      }
+      else if ($job instanceof ProductVariation) {
+        if ($job->bundle() === 'credit_bundle') {
+          for ($i = 0; $i < $job->credit_count->value; $i++) {
+            $credit = $this->creditStorage->create([
+              'expires' => (new DrupalDateTime())->add(new \DateInterval('P1Y'))->format(DateTimeItem::DATE_STORAGE_FORMAT),
+              'status' => 'available',
+              'owner' => $order->getCustomerId(),
+              'organization' => $order->organization->target_id ?: $this->organizationResolver->getOrganization($order->getCustomer()),
+            ]);
+            $credit->save();
+          }
+        }
       }
     }
   }

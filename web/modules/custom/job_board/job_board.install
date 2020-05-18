@@ -3,6 +3,7 @@
 use Drupal\Core\Config\Config;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 
@@ -10,25 +11,46 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
  * Implements hook_install().
  */
 function job_board_install() {
-  $manager = \Drupal::entityDefinitionUpdateManager();
+  /** @var \Drupal\Core\Field\FieldStorageDefinitionListenerInterface $storage_definition_listener */
+  $storage_definition_listener = \Drupal::service('field_storage_definition.listener');
+  /** @var \Drupal\Core\Field\FieldDefinitionListenerInterface $definition_listener */
+  $definition_listener = \Drupal::service('field_definition.listener');
 
+  $fields['job_credit'] = BaseFieldDefinition::create('entity_reference')
+    ->setSetting('target_type', 'job_credit')
+    ->setLabel(new TranslatableMarkup('Credit'))
+    ->setDescription(new TranslatableMarkup('If the job was paid for with a credit, this is the credit that was used.'));
+  $fields['description_summary'] = BaseFieldDefinition::create('text_long')
+    ->setLabel(t('Summary'))
+    ->setRevisionable(TRUE)
+    ->setRequired(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayOptions('form', [
+      'weight' => -5,
+      'type' => 'text_textarea',
+    ]);
   $fields['publish_date'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
     ->setLabel(t('Publish Date'))
     ->setDescription(t('The first date on which this job will be published.'))
     ->setRevisionable(TRUE)
+    ->setRequired(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE)
-    ->setName('publish_date')
-    ->setTargetEntityTypeId('job_role')
-    ->setProvider('job_board');
-  $fields['paid_to_date'] = BaseFieldDefinition::create('datetime')
+    ->setDisplayOptions('form', [
+      'type' => 'datetime_default',
+    ]);
+  $fields['application_deadline'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
-    ->setLabel(t('Paid To Date'))
-    ->setDescription(t('The last date up to which this job has been paid.'))
+    ->setLabel(t('Application Deadline'))
+    ->setDescription(t('The last date on which applications will be submitted. If this is before the end of the adverts duration, the job will not be visible after this date.'))
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'datetime_default',
+    ]);
   $fields['end_date'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
     ->setLabel(t('End Date'))
@@ -36,6 +58,47 @@ function job_board_install() {
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
+  $fields['paid_to_date'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Paid To Date'))
+    ->setDescription(t('The last date up to which this job has been paid.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['boost_start_date'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Boost Start Date'))
+    ->setDescription(t('Thedate on which to start boosting this job.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['boost_end_date'] = BaseFieldDefinition::create('datetime')
+    ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
+    ->setLabel(t('Boost Start Date'))
+    ->setDescription(t('Thedate on which to start boosting this job.'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['initial_duration'] = BaseFieldDefinition::create('list_string')
+    ->setSetting('allowed_values', [
+      'P30D' => new TranslatableMarkup('30 Days'),
+      'P60D' => new TranslatableMarkup('60 Days'),
+    ])
+    ->setLabel(new TranslatableMarkup('Duration'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['rpo'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(new TranslatableMarkup('RPO Requested'))
+    ->setDescription(new TranslatableMarkup('Appoint a Recruitment Agent to walk you through the recruitment process.'))
+    ->setSetting('on_label', new TranslatableMarkup('Use RPO Services'))
+    ->setSetting('off_label', new TranslatableMarkup('Do Not Use RPO Services'))
+    ->setRevisionable(TRUE)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
   $fields['paid'] = BaseFieldDefinition::create('boolean')
     ->setLabel(t('Paid'))
     ->setDescription(t('Has this job role been paid for.'))
@@ -45,6 +108,7 @@ function job_board_install() {
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
+
   $fields['keywords'] = BaseFieldDefinition::create('entity_reference')
     ->setSetting('target_type', 'taxonomy_term')
     ->setSetting('handler', 'default:taxonomy_term')
@@ -52,42 +116,42 @@ function job_board_install() {
       'target_bundles' => [
         'keywords' => 'keywords',
       ],
+      'auto_create' => TRUE,
+      'auto_create_bundle' => 'keywords',
     ])
     ->setLabel(t('Keywords'))
     ->setDescription(t('Select up to 10 keywords to describe this job.'))
     ->setCardinality(10)
     ->setRevisionable(TRUE)
+    ->setRequired(TRUE)
     ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayOptions('form', [
+      'weight' => -6,
+      'type' => 'entity_reference_autocomplete_tags',
+    ])
     ->setDisplayConfigurable('form', TRUE);
   $fields['industry'] = BaseFieldDefinition::create('entity_reference')
     ->setSetting('target_type', 'taxonomy_term')
     ->setSetting('handler', 'default:taxonomy_term')
     ->setSetting('handler_settings', [
       'target_bundles' => [
-        'keywords' => 'industries',
+        'industries' => 'industries',
       ],
+      'auto_create' => TRUE,
+      'auto_create_bundle' => 'industries',
     ])
-    ->setLabel(t('Industry'))
-    ->setDescription(t('Select an industry.'))
+    ->setLabel(t('Category'))
+    ->setDescription(t('Select an category.'))
     ->setCardinality(1)
-    ->setRevisionable(TRUE)
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
-  $fields['compensation'] = BaseFieldDefinition::create('list_string')
-    ->setSetting('allowed_values', [
-      'volunteer' => t('Volunteer'),
-      'apprentice' => t('Apprentice'),
-      'pro_rate' => t('Pro-Rata'),
-      'salaried' => t('Salaried'),
-    ])
-    ->setLabel(t('Compensation'))
-    ->setDescription(t('How is the role compensated?'))
+    ->setRequired(TRUE)
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayOptions('form', [
-      'type' => 'options_select',
+      'weight' => -7,
+      'type' => 'entity_reference_autocomplete',
     ])
     ->setDisplayConfigurable('form', TRUE);
+
   $fields['hours'] = BaseFieldDefinition::create('list_string')
     ->setSetting('allowed_values', [
       'part_time' => t('Part Time'),
@@ -102,25 +166,37 @@ function job_board_install() {
       'type' => 'options_select',
     ])
     ->setDisplayConfigurable('form', TRUE);
-  $fields['location'] = BaseFieldDefinition::create('address')
-    ->setLabel(t('Location'))
-    ->setSetting('field_overrides', [
-      'givenName' => ['override' => 'hidden'],
-      'additionalName' => ['override' => 'hidden'],
-      'familyName' => ['override' => 'hidden'],
-      'organization' => ['override' => 'hidden'],
-      'addressLine1' => ['override' => 'hidden'],
-      'addressLine2' => ['override' => 'hidden'],
-      'postalCode' => ['override' => 'hidden'],
-      'sortingCode' => ['override' => 'hidden'],
-      'dependentLocality' => ['override' => 'hidden'],
+
+  $fields['location_type'] = BaseFieldDefinition::create('list_string')
+    ->setLabel(t('Location Type'))
+    ->setSetting('allowed_values', [
+      'home' => new TranslatableMarkup('Home based'),
+      'remote' => new TranslatableMarkup('Remote working'),
+      'office' => new TranslatableMarkup('Office based'),
+      'location' => new TranslatableMarkup('On location'),
     ])
     ->setRevisionable(TRUE)
+    ->setRequired(TRUE)
     ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['locations'] = BaseFieldDefinition::create('entity_reference')
+    ->setLabel(new TranslatableMarkup('Locations'))
+    ->setSetting('handler', 'default')
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
     ->setDisplayOptions('form', [
-      'type' => 'address_default',
-    ]);
+      'type' => 'inline_entity_form_complex',
+      'settings' => [
+        'allow_new' => TRUE,
+      ],
+    ])
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+  $fields['location_summary'] = BaseFieldDefinition::create('string_long')
+    ->setLabel(new TranslatableMarkup('Location Summary'))
+    ->setCardinality(1)
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
   $fields['contact_phone'] = BaseFieldDefinition::create('telephone')
     ->setLabel(t('Contact Telephone'))
     ->setRevisionable(TRUE)
@@ -133,6 +209,10 @@ function job_board_install() {
   $fields['contact_address'] = BaseFieldDefinition::create('address')
     ->setLabel(t('Contact Address'))
     ->setRevisionable(TRUE)
+    ->setSetting('field_overrides', [
+      'givenName' => ['override' => 'hidden'],
+      'familyName' => ['override' => 'hidden'],
+    ])
     ->setDefaultValueCallback('job_board_job_role_contact_default_value')
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayOptions('form', [
@@ -149,8 +229,16 @@ function job_board_install() {
     ])
     ->setDisplayConfigurable('form', TRUE);
 
+
+
+  /** @var \Drupal\Core\Field\BaseFieldDefinition $definition */
   foreach ($fields as $field_name => $definition) {
-    $manager->installFieldStorageDefinition($field_name, 'job_role', 'job_board', $definition);
+    $definition->setTargetEntityTypeId('job_role');
+    $definition->setName($field_name);
+    $definition->setProvider('job_board');
+
+    $storage_definition_listener->onFieldStorageDefinitionCreate($definition);
+    $definition_listener->onFieldDefinitionCreate($definition);
   }
 }
 
@@ -1097,7 +1185,7 @@ function job_board_update_8027() {
 /**
  * Install organization_user module and install fields on organization entity
  */
-function job_board_update_8028() {
+function job_board_update_8100() {
   \Drupal::service('module_installer')->install(['organization_user']);
 
   $source = new FileStorage(drupal_get_path('module', 'job_board') . '/config/install');
@@ -1152,5 +1240,101 @@ function job_board_update_8028() {
 
   // Clear plugin manager caches.
   \Drupal::getContainer()->get('plugin.cache_clearer')->clearCachedDefinitions();
+}
+
+/**
+ * Install organization_user module and install fields on organization entity
+ */
+function job_board_update_8101() {
+  \Drupal::service('module_installer')->install(['editor', 'ckeditor', 'commerce_product']);
+
+  $source = new FileStorage(drupal_get_path('module', 'job_board') . '/config/install');
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  /** @var \Drupal\Core\Config\ConfigManagerInterface $config_manager */
+  $config_manager = \Drupal::service('config.manager');
+  $configs_to_install = [
+    'filter.format.basic_html',
+    'filter.format.full_html',
+    'filter.format.restricted_html',
+    'editor.editor.full_html',
+    'editor.editor.basic_html',
+    'commerce_product.commerce_product_type.credit_bundle',
+    'commerce_product.commerce_product_variation_type.credit_bundle',
+    'field.storage.commerce_product_variation.credit_count',
+    'field.field.commerce_product_variation.credit_bundle.credit_count',
+  ];
+  foreach ($configs_to_install as $name) {
+    $config = new Config($name, \Drupal::service('config.storage'), \Drupal::service('event_dispatcher'), \Drupal::service('config.typed'));
+    $config->setData($source->read($name));
+
+    if ($entity_type = $config_manager->getEntityTypeIdByName($name)) {
+      /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
+      $entity_storage = $config_manager->getEntityManager()->getStorage($entity_type);
+
+      $id = $entity_storage->getIDFromConfigName($name, $entity_storage->getEntityType()->getConfigPrefix());
+      if ($config_storage->exists($name)) {
+        /** @var \Drupal\Core\Config\Entity\ConfigEntityBase $entity */
+        $entity = $entity_storage->load($id);
+        $entity = $entity_storage->updateFromStorageRecord($entity, $config->get());
+      }
+      else {
+        $entity = $entity_storage->createFromStorageRecord($config->get());
+      }
+
+      if ($entity->isInstallable()) {
+        $entity->trustData()->save();
+      }
+    }
+    else {
+      $config->save();
+    }
+  }
+
+  // Clear plugin manager caches.
+  \Drupal::getContainer()->get('plugin.cache_clearer')->clearCachedDefinitions();
+}
+
+function job_board_update_8102(&$sandbox = []) {
+  /** @var \Drupal\Core\Field\FieldStorageDefinitionListenerInterface $storage_definition_listener */
+  $storage_definition_listener = \Drupal::service('field_storage_definition.listener');
+  /** @var \Drupal\Core\Field\FieldDefinitionListenerInterface $definition_listener */
+  $definition_listener = \Drupal::service('field_definition.listener');
+
+
+  if (!isset($sandbox['max'])) {
+    $definition = BaseFieldDefinition::create('entity_reference')
+      ->setName('locations')
+      ->setProvider('job_board')
+      ->setTargetEntityTypeId('job_role')
+      ->setLabel(new TranslatableMarkup('Locations'))
+      ->setSetting('handler', 'default')
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->setDisplayOptions('form', [
+        'type' => 'inline_entity_form_complex',
+        'settings' => [
+          'allow_new' => TRUE,
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $storage_definition_listener->onFieldStorageDefinitionCreate($definition);
+    $definition_listener->onFieldDefinitionCreate($definition);
+
+    $definition = BaseFieldDefinition::create('string_long')
+      ->setName('location_summary')
+      ->setProvider('job_board')
+      ->setTargetEntityTypeId('job_role')
+      ->setLabel(new TranslatableMarkup('Location Summary'))
+      ->setCardinality(1)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+    $storage_definition_listener->onFieldStorageDefinitionCreate($definition);
+    $definition_listener->onFieldDefinitionCreate($definition);
+  }
+
+  // @todo: Update path to delete old fields storages.
 }
 

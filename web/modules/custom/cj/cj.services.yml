@@ -3,3 +3,7 @@ services:
     class: Drupal\cj\EventSubscriber\SocialMediaEventSubscriber
     tags:
       - { name: event_subscriber }
+  cj.order_number_subscriber:
+    class: Drupal\cj\EventSubscriber\OrderNumberSubscriber
+    tags:
+      - { name: event_subscriber }

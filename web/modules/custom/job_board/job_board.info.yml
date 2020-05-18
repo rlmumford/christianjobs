@@ -21,5 +21,8 @@ dependencies:
 - commerce:commerce_checkout
 - commerce:commerce_tax
 - commerce:commerce_payment
+- commerce:commerce_product
 - mini_layouts:mini_layouts
 - rlmumford:organization_user
+- rlmumford:organization_commerce
+- drupal:editor

@@ -1,0 +1,12 @@
+uuid: ea7c9da6-4836-451f-899c-1658ec6011a0
+langcode: en
+status: true
+dependencies: {  }
+id: credit_bundle
+label: 'Credit Bundle'
+description: ''
+variationType: credit_bundle
+multipleVariations: true
+injectVariationFields: true
+traits: {  }
+locked: false

@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Locale\CountryManager;
 use Drupal\Core\Session\AccountInterface;
@@ -27,7 +28,25 @@ use Drupal\user\EntityOwnerInterface;
 use Drupal\user\UserInterface;
 use Drupal\views\ViewExecutable;
 
+/**
+ * Implements hook_cron()
+ */
+function job_board_cron() {
+  $credit_storage = \Drupal::entityTypeManager()->getStorage('job_credit');
 
+  $ids = $credit_storage->getQuery()
+    ->condition(
+      'expires',
+      (new DrupalDateTime())->format(DateTimeItem::DATE_STORAGE_FORMAT),
+      '<='
+    )
+    ->condition('status', ['spent','expired'], 'NOT IN')
+    ->execute();
+  foreach ($credit_storage->loadMultiple($ids) as $credit) {
+    $credit->status = 'expired';
+    $credit->save();
+  }
+}
 
 /**
  * Implements hook_module_implements_alter().
@@ -69,6 +88,11 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
   if ($entity_type->id() != 'job_role') {
     return [];
   }
+
+  $fields['job_credit'] = BaseFieldDefinition::create('entity_reference')
+    ->setSetting('target_type', 'job_credit')
+    ->setLabel(new TranslatableMarkup('Credit'))
+    ->setDescription(new TranslatableMarkup('If the job was paid for with a credit, this is the credit that was used.'));
 
   $fields['description_summary'] = BaseFieldDefinition::create('text_long')
     ->setLabel(t('Summary'))
@@ -204,27 +228,6 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ])
     ->setDisplayConfigurable('form', TRUE);
 
-  $fields['compensation'] = BaseFieldDefinition::create('list_string')
-    ->setSetting('allowed_values', [
-      'volunteer' => t('Volunteer'),
-      'apprentice' => t('Apprentice'),
-      'per_hour' => t('Per Hour'),
-      'per_day' => t('Per Day'),
-      'per_week' => t('Per Week'),
-      'per_month' => t('Per Month'),
-      'pro_rate' => t('Pro-Rata'),
-      'salaried' => t('Salaried'),
-      'self_funded' => t('Self-Funded'),
-    ])
-    ->setLabel(t('Compensation'))
-    ->setDescription(t('How is the role compensated?'))
-    ->setRequired(TRUE)
-    ->setRevisionable(TRUE)
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayOptions('form', [
-      'type' => 'options_select',
-    ])
-    ->setDisplayConfigurable('form', TRUE);
   $fields['hours'] = BaseFieldDefinition::create('list_string')
     ->setSetting('allowed_values', [
       'part_time' => t('Part Time'),
@@ -252,45 +255,23 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setRequired(TRUE)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
-  $fields['location_geo'] = BaseFieldDefinition::create('geofield')
-    ->setLabel('Location Geo')
-    ->setRevisionable(TRUE)
-    ->setRequired(TRUE)
+  $fields['locations'] = BaseFieldDefinition::create('entity_reference')
+    ->setLabel(new TranslatableMarkup('Locations'))
+    ->setSetting('handler', 'default')
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+    ->setDisplayOptions('form', [
+      'type' => 'inline_entity_form_complex',
+      'settings' => [
+        'allow_new' => TRUE,
+      ],
+    ])
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);#
+  $fields['location_summary'] = BaseFieldDefinition::create('string_long')
+    ->setLabel(new TranslatableMarkup('Location Summary'))
+    ->setCardinality(1)
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
-  $fields['location_tree'] = BaseFieldDefinition::create('entity_reference')
-    ->setLabel('Location Tree')
-    ->setSetting('target_type', 'taxonomy_term')
-    ->setSetting('handler', 'default:taxonomy_term')
-    ->setSetting('handler_settings', [
-      'target_bundles' => [
-        'locations' => 'locations',
-      ],
-      'auto_create' => TRUE,
-      'auto_create_bundle' => 'locations',
-    ])
-    ->setRevisionable(TRUE)
-    ->setDisplayConfigurable('view', TRUE)
-    ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED);
-  $fields['location'] = BaseFieldDefinition::create('address')
-    ->setLabel(t('Location'))
-    ->setSetting('field_overrides', [
-      'givenName' => ['override' => 'hidden'],
-      'additionalName' => ['override' => 'hidden'],
-      'familyName' => ['override' => 'hidden'],
-      'organization' => ['override' => 'hidden'],
-      'addressLine1' => ['override' => 'hidden'],
-      'addressLine2' => ['override' => 'hidden'],
-      'postalCode' => ['override' => 'hidden'],
-      'sortingCode' => ['override' => 'hidden'],
-      'dependentLocality' => ['override' => 'hidden'],
-    ])
-    ->setRevisionable(TRUE)
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE)
-    ->setDisplayOptions('form', [
-      'type' => 'address_default',
-    ]);
 
   $fields['contact_phone'] = BaseFieldDefinition::create('telephone')
     ->setLabel(t('Contact Telephone'))
@@ -304,6 +285,10 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
   $fields['contact_address'] = BaseFieldDefinition::create('address')
     ->setLabel(t('Contact Address'))
     ->setRevisionable(TRUE)
+    ->setSetting('field_overrides', [
+      'givenName' => ['override' => 'hidden'],
+      'familyName' => ['override' => 'hidden'],
+    ])
     ->setDefaultValueCallback('job_board_job_role_contact_default_value')
     ->setDisplayConfigurable('view', TRUE)
     ->setDisplayOptions('form', [
@@ -454,24 +439,21 @@ function job_board_form_user_register_form_alter(array &$form, FormStateInterfac
 function job_board_user_register_form_submit_redirect(array $form, FormStateInterface $form_state) {
   /** @var \Drupal\user\UserInterface $user */
   $user = $form_state->get('user');
-  $user->addRole('employer');
-  $user->save();
+  if ($user->id() === \Drupal::currentUser()->id()) {
+    $form_state->setRedirect('job_board.post.organization');
 
-  $form_state->setRedirect('job_board.employer_edit', [
-    'user' => $user->id(),
-  ]);
+    $cookies = [
+      'jobPostRegister' => TRUE,
+    ];
+    if ($form_state->get('wants_membership')) {
+      $cookies['jobPostMembership'] = TRUE;
+    }
+    if ($form_state->get('wants_rpo')) {
+      $cookies['jobPostRPO'] = TRUE;
+    }
 
-  $cookies = [
-    'jobPostRegister' => TRUE,
-  ];
-  if ($form_state->get('wants_membership')) {
-    $cookies['jobPostMembership'] = TRUE;
+    user_cookie_save($cookies);
   }
-  if ($form_state->get('wants_rpo')) {
-    $cookies['jobPostRPO'] = TRUE;
-  }
-
-  user_cookie_save($cookies);
 }
 
 /**
@@ -670,7 +652,7 @@ function job_board_job_role_contact_default_value(FieldableEntityInterface $enti
   $field_name = $field_definition->getName();
 
   if ($field_name === 'contact_address') {
-    if ($place = $organization->places[0]->entity) {
+    if (!$organization->places->isEmpty() && ($place = $organization->places[0]->entity)) {
       return $place->address->getValue();
     }
 

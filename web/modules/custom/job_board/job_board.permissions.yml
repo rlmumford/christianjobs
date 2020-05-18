@@ -17,3 +17,5 @@ repost any job_role:
   title: 'Repost any job'
 administer job extensions:
   title: 'Administer Job Extensions'
+administer job credits:
+  title: 'Administer Job Credits'

@@ -215,7 +215,7 @@ class JobPostForm extends JobForm {
         ];
       }
     }
-
+    
     return $form;
   }
 

@@ -24,3 +24,4 @@ dependencies:
 - rlmumford:rlm_material
 - pdf_tools:pdf_tools
 - social_media:social_media
+- select2:select2
