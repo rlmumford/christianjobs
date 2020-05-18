@@ -35,7 +35,7 @@ class OrderCompleteSubscriber implements EventSubscriberInterface {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, UserOrganizationResolver $organization_resolver) {
-    $this->creditStorage = $entity_type_manager->getStorage('job_credit');
+    $this->creditStorage = $entity_type_manager->getStorage('job_board_job_credit');
     $this->organizationResolver = $organization_resolver;
   }
 

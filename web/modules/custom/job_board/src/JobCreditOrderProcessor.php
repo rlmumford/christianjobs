@@ -36,7 +36,7 @@ class JobCreditOrderProcessor implements OrderProcessorInterface {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, UserOrganizationResolver $organization_resolver, AccountInterface $current_user) {
-    $this->creditStorage = $entity_type_manager->getStorage('job_credit');
+    $this->creditStorage = $entity_type_manager->getStorage('job_board_job_credit');
     $this->organizationResolver = $organization_resolver;
     $this->currentUser = $current_user;
   }

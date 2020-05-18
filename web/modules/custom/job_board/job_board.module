@@ -22,9 +22,6 @@ use Drupal\job_board\Form\JobPostForm;
 use Drupal\job_board\JobBoardJobRole;
 use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
 use Drupal\place\Entity\Place;
-use Drupal\profile\Entity\Profile;
-use Drupal\user\Entity\User;
-use Drupal\user\EntityOwnerInterface;
 use Drupal\user\UserInterface;
 use Drupal\views\ViewExecutable;
 
@@ -32,7 +29,7 @@ use Drupal\views\ViewExecutable;
  * Implements hook_cron()
  */
 function job_board_cron() {
-  $credit_storage = \Drupal::entityTypeManager()->getStorage('job_credit');
+  $credit_storage = \Drupal::entityTypeManager()->getStorage('job_board_job_credit');
 
   $ids = $credit_storage->getQuery()
     ->condition(
@@ -90,7 +87,7 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
   }
 
   $fields['job_credit'] = BaseFieldDefinition::create('entity_reference')
-    ->setSetting('target_type', 'job_credit')
+    ->setSetting('target_type', 'job_board_job_credit')
     ->setLabel(new TranslatableMarkup('Credit'))
     ->setDescription(new TranslatableMarkup('If the job was paid for with a credit, this is the credit that was used.'));
 

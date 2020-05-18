@@ -52,7 +52,7 @@ class JobCredit extends ContentEntityBase implements EntityOwnerInterface {
       ->setSetting('target_type', 'organization')
       ->setDefaultValueCallback(static::class . '::getDefaultEntityOrganization');
 
-    $fields['status'] = BaseFieldDefinition::create('list_text')
+    $fields['status'] = BaseFieldDefinition::create('list_string')
       ->setLabel(new TranslatableMarkup('Status'))
       ->setSetting('allowed_values', [
         'draft' => new TranslatableMarkup('Draft'),

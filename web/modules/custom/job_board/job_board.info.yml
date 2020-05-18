@@ -26,3 +26,4 @@ dependencies:
 - rlmumford:organization_user
 - rlmumford:organization_commerce
 - drupal:editor
+- drupal:ckeditor
