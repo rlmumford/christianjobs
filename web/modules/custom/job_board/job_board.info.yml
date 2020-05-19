@@ -1,5 +1,5 @@
 name: 'Job Board'
-package: 'Christian Jobs'
+package: 'Job Board'
 type: module
 core: 8.x
 dependencies:
