@@ -1,0 +1,24 @@
+uuid: c9661788-b96d-4c25-af94-6fb38489b119
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - rlm_material
+  theme:
+    - fmcg_material
+third_party_settings:
+  block_class:
+    classes: 'navbar-menu navbar-item navbar-hamburger-menu invisible-lg'
+id: menutoggle
+theme: fmcg_material
+region: navbar
+weight: -2
+provider: null
+plugin: rlm_menu_toggle
+settings:
+  id: rlm_menu_toggle
+  label: 'Menu Toggle'
+  provider: rlm_material
+  label_display: '0'
+visibility: {  }

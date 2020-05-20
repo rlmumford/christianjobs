@@ -74,6 +74,19 @@ function fmcg_material_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_menu().
+ *
+ * @param $variables
+ */
+function fmcg_material_preprocess_menu(&$variables) {
+  if ($variables['menu_name'] === 'account') {
+    foreach ($variables['items'] as &$item) {
+      $item['attributes']->addClass('hexagon');
+    }
+  }
+}
+
+/**
  * Preprocess Views View Fields
  *
  * @param $variables

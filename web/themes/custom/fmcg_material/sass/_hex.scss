@@ -1,0 +1,44 @@
+.hexagon {
+  position: relative;
+  width: 40px;
+  height: 24px;
+  background-color: $fmcg-yellow;
+  margin: 28.86px 12px;
+  transform: rotate(90deg);
+
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom-color: $fmcg-yellow;
+    border-top-color: $fmcg-yellow;
+  }
+
+  &:before {
+    bottom: 100%;
+    border-bottom-width: 11.55px;
+    border-bottom-style: solid;
+  }
+
+  &:after {
+    top: 100%;
+    width: 0;
+    border-top-width: 11.55px;
+    border-top-style: solid;
+  }
+
+  &:hover {
+    background-color: $fmcg-black;
+    color: $fmcg-yellow;
+    &:before, &:after {
+      border-bottom-color: $fmcg-black;
+      border-top-color: $fmcg-black;
+    }
+    a, a:before {
+      color: $fmcg-yellow;
+    }
+  }
+}
