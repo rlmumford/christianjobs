@@ -27,36 +27,8 @@ function job_board_views_data_alter(array &$data) {
     $data[$table_name]['organisation']['filter']['entity_type'] = 'job_role';
     $data[$table_name]['organisation']['filter']['field_name'] = 'organisation';
 
-    // Location field
-    $data[$table_name]['location_geo__proximity'] = [
-      'title' => 'Location Geo Proximity',
-      'help' => 'Geometric Location Proximity',
-      'field' => [
-        'id' => 'geofield_proximity_field',
-        'real field' => $field_name,
-        'float' => TRUE,
-        'click sortable' => TRUE,
-        'additional fields' => [
-          'latitude' => [
-            'field' => 'location_geo__lat',
-          ],
-          'longitude' => [
-            'field' => 'location_geo__lon',
-          ],
-        ],
-      ],
-      'filter' => [
-        'id' => 'geofield_proximity_filter',
-        'entity_type' => 'job_role',
-        'field_name' => 'location_geo',
-        'real field' => 'location_geo_',
-      ],
-    ];
-
-
-
     // List fields.
-    foreach (['hours', 'compensation'] as $field_name) {
+    foreach (['hours'] as $field_name) {
       $data[$table_name][$field_name]['filter'] = [
         'id' => 'list_field',
         'entity_type' => 'job_role',
@@ -65,7 +37,7 @@ function job_board_views_data_alter(array &$data) {
     }
 
     // Address fields.
-    foreach (['location', 'contact_address'] as $field_name) {
+    foreach (['contact_address'] as $field_name) {
       // Add the custom country_code filter.
       $data[$table_name][$field_name . '__country_code']['filter'] = [
         'id' => 'country_code',
@@ -86,12 +58,5 @@ function job_board_views_data_alter(array &$data) {
       'entity_type' => 'job_role',
       'field_name' => 'keywords',
     ] + $data[$table_name.'__keywords']['keywords_target_id']['filter'];
-
-    // location_tree field
-    $data[$table_name.'__location_tree']['location_tree_target_id']['filter'] = [
-      'id' => 'cshs_taxonomy_index_tid',
-      'entity_type' => 'job_role',
-      'field_name' => 'location_tree',
-    ] + $data[$table_name.'__location_tree']['location_tree_target_id']['filter'];
   }
 }

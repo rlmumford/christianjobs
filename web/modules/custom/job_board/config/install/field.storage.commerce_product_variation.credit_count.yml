@@ -1,0 +1,20 @@
+uuid: 0960e96d-dd94-4ea0-ae3a-a0d0c33dc6d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product_variation.credit_count
+field_name: credit_count
+entity_type: commerce_product_variation
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -17,7 +17,7 @@ third_party_settings:
     enabled: true
     sections:
       -
-        layout_id: cj_6_6
+        layout_id: rlm_material_6_6
         layout_settings:
           label: ''
         components:

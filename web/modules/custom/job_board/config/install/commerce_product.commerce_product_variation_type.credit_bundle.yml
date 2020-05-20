@@ -1,0 +1,10 @@
+uuid: 8853cbfa-e438-4386-8567-b2e7521ecda4
+langcode: en
+status: true
+dependencies: {  }
+id: credit_bundle
+label: 'Credit Bundle'
+orderItemType: default
+generateTitle: true
+traits: {  }
+locked: false

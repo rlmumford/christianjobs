@@ -1,5 +1,5 @@
 name: 'Job Board'
-package: 'Christian Jobs'
+package: 'Job Board'
 type: module
 core: 8.x
 dependencies:
@@ -15,11 +15,16 @@ dependencies:
 - rlmumford:profile_tools
 - ctools:ctools_block
 - search_api:search_api
+- search_api_location:search_api_location
 - elasticsearch_connector:elasticsearch_connector
 - commerce:commerce
 - commerce:commerce_cart
 - commerce:commerce_checkout
 - commerce:commerce_tax
 - commerce:commerce_payment
+- commerce:commerce_product
 - mini_layouts:mini_layouts
 - rlmumford:organization_user
+- rlmumford:organization_commerce
+- drupal:editor
+- drupal:ckeditor

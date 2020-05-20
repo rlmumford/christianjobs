@@ -6,9 +6,13 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Locale\CountryManager;
 use Drupal\Core\Render\Element;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\profile\Entity\Profile;
 
 /**
  * Implements hook_cron().
@@ -82,6 +86,47 @@ function cj_entity_type_build(&$entity_types) {
   if ($entity_type = $entity_types['user']) {
     $entity_type->setFormClass('self_edit_candidate', ContentEntityForm::class);
   }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ *
+ * @todo: Remove once no longer needed.
+ */
+function cj_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() == 'job_role') {
+    return [
+      'compensation' => BaseFieldDefinition::create('list_string')
+        ->setSetting('allowed_values', [
+          'volunteer' => t('Volunteer'),
+          'apprentice' => t('Apprentice'),
+          'per_hour' => t('Per Hour'),
+          'per_day' => t('Per Day'),
+          'per_week' => t('Per Week'),
+          'per_month' => t('Per Month'),
+          'pro_rate' => t('Pro-Rata'),
+          'salaried' => t('Salaried'),
+          'self_funded' => t('Self-Funded'),
+        ])
+        ->setLabel(t('Compensation'))
+        ->setDescription(t('How is the role compensated?'))
+        ->setRequired(TRUE)
+        ->setRevisionable(TRUE)
+        ->setDisplayConfigurable('view', TRUE)
+        ->setDisplayOptions('form', [
+          'type' => 'options_select',
+        ])
+        ->setDisplayConfigurable('form', TRUE),
+      'organisation' => BaseFieldDefinition::create('entity_reference')
+        ->setLabel(t('Organisation'))
+        ->setDescription(t('The user/contact that is the organisation/employer for this role.'))
+        ->setRevisionable(TRUE)
+        ->setSetting('target_type', 'user')
+        ->setSetting('handler', 'default')
+    ];
+  }
+
+  return [];
 }
 
 /**
@@ -261,6 +306,96 @@ function cj_user_register_form_submit_set_name(array $form, FormStateInterface $
       ['user' => $account->id()]
     );
   }
+}
+
+/**
+ * Implements hook_profile_presave().
+ */
+function cj_profile_presave(Profile $profile) {
+  if ($profile->bundle() !== 'employer') {
+    return;
+  }
+
+  /** @var \Drupal\geocoder_field\PreprocessorPluginManager $preprocessor_manager */
+  $preprocessor_manager = \Drupal::service('plugin.manager.geocoder.preprocessor');
+  /** @var \Drupal\geocoder\DumperPluginManager $dumper_manager */
+  $dumper_manager = \Drupal::service('plugin.manager.geocoder.dumper');
+
+  $address = $profile->address;
+  if ($profile->original) {
+    $original_address = $profile->original->address;
+  }
+
+  // First we need to Pre-process field.
+  // Note: in case of Address module integration this creates the
+  // value as formatted address.
+  $preprocessor_manager->preprocess($address);
+
+  // Skip any action if:
+  // geofield has value and remote field value has not changed.
+  if (isset($original_address) && !$profile->get('address_geo')->isEmpty() && $address->getValue() == $original_address->getValue()) {
+    return;
+  }
+
+  /** @var \Drupal\geocoder\DumperBase $dumper */
+  $dumper = $dumper_manager->createInstance('geojson');
+  $result = [];
+
+  foreach ($address->getValue() as $delta => $value) {
+    if ($address->getFieldDefinition()->getType() == 'address_country') {
+      $value['value'] = CountryManager::getStandardList()[$value['value']];
+    }
+
+    $address_collection = isset($value['value']) ? \Drupal::service('geocoder')->geocode($value['value'], ['googlemaps', 'googlemaps_business']) : NULL;
+    if ($address_collection) {
+      $result[$delta] = $dumper->dump($address_collection->first());
+
+      // We can't use DumperPluginManager::fixDumperFieldIncompatibility
+      // because we do not have a FieldConfigInterface.
+      // Fix not UTF-8 encoded result strings.
+      // https://stackoverflow.com/questions/6723562/how-to-detect-malformed-utf-8-string-in-php
+      if (is_string($result[$delta])) {
+        if (!preg_match('//u', $result[$delta])) {
+          $result[$delta] = utf8_encode($result[$delta]);
+        }
+      }
+    }
+  }
+
+  $profile->set('address_geo', $result);
+
+  $terms = [];
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $data = json_decode($profile->address_geo->value);
+  if (!$data || !isset($data->properties->adminLevels)) {
+    return;
+  }
+
+  // First get the tem for the country.
+  $loc_terms = $term_storage->loadByProperties(['vid' => 'locations', 'name' => $data->properties->country]);
+  if (!($term = reset($loc_terms))) {
+    $term = $term_storage->create([
+      'vid' => 'locations',
+      'name' => $data->properties->country,
+    ]);
+    $term->save();
+  }
+  $terms[] = $term;
+
+  foreach ($data->properties->adminLevels as $level) {
+    $level_terms = $term_storage->loadByProperties(['vid' => 'locations', 'name' => $level->name, 'parent' => $term->id()]);
+    if (!($next_term = reset($level_terms))) {
+      $next_term = $term_storage->create([
+        'vid' => 'locations',
+        'name' => $level->name,
+        'parent' => $term->id(),
+      ]);
+      $next_term->save();
+    }
+    $terms[] = $term = $next_term;
+  }
+
+  $profile->address_tree = $terms;
 }
 
 /**
@@ -533,5 +668,57 @@ function cj_commerce_order_view_alter(array &$build, EntityInterface $order, Ent
       ),
     ];
     $build['cover_letter'] = $cover;
+  }
+}
+
+/**
+ * Implements hook_cj_membership_update();
+ *
+ * @param \Drupal\cj_membership\Entity\Membership $membership
+ */
+function cj_cj_membership_update(Membership $membership) {
+  /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
+  $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+
+  // If the membership has just become active.
+  if (($membership->status == Membership::STATUS_ACTIVE) && ($membership->status != $membership->original->status)) {
+    $profile = $profile_storage->loadDefaultByUser($membership->getOwner(), 'employer');
+    if (!$profile->employer_on_directory->value) {
+      $profile->employer_on_directory = TRUE;
+      $profile->save();
+    }
+  }
+  else if (($membership->status == Membership::STATUS_EXPIRED) && ($membership->original->status == Membership::STATUS_ACTIVE)) {
+    $profile = $profile_storage->loadDefaultByUser($membership->getOwner(),'employer');
+    if ($profile->employer_on_directory->value) {
+      $job_storage = \Drupal::entityTypeManager()->getStorage('job_role');
+      $query = $job_storage->getQuery();
+      $query->condition('organisation', $membership->getOwnerId());
+      $query->condition('publish_date', (new DrupalDateTime())->format('Y-m-d'), '<');
+      $query->condition('paid_to_date', (new DrupalDateTime())->format('Y-m-d'), '>=');
+
+      if (!$query->count()->execute()) {
+        $profile->employer_on_directory = FALSE;
+        $profile->save();
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_cj_membership_insert.
+ *
+ * @param \Drupal\cj_membership\Entity\Membership $membership
+ */
+function cj_cj_membership_insert(Membership $membership) {
+  /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
+  $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+
+  if ($membership->status == Membership::STATUS_ACTIVE) {
+    $profile = $profile_storage->loadDefaultByUser($membership->getOwner(), 'employer');
+    if (!$profile->employer_on_directory->value) {
+      $profile->employer_on_directory = TRUE;
+      $profile->save();
+    }
   }
 }

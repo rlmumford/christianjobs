@@ -1,0 +1,155 @@
+uuid: 68b1745f-64e7-42ff-aa78-dfc71771308f
+langcode: en
+status: true
+dependencies:
+  module:
+    - job_board
+    - job_role
+    - place
+    - search_api_location
+    - organization
+    - search_api
+  config:
+    - field.storage.place.tree
+    - search_api.server.aws_elasticsearch
+id: job_index
+name: 'Job Index'
+description: ''
+read_only: false
+field_settings:
+  category:
+    label: Category
+    datasource_id: 'entity:job_role'
+    property_path: industry
+    type: integer
+    dependencies:
+      module:
+        - job_board
+  description:
+    label: 'Full Job Description'
+    datasource_id: 'entity:job_role'
+    property_path: description
+    type: text
+    dependencies:
+      module:
+        - job_role
+  description_summary:
+    label: Summary
+    datasource_id: 'entity:job_role'
+    property_path: description_summary
+    type: text
+    boost: !!float 2
+    dependencies:
+      module:
+        - job_board
+  end_date:
+    label: 'End Date'
+    datasource_id: 'entity:job_role'
+    property_path: end_date
+    type: date
+    dependencies:
+      module:
+        - job_board
+  keywords:
+    label: Keywords
+    datasource_id: 'entity:job_role'
+    property_path: keywords
+    type: integer
+    dependencies:
+      module:
+        - job_board
+  label:
+    label: Title
+    datasource_id: 'entity:job_role'
+    property_path: label
+    type: text
+    boost: !!float 5
+    dependencies:
+      module:
+        - job_role
+  location_latlon:
+    label: 'Locations » Place » LatLong Pair'
+    datasource_id: 'entity:job_role'
+    property_path: 'locations:entity:geo:latlon'
+    type: location
+    dependencies:
+      module:
+        - job_board
+        - place
+  location_tree:
+    label: 'Locations » Place » Tree'
+    datasource_id: 'entity:job_role'
+    property_path: 'locations:entity:tree'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.place.tree
+      module:
+        - job_board
+        - place
+  max:
+    label: 'Salary » Maximum value'
+    datasource_id: 'entity:job_role'
+    property_path: 'pay:max'
+    type: decimal
+    dependencies:
+      module:
+        - job_role
+  name:
+    label: 'Organization » Organization » Name'
+    datasource_id: 'entity:job_role'
+    property_path: 'organization:entity:name'
+    type: text
+    boost: 0.8
+    dependencies:
+      module:
+        - job_role
+        - organization
+  organization:
+    label: Organization
+    datasource_id: 'entity:job_role'
+    property_path: organization
+    type: integer
+    dependencies:
+      module:
+        - job_role
+  publish_date:
+    label: 'Publish Date'
+    datasource_id: 'entity:job_role'
+    property_path: publish_date
+    type: date
+    dependencies:
+      module:
+        - job_board
+datasource_settings:
+  'entity:job_role': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  hierarchy:
+    fields:
+      category: taxonomy_term-parent
+      keywords: taxonomy_term-parent
+      location_tree: taxonomy_term-parent
+    weights:
+      preprocess_index: -45
+  ignorecase:
+    all_fields: true
+    fields:
+      - description
+      - description_summary
+      - label
+      - location_latlon
+      - name
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: aws_elasticsearch

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94717a86bad6ff7652c263eb0168f89d",
+    "content-hash": "57f4c0a77aa3af02a981e2a4e90a2615",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -6738,6 +6738,78 @@
             }
         },
         {
+            "name": "drupal/search_api_location",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/search_api_location.git",
+                "reference": "8.x-1.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/search_api_location-8.x-1.0-alpha1.zip",
+                "reference": "8.x-1.0-alpha1",
+                "shasum": "f2d0e9a4a8ba8a66d94045f67984182e82131b8e"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/search_api": "*",
+                "phayes/geophp": "^1.2"
+            },
+            "require-dev": {
+                "drupal/facets": "*",
+                "drupal/geocoder": "*",
+                "drupal/search_api": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha1",
+                    "datestamp": "1528532584",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Mattias Michaux",
+                    "homepage": "https://www.drupal.org/u/mollux"
+                },
+                {
+                    "name": "borisson_",
+                    "homepage": "https://www.drupal.org/user/2393360"
+                },
+                {
+                    "name": "drunken monkey",
+                    "homepage": "https://www.drupal.org/user/205582"
+                },
+                {
+                    "name": "mollux",
+                    "homepage": "https://www.drupal.org/user/785804"
+                },
+                {
+                    "name": "ygerasimov",
+                    "homepage": "https://www.drupal.org/user/257311"
+                }
+            ],
+            "description": "Provides location based search for the Search API module.",
+            "homepage": "https://www.drupal.org/project/search_api_location",
+            "support": {
+                "source": "http://git.drupal.org/project/search_api_location.git",
+                "issues": "https://www.drupal.org/project/issues/search_api_location",
+                "irc": "irc://irc.freenode.org/drupal-search-api"
+            }
+        },
+        {
             "name": "drupal/select2",
             "version": "1.7.0",
             "source": {
@@ -10180,12 +10252,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "0fa378a5df91ecf81f3136ef3461cbfe6a88d141"
+                "reference": "9a25b56e5a8cf54a4b25fafd3d0b0bf8facf47bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/0fa378a5df91ecf81f3136ef3461cbfe6a88d141",
-                "reference": "0fa378a5df91ecf81f3136ef3461cbfe6a88d141",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/9a25b56e5a8cf54a4b25fafd3d0b0bf8facf47bf",
+                "reference": "9a25b56e5a8cf54a4b25fafd3d0b0bf8facf47bf",
                 "shasum": ""
             },
             "require": {
@@ -10251,7 +10323,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2020-05-11T10:17:14+00:00"
+            "time": "2020-05-18T13:44:13+00:00"
         },
         {
             "name": "ruflin/elastica",
@@ -15663,6 +15735,7 @@
         "drupal/mailgun": 5,
         "drupal/og": 15,
         "drupal/profile": 5,
+        "drupal/search_api_location": 15,
         "drupal/select2": 10,
         "drupal/xmlsitemap": 15,
         "rlmumford/common": 20

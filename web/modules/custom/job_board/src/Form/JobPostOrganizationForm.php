@@ -8,6 +8,8 @@ use Drupal\Core\Entity\EntityFormBuilderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\inline_entity_form\ElementSubmit;
+use Drupal\inline_entity_form\Plugin\Field\FieldWidget\InlineEntityFormComplex;
 use Drupal\organization\Plugin\Field\FieldType\OrganizationMetadataReferenceItem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -62,7 +64,9 @@ class JobPostOrganizationForm extends FormBase {
         'select' => $this->t('Find Organization'),
         'create' => $this->t('Create New'),
       ],
-      '#default_value' => 'select',
+      '#default_value' => 'create',
+      // @todo: Remove this access when joining an org is supported
+      '#access' => FALSE,
     ];
 
     $form['select'] = [
@@ -74,6 +78,8 @@ class JobPostOrganizationForm extends FormBase {
           ],
         ],
       ],
+      // @todo: Remove this access when joining an org is supported
+      '#access' => FALSE,
     ];
     $form['select']['organization'] = [
       '#type' => 'entity_autocomplete',
@@ -128,6 +134,8 @@ class JobPostOrganizationForm extends FormBase {
             ],
           ],
         ],
+        // @todo: Remove this access when joining an org is supported
+        '#access' => FALSE,
       ],
       'create' => [
         '#type' => 'submit',
@@ -137,8 +145,10 @@ class JobPostOrganizationForm extends FormBase {
           ['actions', 'create'],
         ],
         '#submit' => [
+          [ElementSubmit::class, 'trigger'],
           '::submitFormCreate',
         ],
+        '#ief_submit_trigger' => TRUE,
         '#validate' => [
           '::validateFormCreate',
         ],
@@ -176,7 +186,7 @@ class JobPostOrganizationForm extends FormBase {
   protected function buildOrganization(array $form, FormStateInterface $form_state) {
     /** @var \Drupal\organization\Entity\Organization $organization */
     $organization = clone $form_state->get('organization');
-    $extracted = $this->getFormDisplay($form_state)->extractFormValues($organization, $form, $form_state);
+    $extracted = $this->getFormDisplay($form_state)->extractFormValues($organization, $form['create'], $form_state);
 
     // Then extract the values of fields that are not rendered through widgets,
     // by simply copying from top-level form values. This leaves the fields
@@ -274,7 +284,6 @@ class JobPostOrganizationForm extends FormBase {
       'role' => OrganizationMetadataReferenceItem::ROLE_OWNER,
     ];
     $user->save();
-
     $form_state->setRedirect('job_board.post');
   }
 

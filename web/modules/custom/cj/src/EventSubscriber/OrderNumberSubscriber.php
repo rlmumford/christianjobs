@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\job_board\EventSubscriber;
+namespace Drupal\cj\EventSubscriber;
 
 use Drupal\state_machine\Event\WorkflowTransitionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
