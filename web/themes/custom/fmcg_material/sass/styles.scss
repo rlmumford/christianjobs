@@ -26,7 +26,9 @@ strong {
 }
 
 p, h4 {
-  padding-right: 18px;
+  font-family: Roboto;
+  font-size: 13px;
+  color: #DBE4EB;
 }
 
 p.address {
@@ -211,21 +213,24 @@ details.captcha > div {
 .form-item {
   label, h4 {
     font-size: 20px;
-    font-weight: bold;
-    font-family: Montserrat;
+    font-weight: 600;
+    font-family: Poppins;
     line-height: 2em;
-  }
-  &:focus-within label {
-    color: #FF904B;
+    color: $fmcg-yellow;
+
+    &:focus-within {
+      color: #FDD22B;
+    }
   }
 
   input[type=text], input[type=url], input[type=date], input[type=number], input[type=email], input[type=password], input[type=search], input[type=tel], textarea, select {
     display: block;
     width: 100%;
-    max-width: 1200px;
+    max-width: 550px;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: #DBE4EB;
+    background-color: #FFFFFF;
+    float: right;
 
     &.select2-search__field {
       border: none;
@@ -249,9 +254,13 @@ details.captcha > div {
       width: initial;
       display: inline-block;
     }
-
   }
 }
+
+//&:focus-within label {
+//  color: #FF904B;
+//}
+
 .form-wrapper {
   h4 {
     font-size: 20px;
@@ -379,10 +388,6 @@ div#edit-publish-date-wrapper, div#edit-application-deadline-wrapper {
   font-size: 10px;
 }
 
-label.form-required {
-  color: rgba(0,0,0,0.54);
-}
-
 span.upsell-price.pull-right.orange-triangle {
   color: #FFFFFF;
   background-color: #FF904B;
@@ -425,7 +430,7 @@ div#block-fmcg-material-page-title {
   padding-top: 10px;
 }
 div#main-content {
-  background: #FFFFFF;
+  background: #DBE4EB;
   padding: 0 20px 30px;
 }
 
@@ -507,6 +512,35 @@ div#main-content {
   top: 100px;
 }
 
+.drawer-open #drawer-overlay {
+  display: block;
+}
+
+#drawer-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 10;
+}
+
+div#drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 10;
+}
+
+.drawer-open #drawer {
+  box-shadow: none;
+}
+
 /**
 .path-frontpage.navbar-fixed #navbar,
 .path-frontpage.navbar-fixed #navbar.navbar-bg {
@@ -561,7 +595,6 @@ div#main-content {
 
 .views-exposed-form input.button, .user-login-form input.button, .user-register-form input.button,
 .executive-search-initiate-form input.button, .contact-message-showcase-attendee-form input.button {
-  padding: 6px 12px;
   margin-left: 25px;
   margin-bottom: 25px;
   min-height: 0;
@@ -769,6 +802,13 @@ p.scripture {
   }
 }
 
+.footer-text {
+  p, .h4 {
+    font-family: Poppins;
+    font-size: 16px;
+  }
+}
+
 span.upsell-price {
   font-weight: bold;
   color: #FF904b;
@@ -879,7 +919,7 @@ span.upsell-price .tax {
   padding-top: 0;
 }
 .section-wrapper .section {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   background: #FFFFFF;
   padding: 0 20px 75px 20px;
@@ -1274,6 +1314,7 @@ form#views-exposed-form-volunteer-board-list-page {
 
 input.btn-accent {
   margin-left: 25px;
+  margin-bottom: 24px;
 }
 
 .region.region-before-main {
@@ -1454,7 +1495,6 @@ strong {
 .form-managed-file {
   .button {
     min-height: 0;
-    padding: 8px 10px;
     margin-top: 0;
   }
 }
@@ -1514,7 +1554,7 @@ label.option {
 }
 
 nav.tabs {
-  max-width: 1200px;
+  max-width: 360px;
   margin: 0 auto;
 }
 
@@ -2065,6 +2105,93 @@ form#views-exposed-form-job-board-page {
   }
 }
 
-.path-frontpage div#main-content, .path-user-login div#main-content {
+.path-frontpage div#main-content, .path-user div#main-content, .path-user-login div#main-content {
   background: none;
+}
+
+.password-strength__title, .password-confirm {
+  font-family: Roboto;
+  font-size: 13px;
+  color: #DBE4EB;
+}
+
+.password-strength__meter {
+  height: 0.75em;
+  margin-top: 0.5em;
+  background-color: #211F21;
+}
+
+.password-strength__indicator {
+  width: 0;
+  height: 100%;
+  background-color: #FDD22B;
+}
+
+.job-post-organization-form {
+  .form-item label {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Poppins;
+    line-height: 2em;
+    color: #211F21;
+  }
+}
+
+.section-wrapper .section {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  padding: 0 20px 75px 20px;
+  position: relative;
+}
+
+.job-post-organization-form .form-item label {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Poppins;
+  line-height: 2em;
+  color: #211F21;
+}
+
+.form-item input[type=text] {
+  display: block;
+  width: 100%;
+  max-width: 550px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #FFFFFF;
+  float: right;
+  margin-bottom: 20px;
+}
+
+.fieldset-legend {
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #DBE4EB;
+  margin-right: 12px;
+}
+
+.js-form-item .form-item .js-form-wrapper .form-wrapper {
+  border-top: 2px solid #9ABAD2;
+}
+
+.form-item {
+  margin-top: 36px;
+}
+
+div#main-content {
+  background: none;
+  padding: 0 20px 30px;
+}
+
+.form-item .description {
+  font-size: 13px;
+  font-family: Roboto;
+  color: #211F21;
+}
+
+.filter-wrapper {
+  overflow: hidden;
+  margin: 0;
+  padding: 0.5em 0.666em;
 }

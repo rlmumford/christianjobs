@@ -72,7 +72,7 @@ class FMCGFooter extends BlockBase implements ContainerFactoryPluginInterface {
   public function build() {
     $build = [
       '#markup' => '<div><div class="pull-center">
-      <div class="footer-info"><p>© FMCG Jobs 2020  I  <a href="mailto:info@fmcgjobs.com">info@fmcgjobs.com</a></p></div>
+      <div class="footer-info footer-text"><p>© FMCG Jobs 2020  I  <a href="mailto:info@fmcgjobs.com">info@fmcgjobs.com</a></p></div>
       </div></div>
       <div class="row">
       <div class="footer-contact footer-item pull-center">
