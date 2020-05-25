@@ -56,15 +56,31 @@ job_board.repost:
   requirements:
     _entity_access: 'job_role.repost'
 
+job_board.recruiter.login:
+  path: '/recruiter/login'
+  defaults:
+    _form: '\Drupal\user\Form\UserLoginForm'
+    _title: 'Log in'
+  requirements:
+    _user_is_logged_in: 'FALSE'
+  options:
+    _maintenance_access: TRUE
+job_board.recruiter.register:
+  path: '/recruiter/register'
+  defaults:
+    _entity_form: user.register_recruiter
+    _title: 'Create new account'
+  requirements:
+    _access_user_register: 'TRUE'
 job_board.employer:
-  path: '/employer/{organization}'
+  path: '/recruiter/{organization}'
   defaults:
     _entity_view: 'organization.employer_page'
     _title_callback: '\Drupal\Core\Entity\Controller\EntityController::title'
   requirements:
     _access: 'TRUE'
 job_board.employer_edit:
-  path: '/employer/{organization}/edit'
+  path: '/recruiter/{organization}/edit'
   defaults:
     _entity_form: 'organization.employer_details'
     _title_callback: '\Drupal\Core\Entity\Controller\EntityController::title'

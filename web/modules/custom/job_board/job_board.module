@@ -19,6 +19,7 @@ use Drupal\job_board\Form\EmployerEditForm;
 use Drupal\job_board\Form\JobDeleteForm;
 use Drupal\job_board\Form\JobForm;
 use Drupal\job_board\Form\JobPostForm;
+use Drupal\job_board\Form\RecruiterRegisterForm;
 use Drupal\job_board\JobBoardJobRole;
 use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
 use Drupal\place\Entity\Place;
@@ -75,6 +76,10 @@ function job_board_entity_type_build(&$entity_types) {
 
   if ($entity_type = $entity_types['organization']) {
     $entity_type->setFormClass('employer_details', EmployerEditForm::class);
+  }
+
+  if ($entity_type = $entity_types['user']) {
+    $entity_type->setFormClass('register_recruiter', RecruiterRegisterForm::class);
   }
 }
 
