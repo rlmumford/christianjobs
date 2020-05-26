@@ -28,29 +28,29 @@ class ExecSearchInitForm extends FormBase {
       'p1' => [
         '#type' => 'html_tag',
         '#tag' => 'p',
-        '#value' => '<strong>Finding the key talent for your organisation can be daunting.</strong>',
+        '#value' => '<strong>We know finding the key talent for your organisation can be daunting, resource intensive and time consuming.</strong>',
       ],
       'p12' => [
         '#type' => 'html_tag',
         '#tag' => 'p',
-        '#value' => 'Where do you look? How do you know you have searched thoroughly? Where do you find the time to search properly? How do you contact these great prospects? Will the right candidates even be open to talking to you? How do you manage negotiations in a delicate manner?',
+        '#value' => 'With more than 20 years of Executive Search experience across both non and for-profit industries, this is where Christian Jobs can help. We know how to manage the delicate and challenging search process that results in the best appointment for your organisation.',
       ],
       'p2' => [
         '#type' => 'html_tag',
         '#tag' => 'p',
-        '#value' => 'With more than 12 years of executive search experience across both non and for-profit industries this is where ChristianJobs.co.uk can help. We know how to manage the delicate and challenging search process that results in the best appointment for your organisation.',
+        '#value' => 'Executive campaigns allow our team to search, source and secure the best candidates for your organisation in a proactive and deliberate way.',
       ],
-      'p3' => [
-        '#type' => 'html_tag',
-        '#tag' => 'p',
-        '#value' => 'Executive campaigns allow our team to search, source and secure the best candidates for your organisation in a proactive and supportive manner.',
-      ],
-      'p4' => [
-        '#type' => 'html_tag',
-        '#tag' => 'p',
-        '#value' => 'Our efficient and effective multistep approach begins long before the actual search itself. We are committed to our clients throughout every step of the executive search journey and our deliberate and structured search process is proven in attaining a successful outcome.',
-      ],
-      
+      //'p3' => [
+        //'#type' => 'html_tag',
+        //'#tag' => 'p',
+        //'#value' => 'Executive campaigns allow our team to search, source and secure the best candidates for your organisation in a proactive and supportive manner.',
+      //],
+      //'p4' => [
+        //'#type' => 'html_tag',
+        //'#tag' => 'p',
+        //'#value' => 'Our efficient and effective multistep approach begins long before the actual search itself. We are committed to our clients throughout every step of the executive search journey and our deliberate and structured search process is proven in attaining a successful outcome.',
+      //],
+
       'h4' => [
         '#type' => 'html_tag',
         '#tag' => 'h4',
@@ -65,40 +65,40 @@ class ExecSearchInitForm extends FormBase {
         '#items' => [
           [
             '#wrapper_attributes' => [
-              'class' => ['item'],
+              'class' => ['item', 'free-advertising'],
             ],
-            '#children' => 'Free 30-day featured advertising on ChristianJobs.co.uk (with option to extend to 60 days).',
+            '#children' => 'Free advertising on ChristianJobs.co.uk (including featured job slots)',
           ],
           [
             '#wrapper_attributes' => [
-              'class' => ['item'],
+              'class' => ['item', 'promoted-social'],
             ],
-            '#children' => 'Promoted social media advertising',
+            '#children' => 'Promoted social media engagement',
           ],
           [
             '#wrapper_attributes' => [
-              'class' => ['item'],
+              'class' => ['item', 'senior-leadership'],
             ],
-            '#children' => 'Christian Jobs director engagement & dedicated account manager',
+            '#children' => 'Christian Jobs senior leadership engagement',
           ],
           [
             '#wrapper_attributes' => [
-              'class' => ['item'],
+              'class' => ['item', 'outsourced-application'],
             ],
-            '#children' => 'Outsourced application management',
+            '#children' => 'Full outsourced application management',
           ],
           [
             '#wrapper_attributes' => [
-              'class' => ['item'],
+              'class' => ['item', 'three-month'],
             ],
-            '#children' => 'Thomas PPA behavioural assessment for final stage candidates',
+            '#children' => 'Three-month placement guarantee',
           ],
-          [
-            '#wrapper_attributes' => [
-              'class' => ['item'],
-            ],
-            '#children' => 'Six month placement guarantee',
-          ],
+          //[
+            //'#wrapper_attributes' => [
+           //   'class' => ['item'],
+           // ],
+           // '#children' => 'Six month placement guarantee',
+          //],
         ]
       ]
     ];
