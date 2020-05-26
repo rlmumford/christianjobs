@@ -226,11 +226,11 @@ details.captcha > div {
   input[type=text], input[type=url], input[type=date], input[type=number], input[type=email], input[type=password], input[type=search], input[type=tel], textarea, select {
     display: block;
     width: 100%;
-    max-width: 550px;
+    max-width: 630px;
     padding-left: 10px;
     padding-right: 10px;
     background-color: #FFFFFF;
-    float: right;
+    display: inline-block;
 
     &.select2-search__field {
       border: none;
@@ -346,8 +346,8 @@ ul.select2-selection__rendered {
 }
 
 form {
-  padding-left: 20px;
-  padding-right: 20px;
+  max-width: 800px;
+  margin: auto;
 }
 
 summary {
@@ -919,7 +919,7 @@ span.upsell-price .tax {
   padding-top: 0;
 }
 .section-wrapper .section {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   background: #FFFFFF;
   padding: 0 20px 75px 20px;
@@ -2127,7 +2127,23 @@ form#views-exposed-form-job-board-page {
   background-color: #FDD22B;
 }
 
+.path-user {
+  .description {
+    font-size: 13px;
+    font-family: Roboto;
+    color: $fmcg-chrome;
+  }
+}
+
 .job-post-organization-form {
+  .form-item > * {
+    display: inline-block;
+  }
+
+  .form-item > label {
+    width: 160px;
+  }
+
   .form-item label {
     font-size: 16px;
     font-weight: 400;
@@ -2135,63 +2151,53 @@ form#views-exposed-form-job-board-page {
     line-height: 2em;
     color: #211F21;
   }
-}
 
-.section-wrapper .section {
-  max-width: 800px;
-  margin: 0 auto;
-  background: #FFFFFF;
-  padding: 0 20px 75px 20px;
-  position: relative;
-}
+  .form-item input[type=text] {
+    width: 100%;
+    max-width: 630px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #FFFFFF;
+    display: inline-block;
+  }
 
-.job-post-organization-form .form-item label {
-  font-size: 16px;
-  font-weight: 400;
-  font-family: Poppins;
-  line-height: 2em;
-  color: #211F21;
-}
+  span.fieldset-legend {
+    font-size: 20px;
+    font-weight: 600;
+    z-index: 5;
+    background: #DBE4EB;
+    padding-right: 12px;
+  }
 
-.form-item input[type=text] {
-  display: block;
-  width: 100%;
-  max-width: 550px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: #FFFFFF;
-  float: right;
-  margin-bottom: 20px;
-}
+  legend {
+    position: relative;
+    width: 100%;
+    z-index: 5;
+    background: #DBE4EB;
+  }
 
-.fieldset-legend {
-  font-size: 20px;
-  font-weight: 600;
-  background-color: #DBE4EB;
-  margin-right: 12px;
-}
+  span.fieldset-legend:after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    background-color: #242424;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
 
-.js-form-item .form-item .js-form-wrapper .form-wrapper {
-  border-top: 2px solid #9ABAD2;
-}
+  .form-required {
+    vertical-align: top;
+  }
 
-.form-item {
-  margin-top: 36px;
-}
-
-div#main-content {
-  background: none;
-  padding: 0 20px 30px;
-}
-
-.form-item .description {
-  font-size: 13px;
-  font-family: Roboto;
-  color: #211F21;
-}
-
-.filter-wrapper {
-  overflow: hidden;
-  margin: 0;
-  padding: 0.5em 0.666em;
+  .filter-wrapper {
+    overflow: hidden;
+    margin: 0;
+    padding: 0.5em 0.666em;
+    border: 1px solid #ccc;
+    border-top: 0;
+    display: none !important;
+  }
 }
