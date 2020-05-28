@@ -1,6 +1,6 @@
-h1, h2 {
+h1, h2, .h1, .h2 {
   font-weight: bold;
-  color: #1E5168;
+  color: $fmcg-yellow;
 }
 h1, .h1 {
   text-transform: uppercase;

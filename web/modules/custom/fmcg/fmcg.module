@@ -42,4 +42,5 @@ function fmcg_local_tasks_alter(&$local_tasks) {
   unset($local_tasks['entity.commerce_payment_method.collection']);
   unset($local_tasks['entity.profile.user_profile_form:profile.type.individual']);
   unset($local_tasks['entity.profile.user_profile_form:profile.type.organisation']);
+  unset($local_tasks['user.pass']);
 }

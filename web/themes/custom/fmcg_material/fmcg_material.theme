@@ -26,6 +26,13 @@ function fmcg_material_form_user_self_edit_candidate_form_alter(array &$form, Fo
 function fmcg_material_preprocess_html(&$variables) {
   // Add sticky navbar class
   $variables['attributes']['class'][] = 'navbar-fixed';
+
+  if (in_array(
+    \Drupal::routeMatch()->getRouteName(),
+    ['user.login', 'user.register', 'recruiter.login', 'recruiter.register']
+  )) {
+    $variables['attributes']['class'][] = 'card-form-page';
+  }
 }
 
 /**

@@ -47,6 +47,29 @@ class FMCGFooter extends BlockBase implements ContainerFactoryPluginInterface {
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state) {
+    $configuration = $this->getConfiguration();
+
+    $form['linkedin_id'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('LinkedIn Company Id'),
+      '#description' => $this->t('You can find this on the URL of your company\'s linked in page'),
+      '#default_value' => $configuration['linkedin_id'],
+    ];
+
+    $form['twitter_id'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Twitter Company Id'),
+      '#description' => $this->t('You can find this on the URL of your company\'s twitter page'),
+      '#default_value' => $configuration['twitter_id'],
+    ];
+
+    $form['email_address'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Email Address'),
+      '#description' => $this->t('You can find this on the URL of your company\'s linked in page'),
+      '#default_value' => $configuration['email_address'],
+    ];
+
     return $form;
   }
 
@@ -54,6 +77,11 @@ class FMCGFooter extends BlockBase implements ContainerFactoryPluginInterface {
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
+    $configuration = $this->getConfiguration();
+    $configuration['linkedin_id'] = $form_state->getValue('linkedin_id');
+    $configuration['twitter_id'] = $form_state->getValue('twitter_id');
+    $configuration['email_address'] = $form_state->getValue('email_address');
+    $this->setConfiguration($configuration);
   }
 
   /**
@@ -70,14 +98,20 @@ class FMCGFooter extends BlockBase implements ContainerFactoryPluginInterface {
    * @see \Drupal\block\BlockViewBuilder
    */
   public function build() {
+    $configuration = $this->getConfiguration();
+
     $build = [
-      '#markup' => '<div><div class="pull-center">
-      <div class="footer-info footer-text"><p>© FMCG Jobs 2020  I  <a href="mailto:info@fmcgjobs.com">info@fmcgjobs.com</a></p></div>
-      </div></div>
+      '#markup' => '<div>
+        <div class="pull-center">
+          <div class="footer-info footer-text"><p>&copy; FMCG Jobs '.date('Y').'  |  <a href="mailto:'.$configuration['email_address'].'">'.$configuration['email_address'].'</a></p></div>
+        </div>
+      </div>
       <div class="row">
-      <div class="footer-contact footer-item pull-center">
-        <a href="https://www.linkedin.com/company/fmcgjobs-com/" class="services-icons icon-primary" data-icon="linkedin"></a>     <a href="https://twitter.com/GlobalFMCGJobs" class="services-icons icon-primary" data-icon="twitter"></a>
-    </div>',
+        <div class="footer-contact footer-item pull-center">
+          <a href="https://www.linkedin.com/company/'.$configuration['linkedin_id'].'/" class="services-icons icon-primary" data-icon="linkedin"></a>
+          <a href="https://twitter.com/'.$configuration['twitter_id'].'/" class="services-icons icon-primary" data-icon="twitter"></a>
+        </div>
+      </div>',
       '#cache' => [
         'contexts' => ['user.roles:authenticated'],
         'tags' => [],

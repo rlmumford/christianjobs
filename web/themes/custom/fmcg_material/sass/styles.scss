@@ -231,6 +231,7 @@ details.captcha > div {
     padding-right: 10px;
     background-color: #FFFFFF;
     display: inline-block;
+    margin-bottom: 12px;
 
     &.select2-search__field {
       border: none;
@@ -348,6 +349,116 @@ ul.select2-selection__rendered {
 form {
   max-width: 800px;
   margin: auto;
+  margin-top: 30px;
+
+  .form-item > * {
+    display: inline-block;
+  }
+
+  .form-item > label {
+    width: 160px;
+  }
+
+  .form-item label {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Poppins;
+    line-height: 2em;
+    color: #211F21;
+  }
+
+  .form-item input[type=text] {
+    width: 100%;
+    max-width: 630px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #FFFFFF;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  span.fieldset-legend {
+    font-size: 20px;
+    font-weight: 600;
+    z-index: 5;
+    background: $fmcg-chrome;
+    padding-right: 12px;
+  }
+
+  legend {
+    position: relative;
+    width: 100%;
+    z-index: 5;
+    background: $fmcg-chrome;
+    margin-bottom: 12px;
+  }
+
+  span.fieldset-legend:after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    background-color: #9ABAD2;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+  input.button, input[type=submit] {
+    margin: 0px;
+  }
+
+  .form-required {
+    vertical-align: top;
+  }
+
+  .filter-wrapper {
+    display: none !important;
+  }
+
+  @media (min-width: 1136px) {
+    .description {
+      padding-left: 163px;
+    }
+  }
+}
+
+.card-form-page {
+  nav.tabs {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+
+form.card-form {
+  max-width: 360px;
+
+  .description {
+    font-size: 13px;
+    font-family: Roboto;
+    color: $fmcg-chrome;
+    padding-left: 0px;
+  }
+
+  .form-item label {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Poppins;
+    line-height: 2em;
+    color: $fmcg-yellow;
+  }
+  .form-item > label {
+    width: auto;
+  }
+
+  input.button, input[type=submit] {
+    margin: 8px 0px 24px 24px;
+  }
+
+  .form-item {
+    margin-bottom: 0px;
+  }
 }
 
 summary {
@@ -891,7 +1002,7 @@ span.upsell-price .tax {
 }
 
 #page {
-  background-color: #DBE4EB;
+  background-color: $fmcg-chrome;
   overflow: hidden;
   background-size: 100%;
   background-attachment: fixed;
@@ -1495,7 +1606,6 @@ strong {
 .form-managed-file {
   .button {
     min-height: 0;
-    margin-top: 0;
   }
 }
 
@@ -1553,28 +1663,30 @@ label.option {
   }
 }
 
-nav.tabs {
-  max-width: 360px;
-  margin: 0 auto;
-}
+.tabs ul li {
+  background-color: $fmcg-black;
+  transform: skewX(-36deg);
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 14px;
 
-.tabs ul li a {
-  background-color: #D7D5D5;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+  &:hover {
+    border-left: 2px solid $fmcg-yellow;
+    border-right: 2px solid $fmcg-yellow;
+  }
+
+  a {
+    transform: skewX(36deg);
+  }
 }
 
 .tabs ul li a.is-active, ul.tabs li a.is-active {
-  background-color: #FFFFFF;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-  border-color: #FFFFFF;
-  color: #2a556b;
+  color: $fmcg-yellow;
+  border: none;
 }
 
 .tabs ul li a:hover, ul.tabs li a:hover {
-  border-color: #FF9049;
-  color: #FF9049;
+  color: #FDD22B;
 }
 
 .form-item-account-type.btn {
@@ -2099,7 +2211,7 @@ form#views-exposed-form-job-board-page {
   }
 }
 
-@media (min-width: 1256px) {
+@media (min-width: $lg) {
   .navbar-hamburger-menu {
     display: none !important;
   }
@@ -2109,95 +2221,25 @@ form#views-exposed-form-job-board-page {
   background: none;
 }
 
+.password-strength {
+  display: block;
+  width: 100%;
+}
+
 .password-strength__title, .password-confirm {
   font-family: Roboto;
   font-size: 13px;
-  color: #DBE4EB;
+  color: $fmcg-chrome;
 }
 
 .password-strength__meter {
   height: 0.75em;
   margin-top: 0.5em;
-  background-color: #211F21;
+  background-color: $fmcg-chrome;
 }
 
 .password-strength__indicator {
   width: 0;
   height: 100%;
-  background-color: #FDD22B;
-}
-
-.path-user {
-  .description {
-    font-size: 13px;
-    font-family: Roboto;
-    color: $fmcg-chrome;
-  }
-}
-
-.job-post-organization-form {
-  .form-item > * {
-    display: inline-block;
-  }
-
-  .form-item > label {
-    width: 160px;
-  }
-
-  .form-item label {
-    font-size: 16px;
-    font-weight: 400;
-    font-family: Poppins;
-    line-height: 2em;
-    color: #211F21;
-  }
-
-  .form-item input[type=text] {
-    width: 100%;
-    max-width: 630px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #FFFFFF;
-    display: inline-block;
-  }
-
-  span.fieldset-legend {
-    font-size: 20px;
-    font-weight: 600;
-    z-index: 5;
-    background: #DBE4EB;
-    padding-right: 12px;
-  }
-
-  legend {
-    position: relative;
-    width: 100%;
-    z-index: 5;
-    background: #DBE4EB;
-  }
-
-  span.fieldset-legend:after {
-    position: absolute;
-    content: "";
-    height: 2px;
-    background-color: #242424;
-    width: 100%;
-    top: 50%;
-    left: 0;
-    right: 0;
-    z-index: -1;
-  }
-
-  .form-required {
-    vertical-align: top;
-  }
-
-  .filter-wrapper {
-    overflow: hidden;
-    margin: 0;
-    padding: 0.5em 0.666em;
-    border: 1px solid #ccc;
-    border-top: 0;
-    display: none !important;
-  }
+  background-color: $fmcg-yellow;
 }
