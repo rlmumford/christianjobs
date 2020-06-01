@@ -72,6 +72,13 @@ job_board.recruiter.register:
     _title: 'Create new account'
   requirements:
     _access_user_register: 'TRUE'
+job_board.recruiter.register.organization:
+  path: '/recruiter/register/organization'
+  defaults:
+    _entity_form: organization.register_recruiter
+    _title: 'Your Organization'
+  requirements:
+    _user_is_logged_in: 'TRUE'
 job_board.employer:
   path: '/recruiter/{organization}'
   defaults:

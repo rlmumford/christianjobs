@@ -20,6 +20,7 @@ use Drupal\job_board\Form\JobDeleteForm;
 use Drupal\job_board\Form\JobForm;
 use Drupal\job_board\Form\JobPostForm;
 use Drupal\job_board\Form\RecruiterRegisterForm;
+use Drupal\job_board\Form\RecruiterRegisterOrganizationForm;
 use Drupal\job_board\JobBoardJobRole;
 use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
 use Drupal\place\Entity\Place;
@@ -76,6 +77,7 @@ function job_board_entity_type_build(&$entity_types) {
 
   if ($entity_type = $entity_types['organization']) {
     $entity_type->setFormClass('employer_details', EmployerEditForm::class);
+    $entity_type->setFormClass('register_recruiter', RecruiterRegisterOrganizationForm::class);
   }
 
   if ($entity_type = $entity_types['user']) {
@@ -87,6 +89,21 @@ function job_board_entity_type_build(&$entity_types) {
  * Implements hook_entity_base_field_info()
  */
 function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() === 'organization') {
+    $fields['headquarters'] = BaseFieldDefinition::create('entityreference')
+      ->setLabel(new TranslatableMarkup('Headquarters'))
+      ->setSetting('target_type', 'place')
+      ->setSetting('handler_settings', [
+        'target_bundles' => ['address' => 'address']
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'inline_entity_form_simple',
+      ])
+      ->setCardinality(1);
+  }
+
   if ($entity_type->id() != 'job_role') {
     return [];
   }
