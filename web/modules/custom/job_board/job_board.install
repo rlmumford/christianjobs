@@ -1393,6 +1393,8 @@ function job_board_update_8103() {
   $config_manager = \Drupal::service('config.manager');
   $configs_to_install = [
     'views.view.job_board__recruiter_jobs',
+    'core.entity_form_mode.organization.register_recruiter',
+    'core.entity_form_display.organization.organization.register_recruiter'
   ];
   foreach ($configs_to_install as $name) {
     $config = new Config($name, \Drupal::service('config.storage'), \Drupal::service('event_dispatcher'), \Drupal::service('config.typed'));

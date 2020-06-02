@@ -23,6 +23,7 @@ use Drupal\job_board\Form\RecruiterRegisterForm;
 use Drupal\job_board\Form\RecruiterRegisterOrganizationForm;
 use Drupal\job_board\JobBoardJobRole;
 use Drupal\job_board\JobBoardJobRoleAccessControlHandler;
+use Drupal\organization\Entity\Organization;
 use Drupal\place\Entity\Place;
 use Drupal\user\UserInterface;
 use Drupal\views\ViewExecutable;
@@ -90,7 +91,7 @@ function job_board_entity_type_build(&$entity_types) {
  */
 function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
   if ($entity_type->id() === 'organization') {
-    $fields['headquarters'] = BaseFieldDefinition::create('entityreference')
+    $fields['headquarters'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(new TranslatableMarkup('Headquarters'))
       ->setSetting('target_type', 'place')
       ->setSetting('handler_settings', [
@@ -102,6 +103,8 @@ function job_board_entity_base_field_info(EntityTypeInterface $entity_type) {
         'type' => 'inline_entity_form_simple',
       ])
       ->setCardinality(1);
+
+    return $fields;
   }
 
   if ($entity_type->id() != 'job_role') {
@@ -492,6 +495,32 @@ function job_board_form_user_employer_details_form_alter(array &$form, FormState
 function job_board_user_employer_details_form_submit_redirect(array $form, FormStateInterface $form_state) {
   $form_state->setRedirect('job_board.post');
   user_cookie_delete('jobPostRegister');
+}
+
+/**
+ * Implements hook_organization_presave().
+ *
+ * @param \Drupal\organization\Entity\Organization $organization
+ */
+function job_board_organization_presave(Organization $organization) {
+  if (!$organization->headquarters->isEmpty()) {
+    /** @var \Drupal\place\Entity\Place $hq */
+    $hq = $organization->headquarters->entity;
+
+    if (!$hq->id()) {
+      $organization->places[] = $hq;
+    }
+    else {
+      // Check the $hq isn't already set as a place.
+      foreach ($organization->places as $place_item) {
+        if ($place_item->target_id == $hq->id()) {
+          return;
+        }
+      }
+
+      $organization->places[] = $hq;
+    }
+  }
 }
 
 /**

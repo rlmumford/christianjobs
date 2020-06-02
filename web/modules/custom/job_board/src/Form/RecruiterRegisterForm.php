@@ -7,6 +7,9 @@ use Drupal\user\RegisterForm;
 
 class RecruiterRegisterForm extends RegisterForm {
 
+  /**
+   * {@inheritdoc}
+   */
   public function save(array $form, FormStateInterface $form_state) {
     parent::save($form, $form_state);
 
