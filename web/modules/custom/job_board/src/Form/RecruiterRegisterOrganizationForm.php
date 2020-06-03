@@ -90,9 +90,9 @@ class RecruiterRegisterOrganizationForm extends ContentEntityForm {
     $content = [
       '#theme' => 'item_list',
       '#items' => [
-        'Test 1',
-        'Test 2',
-        'Test 3',
+        'Test 1 <a class="button">Request to Join</a>',
+        'Test 2 <a class="button">Request to Join</a>',
+        'Test 3 <a class="button">Request to Join</a>',
       ],
     ];
 
