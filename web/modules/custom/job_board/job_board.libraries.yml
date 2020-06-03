@@ -3,6 +3,13 @@ pricing:
   css:
     component:
       css/pricing.css: {}
+organization-duplicates:
+  version: 1.x
+  js:
+    js/organization-duplicates.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupal.dialog.ajax
 collapsible-filters:
   version: 1.x
   js:
