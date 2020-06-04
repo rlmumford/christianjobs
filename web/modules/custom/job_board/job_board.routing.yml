@@ -79,6 +79,13 @@ job_board.recruiter.register.organization:
     _title: 'Your Organization'
   requirements:
     _user_is_logged_in: 'TRUE'
+job_board.recruiter.register.join_organization:
+  path: '/recruiter/organization/{organization}/join'
+  defaults:
+    _form: '\Drupal\job_board\Form\RecruiterJoinOrganization'
+    _title: 'Join Organization'
+  requirements:
+    _user_is_logged_in: 'TRUE'
 job_board.employer:
   path: '/recruiter/{organization}'
   defaults:
