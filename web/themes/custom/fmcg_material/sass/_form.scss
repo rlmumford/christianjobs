@@ -3,6 +3,20 @@ form {
   margin: auto;
   margin-top: 30px;
 
+  .visually-hidden {
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    width: 1px;
+    height: 1px;
+    word-wrap: normal;
+  }
+
+  @media (min-width: $md) {
+    .visually-hidden {
+      position: relative !important;
+    }
+  }
+
   div.form-item {
     width: 100%;
 
@@ -12,7 +26,7 @@ form {
   }
 
   .form-item > label {
-    width: 160px;
+    width: 156px;
   }
 
   .form-item label {
@@ -25,7 +39,7 @@ form {
 
   .form-item input[type=text] {
     width: 100%;
-    max-width: 630px;
+    max-width: 640px;
     padding-left: 10px;
     padding-right: 10px;
     background-color: #FFFFFF;
@@ -103,7 +117,7 @@ form {
   input[type=text], input[type=url], input[type=date], input[type=number], input[type=email], input[type=password], input[type=search], input[type=tel], textarea, select {
     display: block;
     width: 100%;
-    max-width: 630px;
+    max-width: 640px;
     padding-left: 10px;
     padding-right: 10px;
     background-color: #FFFFFF;
@@ -132,5 +146,29 @@ form {
       width: initial;
       display: inline-block;
     }
+  }
+}
+
+.form-item > select {
+  max-width: 800px;
+}
+
+.form-item input[type=url] {
+  width: 100%;
+  max-width: 640px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  padding: 8px 0;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.form-item > select {
+  max-width: 640px;
+  position: relative;
+}
+
+@media (min-width: $md) {
+  .form-item.form-type-select:after {
+    top: 0;
   }
 }

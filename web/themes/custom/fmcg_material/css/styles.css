@@ -1500,12 +1500,13 @@ tr.selected:hover {
 }
 .form-item.form-type-select {
   overflow: hidden;
+  position: relative;
 }
 .form-item.form-type-select label {
-  display: block;
+  display: inline-block;
 }
 .form-item select {
-  float: left;
+  float: none;
   width: auto;
   clear: both;
   padding-right: 36px;
@@ -1517,10 +1518,11 @@ tr.selected:hover {
   content: "arrow_drop_down";
   margin-left: -24px;
   margin-top: 8px;
-  /* float: left; */
   color: rgba(0, 0, 0, 0.54);
   z-index: 1;
-  position: relative;
+  position: absolute;
+  right: 0;
+  top: 33px;
 }
 
 .card .form-actions, .content-card .card-holder .form-actions {
@@ -3371,6 +3373,18 @@ form {
   margin: auto;
   margin-top: 30px;
 }
+form .visually-hidden {
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  word-wrap: normal;
+}
+@media (min-width: 992px) {
+  form .visually-hidden {
+    position: relative !important;
+  }
+}
 form div.form-item {
   width: 100%;
 }
@@ -3378,7 +3392,7 @@ form div.form-item > * {
   display: inline-block;
 }
 form .form-item > label {
-  width: 160px;
+  width: 156px;
 }
 form .form-item label {
   font-size: 16px;
@@ -3389,7 +3403,7 @@ form .form-item label {
 }
 form .form-item input[type=text] {
   width: 100%;
-  max-width: 630px;
+  max-width: 640px;
   padding-left: 10px;
   padding-right: 10px;
   background-color: #FFFFFF;
@@ -3453,7 +3467,7 @@ form div.filter-wrapper {
 .form-item input[type=text], .form-item input[type=url], .form-item input[type=date], .form-item input[type=number], .form-item input[type=email], .form-item input[type=password], .form-item input[type=search], .form-item input[type=tel], .form-item textarea, .form-item select {
   display: block;
   width: 100%;
-  max-width: 630px;
+  max-width: 640px;
   padding-left: 10px;
   padding-right: 10px;
   background-color: #FFFFFF;
@@ -3479,6 +3493,29 @@ form div.filter-wrapper {
   display: inline-block;
 }
 
+.form-item > select {
+  max-width: 800px;
+}
+
+.form-item input[type=url] {
+  width: 100%;
+  max-width: 640px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 8px 0;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.form-item > select {
+  max-width: 640px;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .form-item.form-type-select:after {
+    top: 0;
+  }
+}
 .card-form-page nav.tabs {
   max-width: 360px;
   margin: 0 auto;
@@ -3769,11 +3806,11 @@ ul.select2-selection__rendered:focus-within {
   cursor: pointer;
   clear: both;
   color: #FFFFFF;
-  background-color: #49BCFB;
-  line-height: 0.9rem;
+  background-color: #211F21;
+  line-height: 0.5rem;
   text-align: left;
   text-transform: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   display: block;
   padding: 1rem;
 }
@@ -3797,6 +3834,7 @@ summary {
   font-weight: 800;
   font-size: 23px;
   margin: 40px -40px 20px;
+  display: none;
 }
 
 .divider-top:before {
@@ -3820,7 +3858,7 @@ span.field-prefix {
 }
 
 div.cke_focus {
-  border: solid 2px #FF904B;
+  border: solid 2px #FDD22B;
 }
 
 div#edit-publish-date-wrapper, div#edit-application-deadline-wrapper {
@@ -3850,14 +3888,6 @@ span.upsell-price.pull-right.orange-triangle:before {
 
 .form-item input[type=checkbox]:checked:disabled:before {
   color: #BBBBBB;
-}
-
-.form-item input[type=url] {
-  display: block;
-  width: 100%;
-  max-width: 460px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 8px 0;
 }
 
 div#block-fmcg-material-page-title {
@@ -5528,6 +5558,21 @@ form#views-exposed-form-job-board-page {
   color: #B71C1C;
 }
 
+.messages-status {
+  background-color: #388E3C;
+  color: #FFFFFF;
+}
+.messages-status:before {
+  content: "warning";
+  color: #FFFFFF;
+}
+.messages-status a {
+  color: #FFFFFF;
+}
+.messages-status a:hover {
+  color: #211F21;
+}
+
 .featured-jobs-card {
   margin: auto;
   width: 100%;
@@ -5538,6 +5583,7 @@ form#views-exposed-form-job-board-page {
   z-index: 0;
   width: 100%;
   margin-bottom: 24px;
+  height: 260px;
 }
 .featured-jobs-card .job-card::after {
   content: url("../assets/icon/featuredjobhexagon.svg");

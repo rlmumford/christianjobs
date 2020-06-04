@@ -276,11 +276,11 @@ ul.select2-selection__rendered {
   cursor: pointer;
   clear: both;
   color: #FFFFFF;
-  background-color: #49BCFB;
-  line-height: 0.9rem;
+  background-color: #211F21;
+  line-height: 0.5rem;
   text-align: left;
   text-transform: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   display: block;
   padding: 1rem;
 }
@@ -304,6 +304,7 @@ summary {
   font-weight: 800;
   font-size: 23px;
   margin: 40px -40px 20px;
+  display: none;
 }
 
 .divider-top:before {
@@ -327,7 +328,7 @@ span.field-prefix {
 }
 
 div.cke_focus {
-  border: solid 2px #FF904B;
+  border: solid 2px $fmcg-yellow;
 }
 
 div#edit-publish-date-wrapper, div#edit-application-deadline-wrapper {
@@ -358,14 +359,6 @@ span.upsell-price.pull-right.orange-triangle {
 
 .form-item input[type=checkbox]:checked:disabled:before {
   color: #BBBBBB;
-}
-
-.form-item input[type=url] {
-  display: block;
-  width: 100%;
-  max-width: 460px;
-  border-bottom: 1px solid rgba(0,0,0,0.12);
-  padding: 8px 0;
 }
 
 div#block-fmcg-material-page-title {
@@ -2110,6 +2103,26 @@ form#views-exposed-form-job-board-page {
   color: #B71C1C;
 }
 
+.messages-status {
+  background-color: #388E3C;
+  color: #FFFFFF;
+
+  &:before {
+    content: "warning";
+    color: #FFFFFF;
+  }
+
+  a {
+    color: #FFFFFF;
+
+    &:hover {
+      color: $fmcg-black;
+    }
+  }
+}
+
+//FEATURED JOBS STYLING - TO BE ADDED TO OWN FILE//
+
 .featured-jobs-card {
   margin: auto;
   width: 100%;
@@ -2120,6 +2133,7 @@ form#views-exposed-form-job-board-page {
     z-index: 0;
     width: 100%;
     margin-bottom: 24px;
+    height: 260px;
 
     &::after {
       content: url("../assets/icon/featuredjobhexagon.svg");
