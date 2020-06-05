@@ -100,3 +100,45 @@ job_board.employer_edit:
     _title_callback: '\Drupal\Core\Entity\Controller\EntityController::title'
   requirements:
     _entity_access: 'organization.update'
+job_board.recruiter.team:
+  path: '/recruiter/{organization}/team'
+  defaults:
+    _controller: '\Drupal\job_board\Controller\RecruiterController::teamPage'
+    _title_callback: '\Drupal\Core\Entity\Controller\EntityController::title'
+  requirements:
+    _entity_access: 'organization.manage_members'
+job_board.recruiter.team.request.approve:
+  path: '/recruiter/{organization}/team/{user}/approve'
+  defaults:
+    _form: '\Drupal\job_board\Form\RecruiterApproveMemberRequestForm'
+    _title: 'Approve Request'
+  requirements:
+    _entity_access: 'organization.manage_members'
+job_board.recruiter.team.request.reject:
+  path: '/recruiter/{organization}/team/{user}/reject'
+  defaults:
+    _form: '\Drupal\job_board\Form\RecruiterRejectMemberRequestForm'
+    _title: 'Reject Request'
+  requirements:
+    _entity_access: 'organization.manage_members'
+job_board.recruiter.team.change_role:
+  path: '/recruiter/{organization}/team/{user}/change_role'
+  defaults:
+    _form: '\Drupal\job_board\Form\RecruiterMemberChangeRoleForm'
+    _title: 'Change Role'
+  requirements:
+    _entity_access: 'organization.manage_members'
+job_board.recruiter.jobs.post:
+  path: '/recruiter/{organization}/jobs/post'
+  defaults:
+    _controller: '\Drupal\job_board\Controller\RecruiterController::addJob'
+    _title: 'Post a Job'
+  requirements:
+    _custom_access: '\Drupal\job_board\Controller\RecruiterController::addJobAccess'
+job_board.recruiter.jobs.buy_credit:
+  path: '/recruiter/{organization}/jobs/credit'
+  defaults:
+    _form: '\Drupal\job_board\Form\RecruiterBuyCreditForm'
+    _title: 'Buy Credit'
+  requirements:
+    _entity_access: 'organization.administer_job_roles'
