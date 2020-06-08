@@ -11,12 +11,46 @@ namespace Drupal\job_board\Form;
 use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_order\Adjustment;
 use Drupal\commerce_price\Price;
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\ContentEntityForm;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\job_board\JobCreditManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class JobPostForm extends JobForm {
+
+  /**
+   * @var \Drupal\job_board\JobCreditManagerInterface
+   */
+  protected $creditManager;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('job_board.credit_manager'),
+      $container->get('entity.repository'),
+      $container->get('entity_type.bundle.info'),
+      $container->get('datetime.time')
+    );
+  }
+
+
+  public function __construct(
+    JobCreditManagerInterface $job_credit_manager,
+    EntityRepositoryInterface $entity_repository,
+    EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL,
+    TimeInterface $time = NULL
+  ) {
+    parent::__construct($entity_repository, $entity_type_bundle_info, $time);
+
+    $this->creditManager = $job_credit_manager;
+  }
 
   /**
    * {@inheritdoc}
@@ -215,7 +249,7 @@ class JobPostForm extends JobForm {
         ];
       }
     }
-    
+
     return $form;
   }
 
@@ -303,10 +337,12 @@ class JobPostForm extends JobForm {
     user_cookie_delete('jobPostMembership');
     user_cookie_delete('jobPostRpo');
 
-    $cart_provider = \Drupal::service('commerce_cart.cart_provider');
-    $form_state->setRedirect('commerce_checkout.form', [
-      'commerce_order' => $cart_provider->getCart('default')->id(),
-    ]);
+    if ($this->entity->job_credit->isEmpty() && !$this->creditManager->hasAvailableCredit($this->entity->organization->entity)) {
+      $cart_provider = \Drupal::service('commerce_cart.cart_provider');
+      $form_state->setRedirect('commerce_checkout.form', [
+        'commerce_order' => $cart_provider->getCart('default')->id(),
+      ]);
+    }
   }
 
   public function submitFormRedirectToJobPost(array $form, FormStateInterface $form_state) {
