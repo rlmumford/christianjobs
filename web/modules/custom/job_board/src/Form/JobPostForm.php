@@ -315,6 +315,10 @@ class JobPostForm extends JobForm {
     else {
       $this->entity->job_credit = [];
     }
+
+    $form_state->setRedirect('view.job_board__recruiter_jobs.page', [
+      'organization' => $this->entity->organization->target_id,
+    ]);
   }
 
   /**
