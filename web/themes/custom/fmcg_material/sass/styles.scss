@@ -5,39 +5,18 @@
 // !!! check path
 @import "../../../contrib/material_base/sass/reset";
 @import "../../../contrib/material_base/sass/color-palette";
-@import "variables";
 @import "../../../contrib/material_base/sass/variables";
+@import "variables";
 @import "../../../contrib/material_base/sass/modules";
+@import "hex";
+@import "button";
+@import "header";
 
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:400,600&display=swap');
 
 // put your styles here
 // you can @extend anything from base theme
 
-h1, h2 {
-  font-weight: bold;
-  color: #1E5168;
-}
-h1, .h1 {
-  text-transform: uppercase;
-  margin-top: 0;
-  font-size: 28px;
-  line-height: 1em;
-  padding-bottom: 30px;
-  position: relative;
-}
-h2, .h2 {
-  font-size: 18px;
-}
-
-@media (min-width: $xs) {
-  h1, .h1 {
-    font-size: 40px;
-  }
-  h2, .h2 {
-    font-size: 24px;
-  }
-}
 
 strong {
   font-size: 20px;
@@ -47,7 +26,9 @@ strong {
 }
 
 p, h4 {
-  padding-right: 18px;
+  font-family: Roboto;
+  font-size: 13px;
+  color: #DBE4EB;
 }
 
 p.address {
@@ -185,7 +166,7 @@ details > summary::before {
   position: absolute;
   left: 6px;
   top: 14px;
-  color: #2A556B;
+  color: #FDD22B;
   transition: transform 0.25s ease;
 }
 details[open] > summary::before {
@@ -232,22 +213,25 @@ details.captcha > div {
 .form-item {
   label, h4 {
     font-size: 20px;
-    font-weight: bold;
-    font-family: Montserrat;
+    font-weight: 600;
+    font-family: Poppins;
     line-height: 2em;
-  }
-  &:focus-within label {
-    color: #FF904B;
+    color: $fmcg-yellow;
+
+    &:focus-within {
+      color: #FDD22B;
+    }
   }
 
   input[type=text], input[type=url], input[type=date], input[type=number], input[type=email], input[type=password], input[type=search], input[type=tel], textarea, select {
     display: block;
     width: 100%;
-    max-width: 1200px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    max-width: 630px;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: #F6F4F4;
+    background-color: #FFFFFF;
+    display: inline-block;
+    margin-bottom: 12px;
 
     &.select2-search__field {
       border: none;
@@ -259,7 +243,7 @@ details.captcha > div {
     }
 
     &:focus {
-      border: 2px solid #FF904B;
+      border: 2px solid #FDD22B;
       padding-bottom: 7px;
     }
 
@@ -271,9 +255,13 @@ details.captcha > div {
       width: initial;
       display: inline-block;
     }
-
   }
 }
+
+//&:focus-within label {
+//  color: #FF904B;
+//}
+
 .form-wrapper {
   h4 {
     font-size: 20px;
@@ -359,8 +347,118 @@ ul.select2-selection__rendered {
 }
 
 form {
-  padding-left: 20px;
-  padding-right: 20px;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 30px;
+
+  .form-item > * {
+    display: inline-block;
+  }
+
+  .form-item > label {
+    width: 160px;
+  }
+
+  .form-item label {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Poppins;
+    line-height: 2em;
+    color: #211F21;
+  }
+
+  .form-item input[type=text] {
+    width: 100%;
+    max-width: 630px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #FFFFFF;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  span.fieldset-legend {
+    font-size: 20px;
+    font-weight: 600;
+    z-index: 5;
+    background: $fmcg-chrome;
+    padding-right: 12px;
+  }
+
+  legend {
+    position: relative;
+    width: 100%;
+    z-index: 5;
+    background: $fmcg-chrome;
+    margin-bottom: 12px;
+  }
+
+  span.fieldset-legend:after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    background-color: #9ABAD2;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+  input.button, input[type=submit] {
+    margin: 0px;
+  }
+
+  .form-required {
+    vertical-align: top;
+  }
+
+  .filter-wrapper {
+    display: none !important;
+  }
+
+  @media (min-width: 1136px) {
+    .description {
+      padding-left: 163px;
+    }
+  }
+}
+
+.card-form-page {
+  nav.tabs {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+
+form.card-form {
+  max-width: 360px;
+
+  .description {
+    font-size: 13px;
+    font-family: Roboto;
+    color: $fmcg-chrome;
+    padding-left: 0px;
+  }
+
+  .form-item label {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Poppins;
+    line-height: 2em;
+    color: $fmcg-yellow;
+  }
+  .form-item > label {
+    width: auto;
+  }
+
+  input.button, input[type=submit] {
+    margin: 8px 0px 24px 24px;
+  }
+
+  .form-item {
+    margin-bottom: 0px;
+  }
 }
 
 summary {
@@ -399,10 +497,6 @@ div.cke_focus {
 
 div#edit-publish-date-wrapper, div#edit-application-deadline-wrapper {
   font-size: 10px;
-}
-
-label.form-required {
-  color: rgba(0,0,0,0.54);
 }
 
 span.upsell-price.pull-right.orange-triangle {
@@ -447,7 +541,7 @@ div#block-fmcg-material-page-title {
   padding-top: 10px;
 }
 div#main-content {
-  background: #FFFFFF;
+  background: #DBE4EB;
   padding: 0 20px 30px;
 }
 
@@ -456,7 +550,7 @@ div#main-content {
   position: relative;
 }
 .path-frontpage #header-content {
-  margin: 40px 0 20px;
+  box-shadow: none;
   text-align: center;
 }
 .path-frontpage .header-front {
@@ -497,60 +591,65 @@ div#main-content {
   color: #4BBAFF;
 }
 
-#navbar {
-  -webkit-transition: background-color 0.5s ease;
-  -moz-transition: background-color 0.5s ease;
-  -o-transition: background-color 0.5s ease;
-  transition: background-color 0.5s ease;
-}
-.navbar-item .navbar-icon,
-.path-frontpage.navbar-fixed #navbar.navbar-shadow .navbar-item .navbar-icon {
-  color: #1E5168;
-}
-.path-frontpage.navbar-fixed #navbar .navbar-item .navbar-icon {
-  color: #FFFFFf;
-}
-.navbar-fixed #navbar,
-.navbar-fixed #navbar.navbar-bg,
-.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow {
-  background-color: #FFFFFF;
-}
-.path-frontpage.navbar-fixed #navbar,
-.path-frontpage.navbar-fixed #navbar.navbar-bg {
-  background-color: #1E5168;
-}
-.navbar-title a,
-.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-title a {
-  color: #1E5168;
-  font-weight: bolder;
-  font-family: "Montserrat";
-}
-.path-frontpage .navbar-title a {
-  color: #FFFFFF;
-}
-.navbar-menu .menu a,
-.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu a {
-  color: #1E5168;
-  font-weight: bolder;
-}
-.path-frontpage .navbar-menu .menu a {
-  color: #FFFFFF;
-}
-.path-frontpage .navbar-menu .menu .active-trail a,
-.path-frontpage .navbar-menu .menu .is-active,
-.path-frontpage .navbar-menu .menu a:hover {
-  color: #FFFFFF;
-  border-color: #FFFFFF;
+.navbar-fixed #navbar {
+  background-color: #211F21;
+  border-bottom: 1px solid $fmcg-yellow;
 }
 
-.navbar-menu .menu .active-trail a,
-.navbar-menu .menu .is-active,
-.navbar-menu .menu a:hover,
-.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu .active-trail a,
-.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu .is-active,
-.path-frontpage.navbar-fixed #navbar.navbar-bg.navbar-shadow .navbar-menu .menu a:hover {
-  color: #1E5168;
-  border-color: #1E5168;
+#drawer {
+  top: -100vh;
+  left: 0;
+  right: 0;
+  width: auto;
+  bottom: auto;
+  transition: top .4s;
+  z-index: 10;
+  background-color: $fmcg-black;
+
+  li {
+    display: block;
+  }
+
+  a {
+    display: block;
+    padding: 39px 0px 0px 20px;
+    font-family: Poppins;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+}
+
+.drawer-open #drawer {
+  top: 100px;
+}
+
+.drawer-open #drawer-overlay {
+  display: block;
+}
+
+#drawer-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 10;
+}
+
+div#drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 10;
+}
+
+.drawer-open #drawer {
+  box-shadow: none;
 }
 
 /**
@@ -589,50 +688,6 @@ div#main-content {
   display: none;
 }
 
-/* CTA Buttons */
-.eu-cookie-compliance-buttons button, a.button-cta,
-#block-fmcg-material-local-actions nav .button.button-action,
-input.button {
-  margin-top: 1em;
-  margin-left: 0;
-  border: 3px solid transparent;
-  border-radius: 2px;
-  color: #FFFFFF;
-  background: #1E5168;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: .5px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: color .15s cubic-bezier(.4,0,.2,1),background-color .15s cubic-bezier(.4,0,.2,1);
-  will-change: background-color;
-}
-
-input.button:hover,
-#block-fmcg-material-local-actions nav .button.button-action:hover,
-.eu-cookie-compliance-buttons button:hover, a.button-cta:hover {
-  color: #1E5168;
-  background: #FFFFFF;
-  border: 2px solid #1E5168;
-}
-input.button.button-orange,
-#block-fmcg-material-local-actions nav .button.button-action,
-.eu-cookie-compliance-buttons button.decline-button, a.button-cta.button-orange {
-  background: #FF904B;
-}
-input.button.button-orange:hover,
-#block-fmcg-material-local-actions nav .button.button-action:hover,
-.eu-cookie-compliance-buttons button.decline-button:hover, a.button-cta.button-orange:hover {
-  background: #FFFFFF;
-  color: #FF904B;
-  border: 3px solid #FF904B;
-}
-
-.col-md, .col-x
-
 #block-fmcg-material-local-actions nav .button.button-action {
   margin-top: 0;
   padding: .5em;
@@ -651,7 +706,6 @@ input.button.button-orange:hover,
 
 .views-exposed-form input.button, .user-login-form input.button, .user-register-form input.button,
 .executive-search-initiate-form input.button, .contact-message-showcase-attendee-form input.button {
-  padding: 6px 12px;
   margin-left: 25px;
   margin-bottom: 25px;
   min-height: 0;
@@ -828,34 +882,42 @@ p.scripture {
 }
 
 #footer {
-  background: #1E5168;
-  color: #F1F1F1;
-}
-#footer .services-icons.icon-primary {
-  background: #F1F1F1;
-  transition: background-color .2s ease-out;
-  margin-bottom: -3px;
-}
-#footer .services-icons.icon-primary:hover,
-#footer .services-icons.icon-primary:focus {
-  background-color: #FFFFFF;
+  background: #211F21;
+  color: #FFFFFF;
+  border-top: 1px solid $fmcg-yellow;
 }
 
-div.footer-logo {
-  line-height: 0;
-  margin-bottom: 16px;
-  margin-top: 8px;
+.footer-info {
+  p {
+    font-size: 16px;
+  }
+
+  a {
+    color: $fmcg-yellow;
+
+    &:hover {
+      border-bottom: 1px solid $fmcg-yellow;
+    }
+  }
 }
-div.footer-contact, div.footer-links {
-  font-size: 1.1em;
+
+.footer-info {
+  padding-top: 12px;
 }
-div.footer-contact a, div.footer-links a {
-  color: #F1F1F1;
-  transition: color .2s ease-out;
+
+.services-icons.icon-primary {
+  background-color: #FFFFFF;
+
+  &:hover {
+    background-color: $fmcg-yellow;
+  }
 }
-div.footer-contact a:hover, div.footer-links a:hover,
-div.footer-contact a:hover, div.footer-links a:focus {
-  color: #FFFFFF;
+
+.footer-text {
+  p, .h4 {
+    font-family: Poppins;
+    font-size: 16px;
+  }
 }
 
 span.upsell-price {
@@ -940,8 +1002,7 @@ span.upsell-price .tax {
 }
 
 #page {
-  background-color: #1E5168;
-  background-image: url(../assets/ExecSearch.png);
+  background-color: $fmcg-chrome;
   overflow: hidden;
   background-size: 100%;
   background-attachment: fixed;
@@ -964,77 +1025,6 @@ span.upsell-price .tax {
   min-height: 0;
 }
 
-.front-page-luova-block {
-  background-image: url("../assets/LuovaBanner868x250.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-top: -15px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #FFFFFF;
-  position: relative;
-
-  h2 {
-    color: #FFFFFF;
-    font-weight: bolder;
-    line-height: 1.25em;
-    font-size: 2.5em;
-  }
-
-  p {
-    color: #FFFFFF;
-    font-size: 20px;
-    padding-right: 150px;
-  }
-
-  a:hover {
-    color: #49BCFB;
-  }
-
-  .btn {
-    margin-top: 15px;
-    margin-left: 0px;
-    background-color: #00B0FF;
-    color: #FFFFFF;
-    font-size: 1.2em;
-    padding: 4px 10px;
-
-    &:hover {
-      border: 2px solid #00B0FF;
-      background-color: #FFFFFF;
-      color: #00B0FF;
-    }
-  }
-
-  .luova-education-group {
-    color: #FF9049;
-  }
-  .victory-christian-international-school {
-    color: #FF9049;
-  }
-  .luova-banner-logo {
-    max-width: 220px;
-  }
-  .luova-logo-wrapper {
-    text-align: center;
-  }
-
-  @media (min-width: $md) {
-    background-image: url("../assets/LuovaBanner753x347.png");
-
-    .luova-banner-logo {
-      display: block;
-      width: 100%;
-    }
-  }
-  @media (min-width: $lg) {
-    background-image: url("../assets/LuovaBanner1905x433.png");
-
-    h2 {
-      font-size: 3.5em;
-    }
-  }
-}
-
 .section-wrapper {
   padding-bottom: 30px;
   padding-top: 0;
@@ -1046,15 +1036,7 @@ span.upsell-price .tax {
   padding: 0 20px 75px 20px;
   position: relative;
 }
-.section-wrapper .section:after {
-  background: #FF904B;
-  bottom: 0px;
-  content: "";
-  height: 6px;
-  left: 0px;
-  right: 0px;
-  position: absolute;
-}
+
 .section-wrapper-header {
   position: relative;
   margin-bottom: 10px;
@@ -1269,12 +1251,6 @@ iframe {
   visibility: visible;
 }
 
-@media (max-width: $lg) {
-  ul.menu {
-    visibility: hidden;
-  }
-}
-
 .field--name-description-summary .filter-wrapper {
   display: none;
 }
@@ -1338,37 +1314,6 @@ div#sliding-popup, div#sliding-popup .eu-cookie-withdraw-banner, .eu-cookie-with
   .step-sub-heading {
     margin-bottom: 24px;
   }
-}
-
-.rpo-step::before {
-  content: url(../assets/intake_session_with_client.svg);
-  width: 120px;
-  height: 120px;
-  position: absolute;
-}
-.rpo-step.rpo-step-2::before {
-  content: url(../assets/create_bio_details_job_advert.svg);
-}
-.rpo-step.rpo-step-3::before {
-  content: url(../assets/posting_job_advert.svg);
-}
-.rpo-step.rpo-step-4::before {
-  content: url(../assets/response_to_candidates.svg);
-}
-.rpo-step.rpo-step-5::before {
-  content: url(../assets/end_of_week_review.svg);
-}
-.rpo-step.rpo-step-6::before {
-  content: url(../assets/submission_of_candidates.svg);
-}
-.rpo-step.rpo-step-7::before {
-  content: url(../assets/interview_process.svg);
-}
-.rpo-step.rpo-step-8::before {
-  content: url(../assets/hiring_candidate.svg);
-}
-.rpo-step.rpo-step-9::before {
-  content: url(../assets/feedback_from_client.svg);
 }
 
 .partner-card--church-insight.partner-card .card-media img {
@@ -1480,6 +1425,7 @@ form#views-exposed-form-volunteer-board-list-page {
 
 input.btn-accent {
   margin-left: 25px;
+  margin-bottom: 24px;
 }
 
 .region.region-before-main {
@@ -1647,13 +1593,6 @@ tr.draggable td:nth-child(2) {
   }
 }
 
-a.btn.pull-right {
-  background-color: #1E5168;
-  color: #FFFFFF;
-  margin-top: 13px;
-  margin-right: 25px;
-}
-
 strong {
   font-size: 15px;
 }
@@ -1667,8 +1606,6 @@ strong {
 .form-managed-file {
   .button {
     min-height: 0;
-    padding: 8px 10px;
-    margin-top: 0;
   }
 }
 
@@ -1726,28 +1663,30 @@ label.option {
   }
 }
 
-nav.tabs {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+.tabs ul li {
+  background-color: $fmcg-black;
+  transform: skewX(-36deg);
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 14px;
 
-.tabs ul li a {
-  background-color: #D7D5D5;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+  &:hover {
+    border-left: 2px solid $fmcg-yellow;
+    border-right: 2px solid $fmcg-yellow;
+  }
+
+  a {
+    transform: skewX(36deg);
+  }
 }
 
 .tabs ul li a.is-active, ul.tabs li a.is-active {
-  background-color: #FFFFFF;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-  border-color: #FFFFFF;
-  color: #2a556b;
+  color: $fmcg-yellow;
+  border: none;
 }
 
 .tabs ul li a:hover, ul.tabs li a:hover {
-  border-color: #FF9049;
-  color: #FF9049;
+  color: #FDD22B;
 }
 
 .form-item-account-type.btn {
@@ -2081,7 +2020,6 @@ form#views-exposed-form-job-board-page {
 }
 
 .gm-ui-hover-effect img {
-  content: url(../assets/whiteclosebutton.png) !important;
   background-size: 15px 15px;
   padding: 2px;
   opacity: 1;
@@ -2092,7 +2030,6 @@ form#views-exposed-form-job-board-page {
 }
 
 .geofield-google-map-ajax-popup {
-  background: url(/themes/custom/fmcg_material/logo.svg);
   background-size: 24px;
   background-position: center;
   background-repeat: no-repeat;
@@ -2272,4 +2209,37 @@ form#views-exposed-form-job-board-page {
     border: 2px solid #00B0FF;
     border-radius: 2px;
   }
+}
+
+@media (min-width: $lg) {
+  .navbar-hamburger-menu {
+    display: none !important;
+  }
+}
+
+.path-frontpage div#main-content, .path-user div#main-content, .path-user-login div#main-content {
+  background: none;
+}
+
+.password-strength {
+  display: block;
+  width: 100%;
+}
+
+.password-strength__title, .password-confirm {
+  font-family: Roboto;
+  font-size: 13px;
+  color: $fmcg-chrome;
+}
+
+.password-strength__meter {
+  height: 0.75em;
+  margin-top: 0.5em;
+  background-color: $fmcg-chrome;
+}
+
+.password-strength__indicator {
+  width: 0;
+  height: 100%;
+  background-color: $fmcg-yellow;
 }

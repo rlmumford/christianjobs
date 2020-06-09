@@ -1,0 +1,32 @@
+input.button, .btn, a.btn, span.btn, input[type="submit"] {
+  height: 36px;
+  min-width: 88px;
+  margin: 8px;
+  vertical-align: middle;
+  border-radius: 2px;
+  color: $fmcg-black;
+  background: $fmcg-yellow;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  webkit-transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: background-color;
+
+  a.btn.pull-right {
+    margin: 8px 8px 0px 0px;
+  }
+
+  &:hover {
+    padding: 6px 14px;
+    border: 2px solid $fmcg-yellow;
+    color: $fmcg-yellow;
+    background: $fmcg-black;
+  }
+}

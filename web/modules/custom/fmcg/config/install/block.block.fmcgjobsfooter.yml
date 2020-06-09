@@ -1,0 +1,24 @@
+uuid: 97f6c3be-fc00-42a4-88dc-177cb31e0974
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - fmcg
+  theme:
+    - fmcg_material
+third_party_settings:
+  block_class:
+    classes: 'pull-center fmcg-footer'
+id: fmcgjobsfooter
+theme: fmcg_material
+region: footer_content
+weight: 0
+provider: null
+plugin: fmcg_footer
+settings:
+  id: fmcg_footer
+  label: 'FMCG Jobs Footer'
+  provider: fmcg
+  label_display: '0'
+visibility: {  }

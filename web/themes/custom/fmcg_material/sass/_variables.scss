@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+$fmcg-yellow: #FDD22B;
+$fmcg-black: #211F21;
+$fmcg-chrome: #DBE4EB;
+$fmcg-gold: #FFF456;
+
 // overrided variable
 $fmcg-blue: (
   50:   #E3F6FF,
@@ -38,11 +43,13 @@ $fmcg-orange: (
 $color-primary-base: $fmcg-orange;
 $color-accent-base: $fmcg-blue;
 
+$navbar: 100px;
+
 $color-primary: #2A556B !default; //500
 $color-primary-hover: #FF9049 !default;
 $color-primary-active: #2A556B !default;
 
 $color-accent: #FF904B;
 
-$font-family: 'Lato';
-$heading-font-family: 'Montserrat';
+$font-family: 'Poppins';
+$heading-font-family: 'Poppins';
