@@ -62,7 +62,7 @@ class JobPostForm extends JobForm {
         '#type' => 'container',
         '#tree' => TRUE,
         '#attributes' => [
-          'class' => ['divider-top'],
+          'class' => ['divider-top', 'upsell-wrapper'],
         ],
         'title' => [
           '#type' => 'html_tag',
@@ -83,7 +83,7 @@ class JobPostForm extends JobForm {
         ],
         'extend' => [
           '#type' => 'checkbox',
-          '#title' => $this->t('Publish for 60 days.'),
+          '#title' => $this->t('Publish for 60 days'),
           '#states' => [
             'checked' => [
               '.rpo-checkbox, .membership-checkbox' => ['checked' => TRUE],
@@ -105,7 +105,7 @@ class JobPostForm extends JobForm {
       '#type' => 'container',
       '#tree' => TRUE,
       '#attributes' => [
-        'class' => ['divider-top'],
+        'class' => ['divider-top', 'outsourced-upsell-wrapper'],
       ],
       'title' => [
         '#type' => 'html_tag',
@@ -123,7 +123,7 @@ class JobPostForm extends JobForm {
       'rpo' => [
         '#type' => 'checkbox',
         '#title' => $this->t(
-          'Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
+          'Upgrade to an Outsourced Recruitment Process',
           [
             '@price' => $currency_formatter->format(
               $rpo_price->getNumber(),
@@ -215,7 +215,7 @@ class JobPostForm extends JobForm {
         ];
       }
     }
-    
+
     return $form;
   }
 

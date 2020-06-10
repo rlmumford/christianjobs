@@ -43,7 +43,7 @@ function job_board_install() {
     ]);
   $fields['application_deadline'] = BaseFieldDefinition::create('datetime')
     ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
-    ->setLabel(t('Application Deadline'))
+    ->setLabel(t('Deadline'))
     ->setDescription(t('The last date on which applications will be submitted. If this is before the end of the adverts duration, the job will not be visible after this date.'))
     ->setRevisionable(TRUE)
     ->setDisplayConfigurable('view', TRUE)

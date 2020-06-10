@@ -145,8 +145,6 @@ h4, .h4 {
   font-size: 16px;
   line-height: 28px;
   font-weight: 700;
-  margin-top: 16px;
-  margin-bottom: 8px;
 }
 
 h5, .h5 {
@@ -1426,7 +1424,7 @@ tr.selected:hover {
 }
 .form-item label.option, .form-item.focused label.option {
   font-size: 16px;
-  color: rgba(0, 0, 0, 0.87);
+  color: #DBE4EB;
 }
 .form-item label .form-required {
   color: #f44336;
@@ -1453,7 +1451,6 @@ tr.selected:hover {
   padding: 8px 0;
 }
 .form-item input[type=text]:focus, .form-item input[type=text].error:focus, .form-item input[type=email]:focus, .form-item input[type=email].error:focus, .form-item input[type=password]:focus, .form-item input[type=password].error:focus, .form-item input[type=search]:focus, .form-item input[type=search].error:focus, .form-item input[type=tel]:focus, .form-item input[type=tel].error:focus, .form-item textarea:focus, .form-item textarea.error:focus, .form-item select:focus, .form-item select.error:focus {
-  border-bottom: 2px solid #FF904B;
   padding-bottom: 7px;
 }
 .form-item input[type=text].error, .form-item input[type=email].error, .form-item input[type=password].error, .form-item input[type=search].error, .form-item input[type=tel].error, .form-item textarea.error, .form-item select.error {
@@ -1465,7 +1462,7 @@ tr.selected:hover {
 }
 .form-item input[type=radio], .form-item input[type=checkbox] {
   display: inline-block;
-  color: rgba(0, 0, 0, 0.54);
+  color: #FFFFFF;
   float: left;
   margin-top: 6px;
   margin-right: 12px;
@@ -1476,7 +1473,7 @@ tr.selected:hover {
 }
 .form-item input[type=checkbox]:checked:before {
   content: "check_box";
-  color: #FF904B;
+  color: #FDD22B;
 }
 .form-item input[type=radio]:before {
   content: "radio_button_unchecked";
@@ -1522,7 +1519,7 @@ tr.selected:hover {
   z-index: 1;
   position: absolute;
   right: 0;
-  top: 33px;
+  top: 0;
 }
 
 .card .form-actions, .content-card .card-holder .form-actions {
@@ -3380,21 +3377,20 @@ form .visually-hidden {
   height: 1px;
   word-wrap: normal;
 }
-@media (min-width: 992px) {
-  form .visually-hidden {
-    position: relative !important;
-  }
-}
-form div.form-item {
+form div.form-item, form div.field--widget-datetime-default {
   width: 100%;
 }
-form div.form-item > * {
+form div.form-item > *, form div.field--widget-datetime-default > * {
   display: inline-block;
 }
-form .form-item > label {
+form div.form-item > label, form div.form-item > h4, form div.field--widget-datetime-default > label, form div.field--widget-datetime-default > h4 {
   width: 156px;
+  vertical-align: top;
 }
-form .form-item label {
+form div.form-item > label.visually-hidden, form div.form-item > h4.visually-hidden, form div.field--widget-datetime-default > label.visually-hidden, form div.field--widget-datetime-default > h4.visually-hidden {
+  width: 0;
+}
+form div.form-item label, form div.form-item h4, form div.field--widget-datetime-default label, form div.field--widget-datetime-default h4 {
   font-size: 16px;
   font-weight: 400;
   font-family: Poppins;
@@ -3412,7 +3408,10 @@ form .form-item input[type=text] {
 }
 form .form-item.form-type-textarea > div {
   width: 100%;
-  max-width: 630px;
+  max-width: 640px;
+}
+form .salary-widget-default div.inline-item {
+  width: auto;
 }
 form span.fieldset-legend {
   font-size: 20px;
@@ -3439,11 +3438,12 @@ form span.fieldset-legend:after {
   right: 0;
   z-index: -1;
 }
-form input.button, form input[type=submit] {
-  margin: 0px;
+form span.field-prefix {
+  padding-right: 5px;
+  font-size: 16px;
 }
-form .form-required {
-  vertical-align: top;
+form input.button, form input[type=submit] {
+  margin: 8px 8px 0px 0px;
 }
 form div.filter-wrapper {
   display: none;
@@ -3464,8 +3464,7 @@ form div.filter-wrapper {
 .form-item.focused > label, .form-item.focused > h4, .form-item:focus-within > label, .form-item:focus-within > h4 {
   color: #FDD22B;
 }
-.form-item input[type=text], .form-item input[type=url], .form-item input[type=date], .form-item input[type=number], .form-item input[type=email], .form-item input[type=password], .form-item input[type=search], .form-item input[type=tel], .form-item textarea, .form-item select {
-  display: block;
+.form-item input[type=text], .form-item input[type=url], .form-item input[type=date], .form-item input[type=number], .form-item input[type=email], .form-item input[type=password], .form-item input[type=search], .form-item input[type=tel], .form-item .field--type-text-long, .form-item textarea, .form-item select {
   width: 100%;
   max-width: 640px;
   padding-left: 10px;
@@ -3473,22 +3472,25 @@ form div.filter-wrapper {
   background-color: #FFFFFF;
   display: inline-block;
   margin-bottom: 12px;
+  font-family: Roboto;
+  font-size: 16px;
 }
-.form-item input[type=text].select2-search__field, .form-item input[type=url].select2-search__field, .form-item input[type=date].select2-search__field, .form-item input[type=number].select2-search__field, .form-item input[type=email].select2-search__field, .form-item input[type=password].select2-search__field, .form-item input[type=search].select2-search__field, .form-item input[type=tel].select2-search__field, .form-item textarea.select2-search__field, .form-item select.select2-search__field {
+.form-item input[type=text].select2-search__field, .form-item input[type=url].select2-search__field, .form-item input[type=date].select2-search__field, .form-item input[type=number].select2-search__field, .form-item input[type=email].select2-search__field, .form-item input[type=password].select2-search__field, .form-item input[type=search].select2-search__field, .form-item input[type=tel].select2-search__field, .form-item .field--type-text-long.select2-search__field, .form-item textarea.select2-search__field, .form-item select.select2-search__field {
   border: none;
   background: none;
 }
-.form-item input[type=text].select2-search__field:focus, .form-item input[type=url].select2-search__field:focus, .form-item input[type=date].select2-search__field:focus, .form-item input[type=number].select2-search__field:focus, .form-item input[type=email].select2-search__field:focus, .form-item input[type=password].select2-search__field:focus, .form-item input[type=search].select2-search__field:focus, .form-item input[type=tel].select2-search__field:focus, .form-item textarea.select2-search__field:focus, .form-item select.select2-search__field:focus {
+.form-item input[type=text].select2-search__field:focus, .form-item input[type=url].select2-search__field:focus, .form-item input[type=date].select2-search__field:focus, .form-item input[type=number].select2-search__field:focus, .form-item input[type=email].select2-search__field:focus, .form-item input[type=password].select2-search__field:focus, .form-item input[type=search].select2-search__field:focus, .form-item input[type=tel].select2-search__field:focus, .form-item .field--type-text-long.select2-search__field:focus, .form-item textarea.select2-search__field:focus, .form-item select.select2-search__field:focus {
   border: none;
 }
-.form-item input[type=text]:focus, .form-item input[type=url]:focus, .form-item input[type=date]:focus, .form-item input[type=number]:focus, .form-item input[type=email]:focus, .form-item input[type=password]:focus, .form-item input[type=search]:focus, .form-item input[type=tel]:focus, .form-item textarea:focus, .form-item select:focus {
+.form-item input[type=text]:focus, .form-item input[type=url]:focus, .form-item input[type=date]:focus, .form-item input[type=number]:focus, .form-item input[type=email]:focus, .form-item input[type=password]:focus, .form-item input[type=search]:focus, .form-item input[type=tel]:focus, .form-item .field--type-text-long:focus, .form-item textarea:focus, .form-item select:focus {
   border: 2px solid #FDD22B;
+  padding-top: 7px;
   padding-bottom: 7px;
 }
-.form-item input[type=text]:focus-within label, .form-item input[type=url]:focus-within label, .form-item input[type=date]:focus-within label, .form-item input[type=number]:focus-within label, .form-item input[type=email]:focus-within label, .form-item input[type=password]:focus-within label, .form-item input[type=search]:focus-within label, .form-item input[type=tel]:focus-within label, .form-item textarea:focus-within label, .form-item select:focus-within label {
+.form-item input[type=text]:focus-within label, .form-item input[type=url]:focus-within label, .form-item input[type=date]:focus-within label, .form-item input[type=number]:focus-within label, .form-item input[type=email]:focus-within label, .form-item input[type=password]:focus-within label, .form-item input[type=search]:focus-within label, .form-item input[type=tel]:focus-within label, .form-item .field--type-text-long:focus-within label, .form-item textarea:focus-within label, .form-item select:focus-within label {
   color: #FDD22B;
 }
-.form-item input[type=text][type=date], .form-item input[type=text][type=number], .form-item input[type=url][type=date], .form-item input[type=url][type=number], .form-item input[type=date][type=date], .form-item input[type=date][type=number], .form-item input[type=number][type=date], .form-item input[type=number][type=number], .form-item input[type=email][type=date], .form-item input[type=email][type=number], .form-item input[type=password][type=date], .form-item input[type=password][type=number], .form-item input[type=search][type=date], .form-item input[type=search][type=number], .form-item input[type=tel][type=date], .form-item input[type=tel][type=number], .form-item textarea[type=date], .form-item textarea[type=number], .form-item select[type=date], .form-item select[type=number] {
+.form-item input[type=text][type=date], .form-item input[type=text][type=number], .form-item input[type=url][type=date], .form-item input[type=url][type=number], .form-item input[type=date][type=date], .form-item input[type=date][type=number], .form-item input[type=number][type=date], .form-item input[type=number][type=number], .form-item input[type=email][type=date], .form-item input[type=email][type=number], .form-item input[type=password][type=date], .form-item input[type=password][type=number], .form-item input[type=search][type=date], .form-item input[type=search][type=number], .form-item input[type=tel][type=date], .form-item input[type=tel][type=number], .form-item .field--type-text-long[type=date], .form-item .field--type-text-long[type=number], .form-item textarea[type=date], .form-item textarea[type=number], .form-item select[type=date], .form-item select[type=number] {
   width: initial;
   display: inline-block;
 }
@@ -3511,11 +3513,36 @@ form div.filter-wrapper {
   position: relative;
 }
 
-@media (min-width: 992px) {
-  .form-item.form-type-select:after {
-    top: 0;
+input[type=date] {
+  padding: 7px;
+  text-transform: uppercase;
+}
+
+.field--name-application-deadline {
+  margin-bottom: 16px;
+}
+
+@media (min-width: 1256px) {
+  .salary-widget-default .fieldset-wrapper .inline-item:first-child {
+    margin-left: 156px;
+  }
+
+  .salary-widget-default .form-item.form-type-select {
+    overflow: unset;
+    margin-left: 8px;
   }
 }
+.field--type-datetime {
+  margin-bottom: 16px;
+}
+
+.datetime-help-text {
+  position: absolute;
+  margin-top: -24px;
+  margin-bottom: 6px;
+  max-width: 640px;
+}
+
 .card-form-page nav.tabs {
   max-width: 360px;
   margin: 0 auto;
@@ -3549,7 +3576,7 @@ form.card-form .form-item {
 
 strong {
   font-size: 20px;
-  font-family: Montserrat;
+  font-family: Poppins;
   font-weight: bold;
   line-height: 1em;
 }
@@ -3789,10 +3816,11 @@ div.paragraphs-dropbutton-wrapper {
 ul.select2-selection__rendered {
   border: 1px solid rgba(0, 0, 0, 0.12);
   padding-left: 10px !important;
-  background: #F6F4F4;
+  background: #FFFFFF;
+  height: 44px;
 }
 ul.select2-selection__rendered:focus-within {
-  border-color: #FF904B;
+  border: 2px solid #FDD22B;
 }
 
 .select2-container--fmcg_material span.select2-selection.select2-selection--multiple {
@@ -3818,7 +3846,6 @@ ul.select2-selection__rendered:focus-within {
 .select2-dropdown {
   margin-top: -23px;
   width: 1120px;
-  max-width: 30%;
   background: transparent;
 }
 
@@ -3845,6 +3872,7 @@ summary {
   left: -40px;
   top: 0px;
   width: 1200px;
+  display: none;
 }
 
 div.details-wrapper {
@@ -3852,38 +3880,13 @@ div.details-wrapper {
   padding-right: 0px;
 }
 
-span.field-prefix {
-  padding-right: 5px;
-  font-size: 20px;
-}
-
 div.cke_focus {
   border: solid 2px #FDD22B;
 }
 
 div#edit-publish-date-wrapper, div#edit-application-deadline-wrapper {
-  font-size: 10px;
-}
-
-span.upsell-price.pull-right.orange-triangle {
-  color: #FFFFFF;
-  background-color: #FF904B;
-  display: block;
-  position: absolute;
-  right: -40px;
-  bottom: 0px;
-  padding: 40px 50px 20px 150px;
-}
-span.upsell-price.pull-right.orange-triangle:before {
-  content: "";
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-color: #FFFFFF transparent transparent transparent;
-  border-width: 93px 270px 0 0;
-  position: absolute;
-  top: 0;
-  left: 0;
+  font-size: 12px;
+  font-family: Roboto;
 }
 
 .form-item input[type=checkbox]:checked:disabled:before {
@@ -4283,15 +4286,6 @@ p.scripture {
 .footer-text p, .footer-text .h4 {
   font-family: Poppins;
   font-size: 16px;
-}
-
-span.upsell-price {
-  font-weight: bold;
-  color: #FF904b;
-}
-
-span.upsell-price .tax {
-  font-size: 0.7em;
 }
 
 .card .card-item.card-actions .form-actions, .content-card .card-holder .card-item.card-actions .form-actions {
@@ -5615,6 +5609,54 @@ form#views-exposed-form-job-board-page {
 }
 .featured-jobs-card .material-icons, .featured-jobs-card .breadcrumb ol li:not(:last-child):after, .breadcrumb ol .featured-jobs-card li:not(:last-child):after, .featured-jobs-card .info:before, .featured-jobs-card .important:before, .featured-jobs-card .form-item input[type=checkbox]:before, .form-item .featured-jobs-card input[type=checkbox]:before, .featured-jobs-card .form-item input[type=radio]:before, .form-item .featured-jobs-card input[type=radio]:before, .featured-jobs-card .form-item.form-type-select:after, .featured-jobs-card .navbar-account-menu .menu a:before, .navbar-account-menu .menu .featured-jobs-card a:before, .featured-jobs-card .sidebar .menu .collapsed > a:after, .sidebar .menu .featured-jobs-card .collapsed > a:after, .featured-jobs-card .sidebar .menu .expanded > a:after, .sidebar .menu .featured-jobs-card .expanded > a:after, .featured-jobs-card .collapsible-toggle:before, .featured-jobs-card .pager .pager-item.item-first > a:before, .pager .featured-jobs-card .pager-item.item-first > a:before, .featured-jobs-card .pager .pager-item.item-first > span:before, .pager .featured-jobs-card .pager-item.item-first > span:before, .featured-jobs-card .pager .pager-item.item-previous > a:before, .pager .featured-jobs-card .pager-item.item-previous > a:before, .featured-jobs-card .pager .pager-item.item-previous > span:before, .pager .featured-jobs-card .pager-item.item-previous > span:before, .featured-jobs-card .pager .pager-item.item-ellipsis > a:before, .pager .featured-jobs-card .pager-item.item-ellipsis > a:before, .featured-jobs-card .pager .pager-item.item-ellipsis > span:before, .pager .featured-jobs-card .pager-item.item-ellipsis > span:before, .featured-jobs-card .pager .pager-item.item-next > a:before, .pager .featured-jobs-card .pager-item.item-next > a:before, .featured-jobs-card .pager .pager-item.item-next > span:before, .pager .featured-jobs-card .pager-item.item-next > span:before, .featured-jobs-card .pager .pager-item.item-last > a:before, .pager .featured-jobs-card .pager-item.item-last > a:before, .featured-jobs-card .pager .pager-item.item-last > span:before, .pager .featured-jobs-card .pager-item.item-last > span:before, .featured-jobs-card .messages-status:before, .featured-jobs-card .messages-warning:before, .featured-jobs-card .messages-error:before {
   background: #DBE4EB;
+}
+
+.upsell-wrapper, .outsourced-upsell-wrapper {
+  background-color: #211F21;
+  padding: 1px 24px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+.upsell-wrapper h3, .outsourced-upsell-wrapper h3 {
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 600;
+  color: #FDD22B;
+}
+.upsell-wrapper label.option, .outsourced-upsell-wrapper label.option {
+  font-size: 16px;
+  color: #DBE4EB;
+  width: 100%;
+  display: block;
+}
+.upsell-wrapper .form-item input[type=checkbox], .outsourced-upsell-wrapper .form-item input[type=checkbox] {
+  display: inline-block;
+  float: left;
+  margin-top: 9px;
+  margin-right: 12px;
+  border-radius: 0px;
+}
+
+.upsell-wrapper::after {
+  content: "RECOMMENDED";
+  font-weight: 500;
+  background: #aa8324;
+  background: linear-gradient(90deg, #aa8324 0%, #f7ef7a 50%, #a18846 100%);
+  padding: 8px 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.outsourced-upsell-wrapper::after {
+  content: "£2,995+VAT";
+  font-weight: 500;
+  background: #aa8324;
+  background: linear-gradient(90deg, #aa8324 0%, #f7ef7a 50%, #a18846 100%);
+  padding: 8px 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

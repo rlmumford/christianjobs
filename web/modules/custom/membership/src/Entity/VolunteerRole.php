@@ -140,10 +140,10 @@ class VolunteerRole extends JobRole implements EntityOwnerInterface {
     $fields['location_type'] = BaseFieldDefinition::create('list_string')
       ->setLabel(t('Location Type'))
       ->setSetting('allowed_values', [
-        'home' => new TranslatableMarkup('Home based'),
-        'remote' => new TranslatableMarkup('Remote working'),
-        'office' => new TranslatableMarkup('Office based'),
-        'location' => new TranslatableMarkup('On location'),
+        'home' => new TranslatableMarkup('Home Based'),
+        'remote' => new TranslatableMarkup('Remote Working'),
+        'office' => new TranslatableMarkup('Office Based'),
+        'location' => new TranslatableMarkup('On Location'),
       ])
       ->setRevisionable(TRUE)
       ->setRequired(TRUE)
