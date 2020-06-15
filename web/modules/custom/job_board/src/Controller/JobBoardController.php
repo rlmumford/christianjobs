@@ -95,6 +95,7 @@ class JobBoardController extends ControllerBase {
       if (!in_array($field_name, [
         'id', 'uuid', 'vid', 'publish_date', 'end_date', 'initial_duration',
         'paid', 'paid_to_date', 'path', 'boost_start_date', 'boost_end_date',
+        'job_credit'
       ])) {
         $repost_job->set($field_name, $item_list->getValue());
       }

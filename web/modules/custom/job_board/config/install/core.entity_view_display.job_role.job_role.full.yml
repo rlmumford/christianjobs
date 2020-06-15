@@ -1,0 +1,164 @@
+uuid: a7ca0cd2-9056-4a55-86d9-5349b2afe9f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.job_role.full
+  module:
+    - file
+    - flexilayout_builder
+    - job_role
+    - layout_builder
+    - rlm_material
+    - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: rlm_material_9_3
+        layout_settings:
+          label: Content
+        components:
+          64e9725a-dbfe-40b0-844f-a048626b847c:
+            uuid: 64e9725a-dbfe-40b0-844f-a048626b847c
+            region: aside
+            configuration:
+              id: 'field_block:organization:organization:logo'
+              label: Logo
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: image
+                settings:
+                  image_style: medium
+                  image_link: ''
+                third_party_settings: {  }
+              context_mapping:
+                entity: organization
+                view_mode: view_mode
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 0
+          a3265004-d70a-4d86-b720-08e78273a937:
+            uuid: a3265004-d70a-4d86-b720-08e78273a937
+            region: aside
+            configuration:
+              id: 'field_block:organization:organization:name'
+              label: Name
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: true
+                third_party_settings: {  }
+              context_mapping:
+                entity: organization
+                view_mode: view_mode
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 1
+          c3a8b6ce-c6c0-4bf7-b26b-d5f338ebbaa1:
+            uuid: c3a8b6ce-c6c0-4bf7-b26b-d5f338ebbaa1
+            region: content
+            configuration:
+              id: 'field_block:job_role:job_role:description'
+              label: 'Full Job Description'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional:
+              class: ''
+              field_label_override: 0
+            weight: 0
+        third_party_settings: {  }
+  flexilayout_builder:
+    relationships:
+      organization:
+        plugin: 'typed_data_entity_relationship:entity:job_role:organization'
+        label: Organization
+        description: ''
+        settings:
+          context_mapping:
+            base: entity
+_core:
+  default_config_hash: tEaspsz5Qz1eUt7vowECLpvdz1q0Q65hBH5igNrWmEA
+id: job_role.job_role.full
+targetEntityType: job_role
+bundle: job_role
+mode: full
+content:
+  description:
+    label: above
+    type: text_default
+    region: content
+    weight: -4
+    settings: {  }
+    third_party_settings: {  }
+  files:
+    type: file_default
+    label: above
+    region: content
+    weight: -2
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+  pay:
+    label: inline
+    type: job_role_salary_default
+    region: content
+    weight: -1
+    settings: {  }
+    third_party_settings: {  }
+  salary:
+    label: inline
+    type: range_decimal
+    region: content
+    weight: -3
+    settings:
+      decimal_separator: .
+      scale: 2
+      range_separator: '-'
+      thousand_separator: ''
+      range_combine: true
+      from_prefix_suffix: false
+      to_prefix_suffix: false
+    third_party_settings: {  }
+hidden:
+  application_deadline: true
+  boost_end_date: true
+  boost_start_date: true
+  compensation: true
+  contact_address: true
+  contact_email: true
+  contact_phone: true
+  description_summary: true
+  end_date: true
+  hours: true
+  industry: true
+  initial_duration: true
+  keywords: true
+  location: true
+  location_geo: true
+  location_summary: true
+  location_tree: true
+  location_type: true
+  locations: true
+  paid: true
+  paid_to_date: true
+  publish_date: true
+  rpo: true
+  search_api_excerpt: true
