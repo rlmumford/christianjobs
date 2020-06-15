@@ -57,10 +57,7 @@ class RecruiterRegisterOrganizationForm extends ContentEntityForm {
   }
 
   /**
-   * @param array $form
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *
-   * @return int|void
+   * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
     $return = parent::save($form, $form_state);
@@ -74,6 +71,10 @@ class RecruiterRegisterOrganizationForm extends ContentEntityForm {
       'role' => OrganizationMetadataReferenceItem::ROLE_OWNER,
     ];
     $user->save();
+
+    $form_state->setRedirect('job_board.employer', [
+      'organization' => $this->entity->id(),
+    ]);
 
     return $return;
   }
