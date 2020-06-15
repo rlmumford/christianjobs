@@ -2138,6 +2138,12 @@ form#views-exposed-form-job-board-page {
   .material-icons {
     background: $fmcg-chrome;
   }
+
+  span.material-icons {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+  }
 }
 
 //STYLING FOR UPSELL WRAPPERS - TO BE GIVEN OWN FILE //
