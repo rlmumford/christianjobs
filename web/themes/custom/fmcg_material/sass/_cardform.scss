@@ -1,0 +1,36 @@
+.card-form-page {
+  nav.tabs {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+
+form.card-form {
+  max-width: 360px;
+
+  .description {
+    font-size: 13px;
+    font-family: Roboto;
+    color: $fmcg-chrome;
+    padding-left: 0px;
+  }
+
+  .form-item label {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Poppins;
+    line-height: 2em;
+    color: $fmcg-yellow;
+  }
+  .form-item > label {
+    width: auto;
+  }
+
+  input.button, input[type=submit] {
+    margin: 8px 0px 24px 24px;
+  }
+
+  .form-item {
+    margin-bottom: 0px;
+  }
+}

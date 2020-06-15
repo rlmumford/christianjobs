@@ -66,7 +66,7 @@ class FMCGFooter extends BlockBase implements ContainerFactoryPluginInterface {
     $form['email_address'] = [
       '#type' => 'email',
       '#title' => $this->t('Email Address'),
-      '#description' => $this->t('You can find this on the URL of your company\'s linked in page'),
+      '#description' => $this->t('Your preferred company contact email address should go here'),
       '#default_value' => $configuration['email_address'],
     ];
 

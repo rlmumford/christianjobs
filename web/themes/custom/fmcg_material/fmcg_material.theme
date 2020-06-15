@@ -6,7 +6,7 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
- * Implments hook_form_user_self_edit_candidate_form_alter().
+ * Implements hook_form_user_self_edit_candidate_form_alter().
  *
  * @param array $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
@@ -17,7 +17,44 @@ function fmcg_material_form_user_self_edit_candidate_form_alter(array &$form, Fo
   $comps['given']['title_display'] = 'none';
   $comps['family']['attributes']['placeholder'] = $comps['family']['title'];
   $comps['family']['title_display'] = 'none';
+}
 
+/**
+ * Implements hook_form_alter();
+ */
+function fmcg_material_form_user_register_recruiter_form_alter(array &$form, FormStateInterface $form_state) {
+  $form['#attributes']['class'][] = 'card card-form';
+  $form['user_icon']['#markup'] = '<div class="user-icon text-align-center"><i class="material-icons text-disabled">account_circle</i></div>';
+  $form['user_icon']['#weight'] = -15;
+  $form['account']['name']['#title'] = Null;
+  $form['account']['name']['#attributes']['placeholder'] = t('Login');
+  $form['account']['mail']['#title'] = Null;
+  $form['account']['mail']['#attributes']['placeholder'] = t('E-mail');
+  $form['actions']['#attributes']['class'][] = 'card-item card-actions divider-top';
+  $form['actions']['submit']['#attributes']['class'][] = 'btn-accent';
+}
+
+/**
+ * Implements hook_form_organization_register_recruiter_form_alter().
+ */
+function fmcg_material_form_organization_register_recruiter_form_alter(array &$form, FormStateInterface $form_state) {
+
+  $form['contact_info'] = [
+    '#type' => 'fieldset',
+    '#title' => new TranslatableMarkup('Contact Information'),
+    '#weight' => 7,
+    'tel' => $form['tel'],
+    'email' => $form['email'],
+  ];
+  $form['organization_info'] = [
+    '#type' => 'fieldset',
+    '#title' => new TranslatableMarkup('Organization Information'),
+    '#weight' => 6,
+    'logo' => $form['logo'],
+    'description' => $form['description'],
+    'industry' => $form['categories'],
+  ];
+  unset($form['tel'], $form['email'], $form['logo'], $form['description'], $form['categories']);
 }
 
 /**

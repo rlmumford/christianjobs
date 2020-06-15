@@ -1,0 +1,174 @@
+form {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 30px;
+
+  .visually-hidden {
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    width: 1px;
+    height: 1px;
+    word-wrap: normal;
+  }
+
+  @media (min-width: $md) {
+    .visually-hidden {
+      position: relative !important;
+    }
+  }
+
+  div.form-item {
+    width: 100%;
+
+    &> * {
+      display: inline-block;
+    }
+  }
+
+  .form-item > label {
+    width: 156px;
+  }
+
+  .form-item label {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Poppins;
+    line-height: 2em;
+    color: #211F21;
+  }
+
+  .form-item input[type=text] {
+    width: 100%;
+    max-width: 640px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #FFFFFF;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .form-item.form-type-textarea > div {
+    width: 100%;
+    max-width: 630px;
+  }
+
+  span.fieldset-legend {
+    font-size: 20px;
+    font-weight: 600;
+    z-index: 5;
+    background: $fmcg-chrome;
+    padding-right: 12px;
+  }
+
+  legend {
+    position: relative;
+    width: 100%;
+    z-index: 5;
+    background: $fmcg-chrome;
+    margin-bottom: 12px;
+  }
+
+  span.fieldset-legend:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    background-color: #9ABAD2;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+  input.button, input[type=submit] {
+    margin: 0px;
+  }
+
+  .form-required {
+    vertical-align: top;
+  }
+
+  div.filter-wrapper {
+    display: none;
+  }
+
+  @media (min-width: $lg) {
+  .description {
+    padding-left: 163px;
+    }
+  }
+}
+
+.form-item {
+  label, h4 {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Poppins;
+    line-height: 2em;
+    color: $fmcg-yellow;
+  }
+
+  &.focused, &:focus-within {
+    > label, > h4 {
+      color: #FDD22B;
+    }
+  }
+
+  input[type=text], input[type=url], input[type=date], input[type=number], input[type=email], input[type=password], input[type=search], input[type=tel], textarea, select {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #FFFFFF;
+    display: inline-block;
+    margin-bottom: 12px;
+
+    &.select2-search__field {
+      border: none;
+      background: none;
+
+      &:focus {
+        border: none;
+      }
+    }
+
+    &:focus {
+      border: 2px solid #FDD22B;
+      padding-bottom: 7px;
+    }
+
+    &:focus-within label {
+      color: #FDD22B;
+    }
+
+    &[type=date], &[type=number] {
+      width: initial;
+      display: inline-block;
+    }
+  }
+}
+
+.form-item > select {
+  max-width: 800px;
+}
+
+.form-item input[type=url] {
+  width: 100%;
+  max-width: 640px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  padding: 8px 0;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.form-item > select {
+  max-width: 640px;
+  position: relative;
+}
+
+@media (min-width: $md) {
+  .form-item.form-type-select:after {
+    top: 0;
+  }
+}
