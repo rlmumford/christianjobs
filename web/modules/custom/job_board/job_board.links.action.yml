@@ -23,8 +23,14 @@ job_board.edit_job:
   title: 'Edit'
   appears_on:
     - entity.job_role.canonical
-job_board.edit_employer:
-  route_name: job_board.employer_edit
-  title: 'Edit'
+
+job_board.recruiter.post:
+  route_name: job_board.recruiter.jobs.post
+  title: 'Post a Job'
   appears_on:
-    - job_board.employer
+    - view.job_board__recruiter_jobs.page
+job_board.recruiter.buy_credit:
+  route_name: job_board.recruiter.jobs.buy_credit
+  title: 'Buy Credit'
+  appears_on:
+    - view.job_board__recruiter_jobs.page

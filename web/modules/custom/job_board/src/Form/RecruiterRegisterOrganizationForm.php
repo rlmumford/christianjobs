@@ -6,6 +6,7 @@ use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\OpenModalDialogCommand;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 class RecruiterRegisterOrganizationForm extends ContentEntityForm {
@@ -16,6 +17,7 @@ class RecruiterRegisterOrganizationForm extends ContentEntityForm {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
     $form['#attached']['library'][] = 'core/drupal.dialog.ajax';
+    $form['#attached']['library'][] = 'job_board/organization-duplicates';
 
     $form['find_dups'] = [
       '#type' => 'submit',
@@ -87,14 +89,22 @@ class RecruiterRegisterOrganizationForm extends ContentEntityForm {
       return $response;
     }
 
+
     $content = [
       '#theme' => 'item_list',
-      '#items' => [
-        'Test 1 <a class="button">Request to Join</a>',
-        'Test 2 <a class="button">Request to Join</a>',
-        'Test 3 <a class="button">Request to Join</a>',
-      ],
+      '#items' => [],
     ];
+
+    foreach ($this->entityTypeManager->getStorage('organization')->loadMultiple($ids) as $organization) {
+      $content['#items'][] = new TranslatableMarkup('@organization @button', [
+        '@organization' => $organization->label()." (".$organization->headquarters->entity->address->country_code.")",
+        '@button' => Link::createFromRoute(
+          new TranslatableMarkup('Request to Join'),
+          'job_board.recruiter.register.join_organization',
+          ['organization' => $organization->id()]
+        )->toString(),
+      ]);
+    }
 
     $response->addCommand(new OpenModalDialogCommand(
       'Other Organizations',
