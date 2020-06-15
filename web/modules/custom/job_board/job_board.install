@@ -1443,3 +1443,11 @@ function job_board_update_8104() {
   ]);
 }
 
+function job_board_update_8105() {
+  rlm_config_tools_install_module_config('job_board', [
+    'field.storage.user.real_name',
+    'field.field.user.user.real_name',
+    'core.entity_form_display.user.user.register',
+  ]);
+}
+
