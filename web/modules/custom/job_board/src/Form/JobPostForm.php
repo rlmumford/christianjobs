@@ -1,22 +1,54 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Rob
- * Date: 28/08/2018
- * Time: 14:59
- */
 
 namespace Drupal\job_board\Form;
 
 use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_order\Adjustment;
 use Drupal\commerce_price\Price;
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\ContentEntityForm;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\job_board\JobCreditManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class JobPostForm extends JobForm {
+
+  /**
+   * @var \Drupal\job_board\JobCreditManagerInterface
+   */
+  protected $creditManager;
+
+  /**
+   * @var \Drupal\job_board\JobBoardJobRole
+   */
+  protected $entity;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('job_board.credit_manager'),
+      $container->get('entity.repository'),
+      $container->get('entity_type.bundle.info'),
+      $container->get('datetime.time')
+    );
+  }
+
+  public function __construct(
+    JobCreditManagerInterface $job_credit_manager,
+    EntityRepositoryInterface $entity_repository,
+    EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL,
+    TimeInterface $time = NULL
+  ) {
+    parent::__construct($entity_repository, $entity_type_bundle_info, $time);
+
+    $this->creditManager = $job_credit_manager;
+  }
 
   /**
    * {@inheritdoc}
@@ -34,6 +66,7 @@ class JobPostForm extends JobForm {
     /** @var \CommerceGuys\Intl\Formatter\CurrencyFormatterInterface $currency_formatter */
     $currency_formatter = \Drupal::service('commerce_price.currency_formatter');
     $job_board_pricing = \Drupal::config('job_board.pricing');
+    $job_board_settings = \Drupal::config('job_board.settings');
 
     if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {
       $membership_pricing = \Drupal::config('cj_membership.pricing');
@@ -96,47 +129,40 @@ class JobPostForm extends JobForm {
       ];
     }
 
-    $rpo_price = new Price(
-      $job_board_pricing->get('job_RPO'),
-      'GBP'
-    );
-    $form['rpo_upsell'] = [
-      '#weight' => 51,
-      '#type' => 'container',
-      '#tree' => TRUE,
-      '#attributes' => [
-        'class' => ['divider-top'],
-      ],
-      'title' => [
-        '#type' => 'html_tag',
-        '#tag' => 'h3',
-        '#value' => $this->t('Outsourced Help (RPO)'),
-      ],
-      'description' => [
-        '#type' => 'html_tag',
-        '#tag' => 'p',
+    if ($job_board_settings->get('sell_rpo')) {
+      $rpo_price = new Price($job_board_pricing->get('job_RPO'), 'GBP');
+      $form['rpo_upsell'] = [
+        '#weight' => 51,
+        '#type' => 'container',
+        '#tree' => TRUE,
         '#attributes' => [
-          'class' => ['section-summary'],
+          'class' => ['divider-top'],
         ],
-        '#value' => $this->t('Get this Job <strong>FREE</strong> when you purchase our RPO package.'),
-      ],
-      'rpo' => [
-        '#type' => 'checkbox',
-        '#title' => $this->t(
-          'Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>',
-          [
-            '@price' => $currency_formatter->format(
-              $rpo_price->getNumber(),
-              $rpo_price->getCurrencyCode()
-            )
-          ]
-        ),
-        '#default_value' => !empty($this->entity->rpo->value),
-        '#attributes' => [
-          'class' => ['rpo-checkbox'],
+        'title' => [
+          '#type' => 'html_tag',
+          '#tag' => 'h3',
+          '#value' => $this->t('Outsourced Help (RPO)'),
         ],
-      ],
-    ];
+        'description' => [
+          '#type' => 'html_tag',
+          '#tag' => 'p',
+          '#attributes' => [
+            'class' => ['section-summary'],
+          ],
+          '#value' => $this->t('Get this Job <strong>FREE</strong> when you purchase our RPO package.'),
+        ],
+        'rpo' => [
+          '#type' => 'checkbox',
+          '#title' => $this->t('Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>', [
+              '@price' => $currency_formatter->format($rpo_price->getNumber(), $rpo_price->getCurrencyCode())
+            ]),
+          '#default_value' => !empty($this->entity->rpo->value),
+          '#attributes' => [
+            'class' => ['rpo-checkbox'],
+          ],
+        ],
+      ];
+    }
 
 
     // Add a membership options to this form.
@@ -215,7 +241,7 @@ class JobPostForm extends JobForm {
         ];
       }
     }
-    
+
     return $form;
   }
 
@@ -228,12 +254,22 @@ class JobPostForm extends JobForm {
     $actions['submit']['#submit'][] = '::submitFormAddToCart';
     $actions['submit']['#attributes']['formnovalidate'] = 'formnovalidate';
 
-    $actions['submit_another'] = $actions['submit'];
-    $actions['submit_another']['#value'] = $this->t('Save & Post Another Job');
-    $actions['submit_another']['#submit'][] = '::submitFormRedirectToJobPost';
+    if ($this->entity->job_credit->isEmpty() && !$this->creditManager->hasAvailableCredit($this->entity->organization->entity)) {
+      $actions['submit']['#value'] = $this->t('Proceed to Payment');
+      $actions['submit']['#draft'] = TRUE;
+      $actions['submit']['#submit'][] = '::submitFormRedirectToCheckout';
 
-    $actions['submit']['#value'] = t('Proceed to Payment');
-    $actions['submit']['#submit'][] = '::submitFormRedirectToCheckout';
+      $actions['submit_another'] = $actions['submit'];
+      $actions['submit_another']['#draft'] = TRUE;
+      $actions['submit_another']['#value'] = $this->t('Save & Post Another Job');
+      $actions['submit_another']['#submit'][] = '::submitFormRedirectToJobPost';
+    }
+    else {
+      $actions['submit']['#value'] = t('Save & Publish');
+      $actions['submit_draft'] = $actions['submit'];
+      $actions['submit_draft']['#value'] = $this->t('Save Draft');
+      $actions['submit_draft']['#draft'] = TRUE;
+    }
 
     return $actions;
   }
@@ -261,6 +297,28 @@ class JobPostForm extends JobForm {
     else {
       $this->entity->rpo = FALSE;
     }
+
+    // If the user didn't click the draft button and there is a job credit
+    // linked (or one available to be linked) mark the job as paid and set
+    // the job credit value.
+    // Otherwise clear any job credit.
+    if (
+      empty($form_state->getTriggeringElement()['#draft']) &&
+      (!$this->entity->job_credit->isEmpty() || $this->creditManager->hasAvailableCredit($this->entity->organization->entity))
+    ) {
+      $this->entity->paid = TRUE;
+
+      if ($this->entity->job_credit->isEmpty()) {
+        $this->entity->job_credit = $this->creditManager->getAvailableCredit($this->entity->organization->entity);
+      }
+    }
+    else {
+      $this->entity->job_credit = [];
+    }
+
+    $form_state->setRedirect('view.job_board__recruiter_jobs.page', [
+      'organization' => $this->entity->organization->target_id,
+    ]);
   }
 
   /**
@@ -268,14 +326,16 @@ class JobPostForm extends JobForm {
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    */
   public function submitFormAddToCart(array $form, FormStateInterface $form_state) {
-    $cart_provider = \Drupal::service('commerce_cart.cart_provider');
-    /** @var \Drupal\commerce_cart\CartManagerInterface $cart_manager */
-    $cart_manager = \Drupal::service('commerce_cart.cart_manager');
-    $cart = $cart_provider->getCart('default');
-    if (!$cart) {
-      $cart = $cart_provider->createCart('default');
+    if ($this->entity->job_credit->isEmpty() && !$this->creditManager->hasAvailableCredit($this->entity->organization->entity)) {
+      $cart_provider = \Drupal::service('commerce_cart.cart_provider');
+      /** @var \Drupal\commerce_cart\CartManagerInterface $cart_manager */
+      $cart_manager = \Drupal::service('commerce_cart.cart_manager');
+      $cart = $cart_provider->getCart('default');
+      if (!$cart) {
+        $cart = $cart_provider->createCart('default');
+      }
+      $cart_manager->addEntity($cart, $this->getEntity());
     }
-    $cart_manager->addEntity($cart, $this->getEntity());
 
     // If the membership options have been selected then add the membership to
     // the cart.
@@ -303,10 +363,12 @@ class JobPostForm extends JobForm {
     user_cookie_delete('jobPostMembership');
     user_cookie_delete('jobPostRpo');
 
-    $cart_provider = \Drupal::service('commerce_cart.cart_provider');
-    $form_state->setRedirect('commerce_checkout.form', [
-      'commerce_order' => $cart_provider->getCart('default')->id(),
-    ]);
+    if ($this->entity->job_credit->isEmpty() && !$this->creditManager->hasAvailableCredit($this->entity->organization->entity)) {
+      $cart_provider = \Drupal::service('commerce_cart.cart_provider');
+      $form_state->setRedirect('commerce_checkout.form', [
+        'commerce_order' => $cart_provider->getCart('default')->id(),
+      ]);
+    }
   }
 
   public function submitFormRedirectToJobPost(array $form, FormStateInterface $form_state) {
