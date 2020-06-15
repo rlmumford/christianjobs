@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/css?family=Lato|Montserrat:400,600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -5673,6 +5674,15 @@ form#views-exposed-form-job-board-page {
 .tabs {
   background-color: #211F21;
   border-bottom: 1px solid #FDD22B;
+}
+
+thead {
+  background-color: #211F21;
+}
+thead th {
+  font-weight: 400;
+  color: #DBE4EB;
+  text-align: left;
 }
 
 /*# sourceMappingURL=styles.css.map */

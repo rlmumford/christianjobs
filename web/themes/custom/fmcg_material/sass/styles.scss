@@ -14,7 +14,9 @@
 @import "form";
 @import "cardform";
 
-@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:400,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 // put your styles here
 // you can @extend anything from base theme
@@ -2198,4 +2200,16 @@ form#views-exposed-form-job-board-page {
 .tabs {
   background-color: $fmcg-black;
   border-bottom: 1px solid $fmcg-yellow;
+}
+
+thead {
+  background-color: $fmcg-black;
+
+  &:hover: none;
+
+  th {
+    font-weight: 400;
+    color: $fmcg-chrome;
+    text-align: left;
+  }
 }
