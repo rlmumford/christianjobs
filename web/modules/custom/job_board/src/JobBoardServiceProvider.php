@@ -11,7 +11,8 @@ class JobBoardServiceProvider extends ServiceProviderBase {
    * {@inheritdoc}
    */
   public function alter(ContainerBuilder $container) {
-    if ($definition = $container->getDefinition('entity_route_context.entity_route_context')) {
+    if ($container->hasDefinition('entity_route_context.entity_route_context')) {
+      $definition = $container->getDefinition('entity_route_context.entity_route_context');
       $definition->setClass('\Drupal\job_board\EntityRouteContext');
     }
   }
