@@ -19,4 +19,4 @@ services:
       - { name: event_subscriber }
   job_board.credit_manager:
     class: Drupal\job_board\JobCreditManager
-    argumetns: [ '@entity_type.manager' ]
+    arguments: [ '@entity_type.manager' ]
