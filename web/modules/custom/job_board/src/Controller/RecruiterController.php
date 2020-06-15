@@ -4,13 +4,34 @@ namespace Drupal\job_board\Controller;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Entity\EntityFormBuilderInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\organization\Entity\Organization;
 use Drupal\organization\Plugin\Field\FieldType\OrganizationMetadataReferenceItem;
 use Drupal\user\UserInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class RecruiterController extends ControllerBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('entity_type.manager'),
+      $container->get('entity.form_builder')
+    );
+  }
+
+  public function __construct(
+    EntityTypeManagerInterface $entity_type_manager,
+    EntityFormBuilderInterface $entity_form_builder
+  ) {
+    $this->entityTypeManager = $entity_type_manager;
+    $this->entityFormBuilder = $entity_form_builder;
+  }
 
   /**
    * Page to add a job
@@ -25,7 +46,7 @@ class RecruiterController extends ControllerBase {
   public function addJob(Organization $organization, UserInterface $owner = NULL) {
     $owner = $owner ?: $this->currentUser();
 
-    $job_storage = $this->entityTypeManager->getStorage('job_role');
+    $job_storage = $this->entityTypeManager()->getStorage('job_role');
     $job = $job_storage->create([
       'owner' => $owner->id(),
       'organization' => $organization,

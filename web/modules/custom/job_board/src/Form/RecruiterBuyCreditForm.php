@@ -2,6 +2,7 @@
 
 namespace Drupal\job_board\Form;
 
+use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
 use Drupal\commerce_cart\CartManagerInterface;
 use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -33,24 +34,32 @@ class RecruiterBuyCreditForm extends FormBase {
   protected $cartManager;
 
   /**
+   * @var \CommerceGuys\Intl\Formatter\CurrencyFormatterInterface
+   */
+  protected $currencyFormatter;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager'),
       $container->get('commerce_cart.cart_provider'),
-      $container->get('commerce_cart.cart_manager')
+      $container->get('commerce_cart.cart_manager'),
+      $container->get('commerce_price.currency_formatter')
     );
   }
 
   public function __construct(
     EntityTypeManagerInterface $entity_type_manager,
     CartProviderInterface $cart_provider,
-    CartManagerInterface $cart_manager
+    CartManagerInterface $cart_manager,
+    CurrencyFormatterInterface $currency_formatter
   ) {
     $this->entityTypeManager = $entity_type_manager;
     $this->cartProvider = $cart_provider;
     $this->cartManager = $cart_manager;
+    $this->currencyFormatter = $currency_formatter;
   }
 
   /**
@@ -72,7 +81,16 @@ class RecruiterBuyCreditForm extends FormBase {
     $query->condition('type', 'credit_bundle');
     $options = [];
     foreach ($product_variation_storage->loadMultiple($query->execute()) as $variation) {
-      $options[$variation->id()] = $variation->label()." - ".$variation->price->formatted;
+      /** @var \Drupal\commerce_price\Price $price */
+      $price = $variation->price->get(0)->toPrice();
+      $options[$variation->id()] = $this->t(
+          '@num @label',
+          [
+            '@num' => $variation->credit_count->value,
+            '@label' => $variation->credit_count->value == 1 ?
+              $this->t('Job Credit') : $this->t('Job Credits')
+          ]
+        )." - ".$this->currencyFormatter->format($price->getNumber(), $price->getCurrencyCode());
     }
 
     $form['bundle'] = [
