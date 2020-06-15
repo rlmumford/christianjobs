@@ -1,0 +1,72 @@
+uuid: 9eaad869-863c-46c2-9e61-b6e8b98df8d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.credit_bundle
+    - field.field.commerce_product_variation.credit_bundle.credit_count
+  module:
+    - commerce_price
+    - flexiform
+third_party_settings:
+  flexiform:
+    enhancer:
+      multiple_entities:
+        id: multiple_entities
+      page_exposure:
+        id: page_exposure
+      submit_button_ajax:
+        'actions::submit':
+          enabled: 0
+          response: refresh
+        id: submit_button_ajax
+      submit_button_label:
+        label:
+          'actions::submit': ''
+        id: submit_button_label
+      submit_button_redirect:
+        redirect:
+          'actions::submit': ''
+        id: submit_button_redirect
+id: commerce_product_variation.credit_bundle.default
+targetEntityType: commerce_product_variation
+bundle: credit_bundle
+mode: default
+content:
+  credit_count:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  list_price:
+    type: commerce_list_price
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  price:
+    type: commerce_price_default
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  sku:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

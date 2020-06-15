@@ -79,6 +79,13 @@ function job_board_entity_type_build(&$entity_types) {
   if ($entity_type = $entity_types['organization']) {
     $entity_type->setFormClass('employer_details', EmployerEditForm::class);
     $entity_type->setFormClass('register_recruiter', RecruiterRegisterOrganizationForm::class);
+
+    $entity_type->setLinkTemplate('recruiter-view', '/recruiter/{organization}');
+    $entity_type->setLinkTemplate('recruiter-edit', '/recruiter/{organization}/edit');
+    $entity_type->setLinkTemplate('recruiter-team', '/recruiter/{organization}/team');
+    $entity_type->setLinkTemplate('recruiter-jobs', '/recruiter/{organization}/jobs');
+    $entity_type->setLinkTemplate('recruiter-jobs-credit', '/recruiter/{organization}/jobs/credit');
+    $entity_type->setLinkTemplate('recruiter-jobs-post', '/recruiter/{organization}/jobs/post');
   }
 
   if ($entity_type = $entity_types['user']) {

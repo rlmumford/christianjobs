@@ -1427,3 +1427,19 @@ function job_board_update_8103() {
   \Drupal::getContainer()->get('plugin.cache_clearer')->clearCachedDefinitions();
 }
 
+/**
+ * Install entity_route_context
+ */
+function job_board_update_8104() {
+  /** @var \Drupal\Core\Extension\ModuleInstallerInterface $module_installer */
+  $module_installer = \Drupal::service('module_installer');
+  $module_installer->install(['rlm_config_tools', 'entity_route_context']);
+
+  rlm_config_tools_install_module_config('job_board', [
+    'core.entity_view_mode.organization.dashboard_header',
+    'core.entity_form_display.commerce_product_variation.credit_bundle.default',
+    'block.block.job_board__recruiter_dashboard_header',
+    'core.entity_view_display.organization.organization.dashboard_header',
+  ]);
+}
+
