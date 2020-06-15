@@ -2,7 +2,8 @@
  * Multiple Select2
  */
 .select2-container--fmcg_material {
-  width: 100% !important;
+  width: 640px !important;
+  max-width: 100% !important;
   /**
    * Textbox
    */
@@ -150,7 +151,6 @@
 }
 .select2-container--fmcg_material .select2-search--inline .select2-search__field {
   width: 100%;
-  margin-top: 0;
   /* Match input[type=text] */
   height: 34px;
   line-height: 1;
@@ -173,8 +173,6 @@
 }
 .select2-container--fmcg_material .select2-search--inline input[type="search"].select2-search__field:focus {
   outline: none;
-  padding-bottom: 0;
-  border-bottom: 0;
 }
 .select2-container--fmcg_material .select2-results__options {
   /* @extend .zf-shadow-depth* */

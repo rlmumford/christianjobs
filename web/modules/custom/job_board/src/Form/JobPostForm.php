@@ -95,7 +95,7 @@ class JobPostForm extends JobForm {
         '#type' => 'container',
         '#tree' => TRUE,
         '#attributes' => [
-          'class' => ['divider-top'],
+          'class' => ['divider-top', 'upsell-wrapper'],
         ],
         'title' => [
           '#type' => 'html_tag',
@@ -116,7 +116,7 @@ class JobPostForm extends JobForm {
         ],
         'extend' => [
           '#type' => 'checkbox',
-          '#title' => $this->t('Publish for 60 days.'),
+          '#title' => $this->t('Publish for 60 days'),
           '#states' => [
             'checked' => [
               '.rpo-checkbox, .membership-checkbox' => ['checked' => TRUE],
@@ -131,12 +131,13 @@ class JobPostForm extends JobForm {
 
     if ($job_board_settings->get('sell_rpo')) {
       $rpo_price = new Price($job_board_pricing->get('job_RPO'), 'GBP');
+   
       $form['rpo_upsell'] = [
         '#weight' => 51,
         '#type' => 'container',
         '#tree' => TRUE,
         '#attributes' => [
-          'class' => ['divider-top'],
+          'class' => ['divider-top', 'outsourced-upsell-wrapper'],
         ],
         'title' => [
           '#type' => 'html_tag',
@@ -146,16 +147,19 @@ class JobPostForm extends JobForm {
         'description' => [
           '#type' => 'html_tag',
           '#tag' => 'p',
-          '#attributes' => [
-            'class' => ['section-summary'],
-          ],
           '#value' => $this->t('Get this Job <strong>FREE</strong> when you purchase our RPO package.'),
         ],
         'rpo' => [
           '#type' => 'checkbox',
-          '#title' => $this->t('Upgrade to an Outsourced Recruitment Process <span class="upsell-price pull-right orange-triangle">@price<span class="tax">+VAT</span></span>', [
-              '@price' => $currency_formatter->format($rpo_price->getNumber(), $rpo_price->getCurrencyCode())
-            ]),
+          '#title' => $this->t(
+            'Upgrade to an Outsourced Recruitment Process',
+            [
+              '@price' => $currency_formatter->format(
+                $rpo_price->getNumber(),
+                $rpo_price->getCurrencyCode()
+              )
+            ]
+          ),
           '#default_value' => !empty($this->entity->rpo->value),
           '#attributes' => [
             'class' => ['rpo-checkbox'],
@@ -163,7 +167,6 @@ class JobPostForm extends JobForm {
         ],
       ];
     }
-
 
     // Add a membership options to this form.
     if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {

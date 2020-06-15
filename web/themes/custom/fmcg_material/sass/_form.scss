@@ -11,30 +11,26 @@ form {
     word-wrap: normal;
   }
 
-  @media (min-width: $md) {
-    .visually-hidden {
-      position: relative !important;
-    }
-  }
-
-  div.form-item {
+  div.form-item, div.field--widget-datetime-default {
     width: 100%;
 
     &> * {
       display: inline-block;
     }
-  }
-
-  .form-item > label {
-    width: 156px;
-  }
-
-  .form-item label {
-    font-size: 16px;
-    font-weight: 400;
-    font-family: Poppins;
-    line-height: 2em;
-    color: #211F21;
+    &> label, &> h4 {
+      width: 156px;
+      vertical-align: top;
+      &.visually-hidden {
+        width: 0;
+      }
+    }
+    label, h4 {
+      font-size: 16px;
+      font-weight: 400;
+      font-family: Poppins;
+      line-height: 2em;
+      color: #211F21;
+    }
   }
 
   .form-item input[type=text] {
@@ -49,7 +45,11 @@ form {
 
   .form-item.form-type-textarea > div {
     width: 100%;
-    max-width: 630px;
+    max-width: 640px;
+  }
+
+  .salary-widget-default div.inline-item {
+    width: auto;
   }
 
   span.fieldset-legend {
@@ -80,12 +80,13 @@ form {
     z-index: -1;
   }
 
-  input.button, input[type=submit] {
-    margin: 0px;
+  span.field-prefix {
+    padding-right: 5px;
+    font-size: 16px;
   }
 
-  .form-required {
-    vertical-align: top;
+  input.button, input[type=submit] {
+    margin: 8px 8px 0px 0px;
   }
 
   div.filter-wrapper {
@@ -110,12 +111,11 @@ form {
 
   &.focused, &:focus-within {
     > label, > h4 {
-      color: #FDD22B;
+      color: $fmcg-yellow;
     }
   }
 
-  input[type=text], input[type=url], input[type=date], input[type=number], input[type=email], input[type=password], input[type=search], input[type=tel], textarea, select {
-    display: block;
+  input[type=text], input[type=url], input[type=date], input[type=number], input[type=email], input[type=password], input[type=search], input[type=tel], .field--type-text-long, textarea, select {
     width: 100%;
     max-width: 640px;
     padding-left: 10px;
@@ -123,6 +123,8 @@ form {
     background-color: #FFFFFF;
     display: inline-block;
     margin-bottom: 12px;
+    font-family: Roboto;
+    font-size: 16px;
 
     &.select2-search__field {
       border: none;
@@ -135,11 +137,12 @@ form {
 
     &:focus {
       border: 2px solid #FDD22B;
+      padding-top: 7px;
       padding-bottom: 7px;
     }
 
     &:focus-within label {
-      color: #FDD22B;
+      color: $fmcg-yellow;
     }
 
     &[type=date], &[type=number] {
@@ -167,8 +170,33 @@ form {
   position: relative;
 }
 
-@media (min-width: $md) {
-  .form-item.form-type-select:after {
-    top: 0;
+input[type=date] {
+  padding: 7px;
+  text-transform: uppercase;
+}
+
+.field--name-application-deadline {
+  margin-bottom: 16px;
+}
+
+@media (min-width: $lg) {
+  .salary-widget-default .fieldset-wrapper .inline-item:first-child {
+    margin-left: 156px;
   }
+
+  .salary-widget-default .form-item.form-type-select {
+    overflow: unset;
+    margin-left: 8px;
+  }
+}
+
+.field--type-datetime {
+  margin-bottom: 16px;
+}
+
+.datetime-help-text {
+  position: absolute;
+  margin-top: -24px;
+  margin-bottom: 6px;
+  max-width: 640px;
 }

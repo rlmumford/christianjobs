@@ -27,10 +27,10 @@ class JobForm extends ContentEntityForm {
       '#weight' => -1,
       '#title' => new TranslatableMarkup('Type'),
       '#options' => [
-        'home' => new TranslatableMarkup('Home based'),
-        'remote' => new TranslatableMarkup('Remote working'),
-        'office' => new TranslatableMarkup('Office based'),
-        'location' => new TranslatableMarkup('On location'),
+        'home' => new TranslatableMarkup('Home Based'),
+        'remote' => new TranslatableMarkup('Remote Working'),
+        'office' => new TranslatableMarkup('Office Based'),
+        'location' => new TranslatableMarkup('On Location'),
       ],
       '#default_value' => $this->entity->location_type->value,
     ];

@@ -22,7 +22,7 @@
 
 strong {
   font-size: 20px;
-  font-family: Montserrat;
+  font-family: Poppins;
   font-weight: bold;
   line-height: 1em;
 }
@@ -256,12 +256,13 @@ div.paragraphs-dropbutton-wrapper {
 }
 
 ul.select2-selection__rendered {
-  border:  1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   padding-left: 10px !important;
-  background: #F6F4F4;
+  background: #FFFFFF;
+  height: 44px;
 
   &:focus-within {
-    border-color: #FF904B;
+    border: 2px solid $fmcg-yellow;
   }
 }
 
@@ -288,7 +289,6 @@ ul.select2-selection__rendered {
 .select2-dropdown {
   margin-top: -23px;
   width: 1120px;
-  max-width: 30%;
   background: transparent;
 }
 
@@ -315,6 +315,7 @@ summary {
   left: -40px;
   top: 0px;
   width: 1200px;
+  display: none;
 }
 
 div.details-wrapper {
@@ -322,39 +323,13 @@ div.details-wrapper {
   padding-right: 0px;
 }
 
-span.field-prefix {
-  padding-right: 5px;
-  font-size: 20px;
-}
-
 div.cke_focus {
   border: solid 2px $fmcg-yellow;
 }
 
 div#edit-publish-date-wrapper, div#edit-application-deadline-wrapper {
-  font-size: 10px;
-}
-
-span.upsell-price.pull-right.orange-triangle {
-  color: #FFFFFF;
-  background-color: #FF904B;
-  display: block;
-  position: absolute;
-  right: -40px;
-  bottom: -0px;
-  padding: 40px 50px 20px 150px;
-
-  &:before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-color: #FFFFFF transparent transparent transparent;
-    border-width: 93px 270px 0 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+  font-size: 12px;
+  font-family: Roboto;
 }
 
 .form-item input[type=checkbox]:checked:disabled:before {
@@ -746,14 +721,6 @@ p.scripture {
     font-family: Poppins;
     font-size: 16px;
   }
-}
-
-span.upsell-price {
-  font-weight: bold;
-  color: #FF904b;
-}
-span.upsell-price .tax {
-  font-size: 0.7em;
 }
 
 .card .card-item.card-actions .form-actions {
@@ -2171,4 +2138,57 @@ form#views-exposed-form-job-board-page {
   .material-icons {
     background: $fmcg-chrome;
   }
+}
+
+//STYLING FOR UPSELL WRAPPERS - TO BE GIVEN OWN FILE //
+
+.upsell-wrapper, .outsourced-upsell-wrapper {
+  background-color: #211F21;
+  padding: 1px 24px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+
+  h3 {
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 600;
+    color: $fmcg-yellow;
+  }
+
+  label.option {
+    font-size: 16px;
+    color: $fmcg-chrome;
+    width: 100%;
+    display: block;
+  }
+
+  .form-item input[type=checkbox] {
+    display: inline-block;
+    float: left;
+    margin-top: 9px;
+    margin-right: 12px;
+    border-radius: 0px;
+  }
+}
+
+.upsell-wrapper::after {
+  content: "RECOMMENDED";
+  font-weight: 500;
+  background: rgb(170,131,36);
+  background: linear-gradient(90deg, rgba(170,131,36,1) 0%, rgba(247,239,122,1) 50%, rgba(161,136,70,1) 100%);
+  padding: 8px 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.outsourced-upsell-wrapper::after {
+  content: "£2,995+VAT";
+  font-weight: 500;
+  background: rgb(170,131,36);
+  background: linear-gradient(90deg, rgba(170,131,36,1) 0%, rgba(247,239,122,1) 50%, rgba(161,136,70,1) 100%);
+  padding: 8px 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
