@@ -242,15 +242,6 @@ fieldset#edit-individual-profile-consent-job-update--wrapper {
   }
 }
 
-tr {
-  border-bottom: 1px solid #FF904B;
-  background-color: #FFFFFF;
-
-  &:hover {
-    background-color: #FFFFFF;
-  }
-}
-
 div.paragraphs-dropbutton-wrapper {
   font-size: 80%;
 }
@@ -492,10 +483,15 @@ div#drawer-overlay {
 }
 
 #block-fmcg-material-local-actions nav .button.button-action {
-  margin-top: 0;
-  padding: .5em;
+  padding: 8px 12px;
+  margin: 12px 12px;
   min-height: initial;
+
+  &:hover {
+    padding: 6px 10px;
+  }
 }
+
 #block-fmcg-material-local-actions nav li {
   display: inline-block;
   list-style-type: none;
@@ -1465,13 +1461,12 @@ label.option {
 .tabs ul li {
   background-color: $fmcg-black;
   transform: skewX(-36deg);
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 14px;
+  padding-right: 14px;
   margin-left: 14px;
 
   &:hover {
-    border-left: 2px solid $fmcg-yellow;
-    border-right: 2px solid $fmcg-yellow;
+    background-color: $fmcg-yellow;
   }
 
   a {
@@ -1480,12 +1475,13 @@ label.option {
 }
 
 .tabs ul li a.is-active, ul.tabs li a.is-active {
-  color: $fmcg-yellow;
+  color: $fmcg-black;
+  background-color: $fmcg-yellow;
   border: none;
 }
 
 .tabs ul li a:hover, ul.tabs li a:hover {
-  color: #FDD22B;
+  color: $fmcg-black;
 }
 
 .form-item-account-type.btn {
@@ -2197,4 +2193,9 @@ form#views-exposed-form-job-board-page {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.tabs {
+  background-color: $fmcg-black;
+  border-bottom: 1px solid $fmcg-yellow;
 }

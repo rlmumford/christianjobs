@@ -197,10 +197,10 @@ a[href^="tel:"], a[href^="mailto:"] {
 article a[href^="#"]:not([href="#"]):not(.btn) {
   border-bottom: dotted 1px #FF904B;
 }
-article a[href^="#"]:not([href="#"]):not(.btn):not(.tabledrag-toggle-weight):hover {
+article a[href^="#"]:not([href="#"]):not(.btn):hover {
   border-color: #0aa2ff;
 }
-article a[href^="#"]:not([href="#"]):not(.btn):not(.tabledrag-toggle-weight):active {
+article a[href^="#"]:not([href="#"]):not(.btn):active {
   border-color: #0091ea;
 }
 
@@ -651,7 +651,7 @@ pre {
   box-shadow: none;
 }
 
-.z-level-1, .card, .content-card .card-holder, .ui-autocomplete.ui-widget.ui-widget-content, .block-search.search-persistent form .form-item.focused, .table-card.table-bordered, .table-card, .btn-raised, .btn.btn-raised, .btn-raised.tabledrag-toggle-weight, .pager .pager-item > a.btn-raised, .pager .pager-item > span.btn-raised, .navbar-fixed .navbar-shadow, #header {
+.z-level-1, .card, .content-card .card-holder, .ui-autocomplete.ui-widget.ui-widget-content, .block-search.search-persistent form .form-item.focused, .table-card.table-bordered, .table-card, .btn-raised, .btn.btn-raised, .pager .pager-item > a.btn-raised, .pager .pager-item > span.btn-raised, .navbar-fixed .navbar-shadow, #header {
   box-shadow: none;
 }
 
@@ -2152,11 +2152,11 @@ navbar overlaying header-content (for sliders)
   display: inline-block;
   line-height: 20px;
   padding: 14px 12px 12px 12px;
-  border-bottom: 2px solid transparent;
+  border-bottom: none;
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.54);
+  color: #DBE4EB;
   text-align: center;
 }
 
@@ -3307,7 +3307,7 @@ ul.messages-list {
   color: #FDD22B;
 }
 
-input.button, .btn, .pager .pager-item > a, .pager .pager-item > span, a.btn, span.btn, .tabledrag-toggle-weight, input[type=submit] {
+input.button, .btn, .pager .pager-item > a, .pager .pager-item > span, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, input[type=submit] {
   height: 36px;
   min-width: 88px;
   margin: 8px;
@@ -3328,14 +3328,25 @@ input.button, .btn, .pager .pager-item > a, .pager .pager-item > span, a.btn, sp
   transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: background-color;
 }
-input.button a.btn.pull-right, input.button .pager .pager-item > a.pull-right, .pager input.button .pager-item > a.pull-right, .btn a.btn.pull-right, .pager .pager-item > a a.btn.pull-right, .pager .pager-item > span a.btn.pull-right, .btn .pager .pager-item > a.pull-right, .pager .btn .pager-item > a.pull-right, .pager .pager-item > a .pager-item > a.pull-right, .pager .pager-item > span .pager-item > a.pull-right, a.btn a.btn.pull-right, span.btn a.btn.pull-right, .tabledrag-toggle-weight a.btn.pull-right, .tabledrag-toggle-weight .pager .pager-item > a.pull-right, .pager .tabledrag-toggle-weight .pager-item > a.pull-right, input[type=submit] a.btn.pull-right, input[type=submit] .pager .pager-item > a.pull-right, .pager input[type=submit] .pager-item > a.pull-right {
+input.button a.btn.pull-right, input.button .pager .pager-item > a.pull-right, .pager input.button .pager-item > a.pull-right, .btn a.btn.pull-right, .pager .pager-item > a a.btn.pull-right, .pager .pager-item > span a.btn.pull-right, .btn .pager .pager-item > a.pull-right, .pager .btn .pager-item > a.pull-right, .pager .pager-item > a .pager-item > a.pull-right, .pager .pager-item > span .pager-item > a.pull-right, a.btn a.btn.pull-right, span.btn a.btn.pull-right, .tabledrag-toggle-weight a.btn.pull-right, .tabledrag-toggle-weight .pager .pager-item > a.pull-right, .pager .tabledrag-toggle-weight .pager-item > a.pull-right, .button-action a.btn.pull-right, .button-action .pager .pager-item > a.pull-right, .pager .button-action .pager-item > a.pull-right, input[type=submit] a.btn.pull-right, input[type=submit] .pager .pager-item > a.pull-right, .pager input[type=submit] .pager-item > a.pull-right {
   margin: 8px 8px 0px 0px;
 }
-input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item > span:hover, a.btn:hover, span.btn:hover, .tabledrag-toggle-weight:hover, input[type=submit]:hover {
+input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item > span:hover, a.btn:hover, span.btn:hover, .tabledrag-toggle-weight:hover, .button-action:hover, input[type=submit]:hover {
   padding: 6px 14px;
   border: 2px solid #FDD22B;
   color: #FDD22B;
   background: #211F21;
+}
+
+.button-action {
+  background-color: #50C878;
+  color: #FFFFFF;
+}
+.button-action:hover {
+  background-color: #FFFFFF;
+  color: #50C878;
+  border-color: #50C878;
+  transition: none;
 }
 
 h1, h2, .h1, .h2 {
@@ -3775,44 +3786,6 @@ details.captcha > div {
   padding: 12px 0px;
 }
 
-.form-item label, .form-item h4 {
-  font-size: 20px;
-  font-weight: 600;
-  font-family: Poppins;
-  line-height: 2em;
-  color: #FDD22B;
-}
-.form-item label:focus-within, .form-item h4:focus-within {
-  color: #FDD22B;
-}
-.form-item input[type=text], .form-item input[type=url], .form-item input[type=date], .form-item input[type=number], .form-item input[type=email], .form-item input[type=password], .form-item input[type=search], .form-item input[type=tel], .form-item textarea, .form-item select {
-  display: block;
-  width: 100%;
-  max-width: 630px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: #FFFFFF;
-  display: inline-block;
-  margin-bottom: 12px;
-}
-.form-item input[type=text].select2-search__field, .form-item input[type=url].select2-search__field, .form-item input[type=date].select2-search__field, .form-item input[type=number].select2-search__field, .form-item input[type=email].select2-search__field, .form-item input[type=password].select2-search__field, .form-item input[type=search].select2-search__field, .form-item input[type=tel].select2-search__field, .form-item textarea.select2-search__field, .form-item select.select2-search__field {
-  border: none;
-  background: none;
-}
-.form-item input[type=text].select2-search__field:focus, .form-item input[type=url].select2-search__field:focus, .form-item input[type=date].select2-search__field:focus, .form-item input[type=number].select2-search__field:focus, .form-item input[type=email].select2-search__field:focus, .form-item input[type=password].select2-search__field:focus, .form-item input[type=search].select2-search__field:focus, .form-item input[type=tel].select2-search__field:focus, .form-item textarea.select2-search__field:focus, .form-item select.select2-search__field:focus {
-  border: none;
-}
-.form-item input[type=text]:focus, .form-item input[type=url]:focus, .form-item input[type=date]:focus, .form-item input[type=number]:focus, .form-item input[type=email]:focus, .form-item input[type=password]:focus, .form-item input[type=search]:focus, .form-item input[type=tel]:focus, .form-item textarea:focus, .form-item select:focus {
-  border: 2px solid #FDD22B;
-  padding-bottom: 7px;
-}
-.form-item input[type=text]:focus-within label, .form-item input[type=url]:focus-within label, .form-item input[type=date]:focus-within label, .form-item input[type=number]:focus-within label, .form-item input[type=email]:focus-within label, .form-item input[type=password]:focus-within label, .form-item input[type=search]:focus-within label, .form-item input[type=tel]:focus-within label, .form-item textarea:focus-within label, .form-item select:focus-within label {
-  color: #FF904B;
-}
-.form-item input[type=text][type=date], .form-item input[type=text][type=number], .form-item input[type=url][type=date], .form-item input[type=url][type=number], .form-item input[type=date][type=date], .form-item input[type=date][type=number], .form-item input[type=number][type=date], .form-item input[type=number][type=number], .form-item input[type=email][type=date], .form-item input[type=email][type=number], .form-item input[type=password][type=date], .form-item input[type=password][type=number], .form-item input[type=search][type=date], .form-item input[type=search][type=number], .form-item input[type=tel][type=date], .form-item input[type=tel][type=number], .form-item textarea[type=date], .form-item textarea[type=number], .form-item select[type=date], .form-item select[type=number] {
-  width: initial;
-  display: inline-block;
-}
 .form-wrapper h4 {
   font-size: 20px;
   font-weight: bold;
@@ -3837,14 +3810,6 @@ fieldset#edit-individual-profile-consent-job-update--wrapper {
   background-color: #F6F4F4;
   padding-left: 10px;
   padding-right: 10px;
-}
-
-tr {
-  border-bottom: 1px solid #FF904B;
-  background-color: #FFFFFF;
-}
-tr:hover {
-  background-color: #FFFFFF;
 }
 
 div.paragraphs-dropbutton-wrapper {
@@ -3889,104 +3854,6 @@ ul.select2-selection__rendered:focus-within {
 
 .proximity-filter-container .form-item input[type=text] {
   display: inline-block;
-}
-
-form {
-  max-width: 800px;
-  margin: auto;
-  margin-top: 30px;
-}
-form .form-item > * {
-  display: inline-block;
-}
-form .form-item > label {
-  width: 160px;
-}
-form .form-item label {
-  font-size: 16px;
-  font-weight: 400;
-  font-family: Poppins;
-  line-height: 2em;
-  color: #211F21;
-}
-form .form-item input[type=text] {
-  width: 100%;
-  max-width: 630px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: #FFFFFF;
-  display: inline-block;
-  margin-bottom: 12px;
-}
-form span.fieldset-legend {
-  font-size: 20px;
-  font-weight: 600;
-  z-index: 5;
-  background: #DBE4EB;
-  padding-right: 12px;
-}
-form legend {
-  position: relative;
-  width: 100%;
-  z-index: 5;
-  background: #DBE4EB;
-  margin-bottom: 12px;
-}
-form span.fieldset-legend:after {
-  position: absolute;
-  content: "";
-  height: 2px;
-  background-color: #9ABAD2;
-  width: 100%;
-  top: 50%;
-  left: 0;
-  right: 0;
-  z-index: -1;
-}
-form input.button, form input[type=submit] {
-  margin: 0px;
-}
-form .form-required {
-  vertical-align: top;
-}
-form .filter-wrapper {
-  display: none !important;
-}
-@media (min-width: 1136px) {
-  form .description {
-    padding-left: 163px;
-  }
-}
-
-.card-form-page nav.tabs {
-  max-width: 360px;
-  margin: 0 auto;
-}
-
-form.card-form {
-  max-width: 360px;
-}
-form.card-form .description {
-  font-size: 13px;
-  font-family: Roboto;
-  color: #DBE4EB;
-  padding-left: 0px;
-}
-form.card-form .form-item label {
-  font-size: 20px;
-  font-weight: 600;
-  font-family: Poppins;
-  line-height: 2em;
-  color: #FDD22B;
-}
-form.card-form .form-item > label {
-  width: auto;
-}
-form.card-form input.button, form.card-form input[type=submit] {
-  margin: 8px 0px 24px 24px;
-}
-form.card-form .form-item {
-  margin-bottom: 0px;
 }
 
 summary {
@@ -4189,9 +4056,12 @@ div#drawer-overlay {
 }
 
 #block-fmcg-material-local-actions nav .button.button-action {
-  margin-top: 0;
-  padding: 0.5em;
+  padding: 8px 12px;
+  margin: 12px 12px;
   min-height: initial;
+}
+#block-fmcg-material-local-actions nav .button.button-action:hover {
+  padding: 6px 10px;
 }
 
 #block-fmcg-material-local-actions nav li {
@@ -5143,25 +5013,25 @@ strong {
 .tabs ul li {
   background-color: #211F21;
   transform: skewX(-36deg);
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 14px;
+  padding-right: 14px;
   margin-left: 14px;
 }
 .tabs ul li:hover {
-  border-left: 2px solid #FDD22B;
-  border-right: 2px solid #FDD22B;
+  background-color: #FDD22B;
 }
 .tabs ul li a {
   transform: skewX(36deg);
 }
 
 .tabs ul li a.is-active, ul.tabs li a.is-active {
-  color: #FDD22B;
+  color: #211F21;
+  background-color: #FDD22B;
   border: none;
 }
 
 .tabs ul li a:hover, ul.tabs li a:hover {
-  color: #FDD22B;
+  color: #211F21;
 }
 
 .form-item-account-type.btn, .pager .pager-item > a.form-item-account-type, .pager .pager-item > span.form-item-account-type {
@@ -5663,6 +5533,7 @@ form#views-exposed-form-job-board-page {
   height: 100%;
   background-color: #FDD22B;
 }
+
 .messages-wrapper {
   max-width: 800px;
   margin: auto;
@@ -5798,4 +5669,10 @@ form#views-exposed-form-job-board-page {
   right: 0;
   top: 0;
 }
+
+.tabs {
+  background-color: #211F21;
+  border-bottom: 1px solid #FDD22B;
+}
+
 /*# sourceMappingURL=styles.css.map */

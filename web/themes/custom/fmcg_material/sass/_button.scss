@@ -1,4 +1,4 @@
-input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, input[type="submit"] {
+input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, input[type="submit"] {
   height: 36px;
   min-width: 88px;
   margin: 8px;
@@ -28,5 +28,17 @@ input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, input[type="submi
     border: 2px solid $fmcg-yellow;
     color: $fmcg-yellow;
     background: $fmcg-black;
+  }
+}
+
+.button-action {
+  background-color: #50C878;
+  color: #FFFFFF;
+
+  &:hover {
+    background-color: #FFFFFF;
+    color: #50C878;
+    border-color: #50C878;
+    transition: none;
   }
 }
