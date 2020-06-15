@@ -1,0 +1,29 @@
+uuid: 0ce5f108-e757-48ff-8588-d673a80ac420
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - system
+  theme:
+    - fmcg_material
+id: job_board__recruiter_dashboard_header
+theme: fmcg_material
+region: content
+weight: 0
+provider: null
+plugin: 'entity_view:organization'
+settings:
+  id: 'entity_view:organization'
+  label: 'Recruiter Dashboard Header'
+  provider: ctools
+  label_display: '0'
+  view_mode: dashboard_header
+  context_mapping:
+    entity: '@entity_route_context.entity_route_context:canonical_entity:organization'
+visibility:
+  request_path:
+    id: request_path
+    pages: '/recruiter/*'
+    negate: false
+    context_mapping: {  }

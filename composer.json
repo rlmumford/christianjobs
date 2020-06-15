@@ -68,6 +68,7 @@
         "drupal/elasticsearch_aws_connector": "6.x-dev",
         "drupal/elasticsearch_connector": "6.x",
         "drupal/email_registration": "^1.0@RC",
+        "drupal/entity_route_context": "^1.1",
         "drupal/eu_cookie_compliance": "^1.2",
         "drupal/facets": "^1.4",
         "drupal/flag": "4.x-dev",

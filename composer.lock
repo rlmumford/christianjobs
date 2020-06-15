@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57f4c0a77aa3af02a981e2a4e90a2615",
+    "content-hash": "b27f60b8a65c340ea9bf5938422335ad",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4527,6 +4527,55 @@
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
                 "source": "https://git.drupalcode.org/project/entity_reference_revisions"
+            }
+        },
+        {
+            "name": "drupal/entity_route_context",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_route_context.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_route_context-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "fbb4113fed7852d507c812436d708ad109494ae3"
+            },
+            "require": {
+                "drupal/core": "^8.6",
+                "php": "^7.1"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1590038647",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "dpi",
+                    "homepage": "https://www.drupal.org/user/81431"
+                }
+            ],
+            "description": "Entity route context.",
+            "homepage": "https://www.drupal.org/project/entity_route_context",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/entity_route_context",
+                "issues": "https://www.drupal.org/project/issues/entity_route_context"
             }
         },
         {
@@ -10252,12 +10301,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "72d5b88cc882284704ec3a3dc2c29852527e726e"
+                "reference": "2e5814301dd0f1ce44276ce66b7f91cafb196545"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/72d5b88cc882284704ec3a3dc2c29852527e726e",
-                "reference": "72d5b88cc882284704ec3a3dc2c29852527e726e",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/2e5814301dd0f1ce44276ce66b7f91cafb196545",
+                "reference": "2e5814301dd0f1ce44276ce66b7f91cafb196545",
                 "shasum": ""
             },
             "require": {
@@ -10323,7 +10372,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2020-06-15T09:24:06+00:00"
+            "time": "2020-06-15T12:53:58+00:00"
         },
         {
             "name": "ruflin/elastica",

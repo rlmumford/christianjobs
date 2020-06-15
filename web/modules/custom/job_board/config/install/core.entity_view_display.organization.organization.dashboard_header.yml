@@ -1,0 +1,59 @@
+uuid: b0b1effa-7e4f-4426-aab7-d0d9ad58ab18
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.organization.dashboard_header
+    - field.field.organization.organization.categories
+    - field.field.organization.organization.charity_number
+    - field.field.organization.organization.description_summary
+    - field.field.organization.organization.is_charity
+    - field.field.organization.organization.on_directory
+    - field.field.organization.organization.type
+  module:
+    - field_tools
+    - image
+    - layout_builder
+    - organization
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: organization.organization.dashboard_header
+targetEntityType: organization
+bundle: organization
+mode: dashboard_header
+content:
+  logo:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  name:
+    type: string_tag
+    label: hidden
+    region: content
+    weight: 1
+    settings:
+      tag: h2
+      class: ''
+    third_party_settings: {  }
+hidden:
+  categories: true
+  charity_number: true
+  description: true
+  description_summary: true
+  email: true
+  headquarters: true
+  is_charity: true
+  legal_name: true
+  on_directory: true
+  places: true
+  search_api_excerpt: true
+  tel: true
+  type: true
+  website: true

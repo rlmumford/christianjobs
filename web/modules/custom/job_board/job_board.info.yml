@@ -24,7 +24,9 @@ dependencies:
 - commerce:commerce_payment
 - commerce:commerce_product
 - mini_layouts:mini_layouts
+- rlmumford:rlm_config_tools
 - rlmumford:organization_user
 - rlmumford:organization_commerce
 - drupal:editor
 - drupal:ckeditor
+- entity_route_context:entity_route_context
