@@ -1,0 +1,10 @@
+uuid: 8eb7024f-11b2-4ebf-8760-0c6bf6794cdf
+langcode: en
+status: true
+dependencies:
+  module:
+    - organization
+id: organization.dashboard_header
+label: 'Dashboard Header'
+targetEntityType: organization
+cache: true
