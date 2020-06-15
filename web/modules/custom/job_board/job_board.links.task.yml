@@ -6,3 +6,20 @@ directory.map:
   title: 'Map'
   route_name: view.directory_map.page
   base_route: view.employer_directory.page
+
+recruiter.view:
+  title: 'View'
+  route_name: job_board.employer
+  base_route: job_board.employer
+recruiter.edit:
+  title: 'Edit'
+  route_name: job_board.employer_edit
+  base_route: job_board.employer
+recruiter.team:
+  title: 'Team'
+  route_name: job_board.recruiter.team
+  base_route: job_board.employer
+recruiter.jobs:
+  title: 'Jobs'
+  route_name: view.job_board__recruiter_jobs.page
+  base_route: job_board.employer

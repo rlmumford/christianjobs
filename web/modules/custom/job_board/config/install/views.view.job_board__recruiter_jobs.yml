@@ -62,6 +62,49 @@ display:
             next: ››
       style:
         type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            id: id
+            label: label
+            owner: owner
+            operations: operations
+          info:
+            id:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            label:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            owner:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            operations:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: '-1'
+          empty_table: true
       row:
         type: fields
       fields:
@@ -316,7 +359,20 @@ display:
       title: Jobs
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No Jobs'
+            format: basic_html
+          plugin_id: text
       relationships: {  }
       arguments:
         organization:
@@ -376,9 +432,9 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: 'recruiter/{organization}/jobs'
+      path: recruiter/%organization/jobs
       menu:
-        type: 'default tab'
+        type: none
         title: Jobs
         description: ''
         expanded: false

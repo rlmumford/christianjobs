@@ -7687,12 +7687,12 @@
             "version": "0.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/njh/easyrdf.git",
+                "url": "https://github.com/easyrdf/easyrdf.git",
                 "reference": "acd09dfe0555fbcfa254291e433c45fdd4652566"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/njh/easyrdf/zipball/acd09dfe0555fbcfa254291e433c45fdd4652566",
+                "url": "https://api.github.com/repos/easyrdf/easyrdf/zipball/acd09dfe0555fbcfa254291e433c45fdd4652566",
                 "reference": "acd09dfe0555fbcfa254291e433c45fdd4652566",
                 "shasum": ""
             },
@@ -10252,12 +10252,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "9a25b56e5a8cf54a4b25fafd3d0b0bf8facf47bf"
+                "reference": "4d0a7ef74eba8b7dab55281606110741cd0822fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/9a25b56e5a8cf54a4b25fafd3d0b0bf8facf47bf",
-                "reference": "9a25b56e5a8cf54a4b25fafd3d0b0bf8facf47bf",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/4d0a7ef74eba8b7dab55281606110741cd0822fd",
+                "reference": "4d0a7ef74eba8b7dab55281606110741cd0822fd",
                 "shasum": ""
             },
             "require": {
@@ -10323,7 +10323,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2020-05-18T13:44:13+00:00"
+            "time": "2020-06-05T11:14:32+00:00"
         },
         {
             "name": "ruflin/elastica",

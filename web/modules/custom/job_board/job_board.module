@@ -480,24 +480,6 @@ function job_board_user_register_form_submit_redirect(array $form, FormStateInte
 }
 
 /**
- * Implements hook_form_alter().
- */
-function job_board_form_user_employer_details_form_alter(array &$form, FormStateInterface $form_state) {
-  if (\Drupal::request()->cookies->get('Drupal_visitor_jobPostRegister')) {
-    $form['actions']['submit']['#value'] = new TranslatableMarkup('Save & Continue');
-    $form['actions']['submit']['#submit'][] = 'job_board_user_employer_details_form_submit_redirect';
-  }
-}
-
-/**
- * Redirect the employer details form to the job post form in correct circumstances.
- */
-function job_board_user_employer_details_form_submit_redirect(array $form, FormStateInterface $form_state) {
-  $form_state->setRedirect('job_board.post');
-  user_cookie_delete('jobPostRegister');
-}
-
-/**
  * Implements hook_organization_presave().
  *
  * @param \Drupal\organization\Entity\Organization $organization
@@ -827,35 +809,5 @@ function job_board_views_post_execute(ViewExecutable $view) {
 function job_board_preprocess_block(&$variables) {
   if ($variables['plugin_id'] === 'mini_layout:employer_directory__filters') {
     $variables['#attached']['library'][] = 'job_board/collapsible-filters';
-  }
-  else if ($variables['plugin_id'] === 'entity_field:profile:employer_name') {
-    if (!empty($variables['content']['field'][0]['#tag']) && $variables['content']['field'][0]['#tag'] == 'h2') {
-      $element = &$variables['content']['field'][0];
-      $element['content'] = [
-        '#type' => 'link',
-        '#title' => $element['#value'],
-        '#url' => Url::fromRoute('job_board.employer', [
-          'user' => $variables['content']['field']['#object']->getOwnerId(),
-        ])
-      ];
-      unset($element['#value']);
-
-      $variables['elements']['content'] = $variables['content'];
-    }
-  }
-  else if ($variables['plugin_id'] === 'field_block:profile:employer:employer_name') {
-    if (!empty($variables['content'][0]['#tag']) && $variables['content'][0]['#tag'] == 'h2') {
-      $element = &$variables['content'][0];
-      $element['content'] = [
-        '#type' => 'link',
-        '#title' => $element['#value'],
-        '#url' => Url::fromRoute('job_board.employer', [
-          'user' => $variables['content']['#object']->getOwnerId(),
-        ])
-      ];
-      unset($element['#value']);
-
-      $variables['elements']['content'] = $variables['content'];
-    }
   }
 }
