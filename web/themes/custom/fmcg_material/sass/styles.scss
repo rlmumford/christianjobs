@@ -1052,10 +1052,6 @@ iframe {
   visibility: visible;
 }
 
-.field--name-description-summary .filter-wrapper {
-  display: none;
-}
-
 /* Location Filter */
 div.proximity-filter-container {
   div.distance-container {
@@ -2202,14 +2198,23 @@ form#views-exposed-form-job-board-page {
   border-bottom: 1px solid $fmcg-yellow;
 }
 
+li.tab.is-active {
+  background-color: #FDD22B;
+}
+
 thead {
   background-color: $fmcg-black;
-
-  &:hover: none;
+  border-bottom: 1px solid $fmcg-yellow;
 
   th {
     font-weight: 400;
     color: $fmcg-chrome;
     text-align: left;
+  }
+}
+
+.field-name-name {
+  h2 {
+    color: $fmcg-black;
   }
 }

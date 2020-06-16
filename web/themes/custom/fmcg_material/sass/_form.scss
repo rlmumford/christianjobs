@@ -11,6 +11,10 @@ form {
     word-wrap: normal;
   }
 
+  .field--name-description-summary .filter-wrapper {
+    display: none;
+  }
+
   div.form-item, div.field--widget-datetime-default {
     width: 100%;
 
