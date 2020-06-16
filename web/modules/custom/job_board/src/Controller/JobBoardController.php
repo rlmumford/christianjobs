@@ -8,6 +8,8 @@ use Drupal\commerce_cart\CartManagerInterface;
 use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\commerce_price\Price;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Ajax\AjaxHelperTrait;
+use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\TransactionNameNonUniqueException;
 use Drupal\Core\Datetime\DrupalDateTime;
@@ -17,6 +19,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\job_board\JobBoardJobRole;
 use Drupal\job_role\Entity\JobRoleInterface;
 use Drupal\organization\Entity\Organization;
 use Drupal\organization_user\UserOrganizationResolver;
@@ -27,6 +30,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class JobBoardController extends ControllerBase {
+  use AjaxHelperTrait;
 
   /**
    * @var \Drupal\organization_user\UserOrganizationResolver
@@ -80,6 +84,27 @@ class JobBoardController extends ControllerBase {
     $this->cartManager = $cart_manager;
   }
 
+
+  public function logEvent(Request $request, JobRoleInterface $job_role, string $event = 'view') {
+    $log_storage = $this->entityTypeManager->getStorage('job_board_job_log');
+    $log_storage->create([
+      'user' => $this->currentUser()->id(),
+      'host' => $request->getClientIp(),
+      'job' => $job_role->id(),
+      'event' => $event,
+    ])->save();
+
+
+    if (!$this->isAjax()) {
+      return new RedirectResponse(
+        Url::fromRoute('entity.job_role.canonical', ['job_role' => $job_role->id()])
+      );
+    }
+    else {
+      return new AjaxResponse();
+    }
+  }
+
   /**
    * Repost job.
    *
@@ -95,6 +120,7 @@ class JobBoardController extends ControllerBase {
       if (!in_array($field_name, [
         'id', 'uuid', 'vid', 'publish_date', 'end_date', 'initial_duration',
         'paid', 'paid_to_date', 'path', 'boost_start_date', 'boost_end_date',
+        'job_credit'
       ])) {
         $repost_job->set($field_name, $item_list->getValue());
       }

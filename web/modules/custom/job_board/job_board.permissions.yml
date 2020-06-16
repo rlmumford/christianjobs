@@ -19,3 +19,5 @@ administer job extensions:
   title: 'Administer Job Extensions'
 administer job credits:
   title: 'Administer Job Credits'
+administer job logs:
+  title: 'Administer Job Logs'

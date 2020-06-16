@@ -41,6 +41,13 @@ job_board.boost:
   requirements:
     _entity_access: 'job_role.boost'
 
+job_board.log.view:
+  path: '/job/{job_role}/log/view'
+  defaults:
+    _controller: '\Drupal\job_board\Controller\JobBoardController::logEvent'
+    _title: 'Log'
+  requirements:
+    _access: 'TRUE'
 job_board.extend:
   path: '/job/{job_role}/extend'
   defaults:

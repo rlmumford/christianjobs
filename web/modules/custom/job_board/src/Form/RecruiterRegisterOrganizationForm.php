@@ -8,6 +8,7 @@ use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\organization\Plugin\Field\FieldType\OrganizationMetadataReferenceItem;
 
 class RecruiterRegisterOrganizationForm extends ContentEntityForm {
 
@@ -53,6 +54,29 @@ class RecruiterRegisterOrganizationForm extends ContentEntityForm {
     // @todo: Add listener to headquarters using ajax.
 
     return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function save(array $form, FormStateInterface $form_state) {
+    $return = parent::save($form, $form_state);
+
+    // Set the organization on the current user.
+    $user = $this->entityTypeManager->getStorage('user')
+      ->load($this->currentUser()->id());
+    $user->organization[] = [
+      'target_id' => $this->entity->id(),
+      'status' => OrganizationMetadataReferenceItem::STATUS_ACTIVE,
+      'role' => OrganizationMetadataReferenceItem::ROLE_OWNER,
+    ];
+    $user->save();
+
+    $form_state->setRedirect('job_board.employer', [
+      'organization' => $this->entity->id(),
+    ]);
+
+    return $return;
   }
 
   /**

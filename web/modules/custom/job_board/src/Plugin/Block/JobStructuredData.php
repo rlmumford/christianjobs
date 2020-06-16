@@ -9,6 +9,7 @@
 namespace Drupal\job_board\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\job_role\Plugin\Field\FieldType\SalaryItem;
 use Drupal\profile\ProfileStorageInterface;
 
 /**
@@ -57,9 +58,9 @@ class JobStructuredData extends BlockBase {
         '@type' => 'Place',
         'address' => [
           '@type' => 'PostalAddress',
-          'addressCountry' => $job->location->country_code,
-          'addressRegion' => $job->location->administrative_area,
-          'addressLocality' => $job->location->locality,
+          'addressCountry' => $job->locations->entity->address->country_code,
+          'addressRegion' => $job->locations->entity->address->administrative_area,
+          'addressLocality' => $job->locations->entity->address->locality,
         ],
       ],
     ];
@@ -72,47 +73,39 @@ class JobStructuredData extends BlockBase {
     }
 
     // Hiring organisation
-    if (!$job->organisation->isEmpty()) {
-      /** @var ProfileStorageInterface $profile_storage */
-      $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
-      $profile = $profile_storage->loadDefaultByUser($job->organisation->entity, 'employer');
-
-      if ($profile) {
-        if (!$profile->logo->isEmpty()) {
-          $structured_data['image'] = $profile->logo->entity->url();
+    if (!$job->organization->isEmpty()) {
+      $org = $job->organization->entity;
+        if (!$org->logo->isEmpty()) {
+          $structured_data['image'] = $org->logo->entity->url();
         }
         $organisation = array_filter([
           '@type' => 'Organization',
-          'name' => $profile->employer_name->value,
-          'email' => $profile->email->value,
-          'telephone' => $profile->tel->value,
-          'logo' => $profile->logo->isEmpty() ? NULL : $profile->logo->entity->url(),
+          'name' => $org->name->value,
+          'email' => $org->email->value,
+          'telephone' => $org->tel->value,
+          'logo' => $org->logo->isEmpty() ? NULL : $org->logo->entity->url(),
         ]);
-        if (!$profile->address->isEmpty()) {
+        if (!$org->headquarters->isEmpty() && !$org->headquarters->entity->address->isEmpty()) {
+          $hq = $org->headquarters->entity;
+
           $organisation['address'] = array_filter([
             '@type' => 'PostalAddress',
-            'addressCountry' => $profile->address->country_code,
-            'streetAddress' => $profile->address->address_line1,
-            'addressLocality' => $profile->address->address_line2,
-            'addressRegion' => $profile->address->administrative_area,
-            'postalCode' => $profile->address->postal_code,
+            'addressCountry' => $hq->address->country_code,
+            'streetAddress' => $hq->address->address_line1,
+            'addressLocality' => $hq->address->address_line2,
+            'addressRegion' => $hq->address->administrative_area,
+            'postalCode' => $hq->address->postal_code,
           ]);
         }
         $structured_data['hiringOrganization'] = $organisation;
-      }
     }
 
     // Compensation
-    if (!$job->compensation->isEmpty() || !$job->hours->isEmpty()) {
-      $key = $job->compensation->value;
-      if (!$key || $key == 'salaried' || $key == 'pro_rate') {
-        $key = !$job->hours->isEmpty() ? $job->hours->value : 'other';
-      }
-
+    if (!$job->hours->isEmpty()) {
+      $key = $job->hours->value;
       $compensation_map = [
         'part_time' => 'PART_TIME',
         'full_time' => 'FULL_TIME',
-        'volunteer' => 'VOLUNTEER',
         'zero_hours' => 'TEMPORARY',
         'flexible' => 'PART_TIME',
         'apprentice' => 'OTHER',
@@ -122,25 +115,32 @@ class JobStructuredData extends BlockBase {
     }
 
     // Base Salary data.
-    if (!$job->salary->isEmpty()) {
-      $min = $job->salary->from;
-      $max = $job->salary->to;
+    if (!$job->pay->isEmpty()) {
+      $pay = $job->pay->get(0);
+
+      $unit_map = [
+        SalaryItem::TYPE_PA => 'YEAR',
+        SalaryItem::TYPE_PM => 'MONTH',
+        SalaryItem::TYPE_PW => 'WEEK',
+        SalaryItem::TYPE_PD => 'DAY',
+        SalaryItem::TYPE_PH => 'HOUR',
+      ];
 
       $base_salary = [
         '@type' => 'MonetaryAmount',
-        'currency' => 'GBP',
+        'currency' => $pay->currency_code,
         'value' => [
           '@type' => 'QuantitativeValue',
-          'unitText' => 'YEAR',
+          'unitText' => $unit_map[$pay->type],
         ]
       ];
 
-      if ($min == $max || empty($max)) {
-        $base_salary['value']['value'] = $min;
+      if ($pay->min == $pay->max || empty($pay->max)) {
+        $base_salary['value']['value'] = $pay->min;
       }
       else {
-        $base_salary['value']['minValue'] = $min;
-        $base_salary['value']['maxValue'] = $max;
+        $base_salary['value']['minValue'] = $pay->min;
+        $base_salary['value']['maxValue'] = $pay->max;
       }
 
       $structured_data['baseSalary'] = $base_salary;
