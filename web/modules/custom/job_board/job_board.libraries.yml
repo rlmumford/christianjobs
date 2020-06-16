@@ -3,6 +3,12 @@ pricing:
   css:
     component:
       css/pricing.css: {}
+show-application-info:
+  version: 1.x
+  js:
+    js/show-application-info.js: {}
+  dependencies:
+    - core/drupal
 organization-duplicates:
   version: 1.x
   js:
