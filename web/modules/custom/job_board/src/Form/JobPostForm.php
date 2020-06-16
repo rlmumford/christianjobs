@@ -55,7 +55,7 @@ class JobPostForm extends JobForm {
         $job_board_pricing->get('job_30D'),
         'GBP'
       );
-      $upsell_price = $price_60d->subtract($price_60d);
+      $upsell_price = $price_60d->subtract($price_30d);
 
       $form['duration_upsell'] = [
         '#weight' => 49,
