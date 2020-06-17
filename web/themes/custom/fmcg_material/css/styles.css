@@ -1422,7 +1422,7 @@ tr.selected:hover {
 }
 .form-item label.option, .form-item.focused label.option {
   font-size: 16px;
-  color: #DBE4EB;
+  color: #211F21;
 }
 .form-item label .form-required {
   color: #f44336;
@@ -1479,7 +1479,7 @@ tr.selected:hover {
 }
 .form-item input[type=radio]:checked:before {
   content: "radio_button_checked";
-  color: #FF904B;
+  color: #FDD22B;
 }
 .form-item.form-type-file label {
   display: block;
@@ -4058,7 +4058,7 @@ div#drawer-overlay {
 
 #block-fmcg-material-local-actions nav .button.button-action {
   padding: 8px 12px;
-  margin: 12px 12px;
+  margin: 12px 0px 0px 12px;
   min-height: initial;
 }
 #block-fmcg-material-local-actions nav .button.button-action:hover {
@@ -5360,14 +5360,66 @@ form#views-exposed-form-job-board-page {
   }
 }
 .layout-checkout-form {
+  background: #211F21;
   box-shadow: none;
-  padding-left: 0;
-  padding-right: 0;
-  padding-bottom: 10px;
-  border-bottom: 0;
+}
+.layout-checkout-form .checkout-pane {
+  padding-right: 24px;
+}
+.layout-checkout-form .col-md-8, .layout-checkout-form .col-xs-12 {
+  padding: 0px;
+}
+.layout-checkout-form .form-item input[type=text] {
+  border: 1px solid #FDD22B;
+}
+.layout-checkout-form div.form-item label {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Poppins;
+  line-height: 2em;
+  color: #DBE4EB;
+}
+.layout-checkout-form .form-item.form-type-select:after {
+  content: "arrow_drop_down";
+  margin-left: -24px;
+  margin-top: 8px;
+  color: rgba(0, 0, 0, 0.54);
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  top: 26px;
+}
+.layout-checkout-form span.fieldset-legend {
+  background-color: #211F21;
+}
+.layout-checkout-form span.fieldset-legend::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-color: #FFFFFF;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+.layout-checkout-form legend {
+  position: relative;
+  width: 100%;
+  z-index: 5;
+  background: none;
+  margin-bottom: 12px;
 }
 .layout-checkout-form label.option {
   color: #FFFFFF;
+}
+.layout-checkout-form .fieldset-wrapper {
+  color: #DBE4EB;
+  font-family: Roboto;
+  font-size: 13px;
+}
+.layout-checkout-form div.form-item > label {
+  width: 100%;
 }
 .layout-checkout-form fieldset.payment-method legend {
   display: none;
@@ -5384,12 +5436,10 @@ form#views-exposed-form-job-board-page {
   border-radius: 2px;
 }
 .layout-checkout-form .fieldset-legend {
-  color: #2A556B;
-  border-bottom: 1px solid #FF9049;
-  font-family: Montserrat;
-  font-weight: bold;
-  font-size: 20px;
-  text-transform: uppercase;
+  color: #FDD22B;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 22px;
 }
 .layout-checkout-form .form-item input[type=radio]:checked:before {
   content: "radio_button_checked";
@@ -5420,8 +5470,8 @@ form#views-exposed-form-job-board-page {
   display: table-row;
 }
 .checkout-pane-order-summary .order-total-line-label {
-  font-family: Montserrat;
-  color: #FF9049;
+  font-family: Poppins;
+  color: #FDD22B;
 }
 .checkout-pane-order-summary .order-total-line-value {
   color: #FFFFFF;
@@ -5430,7 +5480,7 @@ form#views-exposed-form-job-board-page {
 
 .checkout-pane-coupon-redemption {
   background-color: #FFFFFF;
-  border: 1px solid #FF9049;
+  border: 1px solid #FDD22B;
   padding: 12px 24px 18px 24px;
   margin-top: 24px;
 }
@@ -5439,14 +5489,12 @@ form#views-exposed-form-job-board-page {
   color: #2A556B;
 }
 .checkout-pane-coupon-redemption .button {
-  background-color: #FF9049;
+  background-color: #FDD22B;
   width: min-content;
   height: min-content;
 }
 
 .commerce-checkout-flow .divider-top input.button {
-  margin-left: 36px;
-  margin-top: -120px;
   height: min-content;
 }
 
@@ -5688,6 +5736,11 @@ thead th {
 
 .field-name-name h2 {
   color: #211F21;
+}
+
+.form-type-radio label.option {
+  width: 100%;
+  display: block;
 }
 
 /*# sourceMappingURL=styles.css.map */
