@@ -1444,6 +1444,10 @@ function job_board_update_8104() {
 }
 
 function job_board_update_8105() {
+  /** @var \Drupal\Core\Extension\ModuleInstallerInterface $module_installer */
+  $module_installer = \Drupal::service('module_installer');
+  $module_installer->install(['name']);
+
   rlm_config_tools_install_module_config('job_board', [
     'field.storage.user.real_name',
     'field.field.user.user.real_name',
