@@ -5,8 +5,6 @@ dependencies:
   config:
     - search_api.index.job_index
     - system.menu.main
-    - taxonomy.vocabulary.industries
-    - taxonomy.vocabulary.keywords
   module:
     - search_api
 id: job_board__index
@@ -67,6 +65,10 @@ display:
         type: default
       row:
         type: search_api
+        options:
+          view_modes:
+            'entity:job_role':
+              job_role: search_re
       fields:
         category:
           table: search_api_index_job_index
@@ -141,13 +143,109 @@ display:
             multi_separator: ', '
             display_methods: {  }
       filters:
-        end_date:
-          id: end_date
+        search_api_fulltext:
+          id: search_api_fulltext
           table: search_api_index_job_index
-          field: end_date
+          field: search_api_fulltext
           relationship: none
           group_type: group
-          admin_label: 'Job hasn''t ended yet'
+          admin_label: Search
+          operator: and
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: search_api_fulltext_op
+            label: Search
+            description: ''
+            use_operator: false
+            operator: search_api_fulltext_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: search
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              team_manager: '0'
+              staff: '0'
+              bank_transfer_payer: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          parse_mode: terms
+          min_length: null
+          fields: {  }
+          plugin_id: search_api_fulltext
+        max:
+          id: max
+          table: search_api_index_job_index
+          field: max
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '>='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: max_op
+            label: Salary
+            description: ''
+            use_operator: false
+            operator: max_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: salary_min
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              team_manager: '0'
+              staff: '0'
+              bank_transfer_payer: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_numeric
+        publish_date:
+          id: publish_date
+          table: search_api_index_job_index
+          field: publish_date
+          relationship: none
+          group_type: group
+          admin_label: ''
           operator: '<='
           value:
             min: ''
@@ -157,22 +255,22 @@ display:
           group: 1
           exposed: false
           expose:
-            operator_id: end_date_op
-            label: 'End Date'
-            description: null
+            operator_id: ''
+            label: ''
+            description: ''
             use_operator: false
-            operator: end_date_op
+            operator: ''
             operator_limit_selection: false
             operator_list: {  }
-            identifier: end_date
+            identifier: ''
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-            placeholder: null
-            min_placeholder: null
-            max_placeholder: null
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -186,13 +284,13 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
-        publish_date:
-          id: publish_date
+        end_date:
+          id: end_date
           table: search_api_index_job_index
-          field: publish_date
+          field: end_date
           relationship: none
           group_type: group
-          admin_label: 'Job has been published'
+          admin_label: ''
           operator: '>='
           value:
             min: ''
@@ -231,128 +329,10 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
-        category:
-          id: category
+        currency_code:
+          id: currency_code
           table: search_api_index_job_index
-          field: category
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: category_op
-            label: Category
-            description: ''
-            use_operator: false
-            operator: category_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: category
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              team_manager: '0'
-              staff: '0'
-              bank_transfer_payer: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          handler: 'default:taxonomy_term'
-          handler_settings:
-            target_bundles:
-              industries: industries
-            sort:
-              field: name
-              direction: asc
-            auto_create: false
-            auto_create_bundle: ''
-          widget: select
-          list_max: 50
-          hierarchy: false
-          error_message: true
-          plugin_id: search_api_term
-          handler_submit: 'Change handler'
-        keywords:
-          id: keywords
-          table: search_api_index_job_index
-          field: keywords
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: keywords_op
-            label: Keywords
-            description: ''
-            use_operator: false
-            operator: keywords_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: keywords
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              team_manager: '0'
-              staff: '0'
-              bank_transfer_payer: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          handler: 'default:taxonomy_term'
-          handler_settings:
-            target_bundles:
-              keywords: keywords
-            sort:
-              field: name
-              direction: asc
-            auto_create: false
-            auto_create_bundle: ''
-          widget: autocomplete
-          list_max: null
-          hierarchy: false
-          error_message: true
-          plugin_id: search_api_term
-          handler_submit: 'Change handler'
-        organization:
-          id: organization
-          table: search_api_index_job_index
-          field: organization
+          field: currency_code
           relationship: none
           group_type: group
           admin_label: ''
@@ -360,18 +340,18 @@ display:
           value:
             min: ''
             max: ''
-            value: ''
+            value: GBP
           group: 1
           exposed: true
           expose:
-            operator_id: organization_op
-            label: Organization
+            operator_id: currency_code_op
+            label: Currency
             description: ''
             use_operator: false
-            operator: organization_op
+            operator: currency_code_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: organization
+            identifier: salary_currency
             required: false
             remember: false
             multiple: false
@@ -397,103 +377,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_numeric
-        max:
-          id: max
-          table: search_api_index_job_index
-          field: max
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '>='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: max_op
-            label: 'Minimum Salary'
-            description: ''
-            use_operator: false
-            operator: max_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: max
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              team_manager: '0'
-              staff: '0'
-              bank_transfer_payer: '0'
-            placeholder: ''
-            min_placeholder: ''
-            max_placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: search_api_numeric
-        search_api_fulltext:
-          id: search_api_fulltext
-          table: search_api_index_job_index
-          field: search_api_fulltext
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: and
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: search_api_fulltext_op
-            label: Search
-            description: ''
-            use_operator: false
-            operator: search_api_fulltext_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: search_api_fulltext
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              team_manager: '0'
-              staff: '0'
-              bank_transfer_payer: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields: {  }
-          plugin_id: search_api_fulltext
+          plugin_id: search_api_string
       sorts:
         search_api_relevance:
           id: search_api_relevance
@@ -521,7 +405,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
       tags:
         - 'config:search_api.index.job_index'
   page:
@@ -543,6 +426,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
       tags:
         - 'config:search_api.index.job_index'

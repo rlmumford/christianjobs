@@ -25,6 +25,14 @@ field_settings:
     dependencies:
       module:
         - job_board
+  currency_code:
+    label: 'Salary » Currency code'
+    datasource_id: 'entity:job_role'
+    property_path: 'pay:currency_code'
+    type: string
+    dependencies:
+      module:
+        - job_role
   description:
     label: 'Full Job Description'
     datasource_id: 'entity:job_role'
@@ -136,6 +144,7 @@ processor_settings:
   ignorecase:
     all_fields: true
     fields:
+      - currency_code
       - description
       - description_summary
       - label

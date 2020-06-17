@@ -1455,6 +1455,9 @@ function job_board_update_8106() {
   rlm_config_tools_install_module_config('job_board', [
     'core.entity_view_display.job_role.job_role.full',
     'views.view.job_board__recruiter_jobs',
+    'core.entity_view_display.job_role.job_role.search_re',
+    'search_api.index.job_index',
+    'views.view.job_board__index',
   ]);
 }
 
