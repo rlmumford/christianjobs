@@ -31,7 +31,7 @@ class RecruiterApproveMemberRequestForm extends RecruiterMemberFormBase {
   public function buildForm(array $form, FormStateInterface $form_state, Organization $organization = NULL, UserInterface $user = NULL) {
     $form = parent::buildForm($form, $form_state, $organization, $user);
 
-    $form['message'] = $this->t('Are you sure you wish to confirm @user as a @role of @organization?', [
+    $form['message']['#markup'] = $this->t('Are you sure you wish to confirm @user as a @role of @organization?', [
       '@user' => $user->label(),
       '@organization' => $organization->label(),
       '@role' => ucfirst($this->item->role),

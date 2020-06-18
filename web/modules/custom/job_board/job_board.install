@@ -2,6 +2,7 @@
 
 use Drupal\Core\Config\Config;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\ContentEntityType;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -1463,5 +1464,23 @@ function job_board_update_8106() {
     'search_api.index.job_index',
     'views.view.job_board__index',
   ]);
+}
+
+function job_board_update_8107() {
+  \Drupal::entityDefinitionUpdateManager()->installEntityType(new ContentEntityType([
+    'id' => "job_board_job_log",
+    'label' => new TranslatableMarkup("Job Log"),
+    'handlers' => [
+      "storage" => \Drupal\Core\Entity\Sql\SqlContentEntityStorage::class,
+      "access" => \Drupal\Core\Entity\EntityAccessControlHandler::class,
+      "views_data" => \Drupal\views\EntityViewsData::class,
+    ],
+    'base_table' => "job_log",
+    'admin_permission' => "administer job logs",
+    'entity_keys' => [
+      "id" => "id",
+      "uuid" => "uuid",
+    ]
+  ]));
 }
 
