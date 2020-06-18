@@ -23,3 +23,12 @@ recruiter.jobs:
   title: 'Jobs'
   route_name: view.job_board__recruiter_jobs.page
   base_route: job_board.employer
+
+recruiter.login:
+  title: 'Login'
+  route_name: job_board.recruiter.login
+  base_route: job_board.recruiter.login
+recruiter.register:
+  title: 'Register new Account'
+  route_name: job_board.recruiter.register
+  base_route: job_board.recruiter.login
