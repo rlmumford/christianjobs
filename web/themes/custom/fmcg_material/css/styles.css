@@ -3158,6 +3158,7 @@ ul.messages-list {
 }
 .card-form .user-icon i {
   font-size: 96px;
+  color: #DBE4EB;
 }
 
 .toolbar-vertical.navbar-fixed #navbar, .toolbar-vertical #drawer {
@@ -3305,7 +3306,7 @@ ul.messages-list {
   color: #FDD22B;
 }
 
-input.button, .btn, .pager .pager-item > a, .pager .pager-item > span, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, input[type=submit] {
+input.button, .btn, .pager .pager-item > a, .pager .pager-item > span, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .ui-widget-content a, .dropbutton-action a, input[type=submit] {
   height: 36px;
   min-width: 88px;
   margin: 8px;
@@ -3326,10 +3327,10 @@ input.button, .btn, .pager .pager-item > a, .pager .pager-item > span, a.btn, sp
   transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: background-color;
 }
-input.button a.btn.pull-right, input.button .pager .pager-item > a.pull-right, .pager input.button .pager-item > a.pull-right, .btn a.btn.pull-right, .pager .pager-item > a a.btn.pull-right, .pager .pager-item > span a.btn.pull-right, .btn .pager .pager-item > a.pull-right, .pager .btn .pager-item > a.pull-right, .pager .pager-item > a .pager-item > a.pull-right, .pager .pager-item > span .pager-item > a.pull-right, a.btn a.btn.pull-right, span.btn a.btn.pull-right, .tabledrag-toggle-weight a.btn.pull-right, .tabledrag-toggle-weight .pager .pager-item > a.pull-right, .pager .tabledrag-toggle-weight .pager-item > a.pull-right, .button-action a.btn.pull-right, .button-action .pager .pager-item > a.pull-right, .pager .button-action .pager-item > a.pull-right, input[type=submit] a.btn.pull-right, input[type=submit] .pager .pager-item > a.pull-right, .pager input[type=submit] .pager-item > a.pull-right {
+input.button a.btn.pull-right, input.button .pager .pager-item > a.pull-right, .pager input.button .pager-item > a.pull-right, .btn a.btn.pull-right, .pager .pager-item > a a.btn.pull-right, .pager .pager-item > span a.btn.pull-right, .btn .pager .pager-item > a.pull-right, .pager .btn .pager-item > a.pull-right, .pager .pager-item > a .pager-item > a.pull-right, .pager .pager-item > span .pager-item > a.pull-right, a.btn a.btn.pull-right, span.btn a.btn.pull-right, .tabledrag-toggle-weight a.btn.pull-right, .tabledrag-toggle-weight .pager .pager-item > a.pull-right, .pager .tabledrag-toggle-weight .pager-item > a.pull-right, .button-action a.btn.pull-right, .button-action .pager .pager-item > a.pull-right, .pager .button-action .pager-item > a.pull-right, .ui-widget-content a a.btn.pull-right, .ui-widget-content a .pager .pager-item > a.pull-right, .pager .ui-widget-content a .pager-item > a.pull-right, .dropbutton-action a a.btn.pull-right, .dropbutton-action a .pager .pager-item > a.pull-right, .pager .dropbutton-action a .pager-item > a.pull-right, input[type=submit] a.btn.pull-right, input[type=submit] .pager .pager-item > a.pull-right, .pager input[type=submit] .pager-item > a.pull-right {
   margin: 8px 8px 0px 0px;
 }
-input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item > span:hover, a.btn:hover, span.btn:hover, .tabledrag-toggle-weight:hover, .button-action:hover, input[type=submit]:hover {
+input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item > span:hover, a.btn:hover, span.btn:hover, .tabledrag-toggle-weight:hover, .button-action:hover, .ui-widget-content a:hover, .dropbutton-action a:hover, input[type=submit]:hover {
   padding: 6px 14px;
   border: 2px solid #FDD22B;
   color: #FDD22B;
@@ -3345,6 +3346,25 @@ input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item
   color: #50C878;
   border-color: #50C878;
   transition: none;
+}
+
+.ui-widget-content a, .dropbutton-action a {
+  padding: 8px 12px;
+  height: auto;
+}
+.ui-widget-content a:hover, .dropbutton-action a:hover {
+  padding: 6px 10px;
+  border: 2px solid #FDD22B;
+  color: #FDD22B;
+  background: #211F21;
+}
+
+.js .dropbutton-widget .dropbutton {
+  overflow: hidden;
+  margin: -12px;
+  padding: 0;
+  list-style-type: none;
+  list-style-image: none;
 }
 
 h1, h2, .h1, .h2 {
@@ -3476,7 +3496,7 @@ form div.filter-wrapper {
 .form-item.focused > label, .form-item.focused > h4, .form-item:focus-within > label, .form-item:focus-within > h4 {
   color: #FDD22B;
 }
-.form-item input[type=text], .form-item input[type=url], .form-item input[type=date], .form-item input[type=number], .form-item input[type=email], .form-item input[type=password], .form-item input[type=search], .form-item input[type=tel], .form-item .field--type-text-long, .form-item textarea, .form-item select {
+.form-item input[type=text], .form-item input[type=url], .form-item input[type=date], .form-item input[type=number], .form-item input[type=email], .form-item input[type=password], .form-item input[type=search], .form-item input[type=tel], .form-item .select2-container--fmcg_material, .form-item textarea, .form-item select {
   width: 100%;
   max-width: 640px;
   padding-left: 10px;
@@ -3487,22 +3507,22 @@ form div.filter-wrapper {
   font-family: Roboto;
   font-size: 16px;
 }
-.form-item input[type=text].select2-search__field, .form-item input[type=url].select2-search__field, .form-item input[type=date].select2-search__field, .form-item input[type=number].select2-search__field, .form-item input[type=email].select2-search__field, .form-item input[type=password].select2-search__field, .form-item input[type=search].select2-search__field, .form-item input[type=tel].select2-search__field, .form-item .field--type-text-long.select2-search__field, .form-item textarea.select2-search__field, .form-item select.select2-search__field {
+.form-item input[type=text].select2-search__field, .form-item input[type=url].select2-search__field, .form-item input[type=date].select2-search__field, .form-item input[type=number].select2-search__field, .form-item input[type=email].select2-search__field, .form-item input[type=password].select2-search__field, .form-item input[type=search].select2-search__field, .form-item input[type=tel].select2-search__field, .form-item .select2-container--fmcg_material.select2-search__field, .form-item textarea.select2-search__field, .form-item select.select2-search__field {
   border: none;
   background: none;
 }
-.form-item input[type=text].select2-search__field:focus, .form-item input[type=url].select2-search__field:focus, .form-item input[type=date].select2-search__field:focus, .form-item input[type=number].select2-search__field:focus, .form-item input[type=email].select2-search__field:focus, .form-item input[type=password].select2-search__field:focus, .form-item input[type=search].select2-search__field:focus, .form-item input[type=tel].select2-search__field:focus, .form-item .field--type-text-long.select2-search__field:focus, .form-item textarea.select2-search__field:focus, .form-item select.select2-search__field:focus {
+.form-item input[type=text].select2-search__field:focus, .form-item input[type=url].select2-search__field:focus, .form-item input[type=date].select2-search__field:focus, .form-item input[type=number].select2-search__field:focus, .form-item input[type=email].select2-search__field:focus, .form-item input[type=password].select2-search__field:focus, .form-item input[type=search].select2-search__field:focus, .form-item input[type=tel].select2-search__field:focus, .form-item .select2-container--fmcg_material.select2-search__field:focus, .form-item textarea.select2-search__field:focus, .form-item select.select2-search__field:focus {
   border: none;
 }
-.form-item input[type=text]:focus, .form-item input[type=url]:focus, .form-item input[type=date]:focus, .form-item input[type=number]:focus, .form-item input[type=email]:focus, .form-item input[type=password]:focus, .form-item input[type=search]:focus, .form-item input[type=tel]:focus, .form-item .field--type-text-long:focus, .form-item textarea:focus, .form-item select:focus {
+.form-item input[type=text]:focus, .form-item input[type=url]:focus, .form-item input[type=date]:focus, .form-item input[type=number]:focus, .form-item input[type=email]:focus, .form-item input[type=password]:focus, .form-item input[type=search]:focus, .form-item input[type=tel]:focus, .form-item .select2-container--fmcg_material:focus, .form-item textarea:focus, .form-item select:focus {
   border: 2px solid #FDD22B;
   padding-top: 7px;
   padding-bottom: 7px;
 }
-.form-item input[type=text]:focus-within label, .form-item input[type=url]:focus-within label, .form-item input[type=date]:focus-within label, .form-item input[type=number]:focus-within label, .form-item input[type=email]:focus-within label, .form-item input[type=password]:focus-within label, .form-item input[type=search]:focus-within label, .form-item input[type=tel]:focus-within label, .form-item .field--type-text-long:focus-within label, .form-item textarea:focus-within label, .form-item select:focus-within label {
+.form-item input[type=text]:focus-within label, .form-item input[type=url]:focus-within label, .form-item input[type=date]:focus-within label, .form-item input[type=number]:focus-within label, .form-item input[type=email]:focus-within label, .form-item input[type=password]:focus-within label, .form-item input[type=search]:focus-within label, .form-item input[type=tel]:focus-within label, .form-item .select2-container--fmcg_material:focus-within label, .form-item textarea:focus-within label, .form-item select:focus-within label {
   color: #FDD22B;
 }
-.form-item input[type=text][type=date], .form-item input[type=text][type=number], .form-item input[type=url][type=date], .form-item input[type=url][type=number], .form-item input[type=date][type=date], .form-item input[type=date][type=number], .form-item input[type=number][type=date], .form-item input[type=number][type=number], .form-item input[type=email][type=date], .form-item input[type=email][type=number], .form-item input[type=password][type=date], .form-item input[type=password][type=number], .form-item input[type=search][type=date], .form-item input[type=search][type=number], .form-item input[type=tel][type=date], .form-item input[type=tel][type=number], .form-item .field--type-text-long[type=date], .form-item .field--type-text-long[type=number], .form-item textarea[type=date], .form-item textarea[type=number], .form-item select[type=date], .form-item select[type=number] {
+.form-item input[type=text][type=date], .form-item input[type=text][type=number], .form-item input[type=url][type=date], .form-item input[type=url][type=number], .form-item input[type=date][type=date], .form-item input[type=date][type=number], .form-item input[type=number][type=date], .form-item input[type=number][type=number], .form-item input[type=email][type=date], .form-item input[type=email][type=number], .form-item input[type=password][type=date], .form-item input[type=password][type=number], .form-item input[type=search][type=date], .form-item input[type=search][type=number], .form-item input[type=tel][type=date], .form-item input[type=tel][type=number], .form-item .select2-container--fmcg_material[type=date], .form-item .select2-container--fmcg_material[type=number], .form-item textarea[type=date], .form-item textarea[type=number], .form-item select[type=date], .form-item select[type=number] {
   width: initial;
   display: inline-block;
 }
@@ -3563,6 +3583,9 @@ input[type=date] {
 form.card-form {
   max-width: 360px;
 }
+form.card-form div.form-item > * {
+  display: block;
+}
 form.card-form .description {
   font-size: 13px;
   font-family: Roboto;
@@ -3584,6 +3607,27 @@ form.card-form input.button, form.card-form input[type=submit] {
 }
 form.card-form .form-item {
   margin-bottom: 0px;
+}
+
+.ui-dialog {
+  background-color: #FFFFFF;
+  font-family: Poppins;
+  padding: 0;
+}
+.ui-dialog .ui-dialog-titlebar {
+  background-color: #211F21;
+  color: #FDD22B;
+  padding: 0.4em 1em;
+  position: relative;
+  font-size: 18px;
+}
+.ui-dialog .ui-corner-all {
+  border: none;
+  border-radius: 0;
+}
+.ui-dialog .ui-widget.ui-widget-content {
+  border: none !important;
+  color: #211F21;
 }
 
 strong {

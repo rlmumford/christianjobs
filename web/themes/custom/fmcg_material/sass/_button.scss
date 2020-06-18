@@ -1,4 +1,4 @@
-input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, input[type="submit"] {
+input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .ui-widget-content a, .dropbutton-action a, input[type="submit"] {
   height: 36px;
   min-width: 88px;
   margin: 8px;
@@ -41,4 +41,24 @@ input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, i
     border-color: #50C878;
     transition: none;
   }
+}
+
+.ui-widget-content a, .dropbutton-action a {
+  padding: 8px 12px;
+  height: auto;
+
+  &:hover {
+    padding: 6px 10px;
+    border: 2px solid $fmcg-yellow;
+    color: $fmcg-yellow;
+    background: $fmcg-black;
+  }
+}
+
+.js .dropbutton-widget .dropbutton {
+  overflow: hidden;
+  margin: -12px;
+  padding: 0;
+  list-style-type: none;
+  list-style-image: none;
 }
