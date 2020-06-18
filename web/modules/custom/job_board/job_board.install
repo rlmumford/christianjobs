@@ -1444,6 +1444,11 @@ function job_board_update_8104() {
   ]);
 }
 
+/**
+ * Install name module and name fields.
+ *
+ * @throws \Drupal\Core\Extension\MissingDependencyException
+ */
 function job_board_update_8105() {
   /** @var \Drupal\Core\Extension\ModuleInstallerInterface $module_installer */
   $module_installer = \Drupal::service('module_installer');
@@ -1456,6 +1461,9 @@ function job_board_update_8105() {
   ]);
 }
 
+/**
+ * Update job listing configuration.
+ */
 function job_board_update_8106() {
   rlm_config_tools_install_module_config('job_board', [
     'core.entity_view_display.job_role.job_role.full',
@@ -1466,6 +1474,11 @@ function job_board_update_8106() {
   ]);
 }
 
+/**
+ * Install job log entity type and update register recruiter form mode.
+ *
+ * @throws \Drupal\Core\Entity\Exception\EntityTypeIdLengthException
+ */
 function job_board_update_8107() {
   \Drupal::entityDefinitionUpdateManager()->installEntityType(new ContentEntityType([
     'id' => "job_board_job_log",
@@ -1482,5 +1495,10 @@ function job_board_update_8107() {
       "uuid" => "uuid",
     ]
   ]));
+
+  rlm_config_tools_install_module_config('job_board', [
+    'core.entity_form_mode.user.register_recruiter',
+    'core.entity_form_display.user.user.register_recruiter',
+  ]);
 }
 
