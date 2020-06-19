@@ -12,6 +12,8 @@ use Drupal\organization\Entity\Organization;
 use Drupal\organization\Plugin\Field\FieldType\OrganizationMetadataReferenceItem;
 use Drupal\user\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RecruiterController extends ControllerBase {
 
@@ -21,16 +23,66 @@ class RecruiterController extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager'),
-      $container->get('entity.form_builder')
+      $container->get('entity.form_builder'),
+      $container->get('current_user')
     );
   }
 
   public function __construct(
     EntityTypeManagerInterface $entity_type_manager,
-    EntityFormBuilderInterface $entity_form_builder
+    EntityFormBuilderInterface $entity_form_builder,
+    AccountInterface $current_user
   ) {
     $this->entityTypeManager = $entity_type_manager;
     $this->entityFormBuilder = $entity_form_builder;
+    $this->currentUser = $current_user;
+  }
+
+  /**
+   * Get the main page at /recruiter/
+   */
+  public function mainPage(AccountInterface $account) {
+    $account = $account ?: $this->currentUser();
+
+    if (!$account->isAuthenticated()) {
+      return RedirectResponse::create(
+        Url::fromRoute('job_board.recruiter.login')->toString()
+      );
+    }
+    else {
+      $user = $this->entityTypeManager->getStorage('user')->load(
+        $account->id()
+      );
+
+      if ($user->organization->isEmpty() || $user->organization->status !== OrganizationMetadataReferenceItem::STATUS_ACTIVE) {
+        throw new NotFoundHttpException();
+      }
+
+      return RedirectResponse::create(
+        Url::fromRoute('job_board.employer', [
+          'organization' => $user->organization->target_id,
+        ])->toString()
+      );
+    }
+  }
+
+  public function mainPageAccess(AccountInterface $account) {
+    $account = $account ?: $this->currentUser();
+    $user = $this->entityTypeManager->getStorage('user')->load(
+      $account->id()
+    );
+
+    $result = AccessResult::allowedIf(!$account->isAuthenticated())->addCacheableDependency($account);
+    $result = $result->orIf(
+      AccessResult::allowedIf(
+        $user &&
+        !$user->organization->isEmpty() &&
+        $user->organization->status === OrganizationMetadataReferenceItem::STATUS_ACTIVE
+      )
+      ->addCacheableDependency($user)
+    );
+
+    return $result;
   }
 
   /**
