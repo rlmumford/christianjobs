@@ -3575,10 +3575,6 @@ input[type=date] {
   max-width: 640px;
 }
 
-.address-line2 {
-  margin-left: 160px;
-}
-
 .card-form-page nav.tabs {
   max-width: 360px;
   margin: 0 auto;
