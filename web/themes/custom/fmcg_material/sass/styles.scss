@@ -1946,11 +1946,20 @@ form#views-exposed-form-job-board-page {
 }
 
 .checkout-pane-order-summary {
-  background-color: #2A556B;
+  background-color: #FFFFFF;
   padding-bottom: 16px;
+  padding-left: 24px;
 
   .field-type-commerce-price {
     padding-left: 25px;
+  }
+
+  td {
+    padding: 12px 0px 0px 0px;
+  }
+
+  td:first-child, td:last-child {
+    padding: 0px;
   }
 
   .views-field-title, .views-field-total-price__number {
@@ -1969,30 +1978,46 @@ form#views-exposed-form-job-board-page {
 
   .order-total-line-label {
     font-family: Poppins;
-    color: $fmcg-yellow;
+    color: $fmcg-black;
   }
 
   .order-total-line-value {
-    color: #FFFFFF;
+    color: $fmcg-black;
     display: table-cell;
   }
 }
 
 .checkout-pane-coupon-redemption {
-  background-color: #FFFFFF;
+  background-color: None;
   border: 1px solid $fmcg-yellow;
   padding: 12px 24px 18px 24px;
   margin-top: 24px;
 
+  td, td:first-child, td:last-child {
+    padding: 0px;
+    color: #DBE4EB;
+  }
+
+  table {
+    background: none;
+  }
+
   label {
     font-size: 18px;
-    color: #2A556B;
+    color: #FFFFFF;
+  }
+
+  h3 {
+    color: $fmcg-yellow;
+    margin-top: 0px;
   }
 
   .button {
     background-color: $fmcg-yellow;
     width: min-content;
     height: min-content;
+    float: right;
+    margin: 8px 0px 0px 0px;
   }
 }
 
