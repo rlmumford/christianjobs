@@ -1669,7 +1669,7 @@ icon labels
 }
 
 .navbar-title {
-  margin: 0;
+  margin: 0 -12px;
 }
 .navbar-title a {
   display: inline-block;
@@ -1684,7 +1684,7 @@ icon labels
 .navbar-slogan {
   height: 48px;
   font-size: 16px;
-  margin: 0;
+  margin: 0 -12px;
   padding: 14px 12px 10px 12px;
   font-size: 16px;
   line-height: 24px;
@@ -1692,10 +1692,10 @@ icon labels
 }
 
 .navbar-branding {
-  display: flex;
+  display: inline-flex;
 }
 .navbar-branding > div:not(.contextual) + div {
-  margin-left: -8px;
+  margin: 0 -12px 0 12px;
 }
 
 .navbar-menu {
@@ -4361,7 +4361,7 @@ span.upsell-price .tax {
 }
 
 .front-page-luova-block {
-  background-image: url("../assets/LuovaBanner868x250.png");
+  background-image: url("../assets/TeacherBlock485x527.png");
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: -15px;
@@ -4378,7 +4378,6 @@ span.upsell-price .tax {
 .front-page-luova-block p {
   color: #FFFFFF;
   font-size: 20px;
-  padding-right: 150px;
 }
 .front-page-luova-block a:hover {
   color: #49BCFB;
@@ -4395,6 +4394,7 @@ span.upsell-price .tax {
   border: 2px solid #00B0FF;
   background-color: #FFFFFF;
   color: #00B0FF;
+  padding: 2px 10px;
 }
 .front-page-luova-block .luova-education-group {
   color: #FF9049;
@@ -4402,15 +4402,9 @@ span.upsell-price .tax {
 .front-page-luova-block .victory-christian-international-school {
   color: #FF9049;
 }
-.front-page-luova-block .luova-banner-logo {
-  max-width: 220px;
-}
-.front-page-luova-block .luova-logo-wrapper {
-  text-align: center;
-}
 @media (min-width: 992px) {
   .front-page-luova-block {
-    background-image: url("../assets/LuovaBanner753x347.png");
+    background-image: url("../assets/TeacherBlock758x327.png");
   }
   .front-page-luova-block .luova-banner-logo {
     display: block;
@@ -4419,7 +4413,7 @@ span.upsell-price .tax {
 }
 @media (min-width: 1256px) {
   .front-page-luova-block {
-    background-image: url("../assets/LuovaBanner1905x433.png");
+    background-image: url("../assets/TeacherBlock1905x237.png");
   }
   .front-page-luova-block h2 {
     font-size: 3.5em;
@@ -4885,10 +4879,6 @@ form#views-exposed-form-volunteer-board-list-page .divider-top {
 
 input.btn-accent {
   margin-left: 25px;
-}
-
-.region.region-before-main {
-  padding-top: 25px;
 }
 
 .region.region-highlighted {
