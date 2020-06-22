@@ -20,15 +20,13 @@ class LuovaBlock extends BlockBase {
   public function build() {
     $content = [];
     $content['#markup'] = '<div class="row ml-24">
-<div class="col col-xs-12 col-md-2 col-md-offset-1 first-md luova-logo-wrapper">
-<img src="/'.drupal_get_path('theme', 'cj_material').'/assets/LuovaLogo.png" class="luova-banner-logo mt-24" />
-<img src="/'.drupal_get_path('theme', 'cj_material').'/assets/VCISLogo.png" class="luova-banner-logo mt-24" />
+<div class="col col-xs-12 col-md-2 first-md luova-logo-wrapper">
 </div>
 <div class="col col-xs-12 col-md-9">
-<h2>Are you passionate about impacting the next generation through education?</h2>
+<h2>Are you ready for a new teaching opportunity?</h2>
 
-<p><span>In partnership with <span class="luova-education-group">Luova Education Group</span> and <span class="victory-christian-international-school">Victory Christian International School</span> Christian Jobs are actively recruiting teachers to join an exciting new Christian school program in Busan, South Korea.</span></p>
-<a class="btn" href="https://www.christianjobs.co.uk/jobs/keyword/busan">Find out more</a></div>
+<p><span>Christian Jobs are currently recruiting for Christian teachers in a variety of different roles, and locations. If you can teach, or know someone who may be interested in one of these new and exciting opportunities, contact our recruitment team to find out more!</span></p>
+<a class="btn" href="https://www.christianjobs.co.uk/jobs/keyword/teacher">Find out more</a></div>
 </div>';
 
     return $content;
