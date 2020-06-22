@@ -15,6 +15,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
+use Drupal\job_board\Form\CandidateRegisterForm;
 use Drupal\job_board\Form\EmployerEditForm;
 use Drupal\job_board\Form\JobDeleteForm;
 use Drupal\job_board\Form\JobForm;
@@ -90,6 +91,7 @@ function job_board_entity_type_build(&$entity_types) {
 
   if ($entity_type = $entity_types['user']) {
     $entity_type->setFormClass('register_recruiter', RecruiterRegisterForm::class);
+    $entity_type->setFormClass('register_candidate', CandidateRegisterForm::class);
   }
 }
 

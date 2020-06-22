@@ -156,3 +156,20 @@ job_board.recruiter.jobs.buy_credit:
     _title: 'Buy Credit'
   requirements:
     _entity_access: 'organization.administer_job_roles'
+
+job_board.candidate.login:
+  path: '/candidate/login'
+  defaults:
+    _form: '\Drupal\user\Form\UserLoginForm'
+    _title: 'Log in'
+  requirements:
+    _user_is_logged_in: 'FALSE'
+  options:
+    _maintenance_access: TRUE
+job_board.candidate.register:
+  path: '/candidate/register'
+  defaults:
+    _entity_form: user.register_candidate
+    _title: 'Create new account'
+  requirements:
+    _access_user_register: 'TRUE'
