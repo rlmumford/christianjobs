@@ -1846,6 +1846,17 @@ form#views-exposed-form-job-board-page {
     padding-right: 24px;
   }
 
+  a {
+    color: $fmcg-chrome;
+    font-size: 14px;
+    vertical-align: middle;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $fmcg-yellow;
+    }
+  }
+
   .col-md-8, .col-xs-12 {
     padding: 0px;
   }
@@ -1946,11 +1957,16 @@ form#views-exposed-form-job-board-page {
 }
 
 .checkout-pane-order-summary {
-  background-color: #2A556B;
+  background-color: #FFFFFF;
   padding-bottom: 16px;
+  padding-left: 24px;
 
   .field-type-commerce-price {
     padding-left: 25px;
+  }
+
+  td, td:first-child, td:last-child {
+    padding: 12px 0px 0px 0px;
   }
 
   .views-field-title, .views-field-total-price__number {
@@ -1969,24 +1985,38 @@ form#views-exposed-form-job-board-page {
 
   .order-total-line-label {
     font-family: Poppins;
-    color: $fmcg-yellow;
+    color: $fmcg-black;
   }
 
   .order-total-line-value {
-    color: #FFFFFF;
+    color: $fmcg-black;
     display: table-cell;
   }
 }
 
 .checkout-pane-coupon-redemption {
-  background-color: #FFFFFF;
+  background-color: none;
   border: 1px solid $fmcg-yellow;
   padding: 12px 24px 18px 24px;
   margin-top: 24px;
 
   label {
     font-size: 18px;
-    color: #2A556B;
+    color: $fmcg-yellow;
+  }
+
+  h3 {
+    color: $fmcg-yellow;
+    margin-top: 0px;
+  }
+
+  table {
+    background: none;
+  }
+
+  td {
+    color: $fmcg-chrome;
+    padding-left: 0px;
   }
 
   .button {

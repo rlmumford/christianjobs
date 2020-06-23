@@ -5410,6 +5410,15 @@ form#views-exposed-form-job-board-page {
 .layout-checkout-form .checkout-pane {
   padding-right: 24px;
 }
+.layout-checkout-form a {
+  color: #DBE4EB;
+  font-size: 14px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.layout-checkout-form a:hover {
+  color: #FDD22B;
+}
 .layout-checkout-form .col-md-8, .layout-checkout-form .col-xs-12 {
   padding: 0px;
 }
@@ -5495,11 +5504,15 @@ form#views-exposed-form-job-board-page {
 }
 
 .checkout-pane-order-summary {
-  background-color: #2A556B;
+  background-color: #FFFFFF;
   padding-bottom: 16px;
+  padding-left: 24px;
 }
 .checkout-pane-order-summary .field-type-commerce-price {
   padding-left: 25px;
+}
+.checkout-pane-order-summary td, .checkout-pane-order-summary td:first-child, .checkout-pane-order-summary td:last-child {
+  padding: 12px 0px 0px 0px;
 }
 .checkout-pane-order-summary .views-field-title, .checkout-pane-order-summary .views-field-total-price__number {
   background-color: #2A556B;
@@ -5515,22 +5528,33 @@ form#views-exposed-form-job-board-page {
 }
 .checkout-pane-order-summary .order-total-line-label {
   font-family: Poppins;
-  color: #FDD22B;
+  color: #211F21;
 }
 .checkout-pane-order-summary .order-total-line-value {
-  color: #FFFFFF;
+  color: #211F21;
   display: table-cell;
 }
 
 .checkout-pane-coupon-redemption {
-  background-color: #FFFFFF;
+  background-color: none;
   border: 1px solid #FDD22B;
   padding: 12px 24px 18px 24px;
   margin-top: 24px;
 }
 .checkout-pane-coupon-redemption label {
   font-size: 18px;
-  color: #2A556B;
+  color: #FDD22B;
+}
+.checkout-pane-coupon-redemption h3 {
+  color: #FDD22B;
+  margin-top: 0px;
+}
+.checkout-pane-coupon-redemption table {
+  background: none;
+}
+.checkout-pane-coupon-redemption td {
+  color: #DBE4EB;
+  padding-left: 0px;
 }
 .checkout-pane-coupon-redemption .button {
   background-color: #FDD22B;
