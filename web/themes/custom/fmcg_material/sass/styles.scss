@@ -2041,6 +2041,18 @@ form#views-exposed-form-job-board-page {
   }
 }
 
+.checkout-pane-completion-message {
+  padding: 24px;
+  background-color: #FFFFFF;
+
+  .thank-you-text {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: -24px;
+    color: #67C367;
+  }
+}
+
 .commerce-checkout-flow {
   .divider-top {
     input.button {

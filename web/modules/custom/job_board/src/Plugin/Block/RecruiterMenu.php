@@ -96,8 +96,8 @@ class RecruiterMenu extends BlockBase implements ContainerFactoryPluginInterface
     );
     $cache->addCacheableDependency($user);
     if ($user->organization->isEmpty()) {
-      $cache->applyTo($build);
-      return $build;
+      //$cache->applyTo($build);
+      //return $build;
     }
 
     $route_match = \Drupal::routeMatch();
@@ -114,7 +114,7 @@ class RecruiterMenu extends BlockBase implements ContainerFactoryPluginInterface
     ];
 
     /** @var \Drupal\organization\Plugin\Field\FieldType\OrganizationMetadataReferenceItem $organization_item */
-    foreach ($this->organization as $organization_item) {
+    foreach ($user->organization as $organization_item) {
       $route =  'view.job_board__recruiter_jobs.page';
       $params = [
         'arg_0' => $organization_item->target_id,

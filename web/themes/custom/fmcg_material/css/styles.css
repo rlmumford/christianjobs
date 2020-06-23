@@ -3306,7 +3306,7 @@ ul.messages-list {
   color: #FDD22B;
 }
 
-input.button, .btn, .pager .pager-item > a, .pager .pager-item > span, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .ui-widget-content a, .dropbutton-action a, input[type=submit] {
+input.button, .btn, .pager .pager-item > a, .pager .pager-item > span, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .ui-widget-content a, .change-role a, .new-organization, input[type=submit] {
   height: 36px;
   min-width: 88px;
   margin: 8px;
@@ -3327,10 +3327,10 @@ input.button, .btn, .pager .pager-item > a, .pager .pager-item > span, a.btn, sp
   transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: background-color;
 }
-input.button a.btn.pull-right, input.button .pager .pager-item > a.pull-right, .pager input.button .pager-item > a.pull-right, .btn a.btn.pull-right, .pager .pager-item > a a.btn.pull-right, .pager .pager-item > span a.btn.pull-right, .btn .pager .pager-item > a.pull-right, .pager .btn .pager-item > a.pull-right, .pager .pager-item > a .pager-item > a.pull-right, .pager .pager-item > span .pager-item > a.pull-right, a.btn a.btn.pull-right, span.btn a.btn.pull-right, .tabledrag-toggle-weight a.btn.pull-right, .tabledrag-toggle-weight .pager .pager-item > a.pull-right, .pager .tabledrag-toggle-weight .pager-item > a.pull-right, .button-action a.btn.pull-right, .button-action .pager .pager-item > a.pull-right, .pager .button-action .pager-item > a.pull-right, .ui-widget-content a a.btn.pull-right, .ui-widget-content a .pager .pager-item > a.pull-right, .pager .ui-widget-content a .pager-item > a.pull-right, .dropbutton-action a a.btn.pull-right, .dropbutton-action a .pager .pager-item > a.pull-right, .pager .dropbutton-action a .pager-item > a.pull-right, input[type=submit] a.btn.pull-right, input[type=submit] .pager .pager-item > a.pull-right, .pager input[type=submit] .pager-item > a.pull-right {
+input.button a.btn.pull-right, input.button .pager .pager-item > a.pull-right, .pager input.button .pager-item > a.pull-right, .btn a.btn.pull-right, .pager .pager-item > a a.btn.pull-right, .pager .pager-item > span a.btn.pull-right, .btn .pager .pager-item > a.pull-right, .pager .btn .pager-item > a.pull-right, .pager .pager-item > a .pager-item > a.pull-right, .pager .pager-item > span .pager-item > a.pull-right, a.btn a.btn.pull-right, span.btn a.btn.pull-right, .tabledrag-toggle-weight a.btn.pull-right, .tabledrag-toggle-weight .pager .pager-item > a.pull-right, .pager .tabledrag-toggle-weight .pager-item > a.pull-right, .button-action a.btn.pull-right, .button-action .pager .pager-item > a.pull-right, .pager .button-action .pager-item > a.pull-right, .ui-widget-content a a.btn.pull-right, .ui-widget-content a .pager .pager-item > a.pull-right, .pager .ui-widget-content a .pager-item > a.pull-right, .change-role a a.btn.pull-right, .change-role a .pager .pager-item > a.pull-right, .pager .change-role a .pager-item > a.pull-right, .new-organization a.btn.pull-right, .new-organization .pager .pager-item > a.pull-right, .pager .new-organization .pager-item > a.pull-right, input[type=submit] a.btn.pull-right, input[type=submit] .pager .pager-item > a.pull-right, .pager input[type=submit] .pager-item > a.pull-right {
   margin: 8px 8px 0px 0px;
 }
-input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item > span:hover, a.btn:hover, span.btn:hover, .tabledrag-toggle-weight:hover, .button-action:hover, .ui-widget-content a:hover, .dropbutton-action a:hover, input[type=submit]:hover {
+input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item > span:hover, a.btn:hover, span.btn:hover, .tabledrag-toggle-weight:hover, .button-action:hover, .ui-widget-content a:hover, .change-role a:hover, .new-organization:hover, input[type=submit]:hover {
   padding: 6px 14px;
   border: 2px solid #FDD22B;
   color: #FDD22B;
@@ -3348,11 +3348,11 @@ input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item
   transition: none;
 }
 
-.ui-widget-content a, .dropbutton-action a {
+.ui-widget-content a, .change-role a {
   padding: 8px 12px;
   height: auto;
 }
-.ui-widget-content a:hover, .dropbutton-action a:hover {
+.ui-widget-content a:hover, .change-role a:hover {
   padding: 6px 10px;
   border: 2px solid #FDD22B;
   color: #FDD22B;
@@ -3365,6 +3365,36 @@ input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item
   padding: 0;
   list-style-type: none;
   list-style-image: none;
+}
+
+li.approve, li.reject {
+  background-color: #DBE4EB;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  padding: 8px 12px;
+}
+li.approve a, li.reject a {
+  color: #211F21;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+li.approve {
+  margin: 8px;
+}
+
+li.reject {
+  margin: -8px 0px 0px 8px;
+}
+
+li.dropbutton-toggle {
+  background-color: #DBE4EB;
+  margin: -4px 0px -4px 0px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-left: 1px solid #211F21;
 }
 
 h1, h2, .h1, .h2 {
@@ -3412,15 +3442,15 @@ form .field--name-description-summary .filter-wrapper {
 form div.form-item, form div.field--widget-datetime-default {
   width: 100%;
 }
+form div.form-item label.visually-hidden, form div.field--widget-datetime-default label.visually-hidden {
+  position: relative !important;
+}
 form div.form-item > *, form div.field--widget-datetime-default > * {
   display: inline-block;
 }
 form div.form-item > label, form div.form-item > h4, form div.field--widget-datetime-default > label, form div.field--widget-datetime-default > h4 {
   width: 156px;
   vertical-align: top;
-}
-form div.form-item > label.visually-hidden, form div.form-item > h4.visually-hidden, form div.field--widget-datetime-default > label.visually-hidden, form div.field--widget-datetime-default > h4.visually-hidden {
-  width: 0;
 }
 form div.form-item label, form div.form-item h4, form div.field--widget-datetime-default label, form div.field--widget-datetime-default h4 {
   font-size: 16px;
@@ -3573,11 +3603,6 @@ input[type=date] {
   margin-top: -24px;
   margin-bottom: 6px;
   max-width: 640px;
-}
-
-.form-type-textfield label {
-  visibility: visible;
-  color: #DBE4EB;
 }
 
 .card-form-page nav.tabs {
@@ -5578,6 +5603,17 @@ form#views-exposed-form-job-board-page {
   border: 1px solid transparent;
   color: #211F21;
   padding: 8px 16px;
+}
+
+.checkout-pane-completion-message {
+  padding: 24px;
+  background-color: #FFFFFF;
+}
+.checkout-pane-completion-message .thank-you-text {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: -24px;
+  color: #67C367;
 }
 
 .commerce-checkout-flow .divider-top input.button {
