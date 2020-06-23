@@ -1,0 +1,8 @@
+uuid: 90e9f6cb-d50b-4326-bdcf-c96091c94b2b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Educational Qualification'
+vid: educational_qualification
+description: ''
+weight: 0

@@ -1,0 +1,8 @@
+uuid: 973c7406-a1dc-49a6-869f-fcb0845e2637
+langcode: en
+status: true
+dependencies: {  }
+name: 'Professional Qualification'
+vid: professional_qualification
+description: ''
+weight: 0
