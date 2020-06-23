@@ -1,0 +1,14 @@
+<?php
+
+use Drupal\job_candidate\Form\CandidateRegisterForm;
+
+/**
+ * Implements hook_entity_type_build().
+ *
+ * @param \Drupal\Core\Entity\EntityTypeInterface[] $entity_types
+ */
+function job_candidate_entity_type_build(&$entity_types) {
+  if ($entity_type = $entity_types['user']) {
+    $entity_type->setFormClass('register_candidate', CandidateRegisterForm::class);
+  }
+}

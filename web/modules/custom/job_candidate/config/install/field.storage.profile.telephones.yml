@@ -1,0 +1,22 @@
+uuid: 2dc12424-f223-4381-bf6e-f78a47d2f85e
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+    - rlm_fields
+id: profile.telephones
+field_name: telephones
+entity_type: profile
+type: telephone_metadata
+settings:
+  label_max_length: 255
+  label_is_ascii: false
+  label_case_sensitive: false
+module: rlm_fields
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

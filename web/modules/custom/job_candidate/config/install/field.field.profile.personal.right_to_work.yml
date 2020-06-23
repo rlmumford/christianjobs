@@ -1,0 +1,22 @@
+uuid: 5b7585dc-4ca3-4491-8dc8-09932ac5f65f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.right_to_work
+    - profile.type.personal
+  module:
+    - address
+id: profile.personal.right_to_work
+field_name: right_to_work
+entity_type: profile
+bundle: personal
+label: 'Right to Work'
+description: 'Please select all the countries where you have a legal right to work.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+field_type: address_country

@@ -1,0 +1,19 @@
+uuid: 2cb00052-edae-40eb-ae8d-47f74338082b
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+    - text
+id: profile.statement
+field_name: statement
+entity_type: profile
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

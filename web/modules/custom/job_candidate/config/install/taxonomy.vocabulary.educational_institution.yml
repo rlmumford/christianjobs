@@ -1,0 +1,8 @@
+uuid: b23d7974-379d-479e-8879-89202a5462a1
+langcode: en
+status: true
+dependencies: {  }
+name: 'Educational Institution'
+vid: educational_institution
+description: 'Educational Institution'
+weight: 0

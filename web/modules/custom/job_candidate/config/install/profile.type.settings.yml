@@ -1,0 +1,15 @@
+uuid: 77def2b1-ed50-42ce-a83d-1181d8137225
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings:
+  commerce_order:
+    customer_profile_type: false
+id: settings
+label: Settings
+display_label: 'Communication Settings'
+multiple: false
+registration: false
+roles: {  }
+allow_revisions: true
+new_revision: true

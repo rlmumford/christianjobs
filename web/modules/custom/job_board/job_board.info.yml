@@ -24,6 +24,7 @@ dependencies:
 - commerce:commerce_payment
 - commerce:commerce_product
 - mini_layouts:mini_layouts
+- name:name
 - rlmumford:rlm_config_tools
 - rlmumford:organization_user
 - rlmumford:organization_commerce

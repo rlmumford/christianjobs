@@ -1,0 +1,19 @@
+uuid: 258b1316-d42d-48f1-b838-c64f077844c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - address
+    - profile
+id: profile.right_to_work
+field_name: right_to_work
+entity_type: profile
+type: address_country
+settings: {  }
+module: address
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

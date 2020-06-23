@@ -1,0 +1,22 @@
+uuid: 9a4ec957-d833-46d7-b129-4c7be0eb2d8f
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+    - rlm_fields
+id: profile.emails
+field_name: emails
+entity_type: profile
+type: email_metadata
+settings:
+  label_max_length: 255
+  label_is_ascii: false
+  label_case_sensitive: false
+module: rlm_fields
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

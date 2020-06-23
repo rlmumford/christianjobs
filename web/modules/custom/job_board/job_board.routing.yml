@@ -93,6 +93,13 @@ job_board.recruiter.register.join_organization:
     _title: 'Join Organization'
   requirements:
     _user_is_logged_in: 'TRUE'
+job_board.recruiter.user:
+  path: '/recruiter'
+  defaults:
+    _controller: '\Drupal\job_board\Controller\RecruiterController::mainPage'
+    _title: 'Dashboard'
+  requirements:
+    _custom_access: '\Drupal\job_board\Controller\RecruiterController::mainPageAccess'
 job_board.employer:
   path: '/recruiter/{organization}'
   defaults:
