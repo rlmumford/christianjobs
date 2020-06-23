@@ -1,0 +1,27 @@
+uuid: 428af2f6-3e5d-4bde-af0e-3d95f602e7d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.location
+    - profile.type.personal
+id: profile.personal.location
+field_name: location
+entity_type: profile
+bundle: personal
+label: 'Current Location'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:place'
+  handler_settings:
+    target_bundles:
+      address: address
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

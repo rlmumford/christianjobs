@@ -91,7 +91,6 @@ function job_board_entity_type_build(&$entity_types) {
 
   if ($entity_type = $entity_types['user']) {
     $entity_type->setFormClass('register_recruiter', RecruiterRegisterForm::class);
-    $entity_type->setFormClass('register_candidate', CandidateRegisterForm::class);
   }
 }
 

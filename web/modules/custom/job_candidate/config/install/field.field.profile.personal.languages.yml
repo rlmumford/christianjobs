@@ -1,0 +1,24 @@
+uuid: c8b90e27-b10b-4fce-9542-3b1cbdd086a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.languages
+    - profile.type.personal
+  module:
+    - rlm_fields
+id: profile.personal.languages
+field_name: languages
+entity_type: profile
+bundle: personal
+label: Languages
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: en
+    proficiency: mother
+default_value_callback: ''
+settings: {  }
+field_type: spoken_language

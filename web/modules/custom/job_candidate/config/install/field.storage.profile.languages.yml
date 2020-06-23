@@ -1,0 +1,19 @@
+uuid: 3fc1d277-b141-4914-b873-853022201869
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+    - rlm_fields
+id: profile.languages
+field_name: languages
+entity_type: profile
+type: spoken_language
+settings: {  }
+module: rlm_fields
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: 376a4370-2538-426c-af5d-eace31dcce28
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.statement
+    - profile.type.personal
+  module:
+    - text
+id: profile.personal.statement
+field_name: statement
+entity_type: profile
+bundle: personal
+label: Statement
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

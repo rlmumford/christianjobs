@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\job_board\Form;
+namespace Drupal\job_candidate\Form;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\user\RegisterForm;

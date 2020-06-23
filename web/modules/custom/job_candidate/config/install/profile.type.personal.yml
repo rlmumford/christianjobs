@@ -1,0 +1,15 @@
+uuid: f6f9d982-3823-4eaf-af18-db3e56152b63
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings:
+  commerce_order:
+    customer_profile_type: false
+id: personal
+label: Personal
+display_label: 'Personal Details'
+multiple: false
+registration: false
+roles: {  }
+allow_revisions: false
+new_revision: false

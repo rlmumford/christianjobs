@@ -1,0 +1,21 @@
+uuid: c8b62c41-bda3-4016-8942-10abb599a59a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.telephones
+    - profile.type.personal
+  module:
+    - rlm_fields
+id: profile.personal.telephones
+field_name: telephones
+entity_type: profile
+bundle: personal
+label: Telephone
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone_metadata

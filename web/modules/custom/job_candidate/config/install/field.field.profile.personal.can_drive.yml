@@ -1,0 +1,23 @@
+uuid: c5d6d39b-fbbd-4c51-8a13-8eb7b94151ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.can_drive
+    - profile.type.personal
+id: profile.personal.can_drive
+field_name: can_drive
+entity_type: profile
+bundle: personal
+label: 'Has Driving Lisence'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

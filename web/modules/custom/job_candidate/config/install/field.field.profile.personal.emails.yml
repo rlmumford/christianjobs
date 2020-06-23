@@ -1,0 +1,21 @@
+uuid: 289fb5ae-9ced-4d67-bb46-f42af7a5abe7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.emails
+    - profile.type.personal
+  module:
+    - rlm_fields
+id: profile.personal.emails
+field_name: emails
+entity_type: profile
+bundle: personal
+label: Email
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email_metadata

@@ -1,0 +1,12 @@
+uuid: a8affbd8-de9a-4842-88cb-96b6dd9e0da2
+langcode: en
+status: true
+dependencies: {  }
+id: resume
+label: Resume
+display_label: CV/Resume
+multiple: false
+registration: false
+roles: {  }
+allow_revisions: false
+new_revision: false

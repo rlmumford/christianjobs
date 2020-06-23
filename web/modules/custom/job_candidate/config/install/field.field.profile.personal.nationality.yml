@@ -1,0 +1,22 @@
+uuid: 78b1b765-5ff2-4fca-a03e-50bf94d061cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.nationality
+    - profile.type.personal
+  module:
+    - address
+id: profile.personal.nationality
+field_name: nationality
+entity_type: profile
+bundle: personal
+label: Nationality
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+field_type: address_country
