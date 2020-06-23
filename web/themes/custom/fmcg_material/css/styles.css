@@ -3575,6 +3575,11 @@ input[type=date] {
   max-width: 640px;
 }
 
+.form-type-textfield label {
+  visibility: visible;
+  color: #DBE4EB;
+}
+
 .card-form-page nav.tabs {
   max-width: 360px;
   margin: 0 auto;
@@ -5541,6 +5546,9 @@ form#views-exposed-form-job-board-page {
   padding: 12px 24px 18px 24px;
   margin-top: 24px;
 }
+.checkout-pane-coupon-redemption .messages-wrapper {
+  margin-top: 0px;
+}
 .checkout-pane-coupon-redemption label {
   font-size: 18px;
   color: #FDD22B;
@@ -5557,9 +5565,19 @@ form#views-exposed-form-job-board-page {
   padding-left: 0px;
 }
 .checkout-pane-coupon-redemption .button {
-  background-color: #FDD22B;
+  background: none;
+  color: #DBE4EB;
+  font-weight: 400;
+  border: 1px solid #DBE4EB;
   width: min-content;
   height: min-content;
+  margin: 0px;
+}
+.checkout-pane-coupon-redemption .button:hover {
+  background: #DBE4EB;
+  border: 1px solid transparent;
+  color: #211F21;
+  padding: 8px 16px;
 }
 
 .commerce-checkout-flow .divider-top input.button {
