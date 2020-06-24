@@ -13,8 +13,11 @@
 @import "header";
 @import "form";
 @import "cardform";
+@import "modal";
 
-@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:400,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 // put your styles here
 // you can @extend anything from base theme
@@ -239,15 +242,6 @@ fieldset#edit-individual-profile-consent-job-update--wrapper {
     background-color: #F6F4F4;
     padding-left: 10px;
     padding-right: 10px;
-  }
-}
-
-tr {
-  border-bottom: 1px solid #FF904B;
-  background-color: #FFFFFF;
-
-  &:hover {
-    background-color: #FFFFFF;
   }
 }
 
@@ -492,10 +486,15 @@ div#drawer-overlay {
 }
 
 #block-fmcg-material-local-actions nav .button.button-action {
-  margin-top: 0;
-  padding: .5em;
+  padding: 8px 12px;
+  margin: 12px 0px 0px 12px;
   min-height: initial;
+
+  &:hover {
+    padding: 6px 10px;
+  }
 }
+
 #block-fmcg-material-local-actions nav li {
   display: inline-block;
   list-style-type: none;
@@ -1054,10 +1053,6 @@ iframe {
   visibility: visible;
 }
 
-.field--name-description-summary .filter-wrapper {
-  display: none;
-}
-
 /* Location Filter */
 div.proximity-filter-container {
   div.distance-container {
@@ -1465,13 +1460,12 @@ label.option {
 .tabs ul li {
   background-color: $fmcg-black;
   transform: skewX(-36deg);
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 14px;
+  padding-right: 14px;
   margin-left: 14px;
 
   &:hover {
-    border-left: 2px solid $fmcg-yellow;
-    border-right: 2px solid $fmcg-yellow;
+    background-color: $fmcg-yellow;
   }
 
   a {
@@ -1480,12 +1474,13 @@ label.option {
 }
 
 .tabs ul li a.is-active, ul.tabs li a.is-active {
-  color: $fmcg-yellow;
+  color: $fmcg-black;
+  background-color: $fmcg-yellow;
   border: none;
 }
 
 .tabs ul li a:hover, ul.tabs li a:hover {
-  color: #FDD22B;
+  color: $fmcg-black;
 }
 
 .form-item-account-type.btn {
@@ -1844,14 +1839,76 @@ form#views-exposed-form-job-board-page {
 //Checkout Pages
 
 .layout-checkout-form {
+  background: $fmcg-black;
   box-shadow: none;
-  padding-left: 0;
-  padding-right: 0;
-  padding-bottom: 10px;
-  border-bottom: 0;
+
+  .checkout-pane {
+    padding-right: 24px;
+  }
+
+  .col-md-8, .col-xs-12 {
+    padding: 0px;
+  }
+
+  .form-item input[type=text] {
+    border: 1px solid $fmcg-yellow;
+  }
+
+  div.form-item label {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: Poppins;
+    line-height: 2em;
+    color: $fmcg-chrome;
+  }
+
+  .form-item.form-type-select:after {
+    content: "arrow_drop_down";
+    margin-left: -24px;
+    margin-top: 8px;
+    color: rgba(0, 0, 0, 0.54);
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 26px;
+  }
+
+  span.fieldset-legend {
+    background-color: $fmcg-black;
+
+    &::after {
+        content: "";
+        position: absolute;
+        height: 1px;
+        background-color: #FFFFFF;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        right: 0;
+        z-index: -1;
+    }
+  }
+
+  legend {
+    position: relative;
+    width: 100%;
+    z-index: 5;
+    background: none;
+    margin-bottom: 12px;
+  }
 
   label.option {
     color: #FFFFFF;
+  }
+
+  .fieldset-wrapper {
+    color: $fmcg-chrome;
+    font-family: Roboto;
+    font-size: 13px;
+  }
+
+  div.form-item > label {
+    width: 100%;
   }
 
   fieldset.payment-method legend {
@@ -1872,12 +1929,10 @@ form#views-exposed-form-job-board-page {
   }
 
   .fieldset-legend {
-    color: #2A556B;
-    border-bottom: 1px solid #FF9049;
-    font-family: Montserrat;
-    font-weight: bold;
-    font-size: 20px;
-    text-transform: uppercase;
+    color: $fmcg-yellow;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 22px;
   }
 
   .form-item input[type=radio]:checked:before {
@@ -1891,11 +1946,20 @@ form#views-exposed-form-job-board-page {
 }
 
 .checkout-pane-order-summary {
-  background-color: #2A556B;
+  background-color: #FFFFFF;
   padding-bottom: 16px;
+  padding-left: 24px;
 
   .field-type-commerce-price {
     padding-left: 25px;
+  }
+
+  td {
+    padding: 12px 0px 0px 0px;
+  }
+
+  td:first-child, td:last-child {
+    padding: 0px;
   }
 
   .views-field-title, .views-field-total-price__number {
@@ -1913,39 +1977,53 @@ form#views-exposed-form-job-board-page {
   }
 
   .order-total-line-label {
-    font-family: Montserrat;
-    color: #FF9049;
+    font-family: Poppins;
+    color: $fmcg-black;
   }
 
   .order-total-line-value {
-    color: #FFFFFF;
+    color: $fmcg-black;
     display: table-cell;
   }
 }
 
 .checkout-pane-coupon-redemption {
-  background-color: #FFFFFF;
-  border: 1px solid #FF9049;
+  background-color: None;
+  border: 1px solid $fmcg-yellow;
   padding: 12px 24px 18px 24px;
   margin-top: 24px;
 
+  td, td:first-child, td:last-child {
+    padding: 0px;
+    color: #DBE4EB;
+  }
+
+  table {
+    background: none;
+  }
+
   label {
     font-size: 18px;
-    color: #2A556B;
+    color: #FFFFFF;
+  }
+
+  h3 {
+    color: $fmcg-yellow;
+    margin-top: 0px;
   }
 
   .button {
-    background-color: #FF9049;
+    background-color: $fmcg-yellow;
     width: min-content;
     height: min-content;
+    float: right;
+    margin: 8px 0px 0px 0px;
   }
 }
 
 .commerce-checkout-flow {
   .divider-top {
     input.button {
-      margin-left: 36px;
-      margin-top: -120px;
       height: min-content;
     }
   }
@@ -2138,6 +2216,12 @@ form#views-exposed-form-job-board-page {
   .material-icons {
     background: $fmcg-chrome;
   }
+
+  span.material-icons {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+  }
 }
 
 //STYLING FOR UPSELL WRAPPERS - TO BE GIVEN OWN FILE //
@@ -2191,4 +2275,37 @@ form#views-exposed-form-job-board-page {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.tabs {
+  background-color: $fmcg-black;
+  border-bottom: 1px solid $fmcg-yellow;
+}
+
+li.tab.is-active {
+  background-color: #FDD22B;
+}
+
+thead {
+  background-color: $fmcg-black;
+  border-bottom: 1px solid $fmcg-yellow;
+
+  th {
+    font-weight: 400;
+    color: $fmcg-chrome;
+    text-align: left;
+  }
+}
+
+.field-name-name {
+  h2 {
+    color: $fmcg-black;
+  }
+}
+
+.form-type-radio {
+  label.option {
+    width: 100%;
+    display: block;
+  }
 }

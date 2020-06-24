@@ -8,6 +8,10 @@
 form.card-form {
   max-width: 360px;
 
+  div.form-item > * {
+    display: block;
+  }
+
   .description {
     font-size: 13px;
     font-family: Roboto;
