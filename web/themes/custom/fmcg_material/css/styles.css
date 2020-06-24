@@ -3381,13 +3381,6 @@ input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item
   color: #DBE4EB;
   border: 2px solid #DBE4EB;
 }
-.dropbutton a a {
-  color: #211F21;
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
 
 li.dropbutton-toggle {
   background-color: #DBE4EB;
@@ -3677,6 +3670,9 @@ form.card-form .form-item {
 .layout-checkout-form .checkout-pane {
   padding-right: 24px;
 }
+.layout-checkout-form .layout-region {
+  padding: 0px;
+}
 .layout-checkout-form a {
   color: #DBE4EB;
   font-size: 14px;
@@ -3763,10 +3759,6 @@ form.card-form .form-item {
 .layout-checkout-form .form-item input[type=radio]:before {
   content: "radio_button_unchecked";
   padding-top: 5px;
-}
-
-.layout-region {
-  padding: 0px;
 }
 
 .checkout-pane-order-summary {

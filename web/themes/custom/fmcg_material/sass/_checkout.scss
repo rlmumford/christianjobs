@@ -6,6 +6,10 @@
     padding-right: 24px;
   }
 
+  .layout-region {
+    padding: 0px;
+  }
+
   a {
     color: $fmcg-chrome;
     font-size: 14px;
@@ -108,10 +112,6 @@
     content: "radio_button_unchecked";
     padding-top: 5px;
   }
-}
-
-.layout-region {
-  padding: 0px;
 }
 
 .checkout-pane-order-summary {
