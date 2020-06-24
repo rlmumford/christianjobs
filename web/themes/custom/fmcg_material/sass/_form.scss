@@ -207,3 +207,10 @@ input[type=date] {
   margin-bottom: 6px;
   max-width: 640px;
 }
+
+.form-type-radio {
+  label.option {
+    width: 100%;
+    display: block;
+  }
+}

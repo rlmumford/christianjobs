@@ -3359,12 +3359,15 @@ input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item
   background: #211F21;
 }
 
-.js .dropbutton-widget .dropbutton {
+.dropbutton-widget, .dropbutton {
   overflow: hidden;
   margin: -12px;
   padding: 0;
   list-style-type: none;
   list-style-image: none;
+}
+.dropbutton-widget .secondary-action, .dropbutton .secondary-action {
+  margin: -8px 0px 0px 0px;
 }
 
 .dropbutton a {
@@ -3386,16 +3389,13 @@ input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item
   letter-spacing: 0.5px;
 }
 
-li.reject {
-  margin: -8px 0px 0px 0px;
-}
-
 li.dropbutton-toggle {
   background-color: #DBE4EB;
   margin: -4px 0px -4px 0px;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   border-left: 1px solid #211F21;
+  margin: 8px;
 }
 li.dropbutton-toggle:hover {
   background-color: #BFCDD9;
@@ -3609,6 +3609,11 @@ input[type=date] {
   max-width: 640px;
 }
 
+.form-type-radio label.option {
+  width: 100%;
+  display: block;
+}
+
 .card-form-page nav.tabs {
   max-width: 360px;
   margin: 0 auto;
@@ -3647,6 +3652,7 @@ form.card-form .form-item {
   background-color: #FFFFFF;
   font-family: Poppins;
   padding: 0;
+  box-shadow: 10px 10px 11px 0px rgba(33, 31, 33, 0.5);
 }
 .ui-dialog .ui-dialog-titlebar {
   background-color: #211F21;
@@ -3662,6 +3668,192 @@ form.card-form .form-item {
 .ui-dialog .ui-widget.ui-widget-content {
   border: none !important;
   color: #211F21;
+}
+
+.layout-checkout-form {
+  background: #211F21;
+  box-shadow: none;
+}
+.layout-checkout-form .checkout-pane {
+  padding-right: 24px;
+}
+.layout-checkout-form a {
+  color: #DBE4EB;
+  font-size: 14px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.layout-checkout-form a:hover {
+  color: #FDD22B;
+}
+.layout-checkout-form .form-item input[type=text] {
+  border: 1px solid #FDD22B;
+}
+.layout-checkout-form div.form-item label {
+  font-size: 14px;
+  line-height: 2em;
+  color: #DBE4EB;
+}
+.layout-checkout-form .form-item.form-type-select:after {
+  content: "arrow_drop_down";
+  margin-left: -24px;
+  margin-top: 8px;
+  color: rgba(0, 0, 0, 0.54);
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  top: 26px;
+}
+.layout-checkout-form span.fieldset-legend {
+  background-color: #211F21;
+}
+.layout-checkout-form span.fieldset-legend::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-color: #FFFFFF;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+.layout-checkout-form legend {
+  position: relative;
+  width: 100%;
+  z-index: 5;
+  background: none;
+  margin-bottom: 12px;
+}
+.layout-checkout-form label.option {
+  color: #FFFFFF;
+}
+.layout-checkout-form .fieldset-wrapper {
+  color: #DBE4EB;
+  font-family: Roboto;
+  font-size: 13px;
+}
+.layout-checkout-form div.form-item > label {
+  width: 100%;
+}
+.layout-checkout-form fieldset.payment-method legend {
+  display: none;
+}
+.layout-checkout-form .checkout-address-book-edit-button {
+  width: min-content !important;
+  height: min-content;
+}
+.layout-checkout-form .form-item-payment-information-payment-method {
+  display: inline-block;
+  margin-right: 12px;
+  padding: 4px 12px;
+  background: #FF944D;
+  border-radius: 2px;
+}
+.layout-checkout-form .fieldset-legend {
+  color: #FDD22B;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 22px;
+}
+.layout-checkout-form .form-item input[type=radio]:checked:before {
+  content: "radio_button_checked";
+  color: #2A556B;
+}
+.layout-checkout-form .form-item input[type=radio]:before {
+  content: "radio_button_unchecked";
+  padding-top: 5px;
+}
+
+.layout-region {
+  padding: 0px;
+}
+
+.checkout-pane-order-summary {
+  background-color: #FFFFFF;
+  padding-bottom: 16px;
+  padding-left: 24px;
+}
+.checkout-pane-order-summary .field-type-commerce-price {
+  padding-left: 25px;
+}
+.checkout-pane-order-summary td {
+  padding: 12px 0px 0px 0px;
+}
+.checkout-pane-order-summary .views-field-title, .checkout-pane-order-summary .views-field-total-price__number {
+  background-color: #2A556B;
+  color: #FFFFFF;
+  border-bottom: 1px solid #FF9049;
+  font-family: Montserrat;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.checkout-pane-order-summary .order-total-line {
+  text-align: left;
+  display: table-row;
+}
+.checkout-pane-order-summary .order-total-line-label {
+  font-family: Poppins;
+  color: #211F21;
+}
+.checkout-pane-order-summary .order-total-line-value {
+  color: #211F21;
+  display: table-cell;
+}
+
+.checkout-pane-coupon-redemption {
+  background-color: none;
+  border: 1px solid #FDD22B;
+  padding: 12px 24px 18px 24px;
+  margin-top: 24px;
+}
+.checkout-pane-coupon-redemption .messages-error {
+  margin-top: -12px;
+}
+.checkout-pane-coupon-redemption label {
+  font-size: 18px;
+  color: #FDD22B;
+}
+.checkout-pane-coupon-redemption h3 {
+  color: #FDD22B;
+  margin-top: 0px;
+}
+.checkout-pane-coupon-redemption table {
+  background: none;
+}
+.checkout-pane-coupon-redemption td {
+  color: #DBE4EB;
+  padding-left: 0px;
+}
+.checkout-pane-coupon-redemption .button {
+  background: none;
+  color: #DBE4EB;
+  font-weight: 400;
+  border: 1px solid #DBE4EB;
+  width: min-content;
+  height: min-content;
+  margin: 0px;
+}
+.checkout-pane-coupon-redemption .button:hover {
+  background: #DBE4EB;
+  border: 1px solid transparent;
+  color: #211F21;
+  padding: 8px 16px;
+}
+
+.checkout-pane-completion-message {
+  padding: 24px;
+  background-color: #FFFFFF;
+}
+.checkout-pane-completion-message .thank-you-text {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: -24px;
+  color: #67C367;
+}
+
+.commerce-checkout-flow .divider-top input.button {
+  height: min-content;
 }
 
 strong {
@@ -5437,193 +5629,6 @@ form#views-exposed-form-job-board-page {
     transform: rotate(180deg);
   }
 }
-.layout-checkout-form {
-  background: #211F21;
-  box-shadow: none;
-}
-.layout-checkout-form .checkout-pane {
-  padding-right: 24px;
-}
-.layout-checkout-form a {
-  color: #DBE4EB;
-  font-size: 14px;
-  vertical-align: middle;
-  text-transform: uppercase;
-}
-.layout-checkout-form a:hover {
-  color: #FDD22B;
-}
-.layout-checkout-form .col-md-8, .layout-checkout-form .col-xs-12 {
-  padding: 0px;
-}
-.layout-checkout-form .form-item input[type=text] {
-  border: 1px solid #FDD22B;
-}
-.layout-checkout-form div.form-item label {
-  font-size: 14px;
-  font-weight: 400;
-  font-family: Poppins;
-  line-height: 2em;
-  color: #DBE4EB;
-}
-.layout-checkout-form .form-item.form-type-select:after {
-  content: "arrow_drop_down";
-  margin-left: -24px;
-  margin-top: 8px;
-  color: rgba(0, 0, 0, 0.54);
-  z-index: 1;
-  position: absolute;
-  right: 0;
-  top: 26px;
-}
-.layout-checkout-form span.fieldset-legend {
-  background-color: #211F21;
-}
-.layout-checkout-form span.fieldset-legend::after {
-  content: "";
-  position: absolute;
-  height: 1px;
-  background-color: #FFFFFF;
-  width: 100%;
-  top: 50%;
-  left: 0;
-  right: 0;
-  z-index: -1;
-}
-.layout-checkout-form legend {
-  position: relative;
-  width: 100%;
-  z-index: 5;
-  background: none;
-  margin-bottom: 12px;
-}
-.layout-checkout-form label.option {
-  color: #FFFFFF;
-}
-.layout-checkout-form .fieldset-wrapper {
-  color: #DBE4EB;
-  font-family: Roboto;
-  font-size: 13px;
-}
-.layout-checkout-form div.form-item > label {
-  width: 100%;
-}
-.layout-checkout-form fieldset.payment-method legend {
-  display: none;
-}
-.layout-checkout-form .checkout-address-book-edit-button {
-  width: min-content !important;
-  height: min-content;
-}
-.layout-checkout-form .form-item-payment-information-payment-method {
-  display: inline-block;
-  margin-right: 12px;
-  padding: 4px 12px;
-  background: #FF944D;
-  border-radius: 2px;
-}
-.layout-checkout-form .fieldset-legend {
-  color: #FDD22B;
-  font-family: Poppins;
-  font-weight: 600;
-  font-size: 22px;
-}
-.layout-checkout-form .form-item input[type=radio]:checked:before {
-  content: "radio_button_checked";
-  color: #2A556B;
-}
-.layout-checkout-form .form-item input[type=radio]:before {
-  content: "radio_button_unchecked";
-  padding-top: 5px;
-}
-
-.checkout-pane-order-summary {
-  background-color: #FFFFFF;
-  padding-bottom: 16px;
-  padding-left: 24px;
-}
-.checkout-pane-order-summary .field-type-commerce-price {
-  padding-left: 25px;
-}
-.checkout-pane-order-summary td, .checkout-pane-order-summary td:first-child, .checkout-pane-order-summary td:last-child {
-  padding: 12px 0px 0px 0px;
-}
-.checkout-pane-order-summary .views-field-title, .checkout-pane-order-summary .views-field-total-price__number {
-  background-color: #2A556B;
-  color: #FFFFFF;
-  border-bottom: 1px solid #FF9049;
-  font-family: Montserrat;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.checkout-pane-order-summary .order-total-line {
-  text-align: left;
-  display: table-row;
-}
-.checkout-pane-order-summary .order-total-line-label {
-  font-family: Poppins;
-  color: #211F21;
-}
-.checkout-pane-order-summary .order-total-line-value {
-  color: #211F21;
-  display: table-cell;
-}
-
-.checkout-pane-coupon-redemption {
-  background-color: none;
-  border: 1px solid #FDD22B;
-  padding: 12px 24px 18px 24px;
-  margin-top: 24px;
-}
-.checkout-pane-coupon-redemption .messages-wrapper {
-  margin-top: 0px;
-}
-.checkout-pane-coupon-redemption label {
-  font-size: 18px;
-  color: #FDD22B;
-}
-.checkout-pane-coupon-redemption h3 {
-  color: #FDD22B;
-  margin-top: 0px;
-}
-.checkout-pane-coupon-redemption table {
-  background: none;
-}
-.checkout-pane-coupon-redemption td {
-  color: #DBE4EB;
-  padding-left: 0px;
-}
-.checkout-pane-coupon-redemption .button {
-  background: none;
-  color: #DBE4EB;
-  font-weight: 400;
-  border: 1px solid #DBE4EB;
-  width: min-content;
-  height: min-content;
-  margin: 0px;
-}
-.checkout-pane-coupon-redemption .button:hover {
-  background: #DBE4EB;
-  border: 1px solid transparent;
-  color: #211F21;
-  padding: 8px 16px;
-}
-
-.checkout-pane-completion-message {
-  padding: 24px;
-  background-color: #FFFFFF;
-}
-.checkout-pane-completion-message .thank-you-text {
-  font-size: 30px;
-  font-weight: 600;
-  margin-bottom: -24px;
-  color: #67C367;
-}
-
-.commerce-checkout-flow .divider-top input.button {
-  height: min-content;
-}
-
 .volunteer-role-post-form div#edit-membership h3 {
   font-size: 24px;
 }
@@ -5862,11 +5867,6 @@ thead th {
 
 .field-name-name h2 {
   color: #211F21;
-}
-
-.form-type-radio label.option {
-  width: 100%;
-  display: block;
 }
 
 /*# sourceMappingURL=styles.css.map */

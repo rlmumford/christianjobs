@@ -1,0 +1,220 @@
+.layout-checkout-form {
+  background: $fmcg-black;
+  box-shadow: none;
+
+  .checkout-pane {
+    padding-right: 24px;
+  }
+
+  a {
+    color: $fmcg-chrome;
+    font-size: 14px;
+    vertical-align: middle;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $fmcg-yellow;
+    }
+  }
+
+  .form-item input[type=text] {
+    border: 1px solid $fmcg-yellow;
+  }
+
+  div.form-item label {
+    font-size: 14px;
+    line-height: 2em;
+    color: $fmcg-chrome;
+  }
+
+  .form-item.form-type-select:after {
+    content: "arrow_drop_down";
+    margin-left: -24px;
+    margin-top: 8px;
+    color: rgba(0, 0, 0, 0.54);
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 26px;
+  }
+
+  span.fieldset-legend {
+    background-color: $fmcg-black;
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      background-color: #FFFFFF;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      right: 0;
+      z-index: -1;
+    }
+  }
+
+  legend {
+    position: relative;
+    width: 100%;
+    z-index: 5;
+    background: none;
+    margin-bottom: 12px;
+  }
+
+  label.option {
+    color: #FFFFFF;
+  }
+
+  .fieldset-wrapper {
+    color: $fmcg-chrome;
+    font-family: Roboto;
+    font-size: 13px;
+  }
+
+  div.form-item > label {
+    width: 100%;
+  }
+
+  fieldset.payment-method legend {
+    display: none;
+  }
+
+  .checkout-address-book-edit-button {
+    width: min-content !important;
+    height: min-content;
+  }
+
+  .form-item-payment-information-payment-method {
+    display: inline-block;
+    margin-right: 12px;
+    padding: 4px 12px;
+    background: #FF944D;
+    border-radius: 2px;
+  }
+
+  .fieldset-legend {
+    color: $fmcg-yellow;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  .form-item input[type=radio]:checked:before {
+    content: "radio_button_checked";
+    color: #2A556B;
+  }
+  .form-item input[type=radio]:before {
+    content: "radio_button_unchecked";
+    padding-top: 5px;
+  }
+}
+
+.layout-region {
+  padding: 0px;
+}
+
+.checkout-pane-order-summary {
+  background-color: #FFFFFF;
+  padding-bottom: 16px;
+  padding-left: 24px;
+
+  .field-type-commerce-price {
+    padding-left: 25px;
+  }
+
+  td {
+    padding: 12px 0px 0px 0px;
+  }
+
+  .views-field-title, .views-field-total-price__number {
+    background-color: #2A556B;
+    color: #FFFFFF;
+    border-bottom: 1px solid #FF9049;
+    font-family: Montserrat;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .order-total-line {
+    text-align: left;
+    display: table-row;
+  }
+
+  .order-total-line-label {
+    font-family: Poppins;
+    color: $fmcg-black;
+  }
+
+  .order-total-line-value {
+    color: $fmcg-black;
+    display: table-cell;
+  }
+}
+
+.checkout-pane-coupon-redemption {
+  background-color: none;
+  border: 1px solid $fmcg-yellow;
+  padding: 12px 24px 18px 24px;
+  margin-top: 24px;
+
+  .messages-error {
+    margin-top: -12px;
+  }
+
+  label {
+    font-size: 18px;
+    color: $fmcg-yellow;
+  }
+
+  h3 {
+    color: $fmcg-yellow;
+    margin-top: 0px;
+  }
+
+  table {
+    background: none;
+  }
+
+  td {
+    color: $fmcg-chrome;
+    padding-left: 0px;
+  }
+
+  .button {
+    background: none;
+    color: $fmcg-chrome;
+    font-weight: 400;
+    border: 1px solid $fmcg-chrome;
+    width: min-content;
+    height: min-content;
+    margin: 0px;
+
+    &:hover {
+      background: $fmcg-chrome;
+      border: 1px solid transparent;
+      color: $fmcg-black;
+      padding: 8px 16px;
+    }
+  }
+}
+
+.checkout-pane-completion-message {
+  padding: 24px;
+  background-color: #FFFFFF;
+
+  .thank-you-text {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: -24px;
+    color: $fmcg-green;
+  }
+}
+
+.commerce-checkout-flow {
+  .divider-top {
+    input.button {
+      height: min-content;
+    }
+  }
+}
