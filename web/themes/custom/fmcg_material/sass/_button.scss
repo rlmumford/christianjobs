@@ -1,4 +1,4 @@
-input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .ui-widget-content a, .change-role a, .new-organization, input[type="submit"] {
+input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .ui-widget-content a, .dropbutton-action a, .new-organization, input[type="submit"] {
   height: 36px;
   min-width: 88px;
   margin: 8px;
@@ -63,11 +63,17 @@ input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .
   list-style-image: none;
 }
 
-li.approve, li.reject {
+.dropbutton a {
   background-color: $fmcg-chrome;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
   padding: 8px 12px;
+
+  &:hover {
+    background-color: $fmcg-black;
+    color: $fmcg-chrome;
+    border: 2px solid $fmcg-chrome;
+  }
 
   a {
     color: $fmcg-black;
@@ -78,12 +84,8 @@ li.approve, li.reject {
   }
 }
 
-li.approve {
-  margin: 8px;
-}
-
 li.reject {
-  margin: -8px 0px 0px 8px;
+  margin: -8px 0px 0px 0px;
 }
 
 li.dropbutton-toggle {
@@ -92,4 +94,8 @@ li.dropbutton-toggle {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   border-left: 1px solid $fmcg-black;
+
+  &:hover {
+    background-color: #BFCDD9;
+  }
 }

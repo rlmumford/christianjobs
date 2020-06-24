@@ -96,8 +96,8 @@ class RecruiterMenu extends BlockBase implements ContainerFactoryPluginInterface
     );
     $cache->addCacheableDependency($user);
     if ($user->organization->isEmpty()) {
-      //$cache->applyTo($build);
-      //return $build;
+      $cache->applyTo($build);
+      return $build;
     }
 
     $route_match = \Drupal::routeMatch();
