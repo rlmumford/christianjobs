@@ -117,7 +117,7 @@ class RecruiterMenu extends BlockBase implements ContainerFactoryPluginInterface
     foreach ($this->organization as $organization_item) {
       $route =  'view.job_board__recruiter_jobs.page';
       $params = [
-        'arg_0' => $organization_item->target_id,
+        'organization' => $organization_item->target_id,
       ];
       $current_org = ($route_match->getRawParameter('arg_0') == $organization_item->target_id);
 
@@ -129,14 +129,7 @@ class RecruiterMenu extends BlockBase implements ContainerFactoryPluginInterface
       ];
       if (in_array($route_match->getRouteName(), $supported_routes)) {
         $route = $route_match->getRouteName();
-
-        if ($route !== 'view.job_board__recruiter_jobs.page') {
-          $params = [
-            'organization' => $organization_item->target_id,
-          ];
-
-          $current_org = ($route_match->getRawParameter('organization') == $organization_item->target_id);
-        }
+        $current_org = ($route_match->getRawParameter('organization') == $organization_item->target_id);
       }
 
       $item = [
