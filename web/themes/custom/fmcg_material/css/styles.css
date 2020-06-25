@@ -3433,9 +3433,6 @@ form .visually-hidden {
   height: 1px;
   word-wrap: normal;
 }
-form .field--name-description-summary .filter-wrapper {
-  display: none;
-}
 form div.form-item, form div.field--widget-datetime-default {
   width: 100%;
 }
