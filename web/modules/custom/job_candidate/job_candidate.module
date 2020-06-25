@@ -1,6 +1,11 @@
 <?php
 
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\entity\BundleFieldDefinition;
+use Drupal\job_candidate\Field\ComputedCVInlineEntityReferenceFieldItemList;
 use Drupal\job_candidate\Form\CandidateRegisterForm;
+use Drupal\profile\Entity\ProfileInterface;
 
 /**
  * Implements hook_entity_type_build().
@@ -10,5 +15,87 @@ use Drupal\job_candidate\Form\CandidateRegisterForm;
 function job_candidate_entity_type_build(&$entity_types) {
   if ($entity_type = $entity_types['user']) {
     $entity_type->setFormClass('register_candidate', CandidateRegisterForm::class);
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_field_info()
+ */
+function job_candidate_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, $base_field_definitions) {
+  $fields = [];
+
+  if ($entity_type->id() === 'profile' && $bundle === 'resume') {
+    $fields['employment'] = BundleFieldDefinition::create('entity_reference')
+      ->setLabel(new TranslatableMarkup('Current Employment'))
+      ->setSetting('target_type', 'cv_employment')
+      ->setComputed(TRUE)
+      ->setClass(ComputedCVInlineEntityReferenceFieldItemList::class)
+      ->setTargetEntityTypeId('profile')
+      ->setTargetBundle('resume')
+      ->setName('employment')
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'inline_entity_form_simple',
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['education_qual'] = BundleFieldDefinition::create('entity_reference')
+      ->setLabel(new TranslatableMarkup('Educational Qualifications'))
+      ->setSetting('target_type', 'cv_education')
+      ->setCardinality(BundleFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setComputed(TRUE)
+      ->setClass(ComputedCVInlineEntityReferenceFieldItemList::class)
+      ->setTargetEntityTypeId('profile')
+      ->setTargetBundle('resume')
+      ->setName('education_qual')
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'inline_entity_form_complex',
+        'settings' => [
+          'allow_new' => TRUE,
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['professional_qual'] = BundleFieldDefinition::create('entity_reference')
+      ->setLabel(new TranslatableMarkup('Professional Qualifications'))
+      ->setSetting('target_type', 'cv_professional')
+      ->setCardinality(BundleFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setComputed(TRUE)
+      ->setClass(ComputedCVInlineEntityReferenceFieldItemList::class)
+      ->setTargetEntityTypeId('profile')
+      ->setTargetBundle('resume')
+      ->setName('professional_qual')
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'inline_entity_form_complex',
+        'settings' => [
+          'allow_new' => TRUE,
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+  }
+
+  return $fields;
+}
+
+/**
+ * Implements hook_profile_presave().
+ */
+function job_candidate_profile_presave(ProfileInterface $profile) {
+  if ($profile->bundle() !== 'resume') {
+    return;
+  }
+
+  // Ensure that the computed references to inline entities have the right owner
+  foreach ([
+             'employment',
+             'education_qual',
+             'professional_qual'
+           ] as $field_name) {
+    /** @var \Drupal\user\EntityOwnerInterface $inline_entity */
+    foreach ($profile->get($field_name)->referencedEntities() as $inline_entity) {
+      $inline_entity->setOwner($profile->getOwner());
+    }
   }
 }

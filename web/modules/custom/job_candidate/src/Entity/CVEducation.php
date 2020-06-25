@@ -90,7 +90,7 @@ class CVEducation extends ContentEntityBase implements EntityOwnerInterface {
         'type' => 'entity_reference_autocomplete_tags',
       ])
       ->setDisplayConfigurable('form', TRUE);
-    $fields['institutions'] = BaseFieldDefinition::create('entity_reference')
+    $fields['institution'] = BaseFieldDefinition::create('entity_reference')
       ->setSetting('target_type', 'taxonomy_term')
       ->setSetting('handler', 'default:taxonomy_term')
       ->setSetting('handler_settings', [

@@ -1502,3 +1502,30 @@ function job_board_update_8107() {
   ]);
 }
 
+/**
+ * Install taxonomy vocab for job function
+ */
+function job_board_update_8108() {
+  rlm_config_tools_install_module_config('job_board', [
+    'taxonomy.vocabulary.function',
+  ]);
+
+  // Add some taxonomy terms.
+  $storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $terms = [
+    'Admin',
+    'HR',
+    'Finance',
+    'Procurement',
+    'Logistics',
+  ];
+  foreach ($terms as $term_name) {
+    $term = $storage->create([
+      'vid' => 'function',
+      'name' => $term_name,
+    ]);
+    $term->save();
+  }
+}
+
+
