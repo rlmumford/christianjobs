@@ -15,7 +15,8 @@ class CandidateRegisterForm extends RegisterForm {
 
     // If the user is logged in as part of registration, then
     if (\Drupal::currentUser()->isAuthenticated()) {
-      //$form_state->setRedirect('job_board.recruiter.register.organization');
+      $form_state->setRedirect(
+        'job_candidate.candidate.register.personal');
     }
   }
 

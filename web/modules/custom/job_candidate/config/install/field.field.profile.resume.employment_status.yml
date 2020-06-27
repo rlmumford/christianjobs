@@ -1,0 +1,21 @@
+uuid: a44d09ac-7c6a-4c94-9f21-7e9d7cd8ff4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.employment_status
+    - profile.type.resume
+  module:
+    - options
+id: profile.resume.employment_status
+field_name: employment_status
+entity_type: profile
+bundle: resume
+label: 'Employment Status'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

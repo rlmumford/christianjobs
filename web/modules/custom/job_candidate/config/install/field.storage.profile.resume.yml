@@ -1,0 +1,23 @@
+uuid: 06d99e17-435f-4b8f-a8ff-af2e447da3f7
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - profile
+id: profile.resume
+field_name: resume
+entity_type: profile
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: private
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

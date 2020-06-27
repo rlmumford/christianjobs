@@ -14,3 +14,18 @@ job_candidate.candidate.register:
     _title: 'Create new account'
   requirements:
     _access_user_register: 'TRUE'
+job_candidate.candidate.register.personal:
+  path: '/candidate/register/personal'
+  defaults:
+    _controller: '\Drupal\job_candidate\Controller\CandidateRegisterController::personalDetailsForm'
+    _title: 'Personal Details'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+job_candidate.candidate.register.resume:
+  path: '/candidate/register/resume'
+  defaults:
+    _controller: '\Drupal\job_candidate\Controller\CandidateRegisterController::resumeDetailsForm'
+    _title: 'Resume Details'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+

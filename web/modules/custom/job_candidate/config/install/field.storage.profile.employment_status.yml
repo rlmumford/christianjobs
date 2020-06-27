@@ -1,0 +1,30 @@
+uuid: 3002a5a0-4998-49fc-a8c2-8791e3ef9759
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - profile
+id: profile.employment_status
+field_name: employment_status
+entity_type: profile
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: emp
+      label: Employed
+    -
+      value: semp
+      label: Self-Employed
+    -
+      value: unemp
+      label: Unemployed
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,27 @@
+uuid: afa7db04-6feb-4204-9afa-fdb9df18f87d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.resume
+    - profile.type.resume
+  module:
+    - file
+id: profile.resume.resume
+field_name: resume
+entity_type: profile
+bundle: resume
+label: CV/Resume
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'pdf doc docx odt'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file
