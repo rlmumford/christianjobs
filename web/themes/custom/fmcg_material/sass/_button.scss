@@ -1,4 +1,4 @@
-input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, input[type="submit"] {
+input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .ui-widget-content a, .dropbutton-action a, .new-organization, input[type="submit"] {
   height: 36px;
   min-width: 88px;
   margin: 8px;
@@ -28,5 +28,67 @@ input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, input[type="submi
     border: 2px solid $fmcg-yellow;
     color: $fmcg-yellow;
     background: $fmcg-black;
+  }
+}
+
+.button-action {
+  background-color: #50C878;
+  color: #FFFFFF;
+
+  &:hover {
+    background-color: #FFFFFF;
+    color: #50C878;
+    border-color: #50C878;
+    transition: none;
+  }
+}
+
+.ui-widget-content a, .change-role a {
+  padding: 8px 12px;
+  height: auto;
+
+  &:hover {
+    padding: 6px 10px;
+    border: 2px solid $fmcg-yellow;
+    color: $fmcg-yellow;
+    background: $fmcg-black;
+  }
+}
+
+.dropbutton-widget, .dropbutton {
+  overflow: hidden;
+  margin: -12px;
+  padding: 0;
+  list-style-type: none;
+  list-style-image: none;
+
+  .secondary-action {
+    margin: -8px 0px 0px 0px;
+  }
+}
+
+.dropbutton a {
+  background-color: $fmcg-chrome;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  padding: 8px 12px;
+
+  &:hover {
+    background-color: $fmcg-black;
+    color: $fmcg-chrome;
+    border: 2px solid $fmcg-chrome;
+  }
+}
+
+li.dropbutton-toggle {
+  background-color: $fmcg-chrome;
+  margin: -4px 0px -4px 0px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-left: 1px solid $fmcg-black;
+  margin: 8px;
+
+  &:hover {
+    background-color: $fmcg-chrome-hover;
   }
 }

@@ -13,8 +13,12 @@
 @import "header";
 @import "form";
 @import "cardform";
+@import "modal";
+@import "checkout";
 
-@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:400,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 // put your styles here
 // you can @extend anything from base theme
@@ -242,15 +246,6 @@ fieldset#edit-individual-profile-consent-job-update--wrapper {
   }
 }
 
-tr {
-  border-bottom: 1px solid #FF904B;
-  background-color: #FFFFFF;
-
-  &:hover {
-    background-color: #FFFFFF;
-  }
-}
-
 div.paragraphs-dropbutton-wrapper {
   font-size: 80%;
 }
@@ -344,7 +339,7 @@ div#block-fmcg-material-page-title {
   padding-top: 10px;
 }
 div#main-content {
-  background: #DBE4EB;
+  background-color: rgba(255,255,255,0.8);
   padding: 0 20px 30px;
 }
 
@@ -492,10 +487,15 @@ div#drawer-overlay {
 }
 
 #block-fmcg-material-local-actions nav .button.button-action {
-  margin-top: 0;
-  padding: .5em;
+  padding: 8px 12px;
+  margin: 12px 0px 0px 12px;
   min-height: initial;
+
+  &:hover {
+    padding: 6px 10px;
+  }
 }
+
 #block-fmcg-material-local-actions nav li {
   display: inline-block;
   list-style-type: none;
@@ -1054,10 +1054,6 @@ iframe {
   visibility: visible;
 }
 
-.field--name-description-summary .filter-wrapper {
-  display: none;
-}
-
 /* Location Filter */
 div.proximity-filter-container {
   div.distance-container {
@@ -1465,13 +1461,12 @@ label.option {
 .tabs ul li {
   background-color: $fmcg-black;
   transform: skewX(-36deg);
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 14px;
+  padding-right: 14px;
   margin-left: 14px;
 
   &:hover {
-    border-left: 2px solid $fmcg-yellow;
-    border-right: 2px solid $fmcg-yellow;
+    background-color: $fmcg-yellow;
   }
 
   a {
@@ -1480,12 +1475,13 @@ label.option {
 }
 
 .tabs ul li a.is-active, ul.tabs li a.is-active {
-  color: $fmcg-yellow;
+  color: $fmcg-black;
+  background-color: $fmcg-yellow;
   border: none;
 }
 
 .tabs ul li a:hover, ul.tabs li a:hover {
-  color: #FDD22B;
+  color: $fmcg-black;
 }
 
 .form-item-account-type.btn {
@@ -1841,116 +1837,6 @@ form#views-exposed-form-job-board-page {
   }
 }
 
-//Checkout Pages
-
-.layout-checkout-form {
-  box-shadow: none;
-  padding-left: 0;
-  padding-right: 0;
-  padding-bottom: 10px;
-  border-bottom: 0;
-
-  label.option {
-    color: #FFFFFF;
-  }
-
-  fieldset.payment-method legend {
-    display: none;
-  }
-
-  .checkout-address-book-edit-button {
-    width: min-content !important;
-    height: min-content;
-  }
-
-  .form-item-payment-information-payment-method {
-    display: inline-block;
-    margin-right: 12px;
-    padding: 4px 12px;
-    background: #FF944D;
-    border-radius: 2px;
-  }
-
-  .fieldset-legend {
-    color: #2A556B;
-    border-bottom: 1px solid #FF9049;
-    font-family: Montserrat;
-    font-weight: bold;
-    font-size: 20px;
-    text-transform: uppercase;
-  }
-
-  .form-item input[type=radio]:checked:before {
-    content: "radio_button_checked";
-    color: #2A556B;
-  }
-  .form-item input[type=radio]:before {
-    content: "radio_button_unchecked";
-    padding-top: 5px;
-  }
-}
-
-.checkout-pane-order-summary {
-  background-color: #2A556B;
-  padding-bottom: 16px;
-
-  .field-type-commerce-price {
-    padding-left: 25px;
-  }
-
-  .views-field-title, .views-field-total-price__number {
-    background-color: #2A556B;
-    color: #FFFFFF;
-    border-bottom: 1px solid #FF9049;
-    font-family: Montserrat;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  .order-total-line {
-    text-align: left;
-    display: table-row;
-  }
-
-  .order-total-line-label {
-    font-family: Montserrat;
-    color: #FF9049;
-  }
-
-  .order-total-line-value {
-    color: #FFFFFF;
-    display: table-cell;
-  }
-}
-
-.checkout-pane-coupon-redemption {
-  background-color: #FFFFFF;
-  border: 1px solid #FF9049;
-  padding: 12px 24px 18px 24px;
-  margin-top: 24px;
-
-  label {
-    font-size: 18px;
-    color: #2A556B;
-  }
-
-  .button {
-    background-color: #FF9049;
-    width: min-content;
-    height: min-content;
-  }
-}
-
-.commerce-checkout-flow {
-  .divider-top {
-    input.button {
-      margin-left: 36px;
-      margin-top: -120px;
-      height: min-content;
-    }
-  }
-}
-
 .volunteer-role-post-form div#edit-membership {
   h3 {
     font-size: 24px;
@@ -2138,6 +2024,12 @@ form#views-exposed-form-job-board-page {
   .material-icons {
     background: $fmcg-chrome;
   }
+
+  span.material-icons {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+  }
 }
 
 //STYLING FOR UPSELL WRAPPERS - TO BE GIVEN OWN FILE //
@@ -2191,4 +2083,33 @@ form#views-exposed-form-job-board-page {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.tabs {
+  background-color: $fmcg-black;
+  border-bottom: 1px solid $fmcg-yellow;
+}
+
+li.tab.is-active {
+  background-color: #FDD22B;
+}
+
+thead {
+  background-color: $fmcg-chrome;
+
+  th {
+    font-weight: 400;
+    color: $fmcg-black;
+    text-align: left;
+  }
+}
+
+#block-job-board-recruiter-dashboard-header {
+  h2 {
+    color: $fmcg-black;
+  }
+}
+
+#block-fmcg-material-local-tasks {
+  margin: 0px -20px;
 }

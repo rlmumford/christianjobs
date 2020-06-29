@@ -114,7 +114,7 @@ class RecruiterMenu extends BlockBase implements ContainerFactoryPluginInterface
     ];
 
     /** @var \Drupal\organization\Plugin\Field\FieldType\OrganizationMetadataReferenceItem $organization_item */
-    foreach ($this->organization as $organization_item) {
+    foreach ($user->organization as $organization_item) {
       $route =  'view.job_board__recruiter_jobs.page';
       $params = [
         'organization' => $organization_item->target_id,

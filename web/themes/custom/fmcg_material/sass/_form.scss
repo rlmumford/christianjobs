@@ -14,16 +14,19 @@ form {
   div.form-item, div.field--widget-datetime-default {
     width: 100%;
 
+    label.visually-hidden {
+      position: relative !important;
+    }
+
     &> * {
       display: inline-block;
     }
+
     &> label, &> h4 {
       width: 156px;
       vertical-align: top;
-      &.visually-hidden {
-        width: 0;
-      }
     }
+
     label, h4 {
       font-size: 16px;
       font-weight: 400;
@@ -115,7 +118,7 @@ form {
     }
   }
 
-  input[type=text], input[type=url], input[type=date], input[type=number], input[type=email], input[type=password], input[type=search], input[type=tel], .field--type-text-long, textarea, select {
+  input[type=text], input[type=url], input[type=date], input[type=number], input[type=email], input[type=password], input[type=search], input[type=tel], .select2-container--fmcg_material, textarea, select {
     width: 100%;
     max-width: 640px;
     padding-left: 10px;
@@ -199,4 +202,11 @@ input[type=date] {
   margin-top: -24px;
   margin-bottom: 6px;
   max-width: 640px;
+}
+
+.form-type-radio {
+  label.option {
+    width: 100%;
+    display: block;
+  }
 }

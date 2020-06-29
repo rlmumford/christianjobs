@@ -53,12 +53,9 @@
   background-color: transparent;
   background-image: none;
   border-radius: 0;
-  margin-top: .2rem;
-  margin-bottom: 1rem;
   /* @extend input[type=text] */
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #ccc;
   border-radius: 0;
   outline: 0;
   width: 100%;
