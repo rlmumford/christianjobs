@@ -339,7 +339,7 @@ div#block-fmcg-material-page-title {
   padding-top: 10px;
 }
 div#main-content {
-  background: #DBE4EB;
+  background-color: rgba(255,255,255,0.8);
   padding: 0 20px 30px;
 }
 
@@ -2095,12 +2095,11 @@ li.tab.is-active {
 }
 
 thead {
-  background-color: $fmcg-black;
-  border-bottom: 1px solid $fmcg-yellow;
+  background-color: $fmcg-chrome;
 
   th {
     font-weight: 400;
-    color: $fmcg-chrome;
+    color: $fmcg-black;
     text-align: left;
   }
 }

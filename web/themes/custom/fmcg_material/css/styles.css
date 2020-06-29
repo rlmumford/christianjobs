@@ -453,7 +453,7 @@ table {
 }
 
 tr {
-  border-bottom: 1px solid #FDD22B;
+  border-bottom: 1px solid #211F21;
 }
 
 tbody tr:last-child {
@@ -737,6 +737,9 @@ pre {
 
 #content {
   flex: 1 0 auto;
+  background-image: url(../assets/fmcgbackground.png);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 #main-content {
@@ -4165,7 +4168,7 @@ div#block-fmcg-material-page-title {
 }
 
 div#main-content {
-  background: #DBE4EB;
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 0 20px 30px;
 }
 
@@ -5845,12 +5848,11 @@ li.tab.is-active {
 }
 
 thead {
-  background-color: #211F21;
-  border-bottom: 1px solid #FDD22B;
+  background-color: #DBE4EB;
 }
 thead th {
   font-weight: 400;
-  color: #DBE4EB;
+  color: #211F21;
   text-align: left;
 }
 
