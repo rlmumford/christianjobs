@@ -41,14 +41,12 @@ class CVEmployment extends ContentEntityBase implements EntityOwnerInterface {
 
   /**
    * Constants for the employment levels.
-   *
-   * - L_CHIEF - Chief office, e.g. CEO, CTO
-   * - L_SMGMT - Senior Management
-   * - L_MGMT - Management
    */
-  const L_CHIEF = 'chief';
-  const L_SMGMT = 'smgmt';
-  const L_MGMT = 'mgmt';
+  const L_ENTRY = 'ent';
+  const L_MID = 'mid';
+  const L_SENIOR = 'sen';
+  const L_EXECUTIVE = 'exec';
+  const L_OTHER = 'other';
 
   /**
    * {@inheritdoc}
@@ -115,9 +113,11 @@ class CVEmployment extends ContentEntityBase implements EntityOwnerInterface {
     $fields['level'] = BaseFieldDefinition::create('list_string')
       ->setLabel(new TranslatableMarkup('Level'))
       ->setSetting('allowed_values', [
-        static::L_CHIEF => new TranslatableMarkup('Chief Officer'),
-        static::L_SMGMT => new TranslatableMarkup('Senior Management'),
-        static::L_MGMT => new TranslatableMarkup('Management')
+        static::L_ENTRY => new TranslatableMarkup('Entry'),
+        static::L_MID => new TranslatableMarkup('Mid'),
+        static::L_SENIOR => new TranslatableMarkup('Senior'),
+        static::L_EXECUTIVE => new TranslatableMarkup('Executive'),
+        static::L_OTHER => new TranslatableMarkup('Other'),
       ])
       ->setDisplayOptions('form', [
         'type' => 'options_select',

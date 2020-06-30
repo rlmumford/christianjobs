@@ -1528,4 +1528,34 @@ function job_board_update_8108() {
   }
 }
 
+function job_board_update_8109() {
+  $storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  $ids = $storage->getQuery()->condition('vid', 'function')->execute();
+  $storage->delete($storage->loadMultiple($ids));
+
+  $terms = [
+    'Marketing',
+    'Sales',
+    'Tech',
+    'HR',
+    'Admin',
+    'eCommerce',
+    'Legal',
+    'Finance/Accounting',
+    'Operations',
+    'Production',
+    'Hospitality/Food Service',
+    'Supply Chain/Logistics',
+    'Other',
+  ];
+  foreach ($terms as $term_name) {
+    $term = $storage->create([
+      'vid' => 'function',
+      'name' => $term_name,
+    ]);
+    $term->save();
+  }
+}
+
 
