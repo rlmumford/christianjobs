@@ -738,8 +738,9 @@ pre {
 #content {
   flex: 1 0 auto;
   background-image: url(../assets/fmcgbackground.png);
-  background-repeat: no-repeat;
-  background-size: contain;
+  overflow: hidden;
+  background-size: 100%;
+  background-attachment: fixed;
 }
 
 #main-content {
@@ -3848,6 +3849,104 @@ form.card-form .form-item {
   height: min-content;
 }
 
+.path-job .row-wrapper {
+  padding: 0px;
+}
+.path-job div#main-content {
+  background-color: #FFFFFF;
+  padding: 0 20px 20px;
+}
+.path-job div#main-content h4 {
+  color: #211F21;
+}
+.path-job div#main-content p {
+  color: #211F21;
+}
+.path-job div#main-content #block-fmcg-material-local-actions nav .button.button-action {
+  margin: 0px -10px 20px 0px;
+}
+@media (min-width: 568px) {
+  .path-job div#main-content #block-fmcg-material-local-actions nav .button.button-action {
+    margin: 0px 12px 20px 0px;
+  }
+}
+
+.job-header {
+  background-color: #DBE4EB;
+  padding: 20px;
+  margin: 0px -20px 12px -20px;
+  border-bottom: 1px solid #211F21;
+  /**
+    &::after {
+      content: "";
+      width: 319px;
+      height: 142px;
+      background: #FFFFFF;
+      -webkit-transform: skew(-36deg);
+      -moz-transform: skew(-36deg);
+      -o-transform: skew(-36deg);
+      transform: skew(-36deg);
+      position: absolute;
+      top: 56px;
+      right: 32px;
+    }
+  **/
+}
+.job-header span.job-title {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.3em;
+}
+
+.company-info-container {
+  box-shadow: none;
+  background-color: #DBE4EB;
+  padding: 12px 20px;
+}
+.company-info-container .contact-email-address .field-label, .company-info-container .contact-telephone .field-label {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  color: #211F21;
+  display: table;
+}
+.company-info-container .field-item {
+  font-family: Roboto;
+  font-size: 13px;
+}
+
+.field-type-job-role-salary {
+  margin-bottom: 20px;
+}
+
+.full-job-description .field-label, .salary .field-label {
+  font-size: 20px;
+  color: #211F21;
+}
+.full-job-description .field-item, .salary .field-item {
+  font-family: Roboto;
+  font-size: 13px;
+}
+
+@media (min-width: 992px) {
+  .company-info-container {
+    margin-top: 12px;
+  }
+}
+.user-id {
+  background-color: #DBE4EB;
+  padding: 20px 20px 0px 20px;
+  margin: 0px -20px 0px -20px;
+}
+.user-id a {
+  color: #211F21;
+  font-weight: 600;
+  font-size: 24px;
+}
+.user-id a:hover {
+  color: #FDD22B;
+}
+
 strong {
   font-size: 20px;
   font-family: Poppins;
@@ -5413,23 +5512,6 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   .company-info-container-map {
     border: none;
     padding: 0px !important;
-  }
-}
-.company-info-container {
-  box-shadow: none;
-  background-color: #F6F4F4;
-}
-.company-info-container .field-label {
-  font-family: Montserrat;
-  font-weight: bolder;
-  text-transform: uppercase;
-  color: #FF9049;
-  display: table;
-}
-
-@media (min-width: 992px) {
-  .company-info-container {
-    padding-top: 0px;
   }
 }
 .facets-widget-checkbox ul {

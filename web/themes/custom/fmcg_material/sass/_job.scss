@@ -1,0 +1,114 @@
+.path-job {
+  .row-wrapper {
+    padding: 0px;
+  }
+
+  div#main-content {
+    background-color: #FFFFFF;
+    padding: 0 20px 20px;
+
+    h4 {
+      color: $fmcg-black;
+    }
+
+    p {
+      color: #211F21;
+    }
+
+    #block-fmcg-material-local-actions nav .button.button-action {
+      margin: 0px -10px 20px 0px;
+    }
+
+    @media (min-width: $xs) {
+      #block-fmcg-material-local-actions nav .button.button-action {
+        margin: 0px 12px 20px 0px;
+      }
+    }
+  }
+}
+
+.job-header {
+  background-color: $fmcg-chrome;
+  padding: 20px;
+  margin: 0px -20px 12px -20px;
+  border-bottom: 1px solid $fmcg-black;
+/**
+  &::after {
+    content: "";
+    width: 319px;
+    height: 142px;
+    background: #FFFFFF;
+    -webkit-transform: skew(-36deg);
+    -moz-transform: skew(-36deg);
+    -o-transform: skew(-36deg);
+    transform: skew(-36deg);
+    position: absolute;
+    top: 56px;
+    right: 32px;
+  }
+**/
+  span.job-title {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.3em;
+  }
+}
+
+.company-info-container {
+  box-shadow: none;
+  background-color: $fmcg-chrome;
+  padding: 12px 20px;
+
+  .contact-email-address, .contact-telephone {
+    .field-label {
+      font-family: Poppins;
+      font-size: 16px;
+      font-weight: 600;
+      color: $fmcg-black;
+      display: table;
+    }
+  }
+
+  .field-item {
+    font-family: Roboto;
+    font-size: 13px;
+  }
+}
+
+.field-type-job-role-salary {
+  margin-bottom: 20px;
+}
+
+.full-job-description, .salary {
+  .field-label {
+    font-size: 20px;
+    color: $fmcg-black;
+  }
+
+  .field-item {
+    font-family: Roboto;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: $md) {
+  .company-info-container {
+    margin-top: 12px;
+  }
+}
+
+.user-id {
+  background-color: $fmcg-chrome;
+  padding: 20px 20px 0px 20px;
+  margin: 0px -20px 0px -20px;
+
+  a {
+    color: $fmcg-black;
+    font-weight: 600;
+    font-size: 24px;
+
+    &:hover {
+      color: $fmcg-yellow;
+    }
+  }
+}
