@@ -10350,12 +10350,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rlmumford/common.git",
-                "reference": "1008e98ea67763fb11d5d9ff680e921a3436106b"
+                "reference": "c7a9ccba2c9a95abc151e2521b9d92b2b797c45d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rlmumford/common/zipball/1008e98ea67763fb11d5d9ff680e921a3436106b",
-                "reference": "1008e98ea67763fb11d5d9ff680e921a3436106b",
+                "url": "https://api.github.com/repos/rlmumford/common/zipball/c7a9ccba2c9a95abc151e2521b9d92b2b797c45d",
+                "reference": "c7a9ccba2c9a95abc151e2521b9d92b2b797c45d",
                 "shasum": ""
             },
             "require": {
@@ -10394,9 +10394,8 @@
                     },
                     "drupal/core": {
                         "Layout builder context hook": "https://www.drupal.org/files/issues/2019-05-10/3001188-5.patch",
-                        "Layout builder visibility rules": "https://www.drupal.org/files/issues/2019-05-03/2916876-52.patch",
-                        "Layout builder form blocks": "https://www.drupal.org/files/issues/2019-08-12/3045171-79.patch",
-                        "Entity reference views autocomplete filters": "https://www.drupal.org/files/issues/2019-12-24/drupal-generalize-taxonomyindextid-filter-2429699-277.patch"
+                        "Layout builder visibility rules": "https://www.drupal.org/files/issues/2020-06-10/2916876-83.patch",
+                        "Entity reference views autocomplete filters": "https://www.drupal.org/files/issues/2020-03-18/drupal-generalize-taxonomyindextid-filter-2429699-311.patch"
                     }
                 }
             },
@@ -10421,7 +10420,7 @@
                 "source": "https://github.com/rlmumford/common/tree/master",
                 "issues": "https://github.com/rlmumford/common/issues"
             },
-            "time": "2020-06-23T07:10:48+00:00"
+            "time": "2020-07-02T15:27:34+00:00"
         },
         {
             "name": "ruflin/elastica",
