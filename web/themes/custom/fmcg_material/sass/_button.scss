@@ -34,12 +34,20 @@ input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .
 .button-action {
   background-color: #50C878;
   color: #FFFFFF;
+  padding: 8px;
+  margin: 8px -10px 8px 0px;
 
   &:hover {
     background-color: #FFFFFF;
     color: #50C878;
     border-color: #50C878;
     transition: none;
+  }
+}
+
+@media (min-width: $xs) {
+  .button-action {
+    margin: 8px 8px 8px 0px;
   }
 }
 

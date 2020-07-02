@@ -737,7 +737,7 @@ pre {
 
 #content {
   flex: 1 0 auto;
-  background-image: url(../assets/fmcgbackground.png);
+  background-image: url(../assets/fmcgbackground3.png);
   overflow: hidden;
   background-size: 100%;
   background-attachment: fixed;
@@ -3344,6 +3344,8 @@ input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item
 .button-action {
   background-color: #50C878;
   color: #FFFFFF;
+  padding: 8px;
+  margin: 8px -10px 8px 0px;
 }
 .button-action:hover {
   background-color: #FFFFFF;
@@ -3352,6 +3354,11 @@ input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item
   transition: none;
 }
 
+@media (min-width: 568px) {
+  .button-action {
+    margin: 8px 8px 8px 0px;
+  }
+}
 .ui-widget-content a, .change-role a {
   padding: 8px 12px;
   height: auto;
@@ -3862,14 +3869,6 @@ form.card-form .form-item {
 .path-job div#main-content p {
   color: #211F21;
 }
-.path-job div#main-content #block-fmcg-material-local-actions nav .button.button-action {
-  margin: 0px -10px 20px 0px;
-}
-@media (min-width: 568px) {
-  .path-job div#main-content #block-fmcg-material-local-actions nav .button.button-action {
-    margin: 0px 12px 20px 0px;
-  }
-}
 
 .job-header {
   background-color: #DBE4EB;
@@ -3879,20 +3878,17 @@ form.card-form .form-item {
   /**
     &::after {
       content: "";
-      width: 319px;
-      height: 142px;
-      background: #FFFFFF;
-      -webkit-transform: skew(-36deg);
-      -moz-transform: skew(-36deg);
-      -o-transform: skew(-36deg);
-      transform: skew(-36deg);
+      height: 0;
+      width: 370px;
+      border-bottom: 142px solid #FFFFFF;
+      border-left: 36px solid transparent;
       position: absolute;
-      top: 56px;
-      right: 32px;
+      top: -20px;
+      right: -20px;
     }
   **/
 }
-.job-header span.job-title {
+.job-header .field-name-label {
   font-size: 36px;
   font-weight: 600;
   line-height: 1.3em;
@@ -3903,7 +3899,7 @@ form.card-form .form-item {
   background-color: #DBE4EB;
   padding: 12px 20px;
 }
-.company-info-container .contact-email-address .field-label, .company-info-container .contact-telephone .field-label {
+.company-info-container .category .field-label, .company-info-container .salary .field-label {
   font-family: Poppins;
   font-size: 16px;
   font-weight: 600;
@@ -3919,11 +3915,11 @@ form.card-form .form-item {
   margin-bottom: 20px;
 }
 
-.full-job-description .field-label, .salary .field-label {
+.full-job-description .field-label, .salary .field-label, .supporting-documents .field-label {
   font-size: 20px;
   color: #211F21;
 }
-.full-job-description .field-item, .salary .field-item {
+.full-job-description .field-item, .salary .field-item, .supporting-documents .field-item {
   font-family: Roboto;
   font-size: 13px;
 }
@@ -3936,7 +3932,7 @@ form.card-form .form-item {
 .user-id {
   background-color: #DBE4EB;
   padding: 20px 20px 0px 20px;
-  margin: 0px -20px 0px -20px;
+  margin: -20px -20px 0px -20px;
 }
 .user-id a {
   color: #211F21;
@@ -3945,6 +3941,10 @@ form.card-form .form-item {
 }
 .user-id a:hover {
   color: #FDD22B;
+}
+
+.primary-action-buttons nav, .primary-action-buttons li {
+  display: inline;
 }
 
 strong {

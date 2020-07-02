@@ -14,16 +14,6 @@
     p {
       color: #211F21;
     }
-
-    #block-fmcg-material-local-actions nav .button.button-action {
-      margin: 0px -10px 20px 0px;
-    }
-
-    @media (min-width: $xs) {
-      #block-fmcg-material-local-actions nav .button.button-action {
-        margin: 0px 12px 20px 0px;
-      }
-    }
   }
 }
 
@@ -35,19 +25,16 @@
 /**
   &::after {
     content: "";
-    width: 319px;
-    height: 142px;
-    background: #FFFFFF;
-    -webkit-transform: skew(-36deg);
-    -moz-transform: skew(-36deg);
-    -o-transform: skew(-36deg);
-    transform: skew(-36deg);
+    height: 0;
+    width: 370px;
+    border-bottom: 142px solid #FFFFFF;
+    border-left: 36px solid transparent;
     position: absolute;
-    top: 56px;
-    right: 32px;
+    top: -20px;
+    right: -20px;
   }
 **/
-  span.job-title {
+  .field-name-label {
     font-size: 36px;
     font-weight: 600;
     line-height: 1.3em;
@@ -59,7 +46,7 @@
   background-color: $fmcg-chrome;
   padding: 12px 20px;
 
-  .contact-email-address, .contact-telephone {
+  .category, .salary {
     .field-label {
       font-family: Poppins;
       font-size: 16px;
@@ -79,7 +66,7 @@
   margin-bottom: 20px;
 }
 
-.full-job-description, .salary {
+.full-job-description, .salary, .supporting-documents {
   .field-label {
     font-size: 20px;
     color: $fmcg-black;
@@ -100,7 +87,7 @@
 .user-id {
   background-color: $fmcg-chrome;
   padding: 20px 20px 0px 20px;
-  margin: 0px -20px 0px -20px;
+  margin: -20px -20px 0px -20px;
 
   a {
     color: $fmcg-black;
@@ -110,5 +97,11 @@
     &:hover {
       color: $fmcg-yellow;
     }
+  }
+}
+
+.primary-action-buttons {
+  nav, li {
+    display: inline;
   }
 }
