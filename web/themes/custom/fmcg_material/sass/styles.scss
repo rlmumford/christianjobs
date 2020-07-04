@@ -10,6 +10,7 @@
 @import "../../../contrib/material_base/sass/modules";
 @import "hex";
 @import "button";
+@import "table";
 @import "header";
 @import "form";
 @import "cardform";
@@ -2092,16 +2093,6 @@ form#views-exposed-form-job-board-page {
 
 li.tab.is-active {
   background-color: #FDD22B;
-}
-
-thead {
-  background-color: $fmcg-chrome;
-
-  th {
-    font-weight: 400;
-    color: $fmcg-black;
-    text-align: left;
-  }
 }
 
 #block-job-board-recruiter-dashboard-header {
