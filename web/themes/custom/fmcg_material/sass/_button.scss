@@ -76,7 +76,9 @@ input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .
   &:hover {
     background-color: $fmcg-black;
     color: $fmcg-chrome;
-    border: 2px solid $fmcg-chrome;
+    border: 2px solid $fmcg-black;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
   }
 }
 
