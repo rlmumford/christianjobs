@@ -17,6 +17,7 @@
 @import "modal";
 @import "checkout";
 @import "job";
+@import "table";
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic");
@@ -575,15 +576,7 @@ h2.company-name {
   padding-top: 0.5em;
   padding-bottom: 0.8em;
 }
-.job-result:before {
-  background: #FF904B;
-  content: "";
-  height: 6px;
-  position: absolute;
-  left: -20px;
-  right: -20px;
-  top: 0px;
-}
+
 .job-result .subtitle.employer-name a {
   color: #1E5168;
   font-weight: bold;
@@ -1202,7 +1195,6 @@ article.card a.read-more-pointer span {
   padding-right: 205px;
 }
 
-form#views-exposed-form-job-board-page,
 form#views-exposed-form-employer-directory-page,
 form#views-exposed-form-volunteer-board-list-page {
   border-radius: 0;

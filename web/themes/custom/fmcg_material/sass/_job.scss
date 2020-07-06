@@ -105,3 +105,38 @@
     display: inline;
   }
 }
+
+//Jobs Page//
+
+.path-jobs {
+  form {
+    max-width: 1200px;
+  }
+
+  .row-wrapper {
+    padding: 0;
+  }
+
+  .views-exposed-form {
+    margin: -20px -20px 0px -20px;
+
+    label {
+      color: $fmcg-yellow;
+      font-weight: 600;
+    }
+
+    .card-item {
+      margin-top: -24px;
+    }
+
+    .views-exposed-form {
+      border-radius: 0;
+      box-shadow: none;
+      padding-bottom: 30px;
+    }
+
+    .col-xs-12 {
+      padding: 0px;
+    }
+  }
+}

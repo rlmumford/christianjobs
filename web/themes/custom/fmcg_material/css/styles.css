@@ -3390,7 +3390,9 @@ input.button:hover, .btn:hover, .pager .pager-item > a:hover, .pager .pager-item
 .dropbutton a:hover {
   background-color: #211F21;
   color: #DBE4EB;
-  border: 2px solid #DBE4EB;
+  border: 2px solid #211F21;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
 }
 
 li.dropbutton-toggle {
@@ -3403,6 +3405,49 @@ li.dropbutton-toggle {
 }
 li.dropbutton-toggle:hover {
   background-color: #BFCDD9;
+}
+
+table {
+  border-collapse: separate;
+  border: 1px solid #BFCDD9;
+  border-radius: 2px;
+}
+table thead tr:first-child {
+  background: #DBE4EB;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+table thead tr:first-child th:first-child {
+  border-top-left-radius: 2px;
+}
+table thead tr:first-child th:last-child {
+  border-top-right-radius: 2px;
+}
+table thead tr:first-child th {
+  font-weight: 400;
+  color: #211F21;
+  text-align: left;
+}
+table tbody tr:last-child {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 2px;
+}
+table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 2px;
+}
+table tbody td {
+  border-top: 1px solid #BFCDD9;
+}
+table td .dropbutton-wrapper, table td .dropbutton-wrapper.dropbutton-multiple {
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.js td .dropbutton-wrapper {
+  right: 0;
 }
 
 h1, h2, .h1, .h2 {
@@ -3929,22 +3974,90 @@ form.card-form .form-item {
     margin-top: 12px;
   }
 }
-.user-id, .field-name-organization {
+.user-id {
   background-color: #DBE4EB;
   padding: 20px 20px 0px 20px;
   margin: -20px -20px 0px -20px;
 }
-.user-id a, .field-name-organization a {
+.user-id a {
   color: #211F21;
   font-weight: 600;
   font-size: 24px;
 }
-.user-id a:hover, .field-name-organization a:hover {
+.user-id a:hover {
   color: #FDD22B;
 }
 
 .primary-action-buttons nav, .primary-action-buttons li {
   display: inline;
+}
+
+.path-jobs form {
+  max-width: 1200px;
+}
+.path-jobs .row-wrapper {
+  padding: 0;
+}
+.path-jobs .views-exposed-form {
+  margin: -20px -20px 0px -20px;
+}
+.path-jobs .views-exposed-form label {
+  color: #FDD22B;
+  font-weight: 600;
+}
+.path-jobs .views-exposed-form .card-item {
+  margin-top: -24px;
+}
+.path-jobs .views-exposed-form .views-exposed-form {
+  border-radius: 0;
+  box-shadow: none;
+  padding-bottom: 30px;
+}
+.path-jobs .views-exposed-form .col-xs-12 {
+  padding: 0px;
+}
+
+table {
+  border-collapse: separate;
+  border: 1px solid #BFCDD9;
+  border-radius: 2px;
+}
+table thead tr:first-child {
+  background: #DBE4EB;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+table thead tr:first-child th:first-child {
+  border-top-left-radius: 2px;
+}
+table thead tr:first-child th:last-child {
+  border-top-right-radius: 2px;
+}
+table thead tr:first-child th {
+  font-weight: 400;
+  color: #211F21;
+  text-align: left;
+}
+table tbody tr:last-child {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 2px;
+}
+table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 2px;
+}
+table tbody td {
+  border-top: 1px solid #BFCDD9;
+}
+table td .dropbutton-wrapper, table td .dropbutton-wrapper.dropbutton-multiple {
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.js td .dropbutton-wrapper {
+  right: 0;
 }
 
 strong {
@@ -4503,16 +4616,6 @@ h2.company-name {
   position: relative;
   padding-top: 0.5em;
   padding-bottom: 0.8em;
-}
-
-.job-result:before {
-  background: #FF904B;
-  content: "";
-  height: 6px;
-  position: absolute;
-  left: -20px;
-  right: -20px;
-  top: 0px;
 }
 
 .job-result .subtitle.employer-name a {
@@ -5130,7 +5233,6 @@ article.card a.read-more-pointer span, .content-card article.card-holder a.read-
   padding-right: 205px;
 }
 
-form#views-exposed-form-job-board-page,
 form#views-exposed-form-employer-directory-page,
 form#views-exposed-form-volunteer-board-list-page {
   border-radius: 0;
@@ -5138,22 +5240,17 @@ form#views-exposed-form-volunteer-board-list-page {
   padding: 12px;
   padding-bottom: 30px;
 }
-form#views-exposed-form-job-board-page .card-actions, form#views-exposed-form-job-board-page .form-actions,
-form#views-exposed-form-employer-directory-page .card-actions,
-form#views-exposed-form-employer-directory-page .form-actions,
+form#views-exposed-form-employer-directory-page .card-actions, form#views-exposed-form-employer-directory-page .form-actions,
 form#views-exposed-form-volunteer-board-list-page .card-actions,
 form#views-exposed-form-volunteer-board-list-page .form-actions {
   text-align: center;
 }
-form#views-exposed-form-job-board-page .card-actions input.button, form#views-exposed-form-job-board-page .form-actions input.button,
-form#views-exposed-form-employer-directory-page .card-actions input.button,
-form#views-exposed-form-employer-directory-page .form-actions input.button,
+form#views-exposed-form-employer-directory-page .card-actions input.button, form#views-exposed-form-employer-directory-page .form-actions input.button,
 form#views-exposed-form-volunteer-board-list-page .card-actions input.button,
 form#views-exposed-form-volunteer-board-list-page .form-actions input.button {
   font-size: 1.2em;
   height: 50px;
 }
-form#views-exposed-form-job-board-page .divider-top,
 form#views-exposed-form-employer-directory-page .divider-top,
 form#views-exposed-form-volunteer-board-list-page .divider-top {
   border-top: none;
@@ -5927,15 +6024,6 @@ form#views-exposed-form-job-board-page {
 
 li.tab.is-active {
   background-color: #FDD22B;
-}
-
-thead {
-  background-color: #DBE4EB;
-}
-thead th {
-  font-weight: 400;
-  color: #211F21;
-  text-align: left;
 }
 
 #block-job-board-recruiter-dashboard-header h2 {
