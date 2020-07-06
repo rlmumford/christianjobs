@@ -3929,17 +3929,17 @@ form.card-form .form-item {
     margin-top: 12px;
   }
 }
-.user-id {
+.user-id, .field-name-organization {
   background-color: #DBE4EB;
   padding: 20px 20px 0px 20px;
   margin: -20px -20px 0px -20px;
 }
-.user-id a {
+.user-id a, .field-name-organization a {
   color: #211F21;
   font-weight: 600;
   font-size: 24px;
 }
-.user-id a:hover {
+.user-id a:hover, .field-name-organization a:hover {
   color: #FDD22B;
 }
 
