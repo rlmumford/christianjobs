@@ -150,11 +150,11 @@
             "drupal/cshs": {
                 "Compatability with entityreference filter": "./patches/cshs-entityreference_views_handler_compat.patch"
             },
+            "drupal/social_link_field": {
+                "Main Property Fix": "https://www.drupal.org/files/issues/2020-07-06/3157171-2.patch"
+            },
             "drupal/inline_entity_form": {
                 "Bundle selection fix": "https://www.drupal.org/files/issues/2019-08-20/3076005-2.patch"
-            },
-            "drupal/decoupled_auth": {
-                "Account Form fix": "https://www.drupal.org/files/issues/2020-02-12/3113064-2.patch"
             }
         },
         "installer-paths": {
