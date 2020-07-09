@@ -32,7 +32,7 @@ form {
       font-weight: 400;
       font-family: Poppins;
       line-height: 2em;
-      color: #211F21;
+      color: $fmcg-black;
     }
   }
 
@@ -139,7 +139,7 @@ form {
     }
 
     &:focus {
-      border: 2px solid #FDD22B;
+      border: 2px solid $fmcg-yellow;
       padding-top: 7px;
       padding-bottom: 7px;
     }

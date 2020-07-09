@@ -37,7 +37,7 @@ strong {
 p, h4 {
   font-family: Roboto;
   font-size: 13px;
-  color: #DBE4EB;
+  color: $fmcg-chrome;
 }
 
 p.address {
@@ -175,7 +175,7 @@ details > summary::before {
   position: absolute;
   left: 6px;
   top: 14px;
-  color: #FDD22B;
+  color: $fmcg-yellow;
   transition: transform 0.25s ease;
 }
 details[open] > summary::before {
@@ -275,7 +275,7 @@ ul.select2-selection__rendered {
   cursor: pointer;
   clear: both;
   color: #FFFFFF;
-  background-color: #211F21;
+  background-color: $fmcg-black;
   line-height: 0.5rem;
   text-align: left;
   text-transform: none;
@@ -331,7 +331,7 @@ div#block-fmcg-material-page-title {
   padding-top: 10px;
 }
 div#main-content {
-  background-color: rgba(255,255,255,0.8);
+  background-color: #FFFFFF;
   padding: 0 20px 30px;
 }
 
@@ -382,7 +382,7 @@ div#main-content {
 }
 
 .navbar-fixed #navbar {
-  background-color: #211F21;
+  background-color: $fmcg-black;
   border-bottom: 1px solid $fmcg-yellow;
 }
 
@@ -555,62 +555,6 @@ h2.company-name {
   color: #FF904B;
 }
 
-/* Job Result */
-.card.card-vertical.job-result,
-.job-result {
-  margin: 0;
-  border-radius: 0;
-  box-shadow: none;
-  position: relative;
-  padding-top: 0.5em;
-  padding-bottom: 0.8em;
-}
-
-.job-result .subtitle.employer-name a {
-  color: #1E5168;
-  font-weight: bold;
-
-  &:hover {
-    color: #569BDD;
-  }
-}
-.job-result span.views-label {
-  color: #1E5168;
-  min-width: 6em;
-  display: inline-block;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: .8em;
-  line-height: 1em;
-}
-.job-result .views-field-keywords-target-id {
-  font-size: 0.9em;
-  font-weight: bold;
-  text-transform: capitalize;
-}
-.job-result p.address {
-  display: inline-block;
-  margin-bottom: 0;
-}
-.job-result p.address {
-  br {
-    display: none;
-  }
-  span::after {
-    content: ',';
-  }
-  span:last-child::after {
-    content: '';
-  }
-}
-.job-result .card-media.media-cover {
-  padding: 4px;
-}
-.job-result .card-media.media-cover img {
-  -o-object-fit: contain;
-  object-fit: contain;
-}
-
 /* Front Sections */
 .front-features .col-left {
   display: flex;
@@ -669,7 +613,7 @@ p.scripture {
 }
 
 #footer {
-  background: #211F21;
+  background: $fmcg-black;
   color: #FFFFFF;
   border-top: 1px solid $fmcg-yellow;
 }
@@ -1557,24 +1501,6 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   border-color: rgba(0,0,0,0.25);
 }
 
-.extra-fields-container {
-  background-color: #F6F4F4;
-  padding: 20px;
-
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  span.views-label {
-    font-family: Montserrat;
-    font-weight: bolder;
-    color: #FF904B;
-    display: table;
-    line-height: 2em;
-  }
-}
-
 .company-info-container-map {
   padding-left: 20px !important;
   margin-left: -10px !important;
@@ -1999,7 +1925,7 @@ form#views-exposed-form-job-board-page {
 //STYLING FOR UPSELL WRAPPERS - TO BE GIVEN OWN FILE //
 
 .upsell-wrapper, .outsourced-upsell-wrapper {
-  background-color: #211F21;
+  background-color: $fmcg-black;
   padding: 1px 24px;
   margin-top: 24px;
   margin-bottom: 8px;
@@ -2055,7 +1981,7 @@ form#views-exposed-form-job-board-page {
 }
 
 li.tab.is-active {
-  background-color: #FDD22B;
+  background-color: $fmcg-yellow;
 }
 
 #block-job-board-recruiter-dashboard-header {

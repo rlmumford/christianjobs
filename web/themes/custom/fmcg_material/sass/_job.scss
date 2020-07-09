@@ -12,28 +12,17 @@
     }
 
     p {
-      color: #211F21;
+      color: $fmcg-black;
     }
   }
 }
 
-.job-header {
+.job-title {
   background-color: $fmcg-chrome;
   padding: 20px;
   margin: 0px -20px 12px -20px;
   border-bottom: 1px solid $fmcg-black;
-/**
-  &::after {
-    content: "";
-    height: 0;
-    width: 370px;
-    border-bottom: 142px solid #FFFFFF;
-    border-left: 36px solid transparent;
-    position: absolute;
-    top: -20px;
-    right: -20px;
-  }
-**/
+
   .field-name-label {
     font-size: 36px;
     font-weight: 600;
@@ -122,7 +111,7 @@
 
     label {
       color: $fmcg-yellow;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .card-item {
@@ -138,5 +127,82 @@
     .col-xs-12 {
       padding: 0px;
     }
+  }
+}
+
+/* Job Result */
+.job-result {
+  background-color: #DBE4EB;
+  border: 1px solid #211F21;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  h3 {
+    font-size: 24px;
+    color: $fmcg-black;
+  }
+
+  p {
+    color: $fmcg-black;
+  }
+
+  span.field-content {
+    a {
+      font-weight: 500;
+      color: $fmcg-black;
+    }
+  }
+
+  .views-field-pay__desc::before {
+    content: "";
+    height: 8px;
+    width: 8px;
+    background-color: $fmcg-black;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 2px;
+  }
+
+  .views-field-industry::before {
+    content: "";
+    height: 8px;
+    width: 8px;
+    background-color: $fmcg-black;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    margin-left: 8px;
+    margin-bottom: 2px;
+  }
+
+  .card-title {
+    padding: 24px 24px 0px 24px;
+  }
+
+  .views-field-organization {
+    margin-bottom: 16px;
+  }
+
+  .views-field-logo__target-id {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    visibility: hidden;
+  }
+
+  @media (min-width: $md) {
+    .views-field-logo__target-id {
+      visibility: visible;
+    }
+  }
+
+  .card-column-left {
+    background-color: #FFFFFF;
+    transform: skew(-36deg, 0deg);
+  }
+
+  .views-field {
+    float: left;
   }
 }

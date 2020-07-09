@@ -32,13 +32,6 @@
  */
 #}
 <div class="card card-vertical job-result">
-  <div class="card-column-left card-column-240 visible-md aside">
-    {% if fields.logo %}
-      <div class="card-item card-media media-cover">
-        {{ fields.logo.content }}
-      </div>
-    {% endif %}
-  </div>
   <div class="card-column-right card-column-stretch main">
     <div class="card-item card-title">
       <h3>{{ fields.label.content }}</h3>
@@ -46,10 +39,10 @@
     </div>
     <div class="card-item card-text">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 first-md description-container">
+        <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11 first-md description-container">
           {{ fields.description__value.content }}
         </div>
-        <div class=" col-xs-12 col-sm-12 col-md-6 col-lg-6 first-sm first-xs extra-fields-container">
+        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 first-sm first-xs extra-fields-container">
           {% for field in fields|without('logo','employer_name', 'description__value', 'label') -%}
             {{ field.separator }}
             {%- if field.wrapper_element -%}
@@ -75,6 +68,13 @@
       </div>
     </div>
   </div>
+    <div class="card-column-left card-column-240 visible-md aside">
+      {% if fields.logo %}
+        <div class="card-item card-media media-cover">
+          {{ fields.logo.content }}
+        </div>
+      {% endif %}
+    </div>
 </div>
 {#
 {% for field in fields -%}

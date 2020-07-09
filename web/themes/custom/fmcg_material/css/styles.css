@@ -737,10 +737,11 @@ pre {
 
 #content {
   flex: 1 0 auto;
-  background-image: url(../assets/fmcgbackground3.png);
+  background-image: url(../assets/fmcghexpattern.svg);
   overflow: hidden;
-  background-size: 100%;
+  background-size: 10%;
   background-attachment: fixed;
+  background-color: #FFFFFF;
 }
 
 #main-content {
@@ -3915,25 +3916,13 @@ form.card-form .form-item {
   color: #211F21;
 }
 
-.job-header {
+.job-title {
   background-color: #DBE4EB;
   padding: 20px;
   margin: 0px -20px 12px -20px;
   border-bottom: 1px solid #211F21;
-  /**
-    &::after {
-      content: "";
-      height: 0;
-      width: 370px;
-      border-bottom: 142px solid #FFFFFF;
-      border-left: 36px solid transparent;
-      position: absolute;
-      top: -20px;
-      right: -20px;
-    }
-  **/
 }
-.job-header .field-name-label {
+.job-title .field-name-label {
   font-size: 36px;
   font-weight: 600;
   line-height: 1.3em;
@@ -4003,7 +3992,7 @@ form.card-form .form-item {
 }
 .path-jobs .views-exposed-form label {
   color: #FDD22B;
-  font-weight: 600;
+  font-weight: 500;
 }
 .path-jobs .views-exposed-form .card-item {
   margin-top: -24px;
@@ -4015,6 +4004,70 @@ form.card-form .form-item {
 }
 .path-jobs .views-exposed-form .col-xs-12 {
   padding: 0px;
+}
+
+/* Job Result */
+.job-result {
+  background-color: #DBE4EB;
+  border: 1px solid #211F21;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.job-result h3 {
+  font-size: 24px;
+  color: #211F21;
+}
+.job-result p {
+  color: #211F21;
+}
+.job-result span.field-content a {
+  font-weight: 500;
+  color: #211F21;
+}
+.job-result .views-field-pay__desc::before {
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #211F21;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 2px;
+}
+.job-result .views-field-industry::before {
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #211F21;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-bottom: 2px;
+}
+.job-result .card-title {
+  padding: 24px 24px 0px 24px;
+}
+.job-result .views-field-organization {
+  margin-bottom: 16px;
+}
+.job-result .views-field-logo__target-id {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  visibility: hidden;
+}
+@media (min-width: 992px) {
+  .job-result .views-field-logo__target-id {
+    visibility: visible;
+  }
+}
+.job-result .card-column-left {
+  background-color: #FFFFFF;
+  transform: skew(-36deg, 0deg);
+}
+.job-result .views-field {
+  float: left;
 }
 
 table {
@@ -4369,7 +4422,7 @@ div#block-fmcg-material-page-title {
 }
 
 div#main-content {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #FFFFFF;
   padding: 0 20px 30px;
 }
 
@@ -4594,65 +4647,6 @@ h2.company-name {
 
 #block-frontpageboostedjobs .card-title span.subtitle {
   color: #FF904B;
-}
-
-/* Job Result */
-.card.card-vertical.job-result, .content-card .card-vertical.job-result.card-holder,
-.job-result {
-  margin: 0;
-  border-radius: 0;
-  box-shadow: none;
-  position: relative;
-  padding-top: 0.5em;
-  padding-bottom: 0.8em;
-}
-
-.job-result .subtitle.employer-name a {
-  color: #1E5168;
-  font-weight: bold;
-}
-.job-result .subtitle.employer-name a:hover {
-  color: #569BDD;
-}
-
-.job-result span.views-label {
-  color: #1E5168;
-  min-width: 6em;
-  display: inline-block;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.8em;
-  line-height: 1em;
-}
-
-.job-result .views-field-keywords-target-id {
-  font-size: 0.9em;
-  font-weight: bold;
-  text-transform: capitalize;
-}
-
-.job-result p.address {
-  display: inline-block;
-  margin-bottom: 0;
-}
-
-.job-result p.address br {
-  display: none;
-}
-.job-result p.address span::after {
-  content: ",";
-}
-.job-result p.address span:last-child::after {
-  content: "";
-}
-
-.job-result .card-media.media-cover {
-  padding: 4px;
-}
-
-.job-result .card-media.media-cover img {
-  -o-object-fit: contain;
-  object-fit: contain;
 }
 
 /* Front Sections */
@@ -5567,22 +5561,6 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   background-color: #F6F4F4;
   border: 1px solid;
   border-color: rgba(0, 0, 0, 0.25);
-}
-
-.extra-fields-container {
-  background-color: #F6F4F4;
-  padding: 20px;
-}
-.extra-fields-container h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-.extra-fields-container span.views-label {
-  font-family: Montserrat;
-  font-weight: bolder;
-  color: #FF904B;
-  display: table;
-  line-height: 2em;
 }
 
 .company-info-container-map {

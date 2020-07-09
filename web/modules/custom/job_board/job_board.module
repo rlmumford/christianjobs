@@ -387,13 +387,13 @@ function job_board_form_views_exposed_form_alter(array &$form, FormStateInterfac
     $form['filters']['label'] = $form['label'];
     unset($form['label']);
     $form['filters']['label']['#title'] = $form['#info']['filter-label']['label'];
-    $form['filters']['label']['#prefix'] = '<div class="col-xs-12 col-md-6">';
+    $form['filters']['label']['#prefix'] = '<div class="col-xs-12 col-md-6 col-lg-3">';
     $form['filters']['label']['#suffix'] = '</div>';
 
     $form['filters']['organisation'] = $form['organisation'];
     unset($form['organisation']);
     $form['filters']['organisation']['#title'] = $form['#info']['filter-organisation']['label'];
-    $form['filters']['organisation']['#prefix'] = '<div class="col-xs-12 col-md-6">';
+    $form['filters']['organisation']['#prefix'] = '<div class="col-xs-12 col-md-6 col-lg-3">';
     $form['filters']['organisation']['#suffix'] = '</div>';
 
     $form['filters']['location_geo__proximity'] = $form['location_geo__proximity'];
