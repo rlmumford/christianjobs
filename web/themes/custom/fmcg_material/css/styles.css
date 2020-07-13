@@ -737,7 +737,7 @@ pre {
 
 #content {
   flex: 1 0 auto;
-  background-image: url(../assets/fmcghexpattern.svg);
+  background-image: url(../assets/fmcghexpatternv2.svg);
   overflow: hidden;
   background-size: 10%;
   background-attachment: fixed;
@@ -1635,7 +1635,7 @@ icon labels
   font-family: Poppins;
   font-size: 16px;
   font-weight: 400;
-  color: #FFDC7D;
+  color: #F7F6F6;
   text-transform: uppercase;
 }
 .navbar-menu .menu a:hover {
@@ -3274,7 +3274,7 @@ ul.messages-list {
   position: relative;
   width: 40px;
   height: 24px;
-  background-color: #FFDC7D;
+  background-color: #B7D8D6;
   margin: 28.86px 12px;
   transform: rotate(90deg);
 }
@@ -3285,8 +3285,8 @@ ul.messages-list {
   width: 0;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
-  border-bottom-color: #FFDC7D;
-  border-top-color: #FFDC7D;
+  border-bottom-color: #B7D8D6;
+  border-top-color: #B7D8D6;
 }
 .hexagon:before {
   bottom: 100%;
@@ -3300,15 +3300,40 @@ ul.messages-list {
   border-top-style: solid;
 }
 .hexagon:hover {
-  background-color: #2B4E59;
-  color: #FFDC7D;
+  background-color: #F7F6F6;
+  color: #B7D8D6;
 }
 .hexagon:hover:before, .hexagon:hover:after {
-  border-bottom-color: #2B4E59;
-  border-top-color: #2B4E59;
+  border-bottom-color: #F7F6F6;
+  border-top-color: #F7F6F6;
 }
 .hexagon:hover a, .hexagon:hover a:before {
-  color: #FFDC7D;
+  color: #B7D8D6;
+}
+
+li.hexagon.menu-item:last-child {
+  background-color: #EC615D;
+}
+li.hexagon.menu-item:last-child:before, li.hexagon.menu-item:last-child:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom-color: #EC615D;
+  border-top-color: #EC615D;
+}
+li.hexagon.menu-item:last-child:hover {
+  background-color: #F7F6F6;
+  color: #2B4E59;
+}
+li.hexagon.menu-item:last-child:hover:before, li.hexagon.menu-item:last-child:hover:after {
+  border-bottom-color: #F7F6F6;
+  border-top-color: #F7F6F6;
+}
+li.hexagon.menu-item:last-child:hover a, li.hexagon.menu-item:last-child:hover a:before {
+  color: #2B4E59;
 }
 
 input.button, .btn, .pager .pager-item > a, .pager .pager-item > span, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .ui-widget-content a, .dropbutton-action a, .new-organization, input[type=submit] {
@@ -3917,7 +3942,7 @@ form.card-form .form-item {
 }
 
 .job-title {
-  background-color: #F7F6F6;
+  background-color: #B7D8D6;
   padding: 20px;
   margin: 0px -20px 12px -20px;
   border-bottom: 1px solid #2B4E59;
@@ -3964,7 +3989,7 @@ form.card-form .form-item {
   }
 }
 .user-id {
-  background-color: #F7F6F6;
+  background-color: #B7D8D6;
   padding: 20px 20px 0px 20px;
   margin: -20px -20px 0px -20px;
 }
@@ -4008,10 +4033,11 @@ form.card-form .form-item {
 
 /* Job Result */
 .job-result {
-  background-color: #DBE4EB;
+  background-color: #B7D8D6;
   border: 1px solid #211F21;
   margin-bottom: 20px;
   overflow: hidden;
+  position: relative;
 }
 .job-result h3 {
   font-size: 24px;
@@ -4053,8 +4079,9 @@ form.card-form .form-item {
 }
 .job-result .views-field-logo__target-id {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
   visibility: hidden;
 }
 @media (min-width: 992px) {
@@ -4065,6 +4092,16 @@ form.card-form .form-item {
 .job-result .card-column-left {
   background-color: #FFFFFF;
   transform: skew(-36deg, 0deg);
+}
+.job-result .card-column-left::after {
+  content: "";
+  width: 200px;
+  height: 200px;
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 50;
+  left: 114px;
+  top: 80px;
 }
 .job-result .views-field {
   float: left;

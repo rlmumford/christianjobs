@@ -18,7 +18,7 @@
 }
 
 .job-title {
-  background-color: $fmcg-grey;
+  background-color: $fmcg-teal;
   padding: 20px;
   margin: 0px -20px 12px -20px;
   border-bottom: 1px solid $fmcg-dark-teal;
@@ -74,7 +74,7 @@
 }
 
 .user-id {
-  background-color: $fmcg-grey;
+  background-color: $fmcg-teal;
   padding: 20px 20px 0px 20px;
   margin: -20px -20px 0px -20px;
 
@@ -132,10 +132,11 @@
 
 /* Job Result */
 .job-result {
-  background-color: #DBE4EB;
-  border: 1px solid #211F21;
+  background-color: $fmcg-teal;
+  border: 1px solid $fmcg-black;
   margin-bottom: 20px;
   overflow: hidden;
+  position: relative;
 
   h3 {
     font-size: 24px;
@@ -186,8 +187,9 @@
 
   .views-field-logo__target-id {
     position: absolute;
-    top: 24px;
-    right: 24px;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
     visibility: hidden;
   }
 
@@ -200,6 +202,17 @@
   .card-column-left {
     background-color: #FFFFFF;
     transform: skew(-36deg, 0deg);
+
+    &::after {
+      content: "";
+      width: 200px;
+      height: 200px;
+      background-color: #FFFFFF;
+      position: absolute;
+      top: 50;
+      left: 114px;
+      top: 80px;
+    }
   }
 
   .views-field {
