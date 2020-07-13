@@ -37,7 +37,7 @@ strong {
 p, h4 {
   font-family: Roboto;
   font-size: 13px;
-  color: $fmcg-chrome;
+  color: $fmcg-grey;
 }
 
 p.address {
@@ -275,7 +275,7 @@ ul.select2-selection__rendered {
   cursor: pointer;
   clear: both;
   color: #FFFFFF;
-  background-color: $fmcg-black;
+  background-color: $fmcg-dark-teal;
   line-height: 0.5rem;
   text-align: left;
   text-transform: none;
@@ -382,7 +382,7 @@ div#main-content {
 }
 
 .navbar-fixed #navbar {
-  background-color: $fmcg-black;
+  background-color: $fmcg-dark-teal;
   border-bottom: 1px solid $fmcg-yellow;
 }
 
@@ -394,7 +394,7 @@ div#main-content {
   bottom: auto;
   transition: top .4s;
   z-index: 10;
-  background-color: $fmcg-black;
+  background-color: $fmcg-dark-teal;
 
   li {
     display: block;
@@ -613,7 +613,7 @@ p.scripture {
 }
 
 #footer {
-  background: $fmcg-black;
+  background: $fmcg-dark-teal;
   color: #FFFFFF;
   border-top: 1px solid $fmcg-yellow;
 }
@@ -725,7 +725,7 @@ p.scripture {
 }
 
 #page {
-  background-color: $fmcg-chrome;
+  background-color: $fmcg-grey;
   overflow: hidden;
   background-size: 100%;
   background-attachment: fixed;
@@ -810,7 +810,7 @@ div.section-header-wrapper {
     font-size: 30px;
     font-weight: 600;
     display: inline-block;
-    color: $fmcg-black;
+    color: $fmcg-dark-teal;
   }
 }
 
@@ -1386,7 +1386,7 @@ label.option {
 }
 
 .tabs ul li {
-  background-color: $fmcg-black;
+  background-color: $fmcg-dark-teal;
   transform: skewX(-36deg);
   padding-left: 14px;
   padding-right: 14px;
@@ -1402,13 +1402,13 @@ label.option {
 }
 
 .tabs ul li a.is-active, ul.tabs li a.is-active {
-  color: $fmcg-black;
+  color: $fmcg-dark-teal;
   background-color: $fmcg-yellow;
   border: none;
 }
 
 .tabs ul li a:hover, ul.tabs li a:hover {
-  color: $fmcg-black;
+  color: $fmcg-dark-teal;
 }
 
 .form-item-account-type.btn {
@@ -1804,13 +1804,13 @@ form#views-exposed-form-job-board-page {
 .password-strength__title, .password-confirm {
   font-family: Roboto;
   font-size: 13px;
-  color: $fmcg-chrome;
+  color: $fmcg-grey;
 }
 
 .password-strength__meter {
   height: 0.75em;
   margin-top: 0.5em;
-  background-color: $fmcg-chrome;
+  background-color: $fmcg-grey;
 }
 
 .password-strength__indicator {
@@ -1837,7 +1837,7 @@ form#views-exposed-form-job-board-page {
     color: #FFFFFF;
 
     &:hover {
-      color: $fmcg-black;
+      color: $fmcg-dark-teal;
     }
   }
 }
@@ -1859,7 +1859,7 @@ form#views-exposed-form-job-board-page {
     color: #FFFFFF;
 
     &:hover {
-      color: $fmcg-black;
+      color: $fmcg-dark-teal;
     }
   }
 }
@@ -1900,19 +1900,19 @@ form#views-exposed-form-job-board-page {
   }
 
   h3 {
-    color: $fmcg-chrome;
+    color: $fmcg-grey;
     font-size: 24px;
     font-weight: 600;
   }
 
   .subtitle, .field-label, .field-item {
-    color: $fmcg-chrome;
+    color: $fmcg-grey;
     font-size: 14px;
     font-weight: 400;
   }
 
   .material-icons {
-    background: $fmcg-chrome;
+    background: $fmcg-grey;
   }
 
   span.material-icons {
@@ -1925,7 +1925,7 @@ form#views-exposed-form-job-board-page {
 //STYLING FOR UPSELL WRAPPERS - TO BE GIVEN OWN FILE //
 
 .upsell-wrapper, .outsourced-upsell-wrapper {
-  background-color: $fmcg-black;
+  background-color: $fmcg-dark-teal;
   padding: 1px 24px;
   margin-top: 24px;
   margin-bottom: 8px;
@@ -1939,7 +1939,7 @@ form#views-exposed-form-job-board-page {
 
   label.option {
     font-size: 16px;
-    color: $fmcg-chrome;
+    color: $fmcg-grey;
     width: 100%;
     display: block;
   }
@@ -1976,7 +1976,7 @@ form#views-exposed-form-job-board-page {
 }
 
 .tabs {
-  background-color: $fmcg-black;
+  background-color: $fmcg-dark-teal;
   border-bottom: 1px solid $fmcg-yellow;
 }
 
@@ -1986,7 +1986,7 @@ li.tab.is-active {
 
 #block-job-board-recruiter-dashboard-header {
   h2 {
-    color: $fmcg-black;
+    color: $fmcg-dark-teal;
   }
 }
 

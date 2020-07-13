@@ -1,10 +1,10 @@
 table {
   border-collapse: separate;
-  border: 1px solid $fmcg-chrome-hover;
+  border: 1px solid $fmcg-grey-hover;
   border-radius: 2px;
 
   thead tr:first-child {
-    background: $fmcg-chrome;
+    background: $fmcg-grey;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
 
@@ -16,7 +16,7 @@ table {
     }
     th {
       font-weight: 400;
-      color: $fmcg-black;
+      color: $fmcg-dark-teal;
       text-align: left;
     }
   }
@@ -32,7 +32,7 @@ table {
     }
   }
   tbody td {
-    border-top:1px solid $fmcg-chrome-hover;
+    border-top:1px solid $fmcg-grey-hover;
   }
   td .dropbutton-wrapper, td .dropbutton-wrapper.dropbutton-multiple {
     padding-right: 0;

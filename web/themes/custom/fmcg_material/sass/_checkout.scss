@@ -1,5 +1,5 @@
 .layout-checkout-form {
-  background: $fmcg-black;
+  background: $fmcg-dark-teal;
   box-shadow: none;
 
   .checkout-pane {
@@ -11,7 +11,7 @@
   }
 
   a {
-    color: $fmcg-chrome;
+    color: $fmcg-grey;
     font-size: 14px;
     vertical-align: middle;
     text-transform: uppercase;
@@ -28,7 +28,7 @@
   div.form-item label {
     font-size: 14px;
     line-height: 2em;
-    color: $fmcg-chrome;
+    color: $fmcg-grey;
   }
 
   .form-item.form-type-select:after {
@@ -43,7 +43,7 @@
   }
 
   span.fieldset-legend {
-    background-color: $fmcg-black;
+    background-color: $fmcg-dark-teal;
 
     &::after {
       content: "";
@@ -71,7 +71,7 @@
   }
 
   .fieldset-wrapper {
-    color: $fmcg-chrome;
+    color: $fmcg-grey;
     font-family: Roboto;
     font-size: 13px;
   }
@@ -143,11 +143,11 @@
 
   .order-total-line-label {
     font-family: Poppins;
-    color: $fmcg-black;
+    color: $fmcg-dark-teal;
   }
 
   .order-total-line-value {
-    color: $fmcg-black;
+    color: $fmcg-dark-teal;
     display: table-cell;
   }
 }
@@ -177,23 +177,23 @@
   }
 
   td {
-    color: $fmcg-chrome;
+    color: $fmcg-grey;
     padding-left: 0px;
   }
 
   .button {
     background: none;
-    color: $fmcg-chrome;
+    color: $fmcg-grey;
     font-weight: 400;
-    border: 1px solid $fmcg-chrome;
+    border: 1px solid $fmcg-grey;
     width: min-content;
     height: min-content;
     margin: 0px;
 
     &:hover {
-      background: $fmcg-chrome;
+      background: $fmcg-grey;
       border: 1px solid transparent;
-      color: $fmcg-black;
+      color: $fmcg-dark-teal;
       padding: 8px 16px;
     }
   }

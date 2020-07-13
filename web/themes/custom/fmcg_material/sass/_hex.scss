@@ -31,11 +31,11 @@
   }
 
   &:hover {
-    background-color: $fmcg-black;
+    background-color: $fmcg-dark-teal;
     color: $fmcg-yellow;
     &:before, &:after {
-      border-bottom-color: $fmcg-black;
-      border-top-color: $fmcg-black;
+      border-bottom-color: $fmcg-dark-teal;
+      border-top-color: $fmcg-dark-teal;
     }
     a, a:before {
       color: $fmcg-yellow;

@@ -8,20 +8,20 @@
     padding: 0 20px 20px;
 
     h4 {
-      color: $fmcg-black;
+      color: $fmcg-dark-teal;
     }
 
     p {
-      color: $fmcg-black;
+      color: $fmcg-dark-teal;
     }
   }
 }
 
 .job-title {
-  background-color: $fmcg-chrome;
+  background-color: $fmcg-grey;
   padding: 20px;
   margin: 0px -20px 12px -20px;
-  border-bottom: 1px solid $fmcg-black;
+  border-bottom: 1px solid $fmcg-dark-teal;
 
   .field-name-label {
     font-size: 36px;
@@ -32,7 +32,7 @@
 
 .company-info-container {
   box-shadow: none;
-  background-color: $fmcg-chrome;
+  background-color: $fmcg-grey;
   padding: 12px 20px;
 
   .category, .salary {
@@ -40,7 +40,7 @@
       font-family: Poppins;
       font-size: 16px;
       font-weight: 600;
-      color: $fmcg-black;
+      color: $fmcg-dark-teal;
       display: table;
     }
   }
@@ -58,7 +58,7 @@
 .full-job-description, .salary, .supporting-documents {
   .field-label {
     font-size: 20px;
-    color: $fmcg-black;
+    color: $fmcg-dark-teal;
   }
 
   .field-item {
@@ -74,12 +74,12 @@
 }
 
 .user-id {
-  background-color: $fmcg-chrome;
+  background-color: $fmcg-grey;
   padding: 20px 20px 0px 20px;
   margin: -20px -20px 0px -20px;
 
   a {
-    color: $fmcg-black;
+    color: $fmcg-dark-teal;
     font-weight: 600;
     font-size: 24px;
 
@@ -139,17 +139,17 @@
 
   h3 {
     font-size: 24px;
-    color: $fmcg-black;
+    color: $fmcg-dark-teal;
   }
 
   p {
-    color: $fmcg-black;
+    color: $fmcg-dark-teal;
   }
 
   span.field-content {
     a {
       font-weight: 500;
-      color: $fmcg-black;
+      color: $fmcg-dark-teal;
     }
   }
 
@@ -157,7 +157,7 @@
     content: "";
     height: 8px;
     width: 8px;
-    background-color: $fmcg-black;
+    background-color: $fmcg-dark-teal;
     border-radius: 50%;
     display: inline-block;
     margin-right: 8px;
@@ -168,7 +168,7 @@
     content: "";
     height: 8px;
     width: 8px;
-    background-color: $fmcg-black;
+    background-color: $fmcg-dark-teal;
     border-radius: 50%;
     display: inline-block;
     margin-right: 8px;
