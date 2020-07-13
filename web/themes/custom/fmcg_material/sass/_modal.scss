@@ -5,7 +5,7 @@
   box-shadow: 10px 10px 11px 0px rgba(33,31,33,0.5);
 
   .ui-dialog-titlebar {
-    background-color: $fmcg-black;
+    background-color: $fmcg-dark-teal;
     color: $fmcg-yellow;
     padding: .4em 1em;
     position: relative;
@@ -19,6 +19,6 @@
 
   .ui-widget.ui-widget-content {
     border: none !important;
-    color: $fmcg-black;
+    color: $fmcg-dark-teal;
   }
 }

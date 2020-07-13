@@ -32,7 +32,7 @@ form {
       font-weight: 400;
       font-family: Poppins;
       line-height: 2em;
-      color: #211F21;
+      color: $fmcg-dark-teal;
     }
   }
 
@@ -59,7 +59,7 @@ form {
     font-size: 20px;
     font-weight: 600;
     z-index: 5;
-    background: $fmcg-chrome;
+    background: $fmcg-grey;
     padding-right: 12px;
   }
 
@@ -67,7 +67,7 @@ form {
     position: relative;
     width: 100%;
     z-index: 5;
-    background: $fmcg-chrome;
+    background: $fmcg-grey;
     margin-bottom: 12px;
   }
 
@@ -139,7 +139,7 @@ form {
     }
 
     &:focus {
-      border: 2px solid #FDD22B;
+      border: 2px solid $fmcg-yellow;
       padding-top: 7px;
       padding-bottom: 7px;
     }

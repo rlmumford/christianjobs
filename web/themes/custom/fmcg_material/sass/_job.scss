@@ -1,0 +1,221 @@
+.path-job {
+  .row-wrapper {
+    padding: 0px;
+  }
+
+  div#main-content {
+    background-color: #FFFFFF;
+    padding: 0 20px 20px;
+
+    h4 {
+      color: $fmcg-dark-teal;
+    }
+
+    p {
+      color: $fmcg-dark-teal;
+    }
+  }
+}
+
+.job-title {
+  background-color: $fmcg-teal;
+  padding: 20px;
+  margin: 0px -20px 12px -20px;
+  border-bottom: 1px solid $fmcg-dark-teal;
+
+  .field-name-label {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.3em;
+  }
+}
+
+.company-info-container {
+  box-shadow: none;
+  background-color: $fmcg-grey;
+  padding: 12px 20px;
+
+  .category, .salary {
+    .field-label {
+      font-family: Poppins;
+      font-size: 16px;
+      font-weight: 600;
+      color: $fmcg-dark-teal;
+      display: table;
+    }
+  }
+
+  .field-item {
+    font-family: Roboto;
+    font-size: 13px;
+  }
+}
+
+.field-type-job-role-salary {
+  margin-bottom: 20px;
+}
+
+.full-job-description, .salary, .supporting-documents {
+  .field-label {
+    font-size: 20px;
+    color: $fmcg-dark-teal;
+  }
+
+  .field-item {
+    font-family: Roboto;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: $md) {
+  .company-info-container {
+    margin-top: 12px;
+  }
+}
+
+.user-id {
+  background-color: $fmcg-teal;
+  padding: 20px 20px 0px 20px;
+  margin: -20px -20px 0px -20px;
+
+  a {
+    color: $fmcg-dark-teal;
+    font-weight: 600;
+    font-size: 24px;
+
+    &:hover {
+      color: $fmcg-yellow;
+    }
+  }
+}
+
+.primary-action-buttons {
+  nav, li {
+    display: inline;
+  }
+}
+
+//Jobs Page//
+
+.path-jobs {
+  form {
+    max-width: 1200px;
+  }
+
+  .row-wrapper {
+    padding: 0;
+  }
+
+  .views-exposed-form {
+    margin: -20px -20px 0px -20px;
+
+    label {
+      color: $fmcg-yellow;
+      font-weight: 500;
+    }
+
+    .card-item {
+      margin-top: -24px;
+    }
+
+    .views-exposed-form {
+      border-radius: 0;
+      box-shadow: none;
+      padding-bottom: 30px;
+    }
+
+    .col-xs-12 {
+      padding: 0px;
+    }
+  }
+}
+
+/* Job Result */
+.job-result {
+  background-color: $fmcg-teal;
+  border: 1px solid $fmcg-black;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+
+  h3 {
+    font-size: 24px;
+    color: $fmcg-dark-teal;
+  }
+
+  p {
+    color: $fmcg-dark-teal;
+  }
+
+  span.field-content {
+    a {
+      font-weight: 500;
+      color: $fmcg-dark-teal;
+    }
+  }
+
+  .views-field-pay__desc::before {
+    content: "";
+    height: 8px;
+    width: 8px;
+    background-color: $fmcg-dark-teal;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 2px;
+  }
+
+  .views-field-industry::before {
+    content: "";
+    height: 8px;
+    width: 8px;
+    background-color: $fmcg-dark-teal;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    margin-left: 8px;
+    margin-bottom: 2px;
+  }
+
+  .card-title {
+    padding: 24px 24px 0px 24px;
+  }
+
+  .views-field-organization {
+    margin-bottom: 16px;
+  }
+
+  .views-field-logo__target-id {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    visibility: hidden;
+  }
+
+  @media (min-width: $md) {
+    .views-field-logo__target-id {
+      visibility: visible;
+    }
+  }
+
+  .card-column-left {
+    background-color: #FFFFFF;
+    transform: skew(-36deg, 0deg);
+
+    &::after {
+      content: "";
+      width: 200px;
+      height: 200px;
+      background-color: #FFFFFF;
+      position: absolute;
+      top: 50;
+      left: 114px;
+      top: 80px;
+    }
+  }
+
+  .views-field {
+    float: left;
+  }
+}

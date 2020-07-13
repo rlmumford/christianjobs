@@ -4,7 +4,7 @@ input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .
   margin: 8px;
   vertical-align: middle;
   border-radius: 2px;
-  color: $fmcg-black;
+  color: $fmcg-dark-teal;
   background: $fmcg-yellow;
   cursor: pointer;
   display: inline-block;
@@ -27,19 +27,27 @@ input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .
     padding: 6px 14px;
     border: 2px solid $fmcg-yellow;
     color: $fmcg-yellow;
-    background: $fmcg-black;
+    background: $fmcg-dark-teal;
   }
 }
 
 .button-action {
-  background-color: #50C878;
+  background-color: $fmcg-green;
   color: #FFFFFF;
+  padding: 8px;
+  margin: 8px -10px 8px 0px;
 
   &:hover {
     background-color: #FFFFFF;
-    color: #50C878;
-    border-color: #50C878;
+    color: $fmcg-green;
+    border-color: $fmcg-green;
     transition: none;
+  }
+}
+
+@media (min-width: $xs) {
+  .button-action {
+    margin: 8px 8px 8px 0px;
   }
 }
 
@@ -51,7 +59,7 @@ input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .
     padding: 6px 10px;
     border: 2px solid $fmcg-yellow;
     color: $fmcg-yellow;
-    background: $fmcg-black;
+    background: $fmcg-dark-teal;
   }
 }
 
@@ -68,29 +76,29 @@ input.button, .btn, a.btn, span.btn, .tabledrag-toggle-weight, .button-action, .
 }
 
 .dropbutton a {
-  background-color: $fmcg-chrome;
+  background-color: $fmcg-grey;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
   padding: 8px 12px;
 
   &:hover {
-    background-color: $fmcg-black;
-    color: $fmcg-chrome;
-    border: 2px solid $fmcg-black;
+    background-color: $fmcg-dark-teal;
+    color: $fmcg-grey;
+    border: 2px solid $fmcg-dark-teal;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
   }
 }
 
 li.dropbutton-toggle {
-  background-color: $fmcg-chrome;
+  background-color: $fmcg-grey;
   margin: -4px 0px -4px 0px;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
-  border-left: 1px solid $fmcg-black;
+  border-left: 1px solid $fmcg-dark-teal;
   margin: 8px;
 
   &:hover {
-    background-color: $fmcg-chrome-hover;
+    background-color: $fmcg-grey-hover;
   }
 }
