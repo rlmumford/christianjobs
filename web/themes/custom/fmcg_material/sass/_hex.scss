@@ -2,7 +2,7 @@
   position: relative;
   width: 40px;
   height: 24px;
-  background-color: $fmcg-yellow;
+  background-color: $fmcg-teal;
   margin: 28.86px 12px;
   transform: rotate(90deg);
 
@@ -13,8 +13,8 @@
     width: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-bottom-color: $fmcg-yellow;
-    border-top-color: $fmcg-yellow;
+    border-bottom-color: $fmcg-teal;
+    border-top-color: $fmcg-teal;
   }
 
   &:before {
@@ -31,14 +31,41 @@
   }
 
   &:hover {
-    background-color: $fmcg-dark-teal;
-    color: $fmcg-yellow;
+    background-color: $fmcg-grey;
+    color: $fmcg-teal;
     &:before, &:after {
-      border-bottom-color: $fmcg-dark-teal;
-      border-top-color: $fmcg-dark-teal;
+      border-bottom-color: $fmcg-grey;
+      border-top-color: $fmcg-grey;
     }
     a, a:before {
-      color: $fmcg-yellow;
+      color: $fmcg-teal;
+    }
+  }
+}
+
+li.hexagon.menu-item:last-child {
+  background-color: $fmcg-red;
+
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom-color: $fmcg-red;
+    border-top-color: $fmcg-red;
+  }
+
+  &:hover {
+    background-color: $fmcg-grey;
+    color: $fmcg-dark-teal;
+    &:before, &:after {
+      border-bottom-color: $fmcg-grey;
+      border-top-color: $fmcg-grey;
+    }
+    a, a:before {
+      color: $fmcg-dark-teal;
     }
   }
 }

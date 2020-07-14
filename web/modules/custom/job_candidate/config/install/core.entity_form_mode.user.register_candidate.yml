@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.register_candidate
+label: 'Register (Candidate)'
+targetEntityType: user
+cache: true
