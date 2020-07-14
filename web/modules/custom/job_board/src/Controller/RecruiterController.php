@@ -115,6 +115,8 @@ class RecruiterController extends ControllerBase {
   public function addJobAccess(Organization $organization, AccountInterface $owner = NULL) {
     $manage_jobs_access = $organization->access("manage_job_roles", $owner, TRUE);
 
+    return $manage_jobs_access;
+    // @todo: Implement subscription check for access.
     $available_credit = $this->entityTypeManager()
       ->getStorage('job_board_job_credit')
       ->getQuery()
