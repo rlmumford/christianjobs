@@ -95,13 +95,6 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
             '#value' => new TranslatableMarkup('Our Partners'),
           ],
         ],
-        'tgbc' => $this->buildPartnerCard(
-          'The Good Book Co',
-          'Biblical, Relevant & Accessible',
-          'The Good Book Co. is dedicated to helping individual Christians and local churches grow.',
-          'TGBC-logo.png',
-          Url::fromUri('https://www.thegoodbook.co.uk/')
-        ),
         'trustedhr' => $this->buildPartnerCard(
           'Trusted HR',
           'HR support tailored to your values and needs',
@@ -115,13 +108,6 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'Christian Safeguarding Service support churches and faith-based organisations with policy development, bespoke training and consultancy services. We have a support and advice line and an answerphone service.',
           'css-logo.png',
           Url::fromUri('https://christiansafeguardingservices.phasic-ltd.co.uk/')
-        ),
-        'cpo' => $this->buildPartnerCard(
-          'CPO',
-          'Design, Print, Digital & Training',
-          'CPO is an organisation committed to serving churches and charities in communication and outreach through design, print & digital resources, training and support.',
-          'CPO-logo.jpg',
-          Url::fromUri('https://cpo.org.uk/about')
         ),
         'edwards' => $this->buildPartnerCard(
           'Edwards Insurance Brokers',

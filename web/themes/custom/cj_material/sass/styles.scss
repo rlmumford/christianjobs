@@ -965,7 +965,7 @@ span.upsell-price .tax {
 }
 
 .front-page-luova-block {
-  background-image: url("../assets/LuovaBanner868x250.png");
+  background-image: url("../assets/TeacherBlock485x527.png");
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: -15px;
@@ -983,7 +983,6 @@ span.upsell-price .tax {
   p {
     color: #FFFFFF;
     font-size: 20px;
-    padding-right: 150px;
   }
 
   a:hover {
@@ -1002,6 +1001,7 @@ span.upsell-price .tax {
       border: 2px solid #00B0FF;
       background-color: #FFFFFF;
       color: #00B0FF;
+      padding: 2px 10px;
     }
   }
 
@@ -1011,15 +1011,9 @@ span.upsell-price .tax {
   .victory-christian-international-school {
     color: #FF9049;
   }
-  .luova-banner-logo {
-    max-width: 220px;
-  }
-  .luova-logo-wrapper {
-    text-align: center;
-  }
 
   @media (min-width: $md) {
-    background-image: url("../assets/LuovaBanner753x347.png");
+    background-image: url("../assets/TeacherBlock758x327.png");
 
     .luova-banner-logo {
       display: block;
@@ -1027,7 +1021,7 @@ span.upsell-price .tax {
     }
   }
   @media (min-width: $lg) {
-    background-image: url("../assets/LuovaBanner1905x433.png");
+    background-image: url("../assets/TeacherBlock1905x237.png");
 
     h2 {
       font-size: 3.5em;
@@ -1482,9 +1476,6 @@ input.btn-accent {
   margin-left: 25px;
 }
 
-.region.region-before-main {
-  padding-top: 25px;
-}
 .region.region-highlighted {
   padding-top: 8px;
 }
