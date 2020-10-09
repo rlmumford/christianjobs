@@ -685,7 +685,7 @@ function job_board_job_package_info($key = NULL) {
   $info['bundle'] = [
     'label' => t('Bundles'),
     'description' => t('10 Job Adverts paid for up front.'),
-    'price' => new Price('50000', 'GBP'),
+    'price' => new Price('500.00', 'GBP'),
     'cta_text' => new TranslatableMarkup('Find Out More'),
     'cta_url' => Url::fromUri('internal:/bundles'),
     'features' => [
@@ -695,7 +695,7 @@ function job_board_job_package_info($key = NULL) {
     ],
   ];
   $info['oam'] = [
-    'label' => t('Outsourced Application Management (OAM)'),
+    'label' => t('Application Management (OAM)'),
     'description' => t('Let Christian Jobs manage your recruitment process.'),
     'price' => new Price($config->get('job_RPO'), 'GBP'),
     'cta_text' => new TranslatableMarkup('Find Out More'),
