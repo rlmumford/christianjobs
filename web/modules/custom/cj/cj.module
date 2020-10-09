@@ -379,7 +379,7 @@ function cj_commerce_order_view_alter(array &$build, EntityInterface $order, Ent
 
     /** @var \Drupal\Core\Datetime\DrupalDateTime $placed_date */
     $due_date = DrupalDateTime::createFromTimestamp($order->getPlacedTime())
-      ->add(new DateInterval('P1D'));
+      ->add(new DateInterval('P30D'));
 
     $build['placed']['#title'] = new TranslatableMarkup('<strong>Invoice Date</strong>');
 
@@ -434,7 +434,7 @@ function cj_commerce_order_view_alter(array &$build, EntityInterface $order, Ent
         'class' => [ 'letter-content' ],
       ],
       '#value' => new TranslatableMarkup(
-        "Please find invoice @order_number representing your recent purchase. This is due for immediate payment via the bank details below. Please include the invoice reference in your payment.",
+        "Please find invoice @order_number representing the placement of the Croydon Centre Manager. This is due for payment by ".$due_date->format('d/m/Y')." via the bank details below. Please include the invoice reference in your payment.",
         [
           '@order_number' => $order->getOrderNumber(),
         ]
