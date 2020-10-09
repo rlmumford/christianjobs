@@ -682,48 +682,20 @@ function job_board_job_package_info($key = NULL) {
       ],
     ],
   ];
-
-  if (\Drupal::moduleHandler()->moduleExists('cj_membership')) {
-    $mem_config = \Drupal::config('cj_membership.pricing');
-    $info['membership'] = [
-      'label' => t('Community Membership'),
-      'price' => new Price(
-        $mem_config->get('full'),
-        'GBP'
-      ),
-      'description' => t('Receive discounts, priority access and support by becoming a Community Member.'),
-      'allowed_featured_dates' => 5,
-      'cta_text' => new TranslatableMarkup('Find Out More'),
-      'cta_url' => Url::fromUri('internal:/membership'),
-      'features' => [
-        ['title' => t('1 <strong>Free</strong> 60 day job advert'),],
-        [
-          'title' => t('Discounted job adverts'),
-          'description' => t('25% off all job adverts posted for one year.'),
-        ],
-        ['title' => t('Social media posting'),],
-        ['title' => t('Dedicated Account Manager'),],
-        [
-          'title' => t('Priority access'),
-          'description' => t('Blurb'),
-        ],
-        [
-          'title' => t('Training & resources'),
-          'description' => t('Access up to 4 training conferences every year.')
-        ],
-        [
-          'title' => t('Partner discounts'),
-          'description' => t('Get great discounts from our valued partners.')
-        ],
-        [
-          'title' => t('Membership pack'),
-          'description' => t('Christian Jobs merchendise and a free copy of "Every Good Endeavour"'),
-        ],
-      ]
-    ];
-  }
-  $info['rpo'] = [
-    'label' => t('Outsourced Help (RPO)'),
+  $info['bundle'] = [
+    'label' => t('Bundles'),
+    'description' => t('10 Job Adverts paid for up front.'),
+    'price' => new Price('50000', 'GBP'),
+    'cta_text' => new TranslatableMarkup('Find Out More'),
+    'cta_url' => Url::fromUri('internal:/bundles'),
+    'features' => [
+      [ 'title' => t('10 Job Adverts for £50 each') ],
+      [ 'title' => t('Use your credits for 1 year') ],
+      [ 'title' => t('Other bundle sizes available')  ],
+    ],
+  ];
+  $info['oam'] = [
+    'label' => t('Outsourced Application Management (OAM)'),
     'description' => t('Let Christian Jobs manage your recruitment process.'),
     'price' => new Price($config->get('job_RPO'), 'GBP'),
     'cta_text' => new TranslatableMarkup('Find Out More'),
