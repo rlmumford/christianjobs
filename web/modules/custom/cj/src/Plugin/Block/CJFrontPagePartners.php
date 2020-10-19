@@ -109,6 +109,13 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
           'css-logo.png',
           Url::fromUri('https://christiansafeguardingservices.phasic-ltd.co.uk/')
         ),
+        'cpo' => $this->buildPartnerCard(
+          'CPO',
+          'Design, Print, Digital & Training',
+          'CPO is an organisation committed to serving churches and charities in communication and outreach through design, print & digital resources, training and support.',
+          'CPO-logo.jpg',
+          Url::fromUri('https://cpo.org.uk/about')
+        ),
         'edwards' => $this->buildPartnerCard(
           'Edwards Insurance Brokers',
           'Specialist Insurance Brokers',
@@ -132,9 +139,6 @@ class CJFrontPagePartners extends BlockBase implements ContainerFactoryPluginInt
         ),
       ]
     ];
-
-    $build['row']['konnect']['#attributes']['class'][] = 'col-md-offset-4';
-
     return $build;
   }
 
