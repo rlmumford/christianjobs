@@ -973,9 +973,8 @@ span.upsell-price .tax {
   border-bottom: 1px solid #FFFFFF;
   position: relative;
 
-  .lcm-banner-logo {
-    display: block;
-    max-width: 330px;
+  .lcm-logo-wrapper {
+    display: none;
   }
 
   h2 {
@@ -1014,17 +1013,26 @@ span.upsell-price .tax {
   @media (min-width: $md) {
     background-image: url("../assets/lcmbkgd758x327.png");
 
-    .lcm-banner-logo {
-      max-width: 250px;
+    .lcm-logo-wrapper {
+      display: block;
+
+      .lcm-banner-logo {
+        display: block;
+        max-width: 250px;
+      }
     }
   }
 
   @media (min-width: $lg) {
     background-image: url("../assets/lcmbkgd1905x237.png");
 
-    .lcm-banner-logo {
+    .lcm-logo-wrapper {
       display: block;
-      max-width: 330px;
+
+      .lcm-banner-logo {
+        display: block;
+        max-width: 330px;
+      }
     }
 
     h2 {

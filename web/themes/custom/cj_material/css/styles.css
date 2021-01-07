@@ -4369,9 +4369,8 @@ span.upsell-price .tax {
   border-bottom: 1px solid #FFFFFF;
   position: relative;
 }
-.lcm-banner-container .lcm-banner-logo {
-  display: block;
-  max-width: 330px;
+.lcm-banner-container .lcm-logo-wrapper {
+  display: none;
 }
 .lcm-banner-container h2 {
   color: #FFFFFF;
@@ -4405,7 +4404,11 @@ span.upsell-price .tax {
   .lcm-banner-container {
     background-image: url("../assets/lcmbkgd758x327.png");
   }
-  .lcm-banner-container .lcm-banner-logo {
+  .lcm-banner-container .lcm-logo-wrapper {
+    display: block;
+  }
+  .lcm-banner-container .lcm-logo-wrapper .lcm-banner-logo {
+    display: block;
     max-width: 250px;
   }
 }
@@ -4413,7 +4416,10 @@ span.upsell-price .tax {
   .lcm-banner-container {
     background-image: url("../assets/lcmbkgd1905x237.png");
   }
-  .lcm-banner-container .lcm-banner-logo {
+  .lcm-banner-container .lcm-logo-wrapper {
+    display: block;
+  }
+  .lcm-banner-container .lcm-logo-wrapper .lcm-banner-logo {
     display: block;
     max-width: 330px;
   }
