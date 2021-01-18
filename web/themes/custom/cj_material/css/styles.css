@@ -4217,6 +4217,7 @@ p.scripture {
 #footer {
   background: #1E5168;
   color: #F1F1F1;
+  border-top: 1px solid #FF8F48;
 }
 
 #footer .services-icons.icon-primary {
@@ -4336,7 +4337,6 @@ span.upsell-price .tax {
 
 #page {
   background-color: #1E5168;
-  background-image: url(../assets/ExecSearch.png);
   overflow: hidden;
   background-size: 100%;
   background-attachment: fixed;
