@@ -830,7 +830,7 @@ p.scripture {
 #footer {
   background: #1E5168;
   color: #F1F1F1;
-  border-top: 1px solid #FF8F48;
+  box-shadow: none;
 }
 #footer .services-icons.icon-primary {
   background: #F1F1F1;
@@ -844,7 +844,7 @@ p.scripture {
 
 div.footer-logo {
   line-height: 0;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   margin-top: 8px;
 }
 div.footer-contact, div.footer-links {
@@ -1524,6 +1524,7 @@ article footer {
 
 div.footer-verse p {
   font-size: 1.1em;
+  margin-bottom: 0px;
 }
 
 span.bible-reference {
