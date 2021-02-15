@@ -1,0 +1,7 @@
+PHP_IDE_CONFIG=serverName=fmcg.ddev.site
+
+# Core cron.
+*/5 * * * * /var/www/html/scripts/crontab/core-cron.sh /var/www/html >> /tmp/cron.log 2>&1
+
+# Index every minute.
+* * * * * /var/www/html/scripts/crontab/sapi-i.sh /var/www/html >> /tmp/cron.log 2>&1

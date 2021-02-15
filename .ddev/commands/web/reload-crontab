@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+## Description: Reloads cron from .ddev/crontab
+## Usage: reload-crontab
+## Example: "ddev reload-crontab"
+
+{ env | grep "=." ; cat /mnt/ddev_config/crontab ; } | crontab -
