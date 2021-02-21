@@ -1,0 +1,5 @@
+# Exclude compiled CSS from diffs, especially minified!
+web/themes/custom/jobboard_base/css/style.css       text -diff
+web/themes/custom/jobboard_base/css/style.min.css   text -diff
+web/themes/custom/jobboard_fmcg/css/style.css       text  -diff
+web/themes/custom/jobboard_fmcg/css/style.min.css   text  -diff

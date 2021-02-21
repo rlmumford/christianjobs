@@ -1,0 +1,7 @@
+# Disallow specific pages that shouldn't be crawled
+Disallow: /user/
+Disallow: /index.php/user/
+Disallow: /job/*/apply
+Disallow: /index.php/job/*/apply
+
+Sitemap: https://christianjobs.co.uk/sitemap.xml

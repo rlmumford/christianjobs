@@ -37,3 +37,5 @@
 
 # Ignore any node modules directories
 **/node_modules/
+/.editorconfig
+/.gitattributes

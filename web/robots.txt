@@ -59,3 +59,11 @@ Disallow: /index.php/user/password/
 Disallow: /index.php/user/register/
 Disallow: /index.php/user/login/
 Disallow: /index.php/user/logout/
+
+# Disallow specific pages that shouldn't be crawled
+Disallow: /user/
+Disallow: /index.php/user/
+Disallow: /job/*/apply
+Disallow: /index.php/job/*/apply
+
+Sitemap: https://christianjobs.co.uk/sitemap.xml
