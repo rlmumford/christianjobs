@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "78c95cfbe28c152ad7d17e5a2db2bfb2",
+    "content-hash": "4d0b7f3028a2e6a70b74128c9042dad1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2829,6 +2829,47 @@
             "time": "2020-12-04T15:10:44+00:00"
         },
         {
+            "name": "drupal/communication_user",
+            "version": "dev-2.0.x",
+            "require": {
+                "drupal/communication": "*",
+                "drupal/core": "^8"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.0.x": "2.0.x-dev"
+                },
+                "drupal": {
+                    "version": "2.0.x-dev",
+                    "datestamp": "1605552852",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "jkevingz",
+                    "homepage": "https://www.drupal.org/user/3617633"
+                },
+                {
+                    "name": "rlmumford",
+                    "homepage": "https://www.drupal.org/user/794682"
+                }
+            ],
+            "description": "Communication User Contacts",
+            "homepage": "https://www.drupal.org/project/communication",
+            "support": {
+                "source": "https://git.drupalcode.org/project/communication"
+            }
+        },
+        {
             "name": "drupal/contacts",
             "version": "dev-1.x",
             "source": {
@@ -2930,6 +2971,55 @@
             "time": "2021-02-10T11:45:57+00:00"
         },
         {
+            "name": "drupal/contacts_communication",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/contacts_communication.git",
+                "reference": "1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/contacts_communication-1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": "d6dce87123c4ee894be571b4567eaf0bbb4c77dd"
+            },
+            "require": {
+                "drupal/communication": "*",
+                "drupal/communication_user": "*",
+                "drupal/contacts": "*",
+                "drupal/core": "^8 || ^9",
+                "drupal/entity_template": "*",
+                "drupal/entity_template_ui": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0",
+                    "datestamp": "1615812809",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "rlmumford",
+                    "homepage": "https://www.drupal.org/user/794682"
+                }
+            ],
+            "description": "Integrate contacts with communications",
+            "homepage": "https://www.drupal.org/project/contacts_communication",
+            "support": {
+                "source": "https://git.drupalcode.org/project/contacts_communication"
+            }
+        },
+        {
             "name": "drupal/contacts_jobs",
             "version": "dev-fmcg",
             "source": {
@@ -2957,6 +3047,92 @@
                 "source": "http://cgit.drupalcode.org/contacts_jobs"
             },
             "time": "2021-02-03T15:10:54+00:00"
+        },
+        {
+            "name": "drupal/contacts_log",
+            "version": "1.0.0",
+            "require": {
+                "drupal/contacts": "*",
+                "drupal/core": "^8.9 || ^9",
+                "drupal/message": "*",
+                "drupal/profile": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1603898690",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "andrewbelcher",
+                    "homepage": "https://www.drupal.org/user/655282"
+                },
+                {
+                    "name": "yanniboi",
+                    "homepage": "https://www.drupal.org/user/1837556"
+                }
+            ],
+            "description": "Contacts logging of common CRM operations.",
+            "homepage": "https://www.drupal.org/project/contacts",
+            "support": {
+                "source": "https://git.drupalcode.org/project/contacts"
+            }
+        },
+        {
+            "name": "drupal/contacts_notes",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/contacts_notes.git",
+                "reference": "1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/contacts_notes-1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": "c2e8e8b5ecc9983642aade41de783731c5e84d54"
+            },
+            "require": {
+                "drupal/contacts_log": "*",
+                "drupal/core": "^8 || ^9",
+                "drupal/notes": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0",
+                    "datestamp": "1615820083",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "rlmumford",
+                    "homepage": "https://www.drupal.org/user/794682"
+                }
+            ],
+            "description": "Store better notes about contacts.",
+            "homepage": "https://www.drupal.org/project/contacts_notes",
+            "support": {
+                "source": "https://git.drupalcode.org/project/contacts_notes"
+            }
         },
         {
             "name": "drupal/contacts_theme",
@@ -3216,10 +3392,10 @@
                 },
                 "patches_applied": {
                     "Field definition missing in block deriver": "./patches/field-block-deriver-missing-field-def.patch",
+                    "#2925598: Remove unnecessary query parameters from pagers": "https://www.drupal.org/files/issues/2020-01-03/drupal-ajax_pagination-2925598-17.patch",
                     "Layout builder context hook": "https://www.drupal.org/files/issues/2019-05-10/3001188-5.patch",
                     "Layout builder visibility rules": "https://www.drupal.org/files/issues/2020-06-10/2916876-83.patch",
-                    "Entity reference views autocomplete filters": "https://www.drupal.org/files/issues/2020-03-18/drupal-generalize-taxonomyindextid-filter-2429699-311.patch",
-                    "#2925598: Remove unnecessary query parameters from pagers": "https://www.drupal.org/files/issues/2020-01-03/drupal-ajax_pagination-2925598-17.patch"
+                    "Entity reference views autocomplete filters": "https://www.drupal.org/files/issues/2020-03-18/drupal-generalize-taxonomyindextid-filter-2429699-311.patch"
                 }
             },
             "autoload": {
@@ -4177,6 +4353,94 @@
             }
         },
         {
+            "name": "drupal/entity_template",
+            "version": "1.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_template.git",
+                "reference": "1.0.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_template-1.0.0-alpha3.zip",
+                "reference": "1.0.0-alpha3",
+                "shasum": "22b9f7fba65e4482bd0cb0d5c5dd9f80a8549891"
+            },
+            "require": {
+                "drupal/core": "^8.7.7 || ^9",
+                "drupal/typed_data": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-alpha3",
+                    "datestamp": "1607008905",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Mumford",
+                    "homepage": "https://www.drupal.org/u/rlmumford"
+                },
+                {
+                    "name": "rlmumford",
+                    "homepage": "https://www.drupal.org/user/794682"
+                }
+            ],
+            "description": "Configure templates for entities.",
+            "homepage": "https://www.drupal.org/sandbox/rlmumford/2510692",
+            "support": {
+                "source": "https://git.drupalcode.org/project/entity_template",
+                "issues": "https://www.drupal.org/project/issues/2510692"
+            }
+        },
+        {
+            "name": "drupal/entity_template_ui",
+            "version": "1.0.0-alpha3",
+            "require": {
+                "drupal/core": "^8.7.7 || ^9",
+                "drupal/entity_template": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-alpha3",
+                    "datestamp": "1607008905",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "jkevingz",
+                    "homepage": "https://www.drupal.org/user/3617633"
+                },
+                {
+                    "name": "rlmumford",
+                    "homepage": "https://www.drupal.org/user/794682"
+                }
+            ],
+            "description": "Interface for configuring templates.",
+            "homepage": "https://www.drupal.org/project/entity_template",
+            "support": {
+                "source": "https://git.drupalcode.org/project/entity_template"
+            }
+        },
+        {
             "name": "drupal/eu_cookie_compliance",
             "version": "1.14.0",
             "source": {
@@ -4611,6 +4875,80 @@
                 "source": "https://git.drupalcode.org/project/geocoder",
                 "issues": "https://drupal.org/project/issues/geocoder",
                 "irc": "irc://irc.freenode.org/drupal-geo"
+            }
+        },
+        {
+            "name": "drupal/geocoder_field",
+            "version": "3.17.0",
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/geocoder": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.17",
+                    "datestamp": "1615018686",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Brandonian",
+                    "homepage": "https://www.drupal.org/user/77766"
+                },
+                {
+                    "name": "Dean Reilly",
+                    "homepage": "https://www.drupal.org/user/336031"
+                },
+                {
+                    "name": "Pol",
+                    "homepage": "https://www.drupal.org/user/47194"
+                },
+                {
+                    "name": "Simon Georges",
+                    "homepage": "https://www.drupal.org/user/172312"
+                },
+                {
+                    "name": "claudiu.cristea",
+                    "homepage": "https://www.drupal.org/user/56348"
+                },
+                {
+                    "name": "gregseb",
+                    "homepage": "https://www.drupal.org/user/847848"
+                },
+                {
+                    "name": "indytechcook",
+                    "homepage": "https://www.drupal.org/user/245817"
+                },
+                {
+                    "name": "itamair",
+                    "homepage": "https://www.drupal.org/user/1179076"
+                },
+                {
+                    "name": "michaelfavia",
+                    "homepage": "https://www.drupal.org/user/49137"
+                },
+                {
+                    "name": "phayes",
+                    "homepage": "https://www.drupal.org/user/47098"
+                },
+                {
+                    "name": "vidhatanand",
+                    "homepage": "https://www.drupal.org/user/585764"
+                }
+            ],
+            "description": "Geocodes the content of a field and stores the result in other field and vice-versa.",
+            "homepage": "https://www.drupal.org/project/geocoder",
+            "support": {
+                "source": "https://git.drupalcode.org/project/geocoder"
             }
         },
         {
@@ -5434,6 +5772,69 @@
             }
         },
         {
+            "name": "drupal/message",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/message.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/message-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "f1494d8c482840b01f8d1dcc4ed572d5844a3873"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "require-dev": {
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1607017386",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Grayside",
+                    "homepage": "https://www.drupal.org/user/346868"
+                },
+                {
+                    "name": "RoySegall",
+                    "homepage": "https://www.drupal.org/user/1812910"
+                },
+                {
+                    "name": "amitaibu",
+                    "homepage": "https://www.drupal.org/user/57511"
+                },
+                {
+                    "name": "itamar",
+                    "homepage": "https://www.drupal.org/user/1757910"
+                },
+                {
+                    "name": "jhedstrom",
+                    "homepage": "https://www.drupal.org/user/208732"
+                }
+            ],
+            "description": "Message",
+            "homepage": "https://www.drupal.org/project/message",
+            "support": {
+                "source": "https://git.drupalcode.org/project/message"
+            }
+        },
+        {
             "name": "drupal/metatag",
             "version": "1.15.0",
             "source": {
@@ -5598,6 +5999,54 @@
                 "issues": "https://www.drupal.org/project/issues/name"
             },
             "time": "2021-01-19T13:24:52+00:00"
+        },
+        {
+            "name": "drupal/notes",
+            "version": "dev-1.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/notes.git",
+                "reference": "eed7833866df75ace523ac05e7b81db7a329e022"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/entity": "*",
+                "drupal/message": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.0.x": "1.0.x-dev"
+                },
+                "drupal": {
+                    "version": "1.0.x-dev",
+                    "datestamp": "1598882810",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "jgraham",
+                    "homepage": "https://www.drupal.org/user/146055"
+                },
+                {
+                    "name": "rlmumford",
+                    "homepage": "https://www.drupal.org/user/794682"
+                }
+            ],
+            "description": "Provides an entity for storing notes.",
+            "homepage": "https://www.drupal.org/project/notes",
+            "support": {
+                "source": "https://git.drupalcode.org/project/notes"
+            },
+            "time": "2020-08-31T14:05:48+00:00"
         },
         {
             "name": "drupal/og",
@@ -6127,6 +6576,52 @@
                 "source": "https://git.drupalcode.org/project/pdf_tools"
             },
             "time": "2021-02-21T12:58:33+00:00"
+        },
+        {
+            "name": "drupal/places",
+            "version": "dev-1.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/places.git",
+                "reference": "20ad99a2b34e2409bb686ba6e143323f042c7e5d"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/entity": "*",
+                "drupal/geocoder": "*",
+                "drupal/geocoder_field": "*",
+                "drupal/geofield": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.0.x": "1.0.x-dev"
+                },
+                "drupal": {
+                    "version": "1.0.x-dev",
+                    "datestamp": "1615821112",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "rlmumford",
+                    "homepage": "https://www.drupal.org/user/794682"
+                }
+            ],
+            "description": "Place Storage",
+            "homepage": "https://www.drupal.org/project/places",
+            "support": {
+                "source": "https://git.drupalcode.org/project/places"
+            },
+            "time": "2021-03-15T15:09:57+00:00"
         },
         {
             "name": "drupal/profile",
@@ -7023,6 +7518,55 @@
             "homepage": "https://www.drupal.org/project/token",
             "support": {
                 "source": "https://git.drupalcode.org/project/token"
+            }
+        },
+        {
+            "name": "drupal/typed_data",
+            "version": "1.0.0-alpha5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/typed_data.git",
+                "reference": "8.x-1.0-alpha5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/typed_data-8.x-1.0-alpha5.zip",
+                "reference": "8.x-1.0-alpha5",
+                "shasum": "44cfaf8f6d6bc0b876e88a8b9d473799818d395f"
+            },
+            "require": {
+                "drupal/core": "^8.7.7 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-alpha5",
+                    "datestamp": "1591397037",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "TR",
+                    "homepage": "https://www.drupal.org/user/202830"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                }
+            ],
+            "description": "Extends the core Typed Data API with new APIs and features.",
+            "homepage": "https://www.drupal.org/project/typed_data",
+            "support": {
+                "source": "https://git.drupalcode.org/project/typed_data",
+                "issues": "https://www.drupal.org/project/issues/typed_data"
             }
         },
         {
@@ -16256,6 +16800,7 @@
         "drupal/mailgun": 5,
         "drupal/name": 20,
         "drupal/og": 15,
+        "drupal/places": 20,
         "drupal/profile": 5,
         "drupal/search_api_location": 15,
         "drupal/select2": 10,

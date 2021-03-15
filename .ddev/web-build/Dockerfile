@@ -1,6 +1,10 @@
 ARG BASE_IMAGE
 FROM $BASE_IMAGE
 
+#temp gpg error fix
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+#temp gpg error fix
+
 RUN apt-get update
 
 # Install the blackfire agent and cron.
