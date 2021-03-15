@@ -1,5 +1,0 @@
-services:
-  fmcg.order_number_subscriber:
-    class: Drupal\fmcg\EventSubscriber\OrderNumberSubscriber
-    tags:
-      - { name: event_subscriber }
