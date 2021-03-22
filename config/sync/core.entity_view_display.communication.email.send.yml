@@ -1,0 +1,62 @@
+uuid: 4f3db2a1-028f-40ad-aad4-fcc5e0099b23
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.communication.send
+  module:
+    - communication
+    - datetime
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+_core:
+  default_config_hash: iN0pzJaEE8fNcoFc4elmeG2MB-ozwxac3bkDF5d_jGI
+id: communication.email.send
+targetEntityType: communication
+bundle: email
+mode: send
+content:
+  body_html:
+    type: text_default
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  received_date:
+    type: datetime_default
+    region: content
+    weight: 2
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  sent_date:
+    type: datetime_default
+    region: content
+    weight: 1
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+hidden:
+  attachments: true
+  bccs: true
+  body_plain: true
+  ccs: true
+  created: true
+  from: true
+  mailgun_id: true
+  participants: true
+  previous: true
+  reply_to: true
+  search_api_excerpt: true
+  status: true
+  subject: true
+  tos: true

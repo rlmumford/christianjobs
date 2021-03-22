@@ -1,0 +1,12 @@
+uuid: 84d15b3c-81b0-4b8b-8699-0133c98b1662
+langcode: en
+status: true
+dependencies:
+  module:
+    - communication
+_core:
+  default_config_hash: 1fUBxC2uTDHKbA4_ITD366j47nglF6Jo4v5WzvWYIlk
+id: communication.add
+label: Add
+targetEntityType: communication
+cache: true

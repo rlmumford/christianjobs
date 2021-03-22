@@ -1,0 +1,22 @@
+uuid: 8a25e649-3957-4fc9-bc54-9cca1705b926
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+    - contacts_jobs_apps
+_core:
+  default_config_hash: L1GwdUhL9mOAXsaaIqGb0RD5DtUNXxFtIOxsvzjSuO0
+id: contacts_job.app_settings
+field_name: app_settings
+entity_type: contacts_job
+type: entity_reference
+settings:
+  target_type: cj_app_settings
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

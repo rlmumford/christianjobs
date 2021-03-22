@@ -1,0 +1,107 @@
+uuid: cdf5300e-86e0-44e6-98b6-d6188953d670
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.communication.add
+  module:
+    - communication
+    - datetime
+    - inline_entity_form
+    - text
+_core:
+  default_config_hash: mZY_glfBiY5mXfKOkDgpqtZw6J22i7KShM8mMqwhU8A
+id: communication.telephone.add
+targetEntityType: communication
+bundle: telephone
+mode: add
+content:
+  call_notes:
+    type: text_textarea
+    region: content
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  call_plan:
+    type: text_textarea
+    region: content
+    weight: 4
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  caller:
+    type: inline_entity_form_complex
+    region: content
+    weight: 2
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+  others:
+    type: inline_entity_form_complex
+    region: content
+    weight: 3
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+  received_date:
+    type: datetime_default
+    region: content
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+  recipient:
+    type: inline_entity_form_complex
+    region: content
+    weight: 1
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+  sent_date:
+    type: datetime_default
+    region: content
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+  subject:
+    type: string_textfield
+    region: content
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  status: true

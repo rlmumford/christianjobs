@@ -1,0 +1,23 @@
+uuid: e439dcf4-399e-4377-a31b-009f570bacb5
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.app_settings
+_core:
+  default_config_hash: PDOFVO7ZXGi_y3rJtNsHHHZtDVDDV7JonDw5mF-S9V4
+id: contacts_job.job.app_settings
+field_name: app_settings
+entity_type: contacts_job
+bundle: job
+label: 'Application Settings'
+description: 'What settings should be used for the job application'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:cj_app_settings'
+  handler_settings: {  }
+field_type: entity_reference

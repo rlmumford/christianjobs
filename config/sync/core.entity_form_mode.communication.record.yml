@@ -1,0 +1,12 @@
+uuid: 72ca3be2-9dbb-4e90-b340-e7cde61116dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - communication
+_core:
+  default_config_hash: NamVANqvIVSE8dabTvMvdRxLRK8w39uig4SisXS6RYU
+id: communication.record
+label: Record
+targetEntityType: communication
+cache: true

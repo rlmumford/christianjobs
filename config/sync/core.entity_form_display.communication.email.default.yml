@@ -1,0 +1,136 @@
+uuid: 61049b2b-719a-4212-af80-93b9b91c0701
+langcode: en
+status: true
+dependencies:
+  module:
+    - communication
+    - file
+    - inline_entity_form
+    - text
+_core:
+  default_config_hash: kHohUZxizSX4WvJZBMpZ5FDxSG9jL1ZdVSEszSz_6X4
+id: communication.email.default
+targetEntityType: communication
+bundle: email
+mode: default
+content:
+  attachments:
+    type: file_generic
+    region: content
+    weight: 8
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  bccs:
+    type: inline_entity_form_complex
+    region: content
+    weight: 2
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+  body_html:
+    type: text_textarea
+    region: content
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  body_plain:
+    type: string_textarea
+    region: content
+    weight: 7
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  ccs:
+    type: inline_entity_form_complex
+    region: content
+    weight: 1
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+  from:
+    type: inline_entity_form_complex
+    region: content
+    weight: 4
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+  reply_to:
+    type: inline_entity_form_complex
+    region: content
+    weight: 3
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+  subject:
+    type: string_textfield
+    region: content
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  tos:
+    type: inline_entity_form_complex
+    region: content
+    weight: 0
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+hidden:
+  received_date: true
+  sent_date: true
+  status: true

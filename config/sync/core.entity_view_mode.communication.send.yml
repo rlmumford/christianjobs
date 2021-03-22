@@ -1,0 +1,12 @@
+uuid: 86456554-af4f-485d-a5cc-d6a62a01482b
+langcode: en
+status: true
+dependencies:
+  module:
+    - communication
+_core:
+  default_config_hash: zBs8_j5vLmRwVgCRhtbv75fBvQpUJqf2t9-pWrur39U
+id: communication.send
+label: Send
+targetEntityType: communication
+cache: true

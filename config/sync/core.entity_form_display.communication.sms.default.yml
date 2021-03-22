@@ -1,0 +1,87 @@
+uuid: 9c197b83-92a7-4a6a-9c38-83b923a08950
+langcode: en
+status: true
+dependencies:
+  module:
+    - communication
+    - datetime
+    - file
+    - inline_entity_form
+_core:
+  default_config_hash: 8Q1U7lg5B8UetNSz-Yz8pbHR_06GI8f1yN-2L2SmF68
+id: communication.sms.default
+targetEntityType: communication
+bundle: sms
+mode: default
+content:
+  attachments:
+    type: file_generic
+    region: content
+    weight: 4
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  body:
+    type: string_textarea
+    region: content
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  from:
+    type: inline_entity_form_complex
+    region: content
+    weight: 1
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+  received_date:
+    type: datetime_default
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  recipient:
+    type: inline_entity_form_complex
+    region: content
+    weight: 0
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+  sent_date:
+    type: datetime_default
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  subject:
+    type: string_textfield
+    region: content
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  status: true

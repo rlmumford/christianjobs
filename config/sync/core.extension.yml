@@ -8,8 +8,11 @@ module:
   commerce_number_pattern: 0
   commerce_price: 0
   commerce_store: 0
+  communication: 0
   contacts: 0
   contacts_jobs: 0
+  contacts_jobs_apps: 0
+  contextual: 0
   crm_tools: 0
   ctools: 0
   ctools_views: 0
@@ -19,8 +22,10 @@ module:
   decoupled_auth_crm: 0
   dynamic_page_cache: 0
   entity: 0
+  entity_template: 0
   facets: 0
   field: 0
+  field_ui: 0
   file: 0
   filter: 0
   geocoder: 0
@@ -28,7 +33,9 @@ module:
   geofield: 0
   image: 0
   inline_entity_form: 0
+  layout_builder: 0
   layout_discovery: 0
+  link: 0
   name: 0
   node: 0
   options: 0
@@ -39,11 +46,14 @@ module:
   profile: 0
   search_api: 0
   search_api_db: 0
+  state_machine: 0
   system: 0
   taxonomy: 0
+  telephone: 0
   text: 0
   token: 0
   toolbar: 0
+  typed_data: 0
   update: 0
   user: 0
   views: 10
