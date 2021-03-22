@@ -1,0 +1,22 @@
+uuid: 3db90703-6f61-4d85-ba0a-4c286defdd7b
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+    - taxonomy
+_core:
+  default_config_hash: d8fAQZW6QnqkGlPgj9x88CZoSQ4FzlI7nxoq-W3YEig
+id: contacts_job.job_region
+field_name: job_region
+entity_type: contacts_job
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

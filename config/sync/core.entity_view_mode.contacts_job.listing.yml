@@ -1,0 +1,12 @@
+uuid: 0d756677-a50b-45e9-a7bb-f9edc2546349
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+_core:
+  default_config_hash: g-im1VY3pojVhaOCZTKQDouMNtewXLtC_ghcOi8ouVo
+id: contacts_job.listing
+label: Listing
+targetEntityType: contacts_job
+cache: true

@@ -1,0 +1,130 @@
+uuid: 6cb9ae23-6457-416d-b9cf-4b1272a5ff8e
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+    - search_api
+  config:
+    - field.storage.contacts_job.job_description
+    - field.storage.contacts_job.job_hours
+    - field.storage.contacts_job.job_region
+    - field.storage.contacts_job.job_type
+    - search_api.server.database_server
+_core:
+  default_config_hash: ZPpHSxIPK29RSsBSHlyMeCw_rNeIJX9dT7Jp6DuGm_o
+id: contacts_job_index
+name: 'Contacts Job Index'
+description: ''
+read_only: false
+field_settings:
+  changed:
+    label: Changed
+    datasource_id: 'entity:contacts_job'
+    property_path: changed
+    type: date
+    dependencies:
+      module:
+        - contacts_jobs
+  closing:
+    label: 'Closing Date'
+    datasource_id: 'entity:contacts_job'
+    property_path: closing
+    type: date
+    dependencies:
+      module:
+        - contacts_jobs
+  created:
+    label: Created
+    datasource_id: 'entity:contacts_job'
+    property_path: created
+    type: date
+    dependencies:
+      module:
+        - contacts_jobs
+  job_description:
+    label: 'Job Description'
+    datasource_id: 'entity:contacts_job'
+    property_path: job_description
+    type: text
+    dependencies:
+      config:
+        - field.storage.contacts_job.job_description
+  job_hours:
+    label: Hours
+    datasource_id: 'entity:contacts_job'
+    property_path: job_hours
+    type: string
+    dependencies:
+      config:
+        - field.storage.contacts_job.job_hours
+  job_region:
+    label: Region
+    datasource_id: 'entity:contacts_job'
+    property_path: job_region
+    type: integer
+    dependencies:
+      config:
+        - field.storage.contacts_job.job_region
+  job_type:
+    label: Type
+    datasource_id: 'entity:contacts_job'
+    property_path: job_type
+    type: string
+    dependencies:
+      config:
+        - field.storage.contacts_job.job_type
+  publish_end:
+    label: 'Publish End'
+    datasource_id: 'entity:contacts_job'
+    property_path: publish_end
+    type: date
+    dependencies:
+      module:
+        - contacts_jobs
+  publish_start:
+    label: 'Publish Start'
+    datasource_id: 'entity:contacts_job'
+    property_path: publish_start
+    type: date
+    dependencies:
+      module:
+        - contacts_jobs
+  title:
+    label: 'Job Title'
+    datasource_id: 'entity:contacts_job'
+    property_path: title
+    type: text
+    boost: !!float 5
+    dependencies:
+      module:
+        - contacts_jobs
+datasource_settings:
+  'entity:contacts_job':
+    bundles:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  ignorecase:
+    all_fields: true
+    fields:
+      - job_description
+      - job_hours
+      - job_type
+      - title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  rendered_item: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: database_server

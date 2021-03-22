@@ -1,0 +1,10 @@
+uuid: e120a11e-e7e5-4446-b628-5bd5003f1feb
+langcode: en
+status: true
+dependencies:
+  module:
+    - places
+id: place.token
+label: Token
+targetEntityType: place
+cache: true

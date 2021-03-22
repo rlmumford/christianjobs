@@ -1,0 +1,21 @@
+uuid: bffb44e0-0263-42cc-b6d1-fc7c932f9a32
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_hours_per_week
+_core:
+  default_config_hash: YEvji7nLUNjGNMLqQGiXTRHMaQeCRCXw2pGa1FJ6zZ0
+id: contacts_job.job.job_hours_per_week
+field_name: job_hours_per_week
+entity_type: contacts_job
+bundle: job
+label: 'Hours per week'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: 8a25e649-3957-4fc9-bc54-9cca1705b925
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+_core:
+  default_config_hash: ac747ZOO0sygVBf-ZSAH46edJsG-bnJPtwON6DgCZn8
+id: contacts_job.job_location
+field_name: job_location
+entity_type: contacts_job
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

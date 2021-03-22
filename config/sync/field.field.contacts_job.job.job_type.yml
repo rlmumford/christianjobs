@@ -1,0 +1,23 @@
+uuid: cb6ca18b-a55f-4474-a323-5e5daad8c827
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_type
+  module:
+    - options
+_core:
+  default_config_hash: j12nV-k98U910aGVKOKbwAhQ9vyesUZe3OXto1fvVWU
+id: contacts_job.job.job_type
+field_name: job_type
+entity_type: contacts_job
+bundle: job
+label: Type
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

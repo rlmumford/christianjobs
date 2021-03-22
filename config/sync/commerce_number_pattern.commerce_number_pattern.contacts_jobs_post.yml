@@ -1,0 +1,15 @@
+uuid: 2e120096-8184-42ca-b37c-33d3db7a5869
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 8PaO_BdFtmY9u10UUU9nWZZD73Iu_YVRHlXQfR7DRms
+id: contacts_jobs_post
+label: 'Job post'
+targetEntityType: commerce_order
+plugin: infinite
+configuration:
+  pattern: 'JOB-[commerce_order:contacts_job:target_id]-[pattern:number]'
+  initial_number: 1
+  padding: 6
+  per_store_sequence: true

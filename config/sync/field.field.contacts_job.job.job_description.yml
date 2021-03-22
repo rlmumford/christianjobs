@@ -1,0 +1,23 @@
+uuid: e4e8eaaf-eecd-4abf-a07e-c46b480537ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_description
+  module:
+    - text
+_core:
+  default_config_hash: OjD3qsbYBJJ_e6rYDjl0d2UNWy7tWaFofJqS1niFre4
+id: contacts_job.job.job_description
+field_name: job_description
+entity_type: contacts_job
+bundle: job
+label: 'Job Description'
+description: 'e.g. key information about the role.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

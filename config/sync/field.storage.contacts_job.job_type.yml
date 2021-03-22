@@ -1,0 +1,29 @@
+uuid: ad7a4a60-e922-4147-bb0a-d8f8fe91a88c
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+    - options
+_core:
+  default_config_hash: yPbMqmEr4Ue1geY0ZtavYDGxL3squCcccbPYWznURf4
+id: contacts_job.job_type
+field_name: job_type
+entity_type: contacts_job
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: paid
+      label: Paid
+    -
+      value: voluntary
+      label: Voluntary
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

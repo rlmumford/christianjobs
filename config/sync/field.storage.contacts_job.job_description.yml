@@ -1,0 +1,21 @@
+uuid: 32dbe0a3-c4fa-4ea1-9c93-1cb5875245c0
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+    - text
+_core:
+  default_config_hash: fVMcLek2yS1P9kpbnmmAGrIzf9K-lPNahqH0XaOm2nc
+id: contacts_job.job_description
+field_name: job_description
+entity_type: contacts_job
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

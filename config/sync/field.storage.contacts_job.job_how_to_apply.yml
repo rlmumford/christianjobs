@@ -1,0 +1,21 @@
+uuid: 37078c36-139b-4ad8-b248-e19c8a89a632
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+    - text
+_core:
+  default_config_hash: Vwtr-QRx0gRWWjSe9VM-yr0RVeY-bogW-av2ZhNjpiM
+id: contacts_job.job_how_to_apply
+field_name: job_how_to_apply
+entity_type: contacts_job
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

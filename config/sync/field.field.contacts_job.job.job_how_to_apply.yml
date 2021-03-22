@@ -1,0 +1,23 @@
+uuid: b88c911e-5d7a-4328-995a-89cc7b5f82ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_how_to_apply
+  module:
+    - text
+_core:
+  default_config_hash: FBCsHT0_mUgtg27DZnwTIg1_uUiqBT9uTP7WgOKa-7Y
+id: contacts_job.job.job_how_to_apply
+field_name: job_how_to_apply
+entity_type: contacts_job
+bundle: job
+label: 'How to apply for the job'
+description: 'Please include a web link to further details about this job. You may also include contact information and a link to the job specification.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

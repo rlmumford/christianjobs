@@ -1,0 +1,29 @@
+uuid: a80effaf-89ba-474b-8c1b-15d3105f34c6
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+    - options
+_core:
+  default_config_hash: uQGJg6Eof7oZZzH3lr0gAQ-8yzGulKonG3RUqADZvwY
+id: contacts_job.job_hours
+field_name: job_hours
+entity_type: contacts_job
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: full_time
+      label: 'Full Time'
+    -
+      value: part_time
+      label: 'Part Time'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

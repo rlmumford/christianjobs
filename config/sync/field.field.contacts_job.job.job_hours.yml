@@ -1,0 +1,23 @@
+uuid: bbebd694-dbf5-436c-bef3-707e7dadabfa
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_hours
+  module:
+    - options
+_core:
+  default_config_hash: YRmq11tvc8oCFuh7ow3GCI-DsBGwSciWoNS58TUvsBk
+id: contacts_job.job.job_hours
+field_name: job_hours
+entity_type: contacts_job
+bundle: job
+label: Hours
+description: 'If you specify a job as being part-time, please enter the number of hours per week.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

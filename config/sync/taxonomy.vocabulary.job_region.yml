@@ -1,0 +1,10 @@
+uuid: 7b96d303-b9ee-4dcc-9b42-43bbfdb0abb1
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: GvVgenD--HiETvcGLUpwZbrgrnrlgeLCanWlXUn4p0Q
+name: 'Job regions'
+vid: job_region
+description: ''
+weight: 0

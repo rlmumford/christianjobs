@@ -1,0 +1,21 @@
+uuid: e439dcf4-399e-4377-a31b-009f570bacb4
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_location
+_core:
+  default_config_hash: o12Pezj_Sqjg6_Pmi2HiQ92Mf5lX9PMqqWlGnyhWKMI
+id: contacts_job.job.job_location
+field_name: job_location
+entity_type: contacts_job
+bundle: job
+label: Location
+description: 'Where is the job based?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

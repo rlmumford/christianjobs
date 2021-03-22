@@ -1,0 +1,10 @@
+uuid: bd5d2f3b-cfb6-4543-aa02-c4ccc352fa75
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Jh8LKt15SKpzlzzYJEgfSBqsNHQ510GbWtd07rXzZWI
+name: 'Job categories'
+vid: job_category
+description: ''
+weight: 0

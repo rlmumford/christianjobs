@@ -4,7 +4,12 @@ module:
   block: 0
   breakpoint: 0
   color_field: 0
+  commerce: 0
+  commerce_number_pattern: 0
+  commerce_price: 0
+  commerce_store: 0
   contacts: 0
+  contacts_jobs: 0
   crm_tools: 0
   ctools: 0
   ctools_views: 0
@@ -18,18 +23,26 @@ module:
   field: 0
   file: 0
   filter: 0
+  geocoder: 0
+  geocoder_field: 0
+  geofield: 0
   image: 0
+  inline_entity_form: 0
   layout_discovery: 0
   name: 0
   node: 0
   options: 0
   page_cache: 0
+  path: 0
   path_alias: 0
+  places: 0
   profile: 0
   search_api: 0
   search_api_db: 0
   system: 0
+  taxonomy: 0
   text: 0
+  token: 0
   toolbar: 0
   update: 0
   user: 0

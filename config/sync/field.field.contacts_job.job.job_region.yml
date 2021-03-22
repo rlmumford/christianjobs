@@ -1,0 +1,31 @@
+uuid: d187a477-8f4d-45f3-9c20-c85789eda42f
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_region
+    - taxonomy.vocabulary.job_region
+_core:
+  default_config_hash: 2XmLtR5ned51z9XA0EHnFlS_J-MRJHZkNJY0sFH3fpc
+id: contacts_job.job.job_region
+field_name: job_region
+entity_type: contacts_job
+bundle: job
+label: Region
+description: 'Which regions does this job cover?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      job_region: job_region
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

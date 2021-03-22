@@ -1,0 +1,8 @@
+uuid: e4c8f767-57fb-4f80-8752-eb0983659311
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: DzG26RekvqZ-Mo6ROy9TDrAD1U_2FURP3fOSk0tEM5Q
+id: job
+label: 'Job listing'
