@@ -1,0 +1,20 @@
+uuid: e06a87b3-99a2-444a-aebb-ea24656cdf4e
+langcode: en
+status: true
+dependencies:
+  theme:
+    - cj_material
+_core:
+  default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
+id: cj_material_local_actions
+theme: cj_material
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }
