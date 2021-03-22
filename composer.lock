@@ -3683,7 +3683,8 @@
                 },
                 "patches_applied": {
                     "#2667652: Option to expose filters in block on views block display": "https://www.drupal.org/files/issues/ctools-option_to_expose-2667652-3.patch",
-                    "#2866323 & #2865709: Fatal error on empty entity reference relationship": "https://www.drupal.org/files/issues/2020-04-24/2866323-10.patch"
+                    "#2866323 & #2865709: Fatal error on empty entity reference relationship": "https://www.drupal.org/files/issues/2020-04-24/2866323-10.patch",
+                    "#3079000: Fix Label for Context Definition in Relationship Deriver": "./patches/3079000-7-on-2866323-10.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
