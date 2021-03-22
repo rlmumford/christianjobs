@@ -1,0 +1,50 @@
+uuid: bbc5cfdf-0734-4082-96ff-6f91e5e788ff
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: zKhpetTC6OzOm4eq1_nKChmRxrkMhreXVk5uYGN7-g4
+id: account
+label: 'User account'
+path: account
+layout: contacts_tab_content.stacked
+weight: 90
+relationships: {  }
+blocks:
+  contacts_entity_user_user:
+    id: 'contacts_entity:user-user'
+    label: 'Account (unrestricted)'
+    provider: contacts
+    label_display: '0'
+    mode: form
+    create: null
+    operation: contacts_dashboard
+    view_mode: contacts_dashboard
+    edit_link: content
+    edit_id: edit
+    view_new_text: ''
+    name: contacts_entity_user_user
+    region: left
+    weight: 0
+    context_mapping:
+      entity: user
+  contacts_entity_user_user_1:
+    id: 'contacts_entity:user-user'
+    label: 'Account (restricted)'
+    provider: contacts
+    label_display: '0'
+    mode: form
+    create: true
+    operation: contacts_dashboard_restricted
+    view_mode: contacts_dashboard
+    edit_link: content
+    edit_id: edit
+    view_new_text: ''
+    custom_access: contacts_dashboard_account_form_access
+    region: left
+    name: contacts_entity_user_user_1
+    context_mapping:
+      entity: user
+roles: {  }

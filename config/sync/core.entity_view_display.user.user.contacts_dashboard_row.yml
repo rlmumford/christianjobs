@@ -1,0 +1,52 @@
+uuid: e964c83a-376e-4db2-a96e-ce084e7cce5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.contacts_dashboard_row
+  module:
+    - user
+_core:
+  default_config_hash: ZMgf4gHXN1x3EibXbxbwI9HgmoYqOTs46F3Uygi9pGc
+id: user.user.contacts_dashboard_row
+targetEntityType: user
+bundle: user
+mode: contacts_dashboard_row
+content:
+  member_for:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  profile_crm_indiv:
+    type: entity_reference_entity_view
+    weight: 10
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  profile_crm_notes:
+    type: entity_reference_entity_view
+    weight: 10
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  profile_crm_org:
+    type: entity_reference_entity_view
+    weight: 10
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+hidden:
+  crm_indiv_profiles: true
+  crm_notes_profiles: true
+  crm_org_profiles: true
+  search_api_excerpt: true

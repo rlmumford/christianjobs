@@ -1,0 +1,25 @@
+uuid: 490b5937-bbb8-41f9-9272-da7fef7d4a35
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.profile.contacts_dashboard
+    - field.field.profile.crm_notes.crm_notes
+    - profile.type.crm_notes
+_core:
+  default_config_hash: J5rYFur_xmgPAOFBw1UTpMVKAI5p2SNdqvE-Yhp-6Ok
+id: profile.crm_notes.contacts_dashboard
+targetEntityType: profile
+bundle: crm_notes
+mode: contacts_dashboard
+content:
+  crm_notes:
+    type: string_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  is_default: true

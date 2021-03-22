@@ -1,0 +1,31 @@
+uuid: 6cf409e6-4a2e-434d-b172-5ffdd58c4315
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.crm_type
+  module:
+    - facets
+    - system
+  theme:
+    - contacts_theme
+_core:
+  default_config_hash: '--L40rGOQNOm8fbk2hdJHF7PzWz2z5EQ2P8rzM45DZ0'
+id: contacts_facet_crm_type
+theme: contacts_theme
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:crm_type'
+settings:
+  id: 'facet_block:crm_type'
+  label: Type
+  provider: facets
+  label_display: visible
+  block_id: type
+visibility:
+  request_path:
+    id: request_path
+    pages: /admin/contacts
+    negate: false
+    context_mapping: {  }

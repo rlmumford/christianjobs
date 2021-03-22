@@ -1,0 +1,21 @@
+uuid: e5795999-39f7-437d-8290-84ec5c975401
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.crm_notes
+    - profile.type.crm_notes
+_core:
+  default_config_hash: qM0RU_QyQVYGum6VFNkqoF5JwVQpnyRXkbse0W1y21g
+id: profile.crm_notes.crm_notes
+field_name: crm_notes
+entity_type: profile
+bundle: crm_notes
+label: Notes
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

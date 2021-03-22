@@ -1,0 +1,32 @@
+uuid: c548fd09-0dff-47cf-ab0e-4ce750885d4c
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - image
+    - profile
+_core:
+  default_config_hash: dLtCvalywJqnGz73HKiqVRJUUr1Q2N4pVLhv16yaY-c
+id: profile.org_image
+field_name: org_image
+entity_type: profile
+type: image
+settings:
+  uri_scheme: public
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  target_type: file
+  display_field: false
+  display_default: false
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

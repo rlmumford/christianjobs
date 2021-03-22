@@ -1,0 +1,19 @@
+uuid: da527193-33eb-4f45-ad7e-d48e9046c598
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: H6-elDN-QEV-jjX6N5gfooSTWl8fufHBNqHdOsAziBQ
+id: crm_indiv
+label: Individual
+display_label: null
+multiple: false
+registration: true
+roles:
+  crm_indiv: crm_indiv
+  authenticated: '0'
+  administrator: '0'
+  crm_org: '0'
+  staff: '0'
+allow_revisions: false
+new_revision: false

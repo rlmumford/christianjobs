@@ -1,0 +1,20 @@
+uuid: a8ef7733-510d-4bb7-8b92-5638aeea3e07
+langcode: en
+status: true
+dependencies:
+  theme:
+    - contacts_theme
+_core:
+  default_config_hash: pBWOYuRLd4T0ihRbr5Ij3uJ6HkXxqCby54p2dZq8bls
+id: contacts_theme_local_actions
+theme: contacts_theme
+region: header
+weight: -2
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

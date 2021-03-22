@@ -1,0 +1,28 @@
+uuid: abd9e389-5f8a-4fd9-9b4c-8581bf44d83f
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts
+    - system
+  theme:
+    - contacts_theme
+_core:
+  default_config_hash: PheR0g0KhX5gxF1_WG0N6w310idKBTXH-FyIDvT42p8
+id: contacts_back_to_dashboard_link
+theme: contacts_theme
+region: sidebar_first
+weight: 0
+provider: null
+plugin: contacts_back
+settings:
+  id: contacts_back
+  label: 'Back to Search'
+  provider: contacts
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '/admin/contacts/*'
+    negate: false
+    context_mapping: {  }

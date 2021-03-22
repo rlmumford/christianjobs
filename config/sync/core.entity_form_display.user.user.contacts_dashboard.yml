@@ -1,0 +1,35 @@
+uuid: 1f539657-04e3-4b9c-af5b-9b7c87d65f6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.user.contacts_dashboard
+  module:
+    - user
+_core:
+  default_config_hash: tYJTP0Ffxw1G6CFsE1ElBWQ-LGzcmhyPdWDDrntNFoU
+id: user.user.contacts_dashboard
+targetEntityType: user
+bundle: user
+mode: contacts_dashboard
+content:
+  account:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  language:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  timezone:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  crm_indiv_profiles: true
+  crm_notes_profiles: true
+  crm_org_profiles: true
+  mail: true

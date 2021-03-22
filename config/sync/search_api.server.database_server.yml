@@ -1,0 +1,18 @@
+uuid: a0c77020-24ee-48f5-8f01-6613b5acb3ab
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_db
+_core:
+  default_config_hash: 9zkSKM1A9ADHgPUneSJXyYl5HJcokPtQmvxF83D4i0E
+id: database_server
+name: 'Database Server'
+description: ''
+backend: search_api_db
+backend_config:
+  database: 'default:default'
+  min_chars: 1
+  autocomplete:
+    suggest_suffix: true
+    suggest_words: true

@@ -1,0 +1,22 @@
+uuid: 42fe5223-338b-4df0-80a9-1fca1cf8da3c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - contacts_theme
+_core:
+  default_config_hash: wwYSShXSHTcsyILl9NloSx9ns62ESZEtjpDnoHAe12M
+id: contacts_theme_content
+theme: contacts_theme
+region: content
+weight: -3
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

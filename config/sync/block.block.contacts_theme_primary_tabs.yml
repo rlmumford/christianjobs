@@ -1,0 +1,22 @@
+uuid: 6e5680e7-677c-4888-b293-df4f86529909
+langcode: en
+status: true
+dependencies:
+  theme:
+    - contacts_theme
+_core:
+  default_config_hash: i043py7ZZ915dpvr-q5jqaMWe08tF9T3ep5V-Z7jLTI
+id: contacts_theme_primary_tabs
+theme: contacts_theme
+region: header
+weight: -1
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: false
+visibility: {  }

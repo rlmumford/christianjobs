@@ -1,0 +1,10 @@
+acquisitions:
+  behavior_first: false
+  registration: true
+  registration_notice_demote: false
+  protected_roles:
+    - administrator
+unique_emails:
+  mode: all
+_core:
+  default_config_hash: XBhHjThdalGeOT1NP0Yy0hIY-D1_Qu6ZDyR_sURaZLA

@@ -1,0 +1,12 @@
+uuid: cbc40039-71e1-4562-a392-10df3232c00f
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: Pn8G2klEc87SsmyFynHHS2-8wU1_jlSkce1Tig_ma7M
+id: user.contacts_dashboard_row_small
+label: 'Contacts dashboard row (small)'
+targetEntityType: user
+cache: true

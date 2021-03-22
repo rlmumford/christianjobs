@@ -1,0 +1,14 @@
+uuid: fa36a161-fc55-4189-b8b3-6b3324e45110
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.crm_indiv
+  module:
+    - user
+id: user_remove_role_action.crm_indiv
+label: 'Remove the Person role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: crm_indiv

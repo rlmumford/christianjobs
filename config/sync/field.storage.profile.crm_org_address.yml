@@ -1,0 +1,21 @@
+uuid: 8b819371-a901-403a-83a9-811fac14b42d
+langcode: en
+status: true
+dependencies:
+  module:
+    - address
+    - profile
+_core:
+  default_config_hash: BHET5CI0da4TmKAVcXFxP6Ad_QwBqW-Xd6MPvDKZMmA
+id: profile.crm_org_address
+field_name: crm_org_address
+entity_type: profile
+type: address
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

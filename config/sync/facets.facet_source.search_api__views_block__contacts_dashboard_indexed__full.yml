@@ -1,0 +1,11 @@
+uuid: c37f87c0-f761-4477-9251-b46bf8f07ddf
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 9nUxkanITOCxwFuU4wm6nliPyIdQlp2fqkIxgL-Q9ak
+id: search_api__views_block__contacts_dashboard_indexed__full
+name: 'search_api:views_block__contacts_dashboard_indexed__full'
+filter_key: null
+url_processor: query_string_stateful
+breadcrumb: {  }

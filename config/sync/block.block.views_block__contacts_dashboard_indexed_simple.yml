@@ -1,0 +1,32 @@
+uuid: fa6ea67f-bbba-4f9b-af16-c14b785efdba
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.contacts_dashboard_indexed
+  module:
+    - system
+    - views
+  theme:
+    - contacts_theme
+_core:
+  default_config_hash: 2Ddw5DyZ4-ZCOQc5kRrDRxsPfdPGv3gG5GREgPitZ9Q
+id: views_block__contacts_dashboard_indexed_simple
+theme: contacts_theme
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_block:contacts_dashboard_indexed-simple'
+settings:
+  id: 'views_block:contacts_dashboard_indexed-simple'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '/admin/contacts/*'
+    negate: false
+    context_mapping: {  }

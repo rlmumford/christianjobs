@@ -1,0 +1,14 @@
+uuid: 0d6b52b6-7b60-4a24-818c-628680da1867
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.crm_org
+  module:
+    - user
+id: user_add_role_action.crm_org
+label: 'Add the Organisation role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: crm_org

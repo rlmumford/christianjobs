@@ -1,0 +1,19 @@
+uuid: 5850d046-843e-4368-b0d7-fded18c68b29
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: w-t545kqpD1uHwjD7SprAAUpr2KmPr1ju9nQ1F4r3j4
+id: crm_org
+label: Organisation
+display_label: null
+multiple: false
+registration: false
+roles:
+  crm_org: crm_org
+  authenticated: '0'
+  administrator: '0'
+  crm_indiv: '0'
+  staff: '0'
+allow_revisions: false
+new_revision: false

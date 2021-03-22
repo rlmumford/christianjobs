@@ -1,0 +1,25 @@
+uuid: f9c7e8ed-8b04-4cc1-b27c-2a3c7b42b8fe
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: MLhoBI9ysoma3tgtAIpT-eKcBEW_E9NMv21C8xQXrxk
+name: contacts_tiny
+label: 'Contact Tiny'
+effects:
+  69057686-e8b0-4f7f-84a3-787fd657dcb9:
+    uuid: 69057686-e8b0-4f7f-84a3-787fd657dcb9
+    id: image_scale
+    weight: 1
+    data:
+      width: 50
+      height: 50
+      upscale: true
+  a1117f18-7c88-4a5d-8af0-f229cfec7355:
+    uuid: a1117f18-7c88-4a5d-8af0-f229cfec7355
+    id: image_crop
+    weight: 2
+    data:
+      width: 50
+      height: 50
+      anchor: center-center

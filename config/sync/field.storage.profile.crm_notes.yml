@@ -1,0 +1,21 @@
+uuid: e0d89516-e1be-4fc7-b403-c84f66335e2c
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+_core:
+  default_config_hash: fTrR0FZJ1SM1eFaNkS0CsxCCa0GMh6Xe0rAnCpCqhn0
+id: profile.crm_notes
+field_name: crm_notes
+entity_type: profile
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

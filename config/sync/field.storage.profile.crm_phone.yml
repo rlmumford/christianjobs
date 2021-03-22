@@ -1,0 +1,23 @@
+uuid: be84ac95-514b-4618-89ea-e4df6e3e63cf
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+_core:
+  default_config_hash: a5YNXndM3aZWGIzP4M4vQmEoizo3qiZb9B06oGkB9Ss
+id: profile.crm_phone
+field_name: crm_phone
+entity_type: profile
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

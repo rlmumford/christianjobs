@@ -1,0 +1,31 @@
+uuid: 12a8a5e3-cadc-45de-8e6e-86d5317a8f8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.crm_roles
+  module:
+    - facets
+    - system
+  theme:
+    - contacts_theme
+_core:
+  default_config_hash: QkbL_CdanumA8Zz7yRVdezKJ8nnLwABH4r0fslkaZrk
+id: contacts_facet_roles
+theme: contacts_theme
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:crm_roles'
+settings:
+  id: 'facet_block:crm_roles'
+  label: Roles
+  provider: facets
+  label_display: visible
+  block_id: roles
+visibility:
+  request_path:
+    id: request_path
+    pages: /admin/contacts
+    negate: false
+    context_mapping: {  }

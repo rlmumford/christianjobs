@@ -1,0 +1,22 @@
+uuid: 808b2771-0019-4134-b2f2-bf654affdcf4
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - contacts_theme
+_core:
+  default_config_hash: knItKiCn83PhqYzpTP_qHn9mMt0AyN07p_6vPxEipG4
+id: contacts_theme_messages
+theme: contacts_theme
+region: pre_content
+weight: -2
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

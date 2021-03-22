@@ -1,0 +1,45 @@
+uuid: 7dc3aa32-4c9c-4332-811b-5f9a15d02a3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.crm_org.crm_org_address
+    - field.field.profile.crm_org.crm_org_name
+    - field.field.profile.crm_org.crm_phone
+    - field.field.profile.crm_org.org_image
+    - profile.type.crm_org
+  module:
+    - address
+_core:
+  default_config_hash: 3uAQT_iq4Am33wqB9Z3kfZH6O5hZXdMN_DUthO425mA
+id: profile.crm_org.default
+targetEntityType: profile
+bundle: crm_org
+mode: default
+content:
+  crm_org_address:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  crm_org_name:
+    weight: 0
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  crm_phone:
+    type: string
+    weight: 1
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  org_image: true
+  search_api_excerpt: true

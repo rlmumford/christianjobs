@@ -1,0 +1,12 @@
+uuid: 0664ac6e-31bd-4837-94f2-f9e52bd65394
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+_core:
+  default_config_hash: lGgNj6QdA3cFZHq5DcUi9I-3QVaD_8KX0iWRI39QITQ
+id: profile.contacts_dashboard
+label: 'Contacts Dashboard'
+targetEntityType: profile
+cache: true

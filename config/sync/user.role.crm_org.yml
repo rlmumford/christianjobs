@@ -1,0 +1,22 @@
+uuid: 6a5f2547-04cf-4223-aeec-e8c3bc4097ec
+langcode: en
+status: true
+dependencies:
+  module:
+    - crm_tools
+third_party_settings:
+  crm_tools:
+    crm_tools_is_hat: true
+    crm_tools_color: '#b24f60'
+    crm_tools_icon: graph
+    crm_tools_parent: '0'
+_core:
+  default_config_hash: uhw7qlxnfJotS3wS4gfkw8b2rt-Nsc78GCtjklyz2Ew
+id: crm_org
+label: Organisation
+weight: 4
+is_admin: null
+permissions:
+  - 'add own crm_org profile'
+  - 'edit own crm_org profile'
+  - 'view own crm_org profile'

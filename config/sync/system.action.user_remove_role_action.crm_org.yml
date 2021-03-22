@@ -1,0 +1,14 @@
+uuid: 840f4bae-8bc4-40fa-b9a8-02245a76c087
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.crm_org
+  module:
+    - user
+id: user_remove_role_action.crm_org
+label: 'Remove the Organisation role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: crm_org

@@ -1,19 +1,39 @@
 module:
+  address: 0
+  big_pipe: 0
   block: 0
   breakpoint: 0
+  color_field: 0
+  contacts: 0
+  crm_tools: 0
+  ctools: 0
+  ctools_views: 0
+  datetime: 0
   dblog: 0
+  decoupled_auth: 0
+  decoupled_auth_crm: 0
   dynamic_page_cache: 0
+  entity: 0
+  facets: 0
   field: 0
   file: 0
   filter: 0
+  image: 0
+  layout_discovery: 0
+  name: 0
   node: 0
+  options: 0
   page_cache: 0
   path_alias: 0
+  profile: 0
+  search_api: 0
+  search_api_db: 0
   system: 0
   text: 0
   toolbar: 0
   update: 0
   user: 0
+  views: 10
   minimal: 1000
 theme:
   stark: 0
@@ -22,6 +42,7 @@ theme:
   cj_material: 0
   classy: 0
   claro: 0
+  contacts_theme: 0
 profile: minimal
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

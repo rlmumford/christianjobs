@@ -1,0 +1,23 @@
+uuid: a30f6a1c-df7f-4d49-8e1a-f2ca6872c2a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.crm_notes.crm_notes
+    - profile.type.crm_notes
+_core:
+  default_config_hash: 4GBLwFZP36OLn3bzc47lQSIgLhTzwEPxzhiDeTnblGc
+id: profile.crm_notes.default
+targetEntityType: profile
+bundle: crm_notes
+mode: default
+content:
+  crm_notes:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,20 @@
+uuid: c28e7995-fae6-4eb8-8f4c-1774832f1e50
+langcode: en
+status: true
+dependencies:
+  theme:
+    - contacts_theme
+_core:
+  default_config_hash: NjAcJg2-97GmaM-6aJvZBsf0HoGgUq1oJzaRhy9K1RQ
+id: contacts_theme_page_title
+theme: contacts_theme
+region: header
+weight: -3
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

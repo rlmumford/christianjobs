@@ -1,0 +1,19 @@
+uuid: 3a943cc2-5c37-4f02-854a-2cc99d98c084
+langcode: en
+status: true
+dependencies:
+  module:
+    - crm_tools
+third_party_settings:
+  crm_tools:
+    crm_tools_is_hat: true
+    crm_tools_color: '#9dcdcd'
+    crm_tools_icon: person
+    crm_tools_parent: '0'
+_core:
+  default_config_hash: oY5_bgHDP6eCU9M9OX9AV7-DSkyg62k1yGFZWZ_hg64
+id: crm_indiv
+label: Person
+weight: 3
+is_admin: null
+permissions: {  }

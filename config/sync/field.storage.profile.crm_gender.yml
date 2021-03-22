@@ -1,0 +1,29 @@
+uuid: ffbb1438-b4d4-4d96-943f-8177062fa85d
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - profile
+_core:
+  default_config_hash: Y8x2FpHVsftsN0-bpb9YjR6cn6Mddv0HD_1rYX5XbqU
+id: profile.crm_gender
+field_name: crm_gender
+entity_type: profile
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: male
+      label: Male
+    -
+      value: female
+      label: Female
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,23 @@
+uuid: 11404bf9-b5e5-4d2d-ad3f-d2969c3f553c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.crm_dob
+    - profile.type.crm_indiv
+  module:
+    - datetime
+_core:
+  default_config_hash: tEjOlOFN7MsoNee1VOaVDH59JU-0K5asA28ZDx9E-wY
+id: profile.crm_indiv.crm_dob
+field_name: crm_dob
+entity_type: profile
+bundle: crm_indiv
+label: 'Date of Birth'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

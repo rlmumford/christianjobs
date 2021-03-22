@@ -1,0 +1,12 @@
+uuid: b7adead2-997e-4988-ad28-1ff8d6dbc176
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: laD3dd87VNvKCYn9Xdrdz6BkMEXU6Hmu1ZBJm8QGktg
+id: user.contacts_dashboard_row
+label: 'Contacts dashboard row'
+targetEntityType: user
+cache: true

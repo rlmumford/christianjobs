@@ -1,0 +1,27 @@
+uuid: 5f93438e-cc68-45a2-87b8-c159a7fe87e4
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - contacts_theme
+_core:
+  default_config_hash: IeH4QEGJOdXo-eh5ZODk80C96-WJQt48Z_NKQAh44vo
+id: contacts_theme_breadcrumbs
+theme: contacts_theme
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: "/admin/contacts\r\n/admin/contacts/*"
+    negate: true
+    context_mapping: {  }

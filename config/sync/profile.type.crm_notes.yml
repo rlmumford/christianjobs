@@ -1,0 +1,18 @@
+uuid: 4932d7ad-7476-40f0-81ab-3e765f2d7f20
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: _d07nXY4OAcZlmCn2CpZ_R_TcAArIae0XVFVMIqk01w
+id: crm_notes
+label: Notes
+display_label: null
+multiple: false
+registration: false
+roles:
+  crm_indiv: crm_indiv
+  crm_org: crm_org
+  authenticated: '0'
+  administrator: '0'
+allow_revisions: false
+new_revision: false
