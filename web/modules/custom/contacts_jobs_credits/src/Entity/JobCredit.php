@@ -1,9 +1,8 @@
 <?php
 
-namespace Drupal\job_board\Entity;
+namespace Drupal\contacts_jobs_credits\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -15,7 +14,7 @@ use Drupal\user\EntityOwnerTrait;
  * Job Role Credit Entity.
  *
  * @ContentEntityType(
- *   id = "job_board_job_credit",
+ *   id = "cj_credit",
  *   label = @Translation("Job Credit"),
  *   label_singular = @Translation("job credit"),
  *   label_plural = @Translation("job credits"),
@@ -47,10 +46,9 @@ class JobCredit extends ContentEntityBase implements EntityOwnerInterface {
     $fields = parent::baseFieldDefinitions($entity_type);
     $fields += static::ownerBaseFieldDefinitions($entity_type);
 
-    $fields['organization'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(new TranslatableMarkup('Organization'))
-      ->setSetting('target_type', 'organization')
-      ->setDefaultValueCallback(static::class . '::getDefaultEntityOrganization');
+    $fields['org'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(new TranslatableMarkup('Organisation'))
+      ->setSetting('target_type', 'user');
 
     $fields['status'] = BaseFieldDefinition::create('list_string')
       ->setLabel(new TranslatableMarkup('Status'))
@@ -64,6 +62,24 @@ class JobCredit extends ContentEntityBase implements EntityOwnerInterface {
         ['value' => 'draft'],
       ]);
 
+    $fields['quantity'] = BaseFieldDefinition::create('integer')
+      ->setLabel(new TranslatableMarkup('Quantity'))
+      ->setSetting('min', 0)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'number',
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['quantity_spent'] = BaseFieldDefinition::create('integer')
+      ->setLabel(new TranslatableMarkup('Quantity Spent'))
+      ->setSetting('min', 0)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'number',
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['expires'] = BaseFieldDefinition::create('datetime')
       ->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE)
       ->setLabel(new TranslatableMarkup('Valid Until'))
@@ -71,20 +87,6 @@ class JobCredit extends ContentEntityBase implements EntityOwnerInterface {
       ->setDisplayConfigurable('form', TRUE);
 
     return $fields;
-  }
-
-  /**
-   * Get the default organization.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   * @param \Drupal\Core\Field\FieldDefinitionInterface $field_definition
-   */
-  public static function getDefaultEntityOrganization(EntityInterface $entity) {
-    if ($entity instanceof EntityOwnerInterface && $owner = $entity->getOwner()) {
-      return \Drupal::service('organization_user.organization_resolver')->getOrganization($owner);
-    }
-
-    return \Drupal::service('organization_user.organization_resolver')->getOrganization();
   }
 
 }

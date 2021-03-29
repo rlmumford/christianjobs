@@ -6,7 +6,32 @@ use Drupal\Core\Config\FileStorage;
 /**
  * Implements hook_install()
  */
-function cj_install() {
+function cj_install($is_syncing) {
+  $user = \Drupal::entityTypeManager()->getStorage('user')->load(1);
+  $storage = \Drupal::entityTypeManager()->getStorage('commerce_store');
+  $store = $storage->create([
+    'type' => 'online',
+    'uid' => 1,
+    'mail' => $user->mail->value,
+    'name' => 'Christian Jobs',
+    'default_currency' => 'GBP',
+    'address' => [
+      'country_code' => 'GB',
+      'address_line1' => 'Christian Jobs Ltd, The Enterprise Centre, 34 Benchill Rd',
+      'locality' => 'Manchester',
+      'administrative_area' => 'Greater Manchester',
+      'postal_code' => 'M22 8LF',
+    ],
+    'billing_countries' => ['GB'],
+    'tax_registrations' => ['GB'],
+  ]);
+  $store->save();
+  $storage->markAsDefault($store);
+
+  if ($is_syncing) {
+    return;
+  }
+
   $config = \Drupal::configFactory()->getEditable('user.settings');
   $config->set('register', USER_REGISTER_VISITORS);
   $config->set('verify_mail', FALSE);
@@ -22,16 +47,18 @@ function cj_install() {
     'cj_material_tools',
   ]));
 
-  $block_config_storage->load('cj_material_branding')
-    ->setThirdPartySetting('block_class', 'classes', 'navbar-item navbar-branding')
-    ->set('region', 'navbar')
-    ->set('weight', -10)
-    ->save();
-  $block_config_storage->load('cj_material_main_menu')
-    ->setThirdPartySetting('block_class', 'classes', 'navbar-menu navbar-item pull-right')
-    ->set('region', 'navbar')
-    ->set('weight', -6)
-    ->save();
+  if ($block = $block_config_storage->load('cj_material_branding')) {
+    $block->setThirdPartySetting('block_class', 'classes', 'navbar-item navbar-branding')
+      ->set('region', 'navbar')
+      ->set('weight', -10)
+      ->save();
+  }
+  if ($block = $block_config_storage->load('cj_material_main_menu')) {
+    $block->setThirdPartySetting('block_class', 'classes', 'navbar-menu navbar-item pull-right')
+      ->set('region', 'navbar')
+      ->set('weight', -6)
+      ->save();
+  }
 
   $user = \Drupal::entityTypeManager()->getStorage('user')->load(1);
   $storage = \Drupal::entityTypeManager()->getStorage('commerce_store');

@@ -7,27 +7,7 @@ dependencies:
     - field.field.commerce_product_variation.credit_bundle.credit_count
   module:
     - commerce_price
-    - flexiform
-third_party_settings:
-  flexiform:
-    enhancer:
-      multiple_entities:
-        id: multiple_entities
-      page_exposure:
-        id: page_exposure
-      submit_button_ajax:
-        'actions::submit':
-          enabled: 0
-          response: refresh
-        id: submit_button_ajax
-      submit_button_label:
-        label:
-          'actions::submit': ''
-        id: submit_button_label
-      submit_button_redirect:
-        redirect:
-          'actions::submit': ''
-        id: submit_button_redirect
+third_party_settings: {}
 id: commerce_product_variation.credit_bundle.default
 targetEntityType: commerce_product_variation
 bundle: credit_bundle

@@ -1,0 +1,22 @@
+uuid: b1b87899-397a-4b0c-8a7a-2313d205e5a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.crm_org_on_directory
+id: profile.crm_org.crm_org_on_directory
+field_name: crm_org_on_directory
+entity_type: profile
+bundle: crm_org
+label: 'Is On Directory'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

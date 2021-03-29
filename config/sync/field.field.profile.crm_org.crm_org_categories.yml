@@ -1,0 +1,28 @@
+uuid: c2b5bdc4-a325-4cb5-bcff-3e326916d2b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.crm_org_categories
+    - taxonomy.vocabulary.industries
+id: profile.crm_org.crm_org_categories
+field_name: crm_org_categories
+entity_type: profile
+bundle: crm_org
+label: Categories
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      industries: industries
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

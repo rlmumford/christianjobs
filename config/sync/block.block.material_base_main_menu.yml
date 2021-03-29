@@ -1,0 +1,31 @@
+uuid: 435941af-5b3c-476b-b271-0ecd0f63575d
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_class
+    - system
+  theme:
+    - material_base
+third_party_settings:
+  block_class:
+    classes: 'navbar-item navbar-menu pull-center'
+_core:
+  default_config_hash: tyD98gKugqdLXEkr_n4APTIXXgMza3f4bCJTvhDoCAc
+id: material_base_main_menu
+theme: material_base
+region: navbar
+weight: -5
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

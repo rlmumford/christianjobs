@@ -67,19 +67,6 @@ class OrderCompleteSubscriber implements EventSubscriberInterface {
         $job->paid->value = TRUE;
         $job->save();
       }
-      else if ($job instanceof ProductVariation) {
-        if ($job->bundle() === 'credit_bundle') {
-          for ($i = 0; $i < $job->credit_count->value; $i++) {
-            $credit = $this->creditStorage->create([
-              'expires' => (new DrupalDateTime())->add(new \DateInterval('P1Y'))->format(DateTimeItem::DATE_STORAGE_FORMAT),
-              'status' => 'available',
-              'owner' => $order->getCustomerId(),
-              'organization' => $order->organization->target_id ?: $this->organizationResolver->getOrganization($order->getCustomer()),
-            ]);
-            $credit->save();
-          }
-        }
-      }
     }
   }
 }

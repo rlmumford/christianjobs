@@ -1,0 +1,18 @@
+uuid: 20af71d7-782c-476f-9f62-fe2141827734
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.crm_org_charity_number
+id: profile.crm_org.crm_org_charity_number
+field_name: crm_org_charity_number
+entity_type: profile
+bundle: crm_org
+label: 'Charity Number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -2,18 +2,27 @@ module:
   address: 0
   big_pipe: 0
   block: 0
+  block_class: 0
   breakpoint: 0
+  cj: 0
   color_field: 0
   commerce: 0
+  commerce_invoice: 0
   commerce_number_pattern: 0
+  commerce_order: 0
+  commerce_payment: 0
   commerce_price: 0
+  commerce_product: 0
+  commerce_promotion: 0
   commerce_store: 0
+  commerce_tax: 0
   communication: 0
   communication_user: 0
   contacts: 0
   contacts_communication: 0
   contacts_jobs: 0
   contacts_jobs_apps: 0
+  contacts_jobs_commerce: 0
   contextual: 0
   crm_tools: 0
   ctools: 0
@@ -24,6 +33,7 @@ module:
   decoupled_auth_crm: 0
   dynamic_page_cache: 0
   entity: 0
+  entity_reference_revisions: 0
   entity_template: 0
   entity_template_ui: 0
   facets: 0
@@ -45,6 +55,7 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  pdf_tools: 0
   places: 0
   profile: 0
   search_api: 0

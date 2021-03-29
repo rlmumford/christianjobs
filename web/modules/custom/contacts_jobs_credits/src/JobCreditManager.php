@@ -1,9 +1,11 @@
 <?php
 
-namespace Drupal\job_board;
+namespace Drupal\contacts_jobs_credits;
 
+use Drupal\contacts_jobs_credits\Entity\JobCredit;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\organization\Entity\Organization;
+use Drupal\user\Entity\User;
 
 class JobCreditManager implements JobCreditManagerInterface {
 
@@ -24,13 +26,11 @@ class JobCreditManager implements JobCreditManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function hasAvailableCredit(Organization $organization) {
-    // @todo: find a way to lock credits
-
+  public function hasAvailableCredit(User $poster): bool {
     $available_credit = $this->entityTypeManager
       ->getStorage('job_board_job_credit')
       ->getQuery()
-      ->condition('organization', $organization->id())
+      ->condition('org', $poster->id())
       ->condition('status', 'available')
       ->count()
       ->execute();
@@ -41,10 +41,10 @@ class JobCreditManager implements JobCreditManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function getAvailableCredit(Organization $organization) {
+  public function getAvailableCredit(User $poster) : ?JobCredit {
     $storage = $this->entityTypeManager->getStorage('job_board_job_credit');
     $ids = $storage->getQuery()
-      ->condition('organization', $organization->id())
+      ->condition('org', $poster->id())
       ->condition('status', 'available')
       ->range(0, 1)
       ->execute();

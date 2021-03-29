@@ -1,0 +1,8 @@
+type: module
+name: 'Contacts Jobs Credits'
+description: "Allow clients to purchase job credits."
+package: Contacts
+core_version_requirement: ^8 || ^9
+
+dependencies:
+- contacts_jobs:contacts_jobs

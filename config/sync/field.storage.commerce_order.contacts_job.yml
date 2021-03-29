@@ -1,0 +1,22 @@
+uuid: ab4c2fee-2187-49d1-aafd-5ef89149d809
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - contacts_jobs
+_core:
+  default_config_hash: JBFoDh-Jr6J2hqr5BmHoGLxPjVRLgzKUovSoY9KxZb0
+id: commerce_order.contacts_job
+field_name: contacts_job
+entity_type: commerce_order
+type: entity_reference
+settings:
+  target_type: contacts_job
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

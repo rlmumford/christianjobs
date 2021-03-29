@@ -1,0 +1,40 @@
+<?php
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
+
+/**
+ * Implements hook_cron()
+ */
+function contacts_jobs_credits_cron() {
+  $credit_storage = \Drupal::entityTypeManager()->getStorage('cj_credit');
+
+  $ids = $credit_storage->getQuery()
+    ->condition(
+      'expires',
+      (new DrupalDateTime())->format(DateTimeItem::DATE_STORAGE_FORMAT),
+      '<='
+    )
+    ->condition('status', ['spent','expired'], 'NOT IN')
+    ->execute();
+  foreach ($credit_storage->loadMultiple($ids) as $credit) {
+    $credit->status = 'expired';
+    $credit->save();
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info()
+ */
+function contacts_jobs_credits_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+  $fields['credit'] = BaseFieldDefinition::create('entity_reference')
+    ->setSetting('target_type', 'cj_credit')
+    ->setLabel(new TranslatableMarkup('Credit'))
+    ->setDescription(new TranslatableMarkup('If the job was paid for with a credit, this is the credit that was used.'));
+
+  return $fields;
+}

@@ -6,13 +6,8 @@ core: 8.x
 dependencies:
 - block
 - block_class
-- job_board
-- flexiform
 - layout_builder
 - commerce:commerce_tax
 - commerce:commerce_promotion
-- email_registration
-- recaptcha
-- pathauto
 - commerce_invoice
 - pdf_tools

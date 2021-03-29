@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\job_board;
+namespace Drupal\contacts_jobs_credits;
 
 use Drupal\commerce_order\Adjustment;
 use Drupal\commerce_order\Entity\OrderInterface;
@@ -8,19 +8,18 @@ use Drupal\commerce_order\OrderProcessorInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\organization_user\UserOrganizationResolver;
 
+/**
+ * Class JobCreditOrderProcessor
+ *
+ * @package Drupal\contacts_jobs_credits
+ */
 class JobCreditOrderProcessor implements OrderProcessorInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
   protected $creditStorage;
-
-  /**
-   * @var \Drupal\organization_user\UserOrganizationResolver
-   */
-  protected $organizationResolver;
 
   /**
    * @var \Drupal\Core\Session\AccountInterface
@@ -31,27 +30,39 @@ class JobCreditOrderProcessor implements OrderProcessorInterface {
    * JobCreditOrderProcessor constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager service.
+   * @param \Drupal\Core\Session\AccountInterface $current_user
+   *   The current user service.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, UserOrganizationResolver $organization_resolver, AccountInterface $current_user) {
-    $this->creditStorage = $entity_type_manager->getStorage('job_board_job_credit');
-    $this->organizationResolver = $organization_resolver;
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, AccountInterface $current_user) {
+    $this->creditStorage = $entity_type_manager->getStorage('cj_credit');
     $this->currentUser = $current_user;
   }
 
   /**
    * Processes an order.
    *
+   * This method assumes that only one job is being posted per order AND that
+   * a job credit covers the cost of the whole job.
+   *
    * @param \Drupal\commerce_order\Entity\OrderInterface $order
    *   The order.
    */
   public function process(OrderInterface $order) {
-    $organization = $this->organizationResolver->getOrganization($this->currentUser);
+    if (!$order->hasField('contacts_job')) {
+      return;
+    }
+
+    $job = $order->contacts_job->entity;
+    if (!$job) {
+      return;
+    }
 
     $available_credit_ids = $this->creditStorage->getQuery()
-      ->condition('organization', $organization->id())
+      ->condition('org', $job->organisation->target_id)
       ->condition('status', 'available')
       ->execute();
     if (empty($available_credit_ids)) {
@@ -59,31 +70,25 @@ class JobCreditOrderProcessor implements OrderProcessorInterface {
     }
 
     $items = $order->getItems();
-    $available_credits = $this->creditStorage->loadMultiple(
-      array_slice($available_credit_ids, 0, count($items))
-    );
+    $credit = $this->creditStorage->load(reset($available_credit_ids));
 
     foreach ($items as $item) {
-      $entity = $item->getPurchasedEntity();
-      if (!($entity instanceof JobBoardJobRole)) {
-        continue;
-      }
+      if (($entity = $item->getPurchasedEntity()) && $entity->bundle() === 'contacts_job_posting') {
+        $adjustment_amount = $item->getAdjustedTotalPrice()->multiply(-1);
 
-      if ($entity->isRpo()) {
-        continue;
-      }
-
-      if (!$entity->job_credit->isEmpty() || count($available_credits)) {
-        $adjustment_amount = $item->getAdjustedUnitPrice()->multiply(-1);
-
-        if (!$entity->job_credit->isEmpty()) {
-          $credit = $entity->job_credit->entity;
+        if (!$job->credit->isEmptY()) {
+          $credit = $job->credit->entity;
         }
         else {
-          $credit = array_shift($available_credits);
-          $entity->job_credit = $credit;
+          $credit->quantity_spent = $credit->quantity_spent->value + $item->getQuantity();
+          if ($credit->quantity_spent->value >= $credit->quantity->value) {
+            $credit->status = 'spent';
+          }
+          $credit->save();
+
+          $job->credit = $credit;
+          $job->save();
         }
-        $credit->status = 'spent';
 
         $item->addAdjustment(new Adjustment([
           'type' => 'promotion',

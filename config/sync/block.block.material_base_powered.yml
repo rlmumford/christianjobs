@@ -1,0 +1,26 @@
+uuid: 90074a74-c473-4dd3-a65a-5594d126bc3f
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - material_base
+third_party_settings:
+  block_class:
+    classes: footer-item
+_core:
+  default_config_hash: Xkz8fCNx52fyMLcGSww1IMThcdMW2cy5mkZtt8yKzV0
+id: material_base_powered
+theme: material_base
+region: footer_content
+weight: -5
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

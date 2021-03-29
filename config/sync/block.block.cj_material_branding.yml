@@ -3,15 +3,19 @@ langcode: en
 status: true
 dependencies:
   module:
+    - block_class
     - system
   theme:
     - cj_material
+third_party_settings:
+  block_class:
+    classes: 'navbar-item navbar-branding'
 _core:
   default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
 id: cj_material_branding
 theme: cj_material
-region: header
-weight: 0
+region: navbar
+weight: -10
 provider: null
 plugin: system_branding_block
 settings:

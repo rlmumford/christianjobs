@@ -1,0 +1,8 @@
+type: module
+name: 'Contacts Jobs Extensions'
+description: "Allow clients to purchase job extensions."
+package: Contacts
+core_version_requirement: ^8 || ^9
+
+dependencies:
+- contacts_jobs:contacts_jobs

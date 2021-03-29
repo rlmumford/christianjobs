@@ -1,0 +1,20 @@
+uuid: 6985e33b-978d-48c8-80b2-8383a2cea095
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.crm_org_type
+  module:
+    - options
+id: profile.crm_org.crm_org_type
+field_name: crm_org_type
+entity_type: profile
+bundle: crm_org
+label: 'Organisation Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

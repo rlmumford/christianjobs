@@ -1,0 +1,14 @@
+services:
+  contacts_jobs_credits.order_complete:
+    class: Drupal\contacts_jobs_credits\EventSubscriber\OrderCompleteSubscriber
+    arguments: [ '@entity_type.manager' ]
+    tags:
+      - { name: event_subscriber }
+  contacts_jobs_credits.order_processor:
+    class: Drupal\contacts_jobs_credits\JobCreditOrderProcessor
+    arguments: [ '@entity_type.manager', '@current_user' ]
+    tags:
+      - { name: commerce_order.order_processor, priority: 51, adjustment_type: promotion }
+  contacts_jobs_credits.credit_manager:
+    class: Drupal\contacts_jobs_credits\JobCreditManager
+    arguments: [ '@entity_type.manager' ]

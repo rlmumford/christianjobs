@@ -1,0 +1,30 @@
+uuid: 06c82199-5ab4-4172-8a94-6fe12c2c8553
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.contacts_job
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.commerce_order.contacts_job
+_core:
+  default_config_hash: kFYgDQ9FZHZUh8KKjFIylI6axFwZSPdpr7BR5lS-qfo
+id: commerce_order.contacts_job.contacts_job
+field_name: contacts_job
+entity_type: commerce_order
+bundle: contacts_job
+label: Job
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:contacts_job'
+  handler_settings:
+    target_bundles:
+      job: job
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

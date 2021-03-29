@@ -1,0 +1,20 @@
+uuid: f7628ed7-3b55-4f27-ae2b-8148e015ad30
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+    - taxonomy
+id: profile.crm_org_categories
+field_name: crm_org_categories
+entity_type: profile
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

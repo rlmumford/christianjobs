@@ -1,0 +1,25 @@
+uuid: 7c215364-9ee9-42b5-b120-33ab848d955e
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.contacts_job_posting
+    - field.storage.commerce_product.body
+  module:
+    - text
+_core:
+  default_config_hash: KVwjFflSP3eyNkc0svX_kJN2cjSucKeifLAcgFLFlZg
+id: commerce_product.contacts_job_posting.body
+field_name: body
+entity_type: commerce_product
+bundle: contacts_job_posting
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

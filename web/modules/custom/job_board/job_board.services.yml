@@ -1,9 +1,4 @@
 services:
-  job_board.order_complete:
-    class: Drupal\job_board\EventSubscriber\OrderCompleteSubscriber
-    arguments: [ '@entity_type.manager', '@organization_user.organization_resolver' ]
-    tags:
-      - { name: event_subscriber }
   job_board.charity_aware_tax_rate_resolver:
     class: Drupal\job_board\CharityAwareTaxRateResolver
     arguments: [ '@entity_type.manager' ]

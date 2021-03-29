@@ -1,0 +1,14 @@
+uuid: a81714c9-cfc1-4e3e-8cf5-28d20c27c50d
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 0ittmJbqoKaWSpwLQ3Bit0-fzSBqP1U_9YFCw9LcVwo
+id: contacts_job_posting
+label: 'Contacts Job Posting'
+description: ''
+variationType: default
+multipleVariations: true
+injectVariationFields: false
+traits: {  }
+locked: false

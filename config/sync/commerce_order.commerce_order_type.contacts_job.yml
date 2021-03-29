@@ -1,0 +1,16 @@
+uuid: 2028f8d9-d360-4a6c-9bc4-dabde6cc8008
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 0HrOInhDDv0xnEX3oY3ph1onMEonlKpZwxgDtA1GrT4
+label: 'Job Posting'
+id: contacts_job
+workflow: order_default
+numberPattern: contacts_jobs_post
+refresh_mode: customer
+refresh_frequency: 300
+sendReceipt: true
+receiptBcc: ''
+traits: {  }
+locked: false

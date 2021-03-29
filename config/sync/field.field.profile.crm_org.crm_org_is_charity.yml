@@ -1,0 +1,22 @@
+uuid: f305f8a5-11be-4d2e-9974-782d14d2a973
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.crm_org_is_charity
+id: profile.crm_org.crm_org_is_charity
+field_name: crm_org_is_charity
+entity_type: profile
+bundle: crm_org
+label: 'This organisation is a registered charity.'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

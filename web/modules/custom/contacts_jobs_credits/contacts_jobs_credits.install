@@ -1,0 +1,23 @@
+<?php
+
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_install().
+ */
+function contacts_jobs_credits_install() {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+
+  if (!$update_manager->getFieldStorageDefinition('credit','contacts_job')) {
+    $update_manager->installFieldStorageDefinition(
+      'credit',
+      'contacts_job',
+      'contacts_jobs_credits',
+      BaseFieldDefinition::create('entity_reference')
+        ->setSetting('target_type', 'cj_credit')
+        ->setLabel(new TranslatableMarkup('Credit'))
+        ->setDescription(new TranslatableMarkup('If the job was paid for with a credit, this is the credit that was used.'))
+    );
+  }
+}

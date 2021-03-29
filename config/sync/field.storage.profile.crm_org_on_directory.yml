@@ -1,0 +1,18 @@
+uuid: 77d72804-dbe8-489e-a1d0-7a825526bc48
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.crm_org_on_directory
+field_name: crm_org_on_directory
+entity_type: profile
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
