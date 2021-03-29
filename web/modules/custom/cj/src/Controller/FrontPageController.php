@@ -24,9 +24,6 @@ class FrontPageController extends ControllerBase {
     $currency_formatter = \Drupal::service('commerce_price.currency_formatter');
     $row = [
       '#type' => 'container',
-      '#attached' => [
-        'library' => ['job_board/pricing'],
-      ],
       '#attributes' => [
         'class' => ['packages', 'z-level-3'],
       ],
@@ -106,14 +103,4 @@ class FrontPageController extends ControllerBase {
     return $build;
   }
 
-  /**
-   * Check the self edit candidate access.
-   */
-  public function selfEditCandidateAccess(UserInterface $user) {
-    if ($user->hasRole('candidate')) {
-      return AccessResult::allowed();
-    }
-
-    return AccessResult::forbidden();
-  }
 }

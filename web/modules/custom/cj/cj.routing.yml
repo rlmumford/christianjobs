@@ -12,11 +12,3 @@ cj.config.bank_details:
     _title: 'Bank Details'
   requirements:
       _permission: 'access commerce administration pages'
-cj.self_edit_candidate:
-  path: '/user/{user}/profile'
-  defaults:
-    _entity_form: user.self_edit_candidate
-    _title: 'Edit Profile'
-  requirements:
-    _entity_access: 'user.update'
-    _custom_access: '\Drupal\cj\Controller\FrontPageController::selfEditCandidateAccess'
