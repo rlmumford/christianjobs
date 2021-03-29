@@ -73,7 +73,7 @@
         "drupal/contacts": "1.x-dev",
         "drupal/contacts_communication": "^1.0",
         "drupal/contacts_jobs": "dev-fmcg as 1.x-dev",
-        "drupal/contacts_jobs_apps": "dev-fmcg as 1.x-dev",
+        "drupal/contacts_jobs_apps": "dev-feature/app_settings as 1.x-dev",
         "drupal/contacts_notes": "^1.0",
         "drupal/contacts_theme": "1.x-dev",
         "drupal/core-composer-scaffold": "^8.9.13",

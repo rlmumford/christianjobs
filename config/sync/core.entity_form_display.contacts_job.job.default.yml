@@ -1,0 +1,113 @@
+uuid: 862fa782-fe2c-48b2-99f4-ea134e0ded22
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.field.contacts_job.job.app_settings
+    - field.field.contacts_job.job.job_description
+    - field.field.contacts_job.job.job_hours
+    - field.field.contacts_job.job.job_hours_per_week
+    - field.field.contacts_job.job.job_how_to_apply
+    - field.field.contacts_job.job.job_location
+    - field.field.contacts_job.job.job_payment_status
+    - field.field.contacts_job.job.job_region
+    - field.field.contacts_job.job.job_type
+  module:
+    - contacts_jobs
+    - inline_entity_form
+id: contacts_job.job.default
+targetEntityType: contacts_job
+bundle: job
+mode: default
+content:
+  app_settings:
+    type: inline_entity_form_complex
+    weight: 8
+    region: content
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'Application Form'
+      label_plural: ''
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
+      revision: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+  closing:
+    type: datetime_timestamp_no_default
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  job_salary:
+    type: contacts_jobs_salary_default
+    region: content
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+  organisation:
+    type: entity_reference_autocomplete
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+  promoted_end:
+    type: datetime_timestamp_no_default
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promoted_start:
+    type: datetime_timestamp_no_default
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  publish_end:
+    type: datetime_timestamp_no_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  publish_start:
+    type: datetime_timestamp_no_default
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden:
+  job_description: true
+  job_hours: true
+  job_hours_per_week: true
+  job_how_to_apply: true
+  job_location: true
+  job_payment_status: true
+  job_region: true
+  job_type: true

@@ -46,6 +46,9 @@ content:
       link: false
     third_party_settings: {  }
 hidden:
+  communication_contact_addresses: true
+  communication_contact_emails: true
+  communication_contact_telephones: true
   crm_indiv_profiles: true
   crm_notes_profiles: true
   crm_org_profiles: true

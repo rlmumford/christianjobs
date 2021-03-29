@@ -9,7 +9,9 @@ module:
   commerce_price: 0
   commerce_store: 0
   communication: 0
+  communication_user: 0
   contacts: 0
+  contacts_communication: 0
   contacts_jobs: 0
   contacts_jobs_apps: 0
   contextual: 0
@@ -23,6 +25,7 @@ module:
   dynamic_page_cache: 0
   entity: 0
   entity_template: 0
+  entity_template_ui: 0
   facets: 0
   field: 0
   field_ui: 0

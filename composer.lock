@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "461324a301970a3f00469c2f4c2d8044",
+    "content-hash": "f4dc73e8735de3f09443de432a229004",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3050,16 +3050,16 @@
         },
         {
             "name": "drupal/contacts_jobs_apps",
-            "version": "dev-fmcg",
+            "version": "dev-feature/app_settings",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/freelygive/drupal/contacts_jobs_apps.git",
-                "reference": "a5b6db702dc64f126873ad67030bc1c5a260ed07"
+                "reference": "a428f4d052da562291a2f048fd710991b9e313ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/freelygive%2Fdrupal%2Fcontacts_jobs_apps/repository/archive.zip?sha=a5b6db702dc64f126873ad67030bc1c5a260ed07",
-                "reference": "a5b6db702dc64f126873ad67030bc1c5a260ed07",
+                "url": "https://gitlab.com/api/v4/projects/freelygive%2Fdrupal%2Fcontacts_jobs_apps/repository/archive.zip?sha=a428f4d052da562291a2f048fd710991b9e313ab",
+                "reference": "a428f4d052da562291a2f048fd710991b9e313ab",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -3070,7 +3070,7 @@
             "keywords": [
                 "Drupal"
             ],
-            "time": "2021-03-22T10:53:05+00:00"
+            "time": "2021-03-29T11:03:57+00:00"
         },
         {
             "name": "drupal/contacts_log",
@@ -16820,7 +16820,7 @@
         {
             "alias": "1.x-dev",
             "alias_normalized": "1.9999999.9999999.9999999-dev",
-            "version": "dev-fmcg",
+            "version": "dev-feature/app_settings",
             "package": "drupal/contacts_jobs_apps"
         }
     ],
