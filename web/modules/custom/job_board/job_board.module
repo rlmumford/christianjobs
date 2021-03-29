@@ -488,71 +488,6 @@ function job_board_user_register_form_submit_redirect(array $form, FormStateInte
 }
 
 /**
- * Implements hook_organization_presave().
- *
- * @param \Drupal\organization\Entity\Organization $organization
- */
-function job_board_organization_presave(Organization $organization) {
-  if (!$organization->headquarters->isEmpty()) {
-    /** @var \Drupal\place\Entity\Place $hq */
-    $hq = $organization->headquarters->entity;
-
-    if (!$hq->id()) {
-      $organization->places[] = $hq;
-    }
-    else {
-      // Check the $hq isn't already set as a place.
-      foreach ($organization->places as $place_item) {
-        if ($place_item->target_id == $hq->id()) {
-          return;
-        }
-      }
-
-      $organization->places[] = $hq;
-    }
-  }
-}
-
-/**
- * Implements hook_place_presave().
- */
-function job_board_place_presave(Place $place) {
-  $json = $place->geo->value;
-  if ($place->hasField('tree') && $data = json_decode($json)) {
-    if (!isset($data->properties->adminLevels)) {
-      return;
-    }
-
-    // First get the tem for the country.
-    $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
-    $loc_terms = $term_storage->loadByProperties(['vid' => 'locations', 'name' => $data->properties->country]);
-    if (!($term = reset($loc_terms))) {
-      $term = $term_storage->create([
-        'vid' => 'locations',
-        'name' => $data->properties->country,
-      ]);
-      $term->save();
-    }
-    $terms[] = $term;
-
-    foreach ($data->properties->adminLevels as $level) {
-      $level_terms = $term_storage->loadByProperties(['vid' => 'locations', 'name' => $level->name, 'parent' => $term->id()]);
-      if (!($next_term = reset($level_terms))) {
-        $next_term = $term_storage->create([
-          'vid' => 'locations',
-          'name' => $level->name,
-          'parent' => $term->id(),
-        ]);
-        $next_term->save();
-      }
-      $terms[] = $term = $next_term;
-    }
-
-    $place->tree = $terms;
-  }
-}
-
-/**
  * Get the Job Package Options.
  */
 function job_board_job_package_options() {
@@ -749,24 +684,6 @@ function job_board_mail($key, &$message, $params) {
       break;
   }
 
-}
-
-/**
- * Implements hook_user_format_name_alter.
- */
-function job_board_user_format_name_alter(&$name, AccountInterface $account) {
-  if (!($account instanceof UserInterface)) {
-    $account = entity_load('user', $account->id());
-  }
-
-  /** @var \Drupal\user\UserInterface $account */
-  if ($account->hasRole('employer')) {
-    /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
-    $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
-    if ($profile = $profile_storage->loadDefaultByUser($account, 'employer')) {
-      $name = $profile->employer_name->value;
-    }
-  }
 }
 
 function job_board_views_post_execute(ViewExecutable $view) {

@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - job_board
-id: user.register_recruiter
-label: 'Register (Recruiter)'
-targetEntityType: user
-cache: true

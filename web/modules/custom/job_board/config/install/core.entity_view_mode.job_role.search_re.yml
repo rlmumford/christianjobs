@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - job_role
-id: job_role.search_re
-label: 'Search Result'
-targetEntityType: job_role
-cache: true
