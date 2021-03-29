@@ -48,13 +48,7 @@ job_board.log.view:
     _title: 'Log'
   requirements:
     _access: 'TRUE'
-job_board.extend:
-  path: '/job/{job_role}/extend'
-  defaults:
-    _form: '\Drupal\job_board\Form\JobExtendForm'
-    _title_callback: '\Drupal\job_board\Controller\JobBoardController::extendJobTitle'
-  requirements:
-    _entity_access: 'job_role.extend'
+
 job_board.repost:
   path: '/job/{job_role}/repost'
   defaults:

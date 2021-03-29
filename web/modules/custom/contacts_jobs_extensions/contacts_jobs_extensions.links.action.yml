@@ -1,0 +1,5 @@
+contacts_jobs_extensions.extend:
+  route_name: contacts_jobs_extensions.extend
+  title: 'Extend'
+  appears_on:
+    - entity.contacts_job.canonical

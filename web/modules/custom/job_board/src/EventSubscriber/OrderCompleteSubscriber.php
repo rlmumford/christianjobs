@@ -63,10 +63,6 @@ class OrderCompleteSubscriber implements EventSubscriberInterface {
         $job->paid->value = TRUE;
         $job->save();
       }
-      else if ($job instanceof JobExtension) {
-        $job->paid->value = TRUE;
-        $job->save();
-      }
     }
   }
 }

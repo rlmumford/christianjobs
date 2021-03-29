@@ -1,0 +1,7 @@
+contacts_jobs_extensions.extend:
+  path: '/job/{contacts_job}/extend'
+  defaults:
+    _form: '\Drupal\contacts_jobs_extensions\Form\JobExtendForm'
+    _title_callback: '\Drupal\contacts_jobs_extensions\Controller\ExtensionController::extendJobTitle'
+  requirements:
+    _entity_access: 'contacts_job.extend'

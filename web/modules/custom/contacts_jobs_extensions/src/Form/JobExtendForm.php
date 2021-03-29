@@ -1,12 +1,12 @@
 <?php
 
-namespace Drupal\job_board\Form;
+namespace Drupal\contacts_jobs_extensions\Form;
 
+use Drupal\contacts_jobs\Entity\Job;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
-use Drupal\job_board\JobBoardJobRole;
 
 class JobExtendForm extends FormBase {
 
@@ -20,7 +20,7 @@ class JobExtendForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, JobBoardJobRole $job_role = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, Job $job_role = NULL) {
     $form_state->set('job', $job_role);
 
     $form['job'] = [
@@ -88,10 +88,10 @@ class JobExtendForm extends FormBase {
     }
     $job_role->save();
 
-    /** @var \Drupal\job_board\JobExtensionStorage $storage */
-    $storage = \Drupal::entityTypeManager()->getStorage('job_board_job_extension');
+    /** @var \Drupal\contacts_jobs_extensions\JobExtensionStorage $storage */
+    $storage = \Drupal::entityTypeManager()->getStorage('cj_extension');
 
-    /** @var \Drupal\job_board\Entity\JobExtension $extension */
+    /** @var \Drupal\contacts_jobs_extensions\Entity\JobExtension $extension */
     $extension = $storage->create();
     $extension->job = $job_role;
     $extension->duration = $form_state->getValue('duration');

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\job_board\Form;
+namespace Drupal\contacts_jobs_credits\Form;
 
 use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
 use Drupal\commerce_cart\CartManagerInterface;
@@ -8,15 +8,15 @@ use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\organization\Entity\Organization;
+use Drupal\user\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class RecruiterBuyCreditForm extends FormBase {
-
-  /**
-   * @var \Drupal\organization\Entity\Organization
-   */
-  protected $organization;
+/**
+ * Form to buy new credits.
+ *
+ * @package Drupal\contacts_jobs_credits\Form
+ */
+class BuyCreditForm extends FormBase {
 
   /**
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -37,6 +37,11 @@ class RecruiterBuyCreditForm extends FormBase {
    * @var \CommerceGuys\Intl\Formatter\CurrencyFormatterInterface
    */
   protected $currencyFormatter;
+
+  /**
+   * @var \Drupal\user\UserInterface
+   */
+  protected $org;
 
   /**
    * {@inheritdoc}
@@ -66,14 +71,14 @@ class RecruiterBuyCreditForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'recruiter_buy_credit_form';
+    return 'buy_credit_form';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, Organization $organization = NULL) {
-    $this->organization = $organization;
+  public function buildForm(array $form, FormStateInterface $form_state, User $organization = NULL) {
+    $this->org = $organization;
 
     // @todo: Get products
     $product_variation_storage = $this->entityTypeManager->getStorage('commerce_product_variation');
@@ -120,6 +125,9 @@ class RecruiterBuyCreditForm extends FormBase {
    *   An associative array containing the structure of the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $variation_id = $form_state->getValue('bundle');
@@ -130,7 +138,7 @@ class RecruiterBuyCreditForm extends FormBase {
     $cart = $this->cartProvider->getCart('default');
     if (!$cart) {
       $cart = $this->cartProvider->createCart('default');
-      $cart->organization = $this->organization;
+      $cart->org = $this->org;
     }
 
     $this->cartManager->addEntity($cart, $variation);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\job_board;
+namespace Drupal\contacts_jobs_extensions;
 
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 

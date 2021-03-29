@@ -12,6 +12,3 @@ services:
     class: Drupal\job_board\EventSubscriber\GoCardlessSubscriber
     tags:
       - { name: event_subscriber }
-  job_board.credit_manager:
-    class: Drupal\job_board\JobCreditManager
-    arguments: [ '@entity_type.manager' ]

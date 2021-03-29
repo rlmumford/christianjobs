@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\job_board\Entity;
+namespace Drupal\contacts_jobs_extensions\Entity;
 
 use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_price\Price;
@@ -18,7 +18,7 @@ use Drupal\user\EntityOwnerTrait;
  * Job Role Extension Entity.
  *
  * @ContentEntityType(
- *   id = "job_board_job_extension",
+ *   id = "cj_extension",
  *   label = @Translation("Job Extension"),
  *   label_singular = @Translation("job extension"),
  *   label_plural = @Translation("job extensions"),
@@ -27,14 +27,12 @@ use Drupal\user\EntityOwnerTrait;
  *     plural = "@count job extensions"
  *   ),
  *   handlers = {
- *     "storage" = "Drupal\job_board\JobExtensionStorage",
- *     "access" = "Drupal\job_board\JobExtensionAccessControlHandler",
+ *     "storage" = "Drupal\contacts_jobs_extensions\JobExtensionStorage",
+ *     "access" = "Drupal\contacts_jobs_extensions\JobExtensionAccessControlHandler",
  *     "views_data" = "Drupal\views\EntityViewsData",
  *   },
- *   base_table = "job_extension",
- *   revision_table = "job_extension_revision",
- *   data_table = "job_extension_data",
- *   revision_data_table = "job_extension_revision_data",
+ *   base_table = "cj_extension",
+ *   revision_table = "cj_extension_revision",
  *   admin_permission = "administer job extensions",
  *   entity_keys = {
  *     "id" = "id",
@@ -54,7 +52,7 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
     if ($this->paid->value && !$this->applied->value) {
       $this->applied = TRUE;
 
-      /** @var \Drupal\job_board\JobBoardJobRole $job */
+      /** @var \Drupal\contacts_jobs\Entity\Job $job */
       $job = $this->job->entity;
 
       /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
@@ -102,7 +100,7 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
    *   The order item type ID.
    */
   public function getOrderItemTypeId() {
-    return 'job_board_job_extension';
+    return 'contacts_jobs_extensions_job_extension';
   }
 
   /**
@@ -126,7 +124,7 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
    *   The price, or NULL.
    */
   public function getPrice() {
-    $config = \Drupal::config('job_board.pricing');
+    $config = \Drupal::config('contacts_jobs_extensions.pricing');
 
     if ($this->duration->value == 'P30D') {
       return new Price($config->get('jobext_30D'), 'GBP');
@@ -143,10 +141,10 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['job'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Job'))
-      ->setDescription(t('The job that this extension is extending.'))
+      ->setLabel(new TranslatableMarkup('Job'))
+      ->setDescription(new TranslatableMarkup('The job that this extension is extending.'))
       ->setRevisionable(TRUE)
-      ->setSetting('target_type', 'job_role')
+      ->setSetting('target_type', 'contacts_job')
       ->setSetting('handler', 'default');
 
     $fields['duration'] = BaseFieldDefinition::create('list_string')
@@ -160,8 +158,8 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['paid'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('Paid'))
-      ->setDescription(t('Has this job extension been paid for.'))
+      ->setLabel(new TranslatableMarkup('Paid'))
+      ->setDescription(new TranslatableMarkup('Has this job extension been paid for.'))
       ->setSetting('on_label', t('Paid'))
       ->setSetting('off_label', t('Unpaid'))
       ->setCardinality(1)
@@ -170,8 +168,8 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['applied'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('Paid'))
-      ->setDescription(t('Has this job extension been applied to the job.'))
+      ->setLabel(new TranslatableMarkup('Paid'))
+      ->setDescription(new TranslatableMarkup('Has this job extension been applied to the job.'))
       ->setSetting('on_label', t('Applied'))
       ->setSetting('off_label', t('Not Applied'))
       ->setCardinality(1)
@@ -180,20 +178,20 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['owner'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Owner'))
-      ->setDescription(t('The user that owns this role.'))
+      ->setLabel(new TranslatableMarkup('Owner'))
+      ->setDescription(new TranslatableMarkup('The user that owns this extension.'))
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default');
 
     $fields['created'] = BaseFieldDefinition::create('created')
-      ->setLabel(t('Created'))
-      ->setDescription(t('The time when the job_role was created.'))
+      ->setLabel(new TranslatableMarkup('Created'))
+      ->setDescription(new TranslatableMarkup('The time when the job_role was created.'))
       ->setRevisionable(TRUE);
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
-      ->setLabel(t('Changed'))
-      ->setDescription(t('The time when the job_role was last edited.'))
+      ->setLabel(new TranslatableMarkup('Changed'))
+      ->setDescription(new TranslatableMarkup('The time when the job_role was last edited.'))
       ->setRevisionable(TRUE);
 
     return $fields;

@@ -220,12 +220,7 @@ class JobBoardController extends ControllerBase {
     return new TranslatableMarkup('Boost @job', ['@job' => $job_role->label()]);
   }
 
-  /**
-   * Extend job title.
-   */
-  public function extendJobTitle(JobRoleInterface $job_role) {
-    return new TranslatableMarkup('Extend @job', ['@job' => $job_role->label()]);
-  }
+
 
   /**
    * Return the employer edit page title.

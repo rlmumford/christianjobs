@@ -27,7 +27,7 @@ class OrderCompleteSubscriber implements EventSubscriberInterface {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager) {
-    $this->creditStorage = $entity_type_manager->getStorage('jcj_credit');
+    $this->creditStorage = $entity_type_manager->getStorage('cj_credit');
   }
 
   /**

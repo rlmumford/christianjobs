@@ -1,0 +1,5 @@
+services:
+  contacts_jobs_credits.order_complete:
+    class: Drupal\contacts_jobs_extensions\EventSubscriber\OrderCompleteSubscriber
+    tags:
+      - { name: event_subscriber }
