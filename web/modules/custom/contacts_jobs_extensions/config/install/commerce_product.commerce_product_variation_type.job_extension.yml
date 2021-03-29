@@ -1,0 +1,10 @@
+uuid: 8853cbfa-e438-4386-8567-b2e7521ecfb5
+langcode: en
+status: true
+dependencies: {  }
+id: job_extension
+label: 'Job Extension'
+orderItemType: default
+generateTitle: true
+traits: {  }
+locked: false

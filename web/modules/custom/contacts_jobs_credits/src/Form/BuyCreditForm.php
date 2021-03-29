@@ -55,6 +55,14 @@ class BuyCreditForm extends FormBase {
     );
   }
 
+  /**
+   * BuyCreditForm constructor.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * @param \Drupal\commerce_cart\CartProviderInterface $cart_provider
+   * @param \Drupal\commerce_cart\CartManagerInterface $cart_manager
+   * @param \CommerceGuys\Intl\Formatter\CurrencyFormatterInterface $currency_formatter
+   */
   public function __construct(
     EntityTypeManagerInterface $entity_type_manager,
     CartProviderInterface $cart_provider,

@@ -1,0 +1,12 @@
+uuid: ea7c9da6-4836-451f-899c-1658ec6012b1
+langcode: en
+status: true
+dependencies: {  }
+id: job_extension
+label: 'Job Extension'
+description: ''
+variationType: jobExtension
+multipleVariations: true
+injectVariationFields: true
+traits: {  }
+locked: false

@@ -49,6 +49,10 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
    * {@inheritdoc}
    */
   public function preSave(EntityStorageInterface $storage) {
+    if ($this->product->entity) {
+      $this->duration = $this->product->entity->extension_duration->value;
+    }
+
     if ($this->paid->value && !$this->applied->value) {
       $this->applied = TRUE;
 
@@ -56,17 +60,13 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
       $job = $this->job->entity;
 
       /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
-      $paid_to_date = clone $job->paid_to_date->date;
+      $publish_end = clone $job->publish_end->date;
       $today_date = new DrupalDateTime();
-      if ($today_date > $paid_to_date) {
-        $paid_to_date = $today_date;
+      if ($today_date > $publish_end) {
+        $publish_end = $today_date;
       }
-      $paid_to_date->add(new \DateInterval($this->duration->value ?: 'P30D'));
-      $job->end_date->value = $job->paid_to_date->value = $paid_to_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT);
-
-      if ($job->application_deadline->value && ($job->application_deadline->value < $job->end_date->value)) {
-        $job->end_date->value = $job->application_deadline->value;
-      }
+      $publish_end->add(new \DateInterval($this->duration->value ?: 'P30D'));
+      $job->publish_end->value = $publish_end->format('U');
 
       $job->save();
     }
@@ -124,14 +124,9 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
    *   The price, or NULL.
    */
   public function getPrice() {
-    $config = \Drupal::config('contacts_jobs_extensions.pricing');
-
-    if ($this->duration->value == 'P30D') {
-      return new Price($config->get('jobext_30D'), 'GBP');
-    }
-    else {
-      return new Price($config->get('jobext_60D'), 'GBP');
-    }
+    /** @var \Drupal\commerce_product\Entity\ProductVariation $variation */
+    $variation = $this->product->entity;
+    return $variation->getPrice();
   }
 
   /**
@@ -145,6 +140,16 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
       ->setDescription(new TranslatableMarkup('The job that this extension is extending.'))
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'contacts_job')
+      ->setSetting('handler', 'default');
+
+    $fields['product'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(new TranslatableMarkup('Product'))
+      ->setRequired(TRUE)
+      ->setRevisionable(TRUE)
+      ->setSetting('target_type', 'commerce_product_variation')
+      ->setSetting('handler_settings', [
+        'target_bundles' => ['job_extension' => 'job_extension'],
+      ])
       ->setSetting('handler', 'default');
 
     $fields['duration'] = BaseFieldDefinition::create('list_string')

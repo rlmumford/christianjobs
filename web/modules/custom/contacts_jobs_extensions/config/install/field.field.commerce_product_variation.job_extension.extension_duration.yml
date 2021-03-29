@@ -1,0 +1,19 @@
+uuid: 22796706-27a1-4691-90ce-82c4a51e0557
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.job_extension
+    - field.storage.commerce_product_variation.extension_duration
+id: commerce_product_variation.job_extension.extension_duration
+field_name: extension_duration
+entity_type: commerce_product_variation
+bundle: job_extension
+label: 'Extension Duration'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
