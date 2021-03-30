@@ -3054,12 +3054,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/freelygive/drupal/contacts_jobs_apps.git",
-                "reference": "a428f4d052da562291a2f048fd710991b9e313ab"
+                "reference": "7b02b4773c24626f138c4ae0870b63857160ec01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/freelygive%2Fdrupal%2Fcontacts_jobs_apps/repository/archive.zip?sha=a428f4d052da562291a2f048fd710991b9e313ab",
-                "reference": "a428f4d052da562291a2f048fd710991b9e313ab",
+                "url": "https://gitlab.com/api/v4/projects/freelygive%2Fdrupal%2Fcontacts_jobs_apps/repository/archive.zip?sha=7b02b4773c24626f138c4ae0870b63857160ec01",
+                "reference": "7b02b4773c24626f138c4ae0870b63857160ec01",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -3070,7 +3070,7 @@
             "keywords": [
                 "Drupal"
             ],
-            "time": "2021-03-29T11:03:57+00:00"
+            "time": "2021-03-29T18:12:40+00:00"
         },
         {
             "name": "drupal/contacts_log",

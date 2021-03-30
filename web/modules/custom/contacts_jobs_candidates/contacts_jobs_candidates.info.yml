@@ -1,0 +1,8 @@
+type: module
+name: 'Contacts Jobs Candidates'
+description: "Support storing information about candidates."
+package: Contacts
+core_version_requirement: ^8 || ^9
+
+dependencies:
+- contacts_jobs:contacts_jobs
