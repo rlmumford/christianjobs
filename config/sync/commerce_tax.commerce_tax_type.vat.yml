@@ -1,0 +1,9 @@
+uuid: 8a1e25b0-d711-4985-a7d5-5a4095c04915
+langcode: en
+status: true
+dependencies: {  }
+id: vat
+label: VAT
+plugin: european_union_vat
+configuration:
+  display_inclusive: true

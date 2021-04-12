@@ -1,0 +1,16 @@
+uuid: a20bdab3-c105-48f0-adb0-a409ba08fd05
+langcode: en
+status: true
+dependencies:
+  module:
+    - crm_tools
+third_party_settings:
+  crm_tools:
+    crm_tools_is_hat: true
+    crm_tools_icon: person
+    crm_tools_parent: crm_indiv
+id: contributor
+label: Contributor
+weight: 5
+is_admin: null
+permissions: {  }

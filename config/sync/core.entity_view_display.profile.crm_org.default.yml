@@ -41,5 +41,12 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  crm_org_categories: true
+  crm_org_charity_number: true
+  crm_org_description_summary: true
+  crm_org_is_charity: true
+  crm_org_on_directory: true
+  crm_org_type: true
   org_image: true
   search_api_excerpt: true
+  user_email: true

@@ -1,0 +1,15 @@
+edit organisation:
+  title: 'Edit group organisation'
+  description: 'Access the edit form for the group organisation'
+
+manage organisation:
+  title: 'Manage group organisation'
+  description: 'Access the mange teams page for the group organisation'
+
+make job payments:
+  title: 'Make group payments'
+  description: 'Authorise payments on behalf of the organisation and manage subscriptions'
+
+manage organisation jobs:
+  title: 'Manage group jobs'
+  description: 'Access jobs overview and post/update jobs on behalf of the group organisation'

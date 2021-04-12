@@ -1,0 +1,16 @@
+uuid: 44ef7f14-c6ab-409c-b2ac-78ad091266f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+id: contacts_org-recruiter
+label: Recruiter
+weight: 9
+internal: false
+audience: member
+group_type: contacts_org
+permissions_ui: true
+permissions:
+  - 'edit organisation'
+  - 'manage organisation jobs'

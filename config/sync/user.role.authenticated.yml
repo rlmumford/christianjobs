@@ -9,7 +9,11 @@ label: 'Authenticated user'
 weight: 1
 is_admin: false
 permissions:
+  - 'access checkout'
   - 'access content'
+  - 'access devel information'
+  - 'create address place'
+  - 'create taxonomy_address place'
   - 'manage own commerce_payment_method'
   - 'view commerce_product'
   - 'view own commerce_order'

@@ -1,0 +1,12 @@
+uuid: 124b869d-0b81-424c-8afa-fba5c0a38639
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+_core:
+  default_config_hash: rf-HioiWyZ5sZOpRzZkkpWY1Ddv0lLj7r2GcYFqGurg
+id: profile.user_dashboard
+label: 'User Dashboard'
+targetEntityType: profile
+cache: true

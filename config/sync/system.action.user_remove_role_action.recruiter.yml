@@ -1,0 +1,14 @@
+uuid: 2786db48-7469-49a9-90aa-07f643b95e4f
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.recruiter
+  module:
+    - user
+id: user_remove_role_action.recruiter
+label: 'Remove the Recruiter role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: recruiter

@@ -1,0 +1,35 @@
+uuid: b0c220bb-1249-4130-a1bc-30afa7f6675a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.commerce_remote_id
+  module:
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  account:
+    weight: -10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  language:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  timezone:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  commerce_remote_id: true
+  crm_indiv_profiles: true
+  crm_notes_profiles: true
+  crm_org_profiles: true
+  customer_profiles: true
+  mail: true

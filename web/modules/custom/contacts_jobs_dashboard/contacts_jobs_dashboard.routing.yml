@@ -1,0 +1,71 @@
+# @todo Add access requirement for only seeing your own tab.
+contacts_jobs_dashboard.user.organisations:
+  path: '/user/{user}/related-organisations'
+  defaults:
+    _controller: '\Drupal\contacts_jobs_dashboard\Controller\DashboardController::myOrganisationsPage'
+    _title: 'My Organisations'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'crm_indiv,recruiter'
+    _entity_access: 'user.dashboard'
+
+contacts_jobs_dashboard.user.team:
+  path: '/user/{user}/team'
+  defaults:
+    _controller: '\Drupal\contacts_jobs_dashboard\Controller\DashboardController::organisationTeamPage'
+    _title_callback: '\Drupal\contacts_jobs_dashboard\Controller\DashboardController::teamTitle'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'crm_org'
+    _entity_access: 'user.manage_group'
+
+contacts_jobs_dashboard.user.jobs:
+  path: '/user/{user}/jobs'
+  defaults:
+    _controller: '\Drupal\contacts_jobs_dashboard\Controller\DashboardController::organisationJobsPage'
+    _title_callback: '\Drupal\contacts_jobs_dashboard\Controller\DashboardController::jobsTitle'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'crm_org'
+    _entity_access: 'user.manage_jobs'
+
+contacts_jobs_dashboard.user.job.applications:
+  path: '/user/{user}/jobs/{contacts_job}/applications'
+  defaults:
+    _controller: '\Drupal\contacts_jobs_dashboard\Controller\JobApplicationsController::applications'
+    _title_callback: '\Drupal\contacts_jobs_dashboard\Controller\JobApplicationsController::applicationsTitle'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'crm_org'
+    _entity_access: 'user.manage_jobs'
+
+contacts_jobs_dashboard.recruiter_organisation:
+  path: '/recruiter/organization'
+  defaults:
+    _controller: '\Drupal\contacts_jobs_dashboard\Controller\RegisterOrgController::viewOrRegister'
+  requirements:
+    _role: 'recruiter'
+
+contacts_jobs_dashboard.recruiter_organisation.register:
+  path: '/recruiter/register/organization'
+  defaults:
+    _controller: '\Drupal\contacts_jobs_dashboard\Controller\RegisterOrgController::register'
+    _title: 'Add organisation'
+  requirements:
+    _role: 'recruiter'
+
+contacts_jobs_dashboard.org_switch_modal:
+  path: '/user/{user}/switch'
+  defaults:
+    _controller: '\Drupal\contacts_jobs_dashboard\Controller\DashboardController::switchOrganisation'
+    _title: 'Switch Organisations'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
+contacts_jobs_dashboard.user_type_selection:
+  path: '/user/register/role'
+  defaults:
+    _title: 'Select your role'
+    _form: 'Drupal\contacts_jobs_dashboard\Form\UserTypeSelectionForm'
+  requirements:
+    _user_is_logged_in: 'TRUE'

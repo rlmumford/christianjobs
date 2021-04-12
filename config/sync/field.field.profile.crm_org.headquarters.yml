@@ -1,0 +1,27 @@
+uuid: 077e634c-bce0-42d2-ba9b-fbb737a36bab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.headquarters
+    - profile.type.crm_org
+id: profile.crm_org.headquarters
+field_name: headquarters
+entity_type: profile
+bundle: crm_org
+label: Headquarters
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:place'
+  handler_settings:
+    target_bundles:
+      address: address
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

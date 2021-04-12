@@ -1,0 +1,4 @@
+contacts_jobs_dashboard.recruiter_organisation:
+  title: 'Organisation Dashboard'
+  route_name: contacts_jobs_dashboard.recruiter_organisation
+  menu_name: account

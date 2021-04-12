@@ -1,0 +1,17 @@
+uuid: 43d0ad88-a8d2-4208-9605-dd6808a064bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+  enforced:
+    config:
+      - user.role.crm_org
+id: contacts_org-eac1a97cb
+label: Organisation
+weight: 8
+internal: true
+audience: outsider
+group_type: contacts_org
+permissions_ui: false
+permissions: {  }

@@ -1,0 +1,14 @@
+uuid: cbc02b05-541d-4a06-ae44-b19f160e48a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+id: contacts_org-anonymous
+label: Anonymous
+weight: -102
+internal: true
+audience: anonymous
+group_type: contacts_org
+permissions_ui: true
+permissions: {  }

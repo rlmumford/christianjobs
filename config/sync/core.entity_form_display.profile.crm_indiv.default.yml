@@ -11,8 +11,6 @@ dependencies:
     - field.field.profile.crm_indiv.crm_photo
     - profile.type.crm_indiv
   module:
-    - address
-    - datetime
     - name
 _core:
   default_config_hash: XgjPYb7w3aIHEpfMLJYeaOH7i4MRftYRhlXF9CuO224
@@ -21,41 +19,41 @@ targetEntityType: profile
 bundle: crm_indiv
 mode: default
 content:
-  crm_address:
-    type: address_default
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  crm_dob:
-    type: datetime_datelist
-    weight: 2
-    settings:
-      increment: 15
-      date_order: DMY
-      time_type: '24'
-    third_party_settings: {  }
-    region: content
-  crm_gender:
-    type: options_select
-    weight: 3
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   crm_name:
     type: name_default
     weight: 0
     region: content
-    settings: {  }
-    third_party_settings: {  }
-  crm_phone:
-    type: string_textfield
-    weight: 1
-    region: content
     settings:
-      size: 60
-      placeholder: ''
+      labels:
+        title: Title
+        given: Given
+        middle: 'Middle name(s)'
+        family: Family
+        generational: Generational
+        credentials: Credentials
+      size:
+        title: 6
+        given: 20
+        middle: 20
+        family: 20
+        generational: 5
+        credentials: 35
+      title_display:
+        title: description
+        given: description
+        middle: description
+        family: description
+        generational: description
+        credentials: description
+      widget_layout: stacked
+      show_component_required_marker: false
+      credentials_inline: false
+      override_field_settings: false
     third_party_settings: {  }
 hidden:
+  crm_address: true
+  crm_dob: true
+  crm_gender: true
+  crm_phone: true
   crm_photo: true
   is_default: true

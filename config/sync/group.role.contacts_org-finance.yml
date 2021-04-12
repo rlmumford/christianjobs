@@ -1,0 +1,16 @@
+uuid: 5baf94ee-36e9-42ac-b72b-a65f41396178
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+id: contacts_org-finance
+label: Finance
+weight: 10
+internal: false
+audience: member
+group_type: contacts_org
+permissions_ui: true
+permissions:
+  - 'edit organisation'
+  - 'make job payments'

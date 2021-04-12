@@ -1,0 +1,16 @@
+contacts_jobs_dashboard.user.organisations:
+  route_name: contacts_jobs_dashboard.user.organisations
+  base_route: entity.user.canonical
+  title: 'Organisations'
+
+contacts_jobs_dashboard.user.team:
+  route_name: contacts_jobs_dashboard.user.team
+  base_route: entity.user.canonical
+  title: 'Team'
+  weight: 30
+
+contacts_jobs_dashboard.user.jobs:
+  route_name: contacts_jobs_dashboard.user.jobs
+  base_route: entity.user.canonical
+  title: 'Jobs'
+  weight: 40

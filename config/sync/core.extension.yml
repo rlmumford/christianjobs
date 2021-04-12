@@ -7,10 +7,13 @@ module:
   cj: 0
   color_field: 0
   commerce: 0
+  commerce_cart: 0
+  commerce_checkout: 0
   commerce_invoice: 0
   commerce_number_pattern: 0
   commerce_order: 0
   commerce_payment: 0
+  commerce_paypal: 0
   commerce_price: 0
   commerce_product: 0
   commerce_promotion: 0
@@ -20,9 +23,12 @@ module:
   communication_user: 0
   contacts: 0
   contacts_communication: 0
+  contacts_group: 0
   contacts_jobs: 0
   contacts_jobs_apps: 0
   contacts_jobs_commerce: 0
+  contacts_jobs_dashboard: 0
+  contacts_user_dashboard: 0
   contextual: 0
   crm_tools: 0
   ctools: 0
@@ -32,6 +38,7 @@ module:
   decoupled_auth: 0
   decoupled_auth_crm: 0
   dynamic_page_cache: 0
+  email_registration: 0
   entity: 0
   entity_reference_revisions: 0
   entity_template: 0
@@ -44,6 +51,7 @@ module:
   geocoder: 0
   geocoder_field: 0
   geofield: 0
+  group: 0
   image: 0
   inline_entity_form: 0
   layout_builder: 0
@@ -70,6 +78,8 @@ module:
   typed_data: 0
   update: 0
   user: 0
+  user_registrationpassword: 0
+  variationcache: 0
   views: 10
   minimal: 1000
 theme:

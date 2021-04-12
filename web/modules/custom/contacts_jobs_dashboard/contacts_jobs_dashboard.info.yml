@@ -1,0 +1,9 @@
+type: module
+name: "Contacts Jobs Dashboard"
+description: "Integrate jobs with the contacts user dashboard"
+package: Contacts
+core_version_requirement: ^8 || ^9
+
+dependencies:
+  - contacts_jobs:contacts_jobs
+  - contacts:contacts_user_dashboard

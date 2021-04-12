@@ -1,0 +1,14 @@
+uuid: c3f7e363-e908-4b8c-b034-2b78d11408bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.candidate
+  module:
+    - user
+id: user_remove_role_action.candidate
+label: 'Remove the Candidate role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: candidate

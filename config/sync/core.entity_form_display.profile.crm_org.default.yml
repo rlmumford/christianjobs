@@ -4,12 +4,20 @@ status: true
 dependencies:
   config:
     - field.field.profile.crm_org.crm_org_address
+    - field.field.profile.crm_org.crm_org_categories
+    - field.field.profile.crm_org.crm_org_charity_number
+    - field.field.profile.crm_org.crm_org_description_summary
+    - field.field.profile.crm_org.crm_org_is_charity
     - field.field.profile.crm_org.crm_org_name
+    - field.field.profile.crm_org.crm_org_on_directory
+    - field.field.profile.crm_org.crm_org_type
     - field.field.profile.crm_org.crm_phone
+    - field.field.profile.crm_org.headquarters
     - field.field.profile.crm_org.org_image
     - profile.type.crm_org
   module:
     - address
+    - inline_entity_form
 _core:
   default_config_hash: EqXnoFX-kwYro_7d7WQyz4tsSDdHEgKoQubiJCicxFs
 id: profile.crm_org.default
@@ -18,7 +26,7 @@ bundle: crm_org
 mode: default
 content:
   crm_org_address:
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: address_default
@@ -39,6 +47,25 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  headquarters:
+    type: inline_entity_form_simple
+    weight: 2
+    region: content
+    settings:
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+    third_party_settings: {  }
 hidden:
+  crm_org_categories: true
+  crm_org_charity_number: true
+  crm_org_description_summary: true
+  crm_org_is_charity: true
+  crm_org_on_directory: true
+  crm_org_type: true
   is_default: true
   org_image: true

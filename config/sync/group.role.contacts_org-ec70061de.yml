@@ -1,0 +1,17 @@
+uuid: 9bd3e916-2d81-4159-9418-f3c7bd0f1f1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+  enforced:
+    config:
+      - user.role.contributor
+id: contacts_org-ec70061de
+label: Contributor
+weight: 5
+internal: true
+audience: outsider
+group_type: contacts_org
+permissions_ui: false
+permissions: {  }

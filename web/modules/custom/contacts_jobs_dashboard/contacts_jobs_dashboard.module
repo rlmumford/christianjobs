@@ -1,0 +1,554 @@
+<?php
+
+/**
+ * @file
+ * Module for for Jobboard Dashboard.
+ */
+
+use Drupal\contacts_jobs_dashboard\Controller\JobApplicationsController;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Cache\CacheableDependencyInterface;
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
+use Drupal\user\Entity\User;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_contacts_user_dashboard_local_tasks_allowed_alter().
+ */
+function contacts_jobs_dashboard_contacts_user_dashboard_local_tasks_allowed_alter(&$item_list) {
+  // @todo Move event based tasks to the relevant module.
+  $item_list = array_merge($item_list, [
+    'contacts_user_dashboard_tab:edit_default_indiv',
+    'contacts_jobs_dashboard.user.organisations',
+    'contacts_jobs_dashboard.user.team',
+    'contacts_jobs_dashboard.user.jobs',
+    'profile.user_page:crm_org',
+    'entity.user.canonical',
+    'fmcg_candidate.cv_resume',
+  ]);
+  $key = array_search('contacts_user_dashboard_tab:edit_default_indiv', $item_list);
+  if ($key !== FALSE) {
+    unset($item_list[$key]);
+  }
+}
+
+/**
+ * Implements hook_contacts_user_dashboard_local_tasks_rename_alter().
+ */
+function contacts_jobs_dashboard_contacts_user_dashboard_local_tasks_rename_alter(&$item_list) {
+  $item_list = array_merge($item_list, [
+    'contacts_user_dashboard_tab:user_summary' => t('Dashboard'),
+    'entity.user.edit_form' => t('Account'),
+    'profile.user_page:crm_indiv' => t('Contact & details'),
+    'profile.user_page:crm_org' => t('Organisation profile'),
+  ]);
+}
+
+/**
+ * Implements hook_contacts_user_dashboard_local_tasks_order_alter().
+ */
+function contacts_jobs_dashboard_contacts_user_dashboard_local_tasks_order_alter(&$item_list) {
+  $item_list = array_merge($item_list, [
+    'profile.user_page:crm_indiv' => -20,
+    'profile.user_page:crm_org' => -20,
+    'entity.user.edit_form' => -10,
+    'fmcg_candidate.cv_resume' => 0,
+    'contacts_jobs_dashboard.user.organisations' => 30,
+    'contacts_jobs_dashboard.user.team' => 30,
+  ]);
+}
+
+/**
+ * Implements hook_contacts_user_dashboard_local_tasks().
+ */
+function contacts_jobs_dashboard_contacts_user_dashboard_local_tasks($base_plugin_definition) {
+  $tasks = [];
+
+  // Default tab to place profile and edit form under.
+  $tasks['edit_default_indiv'] = [
+    'route_name' => 'profile.user_page.single',
+    'title' => t('Edit'),
+    'base_route' => 'entity.user.canonical',
+    'route_parameters' => [
+      'profile_type' => 'crm_indiv',
+    ],
+  ] + $base_plugin_definition;
+
+  return $tasks;
+}
+
+/**
+ * Implements hook_contacts_user_dashboard_user_summary_blocks_alter().
+ */
+function contacts_jobs_dashboard_contacts_user_dashboard_user_summary_blocks_alter(&$content, UserInterface $user) {
+  $profile_view_builder = \Drupal::entityTypeManager()->getViewBuilder('profile');
+  /** @var \Drupal\Core\Block\BlockManager $block_manager */
+  $block_manager = \Drupal::service('plugin.manager.block');
+
+  if ($user->hasRole('crm_indiv') && $user->hasRole('recruiter')) {
+    if ($profile = $user->get('profile_crm_indiv')->entity) {
+      $content['user']['#content'] = $profile_view_builder->view($profile, 'user_dashboard');
+    }
+
+    $content['orgs'] = [
+      '#type' => 'user_dashboard_summary',
+      '#title' => 'Organisations',
+      '#buttons' => [
+        [
+          'text' => t('Manage'),
+          'route_name' => 'contacts_jobs_dashboard.user.organisations',
+          'route_parameters' => [
+            'user' => $user->id(),
+          ],
+        ],
+      ],
+    ];
+
+    $parent_org_view_block = $block_manager->createInstance('views_block:contacts_orgs_user_dash-orgs_summary');
+    $block_content = $parent_org_view_block->build();
+    $content['orgs']['#content'] = [
+      '#theme' => 'block',
+      '#attributes' => [],
+      '#configuration' => $parent_org_view_block->getConfiguration(),
+      '#plugin_id' => $parent_org_view_block->getPluginId(),
+      '#base_plugin_id' => $parent_org_view_block->getBaseId(),
+      '#derivative_plugin_id' => $parent_org_view_block->getDerivativeId(),
+      '#weight' => $parent_org_view_block->getConfiguration()['weight'] ?? 0,
+      'content' => $block_content,
+    ];
+  }
+  elseif ($user->hasRole('crm_org')) {
+    $full_account = \Drupal::entityTypeManager()->getStorage('user')->load(\Drupal::currentUser()->id());
+    $user_is_pending_member = FALSE;
+    /** @var \Drupal\group\Entity\GroupContentInterface $org_membership */
+    foreach ($full_account->organisations as $org_membership) {
+      if ($org_membership->membership->getGroup()->contacts_org->target_id == $user->id()) {
+        if (count($org_membership->membership->getRoles()) === 1) {
+          $user_is_pending_member = TRUE;
+        }
+      }
+    }
+
+    // Hide all blocks for pending members.
+    if ($user_is_pending_member) {
+      $content['user'] = [
+        '#type' => 'user_dashboard_summary',
+        '#title' => new TranslatableMarkup('Pending approval'),
+        '#buttons' => [],
+        '#content' => [
+          '#name' => 'pending_approval',
+          '#markup' => new TranslatableMarkup('<p>Your membership of this organisation is currently pending approval. Once approved you will be able to view the organisation.</p>'),
+        ],
+      ];
+      $content['job_subscription']['#access'] = FALSE;
+      return;
+    }
+
+    $content['user']['#title'] = new TranslatableMarkup('Organisation details');
+    $content['user']['#buttons'] = [
+      [
+        'text' => new TranslatableMarkup('Update details'),
+        'route_name' => 'profile.user_page.single',
+        'route_parameters' => [
+          'user' => $user->id(),
+          'profile_type' => 'crm_org',
+        ],
+        'options' => [
+          'query' => [
+            'destination' => Url::fromRoute('<current>')->toString(),
+          ],
+        ],
+      ],
+    ];
+    if ($profile = $user->get('profile_crm_org')->entity) {
+      $content['user']['#content'] = $profile_view_builder->view($profile, 'user_dashboard');
+    }
+
+    $content['indivs'] = [
+      '#type' => 'user_dashboard_summary',
+      '#title' => new TranslatableMarkup('Team members'),
+      '#buttons' => [
+        [
+          'text' => t('Manage'),
+          'route_name' => 'contacts_jobs_dashboard.user.team',
+          'route_parameters' => [
+            'user' => $user->id(),
+          ],
+        ],
+      ],
+    ];
+    $parent_org_view_block = $block_manager->createInstance('views_block:contacts_orgs_manage-member_indivs_summary');
+    $block_content = $parent_org_view_block->build();
+    $content['indivs']['#content'] = [
+      '#theme' => 'block',
+      '#attributes' => [],
+      '#configuration' => $parent_org_view_block->getConfiguration(),
+      '#plugin_id' => $parent_org_view_block->getPluginId(),
+      '#base_plugin_id' => $parent_org_view_block->getBaseId(),
+      '#derivative_plugin_id' => $parent_org_view_block->getDerivativeId(),
+      '#weight' => $parent_org_view_block->getConfiguration()['weight'] ?? 0,
+      'content' => $block_content,
+    ];
+
+    $content['org_jobs'] = [
+      '#type' => 'user_dashboard_summary',
+      '#title' => new TranslatableMarkup('Active jobs'),
+      '#buttons' => [
+        [
+          'text' => t('Manage'),
+          'route_name' => 'contacts_jobs_dashboard.user.jobs',
+          'route_parameters' => [
+            'user' => $user->id(),
+          ],
+        ],
+      ],
+    ];
+    /** @var \Drupal\Core\Block\BlockPluginInterface $parent_org_view_block */
+    $parent_org_view_block = $block_manager->createInstance('views_block:contacts_jobs_manage-org_jobs_summary');
+    $block_content = $parent_org_view_block->build();
+    $content['org_jobs']['#content'] = [
+      '#theme' => 'block',
+      '#attributes' => [],
+      '#configuration' => $parent_org_view_block->getConfiguration(),
+      '#plugin_id' => $parent_org_view_block->getPluginId(),
+      '#base_plugin_id' => $parent_org_view_block->getBaseId(),
+      '#derivative_plugin_id' => $parent_org_view_block->getDerivativeId(),
+      '#weight' => $parent_org_view_block->getConfiguration()['weight'] ?? 0,
+      'content' => $block_content,
+    ];
+    unset($content['org_jobs']['#content']['content']['#title']);
+
+    $content += JobApplicationsController::create(\Drupal::getContainer())
+      ->applicationSummary($user);
+  }
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function contacts_jobs_dashboard_entity_extra_field_info() {
+  $extra = [];
+
+  $extra['profile']['crm_indiv']['display']['user_email'] =
+    $extra['profile']['crm_org']['display']['user_email'] = [
+      'label' => new TranslatableMarkup('Email (from user)'),
+      'weight' => 0,
+      'visible' => FALSE,
+    ];
+
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for profile.
+ */
+function contacts_jobs_dashboard_profile_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  /** @var \Drupal\profile\Entity\ProfileInterface $entity */
+  // phpcs:ignore Drupal.Arrays.Array.LongLineDeclaration
+  if (in_array($entity->bundle(), ['crm_indiv', 'crm_org']) && $display->getComponent('user_email')) {
+    $build['user_email'] = $entity->getOwner()->get('mail')->view();
+  }
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function contacts_jobs_dashboard_field_widget_form_alter(&$element, FormStateInterface &$form_state, $context) {
+  if (!in_array($context['items']->getName(), ['crm_dob'])) {
+    return;
+  }
+
+  if (get_class($context['widget']) === 'Drupal\datetime\Plugin\Field\FieldWidget\DateTimeDatelistWidget') {
+    $element['value']['#date_year_range'] = date('Y') . ':1900';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for user_register_form.
+ */
+function contacts_jobs_dashboard_form_user_register_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // If this is the admin form then make no changes.
+  // This must be the admin form if the user has the administer permission as
+  // per \Drupal\user\RegisterForm::form() (which precalculates it to avoid form
+  // processing issues).
+  if ($form['administer_users']['#value'] == TRUE) {
+    return;
+  }
+
+  $form['#cache']['contexts'][] = 'url.query_args';
+
+  // Get the default registration type.
+  $default = \Drupal::service('contacts_jobs_dashboard.user_helper')->getDefaultRegistrationType();
+  $query = \Drupal::request()->query;
+
+  $form['recruiter_or_candidate'] = [
+    '#title' => 'What type of account would you like?',
+    '#type' => 'radios',
+    '#title_display' => 'invisible',
+    '#weight' => -1,
+    '#options' => [
+      'recruiter' => new TranslatableMarkup('Recruiter'),
+      'candidate' => new TranslatableMarkup('Candidate'),
+    ],
+    '#attributes' => [
+      'required' => 'required',
+    ],
+    '#required' => TRUE,
+    '#default_value' => $default,
+  ];
+
+  /** @var \Drupal\contacts_jobs_apps\Entity\Application|null $app */
+  $app = $query->has('app') ?
+    \Drupal::service('entity.repository')->loadEntityByUuid('cj_app', $query->get('app')) :
+    NULL;
+  if ($app) {
+    $form['recruiter_or_candidate']['#access'] = FALSE;
+
+    $owner = $app->getOwner();
+    $form['account']['mail']['#default_value'] = $owner->getEmail();
+    $form['account']['mail']['#disabled'] = TRUE;
+
+    /** @var \Drupal\profile\Entity\ProfileInterface|null $profile */
+    if ($profile = $owner->get('profile_crm_indiv')->entity) {
+      $form['crm_indiv_profiles']['widget'][0]['entity']['crm_name']['widget'][0]['#default_value'] = $profile->get('crm_name')->first()->getValue();
+      $form['crm_indiv_profiles']['widget'][0]['entity']['crm_name']['widget'][0]['#disabled'] = TRUE;
+    }
+  }
+
+  $form['actions']['submit']['#submit'][] = '_contacts_jobs_dashboard_register_submit';
+
+  // Show social login links.
+  contacts_jobs_dashboard_user_login_register_alter($form, $form_state, $form_id);
+
+  // Link to the login page.
+  $form['login'] = Link::createFromRoute(
+    new TranslatableMarkup('Login with Email'),
+    'user.login',
+    [],
+    ['query' => \Drupal::request()->query->all()],
+  )->toRenderable();
+}
+
+/**
+ * User registration submit handler.
+ */
+function _contacts_jobs_dashboard_register_submit(array &$form, FormStateInterface $form_state) {
+  $recruiter_or_candidate = $form_state->getValue('recruiter_or_candidate');
+  $uid = $form_state->getValue('uid');
+
+  /** @var \Drupal\user\Entity\User $user */
+  $user = User::load($uid);
+  $user->addRole($recruiter_or_candidate);
+  $user->save();
+
+  $destination_url = \Drupal::service('contacts_jobs_dashboard.user_helper')
+    ->getRegistrationDestination($user);
+
+  // The user will be sent to the value of the token
+  // [user:registrationpassword-url-with-destination] in the activation email.
+  // If this token has a destination querystring pararameter, the user
+  // will be redirected there after activating their account.
+  // The query param in this token is pulled from the destination
+  // query param in the current request, so we need to explicitly set it here.
+  // See contacts_tokens in contacts.tokens.inc.
+  if ($destination_url != NULL) {
+    \Drupal::request()->query->set('destination', $destination_url->toString());
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access() for commerce_order.
+ */
+function contacts_jobs_dashboard_commerce_order_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  return \Drupal::service('contacts_jobs_dashboard.order_access_subscriber')
+    ->hookAccess($entity, $operation, $account);
+}
+
+/**
+ * Implements hook_entity_access().
+ */
+function contacts_jobs_dashboard_entity_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  if ($operation == 'dashboard' && $entity instanceof UserInterface) {
+    // Get the full user object.
+    $user = \Drupal::entityTypeManager()
+      ->getStorage('user')
+      ->load($account->id());
+
+    // If the entity being accessed is one of the user's organisations, allow
+    // access.
+    /** @var \Drupal\contacts_group\Plugin\Field\FieldType\GroupMembershipItem $organisation_membership */
+    foreach ($user->organisations as $organisation_membership) {
+      if ($entity->id() == $organisation_membership->membership->getGroup()->contacts_org->target_id) {
+        return AccessResult::allowed()->cachePerUser();
+      }
+    }
+
+    return AccessResult::neutral()->cachePerPermissions()->addCacheableDependency($entity);
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access() for user.
+ */
+function contacts_jobs_dashboard_user_access(AccountInterface $user, $operation, AccountInterface $account) {
+  // Only check organisations.
+  if (!in_array('crm_org', $user->getRoles())) {
+    return AccessResult::neutral();
+  }
+
+  if (in_array($operation, [
+    'view',
+    'update_group',
+    'manage_group',
+    'manage_jobs',
+    'dashboard',
+  ])) {
+    if ($operation == 'manage_group') {
+      $permission = 'manage organisation';
+    }
+    elseif ($operation == 'manage_jobs') {
+      $permission = 'manage organisation jobs';
+    }
+    else {
+      $permission = 'edit organisation';
+    }
+
+    /** @var \Drupal\group\Entity\GroupInterface $group */
+    $group = $user->get('group')->entity;
+
+    // Check for membership.
+    $existing = $group && !$group->isNew() ? $group->getContentByEntityId('group_membership', $account->id()) : [];
+    if (!$existing) {
+      return AccessResult::neutral();
+    }
+
+    /** @var \Drupal\group\Entity\GroupContentInterface $membership */
+    $membership = reset($existing);
+
+    // Check group role/permission.
+    foreach ($membership->get('group_roles')->referencedEntities() as $role) {
+      /** @var \Drupal\group\Entity\GroupRoleInterface $role */
+      if ($role->hasPermission($permission)) {
+        return AccessResult::allowed();
+      }
+    }
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function contacts_jobs_dashboard_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'contacts_user_dashboard_user_summary_blocks_alter') {
+    // Ensure this module alters the user dashboard summary blocks last to
+    // remove any if the user is pending.
+    $implementation = $implementations['contacts_jobs_dashboard'];
+    unset($implementations['contacts_jobs_dashboard']);
+    $implementations['contacts_jobs_dashboard'] = $implementation;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for user_login_form.
+ */
+function contacts_jobs_dashboard_form_user_login_form_alter(array &$form, FormStateInterface $form_state, string $form_id) {
+  contacts_jobs_dashboard_user_login_register_alter($form, $form_state, $form_id);
+
+  $form['register'] = Link::createFromRoute(
+    new TranslatableMarkup('Register with Email'),
+    'user.register',
+    [],
+    ['query' => \Drupal::request()->query->all()],
+  )->toRenderable();
+
+  // If we are redirecting to a job application, check if guest applications are
+  // allowed and, if so, show a continue as guest.
+  $destination = \Drupal::request()->query->get('destination');
+  if ($destination) {
+    $destination = Url::fromUserInput($destination);
+    if ($destination->isRouted() && $destination->getRouteName() === 'entity.contacts_job.apply') {
+      $access = \Drupal::entityTypeManager()
+        ->getAccessControlHandler('cj_app')
+        ->createAccess(NULL, NULL, [], TRUE);
+      if ($access instanceof CacheableDependencyInterface) {
+        CacheableMetadata::createFromRenderArray($form)
+          ->merge(CacheableMetadata::createFromObject($access))
+          ->applyTo($form);
+      }
+
+      if ($access) {
+        $query = $destination->getOption('query');
+        $query['guest'] = NULL;
+        $destination->setOption('query', $query);
+        $form['register'] = Link::fromTextAndUrl(
+          new TranslatableMarkup('Continue as guest'),
+          $destination,
+        )->toRenderable();
+      }
+    }
+  }
+}
+
+/**
+ * Add social login buttons to the register and login forms.
+ *
+ * @param array $form
+ *   The form array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ * @param string $form_id
+ *   The form ID.
+ */
+function contacts_jobs_dashboard_user_login_register_alter(array &$form, FormStateInterface $form_state, string $form_id) {
+  $form['#cache']['contexts'][] = 'url.query_args';
+
+  if (!\Drupal::moduleHandler()->moduleExists('social_auth')) {
+    return;
+  }
+
+  $form['social_login'] = [
+    '#type' => 'fieldset',
+    '#title' => new TranslatableMarkup('Continue with...'),
+    '#weight' => -1,
+  ];
+
+  $options = [
+    'query' => \Drupal::request()->query->all(),
+  ];
+
+  $network_manager = \Drupal::service('plugin.network.manager');
+  $networks = $network_manager->getDefinitions();
+  $social_networks = \Drupal::config('social_auth.settings')->get('auth');
+  foreach ($social_networks as $id => $social_network) {
+    if (!isset($networks[$id]) || !isset($networks[$id]['social_network'])) {
+      continue;
+    }
+
+    $client = $network_manager->createInstance($networks[$id]['id'])->getSdk();
+    if (!$client) {
+      continue;
+    }
+
+    $form['social_login'][$networks[$id]['social_network']] = Link::createFromRoute(
+      $networks[$id]['social_network'],
+      $social_network['route'],
+      [],
+      $options + [
+        'attributes' => [
+          'data-provider' => $id,
+        ],
+      ],
+    )->toRenderable();
+  }
+}

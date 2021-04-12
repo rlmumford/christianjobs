@@ -1,0 +1,21 @@
+uuid: 7f4a4601-3e88-4733-bfe1-aca9cb5b5ae1
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+id: contacts_org-admin
+label: 'Group Administrator'
+weight: 11
+internal: false
+audience: member
+group_type: contacts_org
+permissions_ui: true
+permissions:
+  - 'administer members'
+  - 'edit organisation'
+  - 'make job payments'
+  - 'manage organisation'
+  - 'manage organisation jobs'
+  - 'update own group_membership content'
+  - 'view group_membership content'

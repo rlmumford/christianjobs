@@ -1,0 +1,35 @@
+uuid: 59bf3be4-4a77-46b8-af87-ca9bfddbba0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.user.register
+    - field.field.user.user.commerce_remote_id
+  module:
+    - profile
+    - user
+id: user.user.register
+targetEntityType: user
+bundle: user
+mode: register
+content:
+  account:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  crm_indiv_profiles:
+    type: profile_form
+    weight: 0
+    region: content
+    settings:
+      form_mode: default
+    third_party_settings: {  }
+hidden:
+  commerce_remote_id: true
+  crm_notes_profiles: true
+  crm_org_profiles: true
+  customer_profiles: true
+  language: true
+  mail: true
+  timezone: true

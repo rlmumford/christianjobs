@@ -1,0 +1,16 @@
+uuid: 1f80dd83-419c-4273-a4f8-b83765de2c94
+langcode: en
+status: true
+dependencies:
+  module:
+    - crm_tools
+third_party_settings:
+  crm_tools:
+    crm_tools_is_hat: true
+    crm_tools_icon: person
+    crm_tools_parent: crm_indiv
+id: staff
+label: Staff
+weight: 4
+is_admin: null
+permissions: {  }

@@ -1,0 +1,17 @@
+uuid: f310ff16-d563-4597-8064-85eb061a7321
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+  enforced:
+    config:
+      - user.role.crm_indiv
+id: contacts_org-6726a608b
+label: Person
+weight: 3
+internal: true
+audience: outsider
+group_type: contacts_org
+permissions_ui: false
+permissions: {  }

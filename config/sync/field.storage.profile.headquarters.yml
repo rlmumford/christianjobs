@@ -1,0 +1,20 @@
+uuid: 3283673b-9a55-443e-9db0-fd21f40e950f
+langcode: en
+status: true
+dependencies:
+  module:
+    - places
+    - profile
+id: profile.headquarters
+field_name: headquarters
+entity_type: profile
+type: entity_reference
+settings:
+  target_type: place
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,17 @@
+uuid: e1a41682-0275-46c9-95b2-3d20aed04e72
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+  enforced:
+    config:
+      - user.role.recruiter
+id: contacts_org-8ce721b37
+label: Recruiter
+weight: 6
+internal: true
+audience: outsider
+group_type: contacts_org
+permissions_ui: false
+permissions: {  }

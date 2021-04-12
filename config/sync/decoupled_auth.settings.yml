@@ -3,8 +3,12 @@ acquisitions:
   registration: true
   registration_notice_demote: false
   protected_roles:
-    - administrator
+    administrator: administrator
 unique_emails:
-  mode: all
+  mode: without_role
+  roles:
+    staff: staff
+    contributor: contributor
+    crm_org: crm_org
 _core:
   default_config_hash: XBhHjThdalGeOT1NP0Yy0hIY-D1_Qu6ZDyR_sURaZLA

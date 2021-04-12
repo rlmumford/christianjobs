@@ -1,0 +1,14 @@
+uuid: 694d74f6-da2c-4a64-a218-dbd463c61364
+langcode: en
+status: true
+dependencies:
+  module:
+    - crm_tools
+third_party_settings:
+  crm_tools:
+    crm_tools_is_hat: true
+id: administrator
+label: Administrator
+weight: 2
+is_admin: true
+permissions: {  }

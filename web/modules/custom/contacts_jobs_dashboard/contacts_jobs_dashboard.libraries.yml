@@ -1,0 +1,6 @@
+recruiter_registration:
+  js:
+    js/recruiter_registration.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal.states

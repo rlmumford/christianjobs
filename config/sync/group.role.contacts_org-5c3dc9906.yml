@@ -1,0 +1,17 @@
+uuid: e9613f75-9b44-4446-83c2-01aafc96296f
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+  enforced:
+    config:
+      - user.role.candidate
+id: contacts_org-5c3dc9906
+label: Candidate
+weight: 7
+internal: true
+audience: outsider
+group_type: contacts_org
+permissions_ui: false
+permissions: {  }

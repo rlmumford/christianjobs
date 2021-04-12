@@ -1,0 +1,12 @@
+uuid: bfb70846-de20-417e-b6f1-bd352d7148c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: VAsuAW7QVQPR1twIbD9RGZFIx95Ru8mdEeG2XWZaHoA
+id: user.user_dashboard
+label: 'User Dashboard'
+targetEntityType: user
+cache: true

@@ -1,0 +1,23 @@
+services:
+  access_check.contacts_jobs_dashboard.dashboard_role:
+    class: Drupal\contacts_jobs_dashboard\Access\RoleAccessCheck
+    tags:
+      - { name: access_check, applies_to: _dashboard_role }
+
+  contacts_jobs_dashboard.order_access_subscriber:
+    class: Drupal\contacts_jobs_dashboard\EventSubscriber\OrderAccessSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }
+
+  contacts_jobs_dashboard.social_auth_subscriber:
+    class: Drupal\contacts_jobs_dashboard\EventSubscriber\SocialAuthSubscriber
+    arguments:
+      - '@contacts_jobs_dashboard.user_helper'
+      - '@social_auth.data_handler'
+    tags:
+      - { name: event_subscriber }
+
+  contacts_jobs_dashboard.user_helper:
+    class: Drupal\contacts_jobs_dashboard\UserHelper
+    arguments: ['@request_stack', '@path.matcher']

@@ -1,0 +1,17 @@
+uuid: 761c4344-00b2-4304-a8b2-eb76bd283997
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+  enforced:
+    config:
+      - user.role.staff
+id: contacts_org-1ac17d355
+label: Staff
+weight: 4
+internal: true
+audience: outsider
+group_type: contacts_org
+permissions_ui: false
+permissions: {  }

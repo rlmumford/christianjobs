@@ -1,0 +1,16 @@
+uuid: fae0ab76-ba17-4979-8c83-6ef5067fd99e
+langcode: en
+status: true
+dependencies:
+  module:
+    - crm_tools
+third_party_settings:
+  crm_tools:
+    crm_tools_is_hat: true
+    crm_tools_icon: person
+    crm_tools_parent: crm_indiv
+id: recruiter
+label: Recruiter
+weight: 6
+is_admin: null
+permissions: {  }

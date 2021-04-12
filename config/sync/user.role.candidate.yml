@@ -1,0 +1,16 @@
+uuid: f85a6875-026a-40f1-bb59-8f2e6dd7b24b
+langcode: en
+status: true
+dependencies:
+  module:
+    - crm_tools
+third_party_settings:
+  crm_tools:
+    crm_tools_is_hat: true
+    crm_tools_icon: person
+    crm_tools_parent: crm_indiv
+id: candidate
+label: Candidate
+weight: 7
+is_admin: null
+permissions: {  }

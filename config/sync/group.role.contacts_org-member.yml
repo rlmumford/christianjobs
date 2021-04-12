@@ -1,0 +1,15 @@
+uuid: b0e41b01-720f-4259-9de0-909ce0752fa2
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.contacts_org
+id: contacts_org-member
+label: Member
+weight: -100
+internal: true
+audience: member
+group_type: contacts_org
+permissions_ui: true
+permissions:
+  - 'leave group'
