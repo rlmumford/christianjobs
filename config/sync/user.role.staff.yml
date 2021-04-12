@@ -13,4 +13,20 @@ id: staff
 label: Staff
 weight: 4
 is_admin: null
-permissions: {  }
+permissions:
+  - 'access commerce administration pages'
+  - 'access commerce_order overview'
+  - 'access communication administration pages'
+  - 'add contacts'
+  - 'add job entities'
+  - 'administer commerce_payment'
+  - 'administer communications'
+  - 'administer job entities'
+  - 'delete job entities'
+  - 'edit job entities'
+  - 'manage default commerce_order_item'
+  - 'update contacts_job commerce_order'
+  - 'view commerce_order'
+  - 'view contacts'
+  - 'view contacts_job commerce_order'
+  - 'view unpublished job entities'

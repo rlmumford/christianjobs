@@ -6,6 +6,7 @@
  */
 
 use Drupal\contacts_jobs_dashboard\Controller\JobApplicationsController;
+use Drupal\contacts_jobs_dashboard\Form\JobForm;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Cache\CacheableMetadata;
@@ -18,6 +19,14 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function contacts_jobs_dashboard_entity_type_build(array &$entity_types) {
+  $entity_types['contacts_job']->setFormClass('default', JobForm::class);
+  $entity_types['contacts_job']->setFormClass('update', JobForm::class);
+}
 
 /**
  * Implements hook_contacts_user_dashboard_local_tasks_allowed_alter().

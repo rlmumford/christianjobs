@@ -21,3 +21,13 @@ services:
   contacts_jobs_dashboard.user_helper:
     class: Drupal\contacts_jobs_dashboard\UserHelper
     arguments: ['@request_stack', '@path.matcher']
+
+  contacts_jobs_dashboard.job_posting_flow_subscriber:
+    class: Drupal\contacts_jobs_dashboard\EventSubscriber\JobPostingFlowSubscriber
+    arguments:
+      - '@current_user'
+      - '@entity_type.manager'
+      - '@messenger'
+      - '@request_stack'
+    tags:
+      - { name: event_subscriber }
