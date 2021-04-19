@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f70b888aed1c7c5e474781ea2239d1ae",
+    "content-hash": "2c1097e40efadbe3566b9ba0d2b176cb",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2406,11 +2406,16 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-2.24",
-                    "datestamp": "1612808406",
+                    "datestamp": "1612928996",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "#2871483: Add checkout settings for payment method behavior.": "https://www.drupal.org/files/issues/2021-02-08/commerce-2871483-optional_cc_storage-50-refresh.patch",
+                    "#3121116: Refund log": "patches/commerce-2.16-refund-log.patch",
+                    "#3165903: Correct usage of isAnonymous and isAuthenticated": "https://www.drupal.org/files/issues/2020-08-26/3165903-3-switch_to_is_anonymous.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2621,65 +2626,6 @@
             }
         },
         {
-            "name": "drupal/commerce_paypal",
-            "version": "1.0.0-rc3",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/commerce_paypal.git",
-                "reference": "8.x-1.0-rc3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/commerce_paypal-8.x-1.0-rc3.zip",
-                "reference": "8.x-1.0-rc3",
-                "shasum": "67f1ed607295431753070835ac499c76b384dc88"
-            },
-            "require": {
-                "drupal/commerce": "^2.19",
-                "drupal/commerce_payment": "*",
-                "drupal/core": "^8.8 || ^9",
-                "sainsburys/guzzle-oauth2-plugin": "^3.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.0-rc3",
-                    "datestamp": "1615236286",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "bojanz",
-                    "homepage": "https://www.drupal.org/user/86106"
-                },
-                {
-                    "name": "jsacksick",
-                    "homepage": "https://www.drupal.org/user/972218"
-                },
-                {
-                    "name": "mglaman",
-                    "homepage": "https://www.drupal.org/user/2416470"
-                },
-                {
-                    "name": "rszrama",
-                    "homepage": "https://www.drupal.org/user/49344"
-                }
-            ],
-            "description": "Provides Commerce integration for PayPal.",
-            "homepage": "http://drupal.org/project/commerce_paypal",
-            "support": {
-                "source": "https://git.drupalcode.org/project/commerce_paypal"
-            }
-        },
-        {
             "name": "drupal/commerce_price",
             "version": "2.24.0",
             "require": {
@@ -2770,6 +2716,94 @@
             "homepage": "https://www.drupal.org/project/commerce",
             "support": {
                 "source": "https://git.drupalcode.org/project/commerce"
+            }
+        },
+        {
+            "name": "drupal/commerce_stripe",
+            "version": "1.0.0-rc4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/commerce_stripe.git",
+                "reference": "8.x-1.0-rc4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/commerce_stripe-8.x-1.0-rc4.zip",
+                "reference": "8.x-1.0-rc4",
+                "shasum": "9a988a73969a4c8f20a08bbe0bf548a0182efadf"
+            },
+            "require": {
+                "drupal/commerce": "^2.15",
+                "drupal/commerce_payment": "*",
+                "drupal/core": "^8.7.7 || ^9",
+                "stripe/stripe-php": "^7.25"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-rc4",
+                    "datestamp": "1582762102",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                },
+                "patches_applied": {
+                    "#3167549: Handle off session payments": "https://www.drupal.org/files/issues/2020-08-26/3167549-2-allow_off_session_intents.patch",
+                    "#3083393: Don't load stripe on every page": "https://www.drupal.org/files/issues/2020-02-03/3083393-21.patch",
+                    "Collect payment method with intent": "patches/stripe-collect-method-with-intent.patch"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Damien Tournoud",
+                    "homepage": "https://www.drupal.org/user/22211"
+                },
+                {
+                    "name": "GuGuss",
+                    "homepage": "https://www.drupal.org/user/1237516"
+                },
+                {
+                    "name": "aviindub",
+                    "homepage": "https://www.drupal.org/user/2565920"
+                },
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "iler",
+                    "homepage": "https://www.drupal.org/user/726092"
+                },
+                {
+                    "name": "jsacksick",
+                    "homepage": "https://www.drupal.org/user/972218"
+                },
+                {
+                    "name": "mglaman",
+                    "homepage": "https://www.drupal.org/user/2416470"
+                },
+                {
+                    "name": "rszrama",
+                    "homepage": "https://www.drupal.org/user/49344"
+                },
+                {
+                    "name": "torgosPizza",
+                    "homepage": "https://www.drupal.org/user/151333"
+                },
+                {
+                    "name": "vasike",
+                    "homepage": "https://www.drupal.org/user/156237"
+                }
+            ],
+            "description": "Provides Commerce integration for Stripe Payments.",
+            "homepage": "http://drupal.org/project/commerce_stripe",
+            "support": {
+                "source": "https://git.drupalcode.org/project/commerce_stripe"
             }
         },
         {
@@ -4603,6 +4637,70 @@
                 "irc": "irc://irc.freenode.org/drupal-search-api"
             },
             "time": "2021-03-19T10:41:47+00:00"
+        },
+        {
+            "name": "drupal/field_group",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/field_group.git",
+                "reference": "8.x-3.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/field_group-8.x-3.1.zip",
+                "reference": "8.x-3.1",
+                "shasum": "8a719eaea594f0ba874172831cb28da93c66b77a"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9"
+            },
+            "require-dev": {
+                "drupal/jquery_ui_accordion": "^1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.1",
+                    "datestamp": "1591772567",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Hydra",
+                    "homepage": "https://www.drupal.org/user/647364"
+                },
+                {
+                    "name": "Stalski",
+                    "homepage": "https://www.drupal.org/user/322618"
+                },
+                {
+                    "name": "jyve",
+                    "homepage": "https://www.drupal.org/user/591438"
+                },
+                {
+                    "name": "nils.destoop",
+                    "homepage": "https://www.drupal.org/user/361625"
+                },
+                {
+                    "name": "swentel",
+                    "homepage": "https://www.drupal.org/user/107403"
+                }
+            ],
+            "description": "Provides the field_group module.",
+            "homepage": "https://www.drupal.org/project/field_group",
+            "support": {
+                "source": "https://git.drupalcode.org/project/field_group",
+                "issues": "https://www.drupal.org/project/issues/field_group"
+            }
         },
         {
             "name": "drupal/flag",
@@ -8431,56 +8529,6 @@
             "time": "2020-02-14T23:51:21+00:00"
         },
         {
-            "name": "firebase/php-jwt",
-            "version": "v5.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "f42c9110abe98dd6cfe9053c49bc86acc70b2d23"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/f42c9110abe98dd6cfe9053c49bc86acc70b2d23",
-                "reference": "f42c9110abe98dd6cfe9053c49bc86acc70b2d23",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": ">=4.8 <=9"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Firebase\\JWT\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Neuman Vong",
-                    "email": "neuman+pear@twilio.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Anant Narayanan",
-                    "email": "anant@php.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
-            "homepage": "https://github.com/firebase/php-jwt",
-            "keywords": [
-                "jwt",
-                "php"
-            ],
-            "time": "2021-02-12T00:02:00+00:00"
-        },
-        {
             "name": "gocardless/gocardless-pro",
             "version": "3.6.2",
             "source": {
@@ -11095,55 +11143,6 @@
             "time": "2021-02-17T07:28:43+00:00"
         },
         {
-            "name": "sainsburys/guzzle-oauth2-plugin",
-            "version": "v3.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Sainsburys/guzzle-oauth2-plugin.git",
-                "reference": "485edd64870dd951f8fc6ec362296f11787194bf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Sainsburys/guzzle-oauth2-plugin/zipball/485edd64870dd951f8fc6ec362296f11787194bf",
-                "reference": "485edd64870dd951f8fc6ec362296f11787194bf",
-                "shasum": ""
-            },
-            "require": {
-                "firebase/php-jwt": "^3.0|^4.0|^5.0",
-                "guzzlehttp/guzzle": "^6.0",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Sainsburys\\Guzzle\\Oauth2\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bojan Zivanovic"
-                },
-                {
-                    "name": "Damien Tournoud"
-                },
-                {
-                    "name": "Patrick Dawkins"
-                },
-                {
-                    "name": "Daniel Macedo"
-                }
-            ],
-            "description": "An OAuth2 middleware for Guzzle",
-            "time": "2017-11-07T13:08:06+00:00"
-        },
-        {
             "name": "stack/builder",
             "version": "v1.0.5",
             "source": {
@@ -11191,6 +11190,63 @@
                 "stack"
             ],
             "time": "2017-11-18T14:57:29+00:00"
+        },
+        {
+            "name": "stripe/stripe-php",
+            "version": "v7.77.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "f6724447481f6fb8c2e714165e092adad9ca470a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/f6724447481f6fb8c2e714165e092adad9ca470a",
+                "reference": "f6724447481f6fb8c2e714165e092adad9ca470a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "2.17.1",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5.7",
+                "squizlabs/php_codesniffer": "^3.3",
+                "symfony/process": "~3.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stripe\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https://github.com/stripe/stripe-php/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https://stripe.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "time": "2021-04-12T17:19:16+00:00"
         },
         {
             "name": "symfony-cmf/routing",
@@ -16879,7 +16935,7 @@
     "stability-flags": {
         "cweagans/composer-patches": 20,
         "drupal/commerce_gocardless": 20,
-        "drupal/commerce_paypal": 10,
+        "drupal/commerce_stripe": 5,
         "drupal/contacts": 20,
         "drupal/contacts_jobs": 20,
         "drupal/contacts_jobs_apps": 20,

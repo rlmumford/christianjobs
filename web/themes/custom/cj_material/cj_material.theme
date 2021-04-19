@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @file
- * Functions to support theming in the theme.
- */
-
+use Drupal\cj_material\DashboardHelper;
 use Drupal\cj_membership\Entity\Membership;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -12,14 +8,121 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
+ * Implements hook_theme_registry_alter().
+ */
+function cj_material_theme_registry_alter(&$theme_registry) {
+  $theme_registry['menu']['variables']['md_icons'] = [];
+  $theme_registry['menu']['variables']['md_icon_replace'] = FALSE;
+  $theme_registry['menu']['variables']['md_icon_hex'] = FALSE;
+
+  $theme_registry['item_list']['variables']['list_group'] = NULL;
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function cj_material_theme_suggestions_alter(array &$suggestions, array $variables, string $hook): void {
+  DashboardHelper::getInstance()->alterThemeSuggestions($suggestions, $variables, $hook);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu.html.twig.
+ *
+ * Set md icons for account menu.
+ */
+function cj_material_preprocess_menu(array &$variables) {
+  $variables += [
+    'md_icons' => [],
+    'md_icon_replace' => FALSE,
+    'md_icon_hex' => FALSE,
+  ];
+
+  // Set up the account menu icons.
+  if (!empty($variables['menu_name']) && $variables['menu_name'] == 'account') {
+    $variables['md_icon_hex'] = TRUE;
+    $variables['md_icon_replace'] = TRUE;
+
+    // Map routes to icons.
+    $variables['md_icons'] += [
+      'user.logout' => 'exit_to_app',
+      'user.page' => 'person',
+      'contacts_jobs_dashboard.recruiter_organisation' => 'groups',
+    ];
+
+    if (\Drupal::currentUser()->isAnonymous()) {
+      $variables['md_icons']['user.logout'] = 'person';
+    }
+  }
+
+  // Nothing to do if there are no icons.
+  if (empty($variables['md_icons'])) {
+    return;
+  }
+
+  // Add the icons.
+  foreach ($variables['items'] as $route => &$item) {
+    if (in_array($route, array_keys($variables['md_icons']))) {
+      $link_attributes = $item['url']->getOption('attributes') ?: [];
+
+      // Add hexagon classes.
+      if ($variables['md_icon_hex']) {
+        $item['attributes']->addClass('menu-item');
+        $link_attributes['class'][] = 'hexagon';
+      }
+
+      $icon = '<i class="material-icons">' . $variables['md_icons'][$route] . '</i>';
+
+      if ($variables['md_icon_replace']) {
+        // Move title to url attribute.
+        $link_attributes['title'] = $item['title'];
+
+        // Replace title with icon.
+        $item['title'] = [
+          '#markup' => $icon,
+        ];
+      }
+      else {
+        $item['title'] = [
+          '#prefix' => $icon,
+          '#markup' => $item['title'],
+        ];
+      }
+
+      $item['url']->setOption('attributes', $link_attributes);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for html.
+ */
+function cj_material_preprocess_html(array &$variables) {
+  // Add sticky navbar class
+  $variables['attributes']['class'][] = 'navbar-fixed';
+
+  DashboardHelper::getInstance()->preprocessHtml($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page__dashboard.
+ */
+function cj_material_preprocess_page__dashboard(array &$variables) {
+  DashboardHelper::getInstance()->preprocessPageDashboard($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block__locatl_tasks_block.
+ */
+function cj_materials_preprocess_block__local_tasks_block(&$variables) {
+  DashboardHelper::getInstance()->preprocessLocalTasksBlock($variables);
+}
+
+/**
  * Implements hook_form_user_register_form_alter().
  */
 function cj_material_form_user_register_form_alter(array &$form, FormStateInterface $form_state) {
-  $form['account']['org_name']['#title'] = NULL;
-  $form['account']['org_name']['#attributes']['placeholder'] = t('Organisation Name');
-
-  $comps = &$form['account']['indiv_name_wrapper']['indiv_name']['#components'];
-  $form['account']['indiv_name_wrapper']['indiv_name']['#title'] = NULL;
+  $form['crm_indiv_profiles']['widget'][0]['#type'] = 'container';
+  $comps = &$form['crm_indiv_profiles']['widget'][0]['entity']['crm_name']['widget'][0]['#components'];
   $comps['given']['attributes']['placeholder'] = $comps['given']['title'];
   $comps['given']['title_display'] = 'none';
   $comps['family']['attributes']['placeholder'] = $comps['family']['title'];
@@ -39,14 +142,6 @@ function cj_material_form_user_self_edit_candidate_form_alter(array &$form, Form
   $comps['family']['attributes']['placeholder'] = $comps['family']['title'];
   $comps['family']['title_display'] = 'none';
 
-}
-
-/**
- * Implements hook_preprocess_HOOK() for HTML document templates.
- */
-function cj_material_preprocess_html(&$variables) {
-  // Add sticky navbar class
-  $variables['attributes']['class'][] = 'navbar-fixed';
 }
 
 /**

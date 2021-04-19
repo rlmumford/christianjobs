@@ -1,0 +1,198 @@
+diff --git a/modules/payment/src/Entity/Payment.php b/modules/payment/src/Entity/Payment.php
+index 0b8918fa..068f0d08 100644
+--- a/modules/payment/src/Entity/Payment.php
++++ b/modules/payment/src/Entity/Payment.php
+@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityMalformedException;
+ use Drupal\Core\Entity\EntityStorageInterface;
+ use Drupal\Core\Entity\EntityTypeInterface;
+ use Drupal\Core\Field\BaseFieldDefinition;
++use Drupal\Core\Field\FieldStorageDefinitionInterface;
+ 
+ /**
+  * Defines the payment entity class.
+@@ -422,6 +423,13 @@ class Payment extends ContentEntityBase implements PaymentInterface {
+       ->setDescription(t('The time when the payment was completed.'))
+       ->setDisplayConfigurable('view', TRUE);
+ 
++    $fields['refund_log'] = BaseFieldDefinition::create('commerce_price_history')
++      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
++      ->setLabel(t('Refund log'))
++      ->setDescription(t('A log of when refunds were processed and by whom.'))
++      ->setSetting('source_field', 'refunded_amount')
++      ->setDisplayConfigurable('view', TRUE);
++
+     // These fields have been replaced by payment_gateway_mode and completed.
+     // They have been temporarily kept for commerce_payment_post_update_2().
+     // They are no longer used and will be removed in Commerce 2.0.
+diff --git a/modules/price/src/Plugin/Field/FieldType/PriceHistoryItem.php b/modules/price/src/Plugin/Field/FieldType/PriceHistoryItem.php
+new file mode 100644
+index 00000000..f58c23d1
+--- /dev/null
++++ b/modules/price/src/Plugin/Field/FieldType/PriceHistoryItem.php
+@@ -0,0 +1,105 @@
++<?php
++
++namespace Drupal\commerce_price\Plugin\Field\FieldType;
++
++use Drupal\commerce_price\Price;
++use Drupal\Core\Entity\TypedData\EntityDataDefinition;
++use Drupal\Core\Field\FieldItemBase;
++use Drupal\Core\Field\FieldStorageDefinitionInterface;
++use Drupal\Core\Form\FormStateInterface;
++use Drupal\Core\StringTranslation\TranslatableMarkup;
++use Drupal\Core\TypedData\DataDefinition;
++use Drupal\Core\TypedData\DataReferenceDefinition;
++
++/**
++ * Plugin implementation of the 'commerce_price_history' field type.
++ *
++ * @FieldType(
++ *   id = "commerce_price_history",
++ *   label = @Translation("Price history"),
++ *   description = @Translation("Stores a history of changes to a price field."),
++ *   category = @Translation("Commerce"),
++ *   default_formatter = "commerce_price_history_default",
++ *   no_ui = TRUE,
++ *   cardinality = -1,
++ *   list_class = "\Drupal\commerce_price\Plugin\Field\PriceHistoryItemList",
++ * )
++ */
++class PriceHistoryItem extends PriceItem {
++
++  /**
++   * {@inheritdoc}
++   */
++  public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
++    $properties = parent::propertyDefinitions($field_definition);
++
++    $properties['timestamp'] = DataDefinition::create('timestamp')
++      ->setLabel(new TranslatableMarkup('Changed timestamp'))
++      ->setRequired(TRUE);
++
++    $properties['uid'] = DataDefinition::create('integer')
++      ->setLabel(new TranslatableMarkup('User responsible for change'));
++
++    $properties['user'] = DataReferenceDefinition::create('entity')
++      ->setLabel(new TranslatableMarkup('User'))
++      ->setDescription(new TranslatableMarkup('The referenced user.'))
++      ->setComputed(TRUE)
++      ->setReadOnly(FALSE)
++      ->setTargetDefinition(EntityDataDefinition::create('user'))
++      ->addConstraint('EntityType', 'user');
++
++    return $properties;
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public static function schema(FieldStorageDefinitionInterface $field_definition) {
++    $schema = parent::schema($field_definition);
++
++    $schema['columns']['timestamp'] = [
++      'description' => 'Changed timestamp.',
++      'type' => 'int',
++    ];
++
++    $schema['columns']['uid'] = [
++      'description' => 'User responsible for change.',
++      'type' => 'int',
++    ];
++
++    return $schema;
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public static function defaultFieldSettings() {
++    return [
++      'source_field' => NULL,
++    ] + parent::defaultFieldSettings();
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function isEmpty() {
++    return $this->timestamp === NULL || $this->uid === NULL;
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function onChange($property_name, $notify = TRUE) {
++    // Make sure that the uid and the user property stay in sync.
++    if ($property_name == 'user') {
++      $property = $this->get('user');
++      $target_id = $property->isTargetNew() ? NULL : $property->getTargetIdentifier();
++      $this->writePropertyValue('uid', $target_id);
++    }
++    elseif ($property_name == 'uid') {
++      $this->writePropertyValue('user', $this->target_id);
++    }
++    parent::onChange($property_name, $notify);
++  }
++
++}
+diff --git a/modules/price/src/Plugin/Field/PriceHistoryItemList.php b/modules/price/src/Plugin/Field/PriceHistoryItemList.php
+new file mode 100644
+index 00000000..b87ec717
+--- /dev/null
++++ b/modules/price/src/Plugin/Field/PriceHistoryItemList.php
+@@ -0,0 +1,55 @@
++<?php
++
++namespace Drupal\commerce_price\Plugin\Field;
++
++use Drupal\Core\Field\FieldItemList;
++
++/**
++ * Field item list for the Price History item.
++ */
++class PriceHistoryItemList extends FieldItemList {
++
++  /**
++   * {@inheritdoc}
++   */
++  public function preSave() {
++    $entity = $this->getEntity();
++    $source_field = $this->getFieldDefinition()->getSetting('source_field');
++
++    // If the source field exists, check for changes.
++    if ($entity->hasField($source_field)) {
++      /** @var \Drupal\commerce_price\Price|null $current_value */
++      $current_value = !$entity->get($source_field)->isEmpty() ? $entity->get($source_field)->first()->toPrice() : NULL;
++
++      /** @var \Drupal\commerce_price\Price|null $previous_value */
++      $previous_value = NULL;
++      if (isset($entity->original) && !$entity->original->get($source_field)->isEmpty()) {
++        $previous_value = $entity->original->get($source_field)->first()->toPrice();
++      }
++
++      // If the field has been added, removed or changed, update our log.
++      if (($current_value xor $previous_value) || !$current_value->equals($previous_value)) {
++        $this->appendItem($current_value->toArray());
++      }
++    }
++
++    parent::preSave();
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function appendItem($value = NULL) {
++    // Set the timestamp/uid if not already set.
++    if (!isset($value['timestamp'])) {
++      $value['timestamp'] = \Drupal::time()->getRequestTime();
++    }
++    if (!isset($value['uid'])) {
++      $value['uid'] = \Drupal::currentUser()->id();
++    }
++
++    // Pass on to be appended.
++    return parent::appendItem($value);
++  }
++
++}

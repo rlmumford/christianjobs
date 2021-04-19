@@ -7,3 +7,8 @@ services:
     class: Drupal\cj\EventSubscriber\OrderNumberSubscriber
     tags:
       - { name: event_subscriber }
+  cj.duration_job_product_subscriber:
+    class: Drupal\cj\EventSubscriber\DurationJobProductSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }

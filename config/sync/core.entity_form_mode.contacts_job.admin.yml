@@ -1,0 +1,10 @@
+uuid: 1c4573b8-9855-4a52-b157-898f57a84ebb
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+id: contacts_job.admin
+label: 'Admin edit'
+targetEntityType: contacts_job
+cache: true

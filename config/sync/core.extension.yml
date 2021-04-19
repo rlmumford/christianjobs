@@ -13,11 +13,11 @@ module:
   commerce_number_pattern: 0
   commerce_order: 0
   commerce_payment: 0
-  commerce_paypal: 0
   commerce_price: 0
   commerce_product: 0
   commerce_promotion: 0
   commerce_store: 0
+  commerce_stripe: 0
   commerce_tax: 0
   communication: 0
   communication_user: 0
@@ -45,6 +45,7 @@ module:
   entity_template_ui: 0
   facets: 0
   field: 0
+  field_group: 0
   field_ui: 0
   file: 0
   filter: 0

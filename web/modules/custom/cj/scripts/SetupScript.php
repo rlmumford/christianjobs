@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\commerce_price\Price;
 use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_product\Entity\ProductVariation;
 use Drush\Style\DrushStyle;
@@ -23,6 +24,7 @@ class SetupScript {
    * Run the script.
    */
   public function run() {
+    print "HERE";
     if ($this->io->confirm('Create store & products?')) {
       $this->createStore();
       $this->createProducts();
@@ -74,26 +76,24 @@ class SetupScript {
     // Make Job Posting Products.
     $product = Product::create([
       'type' => 'contacts_job_posting',
-      'title' => '30 Days',
+      'title' => 'Job Posting - 30 Days',
       'stores' => [$store->id()],
       'cj_post_duration' => 'P30D',
     ]);
     $product->save();
+    /** @var \Drupal\commerce_product\Entity\ProductVariation $variation */
     $variation = ProductVariation::create([
       'type' => 'default',
       'sku' => 'job-30',
-      'price' => [
-        'amount' => 7500,
-        'currency_code' => 'GBP',
-      ],
       'status' => TRUE,
       'product_id' => $product,
     ]);
+    $variation->setPrice(new Price('75', 'GBP'));
     $variation->save();
 
     $product = Product::create([
       'type' => 'contacts_job_posting',
-      'title' => '60 Days',
+      'title' => 'Job Posting - 60 Days',
       'stores' => [$store->id()],
       'cj_post_duration' => 'P60D',
     ]);
@@ -101,14 +101,14 @@ class SetupScript {
     $variation = ProductVariation::create([
       'type' => 'default',
       'sku' => 'job-60',
-      'price' => [
-        'amount' => 10000,
-        'currency_code' => 'GBP',
-      ],
       'status' => TRUE,
       'product_id' => $product,
     ]);
+    $variation->setPrice(new Price('100', 'GBP'));
     $variation->save();
   }
 
 }
+
+$script = new SetupScript($this->io());
+$script->run();

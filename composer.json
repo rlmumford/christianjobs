@@ -68,7 +68,7 @@
         "drupal/ckeditor_youtube": "^1.1",
         "drupal/commerce": "^2.10",
         "drupal/commerce_gocardless": "dev-feature/redirect_flow as 1.x-dev",
-        "drupal/commerce_paypal": "^1.0@beta",
+        "drupal/commerce_stripe": "^1.0@RC",
         "drupal/communication": "^2",
         "drupal/contacts": "1.x-dev",
         "drupal/contacts_communication": "^1.0",
@@ -85,6 +85,7 @@
         "drupal/email_registration": "^1.0@RC",
         "drupal/entity_route_context": "^1.1",
         "drupal/eu_cookie_compliance": "^1.2",
+        "drupal/field_group": "^3.1",
         "drupal/flag": "4.x-dev",
         "drupal/fontawesome": "^2.2",
         "drupal/geocoder": "^2.0@beta",
@@ -150,6 +151,16 @@
         "patches": {
             "drupal/core": {
                 "Field definition missing in block deriver": "./patches/field-block-deriver-missing-field-def.patch"
+            },
+            "drupal/commerce": {
+                "#2871483: Add checkout settings for payment method behavior.": "https://www.drupal.org/files/issues/2021-02-08/commerce-2871483-optional_cc_storage-50-refresh.patch",
+                "#3121116: Refund log": "patches/commerce-2.16-refund-log.patch",
+                "#3165903: Correct usage of isAnonymous and isAuthenticated": "https://www.drupal.org/files/issues/2020-08-26/3165903-3-switch_to_is_anonymous.patch"
+            },
+            "drupal/commerce_stripe": {
+                "#3167549: Handle off session payments": "https://www.drupal.org/files/issues/2020-08-26/3167549-2-allow_off_session_intents.patch",
+                "#3083393: Don't load stripe on every page": "https://www.drupal.org/files/issues/2020-02-03/3083393-21.patch",
+                "Collect payment method with intent": "patches/stripe-collect-method-with-intent.patch"
             },
             "drupal/social_link_field": {
                 "Main Property Fix": "https://www.drupal.org/files/issues/2020-07-06/3157171-2.patch"

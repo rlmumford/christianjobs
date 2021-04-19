@@ -1,0 +1,40 @@
+diff --git a/js/commerce_stripe.form.js b/js/commerce_stripe.form.js
+index fda6804..9417110 100755
+--- a/js/commerce_stripe.form.js
++++ b/js/commerce_stripe.form.js
+@@ -82,6 +82,8 @@
+           stripeErrorHandler(event);
+         });
+ 
++        var $reusableElement = $form.parent().find(':input[name$="[reusable]"]');
++
+         // Helper to handle the Stripe responses with errors.
+         var stripeErrorHandler = function (result) {
+           if (result.error) {
+@@ -115,6 +117,26 @@
+                 $form.find(':input.button--primary').click();
+               }
+             });
++          } else if (drupalSettings.commerceStripe.clientSecret.substring(0, 3) === 'pi_') {
++            stripe.confirmCardPayment(drupalSettings.commerceStripe.clientSecret, {
++              payment_method: {
++                card: self.cardNumber
++              },
++              setup_future_usage: (drupalSettings.commerceStripe.futureUsage ?? false) || $reusableElement.val() ? 'off_session' : null,
++            }).then(function (result) {
++              if (result.error) {
++                // Inform the user if there was an error.
++                stripeErrorHandler(result);
++              }
++              else {
++                // Insert the payment method ID into the form so it gets submitted to
++                // the server.
++                // Set the Stripe token value.
++                $('#stripe-payment-method-id', $form).val(result.paymentIntent.payment_method);
++                // Submit the form.
++                $form.find(':input.button--primary').click();
++              }
++            });
+           } else {
+             stripe.handleCardSetup(drupalSettings.commerceStripe.clientSecret, self.cardNumber).then(function (result) {
+               if (result.error) {

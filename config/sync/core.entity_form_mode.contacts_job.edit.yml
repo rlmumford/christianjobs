@@ -1,0 +1,10 @@
+uuid: 38d91198-aac8-4cfe-b560-9694666b61de
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+id: contacts_job.edit
+label: Edit
+targetEntityType: contacts_job
+cache: true

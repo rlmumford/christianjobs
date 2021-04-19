@@ -17,6 +17,7 @@ use Drupal\Core\Link;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
+use Drupal\profile\Entity\ProfileInterface;
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
 
@@ -454,6 +455,23 @@ function contacts_jobs_dashboard_user_access(AccountInterface $user, $operation,
 
   return AccessResult::neutral();
 }
+
+/**
+ * Implements hook_ENTITY_TYPE_access() for profile.
+ */
+function contacts_jobs_dashboard_profile_access(ProfileInterface $profile, $operation, AccountInterface $account) {
+  if ($profile->bundle() !== 'crm_org') {
+    return AccessResult::neutral();
+  }
+
+  if ($operation == 'update') {
+    $user = $profile->getOwner();
+    return contacts_jobs_dashboard_user_access($user, 'update_group', $account);
+  }
+
+  return AccessResult::neutral();
+}
+
 
 /**
  * Implements hook_module_implements_alter().

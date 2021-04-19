@@ -6,6 +6,10 @@ styles:
     js/custom.js: {}
   dependencies:
     - core/jquery
+dashboard:
+  css:
+    theme:
+      css/dashboard.css: {}
 select2.theme:
   css:
     component:

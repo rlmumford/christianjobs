@@ -1,9 +1,10 @@
-uuid: 862fa782-fe2c-48b2-99f4-ea134e0ded22
+uuid: f131a76e-1f8e-4cb7-b78a-966cf38bed76
 langcode: en
 status: true
 dependencies:
   config:
     - contacts_jobs.contacts_job_type.job
+    - core.entity_form_mode.contacts_job.admin
     - field.field.contacts_job.job.app_settings
     - field.field.contacts_job.job.job_description
     - field.field.contacts_job.job.job_hours
@@ -20,62 +21,83 @@ dependencies:
     - text
 third_party_settings:
   field_group:
+    group_tabs:
+      children:
+        - group_job_details
+        - group_application_details
+        - group_administration
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        direction: vertical
+      label: Tabs
     group_job_details:
       children:
         - title
+        - organisation
         - job_type
         - job_hours
         - job_hours_per_week
-        - job_salary
         - job_description
+        - job_salary
         - job_location
-      parent_name: ''
-      weight: 0
-      format_type: fieldset
+      parent_name: group_tabs
+      weight: 19
+      format_type: tab
       region: content
       format_settings:
         id: ''
-        classes: fieldset-job-post
+        classes: ''
         description: ''
+        formatter: open
         required_fields: true
       label: 'Job details'
-    group_applic:
+    group_application_details:
       children:
-        - publish_start
         - closing
+        - job_how_to_apply
         - app_settings
-      parent_name: ''
-      weight: 1
-      format_type: fieldset
+      parent_name: group_tabs
+      weight: 20
+      format_type: tab
       region: content
       format_settings:
         id: ''
-        classes: ' fieldset-job-post'
+        classes: ''
         description: ''
+        formatter: closed
         required_fields: true
       label: 'Application details'
     group_administration:
       children:
         - uid
-        - organisation
-      parent_name: ''
-      weight: 2
-      format_type: fieldset
+        - publish_start
+        - publish_end
+        - promoted_start
+        - promoted_end
+      parent_name: group_tabs
+      weight: 21
+      format_type: tab
       region: content
       format_settings:
         id: ''
-        classes: fieldset-job-post
+        classes: ''
         description: ''
+        formatter: closed
         required_fields: true
       label: Administration
-id: contacts_job.job.default
+id: contacts_job.job.admin
 targetEntityType: contacts_job
 bundle: job
-mode: default
+mode: admin
 content:
   app_settings:
     type: inline_entity_form_complex
-    weight: 2
+    weight: 8
     region: content
     settings:
       form_mode: default
@@ -92,13 +114,13 @@ content:
     third_party_settings: {  }
   closing:
     type: datetime_timestamp_no_default
-    weight: 1
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   job_description:
     type: text_textarea
-    weight: 8
+    weight: 6
     region: content
     settings:
       rows: 5
@@ -106,21 +128,29 @@ content:
     third_party_settings: {  }
   job_hours:
     type: options_select
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   job_hours_per_week:
     type: string_textfield
-    weight: 6
+    weight: 5
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  job_how_to_apply:
+    type: text_textarea
+    weight: 7
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   job_location:
     type: string_textfield
-    weight: 9
+    weight: 8
     region: content
     settings:
       size: 60
@@ -134,13 +164,13 @@ content:
     third_party_settings: {  }
   job_type:
     type: options_select
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   organisation:
     type: entity_reference_autocomplete
-    weight: 10
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
@@ -148,15 +178,33 @@ content:
       match_limit: 10
     region: content
     third_party_settings: {  }
+  promoted_end:
+    type: datetime_timestamp_no_default
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promoted_start:
+    type: datetime_timestamp_no_default
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  publish_end:
+    type: datetime_timestamp_no_default
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   publish_start:
-    type: datetime_timestamp
-    weight: 0
+    type: datetime_timestamp_no_default
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 3
+    weight: 1
     region: content
     settings:
       size: 60
@@ -164,7 +212,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 9
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
@@ -173,9 +221,5 @@ content:
     region: content
     third_party_settings: {  }
 hidden:
-  job_how_to_apply: true
   job_payment_status: true
   job_region: true
-  promoted_end: true
-  promoted_start: true
-  publish_end: true
