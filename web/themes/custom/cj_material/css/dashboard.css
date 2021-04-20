@@ -16,9 +16,26 @@ html.dashboard #page {
   background: none;
 }
 
+html.dashboard #main-content {
+  background: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: none;
+}
+
+html.dashboard h3.card-title {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 .bg-dark {
   background-color: #2A556B;
   color: #FFFFFF;
+}
+
+.mb-4, .my-4 {
+  margin-bottom: 1.5rem !important;
 }
 
 @media (min-width: 992px) {
@@ -222,5 +239,7 @@ html.dashboard .card .card-links {
   border-radius: 2px;
 }
 html.dashboard .card .card-links a {
-  color: #68BC92;
+  color: #FF904B;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8em;
 }

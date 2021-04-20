@@ -26,6 +26,13 @@ function cj_material_theme_suggestions_alter(array &$suggestions, array $variabl
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function cj_material_preprocess_container__user_summary(&$variables) {
+  $variables['attributes']['class'][] = 'row';
+}
+
+/**
  * Implements hook_preprocess_HOOK() for menu.html.twig.
  *
  * Set md icons for account menu.

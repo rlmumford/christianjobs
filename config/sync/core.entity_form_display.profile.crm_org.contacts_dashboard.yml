@@ -47,5 +47,6 @@ hidden:
   crm_org_is_charity: true
   crm_org_on_directory: true
   crm_org_type: true
+  headquarters: true
   is_default: true
   org_image: true
