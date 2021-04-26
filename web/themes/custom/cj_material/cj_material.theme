@@ -115,6 +115,13 @@ function cj_material_preprocess_html(array &$variables) {
  */
 function cj_material_preprocess_page__dashboard(array &$variables) {
   DashboardHelper::getInstance()->preprocessPageDashboard($variables);
+
+  $excluded_route_names = [
+    'contacts_user_dashboard.summary',
+  ];
+  if (!in_array(\Drupal::routeMatch()->getRouteName(), $excluded_route_names)) {
+    $variables['layout_content_classes'] = 'card card-body';
+  }
 }
 
 /**

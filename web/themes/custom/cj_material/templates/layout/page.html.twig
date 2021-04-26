@@ -53,10 +53,12 @@
     -->
   </div>
 
-  <div id="drawer-overlay"></div>
-  <div id="drawer">
-    {{ page.drawer }}
-  </div>
+  {% if page.drawer %}
+    <div id="drawer-overlay"></div>
+    <div id="drawer">
+      {{ page.drawer }}
+    </div>
+  {% endif %}
 
   <header id="header" role="banner">
     <div id="header-content">

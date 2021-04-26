@@ -44,7 +44,7 @@
  */
 #}
 {{ attach_library('cj_material/dashboard') }}
-<div id="page" class="layout-container">
+<div id="page" class="layout-container dashboard">
 
   <div id="navbar">
     {{ page.navbar }}
@@ -54,10 +54,12 @@
     -->
   </div>
 
-  <div id="drawer-overlay"></div>
-  <div id="drawer">
-    {{ page.drawer }}
-  </div>
+  {% if page.drawer %}
+    <div id="drawer-overlay"></div>
+    <div id="drawer">
+      {{ page.drawer }}
+    </div>
+  {% endif %}
 
   <header id="header" role="banner">
     <div id="header-content">
@@ -103,7 +105,7 @@
         {{ page.highlighted }}
         {{ page.help }}
 
-        <div class="layout-content">
+        <div class="layout-content {{ layout_content_classes }}">
           {{ page.content }}
         </div>{# /.layout-content #}
 
