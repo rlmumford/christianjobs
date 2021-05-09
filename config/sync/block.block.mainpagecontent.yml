@@ -1,0 +1,20 @@
+uuid: ab8bad40-b0b4-435e-891d-93ea656215e2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cj_material
+id: mainpagecontent
+theme: cj_material
+region: content
+weight: -4
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

@@ -8,8 +8,8 @@ _core:
   default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
 id: cj_material_local_actions
 theme: cj_material
-region: content
-weight: -10
+region: actions
+weight: -3
 provider: null
 plugin: local_actions_block
 settings:

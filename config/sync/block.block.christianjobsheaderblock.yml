@@ -1,0 +1,31 @@
+uuid: c4ab563a-fed6-40e9-99b7-8a110d6435aa
+langcode: en
+status: true
+dependencies:
+  module:
+    - cj
+    - system
+  theme:
+    - cj_material
+id: christianjobsheaderblock
+theme: cj_material
+region: header
+weight: 0
+provider: null
+plugin: cj_header_block
+settings:
+  id: cj_header_block
+  label: 'Christian Jobs Header Block'
+  provider: cj
+  label_display: '0'
+  tagline: 'Connecting Work with Worship'
+  find_cta_text: 'Find a Job'
+  find_cta_path: jobs
+  post_cta_text: 'Post a Job'
+  post_cta_path: jobs/post
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

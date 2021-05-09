@@ -9,11 +9,10 @@ dependencies:
     - field.field.contacts_job.job.job_description
     - field.field.contacts_job.job.job_description_summary
     - field.field.contacts_job.job.job_files
-    - field.field.contacts_job.job.job_keywords
-    - field.field.contacts_job.job.job_description
     - field.field.contacts_job.job.job_hours
     - field.field.contacts_job.job.job_hours_per_week
     - field.field.contacts_job.job.job_how_to_apply
+    - field.field.contacts_job.job.job_keywords
     - field.field.contacts_job.job.job_location
     - field.field.contacts_job.job.job_payment_status
     - field.field.contacts_job.job.job_region
@@ -21,8 +20,223 @@ dependencies:
   module:
     - contacts_jobs
     - file
+    - layout_builder
     - text
     - user
+  theme:
+    - cj_material
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: cj_9_3
+        layout_settings:
+          label: Content
+        components:
+          1fac6a8d-c509-4d5b-afb8-7a5a763a0342:
+            uuid: 1fac6a8d-c509-4d5b-afb8-7a5a763a0342
+            region: top
+            configuration:
+              id: 'field_block:contacts_job:job:organisation'
+              label: Organisation
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_label
+                settings:
+                  link: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
+          2fdd00fb-4214-4877-9a5e-0ca6711a2ba3:
+            uuid: 2fdd00fb-4214-4877-9a5e-0ca6711a2ba3
+            region: content
+            configuration:
+              id: 'field_block:contacts_job:job:job_description'
+              label: 'Job Description'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
+          d84873b2-259e-4bf3-b279-57c197e80105:
+            uuid: d84873b2-259e-4bf3-b279-57c197e80105
+            region: content
+            configuration:
+              id: 'field_block:contacts_job:job:job_files'
+              label: 'Supporting Documents'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: file_table
+                settings:
+                  use_description_as_link_text: true
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+          72eec8fd-045b-413f-89f8-0ee7569f0e97:
+            uuid: 72eec8fd-045b-413f-89f8-0ee7569f0e97
+            region: aside
+            configuration:
+              id: 'extra_field_block:contacts_job:job:organisation_logo'
+              label: 'Organisation logo'
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+          62192599-5803-4c11-aa68-4cda58970536:
+            uuid: 62192599-5803-4c11-aa68-4cda58970536
+            region: aside
+            configuration:
+              id: 'field_block:contacts_job:job:organisation'
+              label: Organisation
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_label
+                settings:
+                  link: true
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+          2ba0eeea-d2d0-4bf4-b3fa-74f3592430ea:
+            uuid: 2ba0eeea-d2d0-4bf4-b3fa-74f3592430ea
+            region: aside
+            configuration:
+              id: 'field_block:contacts_job:job:job_keywords'
+              label: Keywords
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: entity_reference_label
+                settings:
+                  link: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 2
+          d69565ac-ae85-49dc-b38a-a7fbb7bacb01:
+            uuid: d69565ac-ae85-49dc-b38a-a7fbb7bacb01
+            region: aside
+            configuration:
+              id: 'field_block:contacts_job:job:job_category'
+              label: Category
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: entity_reference_label
+                settings:
+                  link: true
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 3
+          faecbc09-f1f3-4f4a-8cfa-82a5626dc8d5:
+            uuid: faecbc09-f1f3-4f4a-8cfa-82a5626dc8d5
+            region: aside
+            configuration:
+              id: 'field_block:contacts_job:job:job_salary'
+              label: Salary
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: contacts_jobs_salary_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 4
+          74693813-9fd6-4056-ab0b-ac11696ebf21:
+            uuid: 74693813-9fd6-4056-ab0b-ac11696ebf21
+            region: aside
+            configuration:
+              id: 'field_block:contacts_job:job:job_hours'
+              label: Hours
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: list_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 5
+          c4640266-13cc-4397-ba8a-480ceb69857d:
+            uuid: c4640266-13cc-4397-ba8a-480ceb69857d
+            region: aside
+            configuration:
+              id: 'field_block:contacts_job:job:job_hours_per_week'
+              label: 'Hours per week'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 6
+          6f9194d6-53ae-4828-b664-5bf2bd3a1f52:
+            uuid: 6f9194d6-53ae-4828-b664-5bf2bd3a1f52
+            region: aside
+            configuration:
+              id: 'field_block:contacts_job:job:closing'
+              label: Deadline
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: timestamp
+                settings:
+                  date_format: medium
+                  custom_date_format: ''
+                  timezone: ''
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 7
+        third_party_settings: {  }
 id: contacts_job.job.default
 targetEntityType: contacts_job
 bundle: job
@@ -148,7 +362,6 @@ content:
 hidden:
   app_settings: true
   field_job_description_summary: true
-  job_description: true
   job_hours: true
   job_hours_per_week: true
   job_how_to_apply: true

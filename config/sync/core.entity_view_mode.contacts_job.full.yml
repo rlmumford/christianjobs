@@ -1,0 +1,10 @@
+uuid: f2437f2a-7d53-4f6b-9d1e-065d7f33cfb0
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+id: contacts_job.full
+label: Full
+targetEntityType: contacts_job
+cache: true

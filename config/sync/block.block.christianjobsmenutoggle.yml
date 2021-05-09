@@ -1,0 +1,24 @@
+uuid: 58a6d6c7-415b-4793-bad6-282c1bb35163
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - cj
+  theme:
+    - cj_material
+third_party_settings:
+  block_class:
+    classes: 'navbar-item navbar-menu-toggle hidden-sm'
+id: christianjobsmenutoggle
+theme: cj_material
+region: navbar
+weight: -4
+provider: null
+plugin: cj_menu_toggle
+settings:
+  id: cj_menu_toggle
+  label: 'Christian Jobs Menu Toggle'
+  provider: cj
+  label_display: '0'
+visibility: {  }

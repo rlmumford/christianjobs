@@ -1,0 +1,24 @@
+uuid: 5e010b32-6942-4f6f-9f6a-0b6bb98ff411
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - cj
+  theme:
+    - cj_material
+third_party_settings:
+  block_class:
+    classes: 'navbar-item pull-right'
+id: christianjobsuserbutton
+theme: cj_material
+region: navbar
+weight: -2
+provider: null
+plugin: cj_user_button
+settings:
+  id: cj_user_button
+  label: 'Christian Jobs User Button'
+  provider: cj
+  label_display: '0'
+visibility: {  }

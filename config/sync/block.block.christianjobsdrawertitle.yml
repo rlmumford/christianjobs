@@ -1,0 +1,24 @@
+uuid: fcb4f78b-8dd8-4a94-b966-384e606ad4d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - cj
+  theme:
+    - cj_material
+third_party_settings:
+  block_class:
+    classes: 'drawer-item divider-bottom'
+id: christianjobsdrawertitle
+theme: cj_material
+region: drawer
+weight: 0
+provider: null
+plugin: cj_drawer_title
+settings:
+  id: cj_drawer_title
+  label: 'Christian Jobs Drawer Title'
+  provider: cj
+  label_display: '0'
+visibility: {  }

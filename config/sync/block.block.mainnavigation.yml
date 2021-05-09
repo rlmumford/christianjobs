@@ -1,0 +1,29 @@
+uuid: 9fa93a4e-61e8-4f16-be06-2cb3c6034247
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_class
+    - system
+  theme:
+    - cj_material
+third_party_settings:
+  block_class:
+    classes: 'navbar-menu navbar-item pull-right visible-sm'
+id: mainnavigation
+theme: cj_material
+region: navbar
+weight: -1
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

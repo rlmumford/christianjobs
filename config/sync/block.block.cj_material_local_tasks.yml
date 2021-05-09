@@ -10,8 +10,8 @@ _core:
   default_config_hash: c-06bbElRY5sKmglk74ppgTW93Et4-EJFyNiUZMb8JY
 id: cj_material_local_tasks
 theme: cj_material
-region: content
-weight: -20
+region: before_main
+weight: -3
 provider: null
 plugin: local_tasks_block
 settings:

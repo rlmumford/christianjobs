@@ -1,0 +1,29 @@
+uuid: e3a88d4e-27a7-4fe2-bb3e-37b3df792a09
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_class
+    - system
+  theme:
+    - cj_material
+third_party_settings:
+  block_class:
+    classes: drawer-item
+id: mainnavigation_drawer
+theme: cj_material
+region: drawer
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

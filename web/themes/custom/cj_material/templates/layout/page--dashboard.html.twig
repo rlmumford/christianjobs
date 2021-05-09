@@ -70,12 +70,6 @@
     </div>
   </header>
 
-  {% if page.actions %}
-    <div id="actions">
-      {{ page.actions }}
-    </div>
-  {% endif %}
-
   <div id="content">
     {% if page.before_main %}
       <div id="before-main">
@@ -100,6 +94,11 @@
     </nav>
 
     <main role="main" id="main" class="section-wrapper row-wrapper">
+      {% if page.actions %}
+        <div id="actions">
+          {{ page.actions }}
+        </div>
+      {% endif %}
       <div id="main-content" tabindex="-1" class="section">{# link is in html.html.twig #}
         {{ page.breadcrumb }}
         {{ page.highlighted }}

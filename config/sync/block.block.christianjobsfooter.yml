@@ -1,0 +1,20 @@
+uuid: 1a09d98a-af6e-4ceb-92f5-c60e3b1542a0
+langcode: en
+status: true
+dependencies:
+  module:
+    - cj
+  theme:
+    - cj_material
+id: christianjobsfooter
+theme: cj_material
+region: footer_content
+weight: 0
+provider: null
+plugin: cj_footer
+settings:
+  id: cj_footer
+  label: 'Christian Jobs Footer'
+  provider: cj
+  label_display: '0'
+visibility: {  }

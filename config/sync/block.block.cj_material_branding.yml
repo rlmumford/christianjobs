@@ -15,7 +15,7 @@ _core:
 id: cj_material_branding
 theme: cj_material
 region: navbar
-weight: -10
+weight: -3
 provider: null
 plugin: system_branding_block
 settings:
