@@ -12,6 +12,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Locale\CountryManager;
 use Drupal\Core\Render\Element;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
 use Drupal\profile\Entity\Profile;
 
 /**
@@ -128,6 +129,24 @@ function cj_local_tasks_alter(&$local_tasks) {
   unset($local_tasks['entity.commerce_payment_method.collection']);
   unset($local_tasks['entity.profile.user_profile_form:profile.type.individual']);
   unset($local_tasks['entity.profile.user_profile_form:profile.type.organisation']);
+}
+
+/**
+ * Implements hook_entity_operation_alter().
+ */
+function cj_entity_operation_alter(array &$operations, EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'contacts_job') {
+    /** @var \Drupal\contacts_jobs\Entity\Job $entity */
+    $url = Url::fromRoute('entity.contacts_job.update_form', [
+      'contacts_job' => $entity->id(),
+    ]);
+
+    // Add View Applications in the top.
+    $operations['update'] = [
+      'title' => t('Update'),
+      'url' => $url,
+    ];
+  }
 }
 
 /**

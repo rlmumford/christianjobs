@@ -67,7 +67,6 @@
         "drupal/bootstrap": "^3.11",
         "drupal/ckeditor_youtube": "^1.1",
         "drupal/commerce": "^2.10",
-        "drupal/commerce_gocardless": "dev-feature/redirect_flow as 1.x-dev",
         "drupal/commerce_stripe": "^1.0@RC",
         "drupal/communication": "^2",
         "drupal/contacts": "1.x-dev",
@@ -119,7 +118,6 @@
         "drupal/yoast_seo": "^1.4",
         "drush/drush": "^9.0.0",
         "npm-asset/select2": "^4.0",
-        "oomphinc/composer-installers-extender": "^1.1",
         "rlmumford/common": "dev-master",
         "vlucas/phpdotenv": "^2.4",
         "webmozart/path-util": "^2.3"
