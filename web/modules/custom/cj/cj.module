@@ -146,6 +146,10 @@ function cj_entity_operation_alter(array &$operations, EntityInterface $entity) 
       'title' => t('Update'),
       'url' => $url,
     ];
+
+    if (!\Drupal::currentUser()->hasPermission('administer job entities')) {
+      unset($operations['edit']);
+    }
   }
 }
 
