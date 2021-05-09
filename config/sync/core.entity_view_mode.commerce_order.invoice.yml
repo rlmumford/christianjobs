@@ -4,8 +4,6 @@ status: true
 dependencies:
   module:
     - commerce_order
-_core:
-  default_config_hash: jm9McjmtRBCQoFR4igppjk3BU2NpvB03jDhw3yT2tQY
 id: commerce_order.invoice
 label: Invoice
 targetEntityType: commerce_order

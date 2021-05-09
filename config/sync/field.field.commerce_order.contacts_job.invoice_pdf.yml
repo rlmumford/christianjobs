@@ -1,16 +1,16 @@
-uuid: fe119640-6a0e-44e6-b381-a2c319d72ec9
+uuid: fe119640-6a0e-44e6-b381-a2c319d72ed0
 langcode: en
 status: true
 dependencies:
   config:
-    - commerce_order.commerce_order_type.default
+    - commerce_order.commerce_order_type.contacts_job
     - field.storage.commerce_order.invoice_pdf
   module:
     - file
 id: commerce_order.default.invoice_pdf
 field_name: invoice_pdf
 entity_type: commerce_order
-bundle: default
+bundle: contacts_job
 label: 'Invoice PDF'
 description: ''
 required: false
