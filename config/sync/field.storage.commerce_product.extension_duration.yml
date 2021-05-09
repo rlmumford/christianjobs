@@ -1,0 +1,27 @@
+uuid: e3e2bd5b-1e99-4dcb-a6e0-3f57549f9ab6
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - options
+id: commerce_product.extension_duration
+field_name: extension_duration
+entity_type: commerce_product
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: P30D
+      label: '30 Days'
+    -
+      value: P60D
+      label: '60 Days'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

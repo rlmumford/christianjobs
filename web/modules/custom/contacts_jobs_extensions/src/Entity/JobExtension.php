@@ -50,7 +50,7 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
    */
   public function preSave(EntityStorageInterface $storage) {
     if ($this->product->entity) {
-      $this->duration = $this->product->entity->extension_duration->value;
+      $this->duration = $this->product->entity->product_id->entity->extension_duration->value;
     }
 
     if ($this->paid->value && !$this->applied->value) {
@@ -60,7 +60,7 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
       $job = $this->job->entity;
 
       /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
-      $publish_end = clone $job->publish_end->date;
+      $publish_end = DrupalDateTime::createFromTimestamp($job->publish_end->value);
       $today_date = new DrupalDateTime();
       if ($today_date > $publish_end) {
         $publish_end = $today_date;
@@ -100,7 +100,7 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
    *   The order item type ID.
    */
   public function getOrderItemTypeId() {
-    return 'contacts_jobs_extensions_job_extension';
+    return 'cj_job_extension';
   }
 
   /**
@@ -147,9 +147,6 @@ class JobExtension extends ContentEntityBase implements PurchasableEntityInterfa
       ->setRequired(TRUE)
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'commerce_product_variation')
-      ->setSetting('handler_settings', [
-        'target_bundles' => ['job_extension' => 'job_extension'],
-      ])
       ->setSetting('handler', 'default');
 
     $fields['duration'] = BaseFieldDefinition::create('list_string')

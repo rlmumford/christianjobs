@@ -1,0 +1,14 @@
+uuid: ea7c9da6-4836-451f-899c-1658ec6012b1
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: MtlUn6N80zZMBCLjFzwqoKRa0br5-jzOIdN6BASoqzo
+id: job_extension
+label: 'Job Extension'
+description: ''
+variationType: default
+multipleVariations: true
+injectVariationFields: true
+traits: {  }
+locked: false

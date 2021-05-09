@@ -115,6 +115,8 @@ if (file_exists($app_root . '/' . $site_path . '/settings.ddev.php') && getenv('
     'merge_request' => getenv('CI_MERGE_REQUEST_IID'),
     'url' => getenv('CI_SERVER_URL')
   ];
+
+  $config['devel.settings']['devel_dumper'] = 'var_dumper';
 }
 
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {

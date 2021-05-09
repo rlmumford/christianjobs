@@ -28,6 +28,7 @@ module:
   contacts_jobs_apps: 0
   contacts_jobs_commerce: 0
   contacts_jobs_dashboard: 0
+  contacts_jobs_extensions: 0
   contacts_user_dashboard: 0
   contextual: 0
   crm_tools: 0

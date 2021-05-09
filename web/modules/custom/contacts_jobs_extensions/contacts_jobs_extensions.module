@@ -1,0 +1,53 @@
+<?php
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_entity_operation_alter().
+ */
+function contacts_jobs_extensions_entity_operation_alter(array &$operations, EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'contacts_job') {
+    /** @var \Drupal\contacts_jobs\Entity\Job $entity */
+    $url = Url::fromRoute('contacts_jobs_extensions.extend', [
+      'contacts_job' => $entity->id(),
+    ]);
+
+    // Add View Applications in the top.
+    $operations['extend'] = [
+      'title' => t('Extend'),
+      'url' => $url,
+    ];
+  }
+}
+
+/**
+ * Implements hook_contacts_job_access().
+ */
+function contacts_jobs_extensions_contacts_job_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  /** @var \Drupal\contacts_jobs\Entity\Job $entity */
+  if ($operation === 'extend') {
+    $result = AccessResult::allowedIf(
+      ($entity->getOwnerId() === $account->id()  && $account->hasPermission('extend own job entities')) ||
+      $account->hasPermission('extend job entities')
+    );
+
+    // You can only extend a job if it has not already expired.
+    $result = $result->orIf(AccessResult::forbiddenIf(
+      !$entity->publish_end->isEmpty() &&
+      DrupalDateTime::createFromTimestamp($entity->publish_end->value)->format('Y-m-d') < (new DrupalDateTime())->format('Y-m-d')
+    ));
+
+    $result->addCacheContexts(['user.permissions']);
+    $result->cachePerUser();
+    $result->addCacheableDependency($entity);
+    $result->setCacheMaxAge(60*60*24);
+  }
+
+  return AccessResult::neutral();
+}
+
+

@@ -414,6 +414,7 @@ class DashboardController extends ControllerBase {
       'content' => $block_content,
     ];
 
+    /**
     $content['cj_app_settings_add'] = [
       '#theme' => 'menu_local_action',
       '#attributes' => [
@@ -439,6 +440,7 @@ class DashboardController extends ControllerBase {
       '#weight' => $cj_app_settings_block->getConfiguration()['weight'] ?? 0,
       'content' => $settings_block_content,
     ];
+     */
 
     return $content;
   }

@@ -1,0 +1,6 @@
+extend job entities:
+  title: 'extend Job entities'
+
+extend own job entities:
+  title: 'extend own Job entities'
+  description: 'Allow users to extend jobs that they posted.'

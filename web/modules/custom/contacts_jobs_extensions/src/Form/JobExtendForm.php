@@ -6,6 +6,7 @@ use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
 use Drupal\commerce_cart\CartManagerInterface;
 use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\contacts_jobs\Entity\Job;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -94,34 +95,37 @@ class JobExtendForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, Job $job_role = NULL) {
-    $form_state->set('job', $job_role);
+  public function buildForm(array $form, FormStateInterface $form_state, Job $contacts_job = NULL) {
+    $form_state->set('job', $contacts_job);
 
     $form['job'] = [
       '#type' => 'item',
       '#title' => new TranslatableMarkup('Job'),
-      '#markup' => "<div>".$job_role->label()."</div>",
+      '#markup' => "<div>".$contacts_job->label()."</div>",
     ];
-    if (!$job_role->end_date->isEmpty()) {
+    if (!$contacts_job->publish_end->isEmpty()) {
       $form['publish_end'] = [
         '#type' => 'item',
         '#title' => new TranslatableMarkup('Current Expiry'),
-        '#markup' => "<div>This job currently expires on " . $job_role->publish_end->date->format("d/m/Y") . "</div>",
+        '#markup' => "<div>This job currently expires on " . DrupalDateTime::createFromTimestamp($contacts_job->publish_end->value)->format("d/m/Y") . "</div>",
       ];
     }
 
-    $product_variation_storage = $this->entityTypeManager->getStorage('commerce_product_variation');
-    $query = $product_variation_storage->getQuery();
+    $product_storage = $this->entityTypeManager->getStorage('commerce_product');
+    $query = $product_storage->getQuery();
     $query->condition('type', 'job_extension');
     $options = [];
-    foreach ($product_variation_storage->loadMultiple($query->execute()) as $variation) {
+
+    /** @var \Drupal\commerce_product\Entity\Product $product */
+    foreach ($product_storage->loadMultiple($query->execute()) as $product) {
+      $variation = $product->getDefaultVariation();
       /** @var \Drupal\commerce_price\Price $price */
-      $price = $variation->price->get(0)->toPrice();
+      $price = $variation->getPrice();
       try {
         $options[$variation->id()] = $this->t(
           '@duration - @price',
           [
-            '@duration' => (new \DateInterval($variation->extension_duration->value))->format('%d days'),
+            '@duration' => (new \DateInterval($product->extension_duration->value))->format('%d days'),
             '@price' => $this->currencyFormatter->format($price->getNumber(), $price->getCurrencyCode())
           ]
         );
@@ -141,7 +145,7 @@ class JobExtendForm extends FormBase {
       '#title' => new TranslatableMarkup('Application deadline'),
       '#description' => new TranslatableMarkup('You may wish to change the application deadline for your position, to reflect the extended advertisement time. Jobs will not be published beyond their application deadline.'),
       '#type' => 'datetime',
-      '#default_value' => $job_role->closing->date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
+      '#default_value' => DrupalDateTime::createFromTimestamp($contacts_job->closing->value),
       '#date_increment' => 1,
       '#date_time_element' => 'none',
       '#date_timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
@@ -176,18 +180,18 @@ class JobExtendForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $job_role = $form_state->get('job');
+    $contacts_job = $form_state->get('job');
     if ($closing = $form_state->getValue('closing')) {
-      $job_role->closing->value = $closing->format('U');
+      $contacts_job->closing->value = $closing->format('U');
     }
-    $job_role->save();
+    $contacts_job->save();
 
     /** @var \Drupal\contacts_jobs_extensions\JobExtensionStorage $storage */
     $storage = \Drupal::entityTypeManager()->getStorage('cj_extension');
 
     /** @var \Drupal\contacts_jobs_extensions\Entity\JobExtension $extension */
     $extension = $storage->create();
-    $extension->job = $job_role;
+    $extension->job = $contacts_job;
     $extension->product = $form_state->getValue('product');
     $extension->owner = \Drupal::currentUser()->id();
     $extension->save();
@@ -201,7 +205,7 @@ class JobExtendForm extends FormBase {
     }
     $cart_manager->addEntity($cart, $extension);
 
-    $form_state->setRedirect('entity.contacts_job.canonical', ['contacts_job' => $job_role->id()]);
+    $form_state->setRedirect('entity.contacts_job.canonical', ['contacts_job' => $contacts_job->id()]);
   }
 
   /**

@@ -1,0 +1,15 @@
+uuid: aa3c81f8-23b4-4ec0-a7fc-2c5a85c646aa
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: services
+label: 'Job Extension'
+id: cj_job_extension
+purchasableEntityType: cj_extension
+orderType: contacts_job
+traits: {  }
+locked: false

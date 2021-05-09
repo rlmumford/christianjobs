@@ -7,7 +7,7 @@ dependencies:
     - field.storage.commerce_order.invoice_pdf
   module:
     - file
-id: commerce_order.default.invoice_pdf
+id: commerce_order.contacts_job.invoice_pdf
 field_name: invoice_pdf
 entity_type: commerce_order
 bundle: contacts_job

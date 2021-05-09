@@ -106,6 +106,41 @@ class SetupScript {
     ]);
     $variation->setPrice(new Price('100', 'GBP'));
     $variation->save();
+
+    // Make Job Extension Products.
+    $product = Product::create([
+      'type' => 'job_extension',
+      'title' => 'Job Extension - 30 Days',
+      'stores' => [$store->id()],
+      'extension_duration' => 'P30D',
+    ]);
+    $product->save();
+    /** @var \Drupal\commerce_product\Entity\ProductVariation $variation */
+    $variation = ProductVariation::create([
+      'type' => 'default',
+      'sku' => 'JE-30D',
+      'status' => TRUE,
+      'product_id' => $product,
+    ]);
+    $variation->setPrice(new Price('35', 'GBP'));
+    $variation->save();
+
+    $product = Product::create([
+      'type' => 'job_extension',
+      'title' => 'Job Extension - 60 Days',
+      'stores' => [$store->id()],
+      'extension_duration' => 'P60D',
+    ]);
+    $product->save();
+    /** @var \Drupal\commerce_product\Entity\ProductVariation $variation */
+    $variation = ProductVariation::create([
+      'type' => 'default',
+      'sku' => 'JE-60D',
+      'status' => TRUE,
+      'product_id' => $product,
+    ]);
+    $variation->setPrice(new Price('45', 'GBP'));
+    $variation->save();
   }
 
 }

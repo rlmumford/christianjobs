@@ -5,6 +5,7 @@
  * Module for for Jobboard Dashboard.
  */
 
+use Drupal\contacts_jobs\Entity\JobInterface;
 use Drupal\contacts_jobs_dashboard\Controller\JobApplicationsController;
 use Drupal\contacts_jobs_dashboard\Form\JobForm;
 use Drupal\Core\Access\AccessResult;
@@ -467,6 +468,19 @@ function contacts_jobs_dashboard_profile_access(ProfileInterface $profile, $oper
   if ($operation == 'update') {
     $user = $profile->getOwner();
     return contacts_jobs_dashboard_user_access($user, 'update_group', $account);
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access() for contacts_job.
+ */
+function contacts_jobs_dashboard_contacts_job_access(JobInterface $job, $operation, AccountInterface $account) {
+  if (in_array($operation, ['update', 'extend'])) {
+    if ($organisation = $job->organisation->entity) {
+      return contacts_jobs_dashboard_user_access($organisation, 'manage_jobs', $account);
+    }
   }
 
   return AccessResult::neutral();

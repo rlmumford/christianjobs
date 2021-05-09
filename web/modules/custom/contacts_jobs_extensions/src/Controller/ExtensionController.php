@@ -16,14 +16,13 @@ class ExtensionController extends ControllerBase {
   /**
    * Extend job title.
    *
-   * @param \Drupal\contacts_jobs\Entity\JobInterface $job
-   *   The job being extended.
+   * @param \Drupal\contacts_jobs\Entity\JobInterface $contacts_job
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
    *   The page title for the extend page.
    */
-  public function extendJobTitle(JobInterface $job) {
-    return new TranslatableMarkup('Extend @job', ['@job' => $job->label()]);
+  public function extendJobTitle(JobInterface $contacts_job) {
+    return new TranslatableMarkup('Extend @job', ['@job' => $contacts_job->label()]);
   }
 
 }

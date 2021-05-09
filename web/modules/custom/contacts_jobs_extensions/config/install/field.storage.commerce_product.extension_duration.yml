@@ -1,4 +1,4 @@
-uuid: e3e2bd5b-1e99-4dcb-a6e0-3f57549f9aa9
+uuid: e3e2bd5b-1e99-4dcb-a6e0-3f57549f9ab6
 langcode: en
 status: true
 dependencies:
@@ -7,7 +7,7 @@ dependencies:
     - options
 id: commerce_product_variation.extension_duration
 field_name: extension_duration
-entity_type: commerce_product_variation
+entity_type: commerce_product
 type: list_string
 settings:
   allowed_values:
