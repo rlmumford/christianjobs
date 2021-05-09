@@ -7,7 +7,9 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Menu\LocalTaskManager;
 use Drupal\Core\Menu\LocalTaskManagerInterface;
+use Drupal\Core\Routing\RouteMatch;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -16,6 +18,8 @@ use Drupal\Core\Url;
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Helper class for managing the dashboard.
@@ -81,6 +85,13 @@ class DashboardHelper implements ContainerInjectionInterface {
   protected $contentWrapper;
 
   /**
+   * the request stack.
+   *
+   * @var \Symfony\Component\HttpFoundation\RequestStack
+   */
+  protected $requestStack;
+
+  /**
    * Dashboard helper constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
@@ -91,12 +102,15 @@ class DashboardHelper implements ContainerInjectionInterface {
    *   The local task manager.
    * @param \Drupal\Core\Session\AccountProxyInterface $current_user
    *   The current user service.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *   The request stack.
    */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager, RouteMatchInterface $routeMatch, LocalTaskManagerInterface $local_task_manager, AccountProxyInterface $current_user) {
+  public function __construct(EntityTypeManagerInterface $entityTypeManager, RouteMatchInterface $routeMatch, LocalTaskManagerInterface $local_task_manager, AccountProxyInterface $current_user, RequestStack $request_stack) {
     $this->routeMatch = $routeMatch;
     $this->entityTypeManager = $entityTypeManager;
     $this->localTaskManager = $local_task_manager;
     $this->currentUser = $current_user;
+    $this->requestStack = $request_stack;
     $this->init();
   }
 
@@ -108,7 +122,8 @@ class DashboardHelper implements ContainerInjectionInterface {
       $container->get('entity_type.manager'),
       $container->get('current_route_match'),
       $container->get('plugin.manager.menu.local_task'),
-      $container->get('current_user')
+      $container->get('current_user'),
+      $container->get('request_stack')
     );
   }
 
@@ -131,7 +146,15 @@ class DashboardHelper implements ContainerInjectionInterface {
   protected function init(): void {
     // Check if our path is in the user dashboard.
     $route_object = $this->routeMatch->getRouteObject();
-    if (!$route_object || substr($route_object->getPath(), 0, 13) !== '/user/{user}/') {
+    if ($route_object && preg_match('/\/job\/{contacts_job}\/(applications|extend|withdraw|edit)/i', $route_object->getPath())) {
+      $this->dashboard = 'org';
+      $this->user = $this->routeMatch->getParameter('contacts_job')->organisation->entity;
+    }
+    else if ($route_object && substr($route_object->getPath(), 0, 9) === '/job/post' && $this->requestStack->getCurrentRequest()->query->has('organisation')) {
+      $this->dashboard = 'org';
+      $this->user = User::load($this->requestStack->getCurrentRequest()->query->get('organisation'));
+    }
+    else if (!$route_object || substr($route_object->getPath(), 0, 13) !== '/user/{user}/') {
       return;
     }
 
@@ -255,7 +278,27 @@ class DashboardHelper implements ContainerInjectionInterface {
     // normal dashboard routing context, so we need to force getting the correct
     // tabs. We don't do this normally as we'd lose the active trail.
     if (!isset($links['tabs']['contacts_user_dashboard_tab:user_summary'])) {
-      $links = $this->localTaskManager->getLocalTasks('contacts_user_dashboard.summary', 0);
+      // This is error prone so wrap in a try catch.
+      try {
+        $route_match = new RouteMatch(
+          'contacts_user_dashboard.summary',
+          \Drupal::service('router.route_provider')->getRouteByName('contacts_user_dashboard.summary'),
+          ['user' => $this->user],
+          ['user' => $this->user->id()]
+        );
+        $local_task_manager = new LocalTaskManager(
+          \Drupal::service('http_kernel.controller.argument_resolver'),
+          \Drupal::requestStack(),
+          $route_match,
+          \Drupal::service('router.route_provider'),
+          \Drupal::service('module_handler'),
+          \Drupal::service('cache.discovery'),
+          \Drupal::service('language_manager'),
+          \Drupal::service('access_manager'),
+          \Drupal::service('current_user')
+        );
+        $links = $local_task_manager->getLocalTasks('contacts_user_dashboard.summary', 0);
+      } catch (\Exception $exception) {  dpm($exception->getTrace(), $exception->getMessage()); }
     }
 
     $cacheability->merge($links['cacheability']);
