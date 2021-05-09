@@ -5,6 +5,11 @@ dependencies:
   config:
     - contacts_jobs.contacts_job_type.job
     - field.field.contacts_job.job.app_settings
+    - field.field.contacts_job.job.job_category
+    - field.field.contacts_job.job.job_description
+    - field.field.contacts_job.job.job_description_summary
+    - field.field.contacts_job.job.job_files
+    - field.field.contacts_job.job.job_keywords
     - field.field.contacts_job.job.job_description
     - field.field.contacts_job.job.job_hours
     - field.field.contacts_job.job.job_hours_per_week
@@ -16,6 +21,7 @@ dependencies:
   module:
     - contacts_jobs
     - field_group
+    - file
     - inline_entity_form
     - text
 third_party_settings:
@@ -96,6 +102,49 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  job_category:
+    weight: 15
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  job_description:
+    weight: 11
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  job_description_summary:
+    weight: 12
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  job_files:
+    weight: 13
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  job_keywords:
+    weight: 14
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   job_description:
     type: text_textarea
     weight: 8

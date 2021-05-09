@@ -1,0 +1,19 @@
+uuid: d70ab32c-c914-443f-8c5d-6a66686cf933
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_description_summary
+id: contacts_job.job.job_description_summary
+field_name: job_description_summary
+entity_type: contacts_job
+bundle: job
+label: Summary
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

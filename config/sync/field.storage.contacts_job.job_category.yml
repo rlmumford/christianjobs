@@ -1,0 +1,20 @@
+uuid: 8fa6a177-14c4-4809-aa87-49394ca583b6
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+    - taxonomy
+id: contacts_job.job_category
+field_name: job_category
+entity_type: contacts_job
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,8 +1,0 @@
-uuid: 3dd9af8e-e2a1-426e-a9e1-cbab8b5c8536
-langcode: en
-status: true
-dependencies: {  }
-name: Industries
-vid: industries
-description: 'Selectable Industries for Job Postings'
-weight: 0

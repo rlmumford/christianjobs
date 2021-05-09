@@ -1,0 +1,29 @@
+uuid: 932cc522-8597-4cdd-bd65-57d205ec7961
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_keywords
+    - taxonomy.vocabulary.job_keywords
+id: contacts_job.job.job_keywords
+field_name: job_keywords
+entity_type: contacts_job
+bundle: job
+label: Keywords
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      job_keywords: job_keywords
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: job_keywords
+field_type: entity_reference

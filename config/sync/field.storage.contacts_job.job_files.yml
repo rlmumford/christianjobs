@@ -1,0 +1,23 @@
+uuid: 56ba5dc1-9802-4d86-a038-c4706b2e0b60
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+    - file
+id: contacts_job.job_files
+field_name: job_files
+entity_type: contacts_job
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

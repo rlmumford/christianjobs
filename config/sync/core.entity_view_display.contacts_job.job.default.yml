@@ -1,0 +1,162 @@
+uuid: dc3de3dd-8272-456a-ab4a-651ce8ce285d
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.field.contacts_job.job.app_settings
+    - field.field.contacts_job.job.job_category
+    - field.field.contacts_job.job.job_description
+    - field.field.contacts_job.job.job_description_summary
+    - field.field.contacts_job.job.job_files
+    - field.field.contacts_job.job.job_keywords
+    - field.field.contacts_job.job.job_description
+    - field.field.contacts_job.job.job_hours
+    - field.field.contacts_job.job.job_hours_per_week
+    - field.field.contacts_job.job.job_how_to_apply
+    - field.field.contacts_job.job.job_location
+    - field.field.contacts_job.job.job_payment_status
+    - field.field.contacts_job.job.job_region
+    - field.field.contacts_job.job.job_type
+  module:
+    - contacts_jobs
+    - file
+    - text
+    - user
+id: contacts_job.job.default
+targetEntityType: contacts_job
+bundle: job
+mode: default
+content:
+  closing:
+    label: hidden
+    type: timestamp
+    weight: 99
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  job_category:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  job_description:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  job_description_summary:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  job_files:
+    weight: 103
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  job_keywords:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  job_salary:
+    label: inline
+    type: contacts_jobs_salary_default
+    region: content
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+  organisation:
+    label: hidden
+    type: author
+    weight: 99
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promoted_end:
+    label: hidden
+    type: timestamp
+    weight: 99
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  promoted_start:
+    label: hidden
+    type: timestamp
+    weight: 99
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  publish_end:
+    label: hidden
+    type: timestamp
+    weight: 99
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  publish_start:
+    label: hidden
+    type: timestamp
+    weight: 99
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  title:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  uid:
+    label: hidden
+    type: author
+    weight: 99
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  app_settings: true
+  job_description: true
+  job_hours: true
+  job_hours_per_week: true
+  job_how_to_apply: true
+  job_location: true
+  job_payment_status: true
+  job_region: true
+  job_type: true
+  links: true
+  organisation_address: true
+  organisation_link: true
+  organisation_logo: true
+  search_api_excerpt: true

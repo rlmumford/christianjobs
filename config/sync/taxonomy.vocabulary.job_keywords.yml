@@ -1,0 +1,8 @@
+uuid: 64cf8e0c-faab-466b-adee-13bbad06aa4e
+langcode: en
+status: true
+dependencies: {  }
+name: 'Job Keywords'
+vid: job_keywords
+description: ''
+weight: 0

@@ -4,7 +4,7 @@ status: true
 dependencies: {  }
 _core:
   default_config_hash: Jh8LKt15SKpzlzzYJEgfSBqsNHQ510GbWtd07rXzZWI
-name: 'Job categories'
+name: 'Job Categories'
 vid: job_category
 description: ''
 weight: 0

@@ -1,0 +1,27 @@
+uuid: 0f911d50-05e6-4dea-bb94-1c6b1c81626f
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_files
+  module:
+    - file
+id: contacts_job.job.job_files
+field_name: job_files
+entity_type: contacts_job
+bundle: job
+label: 'Supporting Documents'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf docx doc odt jpg png'
+  max_filesize: ''
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

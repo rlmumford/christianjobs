@@ -1,15 +1,16 @@
-uuid: c2b5bdc4-a325-4cb5-bcff-3e326916d2b1
+uuid: 54a9da62-c65a-454f-a811-f4685eee1538
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.profile.crm_org_categories
-    - profile.type.crm_org
-id: profile.crm_org.crm_org_categories
-field_name: crm_org_categories
-entity_type: profile
-bundle: crm_org
-label: Categories
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.job_category
+    - taxonomy.vocabulary.job_category
+id: contacts_job.job.job_category
+field_name: job_category
+entity_type: contacts_job
+bundle: job
+label: Category
 description: ''
 required: false
 translatable: false
