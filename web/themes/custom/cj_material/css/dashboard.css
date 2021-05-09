@@ -257,3 +257,32 @@ li.local-action.single a {
   padding: 10px;
   margin-left: -10px;
 }
+
+fieldset.card legend.card-item.card-title {
+  display: table;
+  float: left;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #1E5168;
+}
+fieldset.card legend.card-item.card-title + * {
+  clear: both;
+}
+
+body:not(:-moz-handler-blocked) fieldset.card {
+  display: table-cell;
+}
+
+.card summary {
+  margin: 40px 0 4px;
+}
+
+.dashboard h1:after {
+  content: none;
+}
+
+.dashboard h1 {
+  padding-bottom: 0;
+}
+

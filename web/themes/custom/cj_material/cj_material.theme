@@ -118,6 +118,8 @@ function cj_material_preprocess_page__dashboard(array &$variables) {
 
   $excluded_route_names = [
     'contacts_user_dashboard.summary',
+    'entity.contacts_job.update_form',
+    'entity.contacts_job.post_form'
   ];
   if (!in_array(\Drupal::routeMatch()->getRouteName(), $excluded_route_names)) {
     $variables['layout_content_classes'] = 'card card-body';
@@ -180,6 +182,16 @@ function cj_material_preprocess_page(&$variables) {
         }
       }
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_fieldset().
+ */
+function cj_material_preprocess_fieldset(&$variables) {
+  if (in_array('card', $variables['attributes']['class'])) {
+    $variables['legend']['attributes']->addClass('card-title');
+    $variables['legend']['attributes']->addClass('card-item');
   }
 }
 

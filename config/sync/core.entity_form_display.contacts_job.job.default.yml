@@ -45,10 +45,10 @@ third_party_settings:
       format_type: fieldset
       region: content
       format_settings:
-        id: ''
-        classes: fieldset-job-post
         description: ''
         required_fields: true
+        id: ''
+        classes: 'fieldset-job-post card card-body'
       label: 'Job details'
     group_applic:
       children:
@@ -58,10 +58,10 @@ third_party_settings:
       format_type: fieldset
       region: content
       format_settings:
-        id: ''
-        classes: ' fieldset-job-post'
         description: ''
         required_fields: true
+        id: ''
+        classes: ' fieldset-job-post card card-body'
       label: 'Application details'
     group_administration:
       children:
@@ -72,10 +72,10 @@ third_party_settings:
       format_type: fieldset
       region: content
       format_settings:
-        id: ''
-        classes: fieldset-job-post
         description: ''
         required_fields: true
+        id: ''
+        classes: 'fieldset-job-post card card-body'
       label: Administration
 id: contacts_job.job.default
 targetEntityType: contacts_job
