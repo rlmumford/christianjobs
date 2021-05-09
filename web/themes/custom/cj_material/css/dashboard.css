@@ -243,3 +243,17 @@ html.dashboard .card .card-links a {
   font-family: "Montserrat", sans-serif;
   font-size: 0.8em;
 }
+
+li.local-action.single {
+  list-style: none;
+}
+
+li.local-action.single a {
+  color: #FF904B;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 10px;
+  margin-left: -10px;
+}

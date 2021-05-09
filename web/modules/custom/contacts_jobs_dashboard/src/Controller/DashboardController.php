@@ -392,6 +392,9 @@ class DashboardController extends ControllerBase {
     ];
     $content['jobs_add'] = [
       '#theme' => 'menu_local_action',
+      '#attributes' => [
+        'class' => ['local-action', 'single'],
+      ],
       '#link' => [
         'title' => 'Add Job',
         'url' => Url::fromRoute('entity.contacts_job.post_form', $params),
@@ -413,6 +416,9 @@ class DashboardController extends ControllerBase {
 
     $content['cj_app_settings_add'] = [
       '#theme' => 'menu_local_action',
+      '#attributes' => [
+        'class' => ['local-action', 'single'],
+      ],
       '#link' => [
         'title' => 'Add Application Setting',
         'url' => Url::fromRoute('entity.cj_app_settings.add_form', [
