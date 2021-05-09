@@ -147,6 +147,7 @@ content:
     third_party_settings: {  }
 hidden:
   app_settings: true
+  field_job_description_summary: true
   job_description: true
   job_hours: true
   job_hours_per_week: true

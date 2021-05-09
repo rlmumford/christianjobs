@@ -9,11 +9,10 @@ dependencies:
     - field.field.contacts_job.job.job_description
     - field.field.contacts_job.job.job_description_summary
     - field.field.contacts_job.job.job_files
-    - field.field.contacts_job.job.job_keywords
-    - field.field.contacts_job.job.job_description
     - field.field.contacts_job.job.job_hours
     - field.field.contacts_job.job.job_hours_per_week
     - field.field.contacts_job.job.job_how_to_apply
+    - field.field.contacts_job.job.job_keywords
     - field.field.contacts_job.job.job_location
     - field.field.contacts_job.job.job_payment_status
     - field.field.contacts_job.job.job_region
@@ -29,11 +28,17 @@ third_party_settings:
     group_job_details:
       children:
         - title
+        - job_description_summary
+        - job_description
+        - job_salary
+        - job_files
+        - publish_start
+        - closing
+        - job_keywords
+        - job_category
         - job_type
         - job_hours
         - job_hours_per_week
-        - job_salary
-        - job_description
         - job_location
       parent_name: ''
       weight: 0
@@ -47,8 +52,6 @@ third_party_settings:
       label: 'Job details'
     group_applic:
       children:
-        - publish_start
-        - closing
         - app_settings
       parent_name: ''
       weight: 1
@@ -98,22 +101,18 @@ content:
     third_party_settings: {  }
   closing:
     type: datetime_timestamp_no_default
-    weight: 1
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   job_category:
-    weight: 15
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    weight: 11
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   job_description:
-    weight: 11
+    weight: 5
     settings:
       rows: 5
       placeholder: ''
@@ -121,7 +120,7 @@ content:
     type: text_textarea
     region: content
   job_description_summary:
-    weight: 12
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -129,47 +128,39 @@ content:
     type: string_textarea
     region: content
   job_files:
-    weight: 13
+    weight: 7
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
     region: content
-  job_keywords:
+  job_hours:
+    type: options_select
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  job_hours_per_week:
+    type: string_textfield
     weight: 14
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  job_keywords:
+    weight: 10
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: entity_reference_autocomplete_tags
     region: content
-  job_description:
-    type: text_textarea
-    weight: 8
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-  job_hours:
-    type: options_select
-    weight: 5
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  job_hours_per_week:
-    type: string_textfield
-    weight: 6
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   job_location:
     type: string_textfield
-    weight: 9
+    weight: 15
     region: content
     settings:
       size: 60
@@ -178,12 +169,12 @@ content:
   job_salary:
     type: contacts_jobs_salary_default
     region: content
-    weight: 7
+    weight: 6
     settings: {  }
     third_party_settings: {  }
   job_type:
     type: options_select
-    weight: 4
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -199,7 +190,7 @@ content:
     third_party_settings: {  }
   publish_start:
     type: datetime_timestamp
-    weight: 0
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -222,6 +213,7 @@ content:
     region: content
     third_party_settings: {  }
 hidden:
+  field_job_description_summary: true
   job_how_to_apply: true
   job_payment_status: true
   job_region: true
