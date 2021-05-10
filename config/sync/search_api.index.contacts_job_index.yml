@@ -74,6 +74,54 @@ field_settings:
     dependencies:
       config:
         - field.storage.contacts_job.job_type
+  salary_currency:
+    label: 'Salary Currency'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'job_salary:currency_code'
+    type: string
+    dependencies:
+      module:
+        - contacts_jobs
+  salary_max:
+    label: 'Salary Max'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'job_salary:max'
+    type: integer
+    dependencies:
+      module:
+        - contacts_jobs
+  salary_max_annual:
+    label: 'Salary Max (Annual Equivalent)'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'job_salary:max_annual'
+    type: integer
+    dependencies:
+      module:
+        - contacts_jobs
+  salary_min:
+    label: 'Salary Min'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'job_salary:min'
+    type: integer
+    dependencies:
+      module:
+        - contacts_jobs
+  salary_min_annual:
+    label: 'Salary Min (Annual Equivalent)'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'job_salary:min_annual'
+    type: integer
+    dependencies:
+      module:
+        - contacts_jobs
+  salary_type:
+    label: 'Salary Type'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'job_salary:type'
+    type: string
+    dependencies:
+      module:
+        - contacts_jobs
   publish_end:
     label: 'Publish End'
     datasource_id: 'entity:contacts_job'
