@@ -1,0 +1,29 @@
+uuid: fcc8c5ff-bd50-4bd6-bd51-a36fd067e324
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.location_tree
+  module:
+    - facets
+    - system
+  theme:
+    - cj_material
+id: locationtree
+theme: cj_material
+region: sidebar_facets
+weight: -8
+provider: null
+plugin: 'facet_block:location_tree'
+settings:
+  id: 'facet_block:location_tree'
+  label: Locations
+  provider: facets
+  label_display: visible
+  block_id: locationtree
+visibility:
+  request_path:
+    id: request_path
+    pages: /jobs
+    negate: false
+    context_mapping: {  }

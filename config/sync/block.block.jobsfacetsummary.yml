@@ -1,0 +1,28 @@
+uuid: 2d5951e2-ac5d-455e-97ba-f14b73afa3a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets_summary.facets_summary.facet_summary_jobs
+  module:
+    - facets_summary
+    - system
+  theme:
+    - cj_material
+id: jobsfacetsummary
+theme: cj_material
+region: sidebar_facets_summary
+weight: 0
+provider: null
+plugin: 'facets_summary_block:facet_summary_jobs'
+settings:
+  id: 'facets_summary_block:facet_summary_jobs'
+  label: 'Jobs Facet Summary'
+  provider: facets_summary
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /jobs
+    negate: false
+    context_mapping: {  }

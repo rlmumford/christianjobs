@@ -1,0 +1,29 @@
+uuid: b952fcc5-51be-4f31-8a37-a4006fe8f59f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.contacts_jobs_list
+  module:
+    - system
+    - views
+  theme:
+    - cj_material
+id: christian_jobs_salary
+theme: cj_material
+region: sidebar_facets
+weight: -9
+provider: null
+plugin: 'views_exposed_filter_block:contacts_jobs_list-listings'
+settings:
+  id: 'views_exposed_filter_block:contacts_jobs_list-listings'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: Salary
+visibility:
+  request_path:
+    id: request_path
+    pages: /jobs
+    negate: false
+    context_mapping: {  }

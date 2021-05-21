@@ -1,0 +1,23 @@
+uuid: b170376b-eeee-44b3-9107-1437b965202d
+langcode: en
+status: '1'
+dependencies: {  }
+cluster_id: aws_christian_jobs
+name: 'AWS Christian Jobs'
+url: 'https://search-christianjobs7-dnychkm2ctwxlpuxbsa6alxn7u.eu-west-2.es.amazonaws.com:443'
+options:
+  multiple_nodes_connection: false
+  use_authentication: 0
+  authentication_type: Basic
+  username: ''
+  password: ''
+  timeout: '3'
+  rewrite:
+    rewrite_index: 0
+    index:
+      prefix: ''
+      suffix: ''
+  elasticsearch_aws_connector_aws_region: ''
+  elasticsearch_aws_connector_aws_authentication_type: aws_role
+  elasticsearch_aws_connector_aws_credentials_key: ''
+  elasticsearch_aws_connector_aws_credentials_secret: ''

@@ -5,6 +5,7 @@ dependencies:
   config:
     - contacts_jobs.contacts_job_type.job
     - field.field.contacts_job.job.app_settings
+    - field.field.contacts_job.job.locations
     - field.field.contacts_job.job.job_category
     - field.field.contacts_job.job.job_description
     - field.field.contacts_job.job.job_description_summary
@@ -39,7 +40,7 @@ third_party_settings:
         - job_type
         - job_hours
         - job_hours_per_week
-        - job_location
+        - locations
       parent_name: ''
       weight: 0
       format_type: fieldset
@@ -158,14 +159,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete_tags
     region: content
-  job_location:
-    type: string_textfield
-    weight: 15
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   job_salary:
     type: contacts_jobs_salary_default
     region: content
@@ -178,6 +171,23 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  locations:
+    weight: 15
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      match_operator: CONTAINS
+      revision: false
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
   organisation:
     type: entity_reference_autocomplete
     weight: 10
@@ -215,6 +225,7 @@ content:
 hidden:
   field_job_description_summary: true
   job_how_to_apply: true
+  job_location: true
   job_payment_status: true
   job_region: true
   promoted_end: true

@@ -2,15 +2,22 @@ uuid: 6cb9ae23-6457-416d-b9cf-4b1272a5ff8e
 langcode: en
 status: true
 dependencies:
-  module:
-    - contacts_jobs
-    - search_api
   config:
-    - field.storage.contacts_job.job_description
+    - field.storage.contacts_job.job_category
     - field.storage.contacts_job.job_hours
+    - field.storage.contacts_job.job_description
+    - field.storage.contacts_job.job_keywords
+    - field.storage.contacts_job.locations
     - field.storage.contacts_job.job_region
     - field.storage.contacts_job.job_type
-    - search_api.server.database_server
+    - search_api.server.aws_christian_jobs
+  module:
+    - taxonomy
+    - contacts_jobs
+    - places
+    - contacts
+    - user
+    - search_api
 _core:
   default_config_hash: ZPpHSxIPK29RSsBSHlyMeCw_rNeIJX9dT7Jp6DuGm_o
 id: contacts_job_index
@@ -34,6 +41,16 @@ field_settings:
     dependencies:
       module:
         - contacts_jobs
+  country_code:
+    label: 'Locations » Place » Postal Address » The two-letter country code'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'locations:entity:address:country_code'
+    type: string
+    dependencies:
+      config:
+        - field.storage.contacts_job.locations
+      module:
+        - places
   created:
     label: Created
     datasource_id: 'entity:contacts_job'
@@ -42,6 +59,35 @@ field_settings:
     dependencies:
       module:
         - contacts_jobs
+  geo:
+    label: 'Locations » Place » Geolocation'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'locations:entity:geo'
+    type: string
+    dependencies:
+      config:
+        - field.storage.contacts_job.locations
+      module:
+        - places
+  job_category:
+    label: Category
+    datasource_id: 'entity:contacts_job'
+    property_path: job_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.contacts_job.job_category
+  job_category_search:
+    label: 'Category Search'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'job_category:entity:name'
+    type: text
+    boost: !!float 3
+    dependencies:
+      config:
+        - field.storage.contacts_job.job_category
+      module:
+        - taxonomy
   job_description:
     label: 'Job Description'
     datasource_id: 'entity:contacts_job'
@@ -58,6 +104,25 @@ field_settings:
     dependencies:
       config:
         - field.storage.contacts_job.job_hours
+  job_keywords:
+    label: Keywords
+    datasource_id: 'entity:contacts_job'
+    property_path: job_keywords
+    type: integer
+    dependencies:
+      config:
+        - field.storage.contacts_job.job_keywords
+  job_keywords_search:
+    label: 'Keywords Search'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'job_keywords:entity:name'
+    type: text
+    boost: !!float 3
+    dependencies:
+      config:
+        - field.storage.contacts_job.job_keywords
+      module:
+        - taxonomy
   job_region:
     label: Region
     datasource_id: 'entity:contacts_job'
@@ -74,6 +139,61 @@ field_settings:
     dependencies:
       config:
         - field.storage.contacts_job.job_type
+  latlon:
+    label: 'Locations » Place » Geolocation » LatLong Pair'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'locations:entity:geo:latlon'
+    type: string
+    dependencies:
+      config:
+        - field.storage.contacts_job.locations
+      module:
+        - places
+  location_tree:
+    label: 'Location Tree'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'locations:entity:location_tree'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.contacts_job.locations
+      module:
+        - places
+  organisation:
+    label: Organisation
+    datasource_id: 'entity:contacts_job'
+    property_path: organisation
+    type: integer
+    dependencies:
+      module:
+        - contacts_jobs
+  organisation_search:
+    label: 'Organisation Search'
+    datasource_id: 'entity:contacts_job'
+    property_path: 'organisation:entity:_label'
+    type: text
+    boost: !!float 5
+    dependencies:
+      module:
+        - contacts
+        - contacts_jobs
+        - user
+  publish_end:
+    label: 'Publish End'
+    datasource_id: 'entity:contacts_job'
+    property_path: publish_end
+    type: date
+    dependencies:
+      module:
+        - contacts_jobs
+  publish_start:
+    label: 'Publish Start'
+    datasource_id: 'entity:contacts_job'
+    property_path: publish_start
+    type: date
+    dependencies:
+      module:
+        - contacts_jobs
   salary_currency:
     label: 'Salary Currency'
     datasource_id: 'entity:contacts_job'
@@ -122,28 +242,12 @@ field_settings:
     dependencies:
       module:
         - contacts_jobs
-  publish_end:
-    label: 'Publish End'
-    datasource_id: 'entity:contacts_job'
-    property_path: publish_end
-    type: date
-    dependencies:
-      module:
-        - contacts_jobs
-  publish_start:
-    label: 'Publish Start'
-    datasource_id: 'entity:contacts_job'
-    property_path: publish_start
-    type: date
-    dependencies:
-      module:
-        - contacts_jobs
   title:
     label: 'Job Title'
     datasource_id: 'entity:contacts_job'
     property_path: title
     type: text
-    boost: !!float 5
+    boost: !!float 8
     dependencies:
       module:
         - contacts_jobs
@@ -158,21 +262,27 @@ processor_settings:
   ignorecase:
     all_fields: true
     fields:
+      - country_code
+      - geo
+      - job_category_search
       - job_description
       - job_hours
+      - job_keywords_search
       - job_type
+      - latlon
+      - organisation_search
+      - salary_currency
+      - salary_type
       - title
     weights:
       preprocess_index: -20
       preprocess_query: -20
+  language_with_fallback: {  }
   rendered_item: {  }
-  solr_date_range:
-    weights:
-      preprocess_index: 0
 tracker_settings:
   default:
     indexing_order: fifo
 options:
   index_directly: true
   cron_limit: 50
-server: database_server
+server: aws_christian_jobs

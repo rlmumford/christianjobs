@@ -5,6 +5,7 @@ dependencies:
   config:
     - contacts_jobs.contacts_job_type.job
     - field.field.contacts_job.job.app_settings
+    - field.field.contacts_job.job.locations
     - field.field.contacts_job.job.job_category
     - field.field.contacts_job.job.job_description
     - field.field.contacts_job.job.job_description_summary
@@ -236,6 +237,22 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 7
+          980da6a2-531a-4f20-9642-1a154401890d:
+            uuid: 980da6a2-531a-4f20-9642-1a154401890d
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:contacts_job:job:locations'
+              formatter:
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+                type: entity_reference_label
+            additional: {  }
+            weight: 2
         third_party_settings: {  }
 id: contacts_job.job.default
 targetEntityType: contacts_job
@@ -297,6 +314,14 @@ content:
     weight: 100
     settings: {  }
     third_party_settings: {  }
+  locations:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   organisation:
     label: hidden
     type: author

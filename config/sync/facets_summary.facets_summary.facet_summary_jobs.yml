@@ -1,0 +1,45 @@
+uuid: 80696350-7adb-44b6-8001-492d1cfb6d3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.contacts_job_index
+    - views.view.contacts_jobs_list
+  module:
+    - search_api
+id: facet_summary_jobs
+name: 'Jobs Facet Summary'
+facets:
+  facet_job_category:
+    checked: true
+    label: Category
+    separator: ', '
+    weight: 0
+    show_count: false
+  facet_job_keywords:
+    checked: true
+    label: Keywords
+    separator: ', '
+    weight: 0
+    show_count: false
+  location_tree:
+    checked: true
+    label: 'Location Tree'
+    separator: ', '
+    weight: 0
+    show_count: false
+facet_source_id: 'search_api:views_page__contacts_jobs_list__listings'
+processor_configs:
+  hide_when_not_rendered:
+    processor_id: hide_when_not_rendered
+    weights:
+      build: '45'
+    settings: {  }
+  show_text_when_empty:
+    processor_id: show_text_when_empty
+    weights:
+      build: '10'
+    settings:
+      text:
+        value: 'No results found.'
+        format: plain_text

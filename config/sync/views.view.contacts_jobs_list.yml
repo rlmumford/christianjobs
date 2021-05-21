@@ -908,13 +908,15 @@ display:
               max_links: 100
       exposed_block: true
       defaults:
-        cache: true
+        cache: false
         arguments: false
         sorts: true
         access: true
       display_description: ''
       path: jobs
       arguments: {  }
+      cache:
+        type: none
     cache_metadata:
       max-age: -1
       contexts:

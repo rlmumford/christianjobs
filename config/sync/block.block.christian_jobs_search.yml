@@ -1,0 +1,29 @@
+uuid: fab8af81-7668-4d5b-a973-1570a94021af
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.contacts_jobs_list
+  module:
+    - system
+    - views
+  theme:
+    - cj_material
+id: christian_jobs_search
+theme: cj_material
+region: sidebar_facets
+weight: -7
+provider: null
+plugin: 'views_exposed_filter_block:contacts_jobs_list-listings'
+settings:
+  id: 'views_exposed_filter_block:contacts_jobs_list-listings'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: Search
+visibility:
+  request_path:
+    id: request_path
+    pages: /jobs
+    negate: false
+    context_mapping: {  }

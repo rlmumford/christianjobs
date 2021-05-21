@@ -1,0 +1,12 @@
+uuid: f13e5aa8-4dca-4c76-b828-dc6539fd5f28
+langcode: en
+status: true
+dependencies: {  }
+id: search_api__views_page__contacts_jobs_list__listings
+name: 'search_api:views_page__contacts_jobs_list__listings'
+filter_key: f
+url_processor: query_string
+breadcrumb:
+  active: false
+  before: true
+  group: false

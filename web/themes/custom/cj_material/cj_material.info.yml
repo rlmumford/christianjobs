@@ -18,6 +18,8 @@ regions:
   breadcrumb: Breadcrumb
   highlighted: Highlighted
   content: Content
+  sidebar_facets: 'Facets'
+  sidebar_facets_summary: 'Facets Summary'
   sidebar_first: 'First sidebar'
   sidebar_second: 'Second sidebar'
   footer: Footer

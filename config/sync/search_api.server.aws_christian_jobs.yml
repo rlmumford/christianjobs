@@ -1,0 +1,14 @@
+uuid: 0d6c9018-cbda-4598-b327-2f35b61b20be
+langcode: en
+status: true
+dependencies:
+  module:
+    - elasticsearch_connector
+id: aws_christian_jobs
+name: 'AWS Christian Jobs'
+description: ''
+backend: elasticsearch
+backend_config:
+  cluster_settings:
+    cluster: aws_christian_jobs
+  fuzziness: auto

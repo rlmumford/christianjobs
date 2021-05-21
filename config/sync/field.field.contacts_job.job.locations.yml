@@ -1,0 +1,27 @@
+uuid: b0d8ea46-4029-451e-9172-66eb99adce8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - contacts_jobs.contacts_job_type.job
+    - field.storage.contacts_job.locations
+id: contacts_job.job.locations
+field_name: locations
+entity_type: contacts_job
+bundle: job
+label: Locations
+description: 'Where is the job based? You can add extra locations by clicking "Add New Place"'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:place'
+  handler_settings:
+    target_bundles:
+      taxonomy_address: taxonomy_address
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

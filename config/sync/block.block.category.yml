@@ -1,0 +1,29 @@
+uuid: 8443fcfd-8e04-4150-a8fd-15065a0661c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.facet_job_category
+  module:
+    - facets
+    - system
+  theme:
+    - cj_material
+id: category
+theme: cj_material
+region: sidebar_facets
+weight: -6
+provider: null
+plugin: 'facet_block:facet_job_category'
+settings:
+  id: 'facet_block:facet_job_category'
+  label: Category
+  provider: facets
+  label_display: visible
+  block_id: category
+visibility:
+  request_path:
+    id: request_path
+    pages: /jobs
+    negate: false
+    context_mapping: {  }

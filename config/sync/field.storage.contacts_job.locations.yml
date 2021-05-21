@@ -1,0 +1,20 @@
+uuid: 1eaea0fb-9754-4643-9813-d41ad92cb1b2
+langcode: en
+status: true
+dependencies:
+  module:
+    - contacts_jobs
+    - places
+id: contacts_job.locations
+field_name: locations
+entity_type: contacts_job
+type: entity_reference
+settings:
+  target_type: place
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

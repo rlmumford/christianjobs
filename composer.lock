@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f7bb26f722e99364478e8386ba977fc",
+    "content-hash": "881850e4dfe8042c34cc7b8a0a7e7ec2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -281,16 +281,16 @@
         },
         {
             "name": "commerceguys/addressing",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/commerceguys/addressing.git",
-                "reference": "00c263fa945e7f78524bbb6b99d331f3b493be2a"
+                "reference": "311040bd78ea2ea82105dd1f17205c449ac8de47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/commerceguys/addressing/zipball/00c263fa945e7f78524bbb6b99d331f3b493be2a",
-                "reference": "00c263fa945e7f78524bbb6b99d331f3b493be2a",
+                "url": "https://api.github.com/repos/commerceguys/addressing/zipball/311040bd78ea2ea82105dd1f17205c449ac8de47",
+                "reference": "311040bd78ea2ea82105dd1f17205c449ac8de47",
                 "shasum": ""
             },
             "require": {
@@ -338,30 +338,30 @@
             ],
             "support": {
                 "issues": "https://github.com/commerceguys/addressing/issues",
-                "source": "https://github.com/commerceguys/addressing/tree/v1.2.0"
+                "source": "https://github.com/commerceguys/addressing/tree/v1.2.1"
             },
-            "time": "2021-03-14T20:04:10+00:00"
+            "time": "2021-05-17T08:05:21+00:00"
         },
         {
             "name": "commerceguys/intl",
-            "version": "v1.0.8",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/commerceguys/intl.git",
-                "reference": "b8df285687b8d5d6494874d22e2e5cf625dbe180"
+                "reference": "90b4f75c4917927a1960c0dcaa002a91ab97f5d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/commerceguys/intl/zipball/b8df285687b8d5d6494874d22e2e5cf625dbe180",
-                "reference": "b8df285687b8d5d6494874d22e2e5cf625dbe180",
+                "url": "https://api.github.com/repos/commerceguys/intl/zipball/90b4f75c4917927a1960c0dcaa002a91ab97f5d5",
+                "reference": "90b4f75c4917927a1960c0dcaa002a91ab97f5d5",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0.8"
+                "php": ">=7.1.3"
             },
             "require-dev": {
                 "mikey179/vfsstream": "1.*",
-                "phpunit/phpunit": "^6.0"
+                "phpunit/phpunit": "^7.5"
             },
             "type": "library",
             "extra": {
@@ -386,9 +386,9 @@
             "description": "Internationalization library powered by CLDR data.",
             "support": {
                 "issues": "https://github.com/commerceguys/intl/issues",
-                "source": "https://github.com/commerceguys/intl/tree/v1.0.8"
+                "source": "https://github.com/commerceguys/intl/tree/v1.1.0"
             },
-            "time": "2020-12-05T16:31:25+00:00"
+            "time": "2021-05-17T08:25:58+00:00"
         },
         {
             "name": "composer/installers",
@@ -3074,12 +3074,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/freelygive/drupal/contacts-jobs-new.git",
-                "reference": "cdc5f719f29fe1b786c74fc736e9cd4c9203bd35"
+                "reference": "892a5afed18438f30f2ba8be0e0f732ca60736bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/freelygive%2Fdrupal%2Fcontacts-jobs-new/repository/archive.zip?sha=cdc5f719f29fe1b786c74fc736e9cd4c9203bd35",
-                "reference": "cdc5f719f29fe1b786c74fc736e9cd4c9203bd35",
+                "url": "https://gitlab.com/api/v4/projects/freelygive%2Fdrupal%2Fcontacts-jobs-new/repository/archive.zip?sha=892a5afed18438f30f2ba8be0e0f732ca60736bc",
+                "reference": "892a5afed18438f30f2ba8be0e0f732ca60736bc",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -3095,7 +3095,7 @@
                 "issues": "https://www.drupal.org/project/issues/contacts_jobs",
                 "source": "http://cgit.drupalcode.org/contacts_jobs"
             },
-            "time": "2021-05-09T08:38:34+00:00"
+            "time": "2021-05-21T08:29:21+00:00"
         },
         {
             "name": "drupal/contacts_jobs_apps",
@@ -3709,17 +3709,17 @@
         },
         {
             "name": "drupal/ctools",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ctools.git",
-                "reference": "8.x-3.5"
+                "reference": "8.x-3.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.5.zip",
-                "reference": "8.x-3.5",
-                "shasum": "0113cd1e787ff3bde088c836c2d79d14136b0013"
+                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.6.zip",
+                "reference": "8.x-3.6",
+                "shasum": "9a849bb6ac9f4d02603d04b3265b35b7329e1ef5"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9"
@@ -3727,8 +3727,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.5",
-                    "datestamp": "1618592931",
+                    "version": "8.x-3.6",
+                    "datestamp": "1620838181",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3802,7 +3802,7 @@
         },
         {
             "name": "drupal/ctools_block",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "require": {
                 "drupal/core": "^8.8 || ^9",
                 "drupal/ctools": "*"
@@ -3810,8 +3810,8 @@
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.5",
-                    "datestamp": "1618592931",
+                    "version": "8.x-3.6",
+                    "datestamp": "1620838181",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3876,7 +3876,7 @@
         },
         {
             "name": "drupal/ctools_views",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "require": {
                 "drupal/core": "^8.8 || ^9",
                 "drupal/ctools": "^3"
@@ -3884,8 +3884,8 @@
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.5",
-                    "datestamp": "1618592931",
+                    "version": "8.x-3.6",
+                    "datestamp": "1620838181",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4067,25 +4067,25 @@
         },
         {
             "name": "drupal/elasticsearch_aws_connector",
-            "version": "dev-6.x",
+            "version": "dev-7.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/elasticsearch_aws_connector.git",
-                "reference": "db6adcbf45ca6f43eee5d3eb2e75d7447282e36a"
+                "reference": "4bb7b592bc562367b9ce592c4987fe6addfff288"
             },
             "require": {
                 "drupal/core": "^8",
-                "drupal/elasticsearch_connector": "6.x-dev",
-                "jsq/amazon-es-php": "^0.2.0"
+                "drupal/elasticsearch_connector": "^7.0-alpha2",
+                "jsq/amazon-es-php": "^0.3.0"
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-6.x": "6.x-dev"
+                    "dev-7.x": "7.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-6.x-dev",
-                    "datestamp": "1560262089",
+                    "version": "8.x-7.x-dev",
+                    "datestamp": "1610466974",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4132,16 +4132,22 @@
         },
         {
             "name": "drupal/elasticsearch_connector",
-            "version": "dev-6.x",
+            "version": "7.0.0-alpha3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/elasticsearch_connector.git",
-                "reference": "36a0645ce4d88f2db826972dfaadab9a995ef114"
+                "reference": "8.x-7.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/elasticsearch_connector-8.x-7.0-alpha3.zip",
+                "reference": "8.x-7.0-alpha3",
+                "shasum": "0752fc8b83479d10cdf314fc4225f6de17cc08e9"
             },
             "require": {
-                "drupal/core": "~8.0",
+                "drupal/core": "^8 || ^9",
                 "makinacorpus/php-lucene": "^1.0.2",
-                "nodespark/des-connector": "6.x-dev"
+                "nodespark/des-connector": "7.x-dev"
             },
             "require-dev": {
                 "behat/mink-selenium2-driver": "^1.3",
@@ -4154,12 +4160,9 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-6.x": "6.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-6.0-alpha2+9-dev",
-                    "datestamp": "1602191159",
+                    "version": "8.x-7.0-alpha3",
+                    "datestamp": "1602658539",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4385,17 +4388,17 @@
         },
         {
             "name": "drupal/entity_route_context",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_route_context.git",
-                "reference": "8.x-1.3"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_route_context-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "da0c0e70621f9aee7ee996747386c535ee10322e"
+                "url": "https://ftp.drupal.org/files/projects/entity_route_context-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "e5d4218c7530a8663402765637e1bdf877e91ac3"
             },
             "require": {
                 "drupal/core": "^8.6",
@@ -4404,8 +4407,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1615185758",
+                    "version": "8.x-1.4",
+                    "datestamp": "1620962431",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4591,29 +4594,32 @@
         },
         {
             "name": "drupal/facets",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/facets.git",
-                "reference": "8.x-1.7"
+                "reference": "8.x-1.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/facets-8.x-1.7.zip",
-                "reference": "8.x-1.7",
-                "shasum": "5a8a1092617c4dde96f691e23300d0d436c5fcb3"
+                "url": "https://ftp.drupal.org/files/projects/facets-8.x-1.8.zip",
+                "reference": "8.x-1.8",
+                "shasum": "f621b84b59c5315db14a0529df5dfc74ca5bc9de"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9"
             },
+            "conflict": {
+                "drupal/search_api": "<1.14"
+            },
             "require-dev": {
-                "drupal/search_api": "~1.5"
+                "drupal/search_api": "~1.14"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.7",
-                    "datestamp": "1613751460",
+                    "version": "8.x-1.8",
+                    "datestamp": "1620838256",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8418,16 +8424,16 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v6.8.1",
+            "version": "v7.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "358d7e709bab12259814e2bd427257b502c35471"
+                "reference": "25522ef4f16adcf49d7a1db149f2fcf010655b7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/358d7e709bab12259814e2bd427257b502c35471",
-                "reference": "358d7e709bab12259814e2bd427257b502c35471",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/25522ef4f16adcf49d7a1db149f2fcf010655b7f",
+                "reference": "25522ef4f16adcf49d7a1db149f2fcf010655b7f",
                 "shasum": ""
             },
             "require": {
@@ -8438,9 +8444,11 @@
             },
             "require-dev": {
                 "doctrine/inflector": "^1.3",
+                "ext-yaml": "*",
+                "ext-zip": "*",
                 "mockery/mockery": "^1.2",
                 "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": "^9.3",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.3",
                 "squizlabs/php_codesniffer": "^3.4",
                 "symfony/finder": "~4.0",
                 "symfony/yaml": "~4.0",
@@ -8479,9 +8487,9 @@
             ],
             "support": {
                 "issues": "https://github.com/elastic/elasticsearch-php/issues",
-                "source": "https://github.com/elastic/elasticsearch-php/tree/v6.8.1"
+                "source": "https://github.com/elastic/elasticsearch-php/tree/v7.12.0"
             },
-            "time": "2021-03-22T21:48:32+00:00"
+            "time": "2021-03-23T18:08:45+00:00"
         },
         {
             "name": "ezimuel/guzzlestreams",
@@ -8986,24 +8994,24 @@
         },
         {
             "name": "jsq/amazon-es-php",
-            "version": "0.2.3",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jeskew/amazon-es-php.git",
-                "reference": "b5cc8c2ba2ba5e39fa7150a013077ddda8ec5151"
+                "reference": "6f1ae9044c25c69b9c706ecb0906b45574cae589"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jeskew/amazon-es-php/zipball/b5cc8c2ba2ba5e39fa7150a013077ddda8ec5151",
-                "reference": "b5cc8c2ba2ba5e39fa7150a013077ddda8ec5151",
+                "url": "https://api.github.com/repos/jeskew/amazon-es-php/zipball/6f1ae9044c25c69b9c706ecb0906b45574cae589",
+                "reference": "6f1ae9044c25c69b9c706ecb0906b45574cae589",
                 "shasum": ""
             },
             "require": {
                 "aws/aws-sdk-php": "^3.0",
-                "elasticsearch/elasticsearch": "^2.1|^5.0|^6.0"
+                "elasticsearch/elasticsearch": "^2.1|^5.0|^6.0|^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0|~5.0"
+                "phpunit/phpunit": "^4.8.35|^5.4.0|^6.0.0|^7.0.0|^8.0.0"
             },
             "type": "library",
             "autoload": {
@@ -9031,9 +9039,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jeskew/amazon-es-php/issues",
-                "source": "https://github.com/jeskew/amazon-es-php/tree/master"
+                "source": "https://github.com/jeskew/amazon-es-php/tree/0.3.0"
             },
-            "time": "2018-01-25T17:54:48+00:00"
+            "time": "2019-07-20T01:13:04+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
@@ -9745,21 +9753,21 @@
         },
         {
             "name": "nodespark/des-connector",
-            "version": "6.x-dev",
+            "version": "7.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nodespark/des-connector.git",
-                "reference": "ca8373258620ce3d0b728e6fe75efecfdfbc73ea"
+                "reference": "bd6a566ea2d44c638281510fc5f8ab016a0df844"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nodespark/des-connector/zipball/ca8373258620ce3d0b728e6fe75efecfdfbc73ea",
-                "reference": "ca8373258620ce3d0b728e6fe75efecfdfbc73ea",
+                "url": "https://api.github.com/repos/nodespark/des-connector/zipball/bd6a566ea2d44c638281510fc5f8ab016a0df844",
+                "reference": "bd6a566ea2d44c638281510fc5f8ab016a0df844",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.0",
-                "ruflin/elastica": "~6.0"
+                "ruflin/elastica": "dev-master"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.3"
@@ -9794,7 +9802,7 @@
                 "issues": "https://github.com/nodespark/des-connector/issues",
                 "source": "https://github.com/nodespark/des-connector"
             },
-            "time": "2020-10-07T22:58:45+00:00"
+            "time": "2019-08-06T06:19:40+00:00"
         },
         {
             "name": "npm-asset/select2",
@@ -9807,6 +9815,67 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "nyholm/dsn",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nyholm/dsn.git",
+                "reference": "b3a54081dd6bc2e94ab1f6304f47d7b83250cb71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nyholm/dsn/zipball/b3a54081dd6bc2e94ab1f6304f47d7b83250cb71",
+                "reference": "b3a54081dd6bc2e94ab1f6304f47d7b83250cb71",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^5.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nyholm\\Dsn\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com"
+                }
+            ],
+            "description": "Parse your DSN strings in a powerful and flexible way",
+            "homepage": "http://tnyholm.se",
+            "keywords": [
+                "database",
+                "dsn",
+                "dsn parser",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/Nyholm/dsn/issues",
+                "source": "https://github.com/Nyholm/dsn/tree/2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-10-16T13:43:06+00:00"
         },
         {
             "name": "nyholm/psr7",
@@ -10616,16 +10685,16 @@
         },
         {
             "name": "php-http/multipart-stream-builder",
-            "version": "1.1.2",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/multipart-stream-builder.git",
-                "reference": "121299c2aad475a19087bc6298a1c9aa4d5c1ecc"
+                "reference": "11c1d31f72e01c738bbce9e27649a7cca829c30e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/multipart-stream-builder/zipball/121299c2aad475a19087bc6298a1c9aa4d5c1ecc",
-                "reference": "121299c2aad475a19087bc6298a1c9aa4d5c1ecc",
+                "url": "https://api.github.com/repos/php-http/multipart-stream-builder/zipball/11c1d31f72e01c738bbce9e27649a7cca829c30e",
+                "reference": "11c1d31f72e01c738bbce9e27649a7cca829c30e",
                 "shasum": ""
             },
             "require": {
@@ -10643,7 +10712,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.x-dev"
                 }
             },
             "autoload": {
@@ -10672,9 +10741,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/multipart-stream-builder/issues",
-                "source": "https://github.com/php-http/multipart-stream-builder/tree/1.1.2"
+                "source": "https://github.com/php-http/multipart-stream-builder/tree/1.2.0"
             },
-            "time": "2020-07-13T15:48:43+00:00"
+            "time": "2021-05-21T08:32:01+00:00"
         },
         {
             "name": "php-http/promise",
@@ -11241,46 +11310,48 @@
         },
         {
             "name": "ruflin/elastica",
-            "version": "6.1.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ruflin/Elastica.git",
-                "reference": "2621f5f559c497f18de0dcfdca8daaf6e2ac2d75"
+                "reference": "dd88070019dd85b9a79533417560fb9451cff28f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/2621f5f559c497f18de0dcfdca8daaf6e2ac2d75",
-                "reference": "2621f5f559c497f18de0dcfdca8daaf6e2ac2d75",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/dd88070019dd85b9a79533417560fb9451cff28f",
+                "reference": "dd88070019dd85b9a79533417560fb9451cff28f",
                 "shasum": ""
             },
             "require": {
-                "elasticsearch/elasticsearch": "^6.0",
-                "php": "^7.0",
-                "psr/log": "~1.0"
-            },
-            "conflict": {
-                "elasticsearch/elasticsearch": "6.8.0"
+                "elasticsearch/elasticsearch": "^7.1.1",
+                "ext-json": "*",
+                "nyholm/dsn": "^2.0.0",
+                "php": "^7.2 || ^8.0",
+                "psr/log": "^1.0",
+                "symfony/deprecation-contracts": "^2.2"
             },
             "require-dev": {
-                "aws/aws-sdk-php": "~3.0",
-                "guzzlehttp/guzzle": "~6.0",
-                "phpunit/phpunit": "^6.0"
+                "aws/aws-sdk-php": "^3.155",
+                "guzzlehttp/guzzle": "^6.3 || ^7.2",
+                "phpunit/phpunit": "^8.5.8 || ^9.4",
+                "symfony/phpunit-bridge": "^5.1.1"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow using IAM authentication with Amazon ElasticSearch Service",
-                "egeloen/http-adapter": "Allow using httpadapter transport",
-                "guzzlehttp/guzzle": "Allow using guzzle 6 as the http transport",
+                "egeloen/http-adapter": "Allow using httpadapter as transport",
+                "guzzlehttp/guzzle": "Allow using guzzle as transport",
                 "monolog/monolog": "Logging request"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.0.x-dev"
+                    "dev-master": "7.0.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Elastica\\": "lib/Elastica/"
+                    "Elastica\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -11301,9 +11372,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ruflin/Elastica/issues",
-                "source": "https://github.com/ruflin/Elastica/tree/6.1.4"
+                "source": "https://github.com/ruflin/Elastica/tree/master"
             },
-            "time": "2021-03-17T10:24:38+00:00"
+            "time": "2021-04-26T08:59:22+00:00"
         },
         {
             "name": "stack/builder",
@@ -11360,16 +11431,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.78.0",
+            "version": "v7.79.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "6ec33fa8e9de2322be93d28dfd685661c67ca549"
+                "reference": "e17e85bc13dfa531bdfb3d3719d3810431d104f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/6ec33fa8e9de2322be93d28dfd685661c67ca549",
-                "reference": "6ec33fa8e9de2322be93d28dfd685661c67ca549",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/e17e85bc13dfa531bdfb3d3719d3810431d104f9",
+                "reference": "e17e85bc13dfa531bdfb3d3719d3810431d104f9",
                 "shasum": ""
             },
             "require": {
@@ -11415,9 +11486,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v7.78.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v7.79.0"
             },
-            "time": "2021-05-05T23:55:32+00:00"
+            "time": "2021-05-19T19:30:23+00:00"
         },
         {
             "name": "symfony-cmf/routing",

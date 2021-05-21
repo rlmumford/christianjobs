@@ -6,6 +6,7 @@ dependencies:
     - contacts_jobs.contacts_job_type.job
     - core.entity_form_mode.contacts_job.admin
     - field.field.contacts_job.job.app_settings
+    - field.field.contacts_job.job.locations
     - field.field.contacts_job.job.job_category
     - field.field.contacts_job.job.job_description
     - field.field.contacts_job.job.job_description_summary
@@ -264,3 +265,4 @@ hidden:
   field_job_description_summary: true
   job_payment_status: true
   job_region: true
+  locations: true
