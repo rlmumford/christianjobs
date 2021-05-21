@@ -2,6 +2,7 @@
 
 use Drupal\cj_membership\Entity\Membership;
 use Drupal\commerce_order\Entity\Order;
+use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
@@ -14,6 +15,7 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\profile\Entity\Profile;
+use Drupal\views\Plugin\Block\ViewsExposedFilterBlock;
 
 /**
  * Implements hook_cron().
@@ -280,53 +282,70 @@ function cj_commerce_order_view_alter(array &$build, EntityInterface $order, Ent
 }
 
 /**
- * Implements hook_cj_membership_update();
- *
- * @param \Drupal\cj_membership\Entity\Membership $membership
+ * Implements hook_block_view_BASE_BLOCK_ID_alter().
  */
-function cj_cj_membership_update(Membership $membership) {
-  /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
-  $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
-
-  // If the membership has just become active.
-  if (($membership->status == Membership::STATUS_ACTIVE) && ($membership->status != $membership->original->status)) {
-    $profile = $profile_storage->loadDefaultByUser($membership->getOwner(), 'employer');
-    if (!$profile->employer_on_directory->value) {
-      $profile->employer_on_directory = TRUE;
-      $profile->save();
-    }
-  }
-  else if (($membership->status == Membership::STATUS_EXPIRED) && ($membership->original->status == Membership::STATUS_ACTIVE)) {
-    $profile = $profile_storage->loadDefaultByUser($membership->getOwner(),'employer');
-    if ($profile->employer_on_directory->value) {
-      $job_storage = \Drupal::entityTypeManager()->getStorage('job_role');
-      $query = $job_storage->getQuery();
-      $query->condition('organisation', $membership->getOwnerId());
-      $query->condition('publish_date', (new DrupalDateTime())->format('Y-m-d'), '<');
-      $query->condition('paid_to_date', (new DrupalDateTime())->format('Y-m-d'), '>=');
-
-      if (!$query->count()->execute()) {
-        $profile->employer_on_directory = FALSE;
-        $profile->save();
-      }
-    }
-  }
+function cj_block_view_views_exposed_filter_block_alter(array &$build, BlockPluginInterface $block) {
+  assert($block instanceof ViewsExposedFilterBlock);
+  $block->getViewExecutable()->build_info['cj_exposed_form_block_id'] = $build['#id'];
 }
 
-/**
- * Implements hook_cj_membership_insert.
- *
- * @param \Drupal\cj_membership\Entity\Membership $membership
- */
-function cj_cj_membership_insert(Membership $membership) {
-  /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
-  $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
 
-  if ($membership->status == Membership::STATUS_ACTIVE) {
-    $profile = $profile_storage->loadDefaultByUser($membership->getOwner(), 'employer');
-    if (!$profile->employer_on_directory->value) {
-      $profile->employer_on_directory = TRUE;
-      $profile->save();
+/**
+ * Implements hook_form_FORM_ID_alter() for views_exposed_form.
+ */
+function cj_form_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $form_state->get('view');
+  if ($view->id() == 'contacts_jobs_list') {
+    $block_id = $view->build_info['cj_exposed_form_block_id'] ?? NULL;
+
+    // Always apply these changes so they are used when processing input.
+    if (isset($form['search'])) {
+      $form['search']['#title_display'] = 'invisible';
+    }
+    if (isset($form['salary_currency'])) {
+      $form['salary_currency']['#type'] = 'select';
+      // @todo Get options from user context.
+      $options = [
+        '' => new TranslatableMarkup('- Any -'),
+        'GBP' => 'GBP',
+        'USD' => 'USD',
+        'EUR' => 'EUR',
+      ];
+      $form['salary_currency']['#options'] = $options;
+      $form['salary_currency']['#size'] = 1;
+      $form['salary_currency']['#title_display'] = 'invisible';
+      $form['salary_currency']['#value'] = 'GBP';
+    }
+
+    if ($view->current_display === 'org_page') {
+      $args = \Drupal::routeMatch()->getRawParameters()->all();
+      $form['#action'] = $view->getUrl($args)->toString();
+      $form['#cache']['contexts'][] = 'url.path';
+    }
+
+    // If we have specific context, apply additional tweaks.
+    switch ($block_id) {
+      case 'christian_jobs_salary':
+      case 'christian_jobs_salary_org':
+        if (isset($form['search'])) {
+          $form['search']['#type'] = 'hidden';
+        }
+        if (isset($form['actions']['submit'])) {
+          $form['actions']['submit']['#value'] = 'Update';
+        }
+        break;
+
+      case 'christian_jobs_search':
+      case 'christian_jobs_search_org':
+        if (isset($form['salary'])) {
+          $form['salary']['value']['#type'] = 'hidden';
+          $form['salary']['type']['#type'] = 'hidden';
+        }
+        if (isset($form['salary_currency'])) {
+          $form['salary_currency']['#type'] = 'hidden';
+        }
+        break;
     }
   }
 }

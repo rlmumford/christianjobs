@@ -12,7 +12,7 @@ dependencies:
 id: christian_jobs_search
 theme: cj_material
 region: sidebar_facets
-weight: -7
+weight: -9
 provider: null
 plugin: 'views_exposed_filter_block:contacts_jobs_list-listings'
 settings:

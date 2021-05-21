@@ -1829,11 +1829,6 @@ div#edit-individual-profile-consent-job-update-wrapper, div#edit-candidate-profi
   }
 }
 
-.block-facet--checkbox {
-  padding-right: 12px;
-  padding-left: 12px;
-}
-
 .facets-widget-checkbox {
   background-color: #F6F4F4;
   border: 1px solid;
@@ -2268,4 +2263,24 @@ form#views-exposed-form-job-board-page {
     border: 2px solid #00B0FF;
     border-radius: 2px;
   }
+}
+
+.bg-dark {
+  background-color: #2A556B;
+  color: #FFFFFF;
+}
+
+.bg-light {
+  background-color: #DBE4EB;
+}
+
+#facets-wide > aside {
+  padding: 1.25rem;
+}
+.facets form {
+  padding-left: 0;
+  padding-right: 0;
+}
+.region-sidebar-facets .card {
+  margin-bottom: 1em;
 }

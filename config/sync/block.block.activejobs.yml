@@ -1,0 +1,26 @@
+uuid: e5d74f5b-1614-4a40-bc1a-4fb6e8e8fdd5
+langcode: en
+status: true
+dependencies:
+  module:
+    - cj
+    - system
+  theme:
+    - cj_material
+id: activejobs
+theme: cj_material
+region: sidebar_facets_summary
+weight: 0
+provider: null
+plugin: cj_active_jobs
+settings:
+  id: cj_active_jobs
+  label: 'Active Jobs'
+  provider: cj
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /jobs
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,8 @@
+uuid: 5870bade-6d9b-4ce7-ab4f-bdde82f8ea04
+langcode: en
+status: true
+dependencies: {  }
+name: 'Job Locations'
+vid: locations
+description: '[Computed] Google Maps geodata tree of locations.'
+weight: 0

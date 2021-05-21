@@ -12,3 +12,11 @@ services:
     arguments: ['@entity_type.manager']
     tags:
       - { name: event_subscriber }
+  cj.job_queries:
+    class: Drupal\cj\JobQueries
+    arguments:
+      - '@entity_type.manager'
+      - '@search_api.query_helper'
+      - '@cache.default'
+      - '@datetime.time'
+      - '@contacts_jobs.cacheability_helper'

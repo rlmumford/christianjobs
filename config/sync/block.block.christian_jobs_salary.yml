@@ -5,14 +5,18 @@ dependencies:
   config:
     - views.view.contacts_jobs_list
   module:
+    - block_class
     - system
     - views
   theme:
     - cj_material
+third_party_settings:
+  block_class:
+    classes: card
 id: christian_jobs_salary
 theme: cj_material
 region: sidebar_facets
-weight: -9
+weight: -7
 provider: null
 plugin: 'views_exposed_filter_block:contacts_jobs_list-listings'
 settings:

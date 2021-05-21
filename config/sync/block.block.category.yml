@@ -5,10 +5,14 @@ dependencies:
   config:
     - facets.facet.facet_job_category
   module:
+    - block_class
     - facets
     - system
   theme:
     - cj_material
+third_party_settings:
+  block_class:
+    classes: card
 id: category
 theme: cj_material
 region: sidebar_facets
