@@ -6,7 +6,9 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
+use Drupal\user\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -28,19 +30,20 @@ class CJHeaderBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *  The factory for configuration objects.
+   * @param \Drupal\Core\Session\AccountInterface $current_user
+   *   The current user.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, AccountInterface $current_user) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->configFactory = $config_factory;
+
+    $this->currentUser = $current_user;
   }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static($configuration, $plugin_id, $plugin_definition, $container->get('config.factory'));
+    return new static($configuration, $plugin_id, $plugin_definition, $container->get('current_user'));
   }
 
   /**
@@ -163,6 +166,18 @@ class CJHeaderBlock extends BlockBase implements ContainerFactoryPluginInterface
         ],
       ],
     ];
+
+    if (!$this->currentUser->isAuthenticated()) {
+      $build['ctas']['post']['#url'] = Url::fromRoute('user.register', [], ['query' => ['register' => 'recruiter']]);
+    }
+    elseif ($this->currentUser->hasPermission('post new jobs')) {
+      $build['ctas']['post']['#url'] = Url::fromRoute('entity.contacts_jobs.post_form', ['contacts_job_type' => 'job']);
+    }
+    else {
+      $build['ctas']['post']['#access'] = FALSE;
+    }
+
+    $build['#cache']['contexts'] = ['user.roles'];
 
     return $build;
   }
