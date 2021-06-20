@@ -450,6 +450,9 @@ div#main-content {
   background: #FFFFFF;
   padding: 0 20px 30px;
 }
+.path-user div#main-content {
+  background: none;
+}
 
 .path-frontpage header#header {
   background-color: #FFFFFF;
@@ -1054,6 +1057,16 @@ span.upsell-price .tax {
   left: 0px;
   right: 0px;
   position: absolute;
+}
+.path-user {
+  .section-wrapper .section {
+    background: none;
+
+    &:after {
+      content: none;
+    }
+  }
+
 }
 .section-wrapper-header {
   position: relative;
