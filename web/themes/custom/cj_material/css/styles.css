@@ -3812,7 +3812,8 @@ div#main-content {
   background: #FFFFFF;
   padding: 0 20px 30px;
 }
-.path-user div#main-content {
+.path-user div#main-content,
+.path-jobs div#main-content {
   background: none;
 }
 
@@ -4096,16 +4097,6 @@ h2.company-name {
   position: relative;
   padding-top: 0.5em;
   padding-bottom: 0.8em;
-}
-
-.job-result:before {
-  background: #FF904B;
-  content: "";
-  height: 6px;
-  position: absolute;
-  left: -20px;
-  right: -20px;
-  top: 0px;
 }
 
 .job-result .subtitle.employer-name a {
@@ -4452,10 +4443,12 @@ span.upsell-price .tax {
   position: absolute;
 }
 
-.path-user .section-wrapper .section {
+.path-user .section-wrapper .section,
+.path-jobs .section-wrapper .section {
   background: none;
 }
-.path-user .section-wrapper .section:after {
+.path-user .section-wrapper .section:after,
+.path-jobs .section-wrapper .section:after {
   content: none;
 }
 

@@ -97,6 +97,7 @@
         "drupal/metatag": "^1.7",
         "drupal/name": "1.x-dev",
         "drupal/og": "^1.0@alpha",
+        "drupal/page_manager": "^4.0@beta",
         "drupal/panelizer": "^4.1",
         "drupal/paragraphs": "^1.8",
         "drupal/pathauto": "^1.3",

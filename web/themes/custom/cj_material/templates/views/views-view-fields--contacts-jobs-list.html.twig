@@ -35,22 +35,22 @@
   <div class="card-column-left card-column-240 visible-md aside">
     {% if fields.logo %}
       <div class="card-item card-media media-cover">
-        {{ fields.logo.content }}
+        {{ fields.logo }}
       </div>
     {% endif %}
   </div>
   <div class="card-column-right card-column-stretch main">
     <div class="card-item card-title">
-      <h3>{{ fields.label.content }}</h3>
-      <span class="subtitle employer-name">{{ fields.employer_name.content }}</span>
+      <h3>{{ fields.title.content }}</h3>
+      <span class="subtitle employer-name">{{ fields.organisation.content }}</span>
     </div>
     <div class="card-item card-text">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 first-md description-container">
-          {{ fields.description__value.content }}
+          {{ fields.job_description.content }}
         </div>
         <div class=" col-xs-12 col-sm-12 col-md-6 col-lg-6 first-sm first-xs extra-fields-container">
-          {% for field in fields|without('logo','employer_name', 'description__value', 'label') -%}
+          {% for field in fields|without('logo','organisation', 'job_description', 'title') -%}
             {{ field.separator }}
             {%- if field.wrapper_element -%}
               <{{ field.wrapper_element }}{{ field.wrapper_attributes }}>

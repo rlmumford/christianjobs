@@ -22,7 +22,7 @@ settings:
   find_cta_text: 'Find a Job'
   find_cta_path: jobs
   post_cta_text: 'Post a Job'
-  post_cta_path: jobs/post
+  post_cta_path: job/post
 visibility:
   request_path:
     id: request_path

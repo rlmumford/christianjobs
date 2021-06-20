@@ -450,8 +450,10 @@ div#main-content {
   background: #FFFFFF;
   padding: 0 20px 30px;
 }
-.path-user div#main-content {
-  background: none;
+.path-user, .path-jobs {
+  div#main-content {
+    background: none;
+  }
 }
 
 .path-frontpage header#header {
@@ -718,15 +720,6 @@ h2.company-name {
   position: relative;
   padding-top: 0.5em;
   padding-bottom: 0.8em;
-}
-.job-result:before {
-  background: #FF904B;
-  content: "";
-  height: 6px;
-  position: absolute;
-  left: -20px;
-  right: -20px;
-  top: 0px;
 }
 .job-result .subtitle.employer-name a {
   color: #1E5168;
@@ -1058,7 +1051,7 @@ span.upsell-price .tax {
   right: 0px;
   position: absolute;
 }
-.path-user {
+.path-user, .path-jobs {
   .section-wrapper .section {
     background: none;
 

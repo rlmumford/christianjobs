@@ -196,6 +196,34 @@ function cj_material_preprocess_fieldset(&$variables) {
 }
 
 /**
+ * Preprocess Views View Fields for the Contacts Jobs List.
+ */
+function cj_material_preprocess_views_view_fields__contacts_jobs_list(&$variables) {
+  /** @var \Drupal\Core\Entity\Plugin\DataType\EntityAdapter $job */
+  $job = $variables['row']->_object;
+  /** @var \Drupal\user\Entity\User $organisation */
+  /** @var \Drupal\profile\Entity\Profile $organisation */
+  if (
+    ($organisation = $job->get('organisation')->entity) &&
+    $organisation->hasField('profile_crm_org') &&
+    ($profile = $organisation->profile_crm_org->entity) &&
+    !$profile->org_image->isEmpty()
+  ) {
+    $logo = $profile->get('org_image')->view([
+      'type' => 'image',
+      'label' => 'hidden',
+    ]);
+  }
+  else {
+    $logo = [
+      '#theme' => 'image',
+      '#uri' => drupal_get_path('theme','cj_material').'/logo.svg',
+    ];
+  }
+  $variables['fields']['logo'] = \Drupal::service('renderer')->render($logo);
+}
+
+/**
  * Preprocess Views View Fields
  *
  * @param $variables

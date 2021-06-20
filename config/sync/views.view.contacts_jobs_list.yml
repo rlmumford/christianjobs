@@ -3,11 +3,21 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.contacts_job.job_category
+    - field.storage.contacts_job.job_description
+    - field.storage.contacts_job.job_description_summary
+    - field.storage.contacts_job.job_hours
+    - field.storage.contacts_job.job_keywords
+    - field.storage.contacts_job.job_type
+    - field.storage.contacts_job.locations
     - search_api.index.contacts_job_index
     - user.role.crm_org
   module:
     - contacts_jobs
+    - options
+    - places
     - search_api
+    - text
     - user
 id: contacts_jobs_list
 label: 'Jobs List'
@@ -70,32 +80,251 @@ display:
       style:
         type: grid
         options:
-          uses_fields: false
+          grouping: {  }
           columns: 1
           automatic_width: false
           alignment: horizontal
           col_class_default: false
-          col_class_custom: col
+          col_class_custom: 'col col-xs-12 mb-16'
           row_class_default: false
           row_class_custom: row
       row:
-        type: search_api
+        type: fields
         options:
-          view_modes:
-            'entity:contacts_job':
-              job: listing
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
       fields:
-        changed:
-          table: search_api_index_contacts_job_index
-          field: changed
-          id: changed
-          entity_type: null
-          entity_field: null
-          plugin_id: search_api_field
+        title:
+          id: title
+          table: search_api_datasource_contacts_job_index_entity_contacts_job
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
           label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: h3
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: 'card-item card-title'
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          entity_type: contacts_job
+          plugin_id: search_api_field
+        job_keywords:
+          id: job_keywords
+          table: search_api_datasource_contacts_job_index_entity_contacts_job
+          field: job_keywords
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 10
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: '|'
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api_entity
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+            display_methods:
+              job_category:
+                display_method: label
+              job_keywords:
+                display_method: label
+              job_region:
+                display_method: label
+              locations:
+                display_method: label
+          entity_type: contacts_job
+          plugin_id: search_api_field
+        job_salary:
+          id: job_salary
+          table: search_api_datasource_contacts_job_index_entity_contacts_job
+          field: job_salary
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Salary
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: desc
+          type: contacts_jobs_salary_default
+          settings: {  }
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          entity_type: contacts_job
+          plugin_id: search_api_field
+        job_type:
+          id: job_type
+          table: search_api_datasource_contacts_job_index_entity_contacts_job
+          field: job_type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -137,7 +366,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: timestamp
+          type: list_default
           settings: {  }
           group_column: value
           group_columns: {  }
@@ -150,15 +379,455 @@ display:
           separator: ', '
           field_api_classes: false
           field_rendering: true
-          fallback_handler: search_api_date
+          fallback_handler: search_api
           fallback_options:
-            date_format: small
-            custom_date_format: ''
-            timezone: ''
             link_to_item: false
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
+          entity_type: contacts_job
+          plugin_id: search_api_field
+        job_hours:
+          id: job_hours
+          table: search_api_datasource_contacts_job_index_entity_contacts_job
+          field: job_hours
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Hours
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          entity_type: contacts_job
+          plugin_id: search_api_field
+        job_category:
+          id: job_category
+          table: search_api_datasource_contacts_job_index_entity_contacts_job
+          field: job_category
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Category
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api_entity
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+            display_methods:
+              job_category:
+                display_method: label
+              job_keywords:
+                display_method: label
+              job_region:
+                display_method: label
+              locations:
+                display_method: label
+          entity_type: contacts_job
+          plugin_id: search_api_field
+        locations:
+          id: locations
+          table: search_api_datasource_contacts_job_index_entity_contacts_job
+          field: locations
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Locations
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: cjp_place_location
+          settings:
+            link: 0
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 4
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api_entity
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+            display_methods:
+              address:
+                display_method: label
+              taxonomy_address:
+                display_method: label
+          entity_type: contacts_job
+          plugin_id: search_api_field
+        organisation:
+          id: organisation
+          table: search_api_datasource_contacts_job_index_entity_contacts_job
+          field: organisation
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: true
+            path: 'jobs/o/{{ organisation__target_id }}'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: _blank
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api_entity
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+            display_methods:
+              user:
+                display_method: label
+                view_mode: contacts_dashboard_row
+          entity_type: contacts_job
+          plugin_id: search_api_field
+        job_description_summary:
+          id: job_description_summary
+          table: search_api_datasource_contacts_job_index_entity_contacts_job
+          field: job_description_summary
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          entity_type: contacts_job
+          plugin_id: search_api_field
+        job_description:
+          id: job_description
+          table: search_api_datasource_contacts_job_index_entity_contacts_job
+          field: job_description
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ job_description_summary }} '
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          entity_type: contacts_job
+          plugin_id: search_api_field
       filters:
         search_api_fulltext:
           id: search_api_fulltext
@@ -560,6 +1229,13 @@ display:
         - url.query_args
         - user.permissions
       tags:
+        - 'config:field.storage.contacts_job.job_category'
+        - 'config:field.storage.contacts_job.job_description'
+        - 'config:field.storage.contacts_job.job_description_summary'
+        - 'config:field.storage.contacts_job.job_hours'
+        - 'config:field.storage.contacts_job.job_keywords'
+        - 'config:field.storage.contacts_job.job_type'
+        - 'config:field.storage.contacts_job.locations'
         - 'config:search_api.index.contacts_job_index'
   featured:
     display_plugin: block
@@ -890,6 +1566,13 @@ display:
         - 'languages:language_interface'
         - user.permissions
       tags:
+        - 'config:field.storage.contacts_job.job_category'
+        - 'config:field.storage.contacts_job.job_description'
+        - 'config:field.storage.contacts_job.job_description_summary'
+        - 'config:field.storage.contacts_job.job_hours'
+        - 'config:field.storage.contacts_job.job_keywords'
+        - 'config:field.storage.contacts_job.job_type'
+        - 'config:field.storage.contacts_job.locations'
         - 'config:search_api.index.contacts_job_index'
   listings:
     display_plugin: page
@@ -926,6 +1609,13 @@ display:
         - url.query_args
         - user.permissions
       tags:
+        - 'config:field.storage.contacts_job.job_category'
+        - 'config:field.storage.contacts_job.job_description'
+        - 'config:field.storage.contacts_job.job_description_summary'
+        - 'config:field.storage.contacts_job.job_hours'
+        - 'config:field.storage.contacts_job.job_keywords'
+        - 'config:field.storage.contacts_job.job_type'
+        - 'config:field.storage.contacts_job.locations'
         - 'config:search_api.index.contacts_job_index'
   org_page:
     display_plugin: page
@@ -943,6 +1633,7 @@ display:
         title: false
         arguments: false
         header: false
+        cache: false
       arguments:
         organisation:
           id: organisation
@@ -996,6 +1687,8 @@ display:
           bypass_access: true
           plugin_id: entity
       exposed_block: true
+      cache:
+        type: none
     cache_metadata:
       max-age: -1
       contexts:
@@ -1005,4 +1698,11 @@ display:
         - url.query_args
         - user.permissions
       tags:
+        - 'config:field.storage.contacts_job.job_category'
+        - 'config:field.storage.contacts_job.job_description'
+        - 'config:field.storage.contacts_job.job_description_summary'
+        - 'config:field.storage.contacts_job.job_hours'
+        - 'config:field.storage.contacts_job.job_keywords'
+        - 'config:field.storage.contacts_job.job_type'
+        - 'config:field.storage.contacts_job.locations'
         - 'config:search_api.index.contacts_job_index'

@@ -1,9 +1,9 @@
-uuid: 9b66b2c3-3594-4d66-85d5-609650bdc89c
+uuid: 9f2dd499-0982-4944-bdd9-4ab91c54b0e3
 langcode: en
 status: true
 dependencies:
   config:
-    - facets.facet.facet_job_keywords
+    - facets.facet.facet_job_o_keywords
   module:
     - block_class
     - facets
@@ -13,21 +13,21 @@ dependencies:
 third_party_settings:
   block_class:
     classes: card
-id: keywords
+id: o_keywords
 theme: cj_material
 region: sidebar_facets
-weight: -4
+weight: -3
 provider: null
-plugin: 'facet_block:facet_job_keywords'
+plugin: 'facet_block:facet_job_o_keywords'
 settings:
-  id: 'facet_block:facet_job_keywords'
+  id: 'facet_block:facet_job_o_keywords'
   label: Keywords
   provider: facets
   label_display: visible
-  block_id: keywords
+  block_id: o_keywords
 visibility:
   request_path:
     id: request_path
-    pages: /jobs
+    pages: '/jobs/o/*'
     negate: false
     context_mapping: {  }

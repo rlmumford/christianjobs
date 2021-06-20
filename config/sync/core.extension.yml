@@ -38,6 +38,7 @@ module:
   dblog: 0
   decoupled_auth: 0
   decoupled_auth_crm: 0
+  devel: 0
   dynamic_page_cache: 0
   elasticsearch_aws_connector: 0
   elasticsearch_connector: 0
@@ -66,6 +67,8 @@ module:
   node: 0
   options: 0
   page_cache: 0
+  page_manager: 0
+  page_manager_ui: 0
   path: 0
   path_alias: 0
   pdf_tools: 0

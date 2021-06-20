@@ -1,0 +1,50 @@
+uuid: bb4a2f08-cd7d-4528-91ed-e4994ac8cd9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.front_page
+id: front_page-layout_builder-0
+label: Default
+variant: layout_builder
+variant_settings:
+  id: layout_builder
+  uuid: b105cc5d-cb73-4b51-af22-075f7505f6cb
+  label: null
+  weight: 0
+  sections:
+    -
+      layout_id: layout_onecol
+      layout_settings:
+        label: Main
+      components:
+        c5d3fda1-4924-496a-b04e-2912d50cc161:
+          uuid: c5d3fda1-4924-496a-b04e-2912d50cc161
+          region: content
+          configuration:
+            id: 'views_block:contacts_jobs_list-featured'
+            label: 'Featured Jobs'
+            provider: views
+            label_display: '0'
+            views_label: 'Featured Jobs'
+            items_per_page: none
+            context_mapping: {  }
+          additional: {  }
+          weight: 0
+        1da6e9c2-f66f-46da-89f5-4fa68f19be57:
+          uuid: 1da6e9c2-f66f-46da-89f5-4fa68f19be57
+          region: content
+          configuration:
+            id: cj_front_page_partners
+            label: 'Christian Jobs Front Page Partners'
+            provider: cj
+            label_display: '0'
+            context_mapping: {  }
+          additional: {  }
+          weight: 1
+      third_party_settings: {  }
+page: front_page
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

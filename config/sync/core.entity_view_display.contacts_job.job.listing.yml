@@ -1,9 +1,10 @@
-uuid: dc3de3dd-8272-456a-ab4a-651ce8ce285d
+uuid: b4352a65-769b-4d50-911e-28ff781470a9
 langcode: en
 status: true
 dependencies:
   config:
     - contacts_jobs.contacts_job_type.job
+    - core.entity_view_mode.contacts_job.listing
     - field.field.contacts_job.job.app_settings
     - field.field.contacts_job.job.job_category
     - field.field.contacts_job.job.job_description
@@ -36,25 +37,6 @@ third_party_settings:
         layout_settings:
           label: Content
         components:
-          1fac6a8d-c509-4d5b-afb8-7a5a763a0342:
-            uuid: 1fac6a8d-c509-4d5b-afb8-7a5a763a0342
-            region: top
-            configuration:
-              id: 'field_block:contacts_job:job:organisation'
-              label: Organisation
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_label
-                settings:
-                  link: false
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 0
           2fdd00fb-4214-4877-9a5e-0ca6711a2ba3:
             uuid: 2fdd00fb-4214-4877-9a5e-0ca6711a2ba3
             region: content
@@ -253,11 +235,30 @@ third_party_settings:
                 type: entity_reference_label
             additional: {  }
             weight: 2
+          bc065c8c-3a0f-4586-9679-a2d0183c8566:
+            uuid: bc065c8c-3a0f-4586-9679-a2d0183c8566
+            region: top
+            configuration:
+              id: 'field_block:contacts_job:job:title'
+              label: Title
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: true
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
         third_party_settings: {  }
-id: contacts_job.job.default
+id: contacts_job.job.listing
 targetEntityType: contacts_job
 bundle: job
-mode: default
+mode: listing
 content:
   closing:
     label: hidden

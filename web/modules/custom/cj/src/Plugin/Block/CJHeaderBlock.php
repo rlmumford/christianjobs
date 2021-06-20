@@ -171,7 +171,7 @@ class CJHeaderBlock extends BlockBase implements ContainerFactoryPluginInterface
       $build['ctas']['post']['#url'] = Url::fromRoute('user.register', [], ['query' => ['register' => 'recruiter']]);
     }
     elseif ($this->currentUser->hasPermission('post new jobs')) {
-      $build['ctas']['post']['#url'] = Url::fromRoute('entity.contacts_jobs.post_form', ['contacts_job_type' => 'job']);
+      $build['ctas']['post']['#url'] = Url::fromRoute('entity.contacts_job.post_form', ['contacts_job_type' => 'job']);
     }
     else {
       $build['ctas']['post']['#access'] = FALSE;
