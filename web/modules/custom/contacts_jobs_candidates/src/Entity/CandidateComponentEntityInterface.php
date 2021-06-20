@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\contacts_jobs_apps\Entity;
+namespace Drupal\contacts_jobs_candidates\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;

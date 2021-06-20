@@ -1,0 +1,13 @@
+uuid: 45fe705d-b0a8-4123-bb3d-81b0b661ce68
+langcode: en
+status: true
+dependencies: {  }
+id: recruiter_application_notification_email
+label: 'AP1 App Submitted Recruiter Email'
+default_blueprint: recruiter_application_notification_email.default_blueprint
+return_type: 'entity:communication:email'
+parameters:
+  application:
+    label: Application
+    type: 'entity:cj_app'
+    machine_name: application

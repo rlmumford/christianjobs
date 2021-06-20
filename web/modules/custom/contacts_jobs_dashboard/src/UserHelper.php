@@ -106,7 +106,7 @@ class UserHelper {
       return Url::fromRoute('contacts_jobs_dashboard.recruiter_organisation');
     }
     if ($user->hasRole('candidate')) {
-      return Url::fromRoute('fmcg_candidate.personal_profile', ['user' => $user->id()]);
+      return Url::fromRoute('contacts_jobs_candidates.personal_profile', ['user' => $user->id()]);
     }
 
     return NULL;

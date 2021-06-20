@@ -11,5 +11,6 @@ is_admin: false
 permissions:
   - 'access checkout'
   - 'access content'
+  - 'add job applications'
   - 'view commerce_product'
   - 'view published job entities'

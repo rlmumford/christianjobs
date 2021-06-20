@@ -1,0 +1,13 @@
+uuid: bbf3b128-07e7-41c9-ad23-9db25647b712
+langcode: en
+status: true
+dependencies: {  }
+id: candidate_application_notification_email
+label: 'AP2 App Submitted Candidate Email'
+default_blueprint: candidate_application_notification_email.default_blueprint
+return_type: 'entity:communication:email'
+parameters:
+  application:
+    label: Application
+    type: 'entity:cj_app'
+    machine_name: application

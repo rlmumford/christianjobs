@@ -1,0 +1,98 @@
+contacts_jobs_candidates.personal_profile:
+  path: /user/register/candidate/{user}/profile
+  defaults:
+    _form: Drupal\contacts_jobs_candidates\Form\PersonalProfileForm
+    _title: 'Contact & Details'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'candidate'
+    _entity_access: 'user.dashboard'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+contacts_jobs_candidates.cv_resume:
+  path: /user/register/candidate/{user}/cv
+  defaults:
+    _form: Drupal\contacts_jobs_candidates\Form\CvResumeForm
+    _title: 'CV/Resume'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'candidate'
+    _entity_access: 'user.dashboard'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+contacts_jobs_candidates.job_target:
+  path: /user/register/candidate/{user}/job-targets
+  defaults:
+    _form: Drupal\contacts_jobs_candidates\Form\JobTargetStepForm
+    _title: 'Job Targets'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'candidate'
+    _entity_access: 'user.dashboard'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+contacts_jobs_candidates.gdpr:
+  path: /user/register/candidate/{user}/comms
+  defaults:
+    _form: Drupal\contacts_jobs_candidates\Form\GdprForm
+    _title: 'Communication'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'candidate'
+    _entity_access: 'user.dashboard'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+contacts_jobs_candidates.view_cv:
+  path: '/user/{user}/cv'
+  defaults:
+    _title: 'View CV'
+    _controller: '\Drupal\contacts_jobs_candidates\Controller\CvController::view'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'candidate'
+    _entity_access: 'user.dashboard'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+contacts_jobs_candidates.download_cv:
+  path: '/user/{user}/cv.pdf'
+  defaults:
+    _title: 'Download CV'
+    _controller: '\Drupal\contacts_jobs_candidates\Controller\CvController::download'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'candidate'
+    _entity_access: 'user.dashboard'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+contacts_jobs_candidates.dashboard.targets:
+  path: /user/{user}/targets
+  defaults:
+    _controller: 'Drupal\contacts_jobs_candidates\Controller\TargetsController::targetsPage'
+    _title: 'Targets'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _dashboard_role: 'candidate'
+    _entity_access: 'user.dashboard'
+  options:
+    _jobboard_content_wrapper: {}
+    parameters:
+      user:
+        type: entity:user

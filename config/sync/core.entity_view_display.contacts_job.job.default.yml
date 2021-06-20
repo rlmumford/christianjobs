@@ -19,7 +19,9 @@ dependencies:
     - field.field.contacts_job.job.job_type
     - field.field.contacts_job.job.locations
   module:
+    - cj
     - contacts_jobs
+    - contacts_jobs_apps
     - file
     - layout_builder
     - text
@@ -36,6 +38,18 @@ third_party_settings:
         layout_settings:
           label: Content
         components:
+          9e6f2b47-0ff0-465a-b814-6f36837ee770:
+            uuid: 9e6f2b47-0ff0-465a-b814-6f36837ee770
+            region: aside
+            configuration:
+              id: cj_job_org_logo
+              label: 'Job Organisation Logo'
+              provider: cj
+              label_display: '0'
+              context_mapping:
+                job: layout_builder.entity
+            additional: { }
+            weight: -1
           1fac6a8d-c509-4d5b-afb8-7a5a763a0342:
             uuid: 1fac6a8d-c509-4d5b-afb8-7a5a763a0342
             region: top
@@ -92,18 +106,6 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 1
-          72eec8fd-045b-413f-89f8-0ee7569f0e97:
-            uuid: 72eec8fd-045b-413f-89f8-0ee7569f0e97
-            region: aside
-            configuration:
-              id: 'extra_field_block:contacts_job:job:organisation_logo'
-              label: 'Organisation logo'
-              provider: layout_builder
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
-            weight: 0
           62192599-5803-4c11-aa68-4cda58970536:
             uuid: 62192599-5803-4c11-aa68-4cda58970536
             region: aside
@@ -253,6 +255,18 @@ third_party_settings:
                 type: entity_reference_label
             additional: {  }
             weight: 2
+          5dae59df-6838-4be7-851f-5a6fbe911501:
+            uuid: 5dae59df-6838-4be7-851f-5a6fbe911501
+            region: aside
+            configuration:
+              id: cj_apps_apply_now
+              label: 'Apply now button'
+              provider: contacts_jobs_apps
+              label_display: '0'
+              context_mapping:
+                job: layout_builder.entity
+            additional: {  }
+            weight: 8
         third_party_settings: {  }
 id: contacts_job.job.default
 targetEntityType: contacts_job

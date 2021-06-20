@@ -13,4 +13,5 @@ id: candidate
 label: Candidate
 weight: 7
 is_admin: null
-permissions: {  }
+permissions:
+  - 'add job applications'
