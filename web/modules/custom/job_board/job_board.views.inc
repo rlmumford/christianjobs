@@ -56,7 +56,7 @@ function job_board_views_data_alter(array &$data) {
 
 
     // List fields.
-    foreach (['hours', 'compensation'] as $field_name) {
+    foreach (['hours', 'compensation', 'location_type'] as $field_name) {
       $data[$table_name][$field_name]['filter'] = [
         'id' => 'list_field',
         'entity_type' => 'job_role',
