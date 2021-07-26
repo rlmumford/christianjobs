@@ -464,6 +464,12 @@ function job_board_form_views_exposed_form_alter(array &$form, FormStateInterfac
     $form['filters']['industry']['#title'] = $form['#info']['filter-industry']['label'];
     $form['filters']['industry']['#prefix'] = '<div class="col-xs-6 col-md-3">';
     $form['filters']['industry']['#suffix'] = '</div>';
+
+    $form['filters']['location_type'] = $form['location_type'];
+    unset($form['location_type']);
+    $form['filters']['location_type']['#title'] = t('Location Type');
+    $form['filters']['location_type']['#prefix'] = '<div class="col-xs-6 col-md-3">';
+    $form['filters']['location_type']['#suffix'] = '</div>';
   }
   else if ($form['#id'] == 'views-exposed-form-employer-directory-page') {
     $form['search']['#size'] = 128;
