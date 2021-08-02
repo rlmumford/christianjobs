@@ -964,8 +964,8 @@ span.upsell-price .tax {
   min-height: 0;
 }
 
-.lcm-banner-container {
-  background-image: url("../assets/lcmbkgd485x527.png");
+.hfg-banner-container {
+  background-image: url("../assets/hfgbkgd485x527.png");
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: -15px;
@@ -973,8 +973,10 @@ span.upsell-price .tax {
   border-bottom: 1px solid #FFFFFF;
   position: relative;
 
-  .lcm-logo-wrapper {
+  .hfg-logo-wrapper {
     display: none;
+    background-color: #FFFFFF;
+    border-right: 5px solid #FF8F48;
   }
 
   h2 {
@@ -1011,27 +1013,29 @@ span.upsell-price .tax {
   }
 
   @media (min-width: $md) {
-    background-image: url("../assets/lcmbkgd758x327.png");
+    background-image: url("../assets/hfgbkgd758x327.png");
 
-    .lcm-logo-wrapper {
-      display: block;
+    .hfg-logo-wrapper {
+      display: inherit;
 
-      .lcm-banner-logo {
+      .hfg-banner-logo {
         display: block;
         max-width: 250px;
+        margin: auto;
       }
     }
   }
 
   @media (min-width: $lg) {
-    background-image: url("../assets/lcmbkgd1905x237.png");
+    background-image: url("../assets/hfgbkgd1905x237.png");
 
-    .lcm-logo-wrapper {
-      display: block;
+    .hfg-logo-wrapper {
+      display: inherit;
 
-      .lcm-banner-logo {
+      .hfg-banner-logo {
         display: block;
         max-width: 330px;
+        margin: auto;
       }
     }
 
@@ -1041,8 +1045,16 @@ span.upsell-price .tax {
   }
 }
 
-.lcm-banner-text {
-  padding: 0px 36px;
+.hfg-banner-text {
+  padding: 0px 50px;
+}
+
+.hfg-head-text {
+  color: #00B0FF;
+}
+
+.hfg-highlight {
+  color: #FF8F48;
 }
 
 .section-wrapper {
