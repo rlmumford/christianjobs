@@ -1,6 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic");
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/css?family=Lato|Montserrat:400,600&display=swap");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -68,7 +66,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
  * D7 - differs in Drupal 7 version
  * TO DO - needs to be implemented
  */
-/* fonts */
 /* helpful classes */
 .clearfix:after, #footer-content:after, #navbar:after, .media-left:after, .media-right:after {
   content: "";
@@ -4360,8 +4357,8 @@ span.upsell-price .tax {
   min-height: 0;
 }
 
-.hfg-banner-container {
-  background-image: url("../assets/hfgbkgd485x527.png");
+.ww-banner-container {
+  background-image: url("../assets/wwbkgd485x527.png");
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: -15px;
@@ -4369,25 +4366,25 @@ span.upsell-price .tax {
   border-bottom: 1px solid #FFFFFF;
   position: relative;
 }
-.hfg-banner-container .hfg-logo-wrapper {
+.ww-banner-container .ww-logo-wrapper {
   display: none;
   background-color: #FFFFFF;
   border-right: 5px solid #FF8F48;
 }
-.hfg-banner-container h2 {
+.ww-banner-container h2 {
   color: #FFFFFF;
   font-weight: bolder;
   line-height: 1.25em;
   font-size: 2.5em;
 }
-.hfg-banner-container p {
+.ww-banner-container p {
   color: #FFFFFF;
   font-size: 20px;
 }
-.hfg-banner-container a:hover {
+.ww-banner-container a:hover {
   color: #49BCFB;
 }
-.hfg-banner-container .btn, .hfg-banner-container .tabledrag-toggle-weight, .hfg-banner-container .pager .pager-item > a, .pager .hfg-banner-container .pager-item > a, .hfg-banner-container .pager .pager-item > span, .pager .hfg-banner-container .pager-item > span {
+.ww-banner-container .btn, .ww-banner-container .tabledrag-toggle-weight, .ww-banner-container .pager .pager-item > a, .pager .ww-banner-container .pager-item > a, .ww-banner-container .pager .pager-item > span, .pager .ww-banner-container .pager-item > span {
   margin-top: 15px;
   margin-bottom: 24px;
   margin-left: 0px;
@@ -4396,51 +4393,51 @@ span.upsell-price .tax {
   font-size: 1.2em;
   padding: 4px 10px;
 }
-.hfg-banner-container .btn:hover, .hfg-banner-container .tabledrag-toggle-weight:hover, .hfg-banner-container .pager .pager-item > a:hover, .pager .hfg-banner-container .pager-item > a:hover, .hfg-banner-container .pager .pager-item > span:hover, .pager .hfg-banner-container .pager-item > span:hover {
+.ww-banner-container .btn:hover, .ww-banner-container .tabledrag-toggle-weight:hover, .ww-banner-container .pager .pager-item > a:hover, .pager .ww-banner-container .pager-item > a:hover, .ww-banner-container .pager .pager-item > span:hover, .pager .ww-banner-container .pager-item > span:hover {
   border: 2px solid #00B0FF;
   background-color: #FFFFFF;
   color: #00B0FF;
   padding: 2px 8px;
 }
 @media (min-width: 992px) {
-  .hfg-banner-container {
-    background-image: url("../assets/hfgbkgd758x327.png");
+  .ww-banner-container {
+    background-image: url("../assets/wwbkgd758x327.png");
   }
-  .hfg-banner-container .hfg-logo-wrapper {
+  .ww-banner-container .ww-logo-wrapper {
     display: inherit;
   }
-  .hfg-banner-container .hfg-logo-wrapper .hfg-banner-logo {
+  .ww-banner-container .ww-logo-wrapper .ww-banner-logo {
     display: block;
     max-width: 250px;
     margin: auto;
   }
 }
 @media (min-width: 1256px) {
-  .hfg-banner-container {
-    background-image: url("../assets/hfgbkgd1905x237.png");
+  .ww-banner-container {
+    background-image: url("../assets/wwbkgd1905x237.png");
   }
-  .hfg-banner-container .hfg-logo-wrapper {
+  .ww-banner-container .ww-logo-wrapper {
     display: inherit;
   }
-  .hfg-banner-container .hfg-logo-wrapper .hfg-banner-logo {
+  .ww-banner-container .ww-logo-wrapper .ww-banner-logo {
     display: block;
     max-width: 330px;
     margin: auto;
   }
-  .hfg-banner-container h2 {
+  .ww-banner-container h2 {
     font-size: 3em;
   }
 }
 
-.hfg-banner-text {
+.ww-banner-text {
   padding: 0px 50px;
 }
 
-.hfg-head-text {
+.ww-head-text {
   color: #00B0FF;
 }
 
-.hfg-highlight {
+.ww-highlight {
   color: #FF8F48;
 }
 
