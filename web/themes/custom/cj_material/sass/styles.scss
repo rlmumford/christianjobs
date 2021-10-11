@@ -10,6 +10,8 @@
 @import "../../../contrib/material_base/sass/modules";
 
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:400,600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 // put your styles here
 // you can @extend anything from base theme
@@ -964,8 +966,8 @@ span.upsell-price .tax {
   min-height: 0;
 }
 
-.hfg-banner-container {
-  background-image: url("../assets/hfgbkgd485x527.png");
+.ww-banner-container {
+  background-image: url("../assets/wwbkgd485x527.png");
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: -15px;
@@ -973,7 +975,7 @@ span.upsell-price .tax {
   border-bottom: 1px solid #FFFFFF;
   position: relative;
 
-  .hfg-logo-wrapper {
+  .ww-logo-wrapper {
     display: none;
     background-color: #FFFFFF;
     border-right: 5px solid #FF8F48;
@@ -1013,12 +1015,12 @@ span.upsell-price .tax {
   }
 
   @media (min-width: $md) {
-    background-image: url("../assets/hfgbkgd758x327.png");
+    background-image: url("../assets/wwbkgd758x327.png");
 
-    .hfg-logo-wrapper {
+    .ww-logo-wrapper {
       display: inherit;
 
-      .hfg-banner-logo {
+      .ww-banner-logo {
         display: block;
         max-width: 250px;
         margin: auto;
@@ -1027,12 +1029,12 @@ span.upsell-price .tax {
   }
 
   @media (min-width: $lg) {
-    background-image: url("../assets/hfgbkgd1905x237.png");
+    background-image: url("../assets/wwbkgd1905x237.png");
 
-    .hfg-logo-wrapper {
+    .ww-logo-wrapper {
       display: inherit;
 
-      .hfg-banner-logo {
+      .ww-banner-logo {
         display: block;
         max-width: 330px;
         margin: auto;
@@ -1045,15 +1047,15 @@ span.upsell-price .tax {
   }
 }
 
-.hfg-banner-text {
+.ww-banner-text {
   padding: 0px 50px;
 }
 
-.hfg-head-text {
+.ww-head-text {
   color: #00B0FF;
 }
 
-.hfg-highlight {
+.ww-highlight {
   color: #FF8F48;
 }
 

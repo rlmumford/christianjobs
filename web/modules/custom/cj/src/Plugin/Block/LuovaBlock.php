@@ -19,15 +19,15 @@ class LuovaBlock extends BlockBase {
    */
   public function build() {
     $content = [];
-    $content['#markup'] = '<div class="row hfg-banner-container">
-<div class="col col-xs-12 col-md-3 first-md hfg-logo-wrapper">
-<img src="/'.drupal_get_path('theme', 'cj_material').'/assets/hfglogo.png" class="hfg-banner-logo" />
+    $content['#markup'] = '<div class="row ww-banner-container">
+<div class="col col-xs-12 col-md-3 first-md ww-logo-wrapper">
+<img src="/'.drupal_get_path('theme', 'cj_material').'/assets/wwlogo.png" class="ww-banner-logo" />
 </div>
-<div class="col col-xs-12 col-md-9 hfg-banner-text">
-<h2>Would you like to use your operational leadership skills to serve a Christian charity?</h2>
+<div class="col col-xs-12 col-md-9 ww-banner-text">
+<h2>Would you like to see your work more as worship as you seek to transform nations?</h2>
 
-<p><span>Christian Jobs are currently recruiting for <span class="hfg-highlight">Home For Good</span>, who work to mobilise the Church in the UK. Home For Good respond to the needs of vulnerable children through families stepping forward to foster or adopt and churches wrapping around families with support. They are looking for a new <span class="hfg-highlight">Director Of Finance & Infrastructure</span>, if you or someone you know may be interested in this role then contact our recruitment team today!</span></span></p>
-<a class="btn" href="https://www.christianjobs.co.uk/jobs/home-good/2672">Find out more</a></div>
+<p><span class="ww-highlight">Worship.Works</span> trains followers of Jesus to see their work as worship, with endless possibilities. Their vision is to equip thousands of people to minister through their work by offering teaching, speaking and publishing online resources. They are looking for people to join their <span class="ww-highlight">Christian Graduate Internship in Workplace Ministry</span>. If you or someone you know may be interested in this opportunity then contact our recruitment team today!</span></span></p>
+<a class="btn" href="https://www.christianjobs.co.uk/jobs/worshipworks/2783">Find out more</a></div>
 </div>';
     return $content;
   }
