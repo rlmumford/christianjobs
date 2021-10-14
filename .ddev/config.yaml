@@ -10,7 +10,7 @@ additional_hostnames: []
 additional_fqdns: []
 provider: default
 use_dns_when_possible: true
-
+composer_version: "2"
 
 # This config.yaml was created with ddev version v1.15.3
 # webimage: drud/ddev-webserver:v1.15.3
